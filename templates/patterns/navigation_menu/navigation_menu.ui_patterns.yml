@@ -85,6 +85,12 @@ navigation_menu:
           extra_attributes:
             - name: "extra-attr1"
               value: "extra value1"
+          info:
+            title: "About the EU law"
+            content: "Description text, lorem ipsum dolor sit amet, consectetur adipiscing elit."
+            link:
+              label: "Discover more"
+              href: "#"
           children:
             - href: '#'
               label: 'Eu Treaties'
@@ -92,7 +98,11 @@ navigation_menu:
                 - name: "extra-attr2"
                   value: "extra value2"
               is_current: TRUE
+              see_all_label: "View all"
               see_all: true
+              see_all_attributes:
+                - name: "extra-attr3"
+                  value: "extra value3"
               children:
                 - href: "#"
                   label: 'Granchild 2.1.1'
@@ -145,10 +155,14 @@ navigation_menu:
         - href: "#"
           label: "Live, work, study"
           external: true
+          info:
+            title: "About the Live, work, study page"
+            content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
           children:
             - href: '#'
               label: 'Child 6.1'
-              see_all: false
+              see_all_label: "See all"
+              see_all: true
               children:
                 - href: "#"
                   label: 'Granchild 6.1.1'
