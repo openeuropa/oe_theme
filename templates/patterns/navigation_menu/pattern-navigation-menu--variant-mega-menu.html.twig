@@ -16,6 +16,8 @@
       path: child.href,
       label: child.label,
       see_all: child.see_all|default(false),
+      see_all_label: child.see_all_label|default('See all'),
+      see_all_attributes: child.see_all_attributes,
       extra_attributes: child.extra_attributes,
     } %}
     {% if child.is_current is defined and child.is_current == true %}
@@ -91,12 +93,39 @@
     {% set _children = _children|merge([_child]) %}
   {% endfor %}
 
+  {# Process item's info. #}
+  {% set _info = [] %}
+  {% if item.info is not empty %}
+    {% set _info = _info|merge({
+      'title': item.info.title,
+      'content': item.info.content,
+    }) %}
+    {% if item.info.link is not empty and item.info.link.href is not empty %}
+      {% set _info = _info|merge({
+        'link': {
+          'link': {
+            'label': item.info.link.label|default(item.info.link.href),
+            'path': item.info.link.href|default(''),
+          },
+          'icon': {
+            name: "arrow-left",
+            path: ecl_icon_path,
+            transform: "flip-horizontal",
+            size: "xs"
+          },
+          'extra_classes': "ecl-mega-menu__info-link"
+        },
+      }) %}
+    {% endif %}
+  {% endif %}
+
   {# Process menu items. #}
   {% set _item = {
     path: item.href,
     label: item.label,
+    info: _info|default([]),
     children: _children,
-    trigger_aria_label: "Access item's children"|t,
+    link_aria_label: "Access item's children"|t,
     extra_attributes: item.extra_attributes,
   } %}
   {% if _children is empty %}

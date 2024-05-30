@@ -3165,13 +3165,18 @@
     '#variant': "mega_menu"
     '#fields':
       label: "Menu"
-      see_all_label: "Browse all"
       items:
         - href: "#"
           label: 'Parent 1'
           extra_attributes:
             - name: 'data-name1'
               value: 'data value1'
+          info:
+            title: "About the Parent 1 link"
+            content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+            link:
+              label: "Discover more"
+              href: "#"
           children:
             - href: '#'
               label: 'Child 1.1'
@@ -3189,10 +3194,17 @@
               label: 'Child 1.4'
         - href: "#"
           label: "Parent 2"
+          info:
+            title: "About the Parent 2 link"
+            content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
           children:
             - href: '#child-2.1'
               label: 'Child 2.1'
+              see_all_label: "Browse all"
               see_all: true
+              see_all_attributes:
+                - name: 'see-all-attr-name'
+                  value: 'see-all-attr-value'
               children:
                 - href: "#"
                   label: 'Granchild 2.1.1'
@@ -3228,18 +3240,11 @@
             - href: '#child-2.3'
               label: 'Child 2.3'
               children:
-                - href: "#"
+                - href: "#granchild-2.3.1"
                   label: 'Granchild 2.3.1'
-                - href: "#"
+                - href: "#granchild-2.3.2"
                   label: 'Granchild 2.3.2'
                   external: true
-              featured:
-                title: "featured column 2"
-                content:
-                  '#markup': "<article class=\"ecl-navigation-list__item\">\n    <picture class=\"ecl-picture ecl-navigation-list__picture\"><img class=\"ecl-navigation-list__image\" src=\"https://inno-ecl.s3.amazonaws.com/media/examples/example-image.jpg\" alt=\"Alt text for the image\" /></picture>\n    <div class=\"ecl-content-block ecl-navigation-list__content-block\" data-ecl-auto-init=\"ContentBlock\" data-ecl-content-block>\n      <div class=\"ecl-content-block__title\" data-ecl-title-link><a href=\"/example#qspea\" class=\"ecl-link ecl-link--standalone\">Title 2</a></div>\n      <div class=\"ecl-content-block__description\">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus gravida ipsum ut lorem cursus</div>\n    </div>\n  </article>"
-                items:
-                  - href: "#"
-                    label: "Featured link 2.3.1"
         - href: "#"
           label: "Parent 3 with container"
           container:
@@ -3247,23 +3252,31 @@
   assertions:
     count:
       "nav.ecl-mega-menu[data-ecl-mega-menu][data-ecl-auto-init=\"MegaMenu\"][aria-expanded=\"false\"][role=\"navigation\"][aria-label=\"Site navigation\"]": 1
-      "li.ecl-mega-menu__item.ecl-mega-menu__item--has-children:nth-child(1)[aria-label=\"Access item's children\"]": 1
+      "li.ecl-mega-menu__item.ecl-mega-menu__item--has-children:nth-child(1)[data-ecl-has-children]": 1
       "li.ecl-mega-menu__subitem.ecl-mega-menu__see-all": 1
-      "li.ecl-mega-menu__item.ecl-mega-menu__item--has-children:nth-child(2)[aria-label=\"Access item's children\"]": 1
-      "li.ecl-mega-menu__item.ecl-mega-menu__item--has-container:nth-child(3)[data-ecl-has-container]": 1
+      "li.ecl-mega-menu__item.ecl-mega-menu__item--has-children:nth-child(2)[data-ecl-has-children]": 1
+      "li.ecl-mega-menu__item.ecl-mega-menu__item--has-container[data-ecl-has-container]": 1
       "div.ecl-container.ecl-mega-menu__container section.ecl-mega-menu__inner[data-ecl-mega-menu-inner]": 1
       "a.ecl-link--standalone.ecl-button.ecl-button--tertiary.ecl-mega-menu__open.ecl-link--icon-only[data-ecl-mega-menu-open]": 1
+      "div.ecl-mega-menu__info.ecl-mega-menu__info--has-link": 1
+      "div.ecl-mega-menu__info": 2
     equals:
       'a.ecl-mega-menu__open.ecl-link--icon-only span.ecl-link__label': 'Menu'
       '.ecl-mega-menu__inner-header button.ecl-mega-menu__back[data-ecl-mega-menu-back] .ecl-button__label': "Back"
       'li.ecl-mega-menu__item.ecl-mega-menu__item--has-children:nth-child(1) a.ecl-mega-menu__link[data-name1="data value1"] .ecl-link__label': "Parent 1"
       'li.ecl-mega-menu__item:nth-child(1) ul.ecl-mega-menu__sublist li.ecl-mega-menu__subitem--current-page a.ecl-mega-menu__sublink.ecl-link--icon[data-name2="data value2"] .ecl-link__label': 'Child 1.1'
       'li.ecl-mega-menu__item:nth-child(1) ul.ecl-mega-menu__sublist li.ecl-mega-menu__subitem--current-page a svg.ecl-icon.ecl-icon--2xs.ecl-link__icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>'
+      'li.ecl-mega-menu__item:nth-child(1) div.ecl-mega-menu__info.ecl-mega-menu__info--has-link .ecl-mega-menu__info-title': 'About the Parent 1 link'
+      'li.ecl-mega-menu__item:nth-child(1) div.ecl-mega-menu__info.ecl-mega-menu__info--has-link .ecl-mega-menu__info-scrollable .ecl-mega-menu__info-content': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
+      'li.ecl-mega-menu__item:nth-child(1) div.ecl-mega-menu__info.ecl-mega-menu__info--has-link .ecl-mega-menu__info-scrollable a.ecl-mega-menu__info-link[href="#"] .ecl-link__label': 'Discover more'
+      'li.ecl-mega-menu__item:nth-child(1) div.ecl-mega-menu__info.ecl-mega-menu__info--has-link .ecl-mega-menu__info-scrollable a.ecl-mega-menu__info-link[href="#"] svg.ecl-icon--xs.ecl-icon--flip-horizontal': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#arrow-left"></use>'
       'li.ecl-mega-menu__item:nth-child(1) ul.ecl-mega-menu__sublist li.ecl-mega-menu__subitem:nth-child(2) a.ecl-mega-menu__sublink': 'Child 1.2'
       'li.ecl-mega-menu__item:nth-child(1) ul.ecl-mega-menu__sublist li.ecl-mega-menu__subitem:nth-child(3) a.ecl-mega-menu__sublink.ecl-link--icon .ecl-link__label': 'Child 1.3'
       'li.ecl-mega-menu__item:nth-child(1) ul.ecl-mega-menu__sublist li.ecl-mega-menu__subitem:nth-child(3) a svg.ecl-icon.ecl-icon--2xs.ecl-link__icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>'
       'li.ecl-mega-menu__item:nth-child(1) ul.ecl-mega-menu__sublist li.ecl-mega-menu__subitem:nth-child(4) a.ecl-mega-menu__sublink': 'Child 1.4'
       'li.ecl-mega-menu__item.ecl-mega-menu__item--has-children:nth-child(2) a.ecl-mega-menu__link .ecl-link__label': "Parent 2"
+      'li.ecl-mega-menu__item.ecl-mega-menu__item--has-children:nth-child(2) div.ecl-mega-menu__info .ecl-mega-menu__info-title': 'About the Parent 2 link'
+      'li.ecl-mega-menu__item.ecl-mega-menu__item--has-children:nth-child(2) div.ecl-mega-menu__info .ecl-mega-menu__info-scrollable .ecl-mega-menu__info-content': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
       'li.ecl-mega-menu__item--has-children:nth-child(2) ul.ecl-mega-menu__sublist li.ecl-mega-menu__subitem a.ecl-mega-menu__sublink[href="#child-2.1"] .ecl-link__label': 'Child 2.1'
       'li.ecl-mega-menu__item--has-children:nth-child(2) ul.ecl-mega-menu__sublist li.ecl-mega-menu__subitem a.ecl-mega-menu__sublink[href="#child-2.1"] svg.ecl-icon--2xs.ecl-icon--rotate-90': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#corner-arrow"></use>'
       'li.ecl-mega-menu__item--has-children:nth-child(2) ul.ecl-mega-menu__sublist li.ecl-mega-menu__subitem:nth-child(1) div.ecl-mega-menu__mega--level-2 ul.ecl-mega-menu__sublist li.ecl-mega-menu__subitem:nth-child(1) a.ecl-mega-menu__sublink': 'Granchild 2.1.1'
@@ -3273,7 +3286,7 @@
       'li.ecl-mega-menu__item--has-children:nth-child(2) ul.ecl-mega-menu__sublist li.ecl-mega-menu__subitem:nth-child(1) div.ecl-mega-menu__mega--level-2 ul.ecl-mega-menu__sublist li.ecl-mega-menu__subitem:nth-child(4) a.ecl-mega-menu__sublink': 'Granchild 2.1.4'
       'li.ecl-mega-menu__item--has-children:nth-child(2) ul.ecl-mega-menu__sublist li.ecl-mega-menu__subitem:nth-child(1) div.ecl-mega-menu__mega--level-2 ul.ecl-mega-menu__sublist li.ecl-mega-menu__subitem:nth-child(5) a.ecl-mega-menu__sublink .ecl-link__label': 'Granchild 2.1.5'
       'li.ecl-mega-menu__item--has-children:nth-child(2) ul.ecl-mega-menu__sublist li.ecl-mega-menu__subitem:nth-child(1) div.ecl-mega-menu__mega--level-2 ul.ecl-mega-menu__sublist li.ecl-mega-menu__subitem:nth-child(5) a.ecl-mega-menu__sublink svg.ecl-icon.ecl-icon--2xs.ecl-link__icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>'
-      'li.ecl-mega-menu__subitem.ecl-mega-menu__see-all a[href="#child-2.1"] .ecl-link__label': "Browse all"
+      'li.ecl-mega-menu__subitem.ecl-mega-menu__see-all a[href="#child-2.1"][see-all-attr-name="see-all-attr-value"] .ecl-link__label': "Browse all"
       'li.ecl-mega-menu__subitem.ecl-mega-menu__see-all a[href="#child-2.1"] svg.ecl-icon--xs.ecl-icon--rotate-180.ecl-link__icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#arrow-left"></use>'
       'li.ecl-mega-menu__item--has-children:nth-child(2) ul.ecl-mega-menu__sublist li.ecl-mega-menu__subitem:nth-child(1) div.ecl-mega-menu__mega--level-2 div.ecl-mega-menu__featured .ecl-mega-menu__featured-title': 'featured column'
       'li.ecl-mega-menu__item--has-children:nth-child(2) ul.ecl-mega-menu__sublist li.ecl-mega-menu__subitem:nth-child(1) div.ecl-mega-menu__mega--level-2 div.ecl-mega-menu__featured .ecl-mega-menu__featured-scrollable .ecl-mega-menu__featured-content': '<article class="ecl-navigation-list__item"><img class="ecl-navigation-list__image" src="https://inno-ecl.s3.amazonaws.com/media/examples/example-image.jpg" alt="Alt text for the image"><div class="ecl-content-block ecl-navigation-list__content-block" data-ecl-auto-init="ContentBlock" data-ecl-content-block><div class="ecl-content-block__title" data-ecl-title-link><a href="/example#qspea" class="ecl-link ecl-link--standalone">Title 1</a></div><div class="ecl-content-block__description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus gravida ipsum ut lorem cursus</div></div></article>'
@@ -3282,15 +3295,12 @@
       'li.ecl-mega-menu__item--has-children:nth-child(2) ul.ecl-mega-menu__sublist li.ecl-mega-menu__subitem:nth-child(1) div.ecl-mega-menu__mega--level-2 div.ecl-mega-menu__featured ul.ecl-mega-menu__featured-list li.ecl-mega-menu__featured-list__item:nth-child(3) a': 'Featured link 3'
       'li.ecl-mega-menu__item--has-children:nth-child(2) ul.ecl-mega-menu__sublist li.ecl-mega-menu__subitem:nth-child(1) div.ecl-mega-menu__mega--level-2 div.ecl-mega-menu__featured ul.ecl-mega-menu__featured-list li.ecl-mega-menu__featured-list__item:nth-child(4) a.ecl-link--icon[data-name3="data value3"] .ecl-link__label': 'Featured link 4'
       'li.ecl-mega-menu__item--has-children:nth-child(2) ul.ecl-mega-menu__sublist li.ecl-mega-menu__subitem:nth-child(1) div.ecl-mega-menu__mega--level-2 div.ecl-mega-menu__featured ul.ecl-mega-menu__featured-list li.ecl-mega-menu__featured-list__item:nth-child(4) a.ecl-link--icon svg.ecl-icon--2xs.ecl-link__icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>'
-      'li.ecl-mega-menu__item:nth-child(2) ul.ecl-mega-menu__sublist li.ecl-mega-menu__subitem:nth-child(2) a.ecl-mega-menu__sublink[href="#child-2.2"]': 'Child 2.2'
-      'li.ecl-mega-menu__item:nth-child(2) ul.ecl-mega-menu__sublist li.ecl-mega-menu__subitem:nth-child(3) a.ecl-mega-menu__sublink.ecl-link--icon[href="#child-2.3"] .ecl-link__label': 'Child 2.3'
-      'li.ecl-mega-menu__item:nth-child(2) ul.ecl-mega-menu__sublist li.ecl-mega-menu__subitem:nth-child(3) a[href="#child-2.3"] svg.ecl-icon.ecl-icon--2xs.ecl-link__icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#corner-arrow"></use>'
-      'li.ecl-mega-menu__item--has-children:nth-child(2) ul.ecl-mega-menu__sublist li.ecl-mega-menu__subitem:nth-child(3) div.ecl-mega-menu__mega--level-2 ul.ecl-mega-menu__sublist li.ecl-mega-menu__subitem:nth-child(1) a.ecl-mega-menu__sublink': 'Granchild 2.3.1'
-      'li.ecl-mega-menu__item--has-children:nth-child(2) ul.ecl-mega-menu__sublist li.ecl-mega-menu__subitem:nth-child(3) div.ecl-mega-menu__mega--level-2 ul.ecl-mega-menu__sublist li.ecl-mega-menu__subitem:nth-child(2) a.ecl-mega-menu__sublink .ecl-link__label': 'Granchild 2.3.2'
-      'li.ecl-mega-menu__item--has-children:nth-child(2) ul.ecl-mega-menu__sublist li.ecl-mega-menu__subitem:nth-child(3) div.ecl-mega-menu__mega--level-2 ul.ecl-mega-menu__sublist li.ecl-mega-menu__subitem:nth-child(2) a.ecl-mega-menu__sublink svg.ecl-icon.ecl-icon--2xs.ecl-link__icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>'
-      'li.ecl-mega-menu__item--has-children:nth-child(2) ul.ecl-mega-menu__sublist li.ecl-mega-menu__subitem:nth-child(3) div.ecl-mega-menu__mega--level-2 div.ecl-mega-menu__featured .ecl-mega-menu__featured-title': 'featured column 2'
-      'li.ecl-mega-menu__item--has-children:nth-child(2) ul.ecl-mega-menu__sublist li.ecl-mega-menu__subitem:nth-child(3) div.ecl-mega-menu__mega--level-2 div.ecl-mega-menu__featured .ecl-mega-menu__featured-scrollable .ecl-mega-menu__featured-content': '<article class="ecl-navigation-list__item"><img class="ecl-navigation-list__image" src="https://inno-ecl.s3.amazonaws.com/media/examples/example-image.jpg" alt="Alt text for the image"><div class="ecl-content-block ecl-navigation-list__content-block" data-ecl-auto-init="ContentBlock" data-ecl-content-block><div class="ecl-content-block__title" data-ecl-title-link><a href="/example#qspea" class="ecl-link ecl-link--standalone">Title 2</a></div><div class="ecl-content-block__description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus gravida ipsum ut lorem cursus</div></div></article>'
-      'li.ecl-mega-menu__item--has-children:nth-child(2) ul.ecl-mega-menu__sublist li.ecl-mega-menu__subitem:nth-child(3) div.ecl-mega-menu__mega--level-2 div.ecl-mega-menu__featured ul.ecl-mega-menu__featured-list li.ecl-mega-menu__featured-list__item:nth-child(1) a': 'Featured link 2.3.1'
+      'li.ecl-mega-menu__item ul.ecl-mega-menu__sublist li.ecl-mega-menu__subitem a.ecl-mega-menu__sublink[href="#child-2.2"]': 'Child 2.2'
+      'li.ecl-mega-menu__item ul.ecl-mega-menu__sublist li.ecl-mega-menu__subitem a.ecl-mega-menu__sublink.ecl-link--icon[href="#child-2.3"] .ecl-link__label': 'Child 2.3'
+      'li.ecl-mega-menu__item:nth-child(2) ul.ecl-mega-menu__sublist li.ecl-mega-menu__subitem a[href="#child-2.3"] svg.ecl-icon.ecl-icon--2xs.ecl-link__icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#corner-arrow"></use>'
+      'li.ecl-mega-menu__item--has-children ul.ecl-mega-menu__sublist li.ecl-mega-menu__subitem div.ecl-mega-menu__mega--level-2 ul.ecl-mega-menu__sublist li.ecl-mega-menu__subitem:nth-child(1) a.ecl-mega-menu__sublink[href="#granchild-2.3.1"]': 'Granchild 2.3.1'
+      'li.ecl-mega-menu__item--has-children ul.ecl-mega-menu__sublist li.ecl-mega-menu__subitem div.ecl-mega-menu__mega--level-2 ul.ecl-mega-menu__sublist li.ecl-mega-menu__subitem a.ecl-mega-menu__sublink[href="#granchild-2.3.2"] .ecl-link__label': 'Granchild 2.3.2'
+      'li.ecl-mega-menu__item--has-children ul.ecl-mega-menu__sublist li.ecl-mega-menu__subitem div.ecl-mega-menu__mega--level-2 ul.ecl-mega-menu__sublist li.ecl-mega-menu__subitem a.ecl-mega-menu__sublink svg.ecl-icon.ecl-icon--2xs.ecl-link__icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>'
       'li.ecl-mega-menu__item.ecl-mega-menu__item--has-container a.ecl-link--icon.ecl-mega-menu__link .ecl-link__label': "Parent 3 with container"
       'li.ecl-mega-menu__item.ecl-mega-menu__item--has-container svg.ecl-icon--rotate-90': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#corner-arrow"></use>'
       'li.ecl-mega-menu__item.ecl-mega-menu__item--has-container div.ecl-mega-menu__mega-container-scrollable': '<article class="ecl-navigation-list__item"><img class="ecl-navigation-list__image" src="https://inno-ecl.s3.amazonaws.com/media/examples/example-image.jpg" alt="Alt text for the image"><div class="ecl-content-block ecl-navigation-list__content-block" data-ecl-auto-init="ContentBlock" data-ecl-content-block><div class="ecl-content-block__title" data-ecl-title-link><a href="/example#qspea" class="ecl-link ecl-link--standalone">Title 3</a></div><div class="ecl-content-block__description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus gravida ipsum ut lorem cursus</div></div></article>'
