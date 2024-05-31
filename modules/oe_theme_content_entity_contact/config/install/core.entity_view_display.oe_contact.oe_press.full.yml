@@ -35,15 +35,15 @@ third_party_settings:
         - oe_address
         - oe_office
         - oe_social_media
+      label: 'Contact information'
       parent_name: ''
+      region: content
       weight: 2
       format_type: oe_theme_helper_field_list_pattern
       format_settings:
-        variant: horizontal
         classes: ''
         id: ''
-      label: 'Contact information'
-      region: content
+        variant: horizontal
 id: oe_contact.oe_press.full
 targetEntityType: oe_contact
 bundle: oe_press
@@ -51,54 +51,51 @@ mode: full
 content:
   name:
     type: string
-    weight: 0
-    region: content
     label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
+    weight: 0
+    region: content
   oe_address:
-    weight: 7
+    type: oe_theme_helper_address_commission
     label: hidden
-    settings:
-      delimiter: ', '
+    settings: {  }
     third_party_settings: {  }
-    type: oe_theme_helper_address_inline
+    weight: 7
     region: content
   oe_body:
     type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
     weight: 1
     region: content
-    label: hidden
-    settings: {  }
-    third_party_settings: {  }
   oe_email:
-    weight: 3
+    type: basic_string
     label: hidden
     settings: {  }
     third_party_settings: {  }
-    type: basic_string
+    weight: 3
     region: content
   oe_fax:
     type: string
-    weight: 6
-    region: content
     label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
+    weight: 6
+    region: content
   oe_image:
     type: oe_theme_helper_featured_media_formatter
-    weight: 5
-    region: content
     label: hidden
     settings:
       image_style: ''
     third_party_settings: {  }
+    weight: 5
+    region: content
   oe_link:
     type: link
-    weight: 4
-    region: content
     label: hidden
     settings:
       trim_length: 80
@@ -107,66 +104,66 @@ content:
       rel: ''
       target: ''
     third_party_settings: {  }
+    weight: 4
+    region: content
   oe_mobile:
     type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
     weight: 5
     region: content
-    label: hidden
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
   oe_office:
     type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
     weight: 8
     region: content
-    label: hidden
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
   oe_organisation:
     type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
     weight: 1
     region: content
-    label: hidden
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
   oe_phone:
-    weight: 4
+    type: string
     label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    type: string
+    weight: 4
     region: content
   oe_press_contact_url:
     type: link
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
     weight: 3
     region: content
-    label: hidden
-    settings:
-      trim_length: 80
-      url_only: false
-      url_plain: false
-      rel: ''
-      target: ''
-    third_party_settings: {  }
   oe_social_media:
     type: oe_theme_helper_social_media_icons_list_formatter
-    weight: 9
-    region: content
     label: hidden
     settings:
       trim_length: 80
-      rel: nofollow
-      target: _blank
       url_only: false
       url_plain: false
+      rel: nofollow
+      target: _blank
     third_party_settings: {  }
+    weight: 9
+    region: content
   oe_website:
     type: link
-    weight: 2
-    region: content
     label: hidden
     settings:
       trim_length: 80
@@ -175,6 +172,8 @@ content:
       rel: ''
       target: ''
     third_party_settings: {  }
+    weight: 2
+    region: content
 hidden:
   created: true
   langcode: true
