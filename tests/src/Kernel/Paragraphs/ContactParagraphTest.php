@@ -140,7 +140,7 @@ class ContactParagraphTest extends ParagraphsTestBase {
     $this->assertEquals('<p>General contact body text</p>', trim($crawler->filter('div.ecl-col-m-6 div.ecl-u-mb-l:nth-child(1) div.ecl')->html()));
     $this->assertEquals('General contact Organisation', trim($crawler->filter('dl.ecl-description-list.ecl-description-list--horizontal:nth-child(2) dd.ecl-description-list__definition:nth-child(2) div')->html()));
     $this->assertEquals('general@example.com', trim($crawler->filter('dl.ecl-description-list.ecl-description-list--horizontal:nth-child(2) dd.ecl-description-list__definition:nth-child(4) div a')->html()));
-    $this->assertEquals('Address of General contact, 1001 Brussels, Belgium', trim($crawler->filter('dl.ecl-description-list.ecl-description-list--horizontal:nth-child(2) dd.ecl-description-list__definition:nth-child(6) div span')->html()));
+    $this->assertEquals('<span class="address-line1">Address of General contact </span><br><span class="postal-code">1001 </span><span class="locality">Brussels </span><br><span class="country">Belgium </span>', trim($crawler->filter('dl.ecl-description-list.ecl-description-list--horizontal:nth-child(2) dd.ecl-description-list__definition:nth-child(6) div p.address')->html()));
     $this->assertEquals('Facebook', trim($crawler->filter('dl.ecl-description-list.ecl-description-list--horizontal:nth-child(2) dd.ecl-description-list__definition:nth-child(8) div div div a span')->html()));
     $this->assertStringContainsString('example_1.jpeg', $crawler->filter('div.ecl-col-m-5 figure.ecl-media-container__figure img')->attr('src'));
     // Assert rendering of the second contact.
