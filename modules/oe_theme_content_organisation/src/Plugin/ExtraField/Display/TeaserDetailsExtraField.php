@@ -112,8 +112,7 @@ class TeaserDetailsExtraField extends ExtraFieldDisplayFormattedBase implements 
         'oe_email' => ['type' => 'email_mailto'],
         'oe_phone' => [],
         'oe_address' => [
-          'type' => 'oe_theme_helper_address_inline',
-          'settings' => ['delimiter' => ', '],
+          'type' => 'oe_theme_helper_address_commission',
         ],
       ];
       foreach ($fields as $field_name => $display_options) {

@@ -133,7 +133,7 @@ class OrganisationRenderTest extends ContentRenderTestBase {
           ],
           [
             'label' => 'Address',
-            'body' => 'Address first_contact, 1001 Brussels, Belgium',
+            'body' => 'Address first_contact 1001 Brussels Belgium',
           ],
         ],
         'variant' => 'vertical',
@@ -184,7 +184,7 @@ class OrganisationRenderTest extends ContentRenderTestBase {
         ],
         [
           'label' => 'Address',
-          'body' => 'Address second_contact, 1001 Brussels, Belgium',
+          'body' => 'Address second_contact 1001 Brussels Belgium',
         ],
       ],
     ];

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Drupal\oe_theme_helper\Plugin\Field\FieldFormatter;
 
+use CommerceGuys\Addressing\Locale;
 use Drupal\address\AddressInterface;
 use Drupal\address\Plugin\Field\FieldFormatter\AddressDefaultFormatter;
 use Drupal\Core\Render\Element;
@@ -39,13 +40,11 @@ class AddressCommissionFormatter extends AddressDefaultFormatter {
    *
    * @param string $string
    *   The string containing the placeholders.
-   * @param array $replacements
-   *   An array of replacements keyed by their placeholders.
    *
    * @return string
    *   The processed string.
    */
-  public static function replacePlaceholders($string, array $replacements) {
+  protected static function updateFormat(&$string) {
     $devided_lines = array_filter(explode('%', $string));
     array_walk($devided_lines, function (&$line) {
       $line = str_replace("\n", '', trim($line));
@@ -69,7 +68,49 @@ class AddressCommissionFormatter extends AddressDefaultFormatter {
     $city = implode(" ", $reformatted_lines['city']);
     $string = $address . "\n" . $city;
 
-    return parent::replacePlaceholders($string, $replacements);
+    return $string;
+  }
+
+  /**
+   * Inserts the rendered elements into the format string.
+   *
+   * @param string $content
+   *   The rendered element.
+   * @param array $element
+   *   An associative array containing the properties and children of the
+   *   element.
+   *
+   * @return string
+   *   The new rendered element.
+   */
+  public static function postRender($content, array $element) {
+    /** @var \CommerceGuys\Addressing\AddressFormat\AddressFormat $address_format */
+    $address_format = $element['#address_format'];
+    $locale = $element['#locale'];
+    // Add the country to the bottom or the top of the format string,
+    // depending on whether the format is minor-to-major or major-to-minor.
+    if (Locale::matchCandidates($address_format->getLocale(), $locale)) {
+      $format_string = $address_format->getLocalFormat();
+      self::updateFormat($format_string);
+      $format_string = '%country' . "\n" . $format_string;
+    }
+    else {
+      $format_string = $address_format->getFormat();
+      self::updateFormat($format_string);
+      $format_string = $format_string . "\n" . '%country';
+    }
+
+    $replacements = [];
+    foreach (Element::getVisibleChildren($element) as $key) {
+      $child = $element[$key];
+      if (isset($child['#placeholder'])) {
+        $replacements[$child['#placeholder']] = $child['#value'] ? $child['#markup'] : '';
+      }
+    }
+    $content = self::replacePlaceholders($format_string, $replacements);
+    $content = nl2br($content, FALSE);
+
+    return $content;
   }
 
 }

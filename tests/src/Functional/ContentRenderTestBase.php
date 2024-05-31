@@ -297,7 +297,7 @@ abstract class ContentRenderTestBase extends BrowserTestBase {
           'body' => "Fax number $name",
         ], [
           'label' => 'Postal address',
-          'body' => "Address $name, 1001 Brussels, Belgium",
+          'body' => "Address $name 1001 Brussels Belgium",
         ], [
           'label' => 'Office',
           'body' => "Office $name",
@@ -345,7 +345,7 @@ abstract class ContentRenderTestBase extends BrowserTestBase {
           'body' => "Phone number $name",
         ], [
           'label' => 'Address',
-          'body' => "Address $name, 1001 Brussels, Belgium",
+          'body' => "Address $name 1001 Brussels Belgium",
         ],
       ],
     ];

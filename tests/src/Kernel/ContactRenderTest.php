@@ -176,7 +176,7 @@ class ContactRenderTest extends ContentRenderTestBase {
     $build = $this->contactViewBuilder->view($contact, 'full');
     $expected_values['items'][] = [
       'label' => 'Postal address',
-      'body' => "Address $name, 1001 Brussels, Belgium",
+      'body' => "Address $name 1001 Brussels Belgium",
     ];
     $field_list_assert->assertPattern($expected_values, $this->renderRoot($build));
 
