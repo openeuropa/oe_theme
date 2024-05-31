@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Drupal\Tests\oe_theme\Kernel;
 
+use Drupal\Core\Site\Settings;
 use Drupal\Tests\oe_theme\PatternAssertions\FileTranslationAssert;
 use Symfony\Component\DomCrawler\Crawler;
 
@@ -45,6 +46,10 @@ class MediaRenderTest extends MultilingualAbstractKernelTestBase {
     'oe_webtools_media',
     'json_field',
     'oe_media_webtools',
+    'oe_media_circabc',
+    'oe_media_circabc_mock',
+    'views',
+    'entity_browser',
   ];
 
   /**
@@ -52,6 +57,12 @@ class MediaRenderTest extends MultilingualAbstractKernelTestBase {
    */
   protected function setUp(): void {
     parent::setUp();
+
+    $settings = Settings::getInstance() ? Settings::getAll() : [];
+    $settings['circabc'] = [
+      'url' => 'https://example.com/circabc-ewpp',
+    ];
+    new Settings($settings);
 
     $this->installSchema('file', 'file_usage');
     $this->installEntitySchema('media');
@@ -64,6 +75,7 @@ class MediaRenderTest extends MultilingualAbstractKernelTestBase {
       'oe_media_iframe',
       'oe_media_webtools',
       'oe_webtools_media',
+      'oe_media_circabc',
       'json_field',
     ]);
 
@@ -82,6 +94,7 @@ class MediaRenderTest extends MultilingualAbstractKernelTestBase {
       'media.document.oe_media_file_type',
       'media.document.oe_media_remote_file',
       'media.document.oe_media_file',
+      'media.document.oe_media_circabc_reference',
     ];
     foreach ($field_ids as $field_id) {
       $field_config = $this->container->get('entity_type.manager')->getStorage('field_config')->load($field_id);
@@ -280,6 +293,50 @@ class MediaRenderTest extends MultilingualAbstractKernelTestBase {
             'title' => 'français',
             'url' => 'https://www.google.com/nofile',
             'meta' => '(HTML)',
+            'icon' => 'file',
+          ],
+        ],
+      ];
+
+      $assert = new FileTranslationAssert();
+      $assert->assertPattern($expected, $output);
+    }
+
+    // Assert the rendering of the CircaBC document.
+    $media = $this->mediaStorage->create([
+      'name' => 'a document media',
+      'bundle' => 'document',
+      'oe_media_file_type' => 'circabc',
+      'oe_media_circabc_reference' => [
+        // UUID is enough to start, it will pull all the rest of the data.
+        'uuid' => 'e74e3bc0-a639-4e04-a839-3bbd60ed5688',
+      ],
+    ]);
+    $media->save();
+
+    foreach ($view_modes as $view_mode) {
+      $build = $this->mediaViewBuilder->view($media, $view_mode);
+      $output = $this->renderRoot($build);
+      $expected = [
+        'button_label' => 'Download',
+        'file' => [
+          'title' => 'Test sample file',
+          'url' => 'https://example.com/circabc-ewpp/d/d/workspace/SpacesStore/e74e3bc0-a639-4e04-a839-3bbd60ed5688/file.bin',
+          'language' => 'English',
+          'meta' => '(2.96 KB - PDF)',
+          'icon' => 'file',
+        ],
+        'translations' => [
+          [
+            'title' => 'français',
+            'url' => 'https://example.com/circabc-ewpp/d/d/workspace/SpacesStore/5d634abd-fec1-452a-ae0b-62e4cf080506/file.bin',
+            'meta' => '(2.96 KB - PDF)',
+            'icon' => 'file',
+          ],
+          [
+            'title' => 'português',
+            'url' => 'https://example.com/circabc-ewpp/d/d/workspace/SpacesStore/78634abd-fec1-452a-ae0b-62e4cf080578/file.bin',
+            'meta' => '(4.91 KB - PDF)',
             'icon' => 'file',
           ],
         ],
