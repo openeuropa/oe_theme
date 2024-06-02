@@ -32,6 +32,7 @@ class ContentPersonRenderTest extends ContentRenderTestBase {
    */
   protected static $modules = [
     'oe_theme_content_person',
+    'oe_multilingual',
   ];
 
   /**
@@ -51,6 +52,17 @@ class ContentPersonRenderTest extends ContentRenderTestBase {
    * Tests Consultation full view mode rendering.
    */
   public function testPersonRendering(): void {
+    // Make person node and person job translatable.
+    \Drupal::service('content_translation.manager')->setEnabled('node', 'oe_person', TRUE);
+    \Drupal::service('content_translation.manager')->setEnabled('oe_person_job', 'oe_default', TRUE);
+    // Make person last name and job description fields translatable.
+    $field_config = $this->getStorage('field_config')->load('oe_person_job.oe_default.oe_description');
+    $field_config->setTranslatable(TRUE);
+    $field_config->save();
+    $field_config = $this->getStorage('field_config')->load('node.oe_person.oe_summary');
+    $field_config->setTranslatable(TRUE);
+    $field_config->save();
+    \Drupal::service('router.builder')->rebuild();
     // Create a Person node with required fields only.
     /** @var \Drupal\node\Entity\Node $node */
     $values = [
@@ -231,6 +243,18 @@ class ContentPersonRenderTest extends ContentRenderTestBase {
     $this->assertNull($job_role_content);
     $job_description_content = $content_items[2]->find('css', 'div.ecl');
     $this->assertEquals('Description job_1', $job_description_content->getText());
+
+    // Add person and job translation and assert the job label is not shown.
+    $job_1->addTranslation('bg', ['oe_description' => 'Description bg'])->save();
+    $node->addTranslation('bg', ['oe_summary' => 'Person introduction bg'])->save();
+    $this->drupalGet('/bg/node/' . $node->id(), ['external' => FALSE]);
+    $content_items = $content->findAll('xpath', '/div');
+    $this->assertCount(3, $content_items);
+    $this->assertContentHeader($content_items[2], 'Responsibilities', 'responsibilities');
+    $job_role_content = $content_items[2]->find('css', 'h3.ecl-u-type-heading-3.ecl-u-mt-none.ecl-u-mb-s');
+    $this->assertNull($job_role_content);
+    $job_description_content = $content_items[2]->find('css', 'div.ecl');
+    $this->assertEquals('Description bg', $job_description_content->getText());
 
     // Singe Person Job without description should not be shown
     // and Responsibilities section is hidden.
