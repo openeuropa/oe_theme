@@ -96,6 +96,9 @@
             "build/themes/contrib/{$name}": ["type:drupal-theme"]
         },
         "patches": {
+            "drupal/core": {
+                "https://www.drupal.org/project/drupal/issues/3151609": "https://www.drupal.org/files/issues/2023-12-11/link_internal_as_text_v10-3151609_0.patch"
+            },
             "drupal/drupal-driver": {
                 "allow-date-only-date-fields": "https://patch-diff.githubusercontent.com/raw/jhedstrom/DrupalDriver/pull/235.patch"
             },

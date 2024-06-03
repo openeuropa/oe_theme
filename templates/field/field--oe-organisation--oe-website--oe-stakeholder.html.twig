@@ -11,7 +11,7 @@
   {% include '@ecl-twig/link' with {
     link: {
       type: 'standalone',
-      label: item.content['#url'].toString(),
+      label: (item.content['#title'] is defined) ? item.content['#title'] : item.content['#url'].toString(),
       path: item.content['#url'],
       external: item.content['#url'].toString()|is_external_url,
       icon_path: ecl_icon_path
