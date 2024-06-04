@@ -10,6 +10,6 @@ effects:
     weight: 1
     data:
       width: 480
-      height: 480
+      height: 160
       anchor: center-center
 

@@ -10,6 +10,6 @@ effects:
     weight: 1
     data:
       width: 768
-      height: 768
+      height: 256
       anchor: center-center
 

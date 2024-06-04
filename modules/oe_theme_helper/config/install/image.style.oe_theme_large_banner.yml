@@ -10,6 +10,6 @@ effects:
     weight: 1
     data:
       width: 996
-      height: 996
+      height: 332
       anchor: center-center
 

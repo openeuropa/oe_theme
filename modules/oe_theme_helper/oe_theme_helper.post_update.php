@@ -335,14 +335,17 @@ function oe_theme_helper_post_update_40001(): void {
     'oe_theme_large_banner' => [
       'label' => 'Large banner',
       'width' => '996',
+      'height' => '256',
     ],
     'oe_theme_medium_banner' => [
       'label' => 'Medium banner',
       'width' => '768',
+      'height' => '332',
     ],
     'oe_theme_small_banner' => [
       'label' => 'Small banner',
       'width' => '480',
+      'height' => '160',
     ],
   ];
   foreach ($image_styles as $style_id => $style_data) {
@@ -362,7 +365,7 @@ function oe_theme_helper_post_update_40001(): void {
       'weight' => 1,
       'data' => [
         'width' => $style_data['width'],
-        'height' => $style_data['width'],
+        'height' => $style_data['height'],
         'anchor' => 'center-center',
       ],
     ];
