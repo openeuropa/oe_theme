@@ -98,7 +98,7 @@ class InPageNavigationLibraryTest extends WebDriverTestBase {
     // The heading starting with a non-alpha character gets a ref- prepended.
     $this->assertEquals('ref-2022-a-new-year', $container->find('xpath', '/h3[@class="heading"][text()="2022, a new year"]')->getAttribute('id'));
 
-    $navigation = $assert_session->elementExists('css', '.oe-theme-ecl-inpage-navigation');
+    $navigation = $assert_session->elementExists('css', '.oe-theme-ecl-inpage-navigation.ecl-u-z-dropdown');
 
     $assert = new InPageNavigationAssert();
     $expected = [
@@ -169,7 +169,7 @@ class InPageNavigationLibraryTest extends WebDriverTestBase {
     $this->assertCount(14, $main_content->findAll('xpath', '//*[@id]'));
 
     $first_container = $main_content->find('css', '.first-container');
-    $navigation = $assert_session->elementExists('css', '.oe-theme-ecl-inpage-navigation', $first_container);
+    $navigation = $assert_session->elementExists('css', '.oe-theme-ecl-inpage-navigation.ecl-u-z-dropdown', $first_container);
     $assert = new InPageNavigationAssert();
     $expected = [
       'title' => 'First nav',
@@ -191,7 +191,7 @@ class InPageNavigationLibraryTest extends WebDriverTestBase {
     $assert->assertPattern($expected, $navigation->getOuterHtml());
 
     $second_container = $main_content->find('css', '.second-container');
-    $navigation = $assert_session->elementExists('css', '.oe-theme-ecl-inpage-navigation', $second_container);
+    $navigation = $assert_session->elementExists('css', '.oe-theme-ecl-inpage-navigation.ecl-u-z-dropdown', $second_container);
     $assert = new InPageNavigationAssert();
     $expected = [
       'title' => 'Second nav',
