@@ -1669,10 +1669,11 @@ function oe_theme_preprocess_paragraph__oe_banner(array &$variables): void {
     $cacheability->applyTo($variables);
     return;
   }
-  $full_width = \Drupal::entityTypeManager()->getStorage('image_style')->load('oe_theme_full_width');
-  $large = \Drupal::entityTypeManager()->getStorage('image_style')->load('oe_theme_large_banner');
-  $medium = \Drupal::entityTypeManager()->getStorage('image_style')->load('oe_theme_medium_banner');
-  $small = \Drupal::entityTypeManager()->getStorage('image_style')->load('oe_theme_small_banner');
+  $image_style_storage = \Drupal::entityTypeManager()->getStorage('image_style');
+  $full_width = $image_style_storage->load('oe_theme_full_width');
+  $large = $image_style_storage->load('oe_theme_large_banner');
+  $medium = $image_style_storage->load('oe_theme_medium_banner');
+  $small = $image_style_storage->load('oe_theme_small_banner');
 
   $values = [
     'src' => $full_width->buildUrl($uri),
@@ -2224,10 +2225,11 @@ function oe_theme_preprocess_paragraph__oe_carousel(array &$variables): void {
   $cacheability = CacheableMetadata::createFromRenderArray($variables);
 
   // Load needed images styles.
-  $full_width = \Drupal::entityTypeManager()->getStorage('image_style')->load('oe_theme_full_width');
-  $large = \Drupal::entityTypeManager()->getStorage('image_style')->load('oe_theme_large_banner');
-  $medium = \Drupal::entityTypeManager()->getStorage('image_style')->load('oe_theme_medium_banner');
-  $small = \Drupal::entityTypeManager()->getStorage('image_style')->load('oe_theme_small_banner');
+  $image_style_storage = \Drupal::entityTypeManager()->getStorage('image_style');
+  $full_width = $image_style_storage->load('oe_theme_full_width');
+  $large = $image_style_storage->load('oe_theme_large_banner');
+  $medium = $image_style_storage->load('oe_theme_medium_banner');
+  $small = $image_style_storage->load('oe_theme_small_banner');
 
   /** @var \Drupal\paragraphs\Entity\Paragraph $sub_paragraph */
   foreach ($paragraph->get('field_oe_carousel_items')->referencedEntities() as $sub_paragraph) {

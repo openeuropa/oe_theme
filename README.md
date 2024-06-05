@@ -332,6 +332,10 @@ The following is a list of all the vailable styles and their preferred usage:
 * Small (`oe_theme_small_no_crop`): Small sized image, part of the Main content responsive image style.
 * Main content (`oe_theme_main_content`): Responsive image style, to be used on any image that is rendered inside
 a content page.
+* Full width (3840) (`oe_theme_full_width`): Full width image, to be used in Banner and Carousel paragraphs.
+* Large banner (`oe_theme_large_banner`): Large banner image (996px x 332px), to be used in Banner and Carousel paragraphs.
+* Medium banner (`oe_theme_medium_banner`): Medium banner image (768px x 256px), to be used in Banner and Carousel paragraphs.
+* Small banner (`oe_theme_small_banner`): Small banner image (480px x 160px), to be used in Banner and Carousel paragraphs.
 
 ## Development
 

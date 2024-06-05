@@ -92,8 +92,7 @@ class CarouselAssert extends BasePatternAssert {
           $this->assertEquals('', $image_element->attr('alt'));
         }
       }
-      if (!isset($expected_item['sources']) ||
-        (isset($expected_item['variant']) && $expected_item['variant'] === 'plain-background')) {
+      if (!isset($expected_item['sources']) || (isset($expected_item['variant']) && $expected_item['variant'] === 'plain-background')) {
         $this->assertElementNotExists('picture source', $item);
       }
       else {

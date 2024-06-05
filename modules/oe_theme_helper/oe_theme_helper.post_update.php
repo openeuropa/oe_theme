@@ -348,8 +348,9 @@ function oe_theme_helper_post_update_40001(): void {
       'height' => '160',
     ],
   ];
+  $image_style_storage = \Drupal::entityTypeManager()->getStorage('image_style');
   foreach ($image_styles as $style_id => $style_data) {
-    $style = \Drupal::entityTypeManager()->getStorage('image_style')->load($style_id);
+    $style = $image_style_storage->load($style_id);
     // If the image style already exists, skip it.
     if ($style) {
       continue;
