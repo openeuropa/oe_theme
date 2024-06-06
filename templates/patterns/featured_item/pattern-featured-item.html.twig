@@ -70,7 +70,7 @@
     }
   } %}
 {% endif %}
-
+{{ contextual_links }}
 {% include '@ecl-twig/card' with {
   'description': _description|default(description|smart_trim(_length)),
   'primary_meta': metas,

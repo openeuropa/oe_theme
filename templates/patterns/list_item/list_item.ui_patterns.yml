@@ -33,6 +33,11 @@ list_item:
       label: "List item: cancelled event"
       description: "Default list item elements and date."
   fields:
+    contextual_links:
+      type: "array"
+      label: "Contextual links"
+      description: "Render array of contextual links"
+      preview: ~
     url:
       type: "Url"
       label: "URL"

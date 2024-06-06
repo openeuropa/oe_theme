@@ -19,10 +19,10 @@
     {% endif %}
     {% if highlighted is not empty and items is not empty %}
       <div class="ecl-row">
-        <div class="ecl-col-l-8 ecl-u-d-flex ecl-u-flex-column">
+        <div class="ecl-col-l-8 ecl-u-d-flex ecl-u-flex-column contextual-region">
           {{ highlighted }}
         </div>
-        <div class="ecl-col-l-4 ecl-u-d-flex ecl-u-flex-column">
+        <div class="ecl-col-l-4 ecl-u-d-flex ecl-u-flex-column contextual-region">
           {% for item in items %}
             {{ item }}
           {% endfor %}

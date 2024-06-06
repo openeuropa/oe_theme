@@ -16,6 +16,7 @@
     - "external_link" (bool) (default: false): Whether the link is external or not.
     - "lists" (array) (default: []): Array of lists compatible with ECL Description list component.
     - "divider" (bool) (default: false): Whether to set a divider below the item.
+    - "contextual_links" (array) (default: ''): Render array for contextual links.
     - "extra_classes" (string) (default: '')
 #}
 
@@ -155,6 +156,8 @@
     }]) %}
   {% endfor %}
 {% endif %}
+
+{{ contextual_links }}
 
 {% include '@ecl-twig/content-item' with {
   picture: picture|default([]),

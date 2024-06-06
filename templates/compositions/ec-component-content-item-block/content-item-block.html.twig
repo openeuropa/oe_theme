@@ -70,7 +70,7 @@
         {% if loop.last %}
           {% set last_item_css = "last-item" %}
         {% endif %}
-        <div class="ecl-content-item-block__item ecl-u-mb-l {{ _extra_classes_item }} vertical">
+        <div class="ecl-content-item-block__item contextual-region ecl-u-mb-l {{ _extra_classes_item }} vertical">
           {% for _item in column %}
             {% if loop.last %}
               {% set last_item_column_css = "last-item-column" %}
@@ -78,7 +78,7 @@
                 {% set last_item_column_css = last_item_column_css ~ " " ~ last_item_css %}
               {% endif %}
             {% endif %}
-            <div class="ecl-content-item-block__item ecl-u-mb-l {{ last_item_column_css }}">
+            <div class="ecl-content-item-block__item contextual-region ecl-u-mb-l {{ last_item_column_css }}">
               {{ _item }}
             </div>
           {% endfor %}
@@ -93,7 +93,7 @@
         {% if loop.last %}
           {% set last_item_column_css = last_item_column_css ~ " last-item" %}
         {% endif %}
-        <div class="ecl-content-item-block__item ecl-u-mb-l {{ _extra_classes_item }} {{ last_item_column_css }}">
+        <div class="ecl-content-item-block__item contextual-region ecl-u-mb-l {{ _extra_classes_item }} {{ last_item_column_css }}">
           {{ _item }}
         </div>
       {% endfor %}
