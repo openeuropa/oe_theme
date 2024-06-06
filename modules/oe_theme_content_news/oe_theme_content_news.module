@@ -65,6 +65,9 @@ function oe_theme_content_news_node_view_alter(array &$build, EntityInterface $e
     ];
 
     foreach ($plural_label_overrides as $name => $label_override) {
+      if (!$entity->hasField($name)) {
+        continue;
+      }
       if (!$entity->get($name)->isEmpty() && $entity->get($name)->count() > 1 && isset($build[$name]['#title'])) {
         $build[$name]['#title'] = $label_override;
       }
