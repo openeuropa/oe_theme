@@ -95,6 +95,12 @@ function oe_theme_helper_theme($existing, $type, $theme, $path) {
       'variables' => [
         'site_name' => '',
         'menu_items' => [],
+        'back' => '',
+        'see_all_label' => '',
+        'button_previous_label' => '',
+        'button_next_label' => '',
+        'max_lines' => '',
+        'variant' => '',
       ],
     ],
     'oe_theme_helper_call_status' => [
