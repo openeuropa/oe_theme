@@ -14,6 +14,7 @@ gallery:
         - thumbnail:
             src: 'https://inno-ecl.s3.amazonaws.com/media/examples/example-external-video.jpg'
             alt: 'Example alt text'
+          title: 'Bio-defence'
           caption: 'Bio-defence preparedness programme'
           meta: 'Copyright © 2021, Author and Licence'
           source: 'https://inno-ecl.s3.amazonaws.com/media/videos/big_buck_bunny.mp4'
@@ -22,12 +23,14 @@ gallery:
             src: 'https://loremflickr.com/800/600/cat'
             alt: 'Example alt text'
           source: 'https://loremflickr.com/800/600/cat'
+          title: 'Cat'
           caption: 'A picture of a cat'
           meta: 'Copyright © 2021, Author and Licence'
           media_type: 'image'
         - thumbnail:
             src: 'https://loremflickr.com/800/600/lisbon'
             alt: 'Example alt text'
+          title: 'Lisbon'
           caption: 'Meanwhile in Lisbon, the capital of Portugal'
           meta: 'Copyright © 2021, Author and Licence'
           source: 'https://loremflickr.com/800/600/lisbon'
@@ -35,6 +38,7 @@ gallery:
         - thumbnail:
             src: 'https://loremflickr.com/800/600/kiev'
             alt: 'Example alt text'
+          title: 'Kiev'
           caption: 'Meanwhile in Kiev, the capital of Ukraine'
           meta: 'Copyright © 2021, Author and Licence'
           source: 'https://loremflickr.com/800/600/kiev'

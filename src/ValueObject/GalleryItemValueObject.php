@@ -43,6 +43,13 @@ class GalleryItemValueObject extends ValueObjectBase {
   protected $type;
 
   /**
+   * The title of the gallery item.
+   *
+   * @var string
+   */
+  protected $title;
+
+  /**
    * The caption of the gallery item.
    *
    * @var string
@@ -69,8 +76,11 @@ class GalleryItemValueObject extends ValueObjectBase {
    *   Caption for the gallery item.
    * @param string $meta
    *   Meta for the gallery item, such as a copyright note.
+   * @param string $title
+   *   Title for the gallery item.
    */
-  private function __construct(ImageValueObjectInterface $thumbnail, string $source, string $type, string $caption = '', string $meta = '') {
+  private function __construct(ImageValueObjectInterface $thumbnail, string $source, string $type, string $caption = '', string $meta = '', string $title = '') {
+    $this->title = $title;
     $this->caption = $caption;
     $this->thumbnail = $thumbnail;
     $this->meta = $meta;
@@ -90,6 +100,7 @@ class GalleryItemValueObject extends ValueObjectBase {
       'type' => GalleryItemValueObject::TYPE_IMAGE,
       'caption' => '',
       'meta' => '',
+      'title' => '',
     ];
 
     // @todo Maybe expect always a thumbnail object instead of also an array,
@@ -103,8 +114,19 @@ class GalleryItemValueObject extends ValueObjectBase {
       $values['source'],
       $values['type'],
       $values['caption'],
-      $values['meta']
+      $values['meta'],
+      $values['title']
     );
+  }
+
+  /**
+   * Getter.
+   *
+   * @return string
+   *   Property value.
+   */
+  public function getTitle(): string {
+    return $this->title;
   }
 
   /**
@@ -172,6 +194,7 @@ class GalleryItemValueObject extends ValueObjectBase {
       ],
       'description' => $this->getCaption(),
       'meta' => $this->getMeta(),
+      'title' => $this->getTitle(),
       'icon' => 'image',
     ];
 

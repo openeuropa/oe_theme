@@ -234,6 +234,9 @@ class MediaGalleryFormatter extends MediaThumbnailUrlFormatter {
       // Collect the attributes from the fields specified in the configuration.
       $values += $this->extractAttributes($media);
 
+      // Use media item's name as title.
+      $values['title'] = $media->getName();
+
       // Provide a default caption value, if none is present.
       if ($values['caption'] === ' ') {
         $values['caption'] = $media->label();

@@ -208,6 +208,8 @@ class MediaGalleryFormatterTest extends AbstractKernelTestBase {
     $image_node = $items->first()->filter('img');
     $this->assertEquals('Alt text for test image.', $image_node->attr('alt'));
     $this->assertStringEndsWith('/example_1.jpeg', $image_node->attr('src'));
+    $title = $items->first()->filter('.ecl-gallery__description span.ecl-gallery__title');
+    $this->assertStringContainsString('Test image title', $title->html());
     $caption = $items->first()->filter('.ecl-gallery__description');
     $this->assertStringContainsString('Extra image title', $caption->html());
     $this->assertEmpty($caption->filter('.ecl-gallery__meta')->html());
@@ -223,6 +225,8 @@ class MediaGalleryFormatterTest extends AbstractKernelTestBase {
     $image_node = $items->eq(1)->filter('img');
     $this->assertEquals('', $image_node->attr('alt'));
     $this->assertStringEndsWith('/oembed_thumbnails/' . $expected_thumbnail_name, $image_node->attr('src'));
+    $title = $items->eq(1)->filter('.ecl-gallery__description span.ecl-gallery__title');
+    $this->assertStringContainsString("Energy, let's save it!", $title->html());
     $caption = $items->eq(1)->filter('.ecl-gallery__description');
     $this->assertStringContainsString($video_media->label(), $caption->html());
     $this->assertEmpty($caption->filter('.ecl-gallery__meta')->html());
@@ -235,6 +239,8 @@ class MediaGalleryFormatterTest extends AbstractKernelTestBase {
     $image_node = $items->eq(2)->filter('img');
     $this->assertEquals('Alt text for test video iframe.', $image_node->attr('alt'));
     $this->assertStringEndsWith('/placeholder.png', $image_node->attr('src'));
+    $title = $items->eq(2)->filter('.ecl-gallery__description span.ecl-gallery__title');
+    $this->assertStringContainsString('Test video iframe title', $title->html());
     $caption = $items->eq(2)->filter('.ecl-gallery__description');
     $this->assertStringContainsString('Test video iframe title', $caption->html());
     $this->assertEmpty($caption->filter('.ecl-gallery__meta')->html());

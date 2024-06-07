@@ -766,6 +766,7 @@
             src: 'https://loremflickr.com/320/240/cat'
             alt: 'Example alt text'
           source: 'https://loremflickr.com/800/600/cat'
+          title: 'Cat'
           caption: 'A picture of a cat'
           meta: 'Copyright © 2021, Author and Licence'
           media_type: 'image'
@@ -778,12 +779,14 @@
       '.ecl-gallery .ecl-gallery__list .ecl-gallery__item': 1
       '.ecl-gallery .ecl-gallery__list .ecl-gallery__item .ecl-gallery__image[src="https://loremflickr.com/320/240/cat"]': 1
       '.ecl-gallery .ecl-gallery__list .ecl-gallery__item .ecl-gallery__image[alt="Example alt text"]': 1
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item figcaption.ecl-gallery__description span.ecl-gallery__title': 1
       '.ecl-gallery .ecl-gallery__list .ecl-gallery__item figcaption.ecl-gallery__description': 1
       '.ecl-gallery .ecl-gallery__list .ecl-gallery__item .ecl-gallery__meta': 1
       '.ecl-gallery .ecl-button.ecl-button--ghost.ecl-gallery__slider-previous': 0
       '.ecl-gallery .ecl-button.ecl-button--ghost.ecl-gallery__slider-next': 0
       '.ecl-gallery__footer-link': 0
     equals:
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item figcaption.ecl-gallery__description span.ecl-gallery__title': 'Cat'
       '.ecl-gallery .ecl-gallery__list .ecl-gallery__item .ecl-gallery__meta': 'Copyright © 2021, Author and Licence'
     contains:
       - 'A picture of a cat'
@@ -824,6 +827,7 @@
       '.ecl-gallery .ecl-gallery__list .ecl-gallery__item': 3
       '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(1) .ecl-gallery__image[src="https://loremflickr.com/320/240/cat"]': 1
       '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(1) .ecl-gallery__image[alt="Example alt text cat"]': 1
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item figcaption.ecl-gallery__description span.ecl-gallery__title': 0
       '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(1) figcaption.ecl-gallery__description': 1
       '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(1) .ecl-gallery__meta': 0
       '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(2) a.ecl-gallery__item-link[href="https://www.youtube.com/watch?v=1-g73ty9v04"]': 1
