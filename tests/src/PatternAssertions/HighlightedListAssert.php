@@ -25,18 +25,20 @@ class HighlightedListAssert extends BasePatternAssert {
       'highlighted_item' => [
         [$this, 'assertHighlightedItem'],
         'div#highlighted-news-block div.ecl-row div.ecl-col-l-8.ecl-u-d-flex.ecl-u-flex-column',
+        $variant,
       ],
       'items' => [
         [$this, 'assertItems'],
-        'div#highlighted-news-block div.ecl-row div.ecl-col-l-4.ecl-u-d-flex.ecl-u-flex-column',
+        'div#highlighted-news-block div.ecl-row div.ecl-u-d-flex.ecl-u-flex-column',
+        $variant,
       ],
       'see_more_label' => [
         [$this, 'assertElementText'],
-        'div#highlighted-news-block > div.ecl-u-mt-s a.ecl-link.ecl-link--standalone .ecl-link__label',
+        'div#highlighted-news-block > div.ecl-u-mt-m a.ecl-link.ecl-link--standalone .ecl-link__label',
       ],
       'see_more_url' => [
         [$this, 'assertElementAttribute'],
-        'div#highlighted-news-block > div.ecl-u-mt-s a.ecl-link.ecl-link--standalone',
+        'div#highlighted-news-block > div.ecl-u-mt-m a.ecl-link.ecl-link--standalone',
         'href',
       ],
       'detail' => [
@@ -56,6 +58,19 @@ class HighlightedListAssert extends BasePatternAssert {
   }
 
   /**
+   * {@inheritdoc}
+   */
+  protected function getPatternVariant(string $html): string {
+    $crawler = new Crawler($html);
+    $four_columns = $crawler->filter('div#highlighted-news-block div.ecl-row div.ecl-col-l-3.ecl-u-d-flex.ecl-u-flex-column');
+    if ($four_columns->count()) {
+      return 'four_columns';
+    }
+
+    return 'default';
+  }
+
+  /**
    * Asserts the Highlighted item of the list.
    *
    * @param array|null $expected_highlighted_item
@@ -63,11 +78,13 @@ class HighlightedListAssert extends BasePatternAssert {
    *   and secondary meta).
    * @param string $selector
    *   The CSS selector to find the item.
+   * @param string $variant
+   *   The variant of the pattern being checked.
    * @param \Symfony\Component\DomCrawler\Crawler $crawler
    *   The DomCrawler where to check the element.
    */
-  protected function assertHighlightedItem(?array $expected_highlighted_item, string $selector, Crawler $crawler) {
-    if (is_null($expected_highlighted_item)) {
+  protected function assertHighlightedItem(?array $expected_highlighted_item, string $selector, string $variant, Crawler $crawler) {
+    if (is_null($expected_highlighted_item) || $variant !== 'default') {
       $this->assertElementNotExists($selector, $crawler);
       return;
     }
@@ -86,18 +103,28 @@ class HighlightedListAssert extends BasePatternAssert {
    *   The expected items.
    * @param string $selector
    *   The CSS selector to find the items' wrapper.
+   * @param string $variant
+   *   The variant of the pattern being checked.
    * @param \Symfony\Component\DomCrawler\Crawler $crawler
    *   The DomCrawler where to check the element.
    *
    * @SuppressWarnings(PHPMD.CyclomaticComplexity)
    */
-  protected function assertItems(?array $expected_items, string $selector, Crawler $crawler): void {
+  protected function assertItems(?array $expected_items, string $selector, string $variant, Crawler $crawler): void {
+    $selector = $variant === 'default' ? $selector . '.ecl-col-l-4' : $selector . '.ecl-col-l-3';
     if (is_null($expected_items)) {
       $this->assertElementNotExists($selector, $crawler);
       return;
     }
-    $this->assertElementExists($selector, $crawler);
+
     $items_wrapper = $crawler->filter($selector);
+    if ($variant === 'default') {
+      $this->assertElementExists($selector, $crawler);
+      self::assertCount(1, $items_wrapper);
+    }
+    else {
+      self::assertCount(4, $items_wrapper);
+    }
     // Assert the number of items.
     $items = $items_wrapper->filter('article');
     self::assertCount(count($expected_items), $items, 'The expected number of items does not correspond with the actual number of items in the list.');

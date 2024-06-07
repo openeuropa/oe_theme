@@ -3844,92 +3844,73 @@
 - array:
     '#type': pattern
     '#id': highlighted_list
+    '#variant': default
     '#fields':
       title: "Highlighted News"
       highlighted_item:
-        '#type': "pattern"
-        '#id': "list_item"
-        '#variant': "default"
-        '#fields':
-          title: "Item 1"
-          url: "#"
-          external_link: true
-          detail: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus gravida ipsum ut lorem cursus"
+        title: "Item 1"
+        url: "#"
+        external_link: true
+        detail: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus gravida ipsum ut lorem cursus"
+        meta:
+          - "Item 1 primary meta"
+          - "DD Month Year"
+        secondary_meta:
+          - label: "3 minutes read"
+            icon: "information"
+          - label: "5 minutes read"
+            icon: "clock"
+        image:
+          src: "https://loremflickr.com/1200/900/arch"
+          alt: "Highlighted item image"
+      items:
+        - title: "Item 2"
+          detail: "Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem."
           meta:
-            - "Item 1 primary meta"
+            - "Item 2 primary meta"
             - "DD Month Year"
           secondary_meta:
-            - label: "3 minutes read"
-              icon: "information"
             - label: "5 minutes read"
               icon: "clock"
           image:
             src: "https://loremflickr.com/1200/900/arch"
-            alt: "Highlighted item image"
-      items:
-        - '#type': "pattern"
-          '#id': "list_item"
-          '#variant': "default"
-          '#fields':
-            title: "Item 2"
-            detail: "Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem."
-            meta:
-              - "Item 2 primary meta"
-              - "DD Month Year"
-            secondary_meta:
-              - label: "5 minutes read"
-                icon: "clock"
-            image:
-              src: "https://loremflickr.com/1200/900/arch"
-              alt: "Item 2 image"
-        - '#type': "pattern"
-          '#id': "list_item"
-          '#variant': "default"
-          '#fields':
-            title: "Item 3"
-            url: "https://external.com"
-            detail: "In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam"
-            meta:
-              - "Item 3 primary meta"
-              - "DD Month Year"
-            secondary_meta:
-              - label: "2 minutes read"
-                icon: "clock"
-            image:
-              src: "https://loremflickr.com/1200/900/arch"
-              alt: "Alternative text for image"
-            image_position: "top"
-        - '#type': "pattern"
-          '#id': "list_item"
-          '#variant': "default"
-          '#fields':
-            title: "Item 4"
-            url: "#"
-            detail: "Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam"
-            meta:
-              - "Item 4 primary meta"
-              - "DD Month Year"
-            image:
-              src: "https://loremflickr.com/1200/900/arch"
-              alt: "Alternative text for image"
-            secondary_meta:
-              - label: "3 minutes read"
-                icon: "clock"
-              - label: "Brussels"
-                icon: "location"
-        - '#type': "pattern"
-          '#id': "list_item"
-          '#variant': "default"
-          '#fields':
-            title: "Item 5"
-            url: "#"
-            detail: "Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorpe"
-            meta:
-              - "Item 5 primary meta"
-              - "DD Month Year"
-            image:
-              src: "https://loremflickr.com/1200/900/arch"
-              alt: "Alternative text for image"
+            alt: "Item 2 image"
+        - title: "Item 3"
+          url: "https://external.com"
+          detail: "In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam"
+          meta:
+            - "Item 3 primary meta"
+            - "DD Month Year"
+          secondary_meta:
+            - label: "2 minutes read"
+              icon: "clock"
+          image:
+            src: "https://loremflickr.com/1200/900/arch"
+            alt: "Alternative text for image"
+          image_position: "top"
+        - title: "Item 4"
+          url: "#"
+          detail: "Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam"
+          meta:
+            - "Item 4 primary meta"
+            - "DD Month Year"
+          image:
+            src: "https://loremflickr.com/1200/900/arch"
+            alt: "Alternative text for image"
+          secondary_meta:
+            - label: "3 minutes read"
+              icon: "clock"
+            - label: "Brussels"
+              icon: "location"
+        - title: "Item 5"
+          url: "#"
+          detail: "Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorpe"
+          meta:
+            - "Item 5 primary meta"
+            - "DD Month Year"
+          image:
+            src: "https://loremflickr.com/1200/900/arch"
+            alt: "Alternative text for image"
       see_more_label: "Read more news"
       see_more_url: "https://example.com"
       detail:
@@ -3954,7 +3935,7 @@
       'div.ecl-content-block__description': 1
       'ul.ecl-content-block__secondary-meta-container': 4
       'ul.ecl-content-block__secondary-meta-container li.ecl-content-block__secondary-meta-item span.ecl-content-block__secondary-meta-label': 6
-      'div#highlighted-news-block div.ecl-u-mt-s:not(.ecl)': 1
+      'div#highlighted-news-block div.ecl-u-mt-m:not(.ecl)': 1
       'div#highlighted-news-block div.ecl.ecl-u-mt-s': 1
     equals:
       'div#highlighted-news-block h2.ecl-u-type-heading-2': 'Highlighted News'
@@ -3982,70 +3963,59 @@
       'div.ecl-col-l-4 article:nth-child(3) li.ecl-content-block__secondary-meta-item:nth-child(1) span.ecl-content-block__secondary-meta-label': '3 minutes read'
       'div.ecl-col-l-4 article:nth-child(3) li.ecl-content-block__secondary-meta-item:nth-child(2) svg.ecl-content-block__secondary-meta-icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#location"></use>'
       'div.ecl-col-l-4 article:nth-child(3) li.ecl-content-block__secondary-meta-item:nth-child(2) span.ecl-content-block__secondary-meta-label': 'Brussels'
-      'div#highlighted-news-block > div.ecl-u-mt-s a.ecl-link.ecl-link--standalone.ecl-link--icon[href="https://example.com"] .ecl-link__label': 'Read more news'
-      'div#highlighted-news-block > div.ecl-u-mt-s a.ecl-link.ecl-link--standalone.ecl-link--icon[href="https://example.com"] svg.ecl-icon--2xs': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>'
+      'div#highlighted-news-block > div.ecl-u-mt-m a.ecl-link.ecl-link--standalone.ecl-link--icon[href="https://example.com"] .ecl-link__label': 'Read more news'
+      'div#highlighted-news-block > div.ecl-u-mt-m a.ecl-link.ecl-link--standalone.ecl-link--icon[href="https://example.com"] svg.ecl-icon--2xs': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>'
       'div#highlighted-news-block div.ecl.ecl-u-mt-s': '<div>This <a href="https://example.com">is the detail</a> rich text field which contains a link.</div>'
 - array:
     '#type': pattern
     '#id': highlighted_list
+    '#variant': default
     '#fields':
       highlighted_item:
-        '#type': "pattern"
-        '#id': "list_item"
-        '#variant': "thumbnail_primary"
-        '#fields':
-          title: "Item 1"
+        title: "Item 1"
+        secondary_meta:
+          - label: "3 minutes read"
+            icon: "clock"
+        image:
+          src: "https://loremflickr.com/1200/900/arch"
+          alt: "Highlighted item image"
+        badges:
+          - label: "Highlighted"
+            variant: "highlight"
+          - label: "Status: Open"
+            variant: "high"
+        lists:
+          -
+            - term: "When"
+              definition: "Thursday 15 November, 08:00 AM to Friday 16 November"
+            - term: "Where"
+              definition: "The EGG, Rue Barra 175, 1070 Brussels, Belgium"
+      items:
+        - title: "Item 2"
+          detail: "Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem."
+          meta:
+            - "Item 2 primary meta"
+            - "DD Month Year"
           secondary_meta:
-            - label: "3 minutes read"
+            - label: "5 minutes read"
               icon: "clock"
           image:
             src: "https://loremflickr.com/1200/900/arch"
-            alt: "Highlighted item image"
+            alt: "Item 2 image"
+        - title: "Item 3"
+          url: "https://external.com"
+          image:
+            src: "https://loremflickr.com/1200/900/arch"
+            alt: "Alternative text for image"
           badges:
             - label: "Highlighted"
               variant: "highlight"
-            - label: "Status: Open"
-              variant: "high"
           lists:
             -
               - term: "When"
                 definition: "Thursday 15 November, 08:00 AM to Friday 16 November"
               - term: "Where"
                 definition: "The EGG, Rue Barra 175, 1070 Brussels, Belgium"
-      items:
-        - '#type': "pattern"
-          '#id': "list_item"
-          '#variant': "highlight"
-          '#fields':
-            title: "Item 2"
-            detail: "Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem."
-            meta:
-              - "Item 2 primary meta"
-              - "DD Month Year"
-            secondary_meta:
-              - label: "5 minutes read"
-                icon: "clock"
-            image:
-              src: "https://loremflickr.com/1200/900/arch"
-              alt: "Item 2 image"
-        - '#type': "pattern"
-          '#id': "list_item"
-          '#variant': "thumbnail_primary"
-          '#fields':
-            title: "Item 3"
-            url: "https://external.com"
-            image:
-              src: "https://loremflickr.com/1200/900/arch"
-              alt: "Alternative text for image"
-            badges:
-              - label: "Highlighted"
-                variant: "highlight"
-            lists:
-              -
-                - term: "When"
-                  definition: "Thursday 15 November, 08:00 AM to Friday 16 November"
-                - term: "Where"
-                  definition: "The EGG, Rue Barra 175, 1070 Brussels, Belgium"
       see_more_url: "#"
   assertions:
     count:
@@ -4080,8 +4050,242 @@
       'div.ecl-col-l-4 article.ecl-u-mb-m:nth-child(1) li.ecl-content-block__secondary-meta-item svg.ecl-content-block__secondary-meta-icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#clock"></use>'
       'div.ecl-col-l-4 article.ecl-u-mb-m:nth-child(1) li.ecl-content-block__secondary-meta-item span.ecl-content-block__secondary-meta-label': '5 minutes read'
       'div.ecl-col-l-4 article:nth-child(2) .ecl-content-block__title a.ecl-link.ecl-link--standalone[href="https://external.com"]': 'Item 3'
-      'div#highlighted-news-block > div.ecl-u-mt-s a.ecl-link.ecl-link--standalone.ecl-link--icon[href="#"] .ecl-link__label': '#'
-      'div#highlighted-news-block > div.ecl-u-mt-s a.ecl-link.ecl-link--standalone.ecl-link--icon[href="#"] svg.ecl-icon--xs.ecl-icon--rotate-180': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#arrow-left"></use>'
+      'div#highlighted-news-block > div.ecl-u-mt-m a.ecl-link.ecl-link--standalone.ecl-link--icon[href="#"] .ecl-link__label': '#'
+      'div#highlighted-news-block > div.ecl-u-mt-m a.ecl-link.ecl-link--standalone.ecl-link--icon[href="#"] svg.ecl-icon--xs.ecl-icon--rotate-180': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#arrow-left"></use>'
+- array:
+    '#type': pattern
+    '#id': highlighted_list
+    '#variant': four_columns
+    '#fields':
+      title: "Highlighted News"
+      highlighted_item:
+        title: "Item 1"
+        url: "#"
+        external_link: true
+        detail: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus gravida ipsum ut lorem cursus"
+        meta:
+          - "Item 1 primary meta"
+          - "DD Month Year"
+        secondary_meta:
+          - label: "3 minutes read"
+            icon: "information"
+          - label: "5 minutes read"
+            icon: "clock"
+        image:
+          src: "https://loremflickr.com/1200/900/arch"
+          alt: "Highlighted item image"
+      items:
+        - title: "Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem"
+          detail: "Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem."
+          meta:
+            - "Item 2 primary meta"
+            - "DD Month Year"
+          secondary_meta:
+            - label: "5 minutes read"
+              icon: "clock"
+          image:
+            src: "https://loremflickr.com/1200/900/arch"
+            alt: "Alternative text for 1st image"
+          badges:
+            - label: "Highlighted"
+              variant: "highlight"
+          lists:
+            - - term: "When"
+                definition: "Thursday 15 November, 08:00 AM to Friday 16 November"
+              - term: "Where"
+                definition: "The EGG, Rue Barra 175, 1070 Brussels, Belgium"
+        - title: "In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo"
+          url: "https://external.com"
+          detail: "In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam"
+          meta:
+            - "Item 3 primary meta"
+            - "DD Month Year"
+          secondary_meta:
+            - label: "2 minutes read"
+              icon: "clock"
+          image:
+            src: "https://loremflickr.com/1200/900/arch"
+            alt: "Alternative text for image"
+          image_position: "top"
+        - title: "Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim"
+          url: "#"
+          detail: "Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam"
+          meta:
+            - "Item 4 primary meta"
+            - "DD Month Year"
+          image:
+            src: "https://loremflickr.com/1200/900/arch"
+            alt: "Alternative text for image"
+          secondary_meta:
+            - label: "3 minutes read"
+              icon: "clock"
+            - label: "Brussels"
+              icon: "location"
+        - title: "Aenean imperdiet. Etiam ultricies nisi vel augue"
+          url: "#"
+          detail: "Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorpe"
+          meta:
+            - "Item 5 primary meta"
+            - "DD Month Year"
+          image:
+            src: "https://loremflickr.com/1200/900/arch"
+            alt: "Alternative text for 2nd image"
+        - title: "Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero"
+          url: "#"
+          detail: "Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum."
+          meta:
+            - "Item 6 primary meta"
+            - "DD Month Year"
+          image:
+            src: "https://loremflickr.com/1200/900/arch"
+            alt: "Alternative text for image"
+        - title: "Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero"
+          detail: "Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum."
+        - title: "Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero"
+          detail: "Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum."
+      see_more_label: "Read more news"
+      see_more_url: "https://example.com"
+      detail:
+        '#markup': '<div>This <a href="https://example.com">is the detail</a> rich text field which contains a link.</div>'
+  assertions:
+    count:
+      'div#highlighted-news-block': 1
+      'div#highlighted-news-block h2.ecl-u-type-heading-2': 1
+      'div div.ecl-row': 2
+      'div div.ecl-row.ecl-u-border-color-neutral.ecl-u-border-width-1.ecl-u-border-bottom.ecl-u-pb-l': 1
+      'div.ecl-row div.ecl-col-l-3.ecl-u-d-flex.ecl-u-flex-column': 4
+      'div.ecl-row article.ecl-content-item.ecl-u-flex-grow-1': 6
+      'div.ecl-row article.ecl-content-item--divider.ecl-u-flex-grow-1.ecl-u-mb-m': 2
+      'div.ecl-content-block__title': 6
+      'div.ecl-content-block__title a': 4
+      'picture.ecl-content-item__picture': 2
+      'div.ecl-col-l-3 picture.ecl-content-item__picture--medium img.ecl-content-item__image[src="https://loremflickr.com/1200/900/arch"][alt="Alternative text for 1st image"]': 1
+      'div.ecl-col-l-3 picture.ecl-content-item__picture--medium img.ecl-content-item__image[src="https://loremflickr.com/1200/900/arch"][alt="Alternative text for 2nd image"]': 1
+      'ul.ecl-content-block__primary-meta-container': 5
+      'div.ecl-content-block__description': 0
+      'ul.ecl-content-block__secondary-meta-container': 3
+      'ul.ecl-content-block__secondary-meta-container li.ecl-content-block__secondary-meta-item span.ecl-content-block__secondary-meta-label': 4
+      'div#highlighted-news-block div.ecl-u-mt-m:not(.ecl)': 1
+      'div#highlighted-news-block div.ecl.ecl-u-mt-s': 1
+    equals:
+      'div#highlighted-news-block h2.ecl-u-type-heading-2': 'Highlighted News'
+      'div.ecl-col-l-3:nth-child(1) ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(1)': 'Item 2 primary meta'
+      'div.ecl-col-l-3:nth-child(1) ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(2)': 'DD Month Year'
+      'div.ecl-col-l-3:nth-child(1) .ecl-content-block__title': 'Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem'
+      'div.ecl-col-l-3:nth-child(1) li.ecl-content-block__secondary-meta-item:nth-child(1) svg.ecl-content-block__secondary-meta-icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#clock"></use>'
+      'div.ecl-col-l-3:nth-child(1) li.ecl-content-block__secondary-meta-item:nth-child(1) span.ecl-content-block__secondary-meta-label': '5 minutes read'
+      'div.ecl-col-l-3:nth-child(2) article:nth-child(1) ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(1)': 'Item 3 primary meta'
+      'div.ecl-col-l-3:nth-child(2) article:nth-child(1) ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(2)': 'DD Month Year'
+      'div.ecl-col-l-3:nth-child(2) article:nth-child(1) .ecl-content-block__title a.ecl-link.ecl-link--standalone[href="https://external.com"]': 'In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo'
+      'div.ecl-col-l-3:nth-child(2) article:nth-child(1) li.ecl-content-block__secondary-meta-item svg.ecl-content-block__secondary-meta-icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#clock"></use>'
+      'div.ecl-col-l-3:nth-child(2) article:nth-child(1) li.ecl-content-block__secondary-meta-item span.ecl-content-block__secondary-meta-label': '2 minutes read'
+      'div.ecl-col-l-3:nth-child(2) article:nth-child(2) .ecl-content-block__title a.ecl-link.ecl-link--standalone[href="#"]': 'Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim'
+      'div.ecl-col-l-3:nth-child(2) article:nth-child(2) li.ecl-content-block__secondary-meta-item:nth-child(1) svg.ecl-content-block__secondary-meta-icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#clock"></use>'
+      'div.ecl-col-l-3:nth-child(2) article:nth-child(2) li.ecl-content-block__secondary-meta-item:nth-child(1) span.ecl-content-block__secondary-meta-label': '3 minutes read'
+      'div.ecl-col-l-3:nth-child(2) article:nth-child(2) li.ecl-content-block__secondary-meta-item:nth-child(2) svg.ecl-content-block__secondary-meta-icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#location"></use>'
+      'div.ecl-col-l-3:nth-child(2) article:nth-child(2) li.ecl-content-block__secondary-meta-item:nth-child(2) span.ecl-content-block__secondary-meta-label': 'Brussels'
+      'div.ecl-col-l-3:nth-child(2) article:nth-child(2) ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(1)': 'Item 4 primary meta'
+      'div.ecl-col-l-3:nth-child(2) article:nth-child(2) ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(2)': 'DD Month Year'
+      'div.ecl-col-l-3:nth-child(3) .ecl-content-block__title a.ecl-link.ecl-link--standalone[href="#"]': 'Aenean imperdiet. Etiam ultricies nisi vel augue'
+      'div.ecl-col-l-3:nth-child(3) ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(1)': 'Item 5 primary meta'
+      'div.ecl-col-l-3:nth-child(3) ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(2)': 'DD Month Year'
+      'div.ecl-col-l-3:nth-child(4) article:nth-child(1) .ecl-content-block__title a.ecl-link.ecl-link--standalone[href="#"]': 'Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero'
+      'div.ecl-col-l-3:nth-child(4) article:nth-child(1) ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(1)': 'Item 6 primary meta'
+      'div.ecl-col-l-3:nth-child(4) article:nth-child(1) ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(2)': 'DD Month Year'
+      'div.ecl-col-l-3:nth-child(4) article:nth-child(2) .ecl-content-block__title': 'Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero'
+      'div#highlighted-news-block > div.ecl-u-mt-m a.ecl-link.ecl-link--standalone.ecl-link--icon[href="https://example.com"] .ecl-link__label': 'Read more news'
+      'div#highlighted-news-block > div.ecl-u-mt-m a.ecl-link.ecl-link--standalone.ecl-link--icon[href="https://example.com"] svg.ecl-icon--2xs': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>'
+      'div#highlighted-news-block div.ecl.ecl-u-mt-s': '<div>This <a href="https://example.com">is the detail</a> rich text field which contains a link.</div>'
+- array:
+    '#type': pattern
+    '#id': highlighted_list
+    '#variant': four_columns
+    '#fields':
+      title: "Highlighted News"
+      items:
+        - title: "Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem"
+          detail: "Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem."
+          meta:
+            - "Item 2 primary meta"
+            - "DD Month Year"
+          secondary_meta:
+            - label: "5 minutes read"
+              icon: "clock"
+          image:
+            src: "https://loremflickr.com/1200/900/arch"
+            alt: "Alternative text for 1st image"
+          badges:
+            - label: "Highlighted"
+              variant: "highlight"
+          lists:
+            - - term: "When"
+                definition: "Thursday 15 November, 08:00 AM to Friday 16 November"
+              - term: "Where"
+                definition: "The EGG, Rue Barra 175, 1070 Brussels, Belgium"
+        - title: "In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo"
+          url: "https://external.com"
+          detail: "In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam"
+          meta:
+            - "Item 3 primary meta"
+            - "DD Month Year"
+          secondary_meta:
+            - label: "2 minutes read"
+              icon: "clock"
+          image:
+            src: "https://loremflickr.com/1200/900/arch"
+            alt: "Alternative text for image"
+          image_position: "top"
+        - title: "Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim"
+          url: "#"
+          detail: "Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam"
+          meta:
+            - "Item 4 primary meta"
+            - "DD Month Year"
+          image:
+            src: "https://loremflickr.com/1200/900/arch"
+            alt: "Alternative text for image"
+          secondary_meta:
+            - label: "3 minutes read"
+              icon: "clock"
+            - label: "Brussels"
+              icon: "location"
+  assertions:
+    count:
+      'div#highlighted-news-block': 1
+      'div#highlighted-news-block h2.ecl-u-type-heading-2': 1
+      'div div.ecl-row.ecl-u-border-color-neutral.ecl-u-border-width-1.ecl-u-border-bottom.ecl-u-pb-l': 1
+      'div.ecl-row div.ecl-col-l-3.ecl-u-d-flex.ecl-u-flex-column': 2
+      'div.ecl-row article.ecl-content-item.ecl-u-flex-grow-1': 3
+      'div.ecl-row article.ecl-content-item--divider.ecl-u-flex-grow-1.ecl-u-mb-m': 1
+      'div.ecl-content-block__title': 3
+      'div.ecl-content-block__title a': 2
+      'picture.ecl-content-item__picture': 1
+      'div.ecl-col-l-3 picture.ecl-content-item__picture--medium img.ecl-content-item__image[src="https://loremflickr.com/1200/900/arch"][alt="Alternative text for 1st image"]': 1
+      'ul.ecl-content-block__primary-meta-container': 3
+      'div.ecl-content-block__description': 0
+      'ul.ecl-content-block__secondary-meta-container': 3
+      'ul.ecl-content-block__secondary-meta-container li.ecl-content-block__secondary-meta-item span.ecl-content-block__secondary-meta-label': 4
+      'div#highlighted-news-block div.ecl-u-mt-m:not(.ecl)': 0
+      'div#highlighted-news-block div.ecl.ecl-u-mt-m': 0
+    equals:
+      'div#highlighted-news-block h2.ecl-u-type-heading-2': 'Highlighted News'
+      'div.ecl-col-l-3:nth-child(1) ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(1)': 'Item 2 primary meta'
+      'div.ecl-col-l-3:nth-child(1) ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(2)': 'DD Month Year'
+      'div.ecl-col-l-3:nth-child(1) .ecl-content-block__title': 'Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem'
+      'div.ecl-col-l-3:nth-child(1) li.ecl-content-block__secondary-meta-item:nth-child(1) svg.ecl-content-block__secondary-meta-icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#clock"></use>'
+      'div.ecl-col-l-3:nth-child(1) li.ecl-content-block__secondary-meta-item:nth-child(1) span.ecl-content-block__secondary-meta-label': '5 minutes read'
+      'div.ecl-col-l-3:nth-child(2) article:nth-child(1) ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(1)': 'Item 3 primary meta'
+      'div.ecl-col-l-3:nth-child(2) article:nth-child(1) ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(2)': 'DD Month Year'
+      'div.ecl-col-l-3:nth-child(2) article:nth-child(1) .ecl-content-block__title a.ecl-link.ecl-link--standalone[href="https://external.com"]': 'In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo'
+      'div.ecl-col-l-3:nth-child(2) article:nth-child(1) li.ecl-content-block__secondary-meta-item svg.ecl-content-block__secondary-meta-icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#clock"></use>'
+      'div.ecl-col-l-3:nth-child(2) article:nth-child(1) li.ecl-content-block__secondary-meta-item span.ecl-content-block__secondary-meta-label': '2 minutes read'
+      'div.ecl-col-l-3:nth-child(2) article:nth-child(2) .ecl-content-block__title a.ecl-link.ecl-link--standalone[href="#"]': 'Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim'
+      'div.ecl-col-l-3:nth-child(2) article:nth-child(2) li.ecl-content-block__secondary-meta-item:nth-child(1) svg.ecl-content-block__secondary-meta-icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#clock"></use>'
+      'div.ecl-col-l-3:nth-child(2) article:nth-child(2) li.ecl-content-block__secondary-meta-item:nth-child(1) span.ecl-content-block__secondary-meta-label': '3 minutes read'
+      'div.ecl-col-l-3:nth-child(2) article:nth-child(2) li.ecl-content-block__secondary-meta-item:nth-child(2) svg.ecl-content-block__secondary-meta-icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#location"></use>'
+      'div.ecl-col-l-3:nth-child(2) article:nth-child(2) li.ecl-content-block__secondary-meta-item:nth-child(2) span.ecl-content-block__secondary-meta-label': 'Brussels'
+      'div.ecl-col-l-3:nth-child(2) article:nth-child(2) ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(1)': 'Item 4 primary meta'
+      'div.ecl-col-l-3:nth-child(2) article:nth-child(2) ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(2)': 'DD Month Year'
 - array:
     '#type': 'pattern'
     '#id': 'tabs'
