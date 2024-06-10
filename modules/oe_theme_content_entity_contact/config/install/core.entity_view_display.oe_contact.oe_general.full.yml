@@ -35,15 +35,15 @@ third_party_settings:
         - oe_address
         - oe_office
         - oe_social_media
+      label: 'Contact information'
       parent_name: ''
+      region: content
       weight: 2
       format_type: oe_theme_helper_field_list_pattern
       format_settings:
-        variant: horizontal
         classes: ''
         id: ''
-      label: 'Contact information'
-      region: content
+        variant: horizontal
 id: oe_contact.oe_general.full
 targetEntityType: oe_contact
 bundle: oe_general
@@ -51,54 +51,51 @@ mode: full
 content:
   name:
     type: string
-    weight: 0
-    region: content
     label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
+    weight: 0
+    region: content
   oe_address:
-    weight: 17
+    type: oe_theme_helper_address_commission
     label: hidden
-    settings:
-      delimiter: ', '
+    settings: {  }
     third_party_settings: {  }
-    type: oe_theme_helper_address_inline
+    weight: 17
     region: content
   oe_body:
     type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
     weight: 1
     region: content
-    label: hidden
-    settings: {  }
-    third_party_settings: {  }
   oe_email:
-    weight: 13
+    type: email_mailto
     label: hidden
     settings: {  }
     third_party_settings: {  }
-    type: email_mailto
+    weight: 13
     region: content
   oe_fax:
     type: string
-    weight: 16
-    region: content
     label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
+    weight: 16
+    region: content
   oe_image:
     type: oe_theme_helper_featured_media_formatter
-    weight: 5
-    region: content
     label: hidden
     settings:
       image_style: ''
     third_party_settings: {  }
+    weight: 5
+    region: content
   oe_link:
     type: link
-    weight: 4
-    region: content
     label: hidden
     settings:
       trim_length: 80
@@ -107,42 +104,42 @@ content:
       rel: ''
       target: ''
     third_party_settings: {  }
+    weight: 4
+    region: content
   oe_mobile:
     type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
     weight: 15
     region: content
-    label: hidden
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
   oe_office:
     type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
     weight: 18
     region: content
-    label: hidden
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
   oe_organisation:
     type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
     weight: 11
     region: content
-    label: hidden
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
   oe_phone:
-    weight: 14
+    type: string
     label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    type: string
+    weight: 14
     region: content
   oe_press_contact_url:
     type: link
-    weight: 3
-    region: content
     label: hidden
     settings:
       trim_length: 80
@@ -151,10 +148,10 @@ content:
       rel: ''
       target: ''
     third_party_settings: {  }
+    weight: 3
+    region: content
   oe_social_media:
     type: oe_theme_helper_social_media_icons_list_formatter
-    weight: 19
-    region: content
     label: hidden
     settings:
       trim_length: 80
@@ -163,10 +160,10 @@ content:
       rel: nofollow
       target: _blank
     third_party_settings: {  }
+    weight: 19
+    region: content
   oe_website:
     type: link
-    weight: 12
-    region: content
     label: hidden
     settings:
       trim_length: 80
@@ -175,6 +172,8 @@ content:
       rel: ''
       target: ''
     third_party_settings: {  }
+    weight: 12
+    region: content
 hidden:
   created: true
   langcode: true
