@@ -332,10 +332,20 @@ The following is a list of all the vailable styles and their preferred usage:
 * Small (`oe_theme_small_no_crop`): Small sized image, part of the Main content responsive image style.
 * Main content (`oe_theme_main_content`): Responsive image style, to be used on any image that is rendered inside
 a content page.
-* Full width (3840) (`oe_theme_full_width`): Full width image, to be used in Banner and Carousel paragraphs.
-* Large banner (`oe_theme_large_banner`): Large banner image (996px x 332px), to be used in Banner and Carousel paragraphs.
-* Medium banner (`oe_theme_medium_banner`): Medium banner image (768px x 256px), to be used in Banner and Carousel paragraphs.
-* Small banner (`oe_theme_small_banner`): Small banner image (480px x 160px), to be used in Banner and Carousel paragraphs.
+* Full width (3840) (`oe_theme_full_width`): Full width image (3840px x 3840px).
+### Banner image styles for different ratios
+* Extra large banner 3:1 (`oe_theme_extra_large_3_1_banner`)
+* Large banner 3:1 (`oe_theme_large_3_1_banner`)
+* Medium banner 3:1 (`oe_theme_medium_3_1_banner`)
+* Small banner 3:1 (`oe_theme_small_3_1_banner`)
+* Extra large banner 4:1 (`oe_theme_extra_large_4_1_banner`)
+* Large banner 4:1 (`oe_theme_large_4_1_banner`)
+* Medium banner 4:1 (`oe_theme_medium_4_1_banner`)
+* Small banner 4:1 (`oe_theme_small_4_1_banner`)
+* Extra large banner 5:1 (`oe_theme_extra_large_5_1_banner`)
+* Large banner 5:1 (`oe_theme_large_5_1_banner`)
+* Medium banner 5:1 (`oe_theme_medium_5_1_banner`)
+* Small banner 5:1 (`oe_theme_small_5_1_banner`)
 
 ## Development
 

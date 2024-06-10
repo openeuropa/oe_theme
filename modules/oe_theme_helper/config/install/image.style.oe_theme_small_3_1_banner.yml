@@ -1,8 +1,8 @@
 langcode: en
 status: true
 dependencies: {  }
-name: oe_theme_small_banner
-label: 'Small banner'
+name: oe_theme_small_3_1_banner
+label: 'Small banner 3:1'
 effects:
   f5071033-a4a5-4b0a-9a5a-53a31db3791b:
     uuid: f5071033-a4a5-4b0a-9a5a-53a31db3791b

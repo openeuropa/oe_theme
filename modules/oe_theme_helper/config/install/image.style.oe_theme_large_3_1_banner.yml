@@ -1,8 +1,8 @@
 langcode: en
 status: true
 dependencies: {  }
-name: oe_theme_large_banner
-label: 'Large banner'
+name: oe_theme_large_3_1_banner
+label: 'Large banner 3:1'
 effects:
   ec4b9e51-ccd6-4686-9bee-218e1056ff7c:
     uuid: ec4b9e51-ccd6-4686-9bee-218e1056ff7c

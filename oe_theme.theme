@@ -1669,14 +1669,30 @@ function oe_theme_preprocess_paragraph__oe_banner(array &$variables): void {
     $cacheability->applyTo($variables);
     return;
   }
+
+  // Load needed images styles based on banner size.
   $image_style_storage = \Drupal::entityTypeManager()->getStorage('image_style');
-  $full_width = $image_style_storage->load('oe_theme_full_width');
-  $large = $image_style_storage->load('oe_theme_large_banner');
-  $medium = $image_style_storage->load('oe_theme_medium_banner');
-  $small = $image_style_storage->load('oe_theme_small_banner');
+  if ($variables['size'] === 's') {
+    $extra_large = $image_style_storage->load('oe_theme_extra_large_5_1_banner');
+    $large = $image_style_storage->load('oe_theme_large_5_1_banner');
+    $medium = $image_style_storage->load('oe_theme_medium_5_1_banner');
+    $small = $image_style_storage->load('oe_theme_small_5_1_banner');
+  }
+  if ($variables['size'] === 'm') {
+    $extra_large = $image_style_storage->load('oe_theme_extra_large_4_1_banner');
+    $large = $image_style_storage->load('oe_theme_large_4_1_banner');
+    $medium = $image_style_storage->load('oe_theme_medium_4_1_banner');
+    $small = $image_style_storage->load('oe_theme_small_4_1_banner');
+  }
+  if ($variables['size'] === 'l') {
+    $extra_large = $image_style_storage->load('oe_theme_extra_large_3_1_banner');
+    $large = $image_style_storage->load('oe_theme_large_3_1_banner');
+    $medium = $image_style_storage->load('oe_theme_medium_3_1_banner');
+    $small = $image_style_storage->load('oe_theme_small_3_1_banner');
+  }
 
   $values = [
-    'src' => $full_width->buildUrl($uri),
+    'src' => $extra_large->buildUrl($uri),
     'alt' => $source->getMetadata($media, 'thumbnail_alt_value') ?? '',
     'name' => $media->getName(),
   ];
@@ -1695,7 +1711,7 @@ function oe_theme_preprocess_paragraph__oe_banner(array &$variables): void {
       'size' => 'l',
     ],
     [
-      'src' => $full_width->buildUrl($uri),
+      'src' => $extra_large->buildUrl($uri),
       'size' => 'xl',
     ],
   ];
@@ -2224,12 +2240,29 @@ function oe_theme_preprocess_paragraph__oe_carousel(array &$variables): void {
   $variables['items'] = [];
   $cacheability = CacheableMetadata::createFromRenderArray($variables);
 
-  // Load needed images styles.
+  if ($paragraph->hasField('field_oe_carousel_size') && !$paragraph->get('field_oe_carousel_size')->isEmpty()) {
+    $variables['size'] = substr($paragraph->get('field_oe_carousel_size')->value, 0, 1);
+  }
+  // Load needed images styles based on carousel size.
   $image_style_storage = \Drupal::entityTypeManager()->getStorage('image_style');
-  $full_width = $image_style_storage->load('oe_theme_full_width');
-  $large = $image_style_storage->load('oe_theme_large_banner');
-  $medium = $image_style_storage->load('oe_theme_medium_banner');
-  $small = $image_style_storage->load('oe_theme_small_banner');
+  if ($variables['size'] === 's') {
+    $extra_large = $image_style_storage->load('oe_theme_extra_large_5_1_banner');
+    $large = $image_style_storage->load('oe_theme_large_5_1_banner');
+    $medium = $image_style_storage->load('oe_theme_medium_5_1_banner');
+    $small = $image_style_storage->load('oe_theme_small_5_1_banner');
+  }
+  if ($variables['size'] === 'm') {
+    $extra_large = $image_style_storage->load('oe_theme_extra_large_4_1_banner');
+    $large = $image_style_storage->load('oe_theme_large_4_1_banner');
+    $medium = $image_style_storage->load('oe_theme_medium_4_1_banner');
+    $small = $image_style_storage->load('oe_theme_small_4_1_banner');
+  }
+  if ($variables['size'] === 'l') {
+    $extra_large = $image_style_storage->load('oe_theme_extra_large_3_1_banner');
+    $large = $image_style_storage->load('oe_theme_large_3_1_banner');
+    $medium = $image_style_storage->load('oe_theme_medium_3_1_banner');
+    $small = $image_style_storage->load('oe_theme_small_3_1_banner');
+  }
 
   /** @var \Drupal\paragraphs\Entity\Paragraph $sub_paragraph */
   foreach ($paragraph->get('field_oe_carousel_items')->referencedEntities() as $sub_paragraph) {
@@ -2299,7 +2332,7 @@ function oe_theme_preprocess_paragraph__oe_carousel(array &$variables): void {
       $cacheability->applyTo($variables);
       continue;
     }
-    $item['image'] = $full_width->buildUrl($uri);
+    $item['image'] = $extra_large->buildUrl($uri);
     $item['image_alt'] = $source->getMetadata($media, 'thumbnail_alt_value') ?? '';
     $item['sources'] = [
       [
@@ -2315,15 +2348,12 @@ function oe_theme_preprocess_paragraph__oe_carousel(array &$variables): void {
         'size' => 'l',
       ],
       [
-        'src' => $full_width->buildUrl($uri),
+        'src' => $extra_large->buildUrl($uri),
         'size' => 'xl',
       ],
     ];
     $variables['items'][] = $item;
     $cacheability->applyTo($variables);
-  }
-  if ($paragraph->hasField('field_oe_carousel_size') && !$paragraph->get('field_oe_carousel_size')->isEmpty()) {
-    $variables['size'] = substr($paragraph->get('field_oe_carousel_size')->value, 0, 1);
   }
 }
 

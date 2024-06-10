@@ -1,0 +1,15 @@
+langcode: en
+status: true
+dependencies: {  }
+name: oe_theme_large_5_1_banner
+label: 'Large banner 5:1'
+effects:
+  84375c60-ce2a-4c39-8121-306207802cb0:
+    uuid: 84375c60-ce2a-4c39-8121-306207802cb0
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 996
+      height: 199
+      anchor: center-center
+

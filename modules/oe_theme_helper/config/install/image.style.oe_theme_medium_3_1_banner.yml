@@ -1,8 +1,8 @@
 langcode: en
 status: true
 dependencies: {  }
-name: oe_theme_medium_banner
-label: 'Medium banner'
+name: oe_theme_medium_3_1_banner
+label: 'Medium banner 3:1'
 effects:
   1389c6c4-2406-466b-9421-ad82448e9951:
     uuid: 1389c6c4-2406-466b-9421-ad82448e9951

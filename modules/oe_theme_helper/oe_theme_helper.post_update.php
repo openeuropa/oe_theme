@@ -332,20 +332,65 @@ function oe_theme_helper_post_update_20017() {
  */
 function oe_theme_helper_post_update_40001(): void {
   $image_styles = [
-    'oe_theme_large_banner' => [
-      'label' => 'Large banner',
-      'width' => '996',
-      'height' => '256',
+    'oe_theme_extra_large_3_1_banner' => [
+      'label' => 'Extra large banner 3:1',
+      'width' => '1140',
+      'height' => '380',
     ],
-    'oe_theme_medium_banner' => [
-      'label' => 'Medium banner',
-      'width' => '768',
+    'oe_theme_extra_large_4_1_banner' => [
+      'label' => 'Extra large banner 4:1',
+      'width' => '1140',
+      'height' => '285',
+    ],
+    'oe_theme_extra_large_5_1_banner' => [
+      'label' => 'Extra large banner 5:1',
+      'width' => '1140',
+      'height' => '228',
+    ],
+    'oe_theme_large_3_1_banner' => [
+      'label' => 'Large banner 3:1',
+      'width' => '996',
       'height' => '332',
     ],
-    'oe_theme_small_banner' => [
-      'label' => 'Small banner',
+    'oe_theme_large_4_1_banner' => [
+      'label' => 'Large banner 4:1',
+      'width' => '996',
+      'height' => '249',
+    ],
+    'oe_theme_large_5_1_banner' => [
+      'label' => 'Large banner 5:1',
+      'width' => '996',
+      'height' => '199',
+    ],
+    'oe_theme_medium_3_1_banner' => [
+      'label' => 'Medium banner 3:1',
+      'width' => '768',
+      'height' => '256',
+    ],
+    'oe_theme_medium_4_1_banner' => [
+      'label' => 'Medium banner 4:1',
+      'width' => '768',
+      'height' => '192',
+    ],
+    'oe_theme_medium_5_1_banner' => [
+      'label' => 'Medium banner 5:1',
+      'width' => '768',
+      'height' => '154',
+    ],
+    'oe_theme_small_3_1_banner' => [
+      'label' => 'Small banner 3:1',
       'width' => '480',
       'height' => '160',
+    ],
+    'oe_theme_small_4_1_banner' => [
+      'label' => 'Small banner 4:1',
+      'width' => '480',
+      'height' => '120',
+    ],
+    'oe_theme_small_5_1_banner' => [
+      'label' => 'Small banner 5:1',
+      'width' => '480',
+      'height' => '96',
     ],
   ];
   $image_style_storage = \Drupal::entityTypeManager()->getStorage('image_style');
