@@ -47,7 +47,7 @@
         "openeuropa/code-review": "^2.0.0-alpha6",
         "openeuropa/oe_contact_forms": "^1.14",
         "openeuropa/oe_content": "^3.0.0",
-        "openeuropa/oe_corporate_blocks": "^4.14",
+        "openeuropa/oe_corporate_blocks": "^4.19",
         "openeuropa/oe_corporate_countries": "^2.0.0",
         "openeuropa/oe_corporate_site_info": "^1.0.0-alpha8",
         "openeuropa/oe_media": "dev-master as 1.26",
@@ -104,9 +104,6 @@
             },
             "drupal/address": {
                 "https://www.drupal.org/project/address/issues/3144823": "https://www.drupal.org/files/issues/2020-11-05/3144823-6.patch"
-            },
-            "openeuropa/oe_corporate_blocks": {
-                "latest": "https://github.com/openeuropa/oe_corporate_blocks/compare/4.18.0..4.x.patch"
             }
         },
         "drupal-scaffold": {
