@@ -20,7 +20,6 @@
 @use "./components/wysiwyg";
 @use "./components/global" with (
   $font-family: map.get(theme.$theme, 'font-family', 'default'),
-  $background-color: var(--ecl-color-background) !important,
 );
 @use "./components/description_list";
 @use "./components/media_iframe";
