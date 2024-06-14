@@ -1,10 +1,38 @@
-# Change Log
+# Changelog
 
-## [4.0.0-beta5](https://github.com/openeuropa/oe_theme/tree/4.0.0-beta5) (2024-04-25)
-[Full Changelog](https://github.com/openeuropa/oe_theme/compare/4.0.0-beta4...4.0.0-beta5)
+## [4.0.0-beta6](https://github.com/openeuropa/oe_theme/tree/4.0.0-beta6) (2024-06-14)
+
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/4.0.0-beta5...4.0.0-beta6)
 
 **Merged pull requests:**
 
+- EWPP-4414: Update oe\_corporate\_blocks version. [\#1465](https://github.com/openeuropa/oe_theme/pull/1465) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-4416: Update to ECL 4.2.2. [\#1464](https://github.com/openeuropa/oe_theme/pull/1464) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-4386: Apply background color for body. [\#1461](https://github.com/openeuropa/oe_theme/pull/1461) ([nagyad](https://github.com/nagyad))
+- EWPP-4383: Update gallery to render media name as title parameter. [\#1460](https://github.com/openeuropa/oe_theme/pull/1460) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-4370: Add new field formatter and update entity view configs for… [\#1458](https://github.com/openeuropa/oe_theme/pull/1458) ([sergepavle](https://github.com/sergepavle))
+- EWPP-4366: Update to ECL 4.2.0. [\#1457](https://github.com/openeuropa/oe_theme/pull/1457) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-4328: Refactor Highlighted list pattern to accommodate new four columns layout. [\#1451](https://github.com/openeuropa/oe_theme/pull/1451) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-4336: Add support of contextual links for list\_item pattern. [\#1450](https://github.com/openeuropa/oe_theme/pull/1450) ([sergepavle](https://github.com/sergepavle))
+- EWPP-4314: Update EU footer data. [\#1449](https://github.com/openeuropa/oe_theme/pull/1449) ([nagyad](https://github.com/nagyad))
+- EWPP-4255: Render primary and secondary meta items in list item highlight. [\#1446](https://github.com/openeuropa/oe_theme/pull/1446) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-4206: Assert image style if available in pattern assert. [\#1442](https://github.com/openeuropa/oe_theme/pull/1442) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-3635: Patch core to render internal links' title. [\#1440](https://github.com/openeuropa/oe_theme/pull/1440) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-4071: Do not escape the url when generating it in the FileValueO… [\#1439](https://github.com/openeuropa/oe_theme/pull/1439) ([imanoleguskiza](https://github.com/imanoleguskiza))
+- EWPP-4085: Add mega menu variant to navigation menu pattern. [\#1436](https://github.com/openeuropa/oe_theme/pull/1436) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-3721: Theming CircaBC docs. [\#1351](https://github.com/openeuropa/oe_theme/pull/1351) ([upchuk](https://github.com/upchuk))
+
+## [4.0.0-beta5](https://github.com/openeuropa/oe_theme/tree/4.0.0-beta5) (2024-04-25)
+
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/4.0.0-beta4...4.0.0-beta5)
+
+**Closed issues:**
+
+- Incompatibility with oe\_theme, oe\_oembed and ckeditor5 [\#1392](https://github.com/openeuropa/oe_theme/issues/1392)
+
+**Merged pull requests:**
+
+- Release 4.0.0-beta5 changelog. [\#1445](https://github.com/openeuropa/oe_theme/pull/1445) ([22Alexandra](https://github.com/22Alexandra))
 - EWPP-4303: Update to ECL 4.1.2. [\#1444](https://github.com/openeuropa/oe_theme/pull/1444) ([22Alexandra](https://github.com/22Alexandra))
 
 ## [4.0.0-beta4](https://github.com/openeuropa/oe_theme/tree/4.0.0-beta4) (2024-04-16)
@@ -13,6 +41,7 @@
 
 **Merged pull requests:**
 
+- Release-4.0.0-beta4: Update changelog. [\#1441](https://github.com/openeuropa/oe_theme/pull/1441) ([nagyad](https://github.com/nagyad))
 - EWPP-4139: Add a variant field to navigation\_list pattern. [\#1438](https://github.com/openeuropa/oe_theme/pull/1438) ([22Alexandra](https://github.com/22Alexandra))
 
 ## [4.0.0-beta3](https://github.com/openeuropa/oe_theme/tree/4.0.0-beta3) (2024-03-19)
