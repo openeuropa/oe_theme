@@ -7,8 +7,6 @@ dependencies:
     - field.field.node.oe_project.oe_departments
     - field.field.node.oe_project.oe_documents
     - field.field.node.oe_project.oe_featured_media
-    - field.field.node.oe_project.oe_project_budget
-    - field.field.node.oe_project.oe_project_budget_eu
     - field.field.node.oe_project.oe_project_calls
     - field.field.node.oe_project.oe_project_contact
     - field.field.node.oe_project.oe_project_coordinators
@@ -89,8 +87,6 @@ hidden:
   oe_content_short_title: true
   oe_departments: true
   oe_documents: true
-  oe_project_budget: true
-  oe_project_budget_eu: true
   oe_project_calls: true
   oe_project_contact: true
   oe_project_coordinators: true
