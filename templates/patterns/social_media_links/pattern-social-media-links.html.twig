@@ -12,6 +12,7 @@
       path: link.url,
       label: link.label,
       icon_position: 'before',
+      hide_label: link.hide_label|default(false),
     }
   } %}
   {% if link.service is not empty %}
