@@ -121,7 +121,7 @@ class NewsContentType extends NodeViewRoutesBase {
     }
 
     // Add news authors to page metadata.
-    if (!$node->get('oe_author')->isEmpty()) {
+    if ($node->hasField('oe_author') && !$node->get('oe_author')->isEmpty()) {
       $metadata['metas'][] = $this->getCommaSeparatedReferencedEntityLabels($this->entityRepository, $node->get('oe_author'));
     }
 
