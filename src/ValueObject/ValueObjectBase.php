@@ -19,6 +19,7 @@ abstract class ValueObjectBase implements ValueObjectInterface {
   /**
    * {@inheritdoc}
    */
+  #[\ReturnTypeWillChange]
   public function offsetExists(mixed $offset): bool {
     return array_key_exists($offset, $this->getArray());
   }
@@ -34,6 +35,7 @@ abstract class ValueObjectBase implements ValueObjectInterface {
   /**
    * {@inheritdoc}
    */
+  #[\ReturnTypeWillChange]
   public function offsetGet(mixed $offset): mixed {
     return $this->getArray()[$offset];
   }
