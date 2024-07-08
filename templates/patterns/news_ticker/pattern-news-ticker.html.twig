@@ -10,6 +10,10 @@
     content: _item.content,
     link: _item.link,
     external: _item.external_link|default(false),
+    icon: {
+      path: ecl_icon_path,
+      name: 'information',
+    }
   }]) %}
 {% endfor %}
 
