@@ -48,7 +48,7 @@ pipeline:
       # and make sure that ECL_BUILD is set to "dev".
       - 'bash ./scripts/build-ecl-pipeline.sh'
 
-  composer-change-patch:
+  composer-change-patch-10.1:
     group: warmup
     image: registry.fpfis.eu/fpfis/httpd-php:${PHP_VERSION}-ci
     volumes:
@@ -59,9 +59,23 @@ pipeline:
         composer config --merge --json "extra.patches.drupal/core" '{"https://www.drupal.org/project/drupal/issues/2230909": "https://www.drupal.org/files/issues/2022-07-26/2230909-269.patch"}'
       - >
         composer config --merge --json "extra.patches-ignore.openeuropa/oe_content" '{"drupal/core": {"Drupal 10.2.x only - see README.md for 10.1.x - https://www.drupal.org/project/drupal/issues/2230909": "https://www.drupal.org/files/issues/2023-12-21/2230909-309.patch"}}'
+      - >
+        composer config --merge --json "extra.patches-ignore.drupal/media_avportal" '{"drupal/remote_stream_wrapper": {"Drupal 10.3.x only - see media_avportal/README.md for 10.2.x - https://www.drupal.org/project/remote_stream_wrapper/issues/3437974": "https://www.drupal.org/files/issues/2024-06-21/drupal_10_3_deliver_signature_change-3437974-2_0_0-18.patch"}}'
     when:
       matrix:
         CORE_VERSION: "10.1.0"
+  composer-change-patch-10.2:
+    group: warmup
+    image: registry.fpfis.eu/fpfis/httpd-php:${PHP_VERSION}-ci
+    volumes:
+      - /cache:/cache
+    commands:
+      # Change the patch for 10.2.x.
+      - >
+        composer config --merge --json "extra.patches-ignore.drupal/media_avportal" '{"drupal/remote_stream_wrapper": {"Drupal 10.3.x only - see media_avportal/README.md for 10.2.x - https://www.drupal.org/project/remote_stream_wrapper/issues/3437974": "https://www.drupal.org/files/issues/2024-06-21/drupal_10_3_deliver_signature_change-3437974-2_0_0-18.patch"}}'
+    when:
+      matrix:
+        CORE_VERSION: "10.2.0"
 
   composer-install:
     group: post-prepare
