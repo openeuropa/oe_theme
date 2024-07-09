@@ -47,13 +47,13 @@ class FileTeaserAssert extends FileTranslationAssert {
    */
   protected function assertMeta($expected_metas, Crawler $crawler): void {
     if (is_null($expected_metas)) {
-      $this->assertElementNotExists('div.ecl-file--thumbnail div.ecl-file__container div.ecl-file__info div.ecl-file__detail-meta span.ecl-file__detail-meta-item', $crawler);
+      $this->assertElementNotExists('div.ecl-file--thumbnail div.ecl-file__container div.ecl-file__info ul.ecl-file__detail-meta li.ecl-file__detail-meta-item', $crawler);
       return;
     }
     if (!is_array($expected_metas)) {
       $expected_metas = [$expected_metas];
     }
-    $meta_items = $crawler->filter('div.ecl-file--thumbnail div.ecl-file__container div.ecl-file__info div.ecl-file__detail-meta span.ecl-file__detail-meta-item');
+    $meta_items = $crawler->filter('div.ecl-file--thumbnail div.ecl-file__container div.ecl-file__info ul.ecl-file__detail-meta li.ecl-file__detail-meta-item');
     self::assertCount(count($expected_metas), $meta_items, 'The expected meta item number does not correspond with the found meta item number.');
     foreach ($expected_metas as $index => $expected_meta) {
       self::assertEquals($expected_meta, trim($meta_items->eq($index)->text()), \sprintf('The expected text of the meta number %s does not correspond to the found meta text.', $index));
