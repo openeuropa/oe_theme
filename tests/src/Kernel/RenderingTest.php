@@ -101,14 +101,6 @@ class RenderingTest extends AbstractKernelTestBase implements FormInterface {
    * @dataProvider renderingDataProvider
    */
   public function testRendering(array $structure, array $assertions): void {
-    // @todo Remove when support for 10.1.x is dropped.
-    if (!empty($structure['core_version'])) {
-      if (!$this->shouldBeTested($structure['core_version'])) {
-        $this->markTestSkipped();
-      }
-      unset($structure['core_version']);
-    }
-
     // Wrap all the test structure inside a form. This will allow proper
     // processing of form elements and invocation of form alter hooks.
     // Even if the elements being tested are not form related, the form can
