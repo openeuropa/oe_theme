@@ -313,7 +313,10 @@ class MediaGalleryFormatterTest extends AbstractKernelTestBase {
     // Test the contents of the first item.
     $image_node = $items->first()->filter('img');
     $this->assertEquals('Alt text for test image.', $image_node->attr('alt'));
-    $this->assertStringContainsString('/files/styles/medium/public/example_1.jpeg?itok=', $image_node->attr('src'));
+    // @todo Remove when support for core 10.2.x is dropped.
+    // Core shipped image styles are converted to webp extension.
+    $image_extension = version_compare(\Drupal::VERSION, '10.3', '>') ? 'jpeg.webp' : 'jpeg';
+    $this->assertStringContainsString("/files/styles/medium/public/example_1.$image_extension?itok=", $image_node->attr('src'));
     $caption = $items->first()->filter('.ecl-gallery__description');
     $this->assertStringContainsString($image_media->label(), $caption->html());
 
@@ -324,6 +327,12 @@ class MediaGalleryFormatterTest extends AbstractKernelTestBase {
     );
     $image_node = $items->eq(1)->filter('img');
     $this->assertEquals('', $image_node->attr('alt'));
+
+    // @todo Remove when support for core 10.2.x is dropped.
+    // Core shipped image styles are converted to webp extension.
+    if (version_compare(\Drupal::VERSION, '10.3', '>')) {
+      $expected_thumbnail_name .= '.webp';
+    }
     $this->assertStringContainsString(
       '/files/styles/medium/public/oembed_thumbnails/' . $expected_thumbnail_name . '?itok=',
       $image_node->attr('src')
