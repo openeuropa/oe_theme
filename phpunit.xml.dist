@@ -7,6 +7,7 @@
     <env name="SIMPLETEST_BASE_URL" value="${drupal.base_url}"/>
     <env name="SIMPLETEST_DB" value="mysql://${drupal.database.user}:${drupal.database.password}@${drupal.database.host}:${drupal.database.port}/${drupal.database.name}"/>
     <env name="SIMPLETEST_SPARQL_DB" value="sparql://${drupal.sparql.host}:${drupal.sparql.port}/?module=sparql_entity_storage"/>
+    <!-- @todo When dropping support for 10.2.x, rename "chromeOptions" to "goog:chromeOptions". -->
     <env name="MINK_DRIVER_ARGS_WEBDRIVER" value='["${selenium.browser}", {"browserName":"chrome","chromeOptions":{"w3c": false, "args":["--no-sandbox", "--start-maximized", "--disable-gpu", "--window-size=1600,1200", "--disable-dev-shm-usage", "--disable-setuid-sandbox", "--disable-web-security", "--DNS-prefetch-disable", "--disable-translate", "--ignore-certificate-errors", "--test-type", "--disable-extensions", "--incognito", "--disable-infobars"]}}, "${selenium.host}:${selenium.port}/wd/hub"]'/>
   </php>
   <extensions>
