@@ -7,6 +7,12 @@ list_item_block_four_columns:
       label: "Title"
       description: "Block title"
       preview: "The European Commission's priorities"
+    introduction:
+      type: "text"
+      label: "Introduction"
+      description: "A brief summary of the content on the list."
+      preview:
+        '#markup': "<p>The European Commission focuses on <strong>several key areas:</strong> supporting the EU economy and businesses, and providing guidance on living, working and traveling in the EU. Read more about our priorities.</p>"
     items:
       type: "array"
       label: "Layout items"
