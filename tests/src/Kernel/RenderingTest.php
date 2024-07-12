@@ -125,21 +125,4 @@ class RenderingTest extends AbstractKernelTestBase implements FormInterface {
     return $this->getFixtureContent('rendering.yml');
   }
 
-  /**
-   * Check if the Drupal core version falls within the specified minor range.
-   *
-   * @todo Remove when support for 10.1.x is dropped.
-   *
-   * @param string $core_version
-   *   The minor version required by the test, e.g., '10.1'.
-   *
-   * @return bool
-   *   Returns true if the Drupal version is within the minor version range.
-   */
-  protected function shouldBeTested(string $core_version): bool {
-    $current_version_parts = explode('.', \Drupal::VERSION);
-    $current_minor_version = $current_version_parts[0] . '.' . $current_version_parts[1];
-    return $current_minor_version === $core_version;
-  }
-
 }
