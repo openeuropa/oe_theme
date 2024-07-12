@@ -14,6 +14,12 @@ highlighted_list:
       label: "Title"
       description: "Highlighted list title"
       preview: "Highlighted News"
+    introduction:
+      type: "text"
+      label: "Introduction"
+      description: "A brief summary of the content on the list."
+      preview:
+        '#markup': "<p>Duis arcu tortor, suscipit eget, imperdiet nec, imperdiet iaculis, ipsum. Sed cursus turpis vitae tortor. <strong>Aliquam eu nunc.</strong> Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos hymenaeos. Fusce egestas elit eget lorem.</p>"
     highlighted_item:
       type: "array"
       label: "Highlighted item"

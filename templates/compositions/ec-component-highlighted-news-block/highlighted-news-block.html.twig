@@ -5,6 +5,7 @@
   Parameters:
     - "columns" (int) (default: 2): The number of columns layout. It can be 2 or 4 and it defaults to 2.
     - "title" (string) (default: ''): The Highlighted News Block title.
+    - "introduction" (string) (default: ''): A brief summary of the block content.
     - "highlighted" (array) (default: []): The main item of the list compatible with the ECL Content Item component.
     - "items" (array) (default: []): Highlighted News items compatible with the ECL Content Item component.
     - "see_more" (array) (default: []): Predefined structure compatible with Link component.
@@ -16,6 +17,13 @@
       <div class="ecl-row">
         <div class="ecl-col-12">
           <h2 class='ecl-u-type-heading-2'>{{ title }}</h2>
+        </div>
+      </div>
+    {% endif %}
+    {% if introduction is not empty %}
+      <div class="ecl-row">
+        <div class="ecl-content-item-block__introduction ecl ecl-u-mb-2xl ecl-col-12">
+          {{ introduction }}
         </div>
       </div>
     {% endif %}
