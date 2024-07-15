@@ -48,19 +48,6 @@ pipeline:
       # and make sure that ECL_BUILD is set to "dev".
       - 'bash ./scripts/build-ecl-pipeline.sh'
 
-  composer-change-patch:
-    group: warmup
-    image: registry.fpfis.eu/fpfis/httpd-php:${PHP_VERSION}-ci
-    volumes:
-      - /cache:/cache
-    commands:
-      # Ignore the patch for core < 10.3.x.
-      - >
-        composer config --merge --json "extra.patches-ignore.drupal/media_avportal" '{"drupal/remote_stream_wrapper": {"Drupal 10.3.x only - see media_avportal/README.md for 10.2.x - https://www.drupal.org/project/remote_stream_wrapper/issues/3437974": "https://www.drupal.org/files/issues/2024-06-21/drupal_10_3_deliver_signature_change-3437974-2_0_0-18.patch"}}'
-    when:
-      matrix:
-        CORE_VERSION: "10.2.0"
-
   composer-install:
     group: post-prepare
     image: registry.fpfis.eu/fpfis/httpd-php:${PHP_VERSION}-ci
