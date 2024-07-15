@@ -43,6 +43,8 @@
       {% set media = '(max-width: 996px)' %}
     {% elseif source.size == 'xl' %}
       {% set media = '(max-width: 1140px)' %}
+    {% elseif source.size == 'full_width' %}
+      {% set media = '(min-width: 1140px)' %}
     {% endif %}
     {% set _sources = _sources|merge([{
       'src': source.src,

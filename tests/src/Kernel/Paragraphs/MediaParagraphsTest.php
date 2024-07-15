@@ -471,7 +471,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     ]);
     $media->save();
     // Get english file styled URI.
-    $style = ImageStyle::load('oe_theme_extra_large_3_1_banner');
+    $style = ImageStyle::load('oe_theme_full_width_banner_3_1');
     $en_file_uri = $style->buildUri($en_file->getFileUri());
 
     // Translate the media to Bulgarian.
@@ -530,8 +530,11 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $this->assertCount(1, $large_media);
     $this->assertStringContainsString('oe_theme_large_3_1_banner/public/example_1_en.jpeg', $large_media->attr('srcset'));
     $extra_large_media = $crawler->filter('section.ecl-banner.ecl-banner--text-box.ecl-banner--centered picture source[media="(max-width: 1140px)"]');
-    $this->assertCount(1, $large_media);
+    $this->assertCount(1, $extra_large_media);
     $this->assertStringContainsString('oe_theme_extra_large_3_1_banner/public/example_1_en.jpeg', $extra_large_media->attr('srcset'));
+    $full_width_media = $crawler->filter('section.ecl-banner.ecl-banner--text-box.ecl-banner--centered picture source[media="(min-width: 1140px)"]');
+    $this->assertCount(1, $full_width_media);
+    $this->assertStringContainsString('oe_theme_full_width_banner_3_1/public/example_1_en.jpeg', $full_width_media->attr('srcset'));
     $this->assertStringContainsString('Alt en', $image_element->attr('alt'));
     $this->assertEquals('Banner', trim($crawler->filter('div.ecl-banner__content div.ecl-banner__title')->text()));
     $this->assertEquals('Description', trim($crawler->filter('div.ecl-banner__content p.ecl-banner__description')->text()));
@@ -604,7 +607,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $html = $this->renderParagraph($paragraph);
     $crawler = new Crawler($html);
 
-    $style = ImageStyle::load('oe_theme_extra_large_4_1_banner');
+    $style = ImageStyle::load('oe_theme_full_width_banner_4_1');
     $en_file_uri_medium = $style->buildUri($en_file->getFileUri());
     $this->assertCount(1, $crawler->filter('section.ecl-banner.ecl-banner--text-box.ecl-banner--m.ecl-banner--h-centered'));
     $image_element = $crawler->filter('section.ecl-banner.ecl-banner--text-box.ecl-banner--h-centered picture.ecl-picture.ecl-banner__picture img.ecl-banner__image');
@@ -623,8 +626,11 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $this->assertCount(1, $large_media);
     $this->assertStringContainsString('oe_theme_large_4_1_banner/public/example_1_en.jpeg', $large_media->attr('srcset'));
     $extra_large_media = $crawler->filter('section.ecl-banner.ecl-banner--text-box.ecl-banner--centered picture source[media="(max-width: 1140px)"]');
-    $this->assertCount(1, $large_media);
+    $this->assertCount(1, $extra_large_media);
     $this->assertStringContainsString('oe_theme_extra_large_4_1_banner/public/example_1_en.jpeg', $extra_large_media->attr('srcset'));
+    $full_width_media = $crawler->filter('section.ecl-banner.ecl-banner--text-box.ecl-banner--centered picture source[media="(min-width: 1140px)"]');
+    $this->assertCount(1, $full_width_media);
+    $this->assertStringContainsString('oe_theme_full_width_banner_4_1/public/example_1_en.jpeg', $full_width_media->attr('srcset'));
     $this->assertEquals('Banner', trim($crawler->filter('div.ecl-banner__content div.ecl-banner__title')->text()));
     $this->assertEquals('Description', trim($crawler->filter('div.ecl-banner__content p.ecl-banner__description')->text()));
     $this->assertCount(1, $crawler->filter('div.ecl-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon'));
@@ -1023,7 +1029,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $en_file_1->setPermanent();
     $en_file_1->save();
     // Get first english file styled URI.
-    $style = ImageStyle::load('oe_theme_extra_large_3_1_banner');
+    $style = ImageStyle::load('oe_theme_full_width_banner_3_1');
     $en_file_1_uri = $style->buildUri($en_file_1->getFileUri());
 
     $en_file_2 = $this->container->get('file.repository')->writeData(file_get_contents($this->container->get('extension.list.theme')->getPath('oe_theme') . '/tests/fixtures/example_1.jpeg'), 'public://example_2_en.jpeg');
@@ -1134,6 +1140,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
             'medium' => 'oe_theme_medium_3_1_banner/public/example_1_en.jpeg',
             'large' => 'oe_theme_large_3_1_banner/public/example_1_en.jpeg',
             'extra_large' => 'oe_theme_extra_large_3_1_banner/public/example_1_en.jpeg',
+            'full_width' => 'oe_theme_full_width_banner_3_1/public/example_1_en.jpeg',
           ],
           'variant' => 'text-overlay',
         ],
@@ -1148,6 +1155,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
             'medium' => 'oe_theme_medium_3_1_banner/public/example_2_en.jpeg',
             'large' => 'oe_theme_large_3_1_banner/public/example_2_en.jpeg',
             'extra_large' => 'oe_theme_extra_large_3_1_banner/public/example_2_en.jpeg',
+            'full_width' => 'oe_theme_full_width_banner_3_1/public/example_2_en.jpeg',
           ],
           'variant' => 'text-overlay',
         ],
@@ -1160,6 +1168,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
             'medium' => 'oe_theme_medium_3_1_banner/public/example_1_en.jpeg',
             'large' => 'oe_theme_large_3_1_banner/public/example_1_en.jpeg',
             'extra_large' => 'oe_theme_extra_large_3_1_banner/public/example_1_en.jpeg',
+            'full_width' => 'oe_theme_full_width_banner_3_1/public/example_1_en.jpeg',
           ],
           'variant' => 'text-overlay',
         ],
@@ -1174,6 +1183,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
             'medium' => 'oe_theme_medium_3_1_banner/public/example_2_en.jpeg',
             'large' => 'oe_theme_large_3_1_banner/public/example_2_en.jpeg',
             'extra_large' => 'oe_theme_extra_large_3_1_banner/public/example_2_en.jpeg',
+            'full_width' => 'oe_theme_full_width_banner_3_1/public/example_2_en.jpeg',
           ],
           'variant' => 'text-overlay',
         ],
@@ -1195,6 +1205,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
       'medium' => 'oe_theme_medium_3_1_banner/public/example_1_bg.jpeg',
       'large' => 'oe_theme_large_3_1_banner/public/example_1_bg.jpeg',
       'extra_large' => 'oe_theme_extra_large_3_1_banner/public/example_1_bg.jpeg',
+      'full_width' => 'oe_theme_full_width_banner_3_1/public/example_1_bg.jpeg',
     ];
     $expected_values['items'][1]['title'] = 'BG Item 2';
     $expected_values['items'][1]['description'] = 'BG Item description 2';
@@ -1205,6 +1216,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
       'medium' => 'oe_theme_medium_3_1_banner/public/example_2_bg.jpeg',
       'large' => 'oe_theme_large_3_1_banner/public/example_2_bg.jpeg',
       'extra_large' => 'oe_theme_extra_large_3_1_banner/public/example_2_bg.jpeg',
+      'full_width' => 'oe_theme_full_width_banner_3_1/public/example_2_bg.jpeg',
     ];
     $expected_values['items'][2]['title'] = 'BG Item 3';
     $expected_values['items'][2]['image'] = $this->container->get('file_url_generator')->generateAbsoluteString($bg_file_1_uri);
@@ -1214,6 +1226,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
       'medium' => 'oe_theme_medium_3_1_banner/public/example_1_bg.jpeg',
       'large' => 'oe_theme_large_3_1_banner/public/example_1_bg.jpeg',
       'extra_large' => 'oe_theme_extra_large_3_1_banner/public/example_1_bg.jpeg',
+      'full_width' => 'oe_theme_full_width_banner_3_1/public/example_1_bg.jpeg',
     ];
     $expected_values['items'][3]['title'] = 'BG Item 4';
     $expected_values['items'][3]['description'] = 'BG Item description 4';
@@ -1225,6 +1238,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
       'medium' => 'oe_theme_medium_3_1_banner/public/example_2_bg.jpeg',
       'large' => 'oe_theme_large_3_1_banner/public/example_2_bg.jpeg',
       'extra_large' => 'oe_theme_extra_large_3_1_banner/public/example_2_bg.jpeg',
+      'full_width' => 'oe_theme_full_width_banner_3_1/public/example_2_bg.jpeg',
     ];
     $assert->assertPattern($expected_values, $html);
 

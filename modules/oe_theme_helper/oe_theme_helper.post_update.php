@@ -332,6 +332,21 @@ function oe_theme_helper_post_update_20017() {
  */
 function oe_theme_helper_post_update_40001(): void {
   $image_styles = [
+    'oe_theme_full_width_banner_3_1' => [
+      'label' => 'Full width banner 3:1',
+      'width' => '1920',
+      'height' => '640',
+    ],
+    'oe_theme_full_width_banner_4_1' => [
+      'label' => 'Full width banner 4:1',
+      'width' => '1920',
+      'height' => '480',
+    ],
+    'oe_theme_full_width_banner_5_1' => [
+      'label' => 'Full width banner 5:1',
+      'width' => '1920',
+      'height' => '384',
+    ],
     'oe_theme_extra_large_3_1_banner' => [
       'label' => 'Extra large banner 3:1',
       'width' => '1140',

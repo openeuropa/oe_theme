@@ -343,8 +343,10 @@
           size: "m"
         - src: "https://picsum.photos/seed/picsum/996/996"
           size: "l"
-        - src: "https://inno-ecl.s3.amazonaws.com/media/examples/example-image.jpg"
+        - src: "https://loremflickr.com/1140/380/brazil"
           size: "xl"
+        - src: "https://inno-ecl.s3.amazonaws.com/media/examples/example-image.jpg"
+          size: "full_width"
       centered: true
       full_width: true
       credit: "© Copyright or credit"
@@ -355,11 +357,12 @@
       'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-banner__link-cta[href="http://example.com"]': 1
       'svg.ecl-icon.ecl-icon--xs.ecl-icon--rotate-90.ecl-link__icon': 1
       'picture.ecl-picture.ecl-banner__picture img.ecl-banner__image[src="http://via.placeholder.com/150x150"][alt="alternative text"]': 1
-      'picture source': 4
+      'picture source': 5
       'picture source[srcset="https://loremflickr.com/480/480/arch"][media="(max-width: 480px)"]': 1
       'picture source[srcset="https://picsum.photos/seed/picsum/768/768"][media="(max-width: 768px)"]': 1
       'picture source[srcset="https://picsum.photos/seed/picsum/996/996"][media="(max-width: 996px)"]': 1
-      'picture source[srcset="https://inno-ecl.s3.amazonaws.com/media/examples/example-image.jpg"][media="(max-width: 1140px)"]': 1
+      'picture source[srcset="https://loremflickr.com/1140/380/brazil"][media="(max-width: 1140px)"]': 1
+      'picture source[srcset="https://inno-ecl.s3.amazonaws.com/media/examples/example-image.jpg"][media="(min-width: 1140px)"]': 1
       'footer.ecl-banner__credit small': 1
     equals:
       'div.ecl-container div.ecl-banner__container div.ecl-banner__content div.ecl-banner__title span.ecl-banner__title-text': Banner title
@@ -3761,8 +3764,10 @@
               size: "m"
             - src: "https://picsum.photos/seed/picsum/996/996"
               size: "l"
-            - src: "https://inno-ecl.s3.amazonaws.com/media/examples/example-image.jpg"
+            - src: "https://loremflickr.com/1140/380/brazil"
               size: "xl"
+            - src: "https://inno-ecl.s3.amazonaws.com/media/examples/example-image.jpg"
+              size: "full_width"
           variant: "text-box"
           centered: false
           credit: "© Copyright first item"
@@ -3817,9 +3822,10 @@
       div.ecl-carousel__controls: 1
       section.ecl-banner--text-box.ecl-banner--m.ecl-banner--h-center picture.ecl-picture.ecl-banner__picture img.ecl-banner__image[src="https://picsum.photos/seed/picsum/600/300"]: 1
       section.ecl-banner--text-box.ecl-banner--m.ecl-banner--h-center picture source: 4
-      'section.ecl-banner--text-box.ecl-banner--m.ecl-banner--h-center picture source[srcset="https://loremflickr.com/480/480/arch"][media="(min-width: 480px)"]': 1
-      'section.ecl-banner--text-box.ecl-banner--m.ecl-banner--h-center picture source[srcset="https://picsum.photos/seed/picsum/768/768"][media="(min-width: 768px)"]': 1
-      'section.ecl-banner--text-box.ecl-banner--m.ecl-banner--h-center picture source[srcset="https://picsum.photos/seed/picsum/996/996"][media="(min-width: 996px)"]': 1
+      'section.ecl-banner--text-box.ecl-banner--m.ecl-banner--h-center picture source[srcset="https://loremflickr.com/480/480/arch"][media="(max-width: 480px)"]': 1
+      'section.ecl-banner--text-box.ecl-banner--m.ecl-banner--h-center picture source[srcset="https://picsum.photos/seed/picsum/768/768"][media="(max-width: 768px)"]': 1
+      'section.ecl-banner--text-box.ecl-banner--m.ecl-banner--h-center picture source[srcset="https://picsum.photos/seed/picsum/996/996"][media="(max-width: 996px)"]': 1
+      'section.ecl-banner--text-box.ecl-banner--m.ecl-banner--h-center picture source[srcset="https://loremflickr.com/1140/380/brazil"][media="(max-width: 1140px)"]': 1
       'section.ecl-banner--text-box.ecl-banner--m.ecl-banner--h-center picture source[srcset="https://inno-ecl.s3.amazonaws.com/media/examples/example-image.jpg"][media="(min-width: 1140px)"]': 1
       section.ecl-banner--text-box.ecl-banner--m:not(.ecl-banner--h-center) picture.ecl-picture.ecl-banner__picture img.ecl-banner__image[src="https://picsum.photos/seed/picsum/600/300"]: 1
       section.ecl-banner--text-overlay.ecl-banner--m:not(.ecl-banner--h-center) picture.ecl-picture.ecl-banner__picture img.ecl-banner__image[src="https://picsum.photos/seed/picsum/600/300"]: 1

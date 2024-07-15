@@ -1,0 +1,14 @@
+langcode: en
+status: true
+dependencies: {  }
+name: oe_theme_full_width_banner_4_1
+label: 'Full width banner 4:1'
+effects:
+  fcde4aca-d8be-4047-a97b-a58c60750f6f:
+    uuid: fcde4aca-d8be-4047-a97b-a58c60750f6f
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 1920
+      height: 480
+      anchor: center-center

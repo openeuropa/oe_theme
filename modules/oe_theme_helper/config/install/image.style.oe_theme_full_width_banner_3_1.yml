@@ -1,0 +1,14 @@
+langcode: en
+status: true
+dependencies: {  }
+name: oe_theme_full_width_banner_3_1
+label: 'Full width banner 3:1'
+effects:
+  233fb4ac-98f0-4833-bdac-bf2085059a17:
+    uuid: 233fb4ac-98f0-4833-bdac-bf2085059a17
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 1920
+      height: 640
+      anchor: center-center

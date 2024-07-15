@@ -1673,18 +1673,21 @@ function oe_theme_preprocess_paragraph__oe_banner(array &$variables): void {
   // Load needed images styles based on banner size.
   $image_style_storage = \Drupal::entityTypeManager()->getStorage('image_style');
   if ($variables['size'] === 's') {
+    $full_width = $image_style_storage->load('oe_theme_full_width_banner_5_1');
     $extra_large = $image_style_storage->load('oe_theme_extra_large_5_1_banner');
     $large = $image_style_storage->load('oe_theme_large_5_1_banner');
     $medium = $image_style_storage->load('oe_theme_medium_5_1_banner');
     $small = $image_style_storage->load('oe_theme_small_5_1_banner');
   }
   if ($variables['size'] === 'm') {
+    $full_width = $image_style_storage->load('oe_theme_full_width_banner_4_1');
     $extra_large = $image_style_storage->load('oe_theme_extra_large_4_1_banner');
     $large = $image_style_storage->load('oe_theme_large_4_1_banner');
     $medium = $image_style_storage->load('oe_theme_medium_4_1_banner');
     $small = $image_style_storage->load('oe_theme_small_4_1_banner');
   }
   if ($variables['size'] === 'l') {
+    $full_width = $image_style_storage->load('oe_theme_full_width_banner_3_1');
     $extra_large = $image_style_storage->load('oe_theme_extra_large_3_1_banner');
     $large = $image_style_storage->load('oe_theme_large_3_1_banner');
     $medium = $image_style_storage->load('oe_theme_medium_3_1_banner');
@@ -1692,7 +1695,7 @@ function oe_theme_preprocess_paragraph__oe_banner(array &$variables): void {
   }
 
   $values = [
-    'src' => $extra_large->buildUrl($uri),
+    'src' => $full_width->buildUrl($uri),
     'alt' => $source->getMetadata($media, 'thumbnail_alt_value') ?? '',
     'name' => $media->getName(),
   ];
@@ -1713,6 +1716,10 @@ function oe_theme_preprocess_paragraph__oe_banner(array &$variables): void {
     [
       'src' => $extra_large->buildUrl($uri),
       'size' => 'xl',
+    ],
+    [
+      'src' => $full_width->buildUrl($uri),
+      'size' => 'full_width',
     ],
   ];
 
@@ -2246,18 +2253,21 @@ function oe_theme_preprocess_paragraph__oe_carousel(array &$variables): void {
   // Load needed images styles based on carousel size.
   $image_style_storage = \Drupal::entityTypeManager()->getStorage('image_style');
   if ($variables['size'] === 's') {
+    $full_width = $image_style_storage->load('oe_theme_full_width_banner_5_1');
     $extra_large = $image_style_storage->load('oe_theme_extra_large_5_1_banner');
     $large = $image_style_storage->load('oe_theme_large_5_1_banner');
     $medium = $image_style_storage->load('oe_theme_medium_5_1_banner');
     $small = $image_style_storage->load('oe_theme_small_5_1_banner');
   }
   if ($variables['size'] === 'm') {
+    $full_width = $image_style_storage->load('oe_theme_full_width_banner_4_1');
     $extra_large = $image_style_storage->load('oe_theme_extra_large_4_1_banner');
     $large = $image_style_storage->load('oe_theme_large_4_1_banner');
     $medium = $image_style_storage->load('oe_theme_medium_4_1_banner');
     $small = $image_style_storage->load('oe_theme_small_4_1_banner');
   }
   if ($variables['size'] === 'l') {
+    $full_width = $image_style_storage->load('oe_theme_full_width_banner_3_1');
     $extra_large = $image_style_storage->load('oe_theme_extra_large_3_1_banner');
     $large = $image_style_storage->load('oe_theme_large_3_1_banner');
     $medium = $image_style_storage->load('oe_theme_medium_3_1_banner');
@@ -2332,7 +2342,7 @@ function oe_theme_preprocess_paragraph__oe_carousel(array &$variables): void {
       $cacheability->applyTo($variables);
       continue;
     }
-    $item['image'] = $extra_large->buildUrl($uri);
+    $item['image'] = $full_width->buildUrl($uri);
     $item['image_alt'] = $source->getMetadata($media, 'thumbnail_alt_value') ?? '';
     $item['sources'] = [
       [
@@ -2350,6 +2360,10 @@ function oe_theme_preprocess_paragraph__oe_carousel(array &$variables): void {
       [
         'src' => $extra_large->buildUrl($uri),
         'size' => 'xl',
+      ],
+      [
+        'src' => $full_width->buildUrl($uri),
+        'size' => 'full_width',
       ],
     ];
     $variables['items'][] = $item;

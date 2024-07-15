@@ -104,6 +104,8 @@ class CarouselAssert extends BasePatternAssert {
         $this->assertStringContainsString($expected_item['sources']['large'], $large_media->attr('srcset'));
         $extra_large_media = $item->filter('picture source[media="(max-width: 1140px)"]');
         $this->assertStringContainsString($expected_item['sources']['extra_large'], $extra_large_media->attr('srcset'));
+        $full_width_media = $item->filter('picture source[media="(min-width: 1140px)"]');
+        $this->assertStringContainsString($expected_item['sources']['full_width'], $full_width_media->attr('srcset'));
       }
     }
   }
