@@ -791,6 +791,9 @@
           media_type: 'image'
       expandable: false
       disable_overlay: true
+      columns: 4
+      ratio: '3-1'
+      disable_hover: true
   assertions:
     count:
       '.ecl-gallery[data-ecl-gallery][data-ecl-gallery-not-expandable]': 1
@@ -804,6 +807,14 @@
       '.ecl-gallery .ecl-button.ecl-button--ghost.ecl-gallery__slider-previous': 0
       '.ecl-gallery .ecl-button.ecl-button--ghost.ecl-gallery__slider-next': 0
       '.ecl-gallery__footer-link': 0
+      '.ecl-gallery--grid': 0
+      '.ecl-gallery--col-2': 0
+      '.ecl-gallery--col-3': 0
+      '.ecl-gallery--col-4': 0
+      '.ecl-gallery--col-5': 0
+      '.ecl-gallery--ratio-3-2': 0
+      '.ecl-gallery--ratio-3-1': 0
+      '.ecl-gallery--no-hover': 1
     equals:
       '.ecl-gallery .ecl-gallery__list .ecl-gallery__item figcaption.ecl-gallery__description span.ecl-gallery__title': 'Cat'
       '.ecl-gallery .ecl-gallery__list .ecl-gallery__item .ecl-gallery__meta': 'Copyright © 2021, Author and Licence'
@@ -864,6 +875,226 @@
       'dialog.ecl-gallery__overlay[data-ecl-gallery-overlay]': 1
       'button.ecl-gallery__view-all[data-ecl-gallery-collapsed-label="See all"][data-ecl-gallery-expanded-label="Collapse"]': 1
       '.ecl-gallery__footer-link': 1
+      '.ecl-gallery--no-hover': 0
+    equals:
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(2) .ecl-gallery__meta': 'Copyright © 2021 EC'
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(2) .ecl-gallery__image-container div.ecl-gallery__item-icon-wrapper svg.ecl-icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#play-filled"></use>'
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(3) .ecl-gallery__meta': 'Copyright © 2021, Author and Licence'
+      '.ecl-gallery__footer-link a.ecl-link.ecl-link--standalone.ecl-link--icon[href="http://example.com"] .ecl-link__label': 'Further media items'
+      '.ecl-gallery__footer-link a svg': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>'
+    contains:
+      - 'A picture of a cat'
+      - 'Energy, let&#039;s save it!'
+      - 'Meanwhile in Lisbon, the capital of Portugal'
+- array:
+    '#type': pattern
+    '#id': gallery
+    '#variant': default
+    '#fields':
+      items:
+        - thumbnail:
+            src: 'https://loremflickr.com/320/240/cat'
+            alt: 'Example alt text cat'
+          source: 'https://loremflickr.com/800/600/cat'
+          caption: 'A picture of a cat'
+          type: 'image'
+        - thumbnail:
+            src: 'https://loremflickr.com/320/240/dog'
+            alt: 'Example alt text dog'
+          source: 'https://www.youtube.com/watch?v=1-g73ty9v04'
+          caption: "Energy, let's save it!"
+          meta: 'Copyright © 2021 EC'
+          type: 'video'
+        - thumbnail:
+            src: 'https://loremflickr.com/800/600/lisbon'
+            alt: 'Example alt text'
+          caption: 'Meanwhile in Lisbon, the capital of Portugal'
+          meta: 'Copyright © 2021, Author and Licence'
+          source: 'https://loremflickr.com/800/600/lisbon'
+          media_type: 'image'
+        - thumbnail:
+            src: 'https://loremflickr.com/800/600/lisbon'
+            alt: 'Example alt text'
+          caption: 'Meanwhile in Lisbon, the capital of Portugal'
+          meta: 'Copyright © 2021, Author and Licence'
+          source: 'https://loremflickr.com/800/600/lisbon'
+          media_type: 'image'
+        - thumbnail:
+            src: 'https://loremflickr.com/320/240/cat'
+            alt: 'Example alt text cat'
+          source: 'https://loremflickr.com/800/600/cat'
+          caption: 'A picture of a cat'
+          type: 'image'
+        - thumbnail:
+            src: 'https://loremflickr.com/320/240/dog'
+            alt: 'Example alt text dog'
+          source: 'https://www.youtube.com/watch?v=1-g73ty9v04'
+          caption: "Energy, let's save it!"
+          meta: 'Copyright © 2021 EC'
+          type: 'video'
+        - thumbnail:
+            src: 'https://loremflickr.com/800/600/lisbon'
+            alt: 'Example alt text'
+          caption: 'Meanwhile in Lisbon, the capital of Portugal'
+          meta: 'Copyright © 2021, Author and Licence'
+          source: 'https://loremflickr.com/800/600/lisbon'
+          media_type: 'image'
+        - thumbnail:
+            src: 'https://loremflickr.com/800/600/lisbon'
+            alt: 'Example alt text'
+          caption: 'Meanwhile in Lisbon, the capital of Portugal'
+          meta: 'Copyright © 2021, Author and Licence'
+          source: 'https://loremflickr.com/800/600/lisbon'
+          media_type: 'image'
+      footer_link_url: 'http://example.com'
+      footer_link_label: 'Further media items'
+      footer_link_external: true
+      visible_items: 1
+      grid: true
+  assertions:
+    count:
+      '.ecl-gallery[data-ecl-gallery-visible-items="1"]': 1
+      '.ecl-gallery .ecl-gallery__list': 1
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item': 8
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(1) .ecl-gallery__image[src="https://loremflickr.com/320/240/cat"]': 1
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(1) .ecl-gallery__image[alt="Example alt text cat"]': 1
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item figcaption.ecl-gallery__description span.ecl-gallery__title': 0
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(1) figcaption.ecl-gallery__description': 1
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(1) .ecl-gallery__meta': 0
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(2) a.ecl-gallery__item-link[href="https://www.youtube.com/watch?v=1-g73ty9v04"]': 1
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(2) .ecl-gallery__image[src="https://loremflickr.com/320/240/dog"]': 1
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(2) .ecl-gallery__image[alt="Example alt text dog"]': 1
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(2) figcaption.ecl-gallery__description': 1
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(2) .ecl-gallery__meta': 1
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(2) .ecl-gallery__image-container div.ecl-gallery__item-icon-wrapper svg.ecl-icon': 1
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(3) .ecl-gallery__image[src="https://loremflickr.com/800/600/lisbon"]': 1
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(3) .ecl-gallery__image[alt="Example alt text"]': 1
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(3) figcaption.ecl-gallery__description': 1
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(3) .ecl-gallery__meta': 1
+      '.ecl-gallery .ecl-button.ecl-button--tertiary.ecl-gallery__slider-previous': 1
+      '.ecl-gallery .ecl-button.ecl-button--tertiary.ecl-gallery__slider-next': 1
+      'dialog.ecl-gallery__overlay[data-ecl-gallery-overlay]': 1
+      'button.ecl-gallery__view-all[data-ecl-gallery-collapsed-label="See all"][data-ecl-gallery-expanded-label="Collapse"]': 1
+      '.ecl-gallery__footer-link': 1
+      '.ecl-gallery--grid': 1
+      '.ecl-gallery--col-2': 1
+      '.ecl-gallery--col-3': 0
+      '.ecl-gallery--col-4': 0
+      '.ecl-gallery--col-5': 0
+      '.ecl-gallery--ratio-3-2': 1
+      '.ecl-gallery--ratio-3-1': 0
+      '.ecl-gallery--no-hover': 0
+    equals:
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(2) .ecl-gallery__meta': 'Copyright © 2021 EC'
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(2) .ecl-gallery__image-container div.ecl-gallery__item-icon-wrapper svg.ecl-icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#play-filled"></use>'
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(3) .ecl-gallery__meta': 'Copyright © 2021, Author and Licence'
+      '.ecl-gallery__footer-link a.ecl-link.ecl-link--standalone.ecl-link--icon[href="http://example.com"] .ecl-link__label': 'Further media items'
+      '.ecl-gallery__footer-link a svg': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>'
+    contains:
+      - 'A picture of a cat'
+      - 'Energy, let&#039;s save it!'
+      - 'Meanwhile in Lisbon, the capital of Portugal'
+- array:
+    '#type': pattern
+    '#id': gallery
+    '#variant': default
+    '#fields':
+      items:
+        - thumbnail:
+            src: 'https://loremflickr.com/320/240/cat'
+            alt: 'Example alt text cat'
+          source: 'https://loremflickr.com/800/600/cat'
+          caption: 'A picture of a cat'
+          type: 'image'
+        - thumbnail:
+            src: 'https://loremflickr.com/320/240/dog'
+            alt: 'Example alt text dog'
+          source: 'https://www.youtube.com/watch?v=1-g73ty9v04'
+          caption: "Energy, let's save it!"
+          meta: 'Copyright © 2021 EC'
+          type: 'video'
+        - thumbnail:
+            src: 'https://loremflickr.com/800/600/lisbon'
+            alt: 'Example alt text'
+          caption: 'Meanwhile in Lisbon, the capital of Portugal'
+          meta: 'Copyright © 2021, Author and Licence'
+          source: 'https://loremflickr.com/800/600/lisbon'
+          media_type: 'image'
+        - thumbnail:
+            src: 'https://loremflickr.com/800/600/lisbon'
+            alt: 'Example alt text'
+          caption: 'Meanwhile in Lisbon, the capital of Portugal'
+          meta: 'Copyright © 2021, Author and Licence'
+          source: 'https://loremflickr.com/800/600/lisbon'
+          media_type: 'image'
+        - thumbnail:
+            src: 'https://loremflickr.com/320/240/cat'
+            alt: 'Example alt text cat'
+          source: 'https://loremflickr.com/800/600/cat'
+          caption: 'A picture of a cat'
+          type: 'image'
+        - thumbnail:
+            src: 'https://loremflickr.com/320/240/dog'
+            alt: 'Example alt text dog'
+          source: 'https://www.youtube.com/watch?v=1-g73ty9v04'
+          caption: "Energy, let's save it!"
+          meta: 'Copyright © 2021 EC'
+          type: 'video'
+        - thumbnail:
+            src: 'https://loremflickr.com/800/600/lisbon'
+            alt: 'Example alt text'
+          caption: 'Meanwhile in Lisbon, the capital of Portugal'
+          meta: 'Copyright © 2021, Author and Licence'
+          source: 'https://loremflickr.com/800/600/lisbon'
+          media_type: 'image'
+        - thumbnail:
+            src: 'https://loremflickr.com/800/600/lisbon'
+            alt: 'Example alt text'
+          caption: 'Meanwhile in Lisbon, the capital of Portugal'
+          meta: 'Copyright © 2021, Author and Licence'
+          source: 'https://loremflickr.com/800/600/lisbon'
+          media_type: 'image'
+      footer_link_url: 'http://example.com'
+      footer_link_label: 'Further media items'
+      footer_link_external: true
+      visible_items: 1
+      grid: true
+      columns: 4
+      ratio: '3-1'
+      disable_hover: true
+  assertions:
+    count:
+      '.ecl-gallery[data-ecl-gallery-visible-items="1"]': 1
+      '.ecl-gallery .ecl-gallery__list': 1
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item': 8
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(1) .ecl-gallery__image[src="https://loremflickr.com/320/240/cat"]': 1
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(1) .ecl-gallery__image[alt="Example alt text cat"]': 1
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item figcaption.ecl-gallery__description span.ecl-gallery__title': 0
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(1) figcaption.ecl-gallery__description': 1
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(1) .ecl-gallery__meta': 0
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(2) a.ecl-gallery__item-link[href="https://www.youtube.com/watch?v=1-g73ty9v04"]': 1
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(2) .ecl-gallery__image[src="https://loremflickr.com/320/240/dog"]': 1
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(2) .ecl-gallery__image[alt="Example alt text dog"]': 1
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(2) figcaption.ecl-gallery__description': 1
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(2) .ecl-gallery__meta': 1
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(2) .ecl-gallery__image-container div.ecl-gallery__item-icon-wrapper svg.ecl-icon': 1
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(3) .ecl-gallery__image[src="https://loremflickr.com/800/600/lisbon"]': 1
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(3) .ecl-gallery__image[alt="Example alt text"]': 1
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(3) figcaption.ecl-gallery__description': 1
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(3) .ecl-gallery__meta': 1
+      '.ecl-gallery .ecl-button.ecl-button--tertiary.ecl-gallery__slider-previous': 1
+      '.ecl-gallery .ecl-button.ecl-button--tertiary.ecl-gallery__slider-next': 1
+      'dialog.ecl-gallery__overlay[data-ecl-gallery-overlay]': 1
+      'button.ecl-gallery__view-all[data-ecl-gallery-collapsed-label="See all"][data-ecl-gallery-expanded-label="Collapse"]': 1
+      '.ecl-gallery__footer-link': 1
+      '.ecl-gallery--grid': 1
+      '.ecl-gallery--col-2': 0
+      '.ecl-gallery--col-3': 0
+      '.ecl-gallery--col-4': 1
+      '.ecl-gallery--col-5': 0
+      '.ecl-gallery--ratio-3-2': 0
+      '.ecl-gallery--ratio-3-1': 1
+      '.ecl-gallery--no-hover': 1
     equals:
       '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(2) .ecl-gallery__meta': 'Copyright © 2021 EC'
       '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(2) .ecl-gallery__image-container div.ecl-gallery__item-icon-wrapper svg.ecl-icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#play-filled"></use>'
