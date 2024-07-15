@@ -6,14 +6,27 @@
 #}
 {% set _items = [] %}
 {% for _item in items %}
+  {% set _img = [] %}
+  {% set _icon = {
+    name: _item.icon|default('information'),
+    path: ecl_icon_path,
+  } %}
+
+  {% if _item.image is not empty %}
+    {% set _img = {
+      path: _item.image.path|default(''),
+      alt: _item.image.alt|default(''),
+      title: _item.image.title|default(''),
+    } %}
+    {% set _icon = []%}
+  {% endif %}
+
   {% set _items = _items|merge([{
     content: _item.content,
     link: _item.link,
     external: _item.external_link|default(false),
-    icon: {
-      path: ecl_icon_path,
-      name: 'information',
-    }
+    icon: _icon,
+    img: _img,
   }]) %}
 {% endfor %}
 
