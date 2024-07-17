@@ -2448,7 +2448,7 @@ function oe_theme_preprocess_paragraph__oe_av_media(array &$variables): void {
   // If it's an image media, render it and assign it to the image variable.
   if ($source instanceof MediaAvPortalPhotoSource || $source instanceof Image) {
     $thumbnail = $media->get('thumbnail')->first();
-    $variables['image'] = ImageValueObject::fromStyledImageItem($thumbnail, 'oe_theme_medium_no_crop');
+    $variables['image'] = ImageValueObject::fromStyledImageItem($thumbnail, 'oe_theme_medium_2x_no_crop');
   }
 }
 

@@ -1235,6 +1235,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $this->assertCount(1, $crawler->filter('figure.ecl-media-container__figure img.ecl-media-container__media'));
     $image_element = $crawler->filter('figure.ecl-media-container__figure img.ecl-media-container__media');
     $this->assertStringContainsString('example_1_en.jpeg', $image_element->attr('src'));
+    $this->assertStringContainsString('oe_theme_medium_2x_no_crop', $image_element->attr('src'));
 
     // Assert bulgarian rendering.
     $html = $this->renderParagraph($paragraph, 'bg');
