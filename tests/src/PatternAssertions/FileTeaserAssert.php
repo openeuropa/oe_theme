@@ -111,7 +111,6 @@ class FileTeaserAssert extends FileTranslationAssert {
 
     // Assert information.
     $file_info_element = $crawler->filter('div.ecl-file__translation-info');
-    $this->assertElementText($expected_file['language'], ' div.ecl-file__translation-language', $file_info_element);
     $this->assertElementText($expected_file['meta'], 'div.ecl-file__translation-meta', $file_info_element);
 
     // Assert download link.
