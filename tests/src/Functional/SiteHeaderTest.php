@@ -224,10 +224,10 @@ class SiteHeaderTest extends BrowserTestBase {
       $assert->elementExists('css', "div.ecl-form-group input#edit-keys.ecl-text-input.ecl-text-input--m.ecl-search-form__text-input[name='keys'][type='search']", $search_form);
       // Assert the search form button.
       if ($component === 'ec') {
-        $search_form_button = $assert->elementExists('css', "button.ecl-button.ecl-button--ghost.ecl-search-form__button[type='submit'][aria-label='Search']", $search_form);
+        $search_form_button = $assert->elementExists('css', "button.ecl-button.ecl-button--ghost.ecl-search-form__button[type='submit']", $search_form);
       }
       else {
-        $search_form_button = $assert->elementExists('css', "button.ecl-button.ecl-button--primary.ecl-search-form__button[type='submit'][aria-label='Search']", $search_form);
+        $search_form_button = $assert->elementExists('css', "button.ecl-button.ecl-button--primary.ecl-search-form__button[type='submit']", $search_form);
       }
       $this->assertEquals('Search', $search_form_button->find('css', "span.ecl-button__container span.ecl-button__label[data-ecl-label='true']")
         ->getText());
