@@ -1,0 +1,72 @@
+diff --git a/node_modules/@ecl/twig-component-mega-menu/mega-menu-item.html.twig b/node_modules/@ecl/twig-component-mega-menu/mega-menu-item.html.twig
+index 8c09b52..b9b22cd 100644
+--- a/node_modules/@ecl/twig-component-mega-menu/mega-menu-item.html.twig
++++ b/node_modules/@ecl/twig-component-mega-menu/mega-menu-item.html.twig
+@@ -5,6 +5,7 @@
+   - "id" (string) Unique id for this item. Needed for accessibility. Generated automatically
+   - "icon_path" (string) Path to the icon sprite
+   - "item" (object)
++    - "is_current" (boolean) Whether the item links to the current page
+     - "label" (string) Label of the menu link
+     - "external" (boolean) External link
+     - "sr_external" (string) (default: '') Additional label for the external icon
+@@ -36,6 +37,7 @@
+     - "children" (array of object) Array of sub-items
+       - "external": (boolean) External link
+       - "sr_external" (string) (default: '') Additional label for the external icon
++      - "is_current" (boolean) Whether the item links to the current page
+       - "path" (string) Href of the sub-item link
+       - "label" (string) Label of the sub-item link
+       - "extra_attributes" (optional) (array) (default: []) Extra attributes for link
+@@ -63,6 +65,12 @@
+ 
+ {# Internal logic - Process properties #}
+ 
++{% if _item.is_current is defined %}
++  {% set _menu_link_class = _menu_link_class ~ ' ecl-mega-menu__link--current ecl-mega-menu__link--current-page' %}
++  {% set _menu_list_item_class = _menu_list_item_class ~ ' ecl-mega-menu__item--current  ecl-mega-menu__item--current-page' %}
++  {% set _menu_list_item_attributes = _menu_list_item_attributes ~ ' aria-current="page"' %}
++{% endif %}
++
+ {% if _item.container is defined and _item.container is not empty %}
+   {% set _can_be_external = false %}
+   {% set _menu_list_item_class = _menu_list_item_class ~ ' ecl-mega-menu__item--has-container' %}
+@@ -210,6 +218,10 @@
+         {% set _sublink_attrs = child.extra_attributes|default([])|merge([
+           { name: _menu_sublink_attribute },
+         ]) %}
++        {% if child.is_current is defined %}
++          {% set _subitem_class = _subitem_class ~ ' ecl-mega-menu__subitem--current ecl-mega-menu__subitem--current-page' %}
++          {% set _subitem_attrs = _subitem_attrs ~ ' aria-current="page"' %}
++        {% endif %}
+         {% if child.children is defined and child.children is not empty %}
+           {% set _subitem_attrs = _subitem_attrs ~ ' aria-expanded="false"' %}
+           {% set _sublink_attrs = _sublink_attrs|merge([
+@@ -262,6 +274,7 @@
+                 icon_path: _icon_path,
+                 sublink_id: _sublink_id|default(''),
+                 item: {
++                  is_current: child.is_current|default(false),
+                   path: child.path, 
+                   children: child.children,
+                   level: 2,
+diff --git a/node_modules/@ecl/twig-component-mega-menu/mega-menu.html.twig b/node_modules/@ecl/twig-component-mega-menu/mega-menu.html.twig
+index 382f3b6..20514c4 100644
+--- a/node_modules/@ecl/twig-component-mega-menu/mega-menu.html.twig
++++ b/node_modules/@ecl/twig-component-mega-menu/mega-menu.html.twig
+@@ -14,6 +14,7 @@
+     {
+       "label": (string) (default: '')
+       "path": (string) (default: '')
++      "is_current": (boolean) (optional),
+       "external": (boolean) (optional),
+       "sr_external" (string) (default: '') Additional label for the external icon
+       "extra_attributes" (optional) (array) (default: []) Extra attributes for link,
+@@ -33,6 +34,7 @@
+         {
+           "label": (string) (default: '')
+           "path": (string) (default: '')
++          "is_current": (boolean) (optional),
+           "external": (boolean),
+           "sr_external" (string) (default: '') Additional label for the external icon
+           "see_all" (boolean)
