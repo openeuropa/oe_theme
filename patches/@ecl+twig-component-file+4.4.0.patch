@@ -1,8 +1,12 @@
 diff --git a/node_modules/@ecl/twig-component-file/file-translation-item.html.twig b/node_modules/@ecl/twig-component-file/file-translation-item.html.twig
-index c932714..2b92789 100644
+index 30788cd..2b92789 100644
 --- a/node_modules/@ecl/twig-component-file/file-translation-item.html.twig
 +++ b/node_modules/@ecl/twig-component-file/file-translation-item.html.twig
-@@ -9,6 +9,7 @@
+@@ -5,18 +5,23 @@
+   - "title" (string) (default: '')
+   - "meta" (string) (default: '')
+   - "lang" (string) (default: '')
++  - "lang_full" (string) (default: '')
    - "id" (string) (default: '')
    - "title_id" (string) (default: '')
    - "download" (object) (default to the parent download property) object of type Link
@@ -10,7 +14,10 @@ index c932714..2b92789 100644
  #}
  
  {# Internal properties #}
-@@ -19,6 +20,8 @@
+ 
+ {% set _lang = lang|default('') %}
++{% set _lang_full = lang_full|default('') %}
+ {% set _meta = meta|default('') %}
  {% set _download = download|default({}) %}
  {% set _id = id|default('') %}
  {% set _title_id = title_id|default('') %}
@@ -19,7 +26,7 @@ index c932714..2b92789 100644
  
  {% set _link_id = _id ~ '-link' %}
  {% set _label_id = _link_id ~ '-label' %}
-@@ -37,13 +40,36 @@
+@@ -35,13 +40,36 @@
  {% endset %}
  
    <li class="ecl-file__translation-item">
@@ -114,7 +121,7 @@ index 85c46d7..d9f4b6a 100644
    </div>
  {% endif %}
 diff --git a/node_modules/@ecl/twig-component-file/file.html.twig b/node_modules/@ecl/twig-component-file/file.html.twig
-index 2f86c34..6715bb5 100644
+index f8d91b3..bb456fe 100644
 --- a/node_modules/@ecl/twig-component-file/file.html.twig
 +++ b/node_modules/@ecl/twig-component-file/file.html.twig
 @@ -31,6 +31,7 @@

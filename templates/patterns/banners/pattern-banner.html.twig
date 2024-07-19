@@ -23,7 +23,7 @@
 {% endif %}
 
 {% set _picture = [] %}
-{% if image.src is not empty %}
+{% if image.src is not empty and variant != 'plain_background' %}
   {% set _picture = {
     img: {
       src: image.src|default(''),
