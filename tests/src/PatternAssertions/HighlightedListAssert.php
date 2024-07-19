@@ -22,6 +22,10 @@ class HighlightedListAssert extends BasePatternAssert {
         [$this, 'assertElementText'],
         'div#highlighted-news-block h2.ecl-u-type-heading-2',
       ],
+      'introduction' => [
+        [$this, 'assertElementText'],
+        'div#highlighted-news-block div.ecl-content-item-block__introduction',
+      ],
       'highlighted_item' => [
         [$this, 'assertHighlightedItem'],
         'div#highlighted-news-block div.ecl-row div.ecl-col-l-8.ecl-u-d-flex.ecl-u-flex-column',

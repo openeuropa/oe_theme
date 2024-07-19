@@ -46,7 +46,7 @@
         "openeuropa/behat-transformation-context": "^0.2",
         "openeuropa/code-review": "^2.0.0-alpha6",
         "openeuropa/oe_contact_forms": "^1.14",
-        "openeuropa/oe_content": "^3.0.0",
+        "openeuropa/oe_content": "^4.0.0",
         "openeuropa/oe_corporate_blocks": "^4.19",
         "openeuropa/oe_corporate_countries": "^2.0.0",
         "openeuropa/oe_corporate_site_info": "^1.0.0-alpha8",
