@@ -15,12 +15,20 @@ news_ticker:
         - content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit"
           link: "http://example.com"
           external_link: TRUE
+          image:
+            path: 'https://loremflickr.com/800/600/rome'
+            alt: 'Example alt text'
+            title: 'image title'
+          icon: "clock"
         - content: "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat"
           link: "http://example.com"
+          icon: "clock"
         - content: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur"
           link: "http://example.com"
+          icon: "clock"
         - content: "Excepteur sint occaecat cupidatat officia deserunt mollit anim id est laborum"
           link: "http://example.com"
+          icon: "clock"
         - content: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium"
           link: "http://example.com"
           external_link: TRUE

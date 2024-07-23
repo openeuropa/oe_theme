@@ -3619,7 +3619,13 @@
         - content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit"
           link: "http://example.com"
           external_link: TRUE
+          image:
+            path: 'https://loremflickr.com/800/600/rome'
+            alt: 'Example alt text'
+            title: 'image title'
+          icon: "clock"
         - content: "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat"
+          icon: "clock"
         - content: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur"
           link: "http://example.com"
         - content: "Excepteur sint occaecat cupidatat officia deserunt mollit anim id est laborum"
@@ -3634,6 +3640,11 @@
   assertions:
     count:
       div.ecl-news-ticker: 1
+      img.ecl-news-ticker__icon: 1
+      svg.ecl-news-ticker__icon: 5
+      img.ecl-news-ticker__icon[src="https://loremflickr.com/800/600/rome"]: 1
+      img.ecl-news-ticker__icon[alt="Example alt text"]: 1
+      img.ecl-news-ticker__icon[title="image title"]: 1
       div.ecl-news-ticker[data-name="data value"]: 1
       div.ecl-news-ticker__container: 1
       div.ecl-news-ticker__content: 1
@@ -3652,7 +3663,11 @@
     equals:
       li.ecl-news-ticker__slide:nth-child(1) a svg.ecl-link__icon: '<title>External link</title><use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>'
       li.ecl-news-ticker__slide:nth-child(5) a svg.ecl-link__icon: '<title>External link</title><use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>'
-      svg.ecl-icon.ecl-icon--l.ecl-news-ticker__icon: '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#information"></use>'
+      svg.ecl-icon.ecl-icon--l.ecl-news-ticker__icon: '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#clock"></use>'
+      li.ecl-news-ticker__slide:nth-child(3) svg.ecl-news-ticker__icon: '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#information"></use>'
+      li.ecl-news-ticker__slide:nth-child(4) svg.ecl-news-ticker__icon: '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#information"></use>'
+      li.ecl-news-ticker__slide:nth-child(5) svg.ecl-news-ticker__icon: '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#information"></use>'
+      li.ecl-news-ticker__slide:nth-child(6) svg.ecl-news-ticker__icon: '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#information"></use>'
       div.ecl-news-ticker__counter span.ecl-news-ticker__counter--current: '1'
       div.ecl-news-ticker__counter span.ecl-news-ticker__counter--max: '6'
       button.ecl-news-ticker__prev span.ecl-button__label: 'Previous news item'
