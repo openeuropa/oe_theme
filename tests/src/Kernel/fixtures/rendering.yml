@@ -230,7 +230,7 @@
       size: "l"
   assertions:
     count:
-      'section.ecl-banner.ecl-banner--text-box.ecl-banner--l.ecl-banner--h-center': 1
+      'section.ecl-banner.ecl-banner--font-m.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--l.ecl-banner--h-center.ecl-banner--v-center': 1
       'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-banner__link-cta[href="http://example.com"]': 1
       'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-banner__link-cta[data-name="data value"]': 0
       'svg.ecl-icon.ecl-icon--xs.ecl-icon--rotate-90.ecl-link__icon': 1
@@ -252,6 +252,7 @@
       url: "http://example.com"
       label: "Subscribe"
       description: "Banner description"
+      title_description_link: true
       centered: false
       full_width: true
       credit: "© Copyright or credit"
@@ -260,42 +261,46 @@
           value: 'data value'
   assertions:
     count:
-      'section.ecl-banner.ecl-banner--box-bg-light.ecl-banner--m.ecl-banner--full-width': 1
-      'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-banner__link-cta[href="http://example.com"]': 1
-      'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-banner__link-cta[data-name="data value"]': 1
+      'section.ecl-banner.ecl-banner--font-m.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--m.ecl-banner--full-width.ecl-banner--h-left.ecl-banner--v-center': 1
+      'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-banner__link-cta[href="http://example.com"]': 0
+      'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-banner__link-cta[data-name="data value"]': 0
+      'div.ecl-container div.ecl-banner__container div.ecl-banner__content div.ecl-banner__title span.ecl-banner__title-text a.ecl-link.ecl-link--icon.ecl-banner__title-link[href="http://example.com"]': 1
+      'div.ecl-container div.ecl-banner__container div.ecl-banner__content div.ecl-banner__title span.ecl-banner__title-text a.ecl-link.ecl-link--icon.ecl-banner__title-link[data-name="data value"]': 1
       'svg.ecl-icon.ecl-icon--xs.ecl-icon--rotate-90.ecl-link__icon': 1
       'picture.ecl-picture.ecl-banner__picture img.ecl-banner__image[src="http://via.placeholder.com/150x150"]': 1
       'footer.ecl-banner__credit small': 1
     equals:
-      'div.ecl-container div.ecl-banner__container div.ecl-banner__content div.ecl-banner__title span.ecl-banner__title-text': Banner title
+      'div.ecl-container div.ecl-banner__container div.ecl-banner__content div.ecl-banner__title span.ecl-banner__title-text a[href="http://example.com"] span.ecl-link__label': Banner title
       'div.ecl-container div.ecl-banner__container div.ecl-banner__content p.ecl-banner__description span.ecl-banner__description-text': Banner description
-      'a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-banner__link-cta[href="http://example.com"] span.ecl-link__label': Subscribe
 - array:
     '#type': pattern
     '#id': banner
     '#variant': "text_box"
     '#fields':
-      title: "Banner title"
       description: "Banner description"
       url: "http://example.com"
       label: "Example"
       image:
         src: "http://via.placeholder.com/150x150"
       centered: true
+      title_description_link: true
       full_width: false
       size: "s"
+      link_extra_attributes:
+        - name: 'data-name'
+          value: 'data value'
   assertions:
     count:
-      'section.ecl-banner.ecl-banner--text-box.ecl-banner--s.ecl-banner--h-center': 1
-      'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-banner__link-cta[href="http://example.com"]': 1
+      'section.ecl-banner.ecl-banner--font-m.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--s.ecl-banner--h-center.ecl-banner--v-center': 1
+      'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-banner__link-cta[href="http://example.com"]': 0
+      'div.ecl-container div.ecl-banner__container div.ecl-banner__content p.ecl-banner__description span.ecl-banner__description-text a.ecl-link.ecl-link--icon.ecl-banner__description-link[href="http://example.com"]': 1
+      'div.ecl-container div.ecl-banner__container div.ecl-banner__content p.ecl-banner__description span.ecl-banner__description-text a.ecl-link.ecl-link--icon.ecl-banner__description-link[data-name="data value"]': 1
       'svg.ecl-icon.ecl-icon--xs.ecl-icon--rotate-90.ecl-link__icon': 1
       'picture.ecl-picture.ecl-banner__picture img.ecl-banner__image[src="http://via.placeholder.com/150x150"]': 1
       '.ecl-banner--full-width': 0
       'footer.ecl-banner__credit small': 0
     equals:
-      'div.ecl-container div.ecl-banner__container div.ecl-banner__content div.ecl-banner__title span.ecl-banner__title-text': Banner title
-      'div.ecl-container div.ecl-banner__container div.ecl-banner__content p.ecl-banner__description span.ecl-banner__description-text': Banner description
-      'a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-banner__link-cta[href="http://example.com"] span.ecl-link__label': Example
+      'div.ecl-container div.ecl-banner__container div.ecl-banner__content p.ecl-banner__description span.ecl-banner__description-text a[href="http://example.com"] span.ecl-link__label': Banner description
 - array:
     '#type': pattern
     '#id': banner
@@ -312,8 +317,8 @@
       size: "l"
   assertions:
     count:
-      'section.ecl-banner.ecl-banner--text-overlay.ecl-banner--l.ecl-banner--h-center': 0
-      'section.ecl-banner.ecl-banner--text-overlay.ecl-banner--l': 1
+      'section.ecl-banner.ecl-banner--font-m.ecl-banner--box-bg-dark.ecl-banner--color-light.ecl-banner--l.ecl-banner--h-center.ecl-banner--v-center': 0
+      'section.ecl-banner.ecl-banner--font-m.ecl-banner--box-bg-dark.ecl-banner--color-light.ecl-banner--l.ecl-banner--h-left.ecl-banner--v-center': 1
       'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-banner__link-cta[href="http://example.com"]': 1
       'svg.ecl-icon.ecl-icon--xs.ecl-icon--rotate-90.ecl-link__icon': 1
       'picture.ecl-picture.ecl-banner__picture img.ecl-banner__image[src="http://via.placeholder.com/150x150"]': 1
@@ -353,7 +358,7 @@
       size: "l"
   assertions:
     count:
-      'section.ecl-banner.ecl-banner--text-overlay.ecl-banner--l.ecl-banner--h-center.ecl-banner--full-width': 1
+      'section.ecl-banner.ecl-banner--font-m.ecl-banner--box-bg-dark.ecl-banner--color-light.ecl-banner--l.ecl-banner--h-center.ecl-banner--v-center.ecl-banner--full-width': 1
       'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-banner__link-cta[href="http://example.com"]': 1
       'svg.ecl-icon.ecl-icon--xs.ecl-icon--rotate-90.ecl-link__icon': 1
       'picture.ecl-picture.ecl-banner__picture img.ecl-banner__image[src="http://via.placeholder.com/150x150"][alt="alternative text"]': 1
@@ -384,8 +389,7 @@
       credit: "© Copyright or credit"
   assertions:
     count:
-      'section.ecl-banner.ecl-banner--box-bg-light.ecl-banner--m.ecl-banner--full-width.ecl-banner--h-center': 0
-      'section.ecl-banner.ecl-banner--box-bg-light.ecl-banner--m.ecl-banner--full-width': 1
+      'section.ecl-banner.ecl-banner--font-m.ecl-banner--box-bg-light.ecl-banner--m.ecl-banner--full-width.ecl-banner--h-left.ecl-banner--v-center': 1
       'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-banner__link-cta[href="http://example.com"]': 1
       'svg.ecl-icon.ecl-icon--xs.ecl-icon--rotate-90.ecl-link__icon': 1
       'picture.ecl-picture.ecl-banner__picture img.ecl-banner__image[src="http://via.placeholder.com/150x150"]': 1
@@ -394,6 +398,72 @@
       'div.ecl-container div.ecl-banner__container div.ecl-banner__content div.ecl-banner__title span.ecl-banner__title-text': Banner title
       'div.ecl-container div.ecl-banner__container div.ecl-banner__content p.ecl-banner__description span.ecl-banner__description-text': Banner description
       'a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-banner__link-cta[href="http://example.com"] span.ecl-link__label': Example
+- array:
+    '#type': pattern
+    '#id': banner
+    '#fields':
+      image:
+        src: "http://via.placeholder.com/150x150"
+      title: "Banner title"
+      url: "http://example.com"
+      label: "Subscribe"
+      font_size: "l"
+      font_color: "light"
+      box_background: "none"
+      description: "Banner description"
+      horizontal: "right"
+      vertical: "top"
+      full_width: true
+      credit: "© Copyright or credit"
+      link_extra_attributes:
+        - name: 'data-name'
+          value: 'data value'
+  assertions:
+    count:
+      'section.ecl-banner.ecl-banner--font-l.ecl-banner--box-bg-none.ecl-banner--color-light.ecl-banner--m.ecl-banner--full-width.ecl-banner--h-right.ecl-banner--v-top': 1
+      'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-banner__link-cta[href="http://example.com"]': 1
+      'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-banner__link-cta[data-name="data value"]': 1
+      'svg.ecl-icon.ecl-icon--xs.ecl-icon--rotate-90.ecl-link__icon': 1
+      'picture.ecl-picture.ecl-banner__picture img.ecl-banner__image[src="http://via.placeholder.com/150x150"]': 1
+      'footer.ecl-banner__credit small': 1
+    equals:
+      'div.ecl-container div.ecl-banner__container div.ecl-banner__content div.ecl-banner__title span.ecl-banner__title-text': Banner title
+      'div.ecl-container div.ecl-banner__container div.ecl-banner__content p.ecl-banner__description span.ecl-banner__description-text': Banner description
+      'a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-banner__link-cta[href="http://example.com"] span.ecl-link__label': Subscribe
+- array:
+    '#type': pattern
+    '#id': banner
+    '#fields':
+      image:
+        src: "http://via.placeholder.com/150x150"
+      title: "Banner title"
+      url: "http://example.com"
+      label: "Subscribe"
+      size: "l"
+      font_size: "l"
+      font_color: "dark"
+      box_background: "light"
+      description: "Banner description"
+      horizontal: "center"
+      vertical: "bottom"
+      full_width: false
+      credit: "© Copyright or credit"
+      link_extra_attributes:
+        - name: 'data-name'
+          value: 'data value'
+  assertions:
+    count:
+      'section.ecl-banner.ecl-banner--font-l.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--l.ecl-banner--full-width.ecl-banner--h-center.ecl-banner--v-bottom': 0
+      'section.ecl-banner.ecl-banner--font-l.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--l.ecl-banner--h-center.ecl-banner--v-bottom': 1
+      'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-banner__link-cta[href="http://example.com"]': 1
+      'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-banner__link-cta[data-name="data value"]': 1
+      'svg.ecl-icon.ecl-icon--xs.ecl-icon--rotate-90.ecl-link__icon': 1
+      'picture.ecl-picture.ecl-banner__picture img.ecl-banner__image[src="http://via.placeholder.com/150x150"]': 1
+      'footer.ecl-banner__credit small': 1
+    equals:
+      'div.ecl-container div.ecl-banner__container div.ecl-banner__content div.ecl-banner__title span.ecl-banner__title-text': Banner title
+      'div.ecl-container div.ecl-banner__container div.ecl-banner__content p.ecl-banner__description span.ecl-banner__description-text': Banner description
+      'a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-banner__link-cta[href="http://example.com"] span.ecl-link__label': Subscribe
 - array:
     '#type': pattern
     '#id': banner_video

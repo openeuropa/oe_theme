@@ -5,21 +5,68 @@
  */
 #}
 
-{% if url is not empty and label is not empty %}
-  {% set _link = {
-    'link': {
-      'path': url,
-      'label': label,
-      'icon_position': 'after'
-    },
-    'icon': {
-      'path': ecl_icon_path,
-      'name': external_link ? "external" : "corner-arrow",
-      'transform': external_link ? "" : "rotate-90",
-      'size': "xs"
-    },
-    'extra_attributes': link_extra_attributes
-  } -%}
+{% set _link = [] %}
+{% set _title = [] %}
+{% set _description = [] %}
+
+{% if url is not empty %}
+  {# Build the banner _link if there is a label provided. #}
+  {% if label is not empty %}
+    {% set _link = {
+      'link': {
+        'path': url,
+        'label': label,
+        'icon_position': 'after'
+      },
+      'icon': {
+        'path': ecl_icon_path,
+        'name': external_link ? "external" : "corner-arrow",
+        'transform': external_link ? "" : "rotate-90",
+        'size': "xs"
+      },
+      'extra_attributes': link_extra_attributes
+    } -%}
+  {% endif %}
+  {# Check if the title or description should be used as a link. #}
+  {% if title_description_link is defined and title_description_link == true %}
+    {# If title is provided, build an ECL link object using the title and empty
+      the _link. #}
+    {% if title is not empty %}
+      {% set _link = [] %}
+      {% set _title = {
+        'link': {
+          'path': url,
+          'label': title,
+          'icon_position': 'after'
+        },
+        'icon': {
+          'path': ecl_icon_path,
+          'name': external_link ? "external" : "corner-arrow",
+          'transform': external_link ? "" : "rotate-90",
+          'size': "xs"
+        },
+        'extra_attributes': link_extra_attributes|default([])
+      } %}
+    {# If description is provided and title is not, build an ECL link object
+      using the description and empty the _link. #}
+    {% elseif description is not empty and title is empty %}
+      {% set _link = [] %}
+      {% set _description = {
+        'link': {
+          'path': url,
+          'label': description,
+          'icon_position': 'after'
+        },
+        'icon': {
+          'path': ecl_icon_path,
+          'name': external_link ? "external" : "corner-arrow",
+          'transform': external_link ? "" : "rotate-90",
+          'size': "xs"
+        },
+        'extra_attributes': link_extra_attributes|default([])
+      } %}
+    {% endif %}
+  {% endif %}
 {% endif %}
 
 {% set _picture = [] %}
@@ -56,19 +103,44 @@
   'sources': _sources,
 }) %}
 
-{% set _variant = variant|replace({'_': '-'}) %}
+{% set _font_color = font_color|default('dark') %}
+{% set _font_size = font_size|default('m') %}
+{% set _box_background = box_background|default('light') %}
+
+{# Keep BC by setting the desired values based on the variant. #}
+{% if variant == 'plain_background' %}
+  {% set _font_color = 'light' %}
+  {% set _box_background = 'none' %}
+  {% set _picture = [] %}
+  {% set extra_classes = 'ecl-banner--plain-background' %}
+{% elseif variant == 'text_overlay' %}
+  {% set _font_color = 'light' %}
+  {% set _box_background = 'dark' %}
+{% endif %}
+
+{% set _horizontal = horizontal|default('left') %}
+{% set _vertical = vertical|default('center') %}
+
+{# Keep BC when centered field is still used instead of horizontal field. #}
+{% if centered is defined and centered == true and (horizontal is not defined or horizontal is empty) %}
+  {% set _horizontal = 'center' %}
+{% endif %}
 
 <div{{ container_attributes }}>
   {% include '@ecl-twig/banner' with {
-    variant: _variant,
-    title: title,
-    description: description,
+    title: _title|default(title),
+    description: _description|default(description),
+    font_color: _font_color,
+    font_size: _font_size,
+    box_background: _box_background,
     link: _link,
     picture: _picture,
     size: size,
-    centered: centered,
+    horizontal: _horizontal,
+    vertical: _vertical,
     full_width: full_width,
-    credit: credit|default('')
+    credit: credit|default(''),
+    extra_classes: extra_classes|default(''),
   } only %}
 
 </div>
