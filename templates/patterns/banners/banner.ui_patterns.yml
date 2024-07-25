@@ -3,13 +3,13 @@ banner:
   description: "The Banner consists of a title, description, and CTA with an optional image."
   variants:
     plain_background:
-      label: "Plain background"
+      label: "Plain background (deprecated - to be removed in 5.x)"
       description: "Plain background contains title, description and CTA with blue background."
     text_box:
-      label: "Text box"
+      label: "Text box (deprecated - to be removed in 5.x)"
       description: "Wraps the title, description and CTA inside a white text box with a background image."
     text_overlay:
-      label: "Text overlay"
+      label: "Text overlay (deprecated - to be removed in 5.x)"
       description: "Text overlay contains title, description and CTA with an overlay effect on the background image."
   fields:
     title:
@@ -22,6 +22,27 @@ banner:
       label: "Description"
       description: "Description of the banner."
       preview: "Pellentesque tempor tincidunt quam, finibus vulputate eros iaculis pharetra orci arcu, dictum maximus arcu pellentesque eget. Cras massa nunc."
+    title_description_link:
+      type: "boolean"
+      label: "Use title/description as a link"
+      description: "Define if the banner should use the title or the description as a link. If both fields are provided, the title will have priority."
+      preview: false
+      escape: false
+    font_size:
+      type: "text"
+      label: "Font size"
+      description: "The size of the title and description (can be 'm' or 'l'). Defaults to 'm'."
+      preview: "l"
+    font_color:
+      type: "text"
+      label: "Font color"
+      description: "The color of the title and description (can be 'dark' or 'light'). Defaults to 'dark'."
+      preview: "light"
+    box_background:
+      type: "text"
+      label: "Box background"
+      description: "The color of the box background (can be 'dark', 'light' or 'none'). Defaults to 'light'."
+      preview: "none"
     url:
       type: "Url"
       label: "URL"
@@ -68,10 +89,20 @@ banner:
       preview: "l"
     centered:
       type: "boolean"
-      label: "Centered"
-      description: "Define if the banner should be centered."
+      label: "Centered (deprecated - to be removed in 5.x)"
+      description: "Define if the banner should be centered. Deprecated - use horizontal and vertical fields instead."
       preview: false
       escape: false
+    horizontal:
+      type: "text"
+      label: "Horizontal alignment"
+      description: "Horizontal box alignment (can be 'left', 'center' or 'right'). Defaults to 'left'."
+      preview: "right"
+    vertical:
+      type: "text"
+      label: "Vertical alignment"
+      description: "Vertical box alignment (can be 'top', 'center' or 'bottom'). Defaults to 'center'."
+      preview: "top"
     full_width:
       type: "boolean"
       label: "Full width"
