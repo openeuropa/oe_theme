@@ -97,7 +97,7 @@ banner:
       type: "text"
       label: "Horizontal alignment"
       description: "Horizontal box alignment (can be 'left', 'center' or 'right'). Defaults to 'left'."
-      preview: "right"
+      preview: "left"
     vertical:
       type: "text"
       label: "Vertical alignment"
@@ -120,3 +120,27 @@ banner:
       label: "Credit"
       description: "Credit for the image (only displayed for image variants)."
       preview: "© Copyright or credit"
+    video:
+      type: "array"
+      label: "Video"
+      description: "Banner video: uses the media container parameters as defined by the ECL"
+      preview:
+        poster: "https://inno-ecl.s3.amazonaws.com/media/examples/example-image.jpg"
+        sources:
+          - src: "https://inno-ecl.s3.amazonaws.com/media/videos/big_buck_bunny.mp4"
+            src_type: "video/mp4"
+        tracks:
+          - src: "captions/bunny-en.vtt"
+            kind: "captions"
+            src_lang: "en"
+            label: "English"
+    sr_play:
+      type: "text"
+      label: "Screen reader control: Play"
+      description: "Screen reader label for the play button."
+      preview: "Play"
+    sr_pause:
+      type: "text"
+      label: "Screen reader control: Pause"
+      description: "Screen reader label for the pause button."
+      preview: "Pause"
