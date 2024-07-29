@@ -103,6 +103,20 @@
   'sources': _sources,
 }) %}
 
+{# We need to use src_type instead of type to avoid getting render arrays due to using type. #}
+{% set _video = video|default({}) %}
+{% if _video.sources %}
+  {% set _sources = [] %}
+  {% for _source in _video.sources %}
+    {% set _sources = _sources|merge([_source|merge({
+      type: _source.src_type
+    })]) %}
+  {% endfor %}
+  {% set _video = _video|merge({
+    sources: _sources
+  }) %}
+{% endif %}
+
 {% set _font_color = font_color|default('dark') %}
 {% set _font_size = font_size|default('m') %}
 {% set _box_background = box_background|default('light') %}
@@ -112,6 +126,7 @@
   {% set _font_color = 'light' %}
   {% set _box_background = 'none' %}
   {% set _picture = [] %}
+  {% set _video = [] %}
   {% set extra_classes = 'ecl-banner--plain-background' %}
 {% elseif variant == 'text_overlay' %}
   {% set _font_color = 'light' %}
@@ -141,6 +156,11 @@
     full_width: full_width,
     credit: credit|default(''),
     extra_classes: extra_classes|default(''),
+    credit: credit|default(''),
+    video: _video,
+    sr_play: sr_play|default('Play'),
+    sr_pause: sr_pause|default('Pause'),
+    icon_path: ecl_icon_path
   } only %}
 
 </div>

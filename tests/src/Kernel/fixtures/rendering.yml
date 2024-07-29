@@ -237,6 +237,7 @@
       'picture.ecl-picture.ecl-banner__picture img.ecl-banner__image[src="http://via.placeholder.com/150x150"]': 1
       '.ecl-banner--full-width': 0
       'footer.ecl-banner__credit div.ecl-container': 1
+      'video': 0
     equals:
       'div.ecl-container div.ecl-banner__container div.ecl-banner__content div.ecl-banner__title span.ecl-banner__title-text': Banner title
       'div.ecl-container div.ecl-banner__container div.ecl-banner__content p.ecl-banner__description span.ecl-banner__description-text': Banner description
@@ -269,6 +270,7 @@
       'svg.ecl-icon.ecl-icon--xs.ecl-icon--rotate-90.ecl-link__icon': 1
       'picture.ecl-picture.ecl-banner__picture img.ecl-banner__image[src="http://via.placeholder.com/150x150"]': 1
       'footer.ecl-banner__credit div.ecl-container': 1
+      'video': 0
     equals:
       'div.ecl-container div.ecl-banner__container div.ecl-banner__content div.ecl-banner__title span.ecl-banner__title-text a[href="http://example.com"] span.ecl-link__label': Banner title
       'div.ecl-container div.ecl-banner__container div.ecl-banner__content p.ecl-banner__description span.ecl-banner__description-text': Banner description
@@ -325,6 +327,7 @@
       'picture source': 0
       '.ecl-banner--full-width': 0
       'footer.ecl-banner__credit div.ecl-container': 0
+      'video': 0
     equals:
       'div.ecl-container div.ecl-banner__container div.ecl-banner__content div.ecl-banner__title span.ecl-banner__title-text': Banner title
       'div.ecl-container div.ecl-banner__container div.ecl-banner__content p.ecl-banner__description span.ecl-banner__description-text': Banner description
@@ -369,6 +372,7 @@
       'picture source[srcset="https://loremflickr.com/1140/380/brazil"][media="(max-width: 1140px)"]': 1
       'picture source[srcset="https://inno-ecl.s3.amazonaws.com/media/examples/example-image.jpg"][media="(min-width: 1140px)"]': 1
       'footer.ecl-banner__credit div.ecl-container': 1
+      'video': 0
     equals:
       'div.ecl-container div.ecl-banner__container div.ecl-banner__content div.ecl-banner__title span.ecl-banner__title-text': Banner title
       'div.ecl-container div.ecl-banner__container div.ecl-banner__content p.ecl-banner__description span.ecl-banner__description-text': Banner description
@@ -394,6 +398,7 @@
       'svg.ecl-icon.ecl-icon--xs.ecl-icon--rotate-90.ecl-link__icon': 1
       'picture.ecl-picture.ecl-banner__picture img.ecl-banner__image[src="http://via.placeholder.com/150x150"]': 1
       'footer.ecl-banner__credit div.ecl-container': 1
+      'video': 0
     equals:
       'div.ecl-container div.ecl-banner__container div.ecl-banner__content div.ecl-banner__title span.ecl-banner__title-text': Banner title
       'div.ecl-container div.ecl-banner__container div.ecl-banner__content p.ecl-banner__description span.ecl-banner__description-text': Banner description
@@ -426,6 +431,7 @@
       'svg.ecl-icon.ecl-icon--xs.ecl-icon--rotate-90.ecl-link__icon': 1
       'picture.ecl-picture.ecl-banner__picture img.ecl-banner__image[src="http://via.placeholder.com/150x150"]': 1
       'footer.ecl-banner__credit div.ecl-container': 1
+      'video': 0
     equals:
       'div.ecl-container div.ecl-banner__container div.ecl-banner__content div.ecl-banner__title span.ecl-banner__title-text': Banner title
       'div.ecl-container div.ecl-banner__container div.ecl-banner__content p.ecl-banner__description span.ecl-banner__description-text': Banner description
@@ -460,10 +466,291 @@
       'svg.ecl-icon.ecl-icon--xs.ecl-icon--rotate-90.ecl-link__icon': 1
       'picture.ecl-picture.ecl-banner__picture img.ecl-banner__image[src="http://via.placeholder.com/150x150"]': 1
       'footer.ecl-banner__credit div.ecl-container': 1
+      'video': 0
     equals:
       'div.ecl-container div.ecl-banner__container div.ecl-banner__content div.ecl-banner__title span.ecl-banner__title-text': Banner title
       'div.ecl-container div.ecl-banner__container div.ecl-banner__content p.ecl-banner__description span.ecl-banner__description-text': Banner description
       'a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-banner__link-cta[href="http://example.com"] span.ecl-link__label': Subscribe
+- array:
+    '#type': pattern
+    '#id': banner
+    '#fields':
+      title: "Banner video title"
+      url: "http://example.com"
+      label: "Subscribe"
+      size: "l"
+      font_size: "l"
+      font_color: "dark"
+      box_background: "light"
+      description: "Banner video description"
+      horizontal: "center"
+      vertical: "bottom"
+      full_width: true
+      credit: "© Copyright or credit"
+      link_extra_attributes:
+        - name: 'data-name'
+          value: 'data value'
+      video:
+        poster: "https://inno-ecl.s3.amazonaws.com/media/examples/example-image.jpg"
+        sources:
+          - src: "https://inno-ecl.s3.amazonaws.com/media/videos/big_buck_bunny.mp4"
+            src_type: "video/mp4"
+        tracks:
+          - src: "captions/bunny-en.vtt"
+            kind: "captions"
+            src_lang: "en"
+            label: "English"
+      sr_play: "Play video"
+      sr_pause: "Pause video"
+  assertions:
+    count:
+      'section.ecl-banner.ecl-banner--font-l.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--l.ecl-banner--full-width.ecl-banner--h-center.ecl-banner--v-bottom': 1
+      'section.ecl-banner.ecl-banner--font-l.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--l.ecl-banner--h-center.ecl-banner--v-bottom': 1
+      'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-banner__link-cta[href="http://example.com"]': 1
+      'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-banner__link-cta[data-name="data value"]': 1
+      'svg.ecl-icon.ecl-icon--xs.ecl-icon--rotate-90.ecl-link__icon': 1
+      'picture.ecl-picture.ecl-banner__picture img.ecl-banner__image[src="http://via.placeholder.com/150x150"]': 0
+      'video[poster="https://inno-ecl.s3.amazonaws.com/media/examples/example-image.jpg"]': 1
+      'video[autoplay]': 1
+      'video[loop]': 1
+      'video[muted]': 1
+      'source[src="https://inno-ecl.s3.amazonaws.com/media/videos/big_buck_bunny.mp4"]': 1
+      'source[type="video/mp4"]': 1
+      'div.ecl-banner__credit small': 1
+      'track[src="captions/bunny-en.vtt"]': 1
+      'track[srclang="en"]': 1
+      'track[label="English"]': 1
+      'track[kind="captions"]': 1
+    equals:
+      'div.ecl-container div.ecl-banner__container div.ecl-banner__content div.ecl-banner__title span.ecl-banner__title-text': Banner video title
+      'div.ecl-container div.ecl-banner__container div.ecl-banner__content p.ecl-banner__description span.ecl-banner__description-text': Banner video description
+      'a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-banner__link-cta[href="http://example.com"] span.ecl-link__label': Subscribe
+      'button.ecl-banner__pause span span.ecl-button__label': Pause video
+      'button.ecl-banner__play span span.ecl-button__label': Play video
+- array:
+    '#type': pattern
+    '#id': banner
+    '#fields':
+      title: "Banner video title"
+      url: "http://example.com"
+      label: "Subscribe"
+      size: "l"
+      font_size: "l"
+      font_color: "dark"
+      box_background: "light"
+      description: "Banner video description"
+      horizontal: "center"
+      vertical: "bottom"
+      full_width: true
+      credit: "© Copyright or credit"
+      link_extra_attributes:
+        - name: 'data-name'
+          value: 'data value'
+      video:
+        sources:
+          - src: "https://inno-ecl.s3.amazonaws.com/media/videos/big_buck_bunny.mp4"
+            src_type: "video/mp4"
+        tracks:
+          - src: "captions/bunny-en.vtt"
+            kind: "captions"
+            src_lang: "en"
+            label: "English"
+      sr_play: "Play video"
+      sr_pause: "Pause video"
+  assertions:
+    count:
+      'section.ecl-banner.ecl-banner--font-l.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--l.ecl-banner--full-width.ecl-banner--h-center.ecl-banner--v-bottom': 1
+      'section.ecl-banner.ecl-banner--font-l.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--l.ecl-banner--h-center.ecl-banner--v-bottom': 1
+      'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-banner__link-cta[href="http://example.com"]': 1
+      'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-banner__link-cta[data-name="data value"]': 1
+      'svg.ecl-icon.ecl-icon--xs.ecl-icon--rotate-90.ecl-link__icon': 1
+      'picture.ecl-picture.ecl-banner__picture img.ecl-banner__image[src="http://via.placeholder.com/150x150"]': 0
+      'video[poster="https://inno-ecl.s3.amazonaws.com/media/examples/example-image.jpg"]': 0
+      'video[poster]': 1
+      'video[autoplay]': 1
+      'video[loop]': 1
+      'video[muted]': 1
+      'source[src="https://inno-ecl.s3.amazonaws.com/media/videos/big_buck_bunny.mp4"]': 1
+      'source[type="video/mp4"]': 1
+      'div.ecl-banner__credit small': 1
+      'track[src="captions/bunny-en.vtt"]': 1
+      'track[srclang="en"]': 1
+      'track[label="English"]': 1
+      'track[kind="captions"]': 1
+    equals:
+      'div.ecl-container div.ecl-banner__container div.ecl-banner__content div.ecl-banner__title span.ecl-banner__title-text': Banner video title
+      'div.ecl-container div.ecl-banner__container div.ecl-banner__content p.ecl-banner__description span.ecl-banner__description-text': Banner video description
+      'a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-banner__link-cta[href="http://example.com"] span.ecl-link__label': Subscribe
+      'button.ecl-banner__pause span span.ecl-button__label': Pause video
+      'button.ecl-banner__play span span.ecl-button__label': Play video
+- array:
+    '#type': pattern
+    '#id': banner
+    '#fields':
+      title: "Banner video title"
+      url: "http://example.com"
+      label: "Subscribe"
+      size: "l"
+      font_size: "l"
+      font_color: "dark"
+      box_background: "light"
+      description: "Banner video description"
+      horizontal: "center"
+      vertical: "bottom"
+      full_width: true
+      credit: "© Copyright or credit"
+      link_extra_attributes:
+        - name: 'data-name'
+          value: 'data value'
+      video:
+        poster: "https://inno-ecl.s3.amazonaws.com/media/examples/example-image.jpg"
+        tracks:
+          - src: "captions/bunny-en.vtt"
+            kind: "captions"
+            src_lang: "en"
+            label: "English"
+  assertions:
+    count:
+      'section.ecl-banner.ecl-banner--font-l.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--l.ecl-banner--full-width.ecl-banner--h-center.ecl-banner--v-bottom': 1
+      'section.ecl-banner.ecl-banner--font-l.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--l.ecl-banner--h-center.ecl-banner--v-bottom': 1
+      'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-banner__link-cta[href="http://example.com"]': 1
+      'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-banner__link-cta[data-name="data value"]': 1
+      'svg.ecl-icon.ecl-icon--xs.ecl-icon--rotate-90.ecl-link__icon': 1
+      'picture.ecl-picture.ecl-banner__picture img.ecl-banner__image[src="http://via.placeholder.com/150x150"]': 0
+      'video[poster="https://inno-ecl.s3.amazonaws.com/media/examples/example-image.jpg"]': 1
+      'video[poster]': 1
+      'video[autoplay]': 1
+      'video[loop]': 1
+      'video[muted]': 1
+      'source[src="https://inno-ecl.s3.amazonaws.com/media/videos/big_buck_bunny.mp4"]': 0
+      'source[type="video/mp4"]': 0
+      'div.ecl-banner__credit small': 1
+      'track[src="captions/bunny-en.vtt"]': 1
+      'track[srclang="en"]': 1
+      'track[label="English"]': 1
+      'track[kind="captions"]': 1
+    equals:
+      'div.ecl-container div.ecl-banner__container div.ecl-banner__content div.ecl-banner__title span.ecl-banner__title-text': Banner video title
+      'div.ecl-container div.ecl-banner__container div.ecl-banner__content p.ecl-banner__description span.ecl-banner__description-text': Banner video description
+      'a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-banner__link-cta[href="http://example.com"] span.ecl-link__label': Subscribe
+      'button.ecl-banner__pause span span.ecl-button__label': Pause
+      'button.ecl-banner__play span span.ecl-button__label': Play
+- array:
+    '#type': pattern
+    '#id': banner
+    '#fields':
+      title: "Banner video title"
+      url: "http://example.com"
+      label: "Subscribe"
+      size: "l"
+      font_size: "l"
+      font_color: "dark"
+      box_background: "light"
+      description: "Banner video description"
+      horizontal: "center"
+      vertical: "bottom"
+      full_width: true
+      credit: "© Copyright or credit"
+      link_extra_attributes:
+        - name: 'data-name'
+          value: 'data value'
+      video:
+        poster: "https://inno-ecl.s3.amazonaws.com/media/examples/example-image.jpg"
+        sources:
+          - src: "https://inno-ecl.s3.amazonaws.com/media/videos/big_buck_bunny.mp4"
+            src_type: "video/mp4"
+      sr_play: "Play video"
+      sr_pause: "Pause video"
+  assertions:
+    count:
+      'section.ecl-banner.ecl-banner--font-l.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--l.ecl-banner--full-width.ecl-banner--h-center.ecl-banner--v-bottom': 1
+      'section.ecl-banner.ecl-banner--font-l.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--l.ecl-banner--h-center.ecl-banner--v-bottom': 1
+      'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-banner__link-cta[href="http://example.com"]': 1
+      'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-banner__link-cta[data-name="data value"]': 1
+      'svg.ecl-icon.ecl-icon--xs.ecl-icon--rotate-90.ecl-link__icon': 1
+      'picture.ecl-picture.ecl-banner__picture img.ecl-banner__image[src="http://via.placeholder.com/150x150"]': 0
+      'video[poster="https://inno-ecl.s3.amazonaws.com/media/examples/example-image.jpg"]': 1
+      'video[autoplay]': 1
+      'video[loop]': 1
+      'video[muted]': 1
+      'source[src="https://inno-ecl.s3.amazonaws.com/media/videos/big_buck_bunny.mp4"]': 1
+      'source[type="video/mp4"]': 1
+      'div.ecl-banner__credit small': 1
+      'track[src="captions/bunny-en.vtt"]': 0
+      'track[srclang="en"]': 0
+      'track[label="English"]': 0
+      'track[kind="captions"]': 0
+    equals:
+      'div.ecl-container div.ecl-banner__container div.ecl-banner__content div.ecl-banner__title span.ecl-banner__title-text': Banner video title
+      'div.ecl-container div.ecl-banner__container div.ecl-banner__content p.ecl-banner__description span.ecl-banner__description-text': Banner video description
+      'a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-banner__link-cta[href="http://example.com"] span.ecl-link__label': Subscribe
+      'button.ecl-banner__pause span span.ecl-button__label': Pause video
+      'button.ecl-banner__play span span.ecl-button__label': Play video
+- array:
+    '#type': pattern
+    '#id': banner
+    '#fields':
+      title: "Banner video title"
+      url: "http://example.com"
+      label: "Subscribe"
+      size: "l"
+      font_size: "l"
+      font_color: "dark"
+      box_background: "light"
+      description: "Banner video description"
+      horizontal: "center"
+      vertical: "bottom"
+      full_width: true
+      credit: "© Copyright or credit"
+      link_extra_attributes:
+        - name: 'data-name'
+          value: 'data value'
+      video:
+        poster: "https://inno-ecl.s3.amazonaws.com/media/examples/example-image.jpg"
+        sources:
+          - src: "https://inno-ecl.s3.amazonaws.com/media/videos/big_buck_bunny.mp4"
+            src_type: "video/mp4"
+          - src: "https://inno-ecl.s3.amazonaws.com/media/videos/big_buck_bunny.mp4"
+            src_type: "video/mp4"
+        tracks:
+          - src: "captions/bunny-fr.vtt"
+            kind: "captions"
+            src_lang: "fr"
+            label: "French"
+          - src: "captions/bunny-en.vtt"
+            kind: "captions"
+            src_lang: "en"
+            label: "English"
+      sr_play: "Play video"
+      sr_pause: "Pause video"
+  assertions:
+    count:
+      'section.ecl-banner.ecl-banner--font-l.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--l.ecl-banner--full-width.ecl-banner--h-center.ecl-banner--v-bottom': 1
+      'section.ecl-banner.ecl-banner--font-l.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--l.ecl-banner--h-center.ecl-banner--v-bottom': 1
+      'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-banner__link-cta[href="http://example.com"]': 1
+      'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-banner__link-cta[data-name="data value"]': 1
+      'svg.ecl-icon.ecl-icon--xs.ecl-icon--rotate-90.ecl-link__icon': 1
+      'picture.ecl-picture.ecl-banner__picture img.ecl-banner__image[src="http://via.placeholder.com/150x150"]': 0
+      'video[poster="https://inno-ecl.s3.amazonaws.com/media/examples/example-image.jpg"]': 1
+      'video[autoplay]': 1
+      'video[loop]': 1
+      'video[muted]': 1
+      'source[src="https://inno-ecl.s3.amazonaws.com/media/videos/big_buck_bunny.mp4"]': 2
+      'source[type="video/mp4"]': 2
+      'div.ecl-banner__credit small': 1
+      'track[src="captions/bunny-en.vtt"]': 1
+      'track[srclang="en"]': 1
+      'track[label="English"]': 1
+      'track[kind="captions"]': 2
+      'track[src="captions/bunny-fr.vtt"]': 1
+      'track[srclang="fr"]': 1
+      'track[label="French"]': 1
+    equals:
+      'div.ecl-container div.ecl-banner__container div.ecl-banner__content div.ecl-banner__title span.ecl-banner__title-text': Banner video title
+      'div.ecl-container div.ecl-banner__container div.ecl-banner__content p.ecl-banner__description span.ecl-banner__description-text': Banner video description
+      'a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-banner__link-cta[href="http://example.com"] span.ecl-link__label': Subscribe
+      'button.ecl-banner__pause span span.ecl-button__label': Pause video
+      'button.ecl-banner__play span span.ecl-button__label': Play video
 - array:
     '#type': pattern
     '#id': banner_video

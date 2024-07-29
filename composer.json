@@ -51,7 +51,7 @@
         "openeuropa/oe_corporate_countries": "^2.0.0",
         "openeuropa/oe_corporate_site_info": "^1.0.0-alpha8",
         "openeuropa/oe_media": "^1.27",
-        "openeuropa/oe_multilingual": "^1.17",
+        "openeuropa/oe_multilingual": "^1.18",
         "openeuropa/oe_paragraphs": "^1.20",
         "openeuropa/oe_search": "^2.0@beta",
         "openeuropa/oe_webtools": "^1.23",
