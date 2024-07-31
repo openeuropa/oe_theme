@@ -68,10 +68,17 @@ class TimelineTest extends AbstractKernelTestBase {
   /**
    * {@inheritdoc}
    */
+  protected function bootEnvironment(): void {
+    parent::bootEnvironment();
+    $this->setUpSparql();
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   protected function setUp(): void {
     parent::setUp();
 
-    $this->setUpSparql();
     $this->installEntitySchema('node');
     $this->installConfig([
       'field',

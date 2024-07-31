@@ -6,14 +6,14 @@ namespace Drupal\Tests\oe_theme\Kernel;
 
 use Drupal\Core\Plugin\ContextAwarePluginInterface;
 use Drupal\Core\Site\Settings;
-use Drupal\KernelTests\KernelTestBase;
 use Drupal\Tests\oe_theme\Traits\RenderTrait;
+use Drupal\Tests\token\Kernel\TokenKernelTestBase;
 use Symfony\Component\Yaml\Yaml;
 
 /**
  * Base class for theme's kernel tests.
  */
-abstract class AbstractKernelTestBase extends KernelTestBase {
+abstract class AbstractKernelTestBase extends TokenKernelTestBase {
 
   use RenderTrait;
 

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Drupal\Tests\oe_theme_helper\Kernel;
 
-use Drupal\KernelTests\KernelTestBase;
+use Drupal\Tests\token\Kernel\TokenKernelTestBase;
 use Drupal\Tests\Traits\Core\Image\ToolkitTestTrait;
 
 /**
@@ -14,7 +14,7 @@ use Drupal\Tests\Traits\Core\Image\ToolkitTestTrait;
  *
  * @group batch2
  */
-class RetinaScaleEffectTest extends KernelTestBase {
+class RetinaScaleEffectTest extends TokenKernelTestBase {
 
   use ToolkitTestTrait;
 
