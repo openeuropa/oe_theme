@@ -85,7 +85,7 @@ class PageHeaderBlockTest extends BrowserTestBase {
     // Enable the test plugin and add some metadata.
     $test_data = [
       'title' => 'Custom page title.',
-      'introduction' => 'Custom page introduction.',
+      'introduction' => '<u>Custom page</u> introduction with <sub>rich</sub> <sup>text</sup>.',
       'metas' => [
         'Custom meta 1',
         'Custom meta 2',
