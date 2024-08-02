@@ -214,7 +214,7 @@ class ContentOrganisationRenderTest extends ContentRenderTestBase {
 
     // Assert rendering is updated.
     $this->assertSession()->pageTextContains('Show contact details');
-    $contacts = $content->findAll('css', 'div#-content.ecl-expandable__content div.ecl-row.ecl-u-mv-xl');
+    $contacts = $content->findAll('css', 'div.ecl-expandable__content div.ecl-row.ecl-u-mv-xl');
     $this->assertCount(2, $contacts);
     $this->assertContactDefaultRender($contacts[0], 'first_general_contact');
     $this->assertContactDefaultRender($contacts[1], 'second_general_contact');

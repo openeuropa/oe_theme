@@ -10,14 +10,14 @@ use Drupal\field\Entity\FieldStorageConfig;
 use Drupal\file\Entity\File;
 use Drupal\image\Entity\ImageStyle;
 use Drupal\oe_theme\ValueObject\ImageValueObject;
-use Drupal\Tests\token\Kernel\KernelTestBase;
+use Drupal\Tests\token\Kernel\TokenKernelTestBase;
 
 /**
  * Test image value object with image field type.
  *
  * @group batch2
  */
-class ImageValueObjectTest extends KernelTestBase {
+class ImageValueObjectTest extends TokenKernelTestBase {
 
   /**
    * {@inheritdoc}
