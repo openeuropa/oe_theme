@@ -1383,6 +1383,8 @@
     '#id': list_item_block_one_column
     '#fields':
       title: "Block title"
+      introduction:
+        '#markup': '<p>The Introduction to the list</p>'
       items:
         - '#type': "pattern"
           '#id': "list_item"
@@ -1393,6 +1395,7 @@
   assertions:
     count:
       'div.ecl-content-item-block__title': 1
+      'div.ecl-content-item-block__introduction': 1
       'div.ecl-content-item-block__title h2.ecl-u-type-heading-2': 1
       'div.ecl-content-item-block__item': 1
       'div.ecl-content-item-block__item.ecl-col-12': 1
@@ -1405,6 +1408,7 @@
       'div.ecl-content-item-block__button a.ecl-link--icon.ecl-link--standalone svg': 0
     equals:
       'div.ecl-content-item-block__title h2.ecl-u-type-heading-2': "Block title"
+      'div.ecl-content-item-block__introduction': "<p>The Introduction to the list</p>"
       'div.ecl-content-item-block__item:nth-child(1) article.ecl-content-item div.ecl-content-item__content-block div.ecl-content-block__title': "Business, Economy, Euro"
       'div.ecl-content-item-block__item:nth-child(1) article.ecl-content-item div.ecl-content-block__description': "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
       'div.ecl-content-item-block__button .ecl-u-clearfix': "Button nolink"
@@ -1427,6 +1431,7 @@
     count:
       'div.ecl-content-item-block__title': 0
       'div.ecl-content-item-block__title h2.ecl-u-type-heading-2': 0
+      'div.ecl-content-item-block__introduction': 0
       'div.ecl-content-item-block__item': 1
       'div.ecl-content-item-block__item.ecl-col-12': 1
       'div.ecl-content-item-block__item.ecl-col-m-6': 0
@@ -1460,6 +1465,7 @@
     count:
       'div.ecl-content-item-block__title': 1
       'div.ecl-content-item-block__title h2.ecl-u-type-heading-2': 1
+      'div.ecl-content-item-block__introduction': 0
       'div.ecl-content-item-block__item': 1
       'div.ecl-content-item-block__item.ecl-col-12': 1
       'div.ecl-content-item-block__item.ecl-col-m-6': 0
@@ -1490,6 +1496,7 @@
     count:
       'div.ecl-content-item-block__title': 0
       'div.ecl-content-item-block__title h2.ecl-u-type-heading-2': 0
+      'div.ecl-content-item-block__introduction': 0
       'div.ecl-content-item-block__item': 1
       'div.ecl-content-item-block__item.ecl-col-12': 1
       'div.ecl-content-item-block__item.ecl-col-m-6': 0
@@ -1520,6 +1527,7 @@
     count:
       'div.ecl-content-item-block__title': 1
       'div.ecl-content-item-block__title h2.ecl-u-type-heading-2': 1
+      'div.ecl-content-item-block__introduction': 0
       'div.ecl-content-item-block__item': 1
       'div.ecl-content-item-block__item.ecl-col-12': 1
       'div.ecl-content-item-block__item.ecl-col-m-6': 0
@@ -1553,6 +1561,7 @@
     count:
       'div.ecl-content-item-block__title': 1
       'div.ecl-content-item-block__title h2.ecl-u-type-heading-2': 1
+      'div.ecl-content-item-block__introduction': 0
       'div.ecl-content-item-block__item': 1
       'div.ecl-content-item-block__item.ecl-col-12': 1
       'div.ecl-content-item-block__item.ecl-col-m-6': 0
@@ -1586,6 +1595,7 @@
     count:
       'div.ecl-content-item-block__title': 0
       'div.ecl-content-item-block__title h2.ecl-u-type-heading-2': 0
+      'div.ecl-content-item-block__introduction': 0
       'div.ecl-content-item-block__item': 2
       'div.ecl-content-item-block__item.ecl-col-l-6': 2
       'div.ecl-content-item-block__item.ecl-col-l-4': 0
@@ -1602,6 +1612,8 @@
     '#type': pattern
     '#id': list_item_block_two_columns
     '#fields':
+      introduction:
+        '#markup': '<p>The Introduction to the list</p>'
       items:
         - '#type': "pattern"
           '#id': "list_item"
@@ -1620,6 +1632,7 @@
     count:
       'div.ecl-content-item-block__title': 0
       'div.ecl-content-item-block__title h2.ecl-u-type-heading-2': 0
+      'div.ecl-content-item-block__introduction': 1
       'div.ecl-content-item-block__item': 2
       'div.ecl-content-item-block__item.ecl-col-l-6': 2
       'div.ecl-content-item-block__item.ecl-col-l-4': 0
@@ -1628,6 +1641,7 @@
       'div.ecl-content-item-block__button': 1
       'div.ecl-content-item-block__button a.ecl-link.ecl-link--standalone.ecl-link--icon[href="http://example.com"]': 1
     equals:
+      'div.ecl-content-item-block__introduction': "<p>The Introduction to the list</p>"
       'div.ecl-content-item-block__item:nth-child(1) article.ecl-content-item div.ecl-content-item__content-block div.ecl-content-block__title': "List item 1"
       'div.ecl-content-item-block__item:nth-child(1) article.ecl-content-item div.ecl-content-block__description': "Description for list item 1."
       'div.ecl-content-item-block__item:nth-child(2) article.ecl-content-item div.ecl-content-item__content-block div.ecl-content-block__title': "List item 2"
@@ -1668,6 +1682,7 @@
     count:
       'div.ecl-content-item-block__title': 0
       'div.ecl-content-item-block__title h2.ecl-u-type-heading-2': 0
+      'div.ecl-content-item-block__introduction': 0
       'div.ecl-content-item-block__item': 8
       'div.ecl-content-item-block__item.ecl-col-l-6': 0
       'div.ecl-content-item-block__item.ecl-u-mb-l.ecl-col-12.ecl-col-l-4': 3
@@ -1691,6 +1706,8 @@
     '#type': pattern
     '#id': list_item_block_three_columns
     '#fields':
+      introduction:
+        '#markup': '<p>The Introduction to the list</p>'
       items:
         - '#type': "pattern"
           '#id': "list_item"
@@ -1724,6 +1741,7 @@
     count:
       'div.ecl-content-item-block__title': 0
       'div.ecl-content-item-block__title h2.ecl-u-type-heading-2': 0
+      'div.ecl-content-item-block__introduction': 1
       'div.ecl-content-item-block__item': 5
       'div.ecl-content-item-block__item.ecl-col-l-6': 0
       'div.ecl-content-item-block__item.ecl-col-l-4': 5
@@ -1732,6 +1750,7 @@
       'div.ecl-content-item-block__button': 1
       'div.ecl-content-item-block__button a.ecl-link.ecl-link--standalone.ecl-link--icon[href="http://example.com"]': 1
     equals:
+      'div.ecl-content-item-block__introduction': "<p>The Introduction to the list</p>"
       'div.ecl-content-item-block__item:nth-child(1) article.ecl-content-item div.ecl-content-item__content-block div.ecl-content-block__title': "List item 1"
       'div.ecl-content-item-block__item:nth-child(1) article.ecl-content-item div.ecl-content-block__description': "Description for list item 1."
       'div.ecl-content-item-block__item:nth-child(2) article.ecl-content-item div.ecl-content-item__content-block div.ecl-content-block__title': "List item 2"
@@ -1747,6 +1766,8 @@
     '#type': pattern
     '#id': list_item_block_four_columns
     '#fields':
+      introduction:
+        '#markup': '<p>The Introduction to the list</p>'
       items:
         - { '#type': 'pattern', '#id': 'link', '#fields': { url: '#', text: 'A simple link 1' } }
         - { '#type': 'pattern', '#id': 'link', '#fields': { url: '#', text: 'A simple link 2' } }
@@ -1758,6 +1779,7 @@
       button_icon_position: "before"
   assertions:
     equals:
+      'div.ecl-content-item-block__introduction': "<p>The Introduction to the list</p>"
       'div.ecl-content-item-block__item.ecl-col-l-3:nth-child(1) a.ecl-link': 'A simple link 1'
       'div.ecl-content-item-block__item.ecl-col-l-3:nth-child(2) a.ecl-link': 'A simple link 2'
       'div.ecl-content-item-block__item.ecl-col-l-3:nth-child(3) a.ecl-link': 'A simple link 3'
@@ -1767,6 +1789,8 @@
     '#type': pattern
     '#id': list_item_block_six_columns
     '#fields':
+      introduction:
+        '#markup': '<p>The Introduction to the list</p>'
       items:
         - { '#type': 'pattern', '#id': 'link', '#fields': { url: '#', text: 'A simple link 1' } }
         - { '#type': 'pattern', '#id': 'link', '#fields': { url: '#', text: 'A simple link 2' } }
@@ -1780,6 +1804,7 @@
       button_icon_position: "before"
   assertions:
     equals:
+      'div.ecl-content-item-block__introduction': "<p>The Introduction to the list</p>"
       'div.ecl-content-item-block__item.ecl-col-l-2:nth-child(1) a.ecl-link': 'A simple link 1'
       'div.ecl-content-item-block__item.ecl-col-l-2:nth-child(2) a.ecl-link': 'A simple link 2'
       'div.ecl-content-item-block__item.ecl-col-l-2:nth-child(3) a.ecl-link': 'A simple link 3'
@@ -3845,6 +3870,8 @@
     '#variant': default
     '#fields':
       title: "Highlighted News"
+      introduction:
+        '#markup': '<p>The Introduction to the list</p>'
       highlighted_item:
         title: "Item 1"
         url: "#"
@@ -3917,7 +3944,8 @@
     count:
       'div#highlighted-news-block': 1
       'div#highlighted-news-block h2.ecl-u-type-heading-2': 1
-      'div div.ecl-row': 2
+      'div#highlighted-news-block div.ecl-content-item-block__introduction': 1
+      'div div.ecl-row': 3
       'div.ecl-row div.ecl-col-l-8.ecl-u-d-flex.ecl-u-flex-column': 1
       'div.ecl-row div.ecl-col-l-4.ecl-u-d-flex.ecl-u-flex-column': 1
       'div.ecl-row article.ecl-content-item--divider.ecl-u-flex-grow-1': 4
@@ -3937,6 +3965,7 @@
       'div#highlighted-news-block div.ecl.ecl-u-mt-s': 1
     equals:
       'div#highlighted-news-block h2.ecl-u-type-heading-2': 'Highlighted News'
+      'div#highlighted-news-block div.ecl-content-item-block__introduction': '<p>The Introduction to the list</p>'
       'div.ecl-col-l-8 ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(1)': 'Item 1 primary meta'
       'div.ecl-col-l-8 ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(2)': 'DD Month Year'
       'div.ecl-col-l-8 .ecl-content-block__title a.ecl-link.ecl-link--standalone[href="#"] .ecl-link__label': 'Item 1'
@@ -4019,6 +4048,7 @@
     count:
       'div#highlighted-news-block': 1
       'div#highlighted-news-block h2.ecl-u-type-heading-2': 0
+      'div#highlighted-news-block div.ecl-content-item-block__introduction': 0
       'div div.ecl-row': 1
       'div.ecl-row div.ecl-col-l-8.ecl-u-d-flex.ecl-u-flex-column': 1
       'div.ecl-row div.ecl-col-l-4.ecl-u-d-flex.ecl-u-flex-column': 1
@@ -4056,6 +4086,8 @@
     '#variant': four_columns
     '#fields':
       title: "Highlighted News"
+      introduction:
+        '#markup': '<p>The Introduction to the list</p>'
       highlighted_item:
         title: "Item 1"
         url: "#"
@@ -4149,7 +4181,8 @@
     count:
       'div#highlighted-news-block': 1
       'div#highlighted-news-block h2.ecl-u-type-heading-2': 1
-      'div div.ecl-row': 2
+      'div#highlighted-news-block div.ecl-content-item-block__introduction': 1
+      'div div.ecl-row': 3
       'div div.ecl-row.ecl-u-border-color-neutral.ecl-u-border-width-1.ecl-u-border-bottom.ecl-u-pb-l': 1
       'div.ecl-row div.ecl-col-l-3.ecl-u-d-flex.ecl-u-flex-column': 4
       'div.ecl-row article.ecl-content-item.ecl-u-flex-grow-1': 6
@@ -4167,6 +4200,7 @@
       'div#highlighted-news-block div.ecl.ecl-u-mt-s': 1
     equals:
       'div#highlighted-news-block h2.ecl-u-type-heading-2': 'Highlighted News'
+      'div#highlighted-news-block div.ecl-content-item-block__introduction': '<p>The Introduction to the list</p>'
       'div.ecl-col-l-3:nth-child(1) ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(1)': 'Item 2 primary meta'
       'div.ecl-col-l-3:nth-child(1) ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(2)': 'DD Month Year'
       'div.ecl-col-l-3:nth-child(1) .ecl-content-block__title': 'Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem'
@@ -4251,6 +4285,7 @@
     count:
       'div#highlighted-news-block': 1
       'div#highlighted-news-block h2.ecl-u-type-heading-2': 1
+      'div#highlighted-news-block div.ecl-content-item-block__introduction': 0
       'div div.ecl-row.ecl-u-border-color-neutral.ecl-u-border-width-1.ecl-u-border-bottom.ecl-u-pb-l': 1
       'div.ecl-row div.ecl-col-l-3.ecl-u-d-flex.ecl-u-flex-column': 2
       'div.ecl-row article.ecl-content-item.ecl-u-flex-grow-1': 3
