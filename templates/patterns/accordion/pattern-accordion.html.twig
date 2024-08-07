@@ -17,8 +17,14 @@
 
 {% include '@ecl-twig/accordion' with {
   'items': _items,
-  'icon': {
-    path: ecl_icon_path,
-    name: 'plus'
-  }
+  'icon': [
+    {
+      path: ecl_icon_path,
+      name: 'plus'
+    },
+    {
+      path: ecl_icon_path,
+      name: 'minus'
+    },
+  ]
 } %}
