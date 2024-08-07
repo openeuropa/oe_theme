@@ -160,10 +160,8 @@
   {% include '@ecl-twig/mega-menu' with {
     title: label|default('Menu'|t),
     toggle: {
-      link: {
-        label: label|default('Menu'|t),
-        hide_label: true
-      },
+      label: label|default('Menu'|t),
+      hide_label: true,
       icon: {
         path: ecl_icon_path,
         name: 'hamburger',
