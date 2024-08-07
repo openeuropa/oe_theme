@@ -520,19 +520,19 @@ class MediaParagraphsTest extends ParagraphsTestBase {
       $image_element->attr('src')
     );
     // Assert all the media sources for different breakpoints.
-    $small_media = $crawler->filter('section.ecl-banner.ecl-banner--text-box.ecl-banner--centered picture source[media="(max-width: 480px)"]');
+    $small_media = $crawler->filter('section.ecl-banner.ecl-banner--text-box.ecl-banner--h-center picture source[media="(max-width: 480px)"]');
     $this->assertCount(1, $small_media);
     $this->assertStringContainsString('oe_theme_small_3_1_banner/public/example_1_en.jpeg', $small_media->attr('srcset'));
-    $medium_media = $crawler->filter('section.ecl-banner.ecl-banner--text-box.ecl-banner--centered picture source[media="(max-width: 768px)"]');
+    $medium_media = $crawler->filter('section.ecl-banner.ecl-banner--text-box.ecl-banner--h-center picture source[media="(max-width: 768px)"]');
     $this->assertCount(1, $medium_media);
     $this->assertStringContainsString('oe_theme_medium_3_1_banner/public/example_1_en.jpeg', $medium_media->attr('srcset'));
-    $large_media = $crawler->filter('section.ecl-banner.ecl-banner--text-box.ecl-banner--centered picture source[media="(max-width: 996px)"]');
+    $large_media = $crawler->filter('section.ecl-banner.ecl-banner--text-box.ecl-banner--h-center picture source[media="(max-width: 996px)"]');
     $this->assertCount(1, $large_media);
     $this->assertStringContainsString('oe_theme_large_3_1_banner/public/example_1_en.jpeg', $large_media->attr('srcset'));
-    $extra_large_media = $crawler->filter('section.ecl-banner.ecl-banner--text-box.ecl-banner--centered picture source[media="(max-width: 1140px)"]');
+    $extra_large_media = $crawler->filter('section.ecl-banner.ecl-banner--text-box.ecl-banner--h-center picture source[media="(max-width: 1140px)"]');
     $this->assertCount(1, $extra_large_media);
     $this->assertStringContainsString('oe_theme_extra_large_3_1_banner/public/example_1_en.jpeg', $extra_large_media->attr('srcset'));
-    $full_width_media = $crawler->filter('section.ecl-banner.ecl-banner--text-box.ecl-banner--centered picture source[media="(min-width: 1140px)"]');
+    $full_width_media = $crawler->filter('section.ecl-banner.ecl-banner--text-box.ecl-banner--h-center picture source[media="(min-width: 1140px)"]');
     $this->assertCount(1, $full_width_media);
     $this->assertStringContainsString('oe_theme_full_width_banner_3_1/public/example_1_en.jpeg', $full_width_media->attr('srcset'));
     $this->assertStringContainsString('Alt en', $image_element->attr('alt'));
@@ -609,26 +609,26 @@ class MediaParagraphsTest extends ParagraphsTestBase {
 
     $style = ImageStyle::load('oe_theme_full_width_banner_4_1');
     $en_file_uri_medium = $style->buildUri($en_file->getFileUri());
-    $this->assertCount(1, $crawler->filter('section.ecl-banner.ecl-banner--text-box.ecl-banner--m.ecl-banner--h-centered'));
-    $image_element = $crawler->filter('section.ecl-banner.ecl-banner--text-box.ecl-banner--h-centered picture.ecl-picture.ecl-banner__picture img.ecl-banner__image');
+    $this->assertCount(1, $crawler->filter('section.ecl-banner.ecl-banner--text-box.ecl-banner--m.ecl-banner--h-center'));
+    $image_element = $crawler->filter('section.ecl-banner.ecl-banner--text-box.ecl-banner--h-center picture.ecl-picture.ecl-banner__picture img.ecl-banner__image');
     $this->assertCount(1, $image_element);
     $this->assertStringContainsString(
       $this->container->get('file_url_generator')->generateAbsoluteString($en_file_uri_medium),
       $image_element->attr('src')
     );
-    $small_media = $crawler->filter('section.ecl-banner.ecl-banner--text-box.ecl-banner--centered picture source[media="(max-width: 480px)"]');
+    $small_media = $crawler->filter('section.ecl-banner.ecl-banner--text-box.ecl-banner--h-center picture source[media="(max-width: 480px)"]');
     $this->assertCount(1, $small_media);
     $this->assertStringContainsString('oe_theme_small_4_1_banner/public/example_1_en.jpeg', $small_media->attr('srcset'));
-    $medium_media = $crawler->filter('section.ecl-banner.ecl-banner--text-box.ecl-banner--centered picture source[media="(max-width: 768px)"]');
+    $medium_media = $crawler->filter('section.ecl-banner.ecl-banner--text-box.ecl-banner--h-center picture source[media="(max-width: 768px)"]');
     $this->assertCount(1, $medium_media);
     $this->assertStringContainsString('oe_theme_medium_4_1_banner/public/example_1_en.jpeg', $medium_media->attr('srcset'));
-    $large_media = $crawler->filter('section.ecl-banner.ecl-banner--text-box.ecl-banner--centered picture source[media="(max-width: 996px)"]');
+    $large_media = $crawler->filter('section.ecl-banner.ecl-banner--text-box.ecl-banner--h-center picture source[media="(max-width: 996px)"]');
     $this->assertCount(1, $large_media);
     $this->assertStringContainsString('oe_theme_large_4_1_banner/public/example_1_en.jpeg', $large_media->attr('srcset'));
-    $extra_large_media = $crawler->filter('section.ecl-banner.ecl-banner--text-box.ecl-banner--centered picture source[media="(max-width: 1140px)"]');
+    $extra_large_media = $crawler->filter('section.ecl-banner.ecl-banner--text-box.ecl-banner--h-center picture source[media="(max-width: 1140px)"]');
     $this->assertCount(1, $extra_large_media);
     $this->assertStringContainsString('oe_theme_extra_large_4_1_banner/public/example_1_en.jpeg', $extra_large_media->attr('srcset'));
-    $full_width_media = $crawler->filter('section.ecl-banner.ecl-banner--text-box.ecl-banner--centered picture source[media="(min-width: 1140px)"]');
+    $full_width_media = $crawler->filter('section.ecl-banner.ecl-banner--text-box.ecl-banner--h-center picture source[media="(min-width: 1140px)"]');
     $this->assertCount(1, $full_width_media);
     $this->assertStringContainsString('oe_theme_full_width_banner_4_1/public/example_1_en.jpeg', $full_width_media->attr('srcset'));
     $this->assertEquals('Banner', trim($crawler->filter('div.ecl-banner__content div.ecl-banner__title')->text()));

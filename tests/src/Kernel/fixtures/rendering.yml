@@ -3821,7 +3821,7 @@
       div.ecl-carousel__slide section.ecl-banner.ecl-banner--plain-background.ecl-banner--h-center: 1
       div.ecl-carousel__controls: 1
       section.ecl-banner--text-box.ecl-banner--m.ecl-banner--h-center picture.ecl-picture.ecl-banner__picture img.ecl-banner__image[src="https://picsum.photos/seed/picsum/600/300"]: 1
-      section.ecl-banner--text-box.ecl-banner--m.ecl-banner--h-center picture source: 4
+      section.ecl-banner--text-box.ecl-banner--m.ecl-banner--h-center picture source: 5
       'section.ecl-banner--text-box.ecl-banner--m.ecl-banner--h-center picture source[srcset="https://loremflickr.com/480/480/arch"][media="(max-width: 480px)"]': 1
       'section.ecl-banner--text-box.ecl-banner--m.ecl-banner--h-center picture source[srcset="https://picsum.photos/seed/picsum/768/768"][media="(max-width: 768px)"]': 1
       'section.ecl-banner--text-box.ecl-banner--m.ecl-banner--h-center picture source[srcset="https://picsum.photos/seed/picsum/996/996"][media="(max-width: 996px)"]': 1
