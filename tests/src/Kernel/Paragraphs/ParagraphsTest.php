@@ -104,7 +104,7 @@ class ParagraphsTest extends ParagraphsTestBase {
     $actual = $crawler->filter('.ecl-accordion__content')->eq(1)->text();
     $this->assertEquals('Item body 2', trim($actual));
 
-    $this->assertCount(2, $crawler->filter('.ecl-accordion__title button.ecl-accordion__toggle .ecl-accordion__toggle-icon'));
+    $this->assertCount(4, $crawler->filter('.ecl-accordion__title button.ecl-accordion__toggle .ecl-accordion__toggle-icon'));
   }
 
   /**
