@@ -1945,7 +1945,7 @@
   assertions:
     count:
       '.ecl-accordion__title': 2
-      '.ecl-accordion__title button.ecl-accordion__toggle .ecl-accordion__toggle-icon': 2
+      '.ecl-accordion__title button.ecl-accordion__toggle .ecl-accordion__toggle-icon': 4
       '.ecl-accordion__title button.ecl-accordion__toggle .ecl-accordion__toggle-title': 2
       '.ecl-accordion__content#id-0-content': 1
       '.ecl-accordion__content#id-1-content': 1
