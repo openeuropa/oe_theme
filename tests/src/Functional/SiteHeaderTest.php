@@ -159,7 +159,12 @@ class SiteHeaderTest extends BrowserTestBase {
       $assert->elementAttributeExists('css', 'a.ecl-site-header__language-selector', 'href');
       $assert->elementAttributeExists('css', 'a.ecl-site-header__language-selector', 'data-ecl-language-selector');
       $this->assertEquals('button', $language_switcher_button->getAttribute('role'));
-      $this->assertEquals('Change language, current language is English', $language_switcher_button->getAttribute('aria-label'));
+      if ($component === 'ec') {
+        $this->assertEquals('Change language, current language is English - en', $language_switcher_button->getAttribute('aria-label'));
+      }
+      else {
+        $this->assertEquals('Change language, current language is English - English', $language_switcher_button->getAttribute('aria-label'));
+      }
       $this->assertEquals('language-list-overlay', $language_switcher_button->getAttribute('aria-controls'));
       $icon = $language_switcher_button->find('css', "span.ecl-site-header__language-icon svg.ecl-icon.ecl-icon--s.ecl-site-header__icon[focusable='false'][aria-hidden='false']");
       if ($component === 'ec') {
