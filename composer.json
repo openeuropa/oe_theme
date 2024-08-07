@@ -36,6 +36,7 @@
         "drupal/field_group": "~3.2",
         "drupal/inline_entity_form": "~1.0-rc15",
         "drupal/json_field": "^1.2",
+        "drupal/paragraphs": "1.17",
         "drupal/renderviz": "^1.0@alpha",
         "drupal/styleguide": "^2.1.1",
         "drupal/typed_link": "^2.0",
