@@ -360,8 +360,11 @@ class OeThemeTestContext extends RawDrupalContext {
    *   'European Union' or 'European Commission'.
    */
   protected function getFooterType(): string {
-    $logo = $this->getSession()->getPage()->find('css', 'footer.ecl-site-footer .ecl-site-footer__logo-link picture');
-    return $logo->getAttribute('title');
+    $ec_footer_selector = $this->getSession()->getPage()->find('css', 'footer.ecl-site-footer.ecl-site-footer--split-columns');
+    if (!$ec_footer_selector) {
+      return 'European Union';
+    }
+    return 'European Commission';
   }
 
   /**
