@@ -326,3 +326,111 @@ function oe_theme_helper_post_update_20017() {
   $image_style->addImageEffect($effect);
   $image_style->save();
 }
+
+/**
+ * Add banner image styles.
+ */
+function oe_theme_helper_post_update_40001(): void {
+  $image_styles = [
+    'oe_theme_full_width_banner_3_1' => [
+      'label' => 'Full width banner 3:1',
+      'width' => '1920',
+      'height' => '640',
+    ],
+    'oe_theme_full_width_banner_4_1' => [
+      'label' => 'Full width banner 4:1',
+      'width' => '1920',
+      'height' => '480',
+    ],
+    'oe_theme_full_width_banner_5_1' => [
+      'label' => 'Full width banner 5:1',
+      'width' => '1920',
+      'height' => '384',
+    ],
+    'oe_theme_extra_large_3_1_banner' => [
+      'label' => 'Extra large banner 3:1',
+      'width' => '1140',
+      'height' => '380',
+    ],
+    'oe_theme_extra_large_4_1_banner' => [
+      'label' => 'Extra large banner 4:1',
+      'width' => '1140',
+      'height' => '285',
+    ],
+    'oe_theme_extra_large_5_1_banner' => [
+      'label' => 'Extra large banner 5:1',
+      'width' => '1140',
+      'height' => '228',
+    ],
+    'oe_theme_large_3_1_banner' => [
+      'label' => 'Large banner 3:1',
+      'width' => '996',
+      'height' => '332',
+    ],
+    'oe_theme_large_4_1_banner' => [
+      'label' => 'Large banner 4:1',
+      'width' => '996',
+      'height' => '249',
+    ],
+    'oe_theme_large_5_1_banner' => [
+      'label' => 'Large banner 5:1',
+      'width' => '996',
+      'height' => '199',
+    ],
+    'oe_theme_medium_3_1_banner' => [
+      'label' => 'Medium banner 3:1',
+      'width' => '768',
+      'height' => '256',
+    ],
+    'oe_theme_medium_4_1_banner' => [
+      'label' => 'Medium banner 4:1',
+      'width' => '768',
+      'height' => '192',
+    ],
+    'oe_theme_medium_5_1_banner' => [
+      'label' => 'Medium banner 5:1',
+      'width' => '768',
+      'height' => '154',
+    ],
+    'oe_theme_small_3_1_banner' => [
+      'label' => 'Small banner 3:1',
+      'width' => '480',
+      'height' => '160',
+    ],
+    'oe_theme_small_4_1_banner' => [
+      'label' => 'Small banner 4:1',
+      'width' => '480',
+      'height' => '120',
+    ],
+    'oe_theme_small_5_1_banner' => [
+      'label' => 'Small banner 5:1',
+      'width' => '480',
+      'height' => '96',
+    ],
+  ];
+  $image_style_storage = \Drupal::entityTypeManager()->getStorage('image_style');
+  foreach ($image_styles as $style_id => $style_data) {
+    $style = $image_style_storage->load($style_id);
+    // If the image style already exists, skip it.
+    if ($style) {
+      continue;
+    }
+    // Create image style.
+    $image_style = ImageStyle::create([
+      'name' => $style_id,
+      'label' => $style_data['label'],
+    ]);
+    // Add scale&crop effect to the image style.
+    $effect = [
+      'id' => 'image_scale_and_crop',
+      'weight' => 1,
+      'data' => [
+        'width' => $style_data['width'],
+        'height' => $style_data['height'],
+        'anchor' => 'center-center',
+      ],
+    ];
+    $image_style->addImageEffect($effect);
+    $image_style->save();
+  }
+}

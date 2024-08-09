@@ -1,0 +1,14 @@
+langcode: en
+status: true
+dependencies: {  }
+name: oe_theme_medium_5_1_banner
+label: 'Medium banner 5:1'
+effects:
+  e1a8ef23-4c6b-426f-945a-56ab89b52319:
+    uuid: e1a8ef23-4c6b-426f-945a-56ab89b52319
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 768
+      height: 154
+      anchor: center-center
