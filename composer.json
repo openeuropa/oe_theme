@@ -36,7 +36,6 @@
         "drupal/field_group": "~3.2",
         "drupal/inline_entity_form": "~1.0-rc15",
         "drupal/json_field": "^1.2",
-        "drupal/paragraphs": "1.17",
         "drupal/renderviz": "^1.0@alpha",
         "drupal/styleguide": "^2.1.1",
         "drupal/typed_link": "^2.0",
@@ -118,8 +117,7 @@
         "_readme": [
             "behat/mink-selenium2-driver locked to 1.6.x as version 1.7.0 introduces issues with mouse dragging and keyboard key events.",
             "Explicit requirement of nikic/php-parser as ^5.0 generates GrumPHP Parser issues.",
-            "autoload-dev: explicitly mapping EntityReferenceFieldCreationTrait to prevent failures.",
-            "Locking paragraphs to 1.17 until we can apply https://www.drupal.org/project/paragraphs/issues/2890086 again."
+            "autoload-dev: explicitly mapping EntityReferenceFieldCreationTrait to prevent failures."
         ]
     },
     "config": {
