@@ -146,3 +146,26 @@ gallery:
       description: "Number of visible items in an expandable gallery."
       preview: 3
       escape: false
+    grid:
+      type: "boolean"
+      label: "Grid display"
+      description: "Display gallery as a grid. Default is false."
+      preview: true
+      escape: false
+    columns:
+      type: "numeric"
+      label: "Columns number"
+      description: "Number of columns. Default is 2. Only used if the grid display is enabled."
+      preview: 2
+      escape: false
+    ratio:
+      type: "string"
+      label: "Aspect ratio"
+      description: "Image aspect ratio. Default is 3-2. Only used if the grid display is enabled."
+      preview: '3-2'
+    disable_hover:
+      type: "boolean"
+      label: "Disable hover"
+      description: "Hides the item's title on hover. Default is false."
+      preview: false
+      escape: false

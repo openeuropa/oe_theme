@@ -17,6 +17,11 @@
   } %}
 {% endif %}
 
+{% if grid %}
+  {% set _columns = columns|default(2) %}
+  {% set _ratio = ratio|default('3-2') %}
+{% endif %}
+
 {% set _gallery = {
   'overlay': {
     'counter_separator': ' / ',
@@ -63,6 +68,10 @@
   'expandable': expandable ?? true,
   'visible_items': visible_items|default(8),
   'footer': footer_link|default([]),
+  'grid': grid|default(false),
+  'column': _columns|default(null),
+  'ratio': _ratio|default(null),
+  'disable_hover': disable_hover|default(false),
 } %}
 
 {% if items|length > 1 %}
