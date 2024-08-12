@@ -284,9 +284,9 @@ class OeThemeTestContext extends RawDrupalContext {
   /**
    * Assert given corporate footer presence on page.
    *
-   * @Then I should see the :component_library footer with link :link label :label image alt :img_alt title :img_title
+   * @Then I should see the :component_library footer with link :link image alt :img_alt and title :img_title
    */
-  public function assertEuropeanFooterBlockOnPage(string $component_library, string $link, string $label, string $img_alt, string $img_title): void {
+  public function assertEuropeanFooterBlockOnPage(string $component_library, string $link, string $img_alt, string $img_title): void {
     // Make sure a corporate footer is present on the page.
     $this->assertSession()->elementExists('css', 'footer.ecl-site-footer');
     // European Union footer is presented.
@@ -296,7 +296,6 @@ class OeThemeTestContext extends RawDrupalContext {
     $page = $this->getSession()->getPage();
     $logo_link = $page->find('css', '.ecl-site-footer__logo-link');
     Assert::assertEquals($link, $logo_link->getAttribute('href'));
-    Assert::assertEquals($label, $logo_link->getAttribute('aria-label'));
     $picture = $logo_link->find('css', 'picture');
     Assert::assertEquals($img_alt, $picture->find('css', 'img')->getAttribute('alt'));
     Assert::assertEquals($img_title, $picture->getAttribute('title'));
@@ -361,8 +360,8 @@ class OeThemeTestContext extends RawDrupalContext {
    *   'European Union' or 'European Commission'.
    */
   protected function getFooterType(): string {
-    $logo = $this->getSession()->getPage()->find('css', 'footer.ecl-site-footer .ecl-site-footer__logo-link');
-    if ($logo->getAttribute('aria-label') === 'Home - European Union') {
+    $ec_footer_selector = $this->getSession()->getPage()->find('css', 'footer.ecl-site-footer.ecl-site-footer--split-columns');
+    if (!$ec_footer_selector) {
       return 'European Union';
     }
     return 'European Commission';
