@@ -1840,14 +1840,7 @@ function oe_theme_preprocess_oe_corporate_blocks_ec_footer(array &$variables) {
     $variables['path'] = 'https://commission.europa.eu/index_' . EuropeanUnionLanguages::getInternalLanguageCode($variables['current_language_id']);
   }
   _oe_theme_preprocess_site_specific_footer_links($variables);
-
-  if (function_exists('oe_corporate_blocks_preprocess_set_accessibility_link')) {
-    oe_corporate_blocks_preprocess_set_accessibility_link($variables);
-
-    if (isset($variables['accessibility_link']) && $variables['accessibility_link'] instanceof Url) {
-      $variables['accessibility_link'] = $variables['accessibility_link']->toString();
-    }
-  }
+  _oe_theme_preprocess_accessibility_link($variables);
 }
 
 /**
@@ -1868,14 +1861,7 @@ function oe_theme_preprocess_oe_corporate_blocks_eu_footer(array &$variables) {
   $variables['mobile_logo_path'] = str_replace('standard', 'condensed', $variables['desktop_logo_path']);
 
   _oe_theme_preprocess_site_specific_footer_links($variables);
-
-  if (function_exists('oe_corporate_blocks_preprocess_set_accessibility_link')) {
-    oe_corporate_blocks_preprocess_set_accessibility_link($variables);
-
-    if (isset($variables['accessibility_link']) && $variables['accessibility_link'] instanceof Url) {
-      $variables['accessibility_link'] = $variables['accessibility_link']->toString();
-    }
-  }
+  _oe_theme_preprocess_accessibility_link($variables);
 
   // Hide the default Accessibility link inside "Legal" section for
   // standardised ECL branding.
@@ -1949,6 +1935,23 @@ function _oe_theme_preprocess_site_specific_footer_links(array &$variables): voi
       }
     }
   }
+}
+
+/**
+ * Get the Accessibility statement link.
+ */
+function _oe_theme_preprocess_accessibility_link(array &$variables) {
+  if (!function_exists('oe_corporate_blocks_preprocess_set_accessibility_link')) {
+    return;
+  }
+
+  oe_corporate_blocks_preprocess_set_accessibility_link($variables);
+
+  if (!isset($variables['accessibility_link']) || !$variables['accessibility_link'] instanceof Url) {
+    return;
+  }
+
+  $variables['accessibility_link'] = $variables['accessibility_link']->toString();
 }
 
 /**
