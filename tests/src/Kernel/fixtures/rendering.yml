@@ -799,8 +799,10 @@
       '.ecl-gallery[data-ecl-gallery][data-ecl-gallery-not-expandable]': 1
       '.ecl-gallery .ecl-gallery__list': 1
       '.ecl-gallery .ecl-gallery__list .ecl-gallery__item': 1
-      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item .ecl-gallery__image[src="https://loremflickr.com/320/240/cat"]': 1
-      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item .ecl-gallery__image[alt="Example alt text"]': 1
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item .ecl-gallery__picture .ecl-gallery__image[src="https://loremflickr.com/800/600/cat"]': 1
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item .ecl-gallery__thumbnail .ecl-gallery__image[src="https://loremflickr.com/320/240/cat"]': 1
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item .ecl-gallery__thumbnail .ecl-gallery__image[alt="Example alt text"]': 1
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item .ecl-gallery__picture .ecl-gallery__image[alt="Example alt text"]': 1
       '.ecl-gallery .ecl-gallery__list .ecl-gallery__item figcaption.ecl-gallery__description span.ecl-gallery__title': 1
       '.ecl-gallery .ecl-gallery__list .ecl-gallery__item figcaption.ecl-gallery__description': 1
       '.ecl-gallery .ecl-gallery__list .ecl-gallery__item .ecl-gallery__meta': 1
@@ -840,7 +842,7 @@
           meta: 'Copyright © 2021 EC'
           type: 'video'
         - thumbnail:
-            src: 'https://loremflickr.com/800/600/lisbon'
+            src: 'https://loremflickr.com/320/240/lisbon'
             alt: 'Example alt text'
           caption: 'Meanwhile in Lisbon, the capital of Portugal'
           meta: 'Copyright © 2021, Author and Licence'
@@ -855,19 +857,23 @@
       '.ecl-gallery[data-ecl-gallery-visible-items="1"]': 1
       '.ecl-gallery .ecl-gallery__list': 1
       '.ecl-gallery .ecl-gallery__list .ecl-gallery__item': 3
-      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(1) .ecl-gallery__image[src="https://loremflickr.com/320/240/cat"]': 1
-      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(1) .ecl-gallery__image[alt="Example alt text cat"]': 1
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(1) .ecl-gallery__thumbnail .ecl-gallery__image[src="https://loremflickr.com/320/240/cat"]': 1
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(1) .ecl-gallery__thumbnail .ecl-gallery__image[alt="Example alt text cat"]': 1
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(1) .ecl-gallery__picture .ecl-gallery__image[src="https://loremflickr.com/800/600/cat"]': 1
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(1) .ecl-gallery__picture .ecl-gallery__image[alt="Example alt text cat"]': 1
       '.ecl-gallery .ecl-gallery__list .ecl-gallery__item figcaption.ecl-gallery__description span.ecl-gallery__title': 0
       '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(1) figcaption.ecl-gallery__description': 1
       '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(1) .ecl-gallery__meta': 0
       '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(2) a.ecl-gallery__item-link[href="https://www.youtube.com/watch?v=1-g73ty9v04"]': 1
-      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(2) .ecl-gallery__image[src="https://loremflickr.com/320/240/dog"]': 1
-      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(2) .ecl-gallery__image[alt="Example alt text dog"]': 1
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(2) .ecl-gallery__thumbnail .ecl-gallery__image[src="https://loremflickr.com/320/240/dog"]': 1
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(2) .ecl-gallery__thumbnail .ecl-gallery__image[alt="Example alt text dog"]': 1
       '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(2) figcaption.ecl-gallery__description': 1
       '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(2) .ecl-gallery__meta': 1
       '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(2) .ecl-gallery__image-container div.ecl-gallery__item-icon-wrapper svg.ecl-icon': 1
-      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(3) .ecl-gallery__image[src="https://loremflickr.com/800/600/lisbon"]': 1
-      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(3) .ecl-gallery__image[alt="Example alt text"]': 1
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(3) .ecl-gallery__thumbnail .ecl-gallery__image[src="https://loremflickr.com/320/240/lisbon"]': 1
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(3) .ecl-gallery__thumbnail .ecl-gallery__image[alt="Example alt text"]': 1
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(3) .ecl-gallery__picture .ecl-gallery__image[src="https://loremflickr.com/800/600/lisbon"]': 1
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(3) .ecl-gallery__picture .ecl-gallery__image[alt="Example alt text"]': 1
       '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(3) figcaption.ecl-gallery__description': 1
       '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(3) .ecl-gallery__meta': 1
       '.ecl-gallery .ecl-button.ecl-button--tertiary.ecl-gallery__slider-previous': 1
@@ -957,7 +963,7 @@
       '.ecl-gallery .ecl-gallery__list': 1
       '.ecl-gallery .ecl-gallery__list .ecl-gallery__item': 8
       '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(1) .ecl-gallery__image[src="https://loremflickr.com/320/240/cat"]': 1
-      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(1) .ecl-gallery__image[alt="Example alt text cat"]': 1
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(1) .ecl-gallery__image[alt="Example alt text cat"]': 2
       '.ecl-gallery .ecl-gallery__list .ecl-gallery__item figcaption.ecl-gallery__description span.ecl-gallery__title': 0
       '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(1) figcaption.ecl-gallery__description': 1
       '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(1) .ecl-gallery__meta': 0
@@ -967,8 +973,8 @@
       '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(2) figcaption.ecl-gallery__description': 1
       '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(2) .ecl-gallery__meta': 1
       '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(2) .ecl-gallery__image-container div.ecl-gallery__item-icon-wrapper svg.ecl-icon': 1
-      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(3) .ecl-gallery__image[src="https://loremflickr.com/800/600/lisbon"]': 1
-      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(3) .ecl-gallery__image[alt="Example alt text"]': 1
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(3) .ecl-gallery__image[src="https://loremflickr.com/800/600/lisbon"]': 2
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(3) .ecl-gallery__image[alt="Example alt text"]': 2
       '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(3) figcaption.ecl-gallery__description': 1
       '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(3) .ecl-gallery__meta': 1
       '.ecl-gallery .ecl-button.ecl-button--tertiary.ecl-gallery__slider-previous': 1
@@ -1068,7 +1074,7 @@
       '.ecl-gallery .ecl-gallery__list': 1
       '.ecl-gallery .ecl-gallery__list .ecl-gallery__item': 8
       '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(1) .ecl-gallery__image[src="https://loremflickr.com/320/240/cat"]': 1
-      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(1) .ecl-gallery__image[alt="Example alt text cat"]': 1
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(1) .ecl-gallery__image[alt="Example alt text cat"]': 2
       '.ecl-gallery .ecl-gallery__list .ecl-gallery__item figcaption.ecl-gallery__description span.ecl-gallery__title': 0
       '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(1) figcaption.ecl-gallery__description': 1
       '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(1) .ecl-gallery__meta': 0
@@ -1078,8 +1084,8 @@
       '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(2) figcaption.ecl-gallery__description': 1
       '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(2) .ecl-gallery__meta': 1
       '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(2) .ecl-gallery__image-container div.ecl-gallery__item-icon-wrapper svg.ecl-icon': 1
-      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(3) .ecl-gallery__image[src="https://loremflickr.com/800/600/lisbon"]': 1
-      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(3) .ecl-gallery__image[alt="Example alt text"]': 1
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(3) .ecl-gallery__image[src="https://loremflickr.com/800/600/lisbon"]': 2
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(3) .ecl-gallery__image[alt="Example alt text"]': 2
       '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(3) figcaption.ecl-gallery__description': 1
       '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(3) .ecl-gallery__meta': 1
       '.ecl-gallery .ecl-button.ecl-button--tertiary.ecl-gallery__slider-previous': 1
