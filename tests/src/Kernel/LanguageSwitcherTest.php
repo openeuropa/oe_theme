@@ -151,7 +151,7 @@ class LanguageSwitcherTest extends MultilingualAbstractKernelTestBase {
       $lang_id = $language->getId();
       $lang_prefix = $map_other_language_codes[$lang_id] ?? $lang_config->get('url.prefixes.' . $lang_id);
 
-      $actual = $crawler->filter("div#language-list-overlay a.ecl-site-header__language-link[lang={$lang_prefix}] span.ecl-site-header__language-link-label")->text();
+      $actual = $crawler->filter("div#language-list-overlay a.ecl-site-header__language-link span.ecl-site-header__language-link-label[lang={$lang_prefix}]")->text();
       // Remove all non printable characters in $actual.
       $this->assertEquals(
         $languages[$lang_id]->getName(),
@@ -194,7 +194,7 @@ class LanguageSwitcherTest extends MultilingualAbstractKernelTestBase {
       }
 
       // Make sure that the actual language link is set as active.
-      $actual = $crawler->filter("div#language-list-overlay a.ecl-site-header__language-link.ecl-site-header__language-link--active[lang={$langcode}][hreflang={$langcode}] span.ecl-site-header__language-link-label")->text();
+      $actual = $crawler->filter("div#language-list-overlay a.ecl-site-header__language-link.ecl-site-header__language-link--active[hreflang={$langcode}] span.ecl-site-header__language-link-label[lang={$langcode}]")->text();
       $this->assertEquals($langname, trim($actual));
     }
   }
