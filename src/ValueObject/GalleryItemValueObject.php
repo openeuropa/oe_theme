@@ -183,20 +183,26 @@ class GalleryItemValueObject extends ValueObjectBase {
    * {@inheritdoc}
    */
   public function getArray(): array {
-    // Image media items are displayed using the image passed as thumbnail.
-    // This is due to the fact that the ECL gallery component does not yet
-    // support having a low and high resolution version of the same image.
-    // This makes it so that, for images, the source property is effectively
-    // ignored, while it is used for videos.
+    $thumbnail = $this->getThumbnail()->getArray();
     $values = [
-      'picture' => [
-        'img' => $this->getThumbnail()->getArray(),
+      'thumbnail' => [
+        'img' => $thumbnail,
       ],
       'description' => $this->getCaption(),
       'meta' => $this->getMeta(),
       'title' => $this->getTitle(),
       'icon' => 'image',
     ];
+
+    // If an image, use the same thumbnail array which contains the information
+    // of the image but set the source as the picture. The source contains the
+    // high resolution version of the same image.
+    if ($this->getType() === GalleryItemValueObject::TYPE_IMAGE) {
+      $thumbnail['src'] = $this->getSource();
+      $values['picture'] = [
+        'img' => $thumbnail,
+      ];
+    }
 
     // If video, then set the required source URL format and icon.
     if ($this->getType() === GalleryItemValueObject::TYPE_VIDEO) {

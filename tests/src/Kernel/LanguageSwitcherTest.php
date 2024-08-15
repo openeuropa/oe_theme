@@ -194,7 +194,7 @@ class LanguageSwitcherTest extends MultilingualAbstractKernelTestBase {
       }
 
       // Make sure that the actual language link is set as active.
-      $actual = $crawler->filter("div#language-list-overlay a.ecl-site-header__language-link.ecl-site-header__language-link--active[lang={$langcode}][hreflang={$langcode}] span.ecl-site-header__language-link-label")->text();
+      $actual = $crawler->filter("div#language-list-overlay a.ecl-site-header__language-link.ecl-site-header__language-link--active[hreflang={$langcode}] span.ecl-site-header__language-link-label[lang={$langcode}]")->text();
       $this->assertEquals($langname, trim($actual));
     }
   }

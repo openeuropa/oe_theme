@@ -368,7 +368,7 @@ class ContentPersonRenderTest extends ContentRenderTestBase {
 
     // Test the contents of the first item. The second item would have a similar
     // structure so no need to test.
-    $first_item = $items[0]->find('css', 'img');
+    $first_item = $items[0]->find('css', '.ecl-gallery__thumbnail img');
     $this->assertEquals('Alternative text first_media', $first_item->getAttribute('alt'));
     // @todo Remove when support for core 10.2.x is dropped.
     // Core shipped image styles are converted to webp extension.

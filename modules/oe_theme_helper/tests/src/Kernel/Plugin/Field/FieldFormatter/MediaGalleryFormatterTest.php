@@ -205,9 +205,12 @@ class MediaGalleryFormatterTest extends AbstractKernelTestBase {
     $this->assertCount(3, $items);
 
     // Test the contents of the first item.
-    $image_node = $items->first()->filter('img');
-    $this->assertEquals('Alt text for test image.', $image_node->attr('alt'));
-    $this->assertStringEndsWith('/example_1.jpeg', $image_node->attr('src'));
+    $thumbnail_image_node = $items->first()->filter('.ecl-gallery__thumbnail img');
+    $this->assertEquals('Alt text for test image.', $thumbnail_image_node->attr('alt'));
+    $this->assertStringEndsWith('/example_1.jpeg', $thumbnail_image_node->attr('src'));
+    $picture_image_node = $items->first()->filter('.ecl-gallery__picture img');
+    $this->assertEquals('Alt text for test image.', $picture_image_node->attr('alt'));
+    $this->assertStringEndsWith('/example_1.jpeg', $picture_image_node->attr('src'));
     $title = $items->first()->filter('.ecl-gallery__description span.ecl-gallery__title');
     $this->assertStringContainsString('Test image title', $title->html());
     $caption = $items->first()->filter('.ecl-gallery__description');
