@@ -2433,7 +2433,7 @@ function oe_theme_preprocess_oe_theme_helper_in_page_navigation__node__oe_person
   }
   $cacheability = CacheableMetadata::createFromRenderArray($variables);
   foreach ($variables['items'] as $key => $item) {
-    if ($item['id'] === 'responsibilities' && !empty($item['content']['oe_person_jobs']['#items'])) {
+    if (isset($item['content']['oe_person_jobs']) && !empty($item['content']['oe_person_jobs']['#items'])) {
       $empty = TRUE;
       $single_role = count(Element::children($item['content']['oe_person_jobs'])) === 1;
       foreach (Element::children($item['content']['oe_person_jobs']) as $delta) {
