@@ -153,6 +153,7 @@
     {% set _lists = _lists|merge([{
       variant: lists_variant|default("horizontal"),
       items: items,
+      extra_classes: 'ecl-u-mb-xl',
     }]) %}
   {% endfor %}
 {% endif %}
