@@ -4,11 +4,12 @@ dependencies: {  }
 name: oe_theme_publication_thumbnail
 label: 'Publication thumbnail'
 effects:
-  44898002-78b0-4133-acb6-c08d5c208e01:
-    uuid: 44898002-78b0-4133-acb6-c08d5c208e01
-    id: image_scale
+  e3147a94-c49f-4d60-8bf4-dc8c21431d77:
+    uuid: e3147a94-c49f-4d60-8bf4-dc8c21431d77
+    id: retina_image_scale
     weight: 1
     data:
-      width: 192
-      height: 192
+      width: 600
+      height: 400
       upscale: false
+      multiplier: 2
