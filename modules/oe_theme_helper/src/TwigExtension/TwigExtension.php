@@ -665,13 +665,13 @@ class TwigExtension extends AbstractExtension {
   /**
    * Checks if a given path is external or not.
    *
-   * @param mixed $path
+   * @param string $path
    *   The path to be checked.
    *
    * @return bool
    *   Whether the path is external.
    */
-  public function isExternal(mixed $path): bool {
+  public function isExternal(string $path): bool {
     return $this->externalLinks->isExternalLink($path);
   }
 
