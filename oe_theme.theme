@@ -28,7 +28,6 @@ use Drupal\media_avportal\Plugin\media\Source\MediaAvPortalSourceInterface;
 use Drupal\media_avportal\Plugin\media\Source\MediaAvPortalVideoSource;
 use Drupal\node\NodeInterface;
 use Drupal\oe_content_person\Entity\PersonJobInterface;
-use Drupal\oe_corporate_site_info\SiteInformation;
 use Drupal\oe_media_iframe\Plugin\media\Source\Iframe;
 use Drupal\oe_theme\DocumentMediaValueExtractor;
 use Drupal\oe_theme\ValueObject\DateValueObject;
@@ -1942,38 +1941,11 @@ function _oe_theme_preprocess_site_specific_footer_links(array &$variables): voi
  * Get the Accessibility statement link.
  */
 function _oe_theme_preprocess_accessibility_link(array &$variables) {
-  if (!\Drupal::service('module_handler')->moduleExists('oe_corporate_site_info')) {
+  if (!isset($variables['accessibility_link']) || !$variables['accessibility_link'] instanceof Url) {
     return;
   }
-  $cacheability = CacheableMetadata::createFromRenderArray($variables);
-  $configuration = \Drupal::configFactory()->get(SiteInformation::CONFIG_NAME);
-  $cacheability->addCacheableDependency($configuration);
-  /** @var \Drupal\oe_corporate_site_info\SiteInformationInterface $site_information */
-  $site_information = \Drupal::service('oe_corporate_site_info.site_information');
-  if (!$site_information->hasAccessibilityLink()) {
-    $cacheability->applyTo($variables);
-    return;
-  }
-  $uri = $site_information->getAccessibilityLink();
-  $uri_parts = parse_url($uri);
-  if ($uri_parts['scheme'] === 'entity') {
-    [$entity_type_id, $entity_id] = explode('/', $uri_parts['path'], 2);
-    $entity = \Drupal::entityTypeManager()->getStorage($entity_type_id)->load($entity_id);
-    if ($entity instanceof NodeInterface) {
-      $cacheability->addCacheableDependency($entity);
-      $access = $entity->access('view', \Drupal::currentUser(), TRUE);
-      $cacheability->addCacheableDependency($access);
-      if (!$access->isAllowed()) {
-        $cacheability->applyTo($variables);
-        // Do not show the button if access to the node is forbidden.
-        return;
-      }
-    }
-  }
-  $url = Url::fromUri($uri)->toString();
 
-  $variables['accessibility_link'] = $url;
-  $cacheability->applyTo($variables);
+  $variables['accessibility_link'] = $variables['accessibility_link']->toString();
 }
 
 /**
