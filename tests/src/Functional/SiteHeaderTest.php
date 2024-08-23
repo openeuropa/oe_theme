@@ -246,9 +246,9 @@ class SiteHeaderTest extends BrowserTestBase {
 
       // Assert the menu container.
       $menu_container = $assert->elementExists('css', 'nav div.ecl-container.ecl-menu__container', $main_menu);
-      $this->assertStringContainsString('Menu', $menu_container->find('css', "a.ecl-link.ecl-link--standalone.ecl-menu__open[href][data-ecl-menu-open] span.ecl-link__label")
+      $this->assertStringContainsString('Menu', $menu_container->find('css', "button.ecl-button--tertiary.ecl-menu__open.ecl-button--icon-only[data-ecl-menu-open] span.ecl-button__label")
         ->getText());
-      $icon = $menu_container->find('css', "a.ecl-menu__open svg.ecl-icon.ecl-icon--m[focusable='false'][aria-hidden='true']");
+      $icon = $menu_container->find('css', "button.ecl-menu__open svg.ecl-icon.ecl-icon--m[focusable='false'][aria-hidden='true']");
       $this->assertEquals('<use xlink:href="/build/themes/custom/oe_theme/dist/' . $component . '/images/icons/sprites/icons.svg#hamburger" xmlns:xlink="http://www.w3.org/1999/xlink"></use>', $icon->getHtml());
       $assert->elementExists('css', "section.ecl-menu__inner[data-ecl-menu-inner]", $menu_container);
       $assert->elementExists('css', 'section header.ecl-menu__inner-header', $menu_container);

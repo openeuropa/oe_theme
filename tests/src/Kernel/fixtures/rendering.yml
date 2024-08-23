@@ -3433,9 +3433,9 @@
       "li.ecl-menu__item:nth-child(1) button[aria-label=\"Access item's children\"]": 1
       "li.ecl-menu__item:nth-child(2) button[aria-label=\"Access item's children\"]": 1
       "div.ecl-container.ecl-menu__container section.ecl-menu__inner[data-ecl-menu-inner]": 1
-      "a.ecl-link--standalone.ecl-button.ecl-button--tertiary.ecl-menu__open.ecl-link--icon-only": 1
+      "button.ecl-button--tertiary.ecl-menu__open.ecl-button--icon-only": 1
     equals:
-      'a.ecl-menu__open.ecl-link--icon-only span.ecl-link__label': 'Menu'
+      'button.ecl-menu__open.ecl-button--icon-only span.ecl-button__label': 'Menu'
       '.ecl-menu__inner-header button.ecl-menu__close[data-ecl-menu-close] span.ecl-button__label': "Close"
       '.ecl-menu__inner-header button.ecl-menu__back[data-ecl-menu-back] .ecl-button__label': "Back"
       'li.ecl-menu__item.ecl-menu__item--has-children:nth-child(1) a.ecl-menu__link': "Parent 1"
@@ -3485,7 +3485,7 @@
       "nav.ecl-menu[data-ecl-menu][data-ecl-menu-max-lines=\"3\"][data-ecl-auto-init=\"Menu\"][aria-expanded=\"false\"][role=\"navigation\"][aria-label=\"Site navigation\"]": 1
       "li.ecl-menu__item:nth-child(1) button[aria-label=\"Access item's children\"]": 1
     equals:
-      '.ecl-menu__open .ecl-link__label': "Custom Menu"
+      'button.ecl-menu__open span.ecl-button__label': "Custom Menu"
       '.ecl-menu__inner-header button.ecl-menu__close[data-ecl-menu-close] span.ecl-button__label': "Close"
       '.ecl-menu__inner-header button.ecl-menu__back[data-ecl-menu-back] .ecl-button__label': "Back"
       'li.ecl-menu__item:nth-child(1) a.ecl-menu__link': "Parent 1"

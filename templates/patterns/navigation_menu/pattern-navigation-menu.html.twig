@@ -63,10 +63,7 @@
   {% include '@ecl-twig/menu' with {
     title: label|default('Menu'|t),
     toggle: {
-      link: {
-        label: label|default('Menu'|t),
-        hide_label: true
-      },
+      label: label|default('Menu'|t),
       icon: {
         path: ecl_icon_path,
         name: 'hamburger',
