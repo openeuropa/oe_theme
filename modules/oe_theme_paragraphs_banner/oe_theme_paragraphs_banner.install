@@ -20,9 +20,9 @@ function oe_theme_paragraphs_banner_install($is_syncing) {
     return;
   }
   $form_modes_labels = [
-    'paragraph.oe_banner_primary' => 'Plain background banner',
-    'paragraph.oe_banner_image' => 'Text box banner',
-    'paragraph.oe_banner_image_shade' => 'Image overlay banner',
+    'paragraph.oe_banner_primary' => 'Plain background',
+    'paragraph.oe_banner_image' => 'Text box',
+    'paragraph.oe_banner_image_shade' => 'Text overlay',
   ];
   foreach ($form_modes_labels as $id => $label) {
     $form_mode = EntityFormMode::load($id);

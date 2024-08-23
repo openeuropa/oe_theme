@@ -1,0 +1,11 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraphs
+id: paragraph.oe_banner_simple
+label: 'Simple banner'
+description: ''
+targetEntityType: paragraph
+cache: true
+
