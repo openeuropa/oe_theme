@@ -516,7 +516,7 @@
       'video[muted]': 1
       'source[src="https://inno-ecl.s3.amazonaws.com/media/videos/big_buck_bunny.mp4"]': 1
       'source[type="video/mp4"]': 1
-      'div.ecl-banner__credit small': 1
+      'div.ecl-banner__credit div.ecl-container': 1
       'track[src="captions/bunny-en.vtt"]': 1
       'track[srclang="en"]': 1
       'track[label="English"]': 1
@@ -572,7 +572,7 @@
       'video[muted]': 1
       'source[src="https://inno-ecl.s3.amazonaws.com/media/videos/big_buck_bunny.mp4"]': 1
       'source[type="video/mp4"]': 1
-      'div.ecl-banner__credit small': 1
+      'div.ecl-banner__credit div.ecl-container': 1
       'track[src="captions/bunny-en.vtt"]': 1
       'track[srclang="en"]': 1
       'track[label="English"]': 1
@@ -624,7 +624,7 @@
       'video[muted]': 1
       'source[src="https://inno-ecl.s3.amazonaws.com/media/videos/big_buck_bunny.mp4"]': 0
       'source[type="video/mp4"]': 0
-      'div.ecl-banner__credit small': 1
+      'div.ecl-banner__credit div.ecl-container': 1
       'track[src="captions/bunny-en.vtt"]': 1
       'track[srclang="en"]': 1
       'track[label="English"]': 1
@@ -675,7 +675,7 @@
       'video[muted]': 1
       'source[src="https://inno-ecl.s3.amazonaws.com/media/videos/big_buck_bunny.mp4"]': 1
       'source[type="video/mp4"]': 1
-      'div.ecl-banner__credit small': 1
+      'div.ecl-banner__credit div.ecl-container': 1
       'track[src="captions/bunny-en.vtt"]': 0
       'track[srclang="en"]': 0
       'track[label="English"]': 0
@@ -737,7 +737,7 @@
       'video[muted]': 1
       'source[src="https://inno-ecl.s3.amazonaws.com/media/videos/big_buck_bunny.mp4"]': 2
       'source[type="video/mp4"]': 2
-      'div.ecl-banner__credit small': 1
+      'div.ecl-banner__credit div.ecl-container': 1
       'track[src="captions/bunny-en.vtt"]': 1
       'track[srclang="en"]': 1
       'track[label="English"]': 1
