@@ -10,11 +10,11 @@ body {
 
 a {
   text-decoration: none;
+  color: var(--ecl-color-primary-100);
   &:hover,
   &:focus {
     text-decoration: underline;
   }
-  color: var(--ecl-color-primary-100);
 }
 
 .ecl {
