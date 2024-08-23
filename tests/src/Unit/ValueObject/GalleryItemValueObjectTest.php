@@ -43,7 +43,7 @@ class GalleryItemValueObjectTest extends UnitTestCase {
     $this->assertEquals($values['meta'], $item->getMeta());
 
     $to_array = $item->getArray();
-    $this->assertEquals($to_array['picture']['img'], $image_value_object->getArray());
+    $this->assertEquals($to_array['thumbnail']['img'], $image_value_object->getArray());
     $this->assertEquals($to_array['embedded_video'], [
       'src' => 'http://placehold.it/600x400',
     ]);
@@ -75,6 +75,10 @@ class GalleryItemValueObjectTest extends UnitTestCase {
     $item = GalleryItemValueObject::fromArray($values);
     $this->assertEquals($values['type'], $item->getType());
     $to_array = $item->getArray();
+    $thumbnail = $image_value_object->getArray();
+    $this->assertEquals($to_array['thumbnail']['img'], $thumbnail);
+    $thumbnail['src'] = 'http://placehold.it/800x600';
+    $this->assertEquals($to_array['picture']['img'], $thumbnail);
     $this->assertEquals($to_array['icon'], 'image');
     $this->assertEquals($to_array['description'], 'Test image caption.');
     $this->assertEquals($to_array['meta'], 'Test image meta.');
