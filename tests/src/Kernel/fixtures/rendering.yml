@@ -236,12 +236,12 @@
       'svg.ecl-icon.ecl-icon--xs.ecl-icon--rotate-90.ecl-link__icon': 1
       'picture.ecl-picture.ecl-banner__picture img.ecl-banner__image[src="http://via.placeholder.com/150x150"]': 1
       '.ecl-banner--full-width': 0
-      'footer.ecl-banner__credit small': 1
+      'footer.ecl-banner__credit div.ecl-container': 1
     equals:
       'div.ecl-container div.ecl-banner__container div.ecl-banner__content div.ecl-banner__title span.ecl-banner__title-text': Banner title
       'div.ecl-container div.ecl-banner__container div.ecl-banner__content p.ecl-banner__description span.ecl-banner__description-text': Banner description
       'a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-banner__link-cta[href="http://example.com"] span.ecl-link__label': Subscribe
-      'footer.ecl-banner__credit small': © Copyright or credit
+      'footer.ecl-banner__credit div.ecl-container': © Copyright or credit
 - array:
     '#type': pattern
     '#id': banner
@@ -268,7 +268,7 @@
       'div.ecl-container div.ecl-banner__container div.ecl-banner__content div.ecl-banner__title span.ecl-banner__title-text a.ecl-link.ecl-link--icon.ecl-banner__title-link[data-name="data value"]': 1
       'svg.ecl-icon.ecl-icon--xs.ecl-icon--rotate-90.ecl-link__icon': 1
       'picture.ecl-picture.ecl-banner__picture img.ecl-banner__image[src="http://via.placeholder.com/150x150"]': 1
-      'footer.ecl-banner__credit small': 1
+      'footer.ecl-banner__credit div.ecl-container': 1
     equals:
       'div.ecl-container div.ecl-banner__container div.ecl-banner__content div.ecl-banner__title span.ecl-banner__title-text a[href="http://example.com"] span.ecl-link__label': Banner title
       'div.ecl-container div.ecl-banner__container div.ecl-banner__content p.ecl-banner__description span.ecl-banner__description-text': Banner description
@@ -298,7 +298,7 @@
       'svg.ecl-icon.ecl-icon--xs.ecl-icon--rotate-90.ecl-link__icon': 1
       'picture.ecl-picture.ecl-banner__picture img.ecl-banner__image[src="http://via.placeholder.com/150x150"]': 1
       '.ecl-banner--full-width': 0
-      'footer.ecl-banner__credit small': 0
+      'footer.ecl-banner__credit div.ecl-container': 0
     equals:
       'div.ecl-container div.ecl-banner__container div.ecl-banner__content p.ecl-banner__description span.ecl-banner__description-text a[href="http://example.com"] span.ecl-link__label': Banner description
 - array:
@@ -324,7 +324,7 @@
       'picture.ecl-picture.ecl-banner__picture img.ecl-banner__image[src="http://via.placeholder.com/150x150"]': 1
       'picture source': 0
       '.ecl-banner--full-width': 0
-      'footer.ecl-banner__credit small': 0
+      'footer.ecl-banner__credit div.ecl-container': 0
     equals:
       'div.ecl-container div.ecl-banner__container div.ecl-banner__content div.ecl-banner__title span.ecl-banner__title-text': Banner title
       'div.ecl-container div.ecl-banner__container div.ecl-banner__content p.ecl-banner__description span.ecl-banner__description-text': Banner description
@@ -368,12 +368,12 @@
       'picture source[srcset="https://picsum.photos/seed/picsum/996/996"][media="(max-width: 996px)"]': 1
       'picture source[srcset="https://loremflickr.com/1140/380/brazil"][media="(max-width: 1140px)"]': 1
       'picture source[srcset="https://inno-ecl.s3.amazonaws.com/media/examples/example-image.jpg"][media="(min-width: 1140px)"]': 1
-      'footer.ecl-banner__credit small': 1
+      'footer.ecl-banner__credit div.ecl-container': 1
     equals:
       'div.ecl-container div.ecl-banner__container div.ecl-banner__content div.ecl-banner__title span.ecl-banner__title-text': Banner title
       'div.ecl-container div.ecl-banner__container div.ecl-banner__content p.ecl-banner__description span.ecl-banner__description-text': Banner description
       'a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-banner__link-cta[href="http://example.com"] span.ecl-link__label': Example
-      'footer.ecl-banner__credit small': © Copyright or credit
+      'footer.ecl-banner__credit div.ecl-container': © Copyright or credit
 - array:
     '#type': pattern
     '#id': banner
@@ -393,7 +393,7 @@
       'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-banner__link-cta[href="http://example.com"]': 1
       'svg.ecl-icon.ecl-icon--xs.ecl-icon--rotate-90.ecl-link__icon': 1
       'picture.ecl-picture.ecl-banner__picture img.ecl-banner__image[src="http://via.placeholder.com/150x150"]': 1
-      'footer.ecl-banner__credit small': 1
+      'footer.ecl-banner__credit div.ecl-container': 1
     equals:
       'div.ecl-container div.ecl-banner__container div.ecl-banner__content div.ecl-banner__title span.ecl-banner__title-text': Banner title
       'div.ecl-container div.ecl-banner__container div.ecl-banner__content p.ecl-banner__description span.ecl-banner__description-text': Banner description
@@ -425,7 +425,7 @@
       'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-banner__link-cta[data-name="data value"]': 1
       'svg.ecl-icon.ecl-icon--xs.ecl-icon--rotate-90.ecl-link__icon': 1
       'picture.ecl-picture.ecl-banner__picture img.ecl-banner__image[src="http://via.placeholder.com/150x150"]': 1
-      'footer.ecl-banner__credit small': 1
+      'footer.ecl-banner__credit div.ecl-container': 1
     equals:
       'div.ecl-container div.ecl-banner__container div.ecl-banner__content div.ecl-banner__title span.ecl-banner__title-text': Banner title
       'div.ecl-container div.ecl-banner__container div.ecl-banner__content p.ecl-banner__description span.ecl-banner__description-text': Banner description
@@ -459,7 +459,7 @@
       'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-banner__link-cta[data-name="data value"]': 1
       'svg.ecl-icon.ecl-icon--xs.ecl-icon--rotate-90.ecl-link__icon': 1
       'picture.ecl-picture.ecl-banner__picture img.ecl-banner__image[src="http://via.placeholder.com/150x150"]': 1
-      'footer.ecl-banner__credit small': 1
+      'footer.ecl-banner__credit div.ecl-container': 1
     equals:
       'div.ecl-container div.ecl-banner__container div.ecl-banner__content div.ecl-banner__title span.ecl-banner__title-text': Banner title
       'div.ecl-container div.ecl-banner__container div.ecl-banner__content p.ecl-banner__description span.ecl-banner__description-text': Banner description
@@ -3433,9 +3433,9 @@
       "li.ecl-menu__item:nth-child(1) button[aria-label=\"Access item's children\"]": 1
       "li.ecl-menu__item:nth-child(2) button[aria-label=\"Access item's children\"]": 1
       "div.ecl-container.ecl-menu__container section.ecl-menu__inner[data-ecl-menu-inner]": 1
-      "a.ecl-link--standalone.ecl-button.ecl-button--tertiary.ecl-menu__open.ecl-link--icon-only": 1
+      "button.ecl-button--tertiary.ecl-menu__open.ecl-button--icon-only": 1
     equals:
-      'a.ecl-menu__open.ecl-link--icon-only span.ecl-link__label': 'Menu'
+      'button.ecl-menu__open.ecl-button--icon-only span.ecl-button__label': 'Menu'
       '.ecl-menu__inner-header button.ecl-menu__close[data-ecl-menu-close] span.ecl-button__label': "Close"
       '.ecl-menu__inner-header button.ecl-menu__back[data-ecl-menu-back] .ecl-button__label': "Back"
       'li.ecl-menu__item.ecl-menu__item--has-children:nth-child(1) a.ecl-menu__link': "Parent 1"
@@ -3485,7 +3485,7 @@
       "nav.ecl-menu[data-ecl-menu][data-ecl-menu-max-lines=\"3\"][data-ecl-auto-init=\"Menu\"][aria-expanded=\"false\"][role=\"navigation\"][aria-label=\"Site navigation\"]": 1
       "li.ecl-menu__item:nth-child(1) button[aria-label=\"Access item's children\"]": 1
     equals:
-      '.ecl-menu__open .ecl-link__label': "Custom Menu"
+      'button.ecl-menu__open span.ecl-button__label': "Custom Menu"
       '.ecl-menu__inner-header button.ecl-menu__close[data-ecl-menu-close] span.ecl-button__label': "Close"
       '.ecl-menu__inner-header button.ecl-menu__back[data-ecl-menu-back] .ecl-button__label': "Back"
       'li.ecl-menu__item:nth-child(1) a.ecl-menu__link': "Parent 1"
@@ -4148,7 +4148,7 @@
       div.ecl-carousel__slide section.ecl-banner--text-box.ecl-banner--m:not(.ecl-banner--h-center) div.ecl-banner__content div.ecl-banner__title .ecl-banner__title-text: 'Lorem ipsum dolor sit amet'
       div.ecl-carousel__slide section.ecl-banner--text-box.ecl-banner--m:not(.ecl-banner--h-center) div.ecl-banner__content p.ecl-banner__description .ecl-banner__description-text: 'Nullam sollicitudin suscipit diam, ac blandit ipsum tempor consectetur'
       div.ecl-carousel__slide section.ecl-banner--text-box.ecl-banner--m:not(.ecl-banner--h-center) div.ecl-banner__content div.ecl-banner__cta a[href="https://example.com"] span.ecl-link__label: 'CTA 1'
-      div.ecl-carousel__slide section.ecl-banner--text-box.ecl-banner--m:not(.ecl-banner--h-center) footer.ecl-banner__credit small: '© Copyright first item'
+      div.ecl-carousel__slide section.ecl-banner--text-box.ecl-banner--m:not(.ecl-banner--h-center) footer.ecl-banner__credit div.ecl-container: '© Copyright first item'
       div.ecl-carousel__slide section.ecl-banner.ecl-banner--text-overlay.ecl-banner--h-center div.ecl-banner__title .ecl-banner__title-text: 'Duis vitae pulvinar turpis'
       div.ecl-carousel__slide section.ecl-banner.ecl-banner--text-overlay.ecl-banner--h-center p.ecl-banner__description .ecl-banner__description-text: 'Integer quis lorem tellus. Nullam sollicitudin suscipit diam, ac blandit ipsum tempor consectetur'
       div.ecl-carousel__slide section.ecl-banner.ecl-banner--text-overlay.ecl-banner--h-center div.ecl-banner__cta a[href="https://example.com"] span.ecl-link__label: 'CTA 2'
