@@ -1,11 +1,45 @@
 # Changelog
 
+## [4.0.0-beta7](https://github.com/openeuropa/oe_theme/tree/4.0.0-beta7) (2024-08-29)
+
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/4.0.0-beta6...4.0.0-beta7)
+
+**Merged pull requests:**
+
+- EWPP-4689: Update to ECL 4.6.1. [\#1493](https://github.com/openeuropa/oe_theme/pull/1493) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-4674: Update to ECL 4.6.0. [\#1490](https://github.com/openeuropa/oe_theme/pull/1490) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-4591: Remove unnecessary site footer patch. [\#1489](https://github.com/openeuropa/oe_theme/pull/1489) ([22Alexandra](https://github.com/22Alexandra))
+- UCPKN-3176: Accessibility statement link in the footer. [\#1488](https://github.com/openeuropa/oe_theme/pull/1488) ([peterserfozo](https://github.com/peterserfozo))
+- EWPP-4591: Update to ECL 4.5.0. [\#1487](https://github.com/openeuropa/oe_theme/pull/1487) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-4580: Allow additional html tags to be rendered in CTs summary field. [\#1486](https://github.com/openeuropa/oe_theme/pull/1486) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-4556: Add video parameter to the banner component. [\#1484](https://github.com/openeuropa/oe_theme/pull/1484) ([nagyad](https://github.com/nagyad))
+- EWPP-4526: Add Japanese translations. [\#1483](https://github.com/openeuropa/oe_theme/pull/1483) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-4456: Update Banner pattern and paragraph rendering. [\#1482](https://github.com/openeuropa/oe_theme/pull/1482) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-4551: Update ECL version. [\#1481](https://github.com/openeuropa/oe_theme/pull/1481) ([sergepavle](https://github.com/sergepavle))
+- EWPP-4514: Add icon and image to news ticker compoenent. [\#1480](https://github.com/openeuropa/oe_theme/pull/1480) ([nagyad](https://github.com/nagyad))
+- EWPP-4515: Add new fields for Gallery pattern. [\#1479](https://github.com/openeuropa/oe_theme/pull/1479) ([sergepavle](https://github.com/sergepavle))
+- EWPP-4546: Remove composer-change-patch task from .drone.yml. [\#1478](https://github.com/openeuropa/oe_theme/pull/1478) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-4496: Add Introduction field to various patterns. [\#1477](https://github.com/openeuropa/oe_theme/pull/1477) ([intelektron](https://github.com/intelektron))
+- EWPP-4454: Add Simple banner variant. [\#1476](https://github.com/openeuropa/oe_theme/pull/1476) ([22Alexandra](https://github.com/22Alexandra))
+- OEL-3051: Update to Drupal 10.3 [\#1475](https://github.com/openeuropa/oe_theme/pull/1475) ([AaronGilMartinez](https://github.com/AaronGilMartinez))
+- EWPP-4509: Update to ECL 4.3.0. [\#1474](https://github.com/openeuropa/oe_theme/pull/1474) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-4367: Add the same margin bottom to lists in list item pattern as the margin top. [\#1471](https://github.com/openeuropa/oe_theme/pull/1471) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-4401: Pass hide\_label variable to the social media links pattern. [\#1469](https://github.com/openeuropa/oe_theme/pull/1469) ([intelektron](https://github.com/intelektron))
+- EWPP-4418: Allow list item paragraph template to pass image position. [\#1468](https://github.com/openeuropa/oe_theme/pull/1468) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-4396: Use higher resolution image style for Media paragraph. [\#1466](https://github.com/openeuropa/oe_theme/pull/1466) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-4288: Remove already migrated fields. [\#1463](https://github.com/openeuropa/oe_theme/pull/1463) ([nagyad](https://github.com/nagyad))
+- EWPP-4146: Add extra class to inpage navigation block to ensure is always displayed on top. [\#1462](https://github.com/openeuropa/oe_theme/pull/1462) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-4073: Fix Person with a single job translation rendering. [\#1459](https://github.com/openeuropa/oe_theme/pull/1459) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-4356: Use source key of picture parameter for rendering different image sizes for each ECL breakpoint in Banner and Carousel. [\#1456](https://github.com/openeuropa/oe_theme/pull/1456) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-4149: Update Publication thumbnail image style. [\#1443](https://github.com/openeuropa/oe_theme/pull/1443) ([22Alexandra](https://github.com/22Alexandra))
+
 ## [4.0.0-beta6](https://github.com/openeuropa/oe_theme/tree/4.0.0-beta6) (2024-06-14)
 
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/4.0.0-beta5...4.0.0-beta6)
 
 **Merged pull requests:**
 
+- Prepare release 4.0.0-beta6. [\#1467](https://github.com/openeuropa/oe_theme/pull/1467) ([imanoleguskiza](https://github.com/imanoleguskiza))
 - EWPP-4414: Update oe\_corporate\_blocks version. [\#1465](https://github.com/openeuropa/oe_theme/pull/1465) ([22Alexandra](https://github.com/22Alexandra))
 - EWPP-4416: Update to ECL 4.2.2. [\#1464](https://github.com/openeuropa/oe_theme/pull/1464) ([22Alexandra](https://github.com/22Alexandra))
 - EWPP-4386: Apply background color for body. [\#1461](https://github.com/openeuropa/oe_theme/pull/1461) ([nagyad](https://github.com/nagyad))
