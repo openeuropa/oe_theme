@@ -11,6 +11,7 @@
 
   {% set _description = description|default('') %}
   {% set _video = video|default({}) %}
+  {% set media_container = [] %}
 
   {% set _css_class = ['ecl-video-banner']|join(' ') %}
   {% set _extra_attributes = '' %}
@@ -29,6 +30,17 @@
     }) %}
   {% endif %}
 
+  {% if video.image is not empty %}
+    {% set _video = _video|merge({
+      poster: video.image
+    }) %}
+  {% endif %}
+
+  {% set media_container = media_container|merge({
+    video: _video,
+    description: _video.description,
+  }) %}
+
   {% if extra_classes is defined and extra_classes is not empty %}
     {% set _css_class = _css_class ~ ' ' ~ extra_classes %}
   {% endif %}
@@ -45,7 +57,7 @@
     <div class="ecl-container ecl-video-banner__container">
       <div class="ecl-row">
         <div class="ecl-col-s-12 ecl-col-m-6">
-          {% include '@ecl-twig/media-container' with _video %}
+          {% include '@ecl-twig/media-container' with media_container %}
         </div>
         <div class="ecl-col-s-12 ecl-col-m-6">
           <p class="ecl-u-type-paragraph">
