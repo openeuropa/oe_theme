@@ -566,7 +566,7 @@
       'svg.ecl-icon.ecl-icon--xs.ecl-icon--rotate-90.ecl-link__icon': 1
       'picture.ecl-picture.ecl-banner__picture img.ecl-banner__image[src="http://via.placeholder.com/150x150"]': 0
       'video[poster="https://inno-ecl.s3.amazonaws.com/media/examples/example-image.jpg"]': 0
-      'video[poster]': 1
+      'video[poster]': 0
       'video[autoplay]': 1
       'video[loop]': 1
       'video[muted]': 1

@@ -63,6 +63,7 @@
     "@ecl/twig-component-tag": "4.6.2",
     "@ecl/twig-component-text-input": "4.6.2",
     "@ecl/twig-component-timeline": "4.6.2",
+    "@ecl/twig-component-video": "4.6.2",
     "@ecl/vanilla-utility-background": "4.6.2",
     "@ecl/vanilla-utility-border": "4.6.2",
     "chokidar-cli": "3.0.0",
