@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Drupal\Tests\oe_theme_helper\Functional;
 
+use Drupal\filter\Entity\FilterFormat;
 use Drupal\Tests\BrowserTestBase;
 use Drupal\Tests\content_moderation\Traits\ContentModerationTestTrait;
 
@@ -68,6 +69,11 @@ class NodeViewRoutesMetadataTest extends BrowserTestBase {
       'view latest version',
       'view any unpublished content',
     ]);
+
+    FilterFormat::create([
+      'format' => 'full_html',
+      'name' => 'Full HTML',
+    ])->save();
   }
 
   /**
@@ -75,7 +81,7 @@ class NodeViewRoutesMetadataTest extends BrowserTestBase {
    */
   public function testNodeRoutes(): void {
     // Create a published revision for a node.
-    $published_revision_body = $this->randomString();
+    $published_revision_body = $this->randomString() . '<mark>published</mark>';
     $node = $this->drupalCreateNode([
       'type' => 'test',
       'moderation_state' => 'published',
