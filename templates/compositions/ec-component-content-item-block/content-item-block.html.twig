@@ -11,6 +11,7 @@ Parameters:
   - "introduction" (string) (default: ''): A brief summary of the block.
   - "items" (array) (default: []): Content Item's for the Content Item Block
   - "button" (associative array) (default: {}): Predefined structure compatible with Link component.
+  - "button_separator" (boolean) (default: false): Whether to add a button separator.
   - "extra_classes" (string) (default: '')
   - "extra_attributes" (array) (default: []): format: [
       {
@@ -111,6 +112,9 @@ Parameters:
   </div>
 
   {% if _button.label %}
+    {% if button_separator %}
+      <div class="ecl-u-border-color-neutral ecl-u-border-width-1 ecl-u-border-top"></div>
+    {% endif %}
     <div class="ecl-row">
       <div class="ecl-content-item-block__button ecl-col-12">
         <div class="ecl-u-clearfix ecl-u-pv-m">
