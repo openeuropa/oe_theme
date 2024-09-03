@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Drupal\Tests\oe_theme_helper\Functional;
 
+use Drupal\filter\Entity\FilterFormat;
 use Drupal\Tests\BrowserTestBase;
 use Drupal\Tests\content_moderation\Traits\ContentModerationTestTrait;
 
@@ -68,6 +69,11 @@ class NodeViewRoutesMetadataTest extends BrowserTestBase {
       'view latest version',
       'view any unpublished content',
     ]);
+
+    FilterFormat::create([
+      'format' => 'full_html',
+      'name' => 'Full HTML',
+    ])->save();
   }
 
   /**
@@ -75,11 +81,14 @@ class NodeViewRoutesMetadataTest extends BrowserTestBase {
    */
   public function testNodeRoutes(): void {
     // Create a published revision for a node.
-    $published_revision_body = $this->randomString();
+    $published_revision_body = '<u>Custom page</u> introduction with <sub>rich</sub><sup>text</sup><mark>highlighted</mark>.';
     $node = $this->drupalCreateNode([
       'type' => 'test',
       'moderation_state' => 'published',
-      'body' => $published_revision_body,
+      'body' => [
+        'value' => $published_revision_body,
+        'format' => 'full_html',
+      ],
     ]);
     // Save the revision url for later access.
     $first_revision_url = $node->toUrl('revision');
@@ -95,7 +104,7 @@ class NodeViewRoutesMetadataTest extends BrowserTestBase {
     // Verify that the page header block is shown in the node canonical route
     // and contains the correct revision text.
     $this->drupalGet($node->toUrl());
-    $this->assertSession()->elementTextContains('css', '.ecl-page-header__description', $published_revision_body);
+    $this->assertEquals($published_revision_body, $this->getSession()->getPage()->find('css', '.ecl-page-header__description')->getHtml());
 
     // Verify that the block is also shown in the latest version route with the
     // correct draft revision loaded.
@@ -104,7 +113,7 @@ class NodeViewRoutesMetadataTest extends BrowserTestBase {
 
     // Verify also for the node single revision route.
     $this->drupalGet($first_revision_url);
-    $this->assertSession()->elementTextContains('css', '.ecl-page-header__description', $published_revision_body);
+    $this->assertEquals($published_revision_body, $this->getSession()->getPage()->find('css', '.ecl-page-header__description')->getHtml());
   }
 
 }
