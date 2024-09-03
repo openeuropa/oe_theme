@@ -1,11 +1,20 @@
-# Changelog
+# Change Log
+
+## [4.0.0-beta8](https://github.com/openeuropa/oe_theme/tree/4.0.0-beta8) (2024-09-03)
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/4.0.0-beta7...4.0.0-beta8)
+
+**Merged pull requests:**
+
+- EWPP-4710: Allow adding a button separator for list item block patterns. [\#1497](https://github.com/openeuropa/oe_theme/pull/1497) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-4693: Allow 'mark' tag for page header introduction field. [\#1496](https://github.com/openeuropa/oe_theme/pull/1496) ([sergepavle](https://github.com/sergepavle))
+- EWPP-4697: Update to ECL 4.6.2. [\#1495](https://github.com/openeuropa/oe_theme/pull/1495) ([22Alexandra](https://github.com/22Alexandra))
 
 ## [4.0.0-beta7](https://github.com/openeuropa/oe_theme/tree/4.0.0-beta7) (2024-08-29)
-
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/4.0.0-beta6...4.0.0-beta7)
 
 **Merged pull requests:**
 
+- Release-4.0.0-beta7: Update changelog. [\#1494](https://github.com/openeuropa/oe_theme/pull/1494) ([nagyad](https://github.com/nagyad))
 - EWPP-4689: Update to ECL 4.6.1. [\#1493](https://github.com/openeuropa/oe_theme/pull/1493) ([22Alexandra](https://github.com/22Alexandra))
 - EWPP-4674: Update to ECL 4.6.0. [\#1490](https://github.com/openeuropa/oe_theme/pull/1490) ([22Alexandra](https://github.com/22Alexandra))
 - EWPP-4591: Remove unnecessary site footer patch. [\#1489](https://github.com/openeuropa/oe_theme/pull/1489) ([22Alexandra](https://github.com/22Alexandra))
