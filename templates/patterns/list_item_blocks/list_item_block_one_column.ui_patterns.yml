@@ -53,6 +53,11 @@ list_item_block_one_column:
       label: "Icon position"
       description: "The position of the icon"
       preview: 'after'
+    button_separator:
+      type: "text"
+      label: "Button separator"
+      description: "Whether to add a separator line between the items and the button."
+      preview: true
     external_link:
       type: "boolean"
       label: "External link"
