@@ -31,6 +31,11 @@ facts_figures:
           value: "00.0 million"
           title: "Nam lacinia nisl eget diam mattis"
           description: "Sed efficitur bibendum rutrum. Nunc feugiat congue augue ac consectetur."
+    font_size:
+      type: "text"
+      label: "Font size"
+      description: "The size can be 'm' or 'l'. Defaults to 'l'."
+      preview: "m"
     view_all:
       type: "array"
       label: "View all"
