@@ -1,15 +1,26 @@
-# Change Log
+# Changelog
 
-## [4.0.0-beta8](https://github.com/openeuropa/oe_theme/tree/4.0.0-beta8) (2024-09-03)
+## [4.0.0](https://github.com/openeuropa/oe_theme/tree/4.0.0) (2024-09-10)
+
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/4.0.0-beta8...4.0.0)
+
+**Merged pull requests:**
+
+- EWPP-4593: Allow Facts and figures content to be centered. [\#1491](https://github.com/openeuropa/oe_theme/pull/1491) ([22Alexandra](https://github.com/22Alexandra))
+
+## [4.0.0-beta8](https://github.com/openeuropa/oe_theme/tree/4.0.0-beta8) (2024-09-04)
+
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/4.0.0-beta7...4.0.0-beta8)
 
 **Merged pull requests:**
 
+- Prepare changelog for 4.0.0-beta8. [\#1498](https://github.com/openeuropa/oe_theme/pull/1498) ([22Alexandra](https://github.com/22Alexandra))
 - EWPP-4710: Allow adding a button separator for list item block patterns. [\#1497](https://github.com/openeuropa/oe_theme/pull/1497) ([22Alexandra](https://github.com/22Alexandra))
 - EWPP-4693: Allow 'mark' tag for page header introduction field. [\#1496](https://github.com/openeuropa/oe_theme/pull/1496) ([sergepavle](https://github.com/sergepavle))
 - EWPP-4697: Update to ECL 4.6.2. [\#1495](https://github.com/openeuropa/oe_theme/pull/1495) ([22Alexandra](https://github.com/22Alexandra))
 
 ## [4.0.0-beta7](https://github.com/openeuropa/oe_theme/tree/4.0.0-beta7) (2024-08-29)
+
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/4.0.0-beta6...4.0.0-beta7)
 
 **Merged pull requests:**
