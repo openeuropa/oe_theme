@@ -43,3 +43,8 @@ facts_figures:
       label: "External link"
       description: "Whether the view all URL is external or not."
       preview: true
+    centered:
+      type: "boolean"
+      label: "Centered"
+      description: "Whether the items' content should be centered."
+      preview: true

@@ -34,6 +34,7 @@
 
 {% include '@ecl-twig/fact-figures' with {
   'column': _column|default(null),
+  'centered': centered|default(false),
   'items': _items,
   "view_all":{
     "link": _link,

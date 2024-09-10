@@ -4000,9 +4000,10 @@
         label: 'View all metrics'
         path: 'https://example.com'
       external_link: true
+      centered: true
   assertions:
     count:
-      'div.ecl-fact-figures.ecl-fact-figures--col-2 div.ecl-fact-figures__items': 1
+      'div.ecl-fact-figures.ecl-fact-figures--col-2.ecl-fact-figures--centered div.ecl-fact-figures__items': 1
       'div.ecl-fact-figures__item:nth-child(1) svg.ecl-icon.ecl-icon--l.ecl-fact-figures__icon': 1
       'div.ecl-fact-figures__item:nth-child(2) svg.ecl-icon.ecl-icon--l.ecl-fact-figures__icon': 1
       'div.ecl-fact-figures__view-all': 1
@@ -4037,6 +4038,7 @@
   assertions:
     count:
       'div.ecl-fact-figures.ecl-fact-figures--col-3 div.ecl-fact-figures__items': 1
+      'div.ecl-fact-figures.ecl-fact-figures--col-3.ecl-fact-figures--centered': 0
       'div.ecl-fact-figures__view-all': 0
 - array:
     '#type': 'pattern'
