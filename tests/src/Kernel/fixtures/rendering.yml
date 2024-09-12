@@ -3044,11 +3044,14 @@
           variant: "highlight"
         - label: "Status: Open"
           variant: "high"
+      extra_attributes:
+        - name: "extra-attr"
+          value: "extra value"
   assertions:
     count:
       "img.ecl-card__image[src=\"http://via.placeholder.com/120x80\"]": 1
       'div.ecl-content-block__title a.ecl-link--standalone[href="https://example.com"]': 1
-      'article.ecl-card picture[data-ecl-picture-link]': 1
+      'article.ecl-card[extra-attr="extra value"] picture[data-ecl-picture-link]': 1
       'a.ecl-button': 0
       'article.ecl-card div.ecl-card__body ul.ecl-content-block__label-container': 1
       'ul.ecl-content-block__label-container li.ecl-content-block__label-item': 2
@@ -3148,9 +3151,13 @@
         href: "https://example.com"
         label: "Link title"
       external_link: true
+      extra_attributes:
+        - name: "extra-attr"
+          value: "extra value"
   assertions:
     count:
       "div.ecl-card__image": 0
+      'article.ecl-card[extra-attr="extra value"]': 1
       'div.ecl-content-block__title a.ecl-link--standalone.ecl-link--icon[href="https://example.com"]': 1
       'a.ecl-button[href="https://example.com"]': 1
       'svg.ecl-icon.ecl-icon--xs.ecl-button__icon': 1
