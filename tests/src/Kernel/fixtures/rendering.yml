@@ -1483,9 +1483,12 @@
           variant: "highlight"
         - label: "Status: Open"
           variant: "high"
+      extra_attributes:
+        - name: "extra-attr"
+          value: "extra value"
   assertions:
     count:
-      'article.ecl-content-item div.ecl-content-item__content-block div.ecl-content-block__title a.ecl-link[href="http://example.com"]': 1
+      'article.ecl-content-item[extra-attr="extra value"] div.ecl-content-item__content-block div.ecl-content-block__title a.ecl-link[href="http://example.com"]': 1
       'article.ecl-content-item picture.ecl-content-item__picture--large': 0
       'article.ecl-content-item picture.ecl-content-item__picture--left': 0
       'article.ecl-content-item picture.ecl-content-item__picture--right': 0
@@ -1508,9 +1511,12 @@
       length: 6
       meta:
         - "Meta 1"
+      extra_attributes:
+        - name: "extra-attr"
+          value: "extra value"
   assertions:
     count:
-      'article.ecl-content-item div.ecl-content-item__content-block div.ecl-content-block__title a.ecl-link[href="http://example.com"]': 1
+      'article.ecl-content-item[extra-attr="extra value"] div.ecl-content-item__content-block div.ecl-content-block__title a.ecl-link[href="http://example.com"]': 1
       'article.ecl-content-item picture.ecl-content-item__picture--large': 0
       'article.ecl-content-item picture.ecl-content-item__picture--left': 0
       'article.ecl-content-item picture.ecl-content-item__picture--right': 0
@@ -1721,9 +1727,12 @@
       meta:
         - "Meta 1"
         - "Meta 2"
+      extra_attributes:
+        - name: "extra-attr"
+          value: "extra value"
   assertions:
     count:
-      'article.ecl-content-item div.ecl-content-item__content-block a.ecl-link[href="http://example.com"]': 1
+      'article.ecl-content-item[extra-attr="extra value"] div.ecl-content-item__content-block a.ecl-link[href="http://example.com"]': 1
       'article.ecl-content-item img.ecl-content-item__image[alt="Alternate text for primary image"]': 1
       'article.ecl-content-item img.ecl-content-item__image[src="http://via.placeholder.com/150x150"]': 1
       'article.ecl-content-item picture[data-ecl-picture-link]': 1
@@ -1748,9 +1757,12 @@
       meta:
         - "Meta 1"
         - "Meta 2"
+      extra_attributes:
+        - name: "extra-attr"
+          value: "extra value"
   assertions:
     count:
-      'article.ecl-content-item div.ecl-content-item__content-block a.ecl-link[href="http://example.com"]': 1
+      'article.ecl-content-item[extra-attr="extra value"] div.ecl-content-item__content-block a.ecl-link[href="http://example.com"]': 1
       'article.ecl-content-item img.ecl-content-item__image[alt="Alternate text for secondary image"]': 1
       'article.ecl-content-item img.ecl-content-item__image[src="http://via.placeholder.com/120x80"]': 1
       'article.ecl-content-item picture[data-ecl-picture-link]': 1
@@ -1782,9 +1794,12 @@
       secondary_meta:
         - label: "Brussels"
           icon: "location"
+      extra_attributes:
+        - name: "extra-attr"
+          value: "extra value"
   assertions:
     count:
-      article.ecl-card div.ecl-card__body div.ecl-content-block.ecl-card__content-block: 1
+      article.ecl-card[extra-attr="extra value"] div.ecl-card__body div.ecl-content-block.ecl-card__content-block: 1
       article.ecl-card div.ecl-card__body a.ecl-link--standalone[href="http://example.com"]: 1
       article.ecl-card img.ecl-card__image[alt="Alternate text for secondary image"]: 1
       article.ecl-card img.ecl-card__image[src="http://via.placeholder.com/300x300"]: 1
@@ -1814,6 +1829,9 @@
         alt: "Alternate text for secondary image"
       detail: "This is a very long description. Better to trim it off."
       length: 32
+      extra_attributes:
+        - name: "extra-attr"
+          value: "extra value"
   assertions:
     count:
       article.ecl-card div.ecl-card__body a.ecl-link--standalone[href="http://example.com"]: 1
@@ -1841,9 +1859,12 @@
           variant: "highlight"
         - label: "Status: Open"
           variant: "high"
+      extra_attributes:
+        - name: "extra-attr"
+          value: "extra value"
   assertions:
     count:
-      'article.ecl-card div.ecl-card__body a.ecl-link--standalone[href="http://example.com"]': 1
+      'article.ecl-card[extra-attr="extra value"] div.ecl-card__body a.ecl-link--standalone[href="http://example.com"]': 1
       'article.ecl-card div.ecl-card__image': 0
       'article.ecl-card div.ecl-card__body ul.ecl-content-block__primary-meta-container': 0
       'article.ecl-card div.ecl-card__body ul.ecl-content-block__label-container': 1
@@ -1875,9 +1896,12 @@
           variant: "highlight"
         - label: "Status: Open"
           variant: "medium"
+      extra_attributes:
+        - name: "extra-attr"
+          value: "extra value"
   assertions:
     count:
-      'article.ecl-content-item div.ecl-content-item__content-block a.ecl-link[href="http://example.com"]': 1
+      'article.ecl-content-item[extra-attr="extra value"] div.ecl-content-item__content-block a.ecl-link[href="http://example.com"]': 1
       'article.ecl-content-item time.ecl-date-block.ecl-date-block--ongoing.ecl-content-item__date': 1
       'article.ecl-content-item time.ecl-date-block.ecl-date-block--ongoing.ecl-content-item__date abbr.ecl-date-block__month[title="July"]': 1
     equals:
@@ -1913,9 +1937,12 @@
             definition: "Thursday 15 November, 08:00 AM to Friday 16 November"
           - term: "Where"
             definition: "The EGG, Rue Barra 175, 1070 Brussels, Belgium"
+      extra_attributes:
+        - name: "extra-attr"
+          value: "extra value"
   assertions:
     count:
-      'article.ecl-content-item div.ecl-content-item__content-block a.ecl-link[href="http://example.com"]': 1
+      'article.ecl-content-item[extra-attr="extra value"] div.ecl-content-item__content-block a.ecl-link[href="http://example.com"]': 1
       'article.ecl-content-item time.ecl-date-block.ecl-date-block--ongoing.ecl-content-item__date': 1
       'article.ecl-content-item time.ecl-date-block.ecl-date-block--ongoing.ecl-content-item__date abbr.ecl-date-block__month[title="July"]': 1
       'div.ecl-content-block__list-container dl.ecl-u-mb-xl .ecl-description-list__term': 2
