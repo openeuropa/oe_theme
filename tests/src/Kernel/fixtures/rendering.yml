@@ -4581,6 +4581,9 @@
         image:
           src: "https://loremflickr.com/1200/900/arch"
           alt: "Highlighted item image"
+        extra_attributes:
+          - name: "extra-attr1"
+            value: "extra value1"
       items:
         - title: "Item 2"
           detail: "Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem."
@@ -4593,6 +4596,9 @@
           image:
             src: "https://loremflickr.com/1200/900/arch"
             alt: "Item 2 image"
+          extra_attributes:
+            - name: "extra-attr2"
+              value: "extra value2"
         - title: "Item 3"
           url: "https://external.com"
           detail: "In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam"
@@ -4646,8 +4652,8 @@
       'div.ecl-content-block__title': 4
       'div.ecl-content-block__title a': 3
       'picture.ecl-content-item__picture': 2
-      'div.ecl-col-l-8 picture.ecl-content-item__picture--large img.ecl-content-item__image[src="https://loremflickr.com/1200/900/arch"][alt="Highlighted item image"]': 1
-      'div.ecl-col-l-4 picture.ecl-content-item__picture--medium img.ecl-content-item__image[src="https://loremflickr.com/1200/900/arch"][alt="Item 2 image"]': 1
+      'div.ecl-col-l-8 article.ecl-content-item[extra-attr1="extra value1"] picture.ecl-content-item__picture--large img.ecl-content-item__image[src="https://loremflickr.com/1200/900/arch"][alt="Highlighted item image"]': 1
+      'div.ecl-col-l-4 article.ecl-content-item[extra-attr2="extra value2"] picture.ecl-content-item__picture--medium img.ecl-content-item__image[src="https://loremflickr.com/1200/900/arch"][alt="Item 2 image"]': 1
       'div#highlighted-news-block div.ecl-col-l-8 a': 1
       'div#highlighted-news-block div.ecl-col-l-4 a': 2
       'ul.ecl-content-block__primary-meta-container': 4
@@ -4817,6 +4823,9 @@
                 definition: "Thursday 15 November, 08:00 AM to Friday 16 November"
               - term: "Where"
                 definition: "The EGG, Rue Barra 175, 1070 Brussels, Belgium"
+          extra_attributes:
+            - name: "extra-attr1"
+              value: "extra value1"
         - title: "In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo"
           url: "https://external.com"
           detail: "In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam"
@@ -4879,6 +4888,7 @@
       'div div.ecl-row.ecl-u-border-color-neutral.ecl-u-border-width-1.ecl-u-border-bottom.ecl-u-pb-l': 1
       'div.ecl-row div.ecl-col-l-3.ecl-u-d-flex.ecl-u-flex-column': 4
       'div.ecl-row article.ecl-content-item.ecl-u-flex-grow-1': 6
+      'div.ecl-row article.ecl-content-item[extra-attr1="extra value1"].ecl-u-flex-grow-1': 1
       'div.ecl-row article.ecl-content-item--divider.ecl-u-flex-grow-1.ecl-u-mb-m': 2
       'div.ecl-content-block__title': 6
       'div.ecl-content-block__title a': 4
