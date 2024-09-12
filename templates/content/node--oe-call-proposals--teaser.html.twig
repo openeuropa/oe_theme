@@ -16,6 +16,8 @@
   {% set additional_information = additional_information|merge([additional_information_items]) %}
 {% endif %}
 
+{% set extra_attributes = [] %}
+
 {# Add cache info from status field. #}
 {% set bubble_cache = content.extra_field_oe_call_proposals_label_status|render %}
 {% block content %}
@@ -26,6 +28,7 @@
     'lists': additional_information,
     'lists_variant': 'vertical',
     'badges': badges,
-    'external_link': external_link
+    'external_link': external_link,
+    'extra_attributes': extra_attributes,
   }) }}
 {% endblock %}

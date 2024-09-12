@@ -11,6 +11,7 @@
 {% endif %}
 {% set detail = content.extra_field_oe_theme_content_event_teaser_details %}
 {% set additional_information = [] %}
+{% set extra_attributes = [] %}
 {% block content %}
   {{ pattern('list_item', {
     'variant': variant|default('date'),
@@ -22,6 +23,7 @@
     'lists': additional_information,
     'lists_variant': 'vertical',
     'badges': badges,
-    'external_link': external_link
+    'external_link': external_link,
+    'extra_attributes': extra_attributes,
   }) }}
 {% endblock %}

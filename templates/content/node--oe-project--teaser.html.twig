@@ -17,6 +17,8 @@
   {% set additional_information = additional_information|merge([additional_information_items]) %}
 {% endif %}
 
+{% set extra_attributes = [] %}
+
 {% block content %}
   {{ pattern('list_item', {
     'variant': 'thumbnail_secondary',
@@ -27,6 +29,7 @@
     'lists_variant': 'vertical',
     'image': image_url ? { 'src': image_url },
     'badges': badges,
-    'external_link': external_link
+    'external_link': external_link,
+    'extra_attributes': extra_attributes,
   }) }}
 {% endblock %}
