@@ -5,8 +5,11 @@ declare(strict_types=1);
 namespace Drupal\oe_theme_helper\Plugin\MediaDataExtractor;
 
 use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Drupal\Core\Image\Image;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
+use Drupal\file\FileInterface;
 use Drupal\media\MediaInterface;
+use Drupal\media_avportal\Plugin\media\Source\MediaAvPortalPhotoSource;
 use Drupal\oe_theme\ValueObject\GalleryItemValueObject;
 use Drupal\oe_theme\ValueObject\ImageValueObject;
 use Drupal\oe_theme\ValueObject\ImageValueObjectInterface;
@@ -102,12 +105,11 @@ class Thumbnail extends MediaDataExtractorPluginBase implements ContainerFactory
     $image_style = $this->entityTypeManager
       ->getStorage('image_style')
       ->load($configuration['thumbnail_image_style']);
-    $source = $media->getSource();
-    $url = $image_style->buildUrl($source->getMetadata($media, 'thumbnail_uri'));
+    $uri = $this->getImageUriFromMedia($media);
 
     // Create a new image value object with the new src.
     $thumbnail = ImageValueObject::fromArray([
-      'src' => \Drupal::service('file_url_generator')->transformRelative($url),
+      'src' => $image_style->buildUrl($uri),
     ] + $thumbnail->getArray());
     $thumbnail->addCacheableDependency($image_style);
 
@@ -121,6 +123,33 @@ class Thumbnail extends MediaDataExtractorPluginBase implements ContainerFactory
     // @todo Covers the media gallery scenario, but should return the original
     //   file URL.
     return $this->getThumbnail($media)->getSource();
+  }
+
+  /**
+   * Returns the image URI for a media entity.
+   *
+   * @param \Drupal\media\MediaInterface $media
+   *   The media entity.
+   *
+   * @return string
+   *   The image uri.
+   */
+  protected static function getImageUriFromMedia(MediaInterface $media): string {
+    $source = $media->getSource();
+    $field_name = $source->getConfiguration()['source_field'];
+
+    if ($source instanceof Image && $media->get($field_name)->entity instanceof FileInterface) {
+      $uri = $media->get($field_name)->entity->getFileUri();
+    }
+    elseif ($source instanceof MediaAvPortalPhotoSource) {
+      $resource_ref = $media->get($field_name)->value;
+      $uri = 'avportal://' . $resource_ref . '.jpg';
+    }
+    else {
+      $uri = $source->getMetadata($media, 'thumbnail_uri');
+    }
+
+    return $uri;
   }
 
 }
