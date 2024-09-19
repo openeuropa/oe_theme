@@ -22,7 +22,7 @@
     'image_position': 'top',
     'divider': true,
     'extra_classes': 'ecl-u-flex-grow-1',
-    'contextual_links': highlighted_item.contextual_links
+    'contextual_links': highlighted_item.contextual_links,
     'extra_attributes': highlighted_item.extra_attributes|default([]),
   }, 'default') %}
 {% endif %}
@@ -46,7 +46,7 @@
       'image_position': loop.first ? 'top' : '',
       'divider': true,
       'extra_classes': loop.last ? 'ecl-u-flex-grow-1' : 'ecl-u-flex-grow-1 ecl-u-mb-m',
-      'contextual_links': item.contextual_links
+      'contextual_links': item.contextual_links,
       'extra_attributes': item.extra_attributes|default([]),
     }, 'default') %}
     {% set _items = _items|merge([_item]) %}

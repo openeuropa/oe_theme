@@ -26,7 +26,7 @@
       'image_position': (loop.first or loop.index == 4) ? 'top' : '',
       'divider': (loop.index == 2 or loop.index == 5) ? true : false,
       'extra_classes': (loop.index == 2 or loop.index == 5) ? 'ecl-u-flex-grow-1 ecl-u-mb-m' : 'ecl-u-flex-grow-1',
-      'contextual_links': item.contextual_links
+      'contextual_links': item.contextual_links,
       'extra_attributes': item.extra_attributes|default([]),
     }, 'default') %}
     {% set _items = _items|merge([_item]) %}

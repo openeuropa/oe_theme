@@ -5,7 +5,6 @@
  */
 #}
 {% set image_url = content.oe_publication_thumbnail|field_value|render %}
-{% set extra_attributes = [] %}
 {% block content %}
   {{ pattern('list_item', {
     'variant': 'thumbnail_secondary',
@@ -22,6 +21,6 @@
     'lists_variant': 'vertical',
     'badges': badges,
     'external_link': external_link,
-    'extra_attributes': extra_attributes,
+    'extra_attributes': extra_attributes|default([]),
   }) }}
 {% endblock %}

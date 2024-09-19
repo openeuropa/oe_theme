@@ -4,7 +4,6 @@
  * Teaser template implementation for "Page" content type.
  */
 #}
-{% set extra_attributes = [] %}
 {% block content %}
   {{ pattern('list_item', {
     'variant': 'default',
@@ -15,6 +14,6 @@
     'lists_variant': 'vertical',
     'badges': badges,
     'external_link': external_link,
-    'extra_attributes': extra_attributes,
+    'extra_attributes': extra_attributes|default([]),
   }) }}
 {% endblock %}
