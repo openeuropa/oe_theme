@@ -128,8 +128,8 @@ class ConfigurationTest extends BrowserTestBase {
 
       // Assert that the favicon provided by the theme is being used.
       $this->assertSession()->responseContains("/$active_theme/images/favicons/eu/favicon.ico");
-      $this->assertSession()->responseContains("$active_theme/images/favicons/eu/favicon.png");
-      $this->assertSession()->responseContains("/$active_theme/images/favicons/eu/favicon.svg");
+      $this->assertSession()->responseContains('/oe_theme/images/favicons/eu/favicon.png');
+      $this->assertSession()->responseContains('/oe_theme/images/favicons/eu/favicon.svg');
 
       // Assert that we do not load the EC component library.
       $this->assertLinkNotContainsHref('/oe_theme/dist/ec/styles/ecl-ec.css');
@@ -170,8 +170,8 @@ class ConfigurationTest extends BrowserTestBase {
 
       // Assert that the favicon provided by the theme is being used.
       $this->assertSession()->responseContains("/$active_theme/images/favicons/ec/favicon.ico");
-      $this->assertSession()->responseContains("$active_theme/images/favicons/ec/favicon.png");
-      $this->assertSession()->responseContains("/$active_theme/images/favicons/ec/favicon.svg");
+      $this->assertSession()->responseContains('/oe_theme/images/favicons/ec/favicon.png');
+      $this->assertSession()->responseContains('/oe_theme/images/favicons/ec/favicon.svg');
 
       // Assert that we do not load the EU component library by default.
       $this->assertLinkNotContainsHref('/oe_theme/dist/eu/styles/ecl-eu.css');
@@ -242,6 +242,37 @@ class ConfigurationTest extends BrowserTestBase {
       // Make sure that 'Site name' banner is present in the site header
       // for Standardised template.
       $assert_session->elementExists('css', 'header.ecl-site-header .ecl-site-header__banner .ecl-container');
+    }
+  }
+
+  /**
+   * Test that the correct favicon is used based on theme configuration.
+   */
+  public function testUseEclFavicon(): void {
+    foreach (['oe_theme', 'oe_theme_subtheme_test'] as $active_theme) {
+      $this->config('system.theme')->set('default', $active_theme)->save();
+      $this->container->set('theme.registry', NULL);
+      $assert_session = $this->assertSession();
+      // Assert that the favicon provided by the base theme is being used.
+      $this->drupalGet('<front>');
+      $assert_session->responseContains("/$active_theme/images/favicons/ec/favicon.ico");
+      $assert_session->responseContains('/oe_theme/images/favicons/ec/favicon.png');
+      $assert_session->responseContains('/oe_theme/images/favicons/ec/favicon.svg');
+
+      // Configure theme to not use default favicon.
+      $this->config("$active_theme.settings")->set('favicon', [
+        'mimetype' => 'image/vnd.microsoft.icon',
+        'path' => 'https://www.w3schools.com/images/favicon.ico',
+        'use_default' => FALSE,
+      ])->save();
+      $this->container->set('theme.registry', NULL);
+
+      // Assert that the favicon provided by the base theme is not being used.
+      $this->drupalGet('<front>');
+      $assert_session->responseNotContains("/$active_theme/images/favicons/ec/favicon.ico");
+      $assert_session->responseNotContains('/oe_theme/images/favicons/ec/favicon.png');
+      $assert_session->responseNotContains('/oe_theme/images/favicons/ec/favicon.svg');
+      $assert_session->responseContains("https://www.w3schools.com/images/favicon.ico");
     }
   }
 

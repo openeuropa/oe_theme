@@ -2544,28 +2544,40 @@ function oe_theme_preprocess_select(&$variables) {
  * Implements hook_page_attachments_alter().
  */
 function oe_theme_page_attachments_alter(array &$attachments) {
+  // If the theme is configured to not use the theme favicon, bail out.
+  if (!theme_get_setting('favicon.use_default')) {
+    return;
+  }
+
   // Use different favicon based on theme component library.
   $active_theme = \Drupal::theme()->getActiveTheme();
   if ($active_theme->getName() === 'oe_theme' || array_key_exists('oe_theme', $active_theme->getBaseThemeExtensions())) {
+    $oe_theme_path = \Drupal::service('extension.list.theme')->getPath('oe_theme');
+    $active_theme_path = $active_theme->getPath();
     $component_library = theme_get_setting('component_library') ?? 'ec';
+    $favicon = DRUPAL_ROOT . '/' . $active_theme_path . "/images/favicons/$component_library/favicon.ico";
     foreach ($attachments['#attached']['html_head_link'] as &$link) {
       if ($link[0]['rel'] !== 'icon') {
         continue;
       }
-      $link[0]['href'] = base_path() . $active_theme->getPath() . "/images/favicons/$component_library/favicon.ico";
+      // If subtheme file exists on the server, use its base path, otherwise
+      // use the base path of the base theme file.
+      $link[0]['href'] = file_exists($favicon) ? base_path() . $active_theme_path . "/images/favicons/$component_library/favicon.ico" : base_path() . $oe_theme_path . "/images/favicons/$component_library/favicon.ico";
     }
     // Add the svg and png favicons.
+    $svg_favicon = DRUPAL_ROOT . '/' . $active_theme_path . "/images/favicons/$component_library/favicon.svg";
     $attachments['#attached']['html_head_link'][] = [
       [
         'rel' => 'icon',
-        'href' => base_path() . $active_theme->getPath() . "/images/favicons/$component_library/favicon.svg",
+        'href' => file_exists($svg_favicon) ? base_path() . $active_theme_path . "/images/favicons/$component_library/favicon.svg" : base_path() . $oe_theme_path . "/images/favicons/$component_library/favicon.svg",
         'type' => 'image/svg+xml',
       ],
     ];
+    $png_favicon = DRUPAL_ROOT . '/' . $active_theme_path . "/images/favicons/$component_library/favicon.png";
     $attachments['#attached']['html_head_link'][] = [
       [
         'rel' => 'apple-touch-icon',
-        'href' => base_path() . $active_theme->getPath() . "/images/favicons/$component_library/favicon.png",
+        'href' => file_exists($png_favicon) ? base_path() . $active_theme_path . "/images/favicons/$component_library/favicon.png" : base_path() . $oe_theme_path . "/images/favicons/$component_library/favicon.png",
       ],
     ];
   }
