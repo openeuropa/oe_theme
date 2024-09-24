@@ -523,3 +523,137 @@ msgstr "قرأت شر @link وأوافق عليها"
 msgid "personal data protection terms"
 msgstr "وط حماية البيانات"
 
+msgid "Ongoing"
+msgstr "مستمر"
+
+msgid "Opening of tenders"
+msgstr "مفتوح للعطاءات"
+
+msgid "External event"
+msgstr "حدث خارجي"
+
+msgid "Online only"
+msgstr "على الخط فقط"
+
+msgid "Organisers"
+msgstr "المنظمون"
+
+msgid "Part of"
+msgstr "جزء من"
+
+msgid "Programme"
+msgstr "برنامج"
+
+msgid "Register here"
+msgstr "سجل هنا"
+
+msgid "Report"
+msgstr "تقرير"
+
+msgid "Speakers"
+msgstr "متحدثون"
+
+msgid "Starts on @date"
+msgstr "يبدأ @يوم"
+
+msgid "The livestream has ended, but the event is ongoing."
+msgstr "انتهى البث الحي، ولكن الحدث لا يزال مستمر."
+
+msgid "The livestream has started."
+msgstr "بدأ البث الحي."
+
+msgid "This event has been cancelled."
+msgstr "تم إلغاء الحدث."
+
+msgid "This event has been postponed."
+msgstr "تم تأجيل الحدث."
+
+msgid "This event has been rescheduled."
+msgstr "تم تغيير موعد هذا الحدث."
+
+msgid "This event has ended, but the livestream is ongoing."
+msgstr "انتهى الحدث، ولكن البث الحي لا يزال مستمر."
+
+msgid "This event has ended."
+msgstr "انتهى هذا الحدث."
+
+msgid "This event has started."
+msgstr "بدأ هذا الحدث."
+
+msgid "This event has started. The livestream will start at @date."
+msgstr "بدأ هذا الحدث. سوف يبدأ البث الحي @يوم."
+
+msgid "This event has started. You can also watch it via livestream."
+msgstr "بدأ هذا الحدث. يمكنك أن تشاهده أيضا من خلال البث الحي."
+
+msgid "This livestream has started."
+msgstr "بدأ هذا البث الحي."
+
+msgid "Who should attend"
+msgstr "يجب أن تحضر."
+
+msgid "@percentage% of the overall budget"
+msgstr "@percentage% الميزانية الكلية"
+
+msgid "Clear all"
+msgstr "مسح الكل"
+
+msgid "Filter results"
+msgstr "نتائج الفرز"
+
+msgid "This site is managed by:<br />@name"
+msgstr "يدير هذا الموقع: <br />@name"
+
+msgid "See all"
+msgstr "شاهد الكل"
+
+msgid "You are here:"
+msgstr "أنت هنا:"
+
+msgid "European Commission logo"
+msgstr "رمز المفوضية الأوروبية"
+
+msgid "European Union flag"
+msgstr "علم الاتحاد الأوروبي"
+
+msgid "Access item's children"
+msgstr "بلوغ بنود الأطفال"
+
+msgid "Collapse"
+msgstr "إخفاء"
+
+msgid "Site navigation"
+msgstr "التجول في الموقع"
+
+msgid "Next news item"
+msgstr "بند الأخبار التالي"
+
+msgid "Pause news ticker"
+msgstr "مؤشر توقف الأخبار المؤقت"
+
+msgid "Play news ticker"
+msgstr "مؤشر قراءة الأخبار "
+
+msgid "Previous news item"
+msgstr "بند الأخبار السابق"
+
+msgid "Close"
+msgstr "قفل"
+
+msgid "Leadership and organisation"
+msgstr "الريادة والتنظيم"
+
+msgid "European Union"
+msgstr "الاتحاد الأوروبي"
+
+msgid "Highlighted"
+msgstr "تسليط الضوء"
+
+msgid "Home"
+msgstr "الصفحة الرئيسية"
+
+msgid "Press contact"
+msgstr "اتصال الصحافة"
+
+msgid "Sources"
+msgstr "المصادر"
