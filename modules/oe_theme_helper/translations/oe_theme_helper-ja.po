@@ -2,91 +2,91 @@ msgid ""
 msgstr ""
 
 msgid "Call for proposals"
-msgstr "公募案件"
+msgstr "提案要請"
 
 msgid "Deadline dates"
-msgstr "提出期限"
+msgstr "締め切り"
 
 msgid "Deadline model"
-msgstr "提出期限形態"
+msgstr "締め切りモデル"
 
 msgid "Funding programme"
-msgstr "資金プログラム"
+msgstr "資金調達プログラム"
 
 msgid "Multiple cut-off"
-msgstr "複数締切日"
+msgstr "複数カットオフ"
 
 msgid "Permanent"
-msgstr "無期限"
+msgstr "恒久的"
 
 msgid "Single-stage"
-msgstr "一段階"
+msgstr "単段式"
 
 msgid "Two-stage"
-msgstr "二段階"
+msgstr "二段式"
 
 msgid "Deadline date"
-msgstr "提出期限"
+msgstr "締め切り"
 
 msgid "Opening date"
-msgstr "開札日"
+msgstr "開始日"
 
 msgid "Status"
-msgstr "状況"
+msgstr "ステータス"
 
 msgid "Closed"
-msgstr "終了"
+msgstr "クローズ"
 
 msgid "Open"
-msgstr "募集中"
+msgstr "オープン"
 
 msgid "Upcoming"
-msgstr "公募予定"
+msgstr "今後予定"
 
 msgid "Departments"
-msgstr "担当部局"
+msgstr "部門"
 
 msgid "Department"
-msgstr "担当部局"
+msgstr "部門"
 
 msgid "Reference"
-msgstr "参考コード"
+msgstr "参照"
 
 msgid "Details"
 msgstr "詳細"
 
 msgid "Description"
-msgstr "概要"
+msgstr "説明"
 
 msgid "Documents"
-msgstr "関連資料"
+msgstr "書類"
 
 msgid "Results"
-msgstr "落札結果"
+msgstr "結果"
 
 msgid "Call for tenders"
-msgstr "入札公告"
+msgstr "入札依頼"
 
 msgid "Call status: @label"
-msgstr "入札状況: @label"
+msgstr "依頼ステータス： @label"
 
 msgid "Grants awarded"
-msgstr "資金提供"
+msgstr "授与された助成金"
 
 msgid "Ongoing"
-msgstr "募集中"
+msgstr "進行中"
 
 msgid "Opening of tenders"
-msgstr "開札日"
+msgstr "入札開始時間"
 
 msgid "Additional information"
 msgstr "追加情報"
 
 msgid "Consultation outcome"
-msgstr "公募結果"
+msgstr "コンサルティングの結果"
 
 msgid "General contact"
-msgstr "問い合わせ先"
+msgstr "連絡先"
 
 msgid "Reference documents"
 msgstr "参考資料"
@@ -95,28 +95,28 @@ msgid "Related links"
 msgstr "関連リンク"
 
 msgid "Respond to the consultation"
-msgstr "意見を提出"
+msgstr "コンサルティングに回答する"
 
 msgid "Respond to the questionnaire"
-msgstr "アンケートに回答"
+msgstr "アンケートに回答する"
 
 msgid "Status: @label"
-msgstr "状況: @label"
+msgstr "ステータス：@label"
 
 msgid "Target audience"
-msgstr "対象"
+msgstr "対象者"
 
 msgid "The response period for this consultation has ended. Thank you for your input."
-msgstr "本案件に対する意見公募期間は終了しました。ご協力ありがとうございました。"
+msgstr "コンサルティングに対する回答期間は終了しました。ご意見ありがとうございます。"
 
 msgid "Why we are consulting"
-msgstr "意見公募の主旨"
+msgstr "なぜコンサルティングをしているのか"
 
 msgid "Consultation"
-msgstr "意見公募"
+msgstr "コンサルティング"
 
 msgid "Deadline"
-msgstr "提出期限"
+msgstr "締め切り"
 
 msgid "As planned"
 msgstr "予定通り"
@@ -125,7 +125,7 @@ msgid "Cancelled"
 msgstr "中止"
 
 msgid "Entrance fee"
-msgstr "参加費"
+msgstr "入場料"
 
 msgid "External event"
 msgstr "外部イベント"
@@ -134,16 +134,16 @@ msgid "File"
 msgstr "ファイル"
 
 msgid "Languages"
-msgstr "使用言語"
+msgstr "言語"
 
 msgid "Live stream"
-msgstr "ライブ配信"
+msgstr "ライブストリーム"
 
 msgid "Live streaming available"
-msgstr "ライブ配信あり"
+msgstr "ライブストリーミングが利用可能"
 
 msgid "Number of seats"
-msgstr "定員"
+msgstr "座席数"
 
 msgid "Online link"
 msgstr "オンラインリンク"
@@ -161,124 +161,124 @@ msgid "Organisers"
 msgstr "主催者"
 
 msgid "Part of"
-msgstr "関連イベント"
+msgstr "カテゴリー"
 
 msgid "Postponed"
-msgstr "延期"
+msgstr "延期されました"
 
 msgid "Practical information"
-msgstr "詳細情報"
+msgstr "実用的な情報"
 
 msgid "Programme"
-msgstr "内容"
+msgstr "プログラム"
 
 msgid "Register here"
 msgstr "登録はこちら"
 
 msgid "Report"
-msgstr "報告する"
+msgstr "レポート"
 
 msgid "Rescheduled"
-msgstr "日時変更"
+msgstr "日程変更"
 
 msgid "Speakers"
 msgstr "講演者"
 
 msgid "The livestream has ended, but the event is ongoing."
-msgstr "ライブ配信は終了しましたが、イベントは続いています"
+msgstr "ライブストリームは終了しましたが、イベントは進行中です。"
 
 msgid "The livestream has started."
-msgstr "ライブ配信が始まりました"
+msgstr "ライブストリームが始まりました。"
 
 msgid "This event has been cancelled."
-msgstr "本イベントは中止となりました"
+msgstr "このイベントは中止になりました。"
 
 msgid "This event has been postponed."
-msgstr "本イベントは延期となりました"
+msgstr "このイベントは延期されました。"
 
 msgid "This event has been rescheduled."
-msgstr "本イベントの開催日時が変更されました"
+msgstr "このイベントは日程が変更されました。"
 
 msgid "This event has ended, but the livestream is ongoing."
-msgstr "本イベントは終了しましたが、ライブ配信は続いています"
+msgstr "このイベントは終了しましたが、ライブストリームは継続中です。"
 
 msgid "This event has ended."
-msgstr "本イベントは終了しました"
+msgstr "このイベントは終了しました。"
 
 msgid "This event has started."
-msgstr "本イベントは始まりました"
+msgstr "このイベントは始まりました。"
 
 msgid "This event has started. You can also watch it via livestream."
-msgstr "本イベントは始まりました。ライブ配信でもご覧いただけます"
+msgstr "このイベントは始まりました。ライブストリームを使って視聴することもできます。"
 
 msgid "This livestream has started."
-msgstr "ライブ配信が始まりました"
+msgstr "ライブストリームが始まりました。"
 
 msgid "When"
-msgstr "開催日"
+msgstr "時間"
 
 msgid "Where"
-msgstr "開催場所"
+msgstr "場所"
 
 msgid "Who should attend"
-msgstr "対象者"
+msgstr "参加者"
 
 msgid "Author"
-msgstr "執筆者"
+msgstr "著者"
 
 msgid "Authors"
-msgstr "執筆者"
+msgstr "著者"
 
 msgid "Location"
-msgstr "発表場所"
+msgstr "場所"
 
 msgid "News type"
 msgstr "ニュースの種類"
 
 msgid "Articles and presentations"
-msgstr "関連記事・発表"
+msgstr "記事とプレゼンテーション"
 
 msgid "Biography"
-msgstr "略歴"
+msgstr "バイオグラフィー"
 
 msgid "Declaration of interests"
-msgstr "利害関係の申告"
+msgstr "利益相反の宣言"
 
 msgid "Hide contact details"
-msgstr "連絡先を閉じる"
+msgstr "連絡先の詳細を非表示にする"
 
 msgid "Leadership and organisation"
-msgstr "幹部・組織"
+msgstr "リーダーシップと組織"
 
 msgid "Open gallery"
-msgstr "関連画像・動画"
+msgstr "ギャラリーを開く"
 
 msgid "Show contact details"
-msgstr "連絡先情報"
+msgstr "連絡先の詳細を表示"
 
 msgid "Transparency"
 msgstr "透明性"
 
 msgid "Responsibilities"
-msgstr "担当分野"
+msgstr "責任"
 
 msgid "Media"
 msgstr "メディア"
 
 msgid "Latest"
-msgstr "最新情報"
+msgstr "最新"
 
 msgid "Address"
 msgstr "住所"
 
 msgid "Contact organisation"
-msgstr "連絡先機関"
+msgstr "お問い合わせ"
 
 msgid "Coordinators"
-msgstr "担当者"
+msgstr "コーディネーター"
 
 msgid "EU contribution"
-msgstr "EU資金"
+msgstr "EUの貢献"
 
 msgid "Overall budget"
 msgstr "総予算"
@@ -290,19 +290,19 @@ msgid "Project"
 msgstr "プロジェクト"
 
 msgid "Project duration"
-msgstr "期間"
+msgstr "プロジェクト期間"
 
 msgid "Project locations"
-msgstr "対象国"
+msgstr "プロジェクト拠点"
 
 msgid "Project website"
-msgstr "公式ウェブサイト"
+msgstr "プロジェクトのウェブサイト"
 
 msgid "Stakeholders"
 msgstr "ステークホルダー"
 
 msgid "Funding"
-msgstr "資金"
+msgstr "資金調達"
 
 msgid "Contact"
 msgstr "連絡先"
@@ -311,34 +311,34 @@ msgid "Contacts"
 msgstr "連絡先"
 
 msgid "Email"
-msgstr "メールアドレス"
+msgstr "電子メール"
 
 msgid "Fax number"
-msgstr "ファックス"
+msgstr "FAX番号"
 
 msgid "Mobile number"
-msgstr "携帯番号"
+msgstr "携帯電話番号"
 
 msgid "Name"
-msgstr "氏名"
+msgstr "名前"
 
 msgid "Office"
-msgstr "オフィス番号"
+msgstr "オフィス"
 
 msgid "Organisation"
-msgstr "機関"
+msgstr "組織"
 
 msgid "Phone number"
 msgstr "電話番号"
 
 msgid "Postal address"
-msgstr "郵便番号"
+msgstr "住所"
 
 msgid "Press contacts"
-msgstr "報道関係者はこちら"
+msgstr "プレス連絡先"
 
 msgid "Social media"
-msgstr "SNS"
+msgstr "ソーシャルメディア"
 
 msgid "Website"
 msgstr "ウェブサイト"
@@ -350,49 +350,49 @@ msgid "Close this message"
 msgstr "このメッセージを閉じる"
 
 msgid "personal data protection terms"
-msgstr "個人情報保護方針"
+msgstr "個人情報保護規約"
 
 msgid "Message"
-msgstr "内容"
+msgstr "メッセージ"
 
 msgid "Phone"
-msgstr "電話番号"
+msgstr "電話"
 
 msgid "Send yourself a copy"
-msgstr "自身にコピーを送信"
+msgstr "自分にコピーを送る"
 
 msgid "Status message"
-msgstr "メッセージ状況"
+msgstr "ステータスメッセージ"
 
 msgid "Subject"
 msgstr "件名"
 
 msgid "The sender's email"
-msgstr "送信者メールアドレス"
+msgstr "送信者のメールアドレス"
 
 msgid "The sender's name"
-msgstr "送信者氏名"
+msgstr "送信者の名前"
 
 msgid "Topic"
-msgstr "テーマ"
+msgstr "トピック"
 
 msgid "Your email address"
-msgstr "あなたのメールアドレス"
+msgstr "本人のメールアドレス"
 
 msgid "Your name"
-msgstr "あなたの氏名"
+msgstr "本人の名前"
 
 msgid "After"
-msgstr "より後"
+msgstr "後"
 
 msgid "Before"
-msgstr "より前"
+msgstr "前"
 
 msgid "Clear all"
-msgstr "全てを解除"
+msgstr "すべてクリア"
 
 msgid "Content owner"
-msgstr "コンテンツ責任者"
+msgstr "コンテンツ所有者"
 
 msgid "Date"
 msgstr "日付"
@@ -401,16 +401,16 @@ msgid "End Date"
 msgstr "終了日"
 
 msgid "EU organisation type"
-msgstr "EU機関の種類"
+msgstr "EU組織タイプ"
 
 msgid "Event date"
 msgstr "イベント日"
 
 msgid "Event type"
-msgstr "イベントの種類"
+msgstr "イベントのタイプ"
 
 msgid "Filter results"
-msgstr "絞り込み結果"
+msgstr "結果をフィルタリング"
 
 msgid "In between"
 msgstr "期間"
@@ -419,40 +419,40 @@ msgid "Keywords"
 msgstr "キーワード"
 
 msgid "Livestream"
-msgstr "ライブ配信"
+msgstr "ライブストリーム"
 
 msgid "No results have been found"
-msgstr "対象なし"
+msgstr "結果が見つかりませんでした"
 
 msgid "Online type"
-msgstr "オンライン形式の種類"
+msgstr "オンラインタイプ"
 
 msgid "Past"
-msgstr "終了"
+msgstr "過去"
 
 msgid "Publication date"
-msgstr "公開日"
+msgstr "発行日"
 
 msgid "Publication type"
-msgstr "公開の種類"
+msgstr "出版物タイプ"
 
 msgid "Responsible department"
-msgstr "担当部局"
+msgstr "担当部署"
 
 msgid "Select"
 msgstr "選択"
 
 msgid "Select all"
-msgstr "全てを選択"
+msgstr "すべて選択"
 
 msgid "Type"
-msgstr "種類"
+msgstr "タイプ"
 
 msgid "Upcoming and ongoing"
-msgstr "進行中もしくは予定"
+msgstr "今後予定および進行中"
 
 msgid "Upcoming and open"
-msgstr "募集中、もしくは予定"
+msgstr "今後予定およびオープン"
 
 msgid "Venue"
 msgstr "会場"
@@ -461,49 +461,49 @@ msgid "Contact us"
 msgstr "お問い合わせ"
 
 msgid "Follow us"
-msgstr "フォローする"
+msgstr "フォロー"
 
 msgid "More information on:"
 msgstr "さらなる情報はこちら："
 
 msgid "Related sites"
-msgstr "関連ウェブサイト"
+msgstr "関連サイト"
 
 msgid "This site is managed by:<br />@name"
-msgstr "当サイト管理者：<br />@name"
+msgstr "サイト管理者:<br />@name"
 
 msgid "See all"
-msgstr "全てを見る"
+msgstr "すべて見る"
 
 msgid "You are here:"
-msgstr "あなたはここです"
+msgstr "あなたはここにいます："
 
 msgid "European Commission logo"
-msgstr "欧州委員会ロゴ"
+msgstr "欧州委員会のロゴ"
 
 msgid "European Union flag"
-msgstr "EU旗"
+msgstr "欧州連合の旗"
 
 msgid "Page contents"
-msgstr "ページコンテンツ"
+msgstr "ページの内容"
 
 msgid "Access item's children"
-msgstr "子項目にアクセスする"
+msgstr "アイテムの子にアクセス"
 
 msgid "Collapse"
 msgstr "折りたたむ"
 
 msgid "Site navigation"
-msgstr "ウェブサイトナビゲーション"
+msgstr "サイトナビゲーション"
 
 msgid "Next news item"
 msgstr "次のニュース"
 
 msgid "Pause news ticker"
-msgstr "ニュースティッカー停止"
+msgstr "ニュースティッカーを一時停止"
 
 msgid "Play news ticker"
-msgstr "ニュースティッカー開始"
+msgstr "ニュースティッカーを再生"
 
 msgid "Previous news item"
 msgstr "前のニュース"
@@ -521,102 +521,102 @@ msgid "Home"
 msgstr "ホーム"
 
 msgid "Available translations"
-msgstr "翻訳版"
+msgstr "利用可能な翻訳"
 
 msgid "EU Organisation"
-msgstr "EU機関"
+msgstr "EU組織"
 
 msgid "Non-EU organisation"
-msgstr "非EU機関"
+msgstr "非EU組織"
 
 msgid "Organisation type"
-msgstr "機関の種類"
+msgstr "組織タイプ"
 
 msgid "Overview"
 msgstr "概要"
 
 msgid "Press contact"
-msgstr "報道関係者はこちら"
+msgstr "プレス連絡先"
 
 msgid "Related department"
-msgstr "関連部局"
+msgstr "関連部門"
 
 msgid "Sources"
-msgstr "出典"
+msgstr "ソース"
 
 msgid "Follow the latest progress and learn more about getting involved."
-msgstr "最新状況を確認し、参加方法について知る"
+msgstr "最新の進捗状況をフォローし、参加方法について詳しくはこちらをご覧ください。"
 
 msgid "Book your seat, @time_left left to register, registration will end on @end_date"
-msgstr "座席を予約する、@time_leftが登録に残っている、登録は'@end_date'に終了します。"
+msgstr "席を予約してください。登録期限はあと@time_leftです。登録は@end_dateに終了します。"
 
 msgid "Registration period ended on @date"
-msgstr "登録期間は@dateに終了しました。"
+msgstr "登録期間は@dateに終了しました"
 
 msgid "Registration will open in @time_left. You can register from @start_date, until @end_date."
-msgstr "参加登録は@time_leftで開始されます。登録可能期間は@start_dateから@end_dateまで。"
+msgstr "登録は@time_leftで開きます。@start_dateから@end_dateまで登録できます。"
 
 msgid "Starts on @date"
-msgstr "開始日は@date"
+msgstr "@dateから開始します"
 
 msgid "This event has started. The livestream will start at @date."
-msgstr "本イベントは始まりました。ライブストリームは@dateから始まります。"
+msgstr "このイベントは始まりました。ライブストリームは@dateから始まります。"
 
 msgid "(Acting) @role"
-msgstr "@role（代理）"
+msgstr "(代理の)　@role"
 
 msgid "@percentage% of the overall budget"
 msgstr "総予算の@percentage%"
 
 msgid "I have read and agree with the @link"
-msgstr "@link読み、同意します"
+msgstr "私は@linkを読んで同意します"
 
 msgid "Discover more on @link"
 msgstr "さらなる情報：@link"
 
 msgid "Last updated on: @date"
-msgstr "最終更新日：@date"
+msgstr "最終更新日 @date"
 
 msgid "media items"
-msgstr "メディアアイテム"
+msgstr "件のメディアアイテム"
 
 msgid "Show @numb more items"
-msgstr "@numbをもっと表示する"
+msgstr "@numb個のアイテムをさらに表示"
 
 msgid "@date in @journal"
-msgstr "@dateの@journal"
+msgstr "@journalの@date"
 
 msgid "1 day"
 msgid_plural "@count days"
-msgstr[0] "一日"
+msgstr[0] "1日"
 msgstr[1] "@count日"
 
 msgid "1 week"
 msgid_plural "@count weeks"
-msgstr[0] "一週"
-msgstr[1] "@count週"
+msgstr[0] "1週間"
+msgstr[1] "@count週間"
 
 msgid "1 year"
 msgid_plural "@count years"
-msgstr[0] "一年"
+msgstr[0] "1年"
 msgstr[1] "@count年"
 
 msgid "1 month"
 msgid_plural "@count months"
-msgstr[0] "一月"
-msgstr[1] "@count月"
+msgstr[0] "1ヶ月"
+msgstr[1] "@countヶ月"
 
 msgid "1 hour"
 msgid_plural "@count hours"
-msgstr[0] "一時"
-msgstr[1] "@count時"
+msgstr[0] "1時間"
+msgstr[1] "@count時間"
 
 msgid "1 minute"
 msgid_plural "@count minutes"
-msgstr[0] "一分"
+msgstr[0] "1分"
 msgstr[1] "@count分"
 
 msgid "1 second"
 msgid_plural "@count seconds"
-msgstr[0] "一秒"
+msgstr[0] "1秒"
 msgstr[1] "@count秒"
