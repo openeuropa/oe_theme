@@ -92,7 +92,7 @@ msgid "Author"
 msgstr "撰文者"
 
 msgid "Location"
-msgstr "地点"
+msgstr "位置"
 
 msgid "News type"
 msgstr "新闻类别"
@@ -614,3 +614,45 @@ msgstr "实时直播已开始。"
 
 msgid "The livestream has ended, but the event is ongoing."
 msgstr "实时直播已结束，但活动仍在进行中。"
+
+msgid "Ongoing"
+msgstr "进行中"
+
+msgid "Opening of tenders"
+msgstr "开标"
+
+msgid "@percentage% of the overall budget"
+msgstr "占总预算@percentage%"
+
+msgid "Clear all"
+msgstr "清空一切"
+
+msgid "Filter results"
+msgstr "过滤结果"
+
+msgid "This site is managed by:<br />@name"
+msgstr "本网站由:<br/>@name管理"
+
+msgid "You are here:"
+msgstr "您在这里："
+
+msgid "Access item's children"
+msgstr "访问项目子项"
+
+msgid "Collapse"
+msgstr "收缩"
+
+msgid "Site navigation"
+msgstr "网站导航"
+
+msgid "Next news item"
+msgstr "下一个新闻项目"
+
+msgid "Pause news ticker"
+msgstr "暂停新闻跑马灯"
+
+msgid "Play news ticker"
+msgstr "播放新闻跑马灯"
+
+msgid "Previous news item"
+msgstr "上一个新闻项目"
