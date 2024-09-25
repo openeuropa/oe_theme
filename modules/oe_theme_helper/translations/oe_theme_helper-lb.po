@@ -86,7 +86,7 @@ msgid "Highlighted"
 msgstr "am Fokus"
 
 msgid "Home"
-msgstr "Startsäit"
+msgstr "Home"
 
 msgid "Page contents"
 msgstr "Säiteninhalter"
@@ -259,7 +259,7 @@ msgid "Choose another language"
 msgstr "Wielt w.e.g. eng aner Sprooch"
 
 msgid "Location"
-msgstr "Uert"
+msgstr "Standuert"
 
 msgid "Media"
 msgstr "Medien"
@@ -602,3 +602,60 @@ msgstr "Op @link méi gewuer ginn"
 
 msgid "Last updated on: @date"
 msgstr "Fir d’lescht aktualiséiert den: @date"
+
+msgid "Permanent"
+msgstr "Permanent"
+
+msgid "Status"
+msgstr "Status"
+
+msgid "Ongoing"
+msgstr "Lafend"
+
+msgid "Opening of tenders"
+msgstr "Erëffnung vun Ausschreiwungen"
+
+msgid "Status: @label"
+msgstr "Status: @label"
+
+msgid "Part of"
+msgstr "Deel vu(n)"
+
+msgid "@percentage% of the overall budget"
+msgstr "@percentage% vum gesamte Budget"
+
+msgid "Clear all"
+msgstr "All ewech maachen"
+
+msgid "Filter results"
+msgstr "Resultater filteren"
+
+msgid "Livestream"
+msgstr "Livestream"
+
+msgid "This site is managed by:<br />@name"
+msgstr "Dëse Site gëtt verwalt vun: <br />@name"
+
+msgid "You are here:"
+msgstr "Dir sidd hei:"
+
+msgid "Access item's children"
+msgstr "Zougang zum Contenu fir Kanner"
+
+msgid "Collapse"
+msgstr "Kollabéieren"
+
+msgid "Site navigation"
+msgstr "Navigatioun vum Site"
+
+msgid "Next news item"
+msgstr "Nächst Neiegkeet"
+
+msgid "Pause news ticker"
+msgstr "News Ticker pauséieren"
+
+msgid "Play news ticker"
+msgstr "News Ticker spillen"
+
+msgid "Previous news item"
+msgstr "Zu de viregen News"
