@@ -611,3 +611,45 @@ msgstr "Пряма трансляція вже розпочалася."
 
 msgid "The livestream has ended, but the event is ongoing."
 msgstr "Ця пряма трансляція вже закінчилася, але захід ще триває."
+
+msgid "Ongoing"
+msgstr "Активний"
+
+msgid "Opening of tenders"
+msgstr "Apertura delle offerte"
+
+msgid "@percentage% of the overall budget"
+msgstr "@percentage% від загального бюджету"
+
+msgid "Clear all"
+msgstr "Очистити все"
+
+msgid "Filter results"
+msgstr "Результати фільтрування"
+
+msgid "This site is managed by:<br />@name"
+msgstr "Цей сайт впорядковується:<br />@name"
+
+msgid "You are here:"
+msgstr "Ви знаходитесь тут:"
+
+msgid "Access item's children"
+msgstr "Отримати доступ до дочірніх елементів"
+
+msgid "Collapse"
+msgstr "Згорнути"
+
+msgid "Site navigation"
+msgstr "Навігація сайтом"
+
+msgid "Next news item"
+msgstr "Наступна новина"
+
+msgid "Pause news ticker"
+msgstr "Зупинити рухомий рядок"
+
+msgid "Play news ticker"
+msgstr "Ввімкнути рухомий рядок"
+
+msgid "Previous news item"
+msgstr "Попередня новина"
