@@ -524,3 +524,138 @@ msgstr "Jeg har lest og samtykker til @link"
 
 msgid "personal data protection terms"
 msgstr "vilkårene for personvern"
+
+msgid "Ongoing"
+msgstr "Pågående"
+
+msgid "Opening of tenders"
+msgstr "Åpning av anbud"
+
+msgid "External event"
+msgstr "Eksternt arrangement"
+
+msgid "Online only"
+msgstr "Kun på nett"
+
+msgid "Organisers"
+msgstr "Arrangører"
+
+msgid "Part of"
+msgstr "Del av"
+
+msgid "Programme"
+msgstr "Program"
+
+msgid "Register here"
+msgstr "Registrer deg her"
+
+msgid "Report"
+msgstr "Rapport"
+
+msgid "Speakers"
+msgstr "Talere"
+
+msgid "Starts on @date"
+msgstr "Starter @date"
+
+msgid "The livestream has ended, but the event is ongoing."
+msgstr "Livestreamen er over, men arrangementet pågår fortsatt."
+
+msgid "The livestream has started."
+msgstr "Livestreamen er i gang."
+
+msgid "This event has been cancelled."
+msgstr "Dette arrangementet er avlyst."
+
+msgid "This event has been postponed."
+msgstr "Dette arrangementet har blitt utsatt."
+
+msgid "This event has been rescheduled."
+msgstr "Dette arrangementet har blitt omberammet."
+
+msgid "This event has ended, but the livestream is ongoing."
+msgstr "Arrangementet er avsluttet, men livestreamen pågår fortsatt."
+
+msgid "This event has ended."
+msgstr "Dette arrangementet er avsluttet."
+
+msgid "This event has started."
+msgstr "Dette arrangementet har startet."
+
+msgid "This event has started. The livestream will start at @date."
+msgstr "Dette arrangementet har startet. Livestream starter @date."
+
+msgid "This event has started. You can also watch it via livestream."
+msgstr "Dette arrangementet har startet. Du kan også se den via livestream."
+
+msgid "This livestream has started."
+msgstr "Denne livestreamen har startet."
+
+msgid "Who should attend"
+msgstr "Hvem bør delta"
+
+msgid "@percentage% of the overall budget"
+msgstr "@percentage% av det totale budsjettet"
+
+msgid "Clear all"
+msgstr "Fjern alt"
+
+msgid "Filter results"
+msgstr "Filtrer resultater"
+
+msgid "This site is managed by:<br />@name"
+msgstr "Dette nettstedet administreres av:<br />@name"
+
+msgid "See all"
+msgstr "Se alle"
+
+msgid "You are here:"
+msgstr "Du er her:"
+
+msgid "European Commission logo"
+msgstr "EU-kommisjonens logo"
+
+msgid "European Union flag"
+msgstr "EU-flagg"
+
+msgid "Access item's children"
+msgstr "Gå til underordnet objekt"
+
+msgid "Collapse"
+msgstr "Skjul"
+
+msgid "Site navigation"
+msgstr "Navigering på nettsted"
+
+msgid "Next news item"
+msgstr "Neste nyhetspost"
+
+msgid "Pause news ticker"
+msgstr "Pause rullende nyheter"
+
+msgid "Play news ticker"
+msgstr "Spill av rullende nyheter"
+
+msgid "Previous news item"
+msgstr "Forrige nyhetspost"
+
+msgid "Close"
+msgstr "Lukk"
+
+msgid "Leadership and organisation"
+msgstr "Ledelse og organisasjon"
+
+msgid "European Union"
+msgstr "Den europeiske union"
+
+msgid "Highlighted"
+msgstr "Uthevet"
+
+msgid "Home"
+msgstr "Hjem"
+
+msgid "Press contact"
+msgstr "Mediekontakt"
+
+msgid "Sources"
+msgstr "Kilder"
