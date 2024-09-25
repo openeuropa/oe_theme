@@ -90,7 +90,7 @@ msgid "Author"
 msgstr "Yazar"
 
 msgid "Location"
-msgstr "Konum "
+msgstr "Yer"
 
 msgid "News type"
 msgstr "Haber türü"
@@ -525,3 +525,135 @@ msgstr "@link okudum ve kabul ediyorum"
 
 msgid "personal data protection terms"
 msgstr "Veri koruma şartlarını"
+
+msgid "Ongoing"
+msgstr "Devam eden"
+
+msgid "Opening of tenders"
+msgstr "Tekliflerin açılması"
+
+msgid "External event"
+msgstr "Harici etkinlik"
+
+msgid "Online only"
+msgstr "Yalnızca çevrim içi"
+
+msgid "Organisers"
+msgstr "Organizatörler"
+
+msgid "Part of"
+msgstr "Parçası:"
+
+msgid "Programme"
+msgstr "Program"
+
+msgid "Register here"
+msgstr "Buradan kaydolun"
+
+msgid "Report"
+msgstr "Bildir"
+
+msgid "Speakers"
+msgstr "Konuşmacılar"
+
+msgid "Starts on @date"
+msgstr "@date tarihinde başlar"
+
+msgid "The livestream has ended, but the event is ongoing."
+msgstr "Canlı yayın sona erdi, ancak etkinlik devam ediyor."
+
+msgid "The livestream has started."
+msgstr "Canlı yayın başladı."
+
+msgid "This event has been cancelled."
+msgstr "Bu etkinlik iptal edildi."
+
+msgid "This event has been postponed."
+msgstr "Bu etkinlik ertelendi."
+
+msgid "This event has been rescheduled."
+msgstr "Bu etkinlik yeniden planlandı."
+
+msgid "This event has ended, but the livestream is ongoing."
+msgstr "Bu etkinlik sona erdi, ancak canlı yayın devam ediyor."
+
+msgid "This event has ended."
+msgstr "Bu etkinlik sona erdi."
+
+msgid "This event has started."
+msgstr "Bu etkinlik başladı."
+
+msgid "This event has started. The livestream will start at @date."
+msgstr "Bu etkinlik başladı. Canlı yayın @date tarihinde başlayacak."
+
+msgid "This event has started. You can also watch it via livestream."
+msgstr "Bu etkinlik başladı. Ayrıca canlı yayından da izleyebilirsiniz."
+
+msgid "This livestream has started."
+msgstr "Bu canlı yayın başladı."
+
+msgid "Who should attend"
+msgstr "Kimler katılmalı"
+
+msgid "@percentage% of the overall budget"
+msgstr "Genel bütçenin %@percentage oranı"
+
+msgid "Clear all"
+msgstr "Tümünü temizle"
+
+msgid "Filter results"
+msgstr "Sonuçları filtrele"
+
+msgid "This site is managed by:<br />@name"
+msgstr "Bu siteyi yöneten:<br />@name"
+
+msgid "See all"
+msgstr "Tümünü gör"
+
+msgid "You are here:"
+msgstr "Buradasınız:"
+
+msgid "European Commission logo"
+msgstr "Avrupa Komisyonu logosu"
+
+msgid "European Union flag"
+msgstr "Avrupa Birliği bayrağı"
+
+msgid "Access item's children"
+msgstr "Öğenin alt öğelerine erişme"
+
+msgid "Collapse"
+msgstr "Çökme"
+
+msgid "Site navigation"
+msgstr "Sitede gezinme"
+
+msgid "Next news item"
+msgstr "Sonraki haber öğesi"
+
+msgid "Pause news ticker"
+msgstr "Haber şeridini duraklat"
+
+msgid "Play news ticker"
+msgstr "Haber şeridini oynat"
+
+msgid "Previous news item"
+msgstr "Önceki haber öğesi"
+
+msgid "Close"
+msgstr "Kapat"
+
+msgid "European Union"
+msgstr "Avrupa Birliği"
+
+msgid "Highlighted"
+msgstr "Öne çıkan"
+
+msgid "Home"
+msgstr "Ana Sayfa"
+
+msgid "Press contact"
+msgstr "Basın iletişim bilgileri"
+
+msgid "Sources"
+msgstr "Kaynaklar"
