@@ -92,7 +92,7 @@ msgid "Author"
 msgstr "Автор"
 
 msgid "Location"
-msgstr "Местоположение"
+msgstr "Место"
 
 msgid "News type"
 msgstr "Тип новости"
@@ -592,7 +592,7 @@ msgid "media items"
 msgstr "медиа файла"
 
 msgid "Close"
-msgstr "Закрыто"
+msgstr "Закрыть"
 
 msgid "Programme"
 msgstr "Программа"
@@ -611,3 +611,45 @@ msgstr "Прямая трансляция началась."
 
 msgid "The livestream has ended, but the event is ongoing."
 msgstr "Прямая трансляция закончилась, но мероприятие продолжается."
+
+msgid "Ongoing"
+msgstr "Активный"
+
+msgid "Opening of tenders"
+msgstr "Открытие тендера"
+
+msgid "@percentage% of the overall budget"
+msgstr "@percentage% от общего бюджета"
+
+msgid "Clear all"
+msgstr "Очистить все"
+
+msgid "Filter results"
+msgstr "Результаты фильтрации"
+
+msgid "This site is managed by:<br />@name"
+msgstr "Этот сайт управляется:<br />@name"
+
+msgid "You are here:"
+msgstr "Вы находитесь тут:"
+
+msgid "Access item's children"
+msgstr "Получить доступ к дочерним элементам"
+
+msgid "Collapse"
+msgstr "Свернуть"
+
+msgid "Site navigation"
+msgstr "Навигация сайтом"
+
+msgid "Next news item"
+msgstr "Следующая новость"
+
+msgid "Pause news ticker"
+msgstr "Приостановить бегущую строку"
+
+msgid "Play news ticker"
+msgstr "Включить бегущую строку"
+
+msgid "Previous news item"
+msgstr "Предыдущая новость"
