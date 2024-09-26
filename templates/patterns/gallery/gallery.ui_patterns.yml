@@ -155,8 +155,14 @@ gallery:
     columns:
       type: "numeric"
       label: "Columns number"
-      description: "Number of columns. Default is 2. Only used if the grid display is enabled."
+      description: "Number of columns. Default is 2. Only used if the grid display is enabled and no grid template is provided."
       preview: 2
+      escape: false
+    grid_template:
+      type: "numeric"
+      label: "Grid template"
+      description: "The id of the grid template (1, 2, 3 or 4) to be used (defaults to 0). Only used if the grid display is enabled."
+      preview: 3
       escape: false
     ratio:
       type: "string"
