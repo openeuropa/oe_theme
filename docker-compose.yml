@@ -37,7 +37,7 @@ services:
       - '4444'
     shm_size: 2g
   node:
-    image: node:18.18.2
+    image: node:20.9.0
     user: "node"
     working_dir: /home/node/app
     environment:
