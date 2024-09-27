@@ -1,8 +1,8 @@
 diff --git a/node_modules/@ecl/twig-component-file/file-translation-item.html.twig b/node_modules/@ecl/twig-component-file/file-translation-item.html.twig
-index 30788cd..2b92789 100644
+index a934d0f..0671b73 100644
 --- a/node_modules/@ecl/twig-component-file/file-translation-item.html.twig
 +++ b/node_modules/@ecl/twig-component-file/file-translation-item.html.twig
-@@ -5,18 +5,23 @@
+@@ -5,20 +5,25 @@
    - "title" (string) (default: '')
    - "meta" (string) (default: '')
    - "lang" (string) (default: '')
@@ -10,6 +10,7 @@ index 30788cd..2b92789 100644
    - "id" (string) (default: '')
    - "title_id" (string) (default: '')
    - "download" (object) (default to the parent download property) object of type Link
+   - "download_attribute" (bool) (default to the parent download attribute)
 +  - "description (string) (default:'')
  #}
  
@@ -19,6 +20,7 @@ index 30788cd..2b92789 100644
 +{% set _lang_full = lang_full|default('') %}
  {% set _meta = meta|default('') %}
  {% set _download = download|default({}) %}
+ {% set _download_attribute = download_attribute|default(download_attribute_default) %}
  {% set _id = id|default('') %}
  {% set _title_id = title_id|default('') %}
 +{% set _description = description|default('') %}
@@ -26,7 +28,7 @@ index 30788cd..2b92789 100644
  
  {% set _link_id = _id ~ '-link' %}
  {% set _label_id = _link_id ~ '-label' %}
-@@ -35,13 +40,36 @@
+@@ -37,13 +42,36 @@
  {% endset %}
  
    <li class="ecl-file__translation-item">
@@ -67,9 +69,9 @@ index 30788cd..2b92789 100644
 +      {% endif %}
      </div>
  
-     {% include '@ecl/link/link.html.twig' with _download|merge({
+     <div class="ecl-file__translation-action">
 diff --git a/node_modules/@ecl/twig-component-file/file-translations.html.twig b/node_modules/@ecl/twig-component-file/file-translations.html.twig
-index 85c46d7..d9f4b6a 100644
+index 0d40c88..6dd85ba 100644
 --- a/node_modules/@ecl/twig-component-file/file-translations.html.twig
 +++ b/node_modules/@ecl/twig-component-file/file-translations.html.twig
 @@ -2,6 +2,7 @@
@@ -88,30 +90,29 @@ index 85c46d7..d9f4b6a 100644
  #}
  
  {# Internal properties #}
-@@ -16,6 +18,8 @@
- {% set _items = items|default([]) %}
+@@ -17,6 +19,8 @@
  {% set _toggle = toggle|default({}) %}
  {% set _id = id|default('') %}
+ {% set _download_attribute_default = download_attribute_default|default(false) %}
 +{% set _description = description|default('') %}
 +{% set _variant = variant|default('default') %}
  
  {% if _items is not empty %}
    <div
-@@ -38,12 +42,16 @@
+@@ -39,13 +43,17 @@
      }) only %}
  
      <ul class="ecl-file__translation-list">
 -    {% for key, _item in _items %}
 -      {% include '@ecl/file/file-translation-item.html.twig' with _item|merge({
--          id:  _id ~ '-translation-' ~ key,
--          title_id: _id ~ '-title',
--      }) only %}
--    {% endfor %}
 +      {% for key, _item in _items %}
 +        {% include '@ecl/file/file-translation-item.html.twig' with _item|merge({
-+            id:  _id ~ '-translation-' ~ key,
-+            title_id: _id ~ '-title',
-+            variant: _variant
+           id:  _id ~ '-translation-' ~ key,
+           title_id: _id ~ '-title',
+           download_attribute_default: _download_attribute_default,
+-      }) only %}
+-    {% endfor %}
++          variant: _variant
 +        }) only %}
 +      {% endfor %}
 +      <li class="ecl-file__translation-item ecl-file__translation-description">
@@ -120,15 +121,3 @@ index 85c46d7..d9f4b6a 100644
      </ul>
    </div>
  {% endif %}
-diff --git a/node_modules/@ecl/twig-component-file/file.html.twig b/node_modules/@ecl/twig-component-file/file.html.twig
-index f8d91b3..bb456fe 100644
---- a/node_modules/@ecl/twig-component-file/file.html.twig
-+++ b/node_modules/@ecl/twig-component-file/file.html.twig
-@@ -31,6 +31,7 @@
-       - "meta" (string) (default: '')
-       - "lang" (string) (default: '')
-       - "download" (object) (default to the parent download property) object of type Link
-+    - "description (string) (default:'')
-   - "extra_classes" (optional) (string) (default: '')
-   - "extra_attributes" (optional) (array) (default: []) [{
-     - "name" (string) Attribute name, eg. 'data-test'
