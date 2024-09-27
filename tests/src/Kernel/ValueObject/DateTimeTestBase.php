@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Drupal\Tests\oe_theme\Kernel\ValueObject;
 
-use Drupal\oe_theme\ValueObject\DateValueObjectInterface;
 use Drupal\Tests\field\Kernel\FieldKernelTestBase;
 use Drupal\Tests\oe_theme\Traits\RenderTrait;
+use Drupal\oe_theme\ValueObject\DateValueObjectInterface;
 use Symfony\Component\Yaml\Yaml;
 
 /**

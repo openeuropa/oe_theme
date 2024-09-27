@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Drupal\Tests\oe_theme_helper\Kernel;
 
-use Drupal\Tests\token\Kernel\TokenKernelTestBase;
 use Drupal\Tests\Traits\Core\Image\ToolkitTestTrait;
+use Drupal\Tests\token\Kernel\TokenKernelTestBase;
 
 /**
  * Tests that the Retina Scale effect upscales images appropriately.

@@ -5,15 +5,15 @@ declare(strict_types=1);
 namespace Drupal\Tests\oe_theme\Kernel;
 
 use Drupal\Core\Datetime\DrupalDateTime;
+use Drupal\Tests\oe_theme\PatternAssertions\IconsTextAssert;
+use Drupal\Tests\oe_theme\PatternAssertions\ListItemAssert;
+use Drupal\Tests\oe_theme\PatternAssertions\PatternAssertState;
+use Drupal\Tests\user\Traits\UserCreationTrait;
 use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
 use Drupal\media\Entity\Media;
 use Drupal\node\Entity\Node;
 use Drupal\node\NodeInterface;
 use Drupal\oe_content_entity_venue\Entity\Venue;
-use Drupal\Tests\oe_theme\PatternAssertions\IconsTextAssert;
-use Drupal\Tests\oe_theme\PatternAssertions\ListItemAssert;
-use Drupal\Tests\oe_theme\PatternAssertions\PatternAssertState;
-use Drupal\Tests\user\Traits\UserCreationTrait;
 use Drupal\user\Entity\User;
 
 /**

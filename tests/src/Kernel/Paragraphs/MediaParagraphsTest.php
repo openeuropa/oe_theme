@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace Drupal\Tests\oe_theme\Kernel\Paragraphs;
 
 use Drupal\Core\Url;
-use Drupal\image\Entity\ImageStyle;
-use Drupal\paragraphs\Entity\Paragraph;
 use Drupal\Tests\oe_theme\PatternAssertions\CarouselAssert;
 use Drupal\Tests\oe_theme\PatternAssertions\TextFeaturedMediaAssert;
+use Drupal\image\Entity\ImageStyle;
+use Drupal\paragraphs\Entity\Paragraph;
 use Symfony\Component\DomCrawler\Crawler;
 
 /**

@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Drupal\Tests\oe_theme\Kernel;
 
+use Drupal\Tests\sparql_entity_storage\Traits\SparqlConnectionTrait;
 use Drupal\media\MediaInterface;
 use Drupal\oe_content_entity\Entity\CorporateEntityInterface;
 use Drupal\oe_content_entity_contact\Entity\Contact;
 use Drupal\oe_content_entity_contact\Entity\ContactInterface;
-use Drupal\Tests\sparql_entity_storage\Traits\SparqlConnectionTrait;
 use Drupal\user\Entity\Role;
 use Drupal\user\RoleInterface;
 

@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Drupal\Tests\oe_theme\Kernel;
 
-use Drupal\media\Entity\Media;
-use Drupal\node\Entity\Node;
-use Drupal\node\NodeInterface;
 use Drupal\Tests\oe_theme\PatternAssertions\FieldListAssert;
 use Drupal\Tests\oe_theme\PatternAssertions\ListItemAssert;
 use Drupal\Tests\user\Traits\UserCreationTrait;
+use Drupal\media\Entity\Media;
+use Drupal\node\Entity\Node;
+use Drupal\node\NodeInterface;
 use Drupal\user\Entity\User;
 use Symfony\Component\DomCrawler\Crawler;
 

@@ -7,9 +7,9 @@
 
 declare(strict_types=1);
 
-use Drupal\block\Entity\Block;
 use Drupal\Component\Render\MarkupInterface;
 use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
+use Drupal\block\Entity\Block;
 
 /**
  * Show the page header block on the homepage.

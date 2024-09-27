@@ -5,12 +5,12 @@ declare(strict_types=1);
 namespace Drupal\Tests\oe_theme_helper\Kernel\Plugin\Field\FieldFormatter;
 
 use Drupal\Component\Utility\UrlHelper;
+use Drupal\Tests\oe_theme\Kernel\AbstractKernelTestBase;
 use Drupal\field\Entity\FieldConfig;
 use Drupal\field\Entity\FieldStorageConfig;
 use Drupal\file\Entity\File;
 use Drupal\node\Entity\Node;
 use Drupal\node\Entity\NodeType;
-use Drupal\Tests\oe_theme\Kernel\AbstractKernelTestBase;
 
 /**
  * Tests the featured media formatter.

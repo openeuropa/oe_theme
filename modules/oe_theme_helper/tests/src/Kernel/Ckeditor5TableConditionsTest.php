@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Drupal\Tests\oe_theme_helper\Kernel;
 
+use Drupal\Tests\oe_theme\Kernel\AbstractKernelTestBase;
 use Drupal\editor\EditorInterface;
 use Drupal\editor\Entity\Editor;
 use Drupal\filter\Entity\FilterFormat;
-use Drupal\Tests\oe_theme\Kernel\AbstractKernelTestBase;
 
 /**
  * Tests the conditions for the CKEditor 5 table plugins.

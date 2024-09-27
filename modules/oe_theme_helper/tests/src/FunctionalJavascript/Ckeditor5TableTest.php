@@ -5,12 +5,12 @@ declare(strict_types=1);
 namespace Drupal\Tests\oe_theme_helper\FunctionalJavascript;
 
 use Behat\Mink\Element\NodeElement;
+use Drupal\FunctionalJavascriptTests\WebDriverTestBase;
+use Drupal\Tests\ckeditor5\Traits\CKEditor5TestTrait;
 use Drupal\ckeditor5\Plugin\Editor\CKEditor5;
 use Drupal\editor\Entity\Editor;
 use Drupal\filter\Entity\FilterFormat;
-use Drupal\FunctionalJavascriptTests\WebDriverTestBase;
 use Drupal\node\Entity\NodeType;
-use Drupal\Tests\ckeditor5\Traits\CKEditor5TestTrait;
 use Drupal\user\Entity\User;
 use Drupal\user\RoleInterface;
 use Symfony\Component\Validator\ConstraintViolation;

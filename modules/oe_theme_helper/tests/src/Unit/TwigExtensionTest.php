@@ -9,10 +9,10 @@ use Drupal\Core\Language\LanguageInterface;
 use Drupal\Core\Language\LanguageManagerInterface;
 use Drupal\Core\Render\Renderer;
 use Drupal\Core\Template\Loader\StringLoader;
+use Drupal\Tests\UnitTestCase;
 use Drupal\oe_theme_helper\EuropeanUnionLanguages;
 use Drupal\oe_theme_helper\ExternalLinksInterface;
 use Drupal\oe_theme_helper\TwigExtension\TwigExtension;
-use Drupal\Tests\UnitTestCase;
 use Twig\Environment;
 use Twig\Error\RuntimeError;
 
@@ -287,7 +287,7 @@ class TwigExtensionTest extends UnitTestCase {
    * @covers ::toEclIcon
    * @dataProvider toEclIconProvider
    */
-  public function testToEclIcon(string $icon_name, array $expected_icon_array, string $size = NULL) {
+  public function testToEclIcon(string $icon_name, array $expected_icon_array, ?string $size = NULL) {
     $context = [
       'ecl_icon_path' => '/path/to/theme/resources/icons/',
       'ecl_icon_social_media_path' => '/path/to/theme/resources/social-media-icons/',

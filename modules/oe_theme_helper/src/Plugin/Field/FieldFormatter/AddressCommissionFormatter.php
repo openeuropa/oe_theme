@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Drupal\oe_theme_helper\Plugin\Field\FieldFormatter;
 
 use CommerceGuys\Addressing\Locale;
+use Drupal\Core\Render\Element;
 use Drupal\address\AddressInterface;
 use Drupal\address\Plugin\Field\FieldFormatter\AddressDefaultFormatter;
-use Drupal\Core\Render\Element;
 
 /**
  * Format an address with locale format but divide only with 3 lines.

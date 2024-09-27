@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace Drupal\Tests\oe_theme\Kernel\ValueObject;
 
+use Drupal\Tests\token\Kernel\TokenKernelTestBase;
 use Drupal\entity_test\Entity\EntityTest;
 use Drupal\field\Entity\FieldConfig;
 use Drupal\field\Entity\FieldStorageConfig;
 use Drupal\file\Entity\File;
 use Drupal\image\Entity\ImageStyle;
 use Drupal\oe_theme\ValueObject\ImageValueObject;
-use Drupal\Tests\token\Kernel\TokenKernelTestBase;
 
 /**
  * Test image value object with image field type.

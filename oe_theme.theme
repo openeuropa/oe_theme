@@ -7,7 +7,6 @@
 
 declare(strict_types=1);
 
-use Drupal\block\BlockInterface;
 use Drupal\Component\Render\FormattableMarkup;
 use Drupal\Component\Utility\Html;
 use Drupal\Component\Utility\UrlHelper;
@@ -20,6 +19,7 @@ use Drupal\Core\Render\Element;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\Template\Attribute;
 use Drupal\Core\Url;
+use Drupal\block\BlockInterface;
 use Drupal\media\MediaInterface;
 use Drupal\media\Plugin\media\Source\Image;
 use Drupal\media\Plugin\media\Source\OEmbed;

@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Drupal\Tests\oe_theme_helper\Kernel\Plugin\Field\FieldFormatter;
 
-use Drupal\entity_test\Entity\EntityTestMul;
 use Drupal\Tests\address\Kernel\Formatter\FormatterTestBase;
+use Drupal\entity_test\Entity\EntityTestMul;
 
 /**
  * Test AddressCountryInlineFormatter plugin.

@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Drupal\Tests\oe_theme\Unit\ValueObject;
 
-use Drupal\oe_theme\ValueObject\ImageValueObject;
 use Drupal\Tests\UnitTestCase;
+use Drupal\oe_theme\ValueObject\ImageValueObject;
 
 /**
  * Test image value object.
