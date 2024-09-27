@@ -42,7 +42,7 @@ services:
 pipeline:
   ecl-build:
     group: prepare
-    image: git.fpfis.tech.ec.europa.eu/fpfis/dependency_proxy/containers/node:18.18.2
+    image: git.fpfis.tech.ec.europa.eu/fpfis/dependency_proxy/containers/node:20.9.0
     commands:
       # To build the theme using a development version of ECL set its development branch in .env.dist
       # and make sure that ECL_BUILD is set to "dev".
