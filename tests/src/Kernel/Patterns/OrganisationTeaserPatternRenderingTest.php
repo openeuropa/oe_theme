@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Drupal\Tests\oe_theme\Kernel\Patterns;
 
-use Drupal\oe_theme\ValueObject\ImageValueObject;
 use Drupal\Tests\oe_theme\Kernel\AbstractKernelTestBase;
+use Drupal\oe_theme\ValueObject\ImageValueObject;
 
 /**
  * Test Organisation teaser pattern rendering.

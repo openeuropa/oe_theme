@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Drupal\Tests\oe_theme_helper\Kernel\Plugin\Field\FieldFormatter;
 
-use Drupal\media\Entity\Media;
 use Drupal\Tests\media\Traits\MediaTypeCreationTrait;
 use Drupal\Tests\oe_theme\Kernel\AbstractKernelTestBase;
+use Drupal\media\Entity\Media;
 
 /**
  * Base class for formatters rendering media thumbnail URLs.

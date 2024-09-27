@@ -5,12 +5,12 @@ declare(strict_types=1);
 namespace Drupal\Tests\oe_theme_helper\Kernel\Plugin\Field\FieldFormatter;
 
 use Drupal\Core\Field\FieldStorageDefinitionInterface;
+use Drupal\Tests\media\Traits\MediaTypeCreationTrait;
+use Drupal\Tests\oe_theme\Kernel\AbstractKernelTestBase;
 use Drupal\entity_test\Entity\EntityTest;
 use Drupal\field\Entity\FieldConfig;
 use Drupal\field\Entity\FieldStorageConfig;
 use Drupal\media\Entity\Media;
-use Drupal\Tests\media\Traits\MediaTypeCreationTrait;
-use Drupal\Tests\oe_theme\Kernel\AbstractKernelTestBase;
 use Symfony\Component\DomCrawler\Crawler;
 
 /**

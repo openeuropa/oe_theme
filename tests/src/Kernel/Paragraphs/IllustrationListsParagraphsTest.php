@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Drupal\Tests\oe_theme\Kernel\Paragraphs;
 
-use Drupal\paragraphs\Entity\Paragraph;
 use Drupal\Tests\oe_theme\PatternAssertions\ListWithIllustrationAssert;
+use Drupal\paragraphs\Entity\Paragraph;
 use Symfony\Component\DomCrawler\Crawler;
 
 /**

@@ -5,6 +5,11 @@ declare(strict_types=1);
 namespace Drupal\Tests\oe_theme\Functional;
 
 use Behat\Mink\Element\NodeElement;
+use Drupal\Tests\oe_theme\PatternAssertions\FieldListAssert;
+use Drupal\Tests\oe_theme\PatternAssertions\InPageNavigationAssert;
+use Drupal\Tests\oe_theme\PatternAssertions\ListItemAssert;
+use Drupal\Tests\oe_theme\PatternAssertions\PatternPageHeaderAssert;
+use Drupal\Tests\oe_theme\PatternAssertions\SocialMediaLinksAssert;
 use Drupal\node\Entity\Node;
 use Drupal\node\NodeInterface;
 use Drupal\oe_content_entity\Entity\CorporateEntityInterface;
@@ -12,11 +17,6 @@ use Drupal\oe_content_entity_contact\Entity\Contact;
 use Drupal\oe_content_entity_contact\Entity\ContactInterface;
 use Drupal\oe_content_person\Entity\PersonJob;
 use Drupal\oe_content_person\Entity\PersonJobInterface;
-use Drupal\Tests\oe_theme\PatternAssertions\FieldListAssert;
-use Drupal\Tests\oe_theme\PatternAssertions\InPageNavigationAssert;
-use Drupal\Tests\oe_theme\PatternAssertions\ListItemAssert;
-use Drupal\Tests\oe_theme\PatternAssertions\PatternPageHeaderAssert;
-use Drupal\Tests\oe_theme\PatternAssertions\SocialMediaLinksAssert;
 use Drupal\user\Entity\Role;
 use Drupal\user\RoleInterface;
 

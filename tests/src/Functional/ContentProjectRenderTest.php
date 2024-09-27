@@ -5,12 +5,12 @@ declare(strict_types=1);
 namespace Drupal\Tests\oe_theme\Functional;
 
 use Behat\Mink\Element\NodeElement;
-use Drupal\node\Entity\Node;
-use Drupal\oe_content_entity\Entity\CorporateEntityInterface;
-use Drupal\oe_content_entity_organisation\Entity\OrganisationInterface;
 use Drupal\Tests\oe_theme\PatternAssertions\FieldListAssert;
 use Drupal\Tests\oe_theme\PatternAssertions\ListItemAssert;
 use Drupal\Tests\oe_theme\PatternAssertions\PatternPageHeaderAssert;
+use Drupal\node\Entity\Node;
+use Drupal\oe_content_entity\Entity\CorporateEntityInterface;
+use Drupal\oe_content_entity_organisation\Entity\OrganisationInterface;
 use Drupal\user\Entity\Role;
 use Drupal\user\RoleInterface;
 

@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Drupal\Tests\oe_theme_helper\FunctionalJavascript;
 
-use Drupal\filter\Entity\FilterFormat;
 use Drupal\FunctionalJavascriptTests\WebDriverTestBase;
 use Drupal\Tests\oe_theme\PatternAssertions\InPageNavigationAssert;
+use Drupal\filter\Entity\FilterFormat;
 
 /**
  * Test Inpage navigation block plugin.

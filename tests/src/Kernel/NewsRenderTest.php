@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Drupal\Tests\oe_theme\Kernel;
 
-use Drupal\media\Entity\Media;
-use Drupal\node\NodeInterface;
 use Drupal\Tests\oe_theme\PatternAssertions\ListItemAssert;
 use Drupal\Tests\user\Traits\UserCreationTrait;
+use Drupal\media\Entity\Media;
+use Drupal\node\NodeInterface;
 
 /**
  * Tests the News content type rendering.

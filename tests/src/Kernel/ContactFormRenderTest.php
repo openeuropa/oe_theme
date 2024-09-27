@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Drupal\Tests\oe_theme\Kernel;
 
-use Drupal\contact\Entity\ContactForm;
 use Drupal\Tests\oe_contact_forms\Kernel\ContactFormTestBase;
+use Drupal\contact\Entity\ContactForm;
 use Symfony\Component\DomCrawler\Crawler;
 
 /**

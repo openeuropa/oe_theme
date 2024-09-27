@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace Drupal\Tests\oe_theme_helper\FunctionalJavascript;
 
 use Behat\Mink\Element\NodeElement;
-use Drupal\filter\Entity\FilterFormat;
 use Drupal\FunctionalJavascriptTests\WebDriverTestBase;
-use Drupal\paragraphs\Entity\Paragraph;
 use Drupal\Tests\oe_theme\PatternAssertions\InPageNavigationAssert;
+use Drupal\filter\Entity\FilterFormat;
+use Drupal\paragraphs\Entity\Paragraph;
 
 /**
  * Test Inpage navigation in the content row paragraph.

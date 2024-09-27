@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Drupal\Tests\oe_theme\Kernel\Patterns;
 
-use Drupal\oe_theme\ValueObject\DateValueObject;
 use Drupal\Tests\oe_theme\Kernel\AbstractKernelTestBase;
+use Drupal\oe_theme\ValueObject\DateValueObject;
 
 /**
  * Test date block pattern rendering.

@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Drupal\Tests\oe_theme\Unit\Patterns;
 
-use Drupal\oe_theme\ValueObject\FileValueObject;
 use Drupal\Tests\oe_theme\Unit\AbstractUnitTestBase;
+use Drupal\oe_theme\ValueObject\FileValueObject;
 
 /**
  * Test file value object.

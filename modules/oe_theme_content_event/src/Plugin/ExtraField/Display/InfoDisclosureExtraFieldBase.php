@@ -71,7 +71,7 @@ abstract class InfoDisclosureExtraFieldBase extends DateAwareExtraFieldBase {
    * @return bool
    *   True if timestamp is within current day.
    */
-  protected function isCurrentDay(int $timestamp, string $timezone = NULL): bool {
+  protected function isCurrentDay(int $timestamp, ?string $timezone = NULL): bool {
     $current_date = $this->dateFormatter->format($this->requestDateTime->getTimestamp(), 'custom', 'Ymd', $timezone);
     $start_day = $this->dateFormatter->format($timestamp, 'custom', 'Ymd', $timezone);
     return $current_date === $start_day;

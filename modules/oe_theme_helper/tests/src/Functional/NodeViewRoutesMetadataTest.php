@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Drupal\Tests\oe_theme_helper\Functional;
 
-use Drupal\filter\Entity\FilterFormat;
 use Drupal\Tests\BrowserTestBase;
 use Drupal\Tests\content_moderation\Traits\ContentModerationTestTrait;
+use Drupal\filter\Entity\FilterFormat;
 
 /**
  * Tests the base metadata class for node view routes.

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Drupal\Tests\oe_theme_helper\Kernel;
 
+use Drupal\Core\DependencyInjection\ContainerBuilder;
 use Drupal\Core\GeneratedLink;
 use Drupal\Core\Render\Markup;
 use Drupal\Core\Render\RenderContext;
@@ -70,6 +71,15 @@ class TwigExtensionTest extends AbstractKernelTestBase {
    *   An array of test data arrays with assertions.
    */
   public function smartTrimFilterDataProvider(): array {
+    $cache_contexts_manager = $this->getMockBuilder('Drupal\Core\Cache\Context\CacheContextsManager')
+      ->disableOriginalConstructor()
+      ->getMock();
+    $cache_contexts_manager->method('assertValidTokens')->willReturn(TRUE);
+
+    $container = new ContainerBuilder();
+    $container->set('cache_contexts_manager', $cache_contexts_manager);
+    \Drupal::setContainer($container);
+
     return [
       'Trim a string' => [
         'variables' => [

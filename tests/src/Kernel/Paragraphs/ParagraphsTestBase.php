@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Drupal\Tests\oe_theme\Kernel\Paragraphs;
 
-use Drupal\paragraphs\ParagraphInterface;
 use Drupal\Tests\oe_theme\Kernel\AbstractKernelTestBase;
+use Drupal\paragraphs\ParagraphInterface;
 
 /**
  * Base class for paragraphs tests.

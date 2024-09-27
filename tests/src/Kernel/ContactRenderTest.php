@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Drupal\Tests\oe_theme\Kernel;
 
+use Drupal\Tests\oe_theme\PatternAssertions\FieldListAssert;
 use Drupal\node\Entity\Node;
 use Drupal\oe_content_entity\Entity\CorporateEntityInterface;
 use Drupal\oe_content_entity_contact\Entity\ContactInterface;
-use Drupal\Tests\oe_theme\PatternAssertions\FieldListAssert;
 use Symfony\Component\DomCrawler\Crawler;
 
 /**

@@ -6,11 +6,11 @@ namespace Drupal\Tests\oe_theme\Functional;
 
 use Behat\Mink\Element\NodeElement;
 use Drupal\Core\Datetime\DrupalDateTime;
-use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
+use Drupal\Tests\Traits\Core\CronRunTrait;
 use Drupal\Tests\oe_theme\PatternAssertions\FieldListAssert;
 use Drupal\Tests\oe_theme\PatternAssertions\InPageNavigationAssert;
 use Drupal\Tests\oe_theme\PatternAssertions\PatternPageHeaderAssert;
-use Drupal\Tests\Traits\Core\CronRunTrait;
+use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
 
 /**
  * Tests that "Call for tenders" content type renders correctly.

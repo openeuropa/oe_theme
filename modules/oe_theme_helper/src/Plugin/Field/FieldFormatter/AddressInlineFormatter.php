@@ -5,11 +5,11 @@ declare(strict_types=1);
 namespace Drupal\oe_theme_helper\Plugin\Field\FieldFormatter;
 
 use CommerceGuys\Addressing\Locale;
-use Drupal\address\AddressInterface;
-use Drupal\address\Plugin\Field\FieldFormatter\AddressDefaultFormatter;
 use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Language\LanguageInterface;
+use Drupal\address\AddressInterface;
+use Drupal\address\Plugin\Field\FieldFormatter\AddressDefaultFormatter;
 
 /**
  * Format an address inline with locale format and a configurable separator.

@@ -7,10 +7,10 @@
 
 declare(strict_types=1);
 
-use Drupal\block\Entity\Block;
 use Drupal\Component\Utility\Crypt;
 use Drupal\Core\Config\FileStorage;
 use Drupal\Core\Entity\Entity\EntityViewMode;
+use Drupal\block\Entity\Block;
 use Drupal\image\Entity\ImageStyle;
 
 /**

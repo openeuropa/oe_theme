@@ -7,10 +7,10 @@ namespace Drupal\Tests\oe_theme\Behat;
 use Behat\Gherkin\Node\TableNode;
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\DrupalExtension\Context\RawDrupalContext;
+use Drupal\Tests\oe_theme\Behat\Traits\UtilityTrait;
 use Drupal\field\Entity\FieldConfig;
 use Drupal\node\NodeInterface;
 use Drupal\oe_theme_helper\EuropeanUnionLanguages;
-use Drupal\Tests\oe_theme\Behat\Traits\UtilityTrait;
 use PHPUnit\Framework\Assert;
 
 /**
