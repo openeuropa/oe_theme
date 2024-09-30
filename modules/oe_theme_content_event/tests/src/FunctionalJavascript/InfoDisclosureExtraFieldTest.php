@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Drupal\Tests\oe_theme_content_event\FunctionalJavascript;
 
 use Drupal\Core\Datetime\DrupalDateTime;
+use Drupal\FunctionalJavascriptTests\WebDriverTestBase;
 use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
 use Drupal\filter\Entity\FilterFormat;
-use Drupal\FunctionalJavascriptTests\WebDriverTestBase;
 
 /**
  * Test information disclosing for time-sensitive fields.

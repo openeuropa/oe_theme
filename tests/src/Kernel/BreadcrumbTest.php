@@ -7,10 +7,10 @@ namespace Drupal\Tests\oe_theme\Kernel;
 use Drupal\Core\Breadcrumb\Breadcrumb;
 use Drupal\Core\Link;
 use Drupal\Core\Site\Settings;
-use Drupal\entity_test\Entity\EntityTest;
 use Drupal\KernelTests\Core\Entity\EntityKernelTestBase;
 use Drupal\Tests\oe_theme\Traits\RenderTrait;
 use Drupal\Tests\oe_theme\Traits\RequestTrait;
+use Drupal\entity_test\Entity\EntityTest;
 use Symfony\Component\DomCrawler\Crawler;
 
 /**

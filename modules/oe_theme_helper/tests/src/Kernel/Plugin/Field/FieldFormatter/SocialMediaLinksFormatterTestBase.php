@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace Drupal\Tests\oe_theme_helper\Kernel\Plugin\Field\FieldFormatter;
 
 use Drupal\Core\Entity\EntityInterface;
+use Drupal\Tests\oe_theme\Kernel\AbstractKernelTestBase;
 use Drupal\entity_test\Entity\EntityTest;
 use Drupal\field\Entity\FieldConfig;
 use Drupal\field\Entity\FieldStorageConfig;
-use Drupal\Tests\oe_theme\Kernel\AbstractKernelTestBase;
 
 /**
  * Base test class for "Social media links" field formatters.

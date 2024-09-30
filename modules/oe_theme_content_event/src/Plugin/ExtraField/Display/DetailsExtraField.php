@@ -55,7 +55,7 @@ class DetailsExtraField extends EventExtraFieldBase {
    * @param \Drupal\Core\Render\RendererInterface|null $renderer
    *   The renderer service.
    */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, EntityTypeManagerInterface $entity_type_manager, EntityRepositoryInterface $entity_repository, RendererInterface $renderer = NULL) {
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, EntityTypeManagerInterface $entity_type_manager, EntityRepositoryInterface $entity_repository, ?RendererInterface $renderer = NULL) {
     parent::__construct($configuration, $plugin_id, $plugin_definition, $entity_type_manager);
     $this->entityRepository = $entity_repository;
     // Load service statically to provide backward compatibility.

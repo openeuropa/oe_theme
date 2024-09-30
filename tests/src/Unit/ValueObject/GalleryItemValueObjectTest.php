@@ -4,9 +4,10 @@ declare(strict_types=1);
 
 namespace Drupal\Tests\oe_theme\Unit\ValueObject;
 
+use Drupal\Core\DependencyInjection\ContainerBuilder;
+use Drupal\Tests\UnitTestCase;
 use Drupal\oe_theme\ValueObject\GalleryItemValueObject;
 use Drupal\oe_theme\ValueObject\ImageValueObject;
-use Drupal\Tests\UnitTestCase;
 
 /**
  * Test gallery item value object.
@@ -88,6 +89,15 @@ class GalleryItemValueObjectTest extends UnitTestCase {
    * Tests that the thumbnail cache metadata is merged in the gallery item one.
    */
   public function testCacheMetadataBubbling(): void {
+    $cache_contexts_manager = $this->getMockBuilder('Drupal\Core\Cache\Context\CacheContextsManager')
+      ->disableOriginalConstructor()
+      ->getMock();
+    $cache_contexts_manager->method('assertValidTokens')->willReturn(TRUE);
+
+    $container = new ContainerBuilder();
+    $container->set('cache_contexts_manager', $cache_contexts_manager);
+    \Drupal::setContainer($container);
+
     $thumbnail = ImageValueObject::fromArray([
       'src' => 'http://placehold.it/380x185',
     ]);

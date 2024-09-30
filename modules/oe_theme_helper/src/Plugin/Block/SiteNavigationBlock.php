@@ -47,7 +47,7 @@ class SiteNavigationBlock extends SystemMenuBlock {
    * @param \Drupal\Core\Menu\MenuActiveTrailInterface $menu_active_trail
    *   The active menu trail service.
    */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, ConfigFactoryInterface $config_factory, MenuLinkTreeInterface $menu_tree, MenuActiveTrailInterface $menu_active_trail = NULL) {
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, ConfigFactoryInterface $config_factory, MenuLinkTreeInterface $menu_tree, ?MenuActiveTrailInterface $menu_active_trail = NULL) {
     parent::__construct($configuration, $plugin_id, $plugin_definition, $menu_tree, $menu_active_trail);
     $this->configFactory = $config_factory;
   }

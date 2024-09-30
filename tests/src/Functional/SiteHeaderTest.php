@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Drupal\Tests\oe_theme\Functional;
 
-use Drupal\menu_link_content\Entity\MenuLinkContent;
 use Drupal\Tests\BrowserTestBase;
+use Drupal\menu_link_content\Entity\MenuLinkContent;
 
 /**
  * Test Site header rendering.

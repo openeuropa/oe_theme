@@ -11,8 +11,8 @@ use Behat\Behat\Hook\Scope\BeforeScenarioScope;
 use Behat\Testwork\Hook\Scope\AfterSuiteScope;
 use Behat\Testwork\Hook\Scope\BeforeSuiteScope;
 use Drupal\DrupalExtension\Context\RawDrupalContext;
-use Drupal\language\Entity\ConfigurableLanguage;
 use Drupal\Tests\oe_content\Traits\EntityLoadingTrait;
+use Drupal\language\Entity\ConfigurableLanguage;
 
 /**
  * Provides Drupal-related Behat steps.

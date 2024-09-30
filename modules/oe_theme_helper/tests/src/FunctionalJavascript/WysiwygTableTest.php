@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace Drupal\Tests\oe_theme_helper\FunctionalJavascript;
 
 use Behat\Mink\Element\NodeElement;
-use Drupal\editor\Entity\Editor;
-use Drupal\filter\Entity\FilterFormat;
 use Drupal\FunctionalJavascriptTests\WebDriverTestBase;
 use Drupal\Tests\ckeditor\Traits\CKEditorTestTrait;
+use Drupal\editor\Entity\Editor;
+use Drupal\filter\Entity\FilterFormat;
 use Drupal\user\RoleInterface;
 use Drupal\user\UserInterface;
 

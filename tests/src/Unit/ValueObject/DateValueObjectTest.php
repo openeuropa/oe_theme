@@ -6,8 +6,8 @@ namespace Drupal\Tests\oe_theme\Unit\Patterns;
 
 use Drupal\Core\DependencyInjection\ContainerBuilder;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
-use Drupal\oe_theme\ValueObject\DateValueObject;
 use Drupal\Tests\oe_theme\Unit\AbstractUnitTestBase;
+use Drupal\oe_theme\ValueObject\DateValueObject;
 
 /**
  * Test date value object.

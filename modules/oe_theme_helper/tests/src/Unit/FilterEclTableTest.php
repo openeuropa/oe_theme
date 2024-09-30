@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Drupal\Tests\oe_theme_helper\Unit;
 
-use Drupal\oe_theme_helper\Plugin\Filter\FilterEclTable;
 use Drupal\Tests\UnitTestCase;
+use Drupal\oe_theme_helper\Plugin\Filter\FilterEclTable;
 
 /**
  * Test FilterEclTable plugin.

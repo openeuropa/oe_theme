@@ -7,11 +7,11 @@
 
 declare(strict_types=1);
 
-use Drupal\contact\Entity\ContactForm;
-use Drupal\contact\MessageInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Link;
 use Drupal\Core\Url;
+use Drupal\contact\Entity\ContactForm;
+use Drupal\contact\MessageInterface;
 
 /**
  * Implements hook_form_FORM_ID_alter() for contact_message_form().

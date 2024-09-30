@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Drupal\Tests\oe_theme\Kernel;
 
-use Drupal\node\Entity\Node;
 use Drupal\Tests\oe_theme\Traits\RequestTrait;
 use Drupal\Tests\user\Traits\UserCreationTrait;
+use Drupal\node\Entity\Node;
 use Symfony\Component\DomCrawler\Crawler;
 
 /**
