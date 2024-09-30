@@ -52,6 +52,7 @@
     "@ecl/twig-component-radio": "4.7.0",
     "@ecl/twig-component-search-form": "4.7.0",
     "@ecl/twig-component-select": "4.7.0",
+    "@ecl/twig-component-separator": "4.7.0",
     "@ecl/twig-component-site-footer": "4.7.0",
     "@ecl/twig-component-site-header": "4.7.0",
     "@ecl/twig-component-skip-link": "4.7.0",
