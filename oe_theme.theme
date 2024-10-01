@@ -1585,17 +1585,20 @@ function oe_theme_preprocess_paragraph__oe_banner(array &$variables): void {
     $url = $link->getUrl();
     $variables['url'] = $url;
     $variables['label'] = $link->get('title')->getValue();
-    $variables['external_link'] = \Drupal::service('oe_theme_helper.external_links')->isExternalLink($url);
+    $variables['external_link'] = \Drupal::service('oe_theme_helper.external_links')
+      ->isExternalLink($url);
   }
 
   $variables['full_width'] = (bool) $paragraph->get('field_oe_banner_full_width')->value;
 
   // Extract the first character of the size field value.
-  if ($paragraph->hasField('field_oe_banner_size') && !$paragraph->get('field_oe_banner_size')->isEmpty()) {
+  if ($paragraph->hasField('field_oe_banner_size') && !$paragraph->get('field_oe_banner_size')
+    ->isEmpty()) {
     $variables['size'] = substr($paragraph->get('field_oe_banner_size')->value, 0, 1);
   }
   // Get the alignment value.
-  if ($paragraph->hasField('field_oe_banner_alignment') && !$paragraph->get('field_oe_banner_alignment')->isEmpty()) {
+  if ($paragraph->hasField('field_oe_banner_alignment') && !$paragraph->get('field_oe_banner_alignment')
+    ->isEmpty()) {
     $variables['centered'] = $paragraph->get('field_oe_banner_alignment')->value === 'centered';
   }
 
@@ -1631,7 +1634,8 @@ function oe_theme_preprocess_paragraph__oe_banner(array &$variables): void {
   }
 
   // Retrieve the correct translation to display.
-  $media = \Drupal::service('entity.repository')->getTranslationFromContext($media, $paragraph->language()->getId());
+  $media = \Drupal::service('entity.repository')
+    ->getTranslationFromContext($media, $paragraph->language()->getId());
 
   // Caches are handled by the formatter usually. Since we are not rendering
   // the original render arrays, we need to propagate our caches to the
@@ -2220,28 +2224,11 @@ function oe_theme_preprocess_paragraph__oe_carousel(array &$variables): void {
     $variables['size'] = substr($paragraph->get('field_oe_carousel_size')->value, 0, 1);
   }
   // Load needed images styles based on carousel size.
-  $image_style_storage = \Drupal::entityTypeManager()->getStorage('image_style');
-  if ($variables['size'] === 's') {
-    $full_width = $image_style_storage->load('oe_theme_full_width_banner_5_1');
-    $extra_large = $image_style_storage->load('oe_theme_extra_large_5_1_banner');
-    $large = $image_style_storage->load('oe_theme_large_5_1_banner');
-    $medium = $image_style_storage->load('oe_theme_medium_5_1_banner');
-    $small = $image_style_storage->load('oe_theme_small_5_1_banner');
-  }
-  if ($variables['size'] === 'm') {
-    $full_width = $image_style_storage->load('oe_theme_full_width_banner_4_1');
-    $extra_large = $image_style_storage->load('oe_theme_extra_large_4_1_banner');
-    $large = $image_style_storage->load('oe_theme_large_4_1_banner');
-    $medium = $image_style_storage->load('oe_theme_medium_4_1_banner');
-    $small = $image_style_storage->load('oe_theme_small_4_1_banner');
-  }
-  if ($variables['size'] === 'l') {
-    $full_width = $image_style_storage->load('oe_theme_full_width_banner_3_1');
-    $extra_large = $image_style_storage->load('oe_theme_extra_large_3_1_banner');
-    $large = $image_style_storage->load('oe_theme_large_3_1_banner');
-    $medium = $image_style_storage->load('oe_theme_medium_3_1_banner');
-    $small = $image_style_storage->load('oe_theme_small_3_1_banner');
-  }
+  $banner_type = match ($variables['size']) {
+    's' => '5_1',
+    'm' => '4_1',
+    'l' => '3_1',
+  };
 
   /** @var \Drupal\paragraphs\Entity\Paragraph $sub_paragraph */
   foreach ($paragraph->get('field_oe_carousel_items')->referencedEntities() as $sub_paragraph) {
@@ -2311,30 +2298,12 @@ function oe_theme_preprocess_paragraph__oe_carousel(array &$variables): void {
       $cacheability->applyTo($variables);
       continue;
     }
-    $item['image'] = $full_width->buildUrl($uri);
+
+    $responsive_image = _oe_theme_load_from_responsive_image_style_id("oe_theme_{$banner_type}_banner", $uri);
+    $item['image'] = $responsive_image['fallback'];
     $item['image_alt'] = $source->getMetadata($media, 'thumbnail_alt_value') ?? '';
-    $item['sources'] = [
-      [
-        'src' => $small->buildUrl($uri),
-        'size' => 's',
-      ],
-      [
-        'src' => $medium->buildUrl($uri),
-        'size' => 'm',
-      ],
-      [
-        'src' => $large->buildUrl($uri),
-        'size' => 'l',
-      ],
-      [
-        'src' => $extra_large->buildUrl($uri),
-        'size' => 'xl',
-      ],
-      [
-        'src' => $full_width->buildUrl($uri),
-        'size' => 'full_width',
-      ],
-    ];
+    $item['sources'] = $responsive_image['sources'];
+
     $variables['items'][] = $item;
     $cacheability->applyTo($variables);
   }
