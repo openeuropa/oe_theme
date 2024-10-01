@@ -1,0 +1,39 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - image.style.oe_theme_extra_large_4_1_banner
+    - image.style.oe_theme_full_width_banner_4_1
+    - image.style.oe_theme_large_4_1_banner
+    - image.style.oe_theme_medium_4_1_banner
+    - image.style.oe_theme_small_4_1_banner
+id: oe_theme_4_1_banner
+label: '4:1 Banner'
+image_style_mappings:
+  -
+    image_mapping_type: image_style
+    image_mapping: oe_theme_full_width_banner_4_1
+    breakpoint_id: oe_theme.extra_large
+    multiplier: 1x
+  -
+    image_mapping_type: image_style
+    image_mapping: oe_theme_extra_large_4_1_banner
+    breakpoint_id: oe_theme.large
+    multiplier: 1x
+  -
+    image_mapping_type: image_style
+    image_mapping: oe_theme_large_4_1_banner
+    breakpoint_id: oe_theme.medium
+    multiplier: 1x
+  -
+    image_mapping_type: image_style
+    image_mapping: oe_theme_medium_4_1_banner
+    breakpoint_id: oe_theme.small
+    multiplier: 1x
+  -
+    image_mapping_type: image_style
+    image_mapping: oe_theme_small_4_1_banner
+    breakpoint_id: oe_theme.extra_small
+    multiplier: 1x
+breakpoint_group: oe_theme
+fallback_image_style: oe_theme_full_width_banner_4_1
