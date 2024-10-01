@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Drupal\Tests\oe_theme;
 
+use PHPUnit\Framework\TestCase;
 use PHPUnit\Runner\BeforeTestHook;
 use PHPUnit\Runner\Exception;
 
@@ -21,10 +22,14 @@ class EnsurePHPUnitBatchingTestExtension implements BeforeTestHook {
   public function executeBeforeTest(string $test): void {
     [$class] = \explode('::', $test);
     $reflection = new \ReflectionClass($class);
-    if (in_array('Throwable', $reflection->getInterfaceNames())) {
+    if (!$reflection->isSubclassOf(TestCase::class)) {
       return;
     }
-    if (!(bool) preg_match('/@group batch(\d+)/', $reflection->getDocComment())) {
+    $doc_comment = $reflection->getDocComment();
+    if ($doc_comment === FALSE) {
+      throw new Exception("The following test has no doc comment: " . $test);
+    }
+    if (!(bool) preg_match('/@group batch(\d+)/', $doc_comment)) {
       throw new Exception("The following test has not been assigned to a test batch: " . $test);
     }
   }
