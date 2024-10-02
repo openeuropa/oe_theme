@@ -47,6 +47,8 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     'oe_paragraphs_carousel',
     'composite_reference',
     'oe_paragraphs_av_media',
+    'breakpoint',
+    'responsive_image',
   ];
 
   /**
@@ -58,6 +60,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $this->container->get('module_handler')->loadInclude('oe_paragraphs_media_field_storage', 'install');
     oe_paragraphs_media_field_storage_install(FALSE);
     $this->installEntitySchema('media');
+
     $this->installConfig([
       'json_field',
       'media',
@@ -74,10 +77,14 @@ class MediaParagraphsTest extends ParagraphsTestBase {
       'oe_media_iframe',
       'oe_paragraphs_carousel',
       'oe_paragraphs_av_media',
+      'breakpoint',
+      'responsive_image',
     ]);
+
     // Call the installation hook of the Media module.
     \Drupal::moduleHandler()->loadInclude('media', 'install');
     media_install();
+
   }
 
   /**
@@ -442,6 +449,10 @@ class MediaParagraphsTest extends ParagraphsTestBase {
    * Test 'banner' paragraph rendering.
    */
   public function testBanner(): void {
+
+    $breakpointsByGroup = \Drupal::service('breakpoint.manager')->getBreakpointsByGroup('oe_theme');
+    $this->assertCount(5, $breakpointsByGroup);
+
     // Set image media translatable.
     $this->container->get('content_translation.manager')->setEnabled('media', 'image', TRUE);
     // Make the image field translatable.
@@ -472,7 +483,6 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $media->save();
     // Get english file styled URI.
     $style = ImageStyle::load('oe_theme_full_width_banner_3_1');
-    $en_file_uri = $style->buildUri($en_file->getFileUri());
 
     // Translate the media to Bulgarian.
     $media_bg = $media->addTranslation('bg', [
@@ -483,8 +493,6 @@ class MediaParagraphsTest extends ParagraphsTestBase {
       ],
     ]);
     $media_bg->save();
-    // Get bulgarian file styled URI.
-    $bg_file_uri = $style->buildUri($bg_file->getFileUri());
 
     $paragraph_storage = $this->container->get('entity_type.manager')->getStorage('paragraph');
     $paragraph = $paragraph_storage->create([
@@ -515,24 +523,25 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $this->assertCount(1, $crawler->filter('section.ecl-banner.ecl-banner--font-m.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--l.ecl-banner--h-center.ecl-banner--v-center'));
     $image_element = $crawler->filter('section.ecl-banner.ecl-banner--font-m.ecl-banner--box-bg-light.ecl-banner--color-dark picture.ecl-picture.ecl-banner__picture img.ecl-banner__image');
     $this->assertCount(1, $image_element);
+
     $this->assertStringContainsString(
-      $this->container->get('file_url_generator')->generateAbsoluteString($en_file_uri),
+      $this->container->get('file_url_generator')->transformRelative($style->buildUrl($en_file->getFileUri())),
       $image_element->attr('src')
     );
     // Assert all the media sources for different breakpoints.
-    $small_media = $crawler->filter('section.ecl-banner.ecl-banner--font-m.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--h-center picture source[media="(max-width: 480px)"]');
+    $small_media = $crawler->filter('section.ecl-banner.ecl-banner--font-m.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--h-center picture source:not([media])');
     $this->assertCount(1, $small_media);
     $this->assertStringContainsString('oe_theme_small_3_1_banner/public/example_1_en.jpeg', $small_media->attr('srcset'));
-    $medium_media = $crawler->filter('section.ecl-banner.ecl-banner--font-m.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--h-center picture source[media="(max-width: 768px)"]');
+    $medium_media = $crawler->filter('section.ecl-banner.ecl-banner--font-m.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--h-center picture source[media="all and (min-width: 480px)"]');
     $this->assertCount(1, $medium_media);
     $this->assertStringContainsString('oe_theme_medium_3_1_banner/public/example_1_en.jpeg', $medium_media->attr('srcset'));
-    $large_media = $crawler->filter('section.ecl-banner.ecl-banner--font-m.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--h-center picture source[media="(max-width: 996px)"]');
+    $large_media = $crawler->filter('section.ecl-banner.ecl-banner--font-m.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--h-center picture source[media="all and (min-width: 768px)"]');
     $this->assertCount(1, $large_media);
     $this->assertStringContainsString('oe_theme_large_3_1_banner/public/example_1_en.jpeg', $large_media->attr('srcset'));
-    $extra_large_media = $crawler->filter('section.ecl-banner.ecl-banner--font-m.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--h-center picture source[media="(max-width: 1140px)"]');
+    $extra_large_media = $crawler->filter('section.ecl-banner.ecl-banner--font-m.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--h-center picture source[media="all and (min-width: 996px)"]');
     $this->assertCount(1, $extra_large_media);
     $this->assertStringContainsString('oe_theme_extra_large_3_1_banner/public/example_1_en.jpeg', $extra_large_media->attr('srcset'));
-    $full_width_media = $crawler->filter('section.ecl-banner.ecl-banner--font-m.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--h-center picture source[media="(min-width: 1140px)"]');
+    $full_width_media = $crawler->filter('section.ecl-banner.ecl-banner--font-m.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--h-center picture source[media="all and (min-width: 1140px)"]');
     $this->assertCount(1, $full_width_media);
     $this->assertStringContainsString('oe_theme_full_width_banner_3_1/public/example_1_en.jpeg', $full_width_media->attr('srcset'));
     $this->assertStringContainsString('Alt en', $image_element->attr('alt'));
@@ -549,7 +558,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $image_element = $crawler->filter('section.ecl-banner.ecl-banner--font-m.ecl-banner--box-bg-light.ecl-banner--color-dark picture.ecl-picture.ecl-banner__picture img.ecl-banner__image');
     // Bulgarian media should be rendered.
     $this->assertStringContainsString(
-      $this->container->get('file_url_generator')->generateAbsoluteString($bg_file_uri),
+      $this->container->get('file_url_generator')->transformRelative($style->buildUrl($bg_file->getFileUri())),
       $image_element->attr('src')
     );
     $this->assertStringContainsString('Alt bg', $image_element->attr('alt'));
@@ -591,7 +600,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $image_element = $crawler->filter('section.ecl-banner.ecl-banner--font-m.ecl-banner--box-bg-light.ecl-banner--color-dark picture.ecl-picture.ecl-banner__picture img.ecl-banner__image');
     $this->assertCount(1, $image_element);
     $this->assertStringContainsString(
-      $this->container->get('file_url_generator')->generateAbsoluteString($en_file_uri),
+      $this->container->get('file_url_generator')->transformRelative($style->buildUrl($en_file->getFileUri())),
       $image_element->attr('src')
     );
     $this->assertEquals('Banner', trim($crawler->filter('div.ecl-banner__content div.ecl-banner__title')->text()));
@@ -608,27 +617,26 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $crawler = new Crawler($html);
 
     $style = ImageStyle::load('oe_theme_full_width_banner_4_1');
-    $en_file_uri_medium = $style->buildUri($en_file->getFileUri());
     $this->assertCount(1, $crawler->filter('section.ecl-banner.ecl-banner--font-m.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--m.ecl-banner--h-center'));
     $image_element = $crawler->filter('section.ecl-banner.ecl-banner--font-m.ecl-banner--box-bg-light.ecl-banner--color-dark picture.ecl-picture.ecl-banner__picture img.ecl-banner__image');
     $this->assertCount(1, $image_element);
     $this->assertStringContainsString(
-      $this->container->get('file_url_generator')->generateAbsoluteString($en_file_uri_medium),
+      $this->container->get('file_url_generator')->transformRelative($style->buildUrl($en_file->getFileUri())),
       $image_element->attr('src')
     );
-    $small_media = $crawler->filter('section.ecl-banner.ecl-banner--font-m.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--h-center picture source[media="(max-width: 480px)"]');
+    $small_media = $crawler->filter('section.ecl-banner.ecl-banner--font-m.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--h-center picture source:not([media])');
     $this->assertCount(1, $small_media);
     $this->assertStringContainsString('oe_theme_small_4_1_banner/public/example_1_en.jpeg', $small_media->attr('srcset'));
-    $medium_media = $crawler->filter('section.ecl-banner.ecl-banner--font-m.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--h-center picture source[media="(max-width: 768px)"]');
+    $medium_media = $crawler->filter('section.ecl-banner.ecl-banner--font-m.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--h-center picture source[media="all and (min-width: 480px)"]');
     $this->assertCount(1, $medium_media);
     $this->assertStringContainsString('oe_theme_medium_4_1_banner/public/example_1_en.jpeg', $medium_media->attr('srcset'));
-    $large_media = $crawler->filter('section.ecl-banner.ecl-banner--font-m.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--h-center picture source[media="(max-width: 996px)"]');
+    $large_media = $crawler->filter('section.ecl-banner.ecl-banner--font-m.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--h-center picture source[media="all and (min-width: 768px)"]');
     $this->assertCount(1, $large_media);
     $this->assertStringContainsString('oe_theme_large_4_1_banner/public/example_1_en.jpeg', $large_media->attr('srcset'));
-    $extra_large_media = $crawler->filter('section.ecl-banner.ecl-banner--font-m.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--h-center picture source[media="(max-width: 1140px)"]');
+    $extra_large_media = $crawler->filter('section.ecl-banner.ecl-banner--font-m.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--h-center picture source[media="all and (min-width: 996px)"]');
     $this->assertCount(1, $extra_large_media);
     $this->assertStringContainsString('oe_theme_extra_large_4_1_banner/public/example_1_en.jpeg', $extra_large_media->attr('srcset'));
-    $full_width_media = $crawler->filter('section.ecl-banner.ecl-banner--font-m.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--h-center picture source[media="(min-width: 1140px)"]');
+    $full_width_media = $crawler->filter('section.ecl-banner.ecl-banner--font-m.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--h-center picture source[media="all and (min-width: 1140px)"]');
     $this->assertCount(1, $full_width_media);
     $this->assertStringContainsString('oe_theme_full_width_banner_4_1/public/example_1_en.jpeg', $full_width_media->attr('srcset'));
     $this->assertEquals('Banner', trim($crawler->filter('div.ecl-banner__content div.ecl-banner__title')->text()));
@@ -649,7 +657,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $image_element = $crawler->filter('section.ecl-banner.ecl-banner--font-m.ecl-banner--box-bg-light.ecl-banner--color-dark picture.ecl-picture.ecl-banner__picture img.ecl-banner__image');
     $this->assertCount(1, $image_element);
     $this->assertStringContainsString(
-      $this->container->get('file_url_generator')->generateAbsoluteString($en_file_uri_medium),
+      $this->container->get('file_url_generator')->transformRelative($style->buildUrl($en_file->getFileUri())),
       $image_element->attr('src')
     );
     $this->assertEquals('Banner', trim($crawler->filter('div.ecl-banner__content div.ecl-banner__title')->text()));
@@ -666,11 +674,12 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $html = $this->renderParagraph($paragraph);
     $crawler = new Crawler($html);
 
+    $style = ImageStyle::load('oe_theme_full_width_banner_3_1');
     $this->assertCount(1, $crawler->filter('section.ecl-banner.ecl-banner--font-m.ecl-banner--box-bg-dark.ecl-banner--color-light.ecl-banner--l.ecl-banner--h-center.ecl-banner--v-center'));
     $image_element = $crawler->filter('section.ecl-banner.ecl-banner--font-m.ecl-banner--box-bg-dark.ecl-banner--color-light picture.ecl-picture.ecl-banner__picture img.ecl-banner__image');
     $this->assertCount(1, $image_element);
     $this->assertStringContainsString(
-      $this->container->get('file_url_generator')->generateAbsoluteString($en_file_uri),
+      $this->container->get('file_url_generator')->transformRelative($style->buildUrl($en_file->getFileUri())),
       $image_element->attr('src')
     );
     $this->assertEquals('Banner', trim($crawler->filter('div.ecl-banner__content div.ecl-banner__title')->text()));
@@ -690,7 +699,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $image_element = $crawler->filter('section.ecl-banner.ecl-banner--font-m.ecl-banner--box-bg-dark.ecl-banner--color-light picture.ecl-picture.ecl-banner__picture img.ecl-banner__image');
     $this->assertCount(1, $image_element);
     $this->assertStringContainsString(
-      $this->container->get('file_url_generator')->generateAbsoluteString($en_file_uri),
+      $this->container->get('file_url_generator')->transformRelative($style->buildUrl($en_file->getFileUri())),
       $image_element->attr('src')
     );
     $this->assertEquals('Banner', trim($crawler->filter('div.ecl-banner__content div.ecl-banner__title')->text()));
@@ -707,11 +716,12 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $html = $this->renderParagraph($paragraph);
     $crawler = new Crawler($html);
 
+    $style = ImageStyle::load('oe_theme_full_width_banner_4_1');
     $this->assertCount(1, $crawler->filter('section.ecl-banner.ecl-banner--font-m.ecl-banner--box-bg-dark.ecl-banner--color-light.ecl-banner--m.ecl-banner--h-center'));
     $image_element = $crawler->filter('section.ecl-banner.ecl-banner--font-m.ecl-banner--box-bg-dark.ecl-banner--color-light picture.ecl-picture.ecl-banner__picture img.ecl-banner__image');
     $this->assertCount(1, $image_element);
     $this->assertStringContainsString(
-      $this->container->get('file_url_generator')->generateAbsoluteString($en_file_uri_medium),
+      $this->container->get('file_url_generator')->transformRelative($style->buildUrl($en_file->getFileUri())),
       $image_element->attr('src')
     );
     $this->assertEquals('Banner', trim($crawler->filter('div.ecl-banner__content div.ecl-banner__title')->text()));
@@ -732,7 +742,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $image_element = $crawler->filter('section.ecl-banner.ecl-banner--font-m.ecl-banner--box-bg-dark.ecl-banner--color-light picture.ecl-picture.ecl-banner__picture img.ecl-banner__image');
     $this->assertCount(1, $image_element);
     $this->assertStringContainsString(
-      $this->container->get('file_url_generator')->generateAbsoluteString($en_file_uri_medium),
+      $this->container->get('file_url_generator')->transformRelative($style->buildUrl($en_file->getFileUri())),
       $image_element->attr('src')
     );
     $this->assertEquals('Banner', trim($crawler->filter('div.ecl-banner__content div.ecl-banner__title')->text()));
@@ -842,12 +852,13 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $html = $this->renderParagraph($paragraph);
     $crawler = new Crawler($html);
 
+    $style = ImageStyle::load('oe_theme_full_width_banner_3_1');
     $this->assertCount(1, $crawler->filter('section.ecl-banner.ecl-banner--font-m.ecl-banner--box-bg-dark.ecl-banner--color-light.ecl-banner--l.ecl-banner--h-center.ecl-banner--full-width'));
 
     $image_element = $crawler->filter('section.ecl-banner.ecl-banner--font-m.ecl-banner--box-bg-dark.ecl-banner--color-light picture.ecl-picture.ecl-banner__picture img.ecl-banner__image');
     $this->assertCount(1, $image_element);
     $this->assertStringContainsString(
-      $this->container->get('file_url_generator')->generateAbsoluteString($en_file_uri),
+      $this->container->get('file_url_generator')->transformRelative($style->buildUrl($en_file->getFileUri())),
       $image_element->attr('src')
     );
     $this->assertEquals('Banner', trim($crawler->filter('div.ecl-banner__content div.ecl-banner__title')->text()));
@@ -864,6 +875,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $paragraph->save();
     $html = $this->renderParagraph($paragraph);
     $crawler = new Crawler($html);
+    $style = ImageStyle::load('oe_theme_full_width_banner_4_1');
 
     $this->assertCount(0, $crawler->filter('section.ecl-banner.ecl-banner--font-m.ecl-banner--box-bg-dark.ecl-banner--color-light.ecl-banner--m.ecl-banner--h-center.ecl-banner--full-width'));
     $this->assertCount(1, $crawler->filter('section.ecl-banner.ecl-banner--font-m.ecl-banner--box-bg-dark.ecl-banner--color-light.ecl-banner--m'));
@@ -871,7 +883,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $image_element = $crawler->filter('section.ecl-banner.ecl-banner--font-m.ecl-banner--box-bg-dark.ecl-banner--color-light picture.ecl-picture.ecl-banner__picture img.ecl-banner__image');
     $this->assertCount(1, $image_element);
     $this->assertStringContainsString(
-      $this->container->get('file_url_generator')->generateAbsoluteString($en_file_uri_medium),
+      $this->container->get('file_url_generator')->transformRelative($style->buildUrl($en_file->getFileUri())),
       $image_element->attr('src')
     );
     $this->assertEquals('Banner', trim($crawler->filter('div.ecl-banner__content div.ecl-banner__title')->text()));
@@ -888,7 +900,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
       'status' => 1,
     ]);
     $media->save();
-    $av_portal_file_uri = $style->buildUri('avportal://P-038924/00-15.jpg');
+    $av_portal_file_url = 'avportal://P-038924/00-15.jpg';
 
     $paragraph->get('field_oe_media')->setValue([
       'target_id' => $media->id(),
@@ -907,7 +919,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $image_element = $crawler->filter('section.ecl-banner.ecl-banner--font-m.ecl-banner--box-bg-dark.ecl-banner--color-light picture.ecl-picture.ecl-banner__picture img.ecl-banner__image');
     $this->assertCount(1, $image_element);
     $this->assertStringContainsString(
-      $this->container->get('file_url_generator')->generateAbsoluteString($av_portal_file_uri),
+      $this->container->get('file_url_generator')->transformRelative($style->buildUrl($av_portal_file_url)),
       $image_element->attr('src')
     );
   }
@@ -1030,26 +1042,26 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $en_file_1->save();
     // Get first english file styled URI.
     $style = ImageStyle::load('oe_theme_full_width_banner_3_1');
-    $en_file_1_uri = $style->buildUri($en_file_1->getFileUri());
+    $en_file_1_url = $style->buildUrl($en_file_1->getFileUri());
 
     $en_file_2 = $this->container->get('file.repository')->writeData(file_get_contents($this->container->get('extension.list.theme')->getPath('oe_theme') . '/tests/fixtures/example_1.jpeg'), 'public://example_2_en.jpeg');
     $en_file_2->setPermanent();
     $en_file_2->save();
-    // Get second english file styled URI.
-    $en_file_2_uri = $style->buildUri($en_file_2->getFileUri());
+    // Get second english file styled URL.
+    $en_file_2_url = $style->buildUrl($en_file_2->getFileUri());
 
     // Create Bulgarian files.
     $bg_file_1 = $this->container->get('file.repository')->writeData(file_get_contents($this->container->get('extension.list.theme')->getPath('oe_theme') . '/tests/fixtures/example_1.jpeg'), 'public://example_1_bg.jpeg');
     $bg_file_1->setPermanent();
     $bg_file_1->save();
-    // Get first bulgarian file styled URI.
-    $bg_file_1_uri = $style->buildUri($bg_file_1->getFileUri());
+    // Get first bulgarian file styled URL.
+    $bg_file_1_url = $style->buildUrl($bg_file_1->getFileUri());
 
     $bg_file_2 = $this->container->get('file.repository')->writeData(file_get_contents($this->container->get('extension.list.theme')->getPath('oe_theme') . '/tests/fixtures/example_1.jpeg'), 'public://example_2_bg.jpeg');
     $bg_file_2->setPermanent();
     $bg_file_2->save();
-    // Get second bulgarian file styled URI.
-    $bg_file_2_uri = $style->buildUri($bg_file_2->getFileUri());
+    // Get second bulgarian file styled URL.
+    $bg_file_2_url = $style->buildUrl($bg_file_2->getFileUri());
 
     // Create a couple of media items with Bulgarian translation.
     $media_storage = $this->container->get('entity_type.manager')
@@ -1133,7 +1145,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
       'items' => [
         [
           'title' => 'Item 1',
-          'image' => $this->container->get('file_url_generator')->generateAbsoluteString($en_file_1_uri),
+          'image' => $this->container->get('file_url_generator')->transformRelative($en_file_1_url),
           'image_alt' => 'First image alt en',
           'sources' => [
             'small' => 'oe_theme_small_3_1_banner/public/example_1_en.jpeg',
@@ -1149,7 +1161,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
           'description' => 'Item description 2',
           'url' => 'http://www.example.com/',
           'url_text' => 'CTA 2',
-          'image' => $this->container->get('file_url_generator')->generateAbsoluteString($en_file_2_uri),
+          'image' => $this->container->get('file_url_generator')->transformRelative($en_file_2_url),
           'sources' => [
             'small' => 'oe_theme_small_3_1_banner/public/example_2_en.jpeg',
             'medium' => 'oe_theme_medium_3_1_banner/public/example_2_en.jpeg',
@@ -1161,7 +1173,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
         ],
         [
           'title' => 'Item 3',
-          'image' => $this->container->get('file_url_generator')->generateAbsoluteString($en_file_1_uri),
+          'image' => $this->container->get('file_url_generator')->transformRelative($en_file_1_url),
           'image_alt' => 'First image alt en',
           'sources' => [
             'small' => 'oe_theme_small_3_1_banner/public/example_1_en.jpeg',
@@ -1177,7 +1189,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
           'description' => 'Item description 4',
           'url' => '/',
           'url_text' => 'CTA 4',
-          'image' => $this->container->get('file_url_generator')->generateAbsoluteString($en_file_2_uri),
+          'image' => $this->container->get('file_url_generator')->transformRelative($en_file_2_url),
           'sources' => [
             'small' => 'oe_theme_small_3_1_banner/public/example_2_en.jpeg',
             'medium' => 'oe_theme_medium_3_1_banner/public/example_2_en.jpeg',
@@ -1198,7 +1210,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $carousel_size = $crawler->filter('section.ecl-banner--l');
     $this->assertCount(4, $carousel_size);
     $expected_values['items'][0]['title'] = 'BG Item 1';
-    $expected_values['items'][0]['image'] = $this->container->get('file_url_generator')->generateAbsoluteString($bg_file_1_uri);
+    $expected_values['items'][0]['image'] = $this->container->get('file_url_generator')->transformRelative($bg_file_1_url);
     $expected_values['items'][0]['image_alt'] = 'First image alt bg';
     $expected_values['items'][0]['sources'] = [
       'small' => 'oe_theme_small_3_1_banner/public/example_1_bg.jpeg',
@@ -1210,7 +1222,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $expected_values['items'][1]['title'] = 'BG Item 2';
     $expected_values['items'][1]['description'] = 'BG Item description 2';
     $expected_values['items'][1]['url_text'] = 'BG CTA 2';
-    $expected_values['items'][1]['image'] = $this->container->get('file_url_generator')->generateAbsoluteString($bg_file_2_uri);
+    $expected_values['items'][1]['image'] = $this->container->get('file_url_generator')->transformRelative($bg_file_2_url);
     $expected_values['items'][1]['sources'] = [
       'small' => 'oe_theme_small_3_1_banner/public/example_2_bg.jpeg',
       'medium' => 'oe_theme_medium_3_1_banner/public/example_2_bg.jpeg',
@@ -1219,7 +1231,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
       'full_width' => 'oe_theme_full_width_banner_3_1/public/example_2_bg.jpeg',
     ];
     $expected_values['items'][2]['title'] = 'BG Item 3';
-    $expected_values['items'][2]['image'] = $this->container->get('file_url_generator')->generateAbsoluteString($bg_file_1_uri);
+    $expected_values['items'][2]['image'] = $this->container->get('file_url_generator')->transformRelative($bg_file_1_url);
     $expected_values['items'][2]['image_alt'] = 'First image alt bg';
     $expected_values['items'][2]['sources'] = [
       'small' => 'oe_theme_small_3_1_banner/public/example_1_bg.jpeg',
@@ -1232,7 +1244,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $expected_values['items'][3]['description'] = 'BG Item description 4';
     $expected_values['items'][3]['url'] = 'http://www.example.com/';
     $expected_values['items'][3]['url_text'] = 'BG CTA 4';
-    $expected_values['items'][3]['image'] = $this->container->get('file_url_generator')->generateAbsoluteString($bg_file_2_uri);
+    $expected_values['items'][3]['image'] = $this->container->get('file_url_generator')->transformRelative($bg_file_2_url);
     $expected_values['items'][3]['sources'] = [
       'small' => 'oe_theme_small_3_1_banner/public/example_2_bg.jpeg',
       'medium' => 'oe_theme_medium_3_1_banner/public/example_2_bg.jpeg',
