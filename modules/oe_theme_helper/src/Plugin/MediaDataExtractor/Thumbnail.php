@@ -109,7 +109,7 @@ class Thumbnail extends MediaDataExtractorPluginBase implements ContainerFactory
 
     // Create a new image value object with the new src.
     $thumbnail = ImageValueObject::fromArray([
-      'src' => $image_style->buildUrl($uri),
+      'src' => \Drupal::service('file_url_generator')->transformRelative($image_style->buildUrl($uri)),
     ] + $thumbnail->getArray());
     $thumbnail->addCacheableDependency($image_style);
 
