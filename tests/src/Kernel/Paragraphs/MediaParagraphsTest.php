@@ -450,8 +450,8 @@ class MediaParagraphsTest extends ParagraphsTestBase {
    */
   public function testBanner(): void {
 
-    $breakpointsByGroup = \Drupal::service('breakpoint.manager')->getBreakpointsByGroup('oe_theme');
-    $this->assertCount(5, $breakpointsByGroup);
+    $breakpoints_by_group = \Drupal::service('breakpoint.manager')->getBreakpointsByGroup('oe_theme');
+    $this->assertCount(5, $breakpoints_by_group);
 
     // Set image media translatable.
     $this->container->get('content_translation.manager')->setEnabled('media', 'image', TRUE);
