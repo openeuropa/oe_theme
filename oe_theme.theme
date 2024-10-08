@@ -1705,15 +1705,15 @@ function oe_theme_preprocess_paragraph__oe_banner(array &$variables): void {
  * @return array
  *   Returns sources and fallback url.
  */
-function _oe_theme_load_from_responsive_image_style_id($responsive_image_style_id, $uri) {
+function _oe_theme_load_from_responsive_image_style_id(string $responsive_image_style_id, string $uri):array {
   $responsive_image_style = ResponsiveImageStyle::load($responsive_image_style_id);
-  $resp_image = [];
+  $responsive_image_generator = [];
   $breakpoints = array_reverse(\Drupal::service('breakpoint.manager')->getBreakpointsByGroup($responsive_image_style->getBreakpointGroup()));
   foreach ($responsive_image_style->getKeyedImageStyleMappings() as $breakpoint_id => $multipliers) {
     if (isset($breakpoints[$breakpoint_id])) {
       $responsive_image = _responsive_image_build_source_attributes(['uri' => $uri], $breakpoints[$breakpoint_id], $multipliers);
       $responsive_image_array = $responsive_image->toArray();
-      $resp_image['sources'][] = [
+      $responsive_image_generator['sources'][] = [
         'src' => $responsive_image_array['srcset'],
         'media' => $responsive_image_array['media'] ?? '',
       ];
@@ -1721,9 +1721,9 @@ function _oe_theme_load_from_responsive_image_style_id($responsive_image_style_i
   }
 
   // Add fallback style.
-  $resp_image['fallback'] = _responsive_image_image_style_url($responsive_image_style->getFallbackImageStyle(), $uri);
+  $responsive_image_generator['fallback'] = _responsive_image_image_style_url($responsive_image_style->getFallbackImageStyle(), $uri);
 
-  return $resp_image;
+  return $responsive_image_generator;
 }
 
 /**
