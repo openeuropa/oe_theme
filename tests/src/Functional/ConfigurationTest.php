@@ -125,6 +125,8 @@ class ConfigurationTest extends BrowserTestBase {
 
       // Assert that we don't load rtl styling.
       $this->assertLinkNotContainsHref('/oe_theme/dist/eu/styles/optional/ecl-rtl.css');
+      // Assert that we don't load etr styling.
+      $this->assertLinkNotContainsHref('/oe_theme/dist/eu/styles/optional/ecl-eu-easy-to-read.css');
 
       // Assert that the favicon provided by the theme is being used.
       $this->assertSession()->responseContains("/$active_theme/images/favicons/eu/favicon.ico");
@@ -167,6 +169,8 @@ class ConfigurationTest extends BrowserTestBase {
 
       // Assert that we don't load rtl styling.
       $this->assertLinkNotContainsHref('/oe_theme/dist/ec/styles/optional/ecl-rtl.css');
+      // Assert that we don't load etr styling.
+      $this->assertLinkNotContainsHref('/oe_theme/dist/ec/styles/optional/ecl-ec-easy-to-read.css');
 
       // Assert that the favicon provided by the theme is being used.
       $this->assertSession()->responseContains("/$active_theme/images/favicons/ec/favicon.ico");
