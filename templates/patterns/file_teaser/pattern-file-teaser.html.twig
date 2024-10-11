@@ -29,6 +29,7 @@
       'icon': {
         'path': ecl_icon_path,
       },
+      'extra_attributes': item.link_attributes|default([]),
     },
     'lang_full': item.file.language_code|to_native_language
   }]) %}
@@ -116,6 +117,7 @@
     'icon': {
       'path': ecl_icon_path,
     },
+    'extra_attributes': link_attributes|default([]),
   },
   'translation': {
     'toggle': {
