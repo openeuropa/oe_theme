@@ -1,6 +1,8 @@
 langcode: en
 status: true
-dependencies: {  }
+dependencies:
+  module:
+    - oe_theme_helper
 name: oe_theme_small_2x_no_crop
 label: 'Small 2x (no crop)'
 effects:
