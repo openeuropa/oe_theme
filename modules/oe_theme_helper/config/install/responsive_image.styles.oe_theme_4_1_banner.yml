@@ -7,6 +7,8 @@ dependencies:
     - image.style.oe_theme_large_4_1_banner
     - image.style.oe_theme_medium_4_1_banner
     - image.style.oe_theme_small_4_1_banner
+  module:
+    - oe_theme_helper
 id: oe_theme_4_1_banner
 label: '4:1 Banner'
 image_style_mappings:
