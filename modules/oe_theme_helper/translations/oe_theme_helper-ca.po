@@ -525,3 +525,132 @@ msgstr "informació sobre protecció de dades"
 
 msgid "@percentage% of the overall budget"
 msgstr "@percentage% del pressupost total"
+
+msgid "Ongoing"
+msgstr "En curs"
+
+msgid "Opening of tenders"
+msgstr "Obertura de licitacions"
+
+msgid "External event"
+msgstr "Esdeveniment extern"
+
+msgid "Online only"
+msgstr "Només en línia"
+
+msgid "Organisers"
+msgstr "Organitzadors"
+
+msgid "Part of"
+msgstr "Part de"
+
+msgid "Programme"
+msgstr "Programa"
+
+msgid "Register here"
+msgstr "Inscripcions aquí"
+
+msgid "Report"
+msgstr "Informe"
+
+msgid "Speakers"
+msgstr "Ponents"
+
+msgid "Starts on @date"
+msgstr "Inici el dia @date"
+
+msgid "The livestream has ended, but the event is ongoing."
+msgstr "La transmissió en directe ha finalitzat, però l’esdeveniment continua."
+
+msgid "The livestream has started."
+msgstr "La transmissió en directe ha començat."
+
+msgid "This event has been cancelled."
+msgstr "Aquest esdeveniment ha estat cancel·lat."
+
+msgid "This event has been postponed."
+msgstr "Aquest esdeveniment ha estat ajornat."
+
+msgid "This event has been rescheduled."
+msgstr "Aquest esdeveniment ha estat reprogramat."
+
+msgid "This event has ended, but the livestream is ongoing."
+msgstr "Aquest esdeveniment ha finalitzat, però la transmissió en directe continua."
+
+msgid "This event has ended."
+msgstr "Aquest esdeveniment ha finalitzat."
+
+msgid "This event has started."
+msgstr "Aquest esdeveniment ha començat."
+
+msgid "This event has started. The livestream will start at @date."
+msgstr "Aquest esdeveniment ha començat. La transmissió en directe començarà el dia @date"
+
+msgid "This event has started. You can also watch it via livestream."
+msgstr "Aquest esdeveniment ha començat. També ho podeu veure a través de la transmissió en directe."
+
+msgid "This livestream has started."
+msgstr "Aquesta transmissió en directe ha començat."
+
+msgid "Who should attend"
+msgstr "A qui va dirigit"
+
+msgid "Clear all"
+msgstr "Esborrar-ho tot"
+
+msgid "Filter results"
+msgstr "Filtra els resultats"
+
+msgid "This site is managed by:<br />@name"
+msgstr "Aquest lloc està gestionat per:<br />@name"
+
+msgid "See all"
+msgstr "Veure-ho tot"
+
+msgid "You are here:"
+msgstr "Sou aquí:"
+
+msgid "European Commission logo"
+msgstr "Logotip de la Comissió Europea"
+
+msgid "European Union flag"
+msgstr "Bandera de la Unió Europea"
+
+msgid "Access item's children"
+msgstr "Accedir als subelements"
+
+msgid "Collapse"
+msgstr "Minimitzar"
+
+msgid "Site navigation"
+msgstr "Navegació pel lloc"
+
+msgid "Next news item"
+msgstr "Notícia següent"
+
+msgid "Pause news ticker"
+msgstr "Pausar el tíquer"
+
+msgid "Play news ticker"
+msgstr "Activar el tíquer"
+
+msgid "Previous news item"
+msgstr "Notícia anterior"
+
+msgid "Close"
+msgstr "Tanca"
+
+msgid "European Union"
+msgstr "Unió Europea"
+
+msgid "Highlighted"
+msgstr "Destacat"
+
+msgid "Home"
+msgstr "Inici"
+
+msgid "Press contact"
+msgstr "Contacte de premsa"
+
+msgid "Sources"
+msgstr "Fonts"
