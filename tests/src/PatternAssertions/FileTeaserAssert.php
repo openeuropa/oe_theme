@@ -30,6 +30,9 @@ class FileTeaserAssert extends FileTranslationAssert {
     $assertions['lists'] = [
       [$this, 'assertLists'],
     ];
+    $assertions['link_attributes'] = [
+      [$this, 'assertLinkAttributes'],
+    ];
     $assertions['badge'] = [
       [$this, 'assertBadge'],
       'div.ecl-file--thumbnail div.ecl-file__container div.ecl-file__info div.ecl-file__label',
@@ -101,6 +104,20 @@ class FileTeaserAssert extends FileTranslationAssert {
   }
 
   /**
+   * Asserts the attributes of the download link.
+   *
+   * @param array $expected_link_attributes
+   *   The expected link attributes.
+   * @param \Symfony\Component\DomCrawler\Crawler $crawler
+   *   The DomCrawler where to check the element.
+   */
+  protected function assertLinkAttributes(array $expected_link_attributes, Crawler $crawler): void {
+    foreach ($expected_link_attributes as $attribute => $value) {
+      $this->assertElementAttribute($value, 'a.ecl-file__download', $attribute, $crawler);
+    }
+  }
+
+  /**
    * {@inheritdoc}
    */
   protected function assertTranslation(array $expected_file, Crawler $crawler): void {
@@ -116,6 +133,13 @@ class FileTeaserAssert extends FileTranslationAssert {
 
     // Assert download link.
     $this->assertElementAttribute($expected_file['url'], 'a.ecl-file__translation-download', 'href', $crawler);
+
+    // Assert download link attributes.
+    if (isset($expected_file['link_attributes'])) {
+      foreach ($expected_file['link_attributes'] as $attribute => $value) {
+        $this->assertElementAttribute($value, 'a.ecl-file__translation-download', $attribute, $crawler);
+      }
+    }
   }
 
   /**

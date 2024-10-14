@@ -23,6 +23,13 @@ file_teaser:
         size: "140000"
         name: "document.pdf"
         language_code: "en"
+    link_attributes:
+      type: "array"
+      label: "The download link attributes"
+      description: "Any additional attributes to be added to the file download link."
+      preview:
+        - "name": "data-attribute-foo"
+          "value": "bar"
     thumbnail:
       type: "array"
       label: "Thumbnail"
@@ -43,7 +50,7 @@ file_teaser:
     translations:
       type: "array"
       label: "Files"
-      description: "List of teaser (teaser is deprecated - to be removed in 5.x) text/FileValueObject pairs, respectively keyed with 'teaser' and 'file'."
+      description: "List of items with the following properties: teaser (teaser is deprecated - to be removed in 5.x) text, FileValueObject and link attributes, respectively keyed with 'teaser', 'file' and 'link_attributes'."
       preview:
         - teaser: "Morbi fringilla turpis augue, et interdum ipsum egestas sed. Proin tristique, ante id aliquet malesuada, lorem dolor vulputate magna, a commodo purus ante nec massa."
           file:
@@ -53,6 +60,9 @@ file_teaser:
             size: "150000"
             name: "document.pdf"
             language_code: "fr"
+          link_attributes:
+            - "name": "data-attribute-translation-foo"
+              "value": "bar"
         - teaser: "Proin sagittis nisi hendrerit purus porta, at suscipit est hendrerit. Duis facilisis augue imperdiet, pharetra nisl sed, molestie nulla."
           file:
             title: "Italian translation"
@@ -61,6 +71,9 @@ file_teaser:
             size: "160000"
             name: "document.doc"
             language_code: "it"
+          link_attributes:
+            - "name": "data-attribute-translation-foo"
+              "value": "bar"
         - teaser: "Duis eget lacinia arcu. Nullam mattis ornare nibh. Proin tristique, ante id aliquet malesuada. Pellentesque porttitor commodo libero sed fringilla. Curabitur varius sodales elit, id tincidunt erat. Aenean tincidunt luctus molestie."
           file:
             title: "Hungarian translation"
@@ -69,6 +82,9 @@ file_teaser:
             size: "170000"
             name: "document.pdf"
             language_code: "hu"
+          link_attributes:
+            - "name": "data-attribute-translation-foo"
+              "value": "bar"
     translation_toggle_label:
       type: "text"
       label: "Translation toggle label"

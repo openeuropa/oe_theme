@@ -18,6 +18,13 @@ file_translation:
         size: "150000"
         name: "document.pdf"
         language_code: "en"
+    link_attributes:
+      type: "array"
+      label: "The download link attributes"
+      description: "Any additional attributes to be added to the file download link."
+      preview:
+        - "name": "data-attribute-foo"
+          "value": "bar"
     translations:
       type: "array"
       label: "Files"
