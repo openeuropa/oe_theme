@@ -169,3 +169,10 @@ list_item:
       label: 'Extra classes string'
       description: 'Extra classes string'
       preview: ''
+    extra_attributes:
+      type: "array"
+      label: "Extra attributes"
+      description: "List of extra attributes"
+      preview:
+        - name: "extra-attr"
+          value: "extra value"

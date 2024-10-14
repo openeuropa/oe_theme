@@ -118,3 +118,10 @@ file_teaser:
       label: "Contextual links"
       description: "Render array of contextual links"
       preview: ~
+    extra_attributes:
+      type: "array"
+      label: "Extra attributes"
+      description: "List of extra attributes"
+      preview:
+        - name: "extra-attr"
+          value: "extra value"

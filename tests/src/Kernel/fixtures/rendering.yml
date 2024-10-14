@@ -953,12 +953,15 @@
       badges:
         - label: "Highlighted"
           variant: "highlight"
+      extra_attributes:
+        - name: "extra-attr"
+          value: "extra value"
   assertions:
     count:
       'img.ecl-file__image[src="https://inno-ecl.s3.amazonaws.com/media/examples/example-image.jpg"]': 1
       'img.ecl-file__image[alt="thumbnail alt"]': 1
       'a.ecl-file__download[href="http://example.com"]': 1
-      'div.ecl-file.ecl-file--thumbnail': 1
+      'div.ecl-file.ecl-file--thumbnail[extra-attr="extra value"]': 1
       'div.ecl-file__container div.ecl-file__info ul.ecl-file__detail-meta': 1
       'div.ecl-file__container div.ecl-file__info': 1
       'div.ecl-file__translation-container': 1
@@ -1483,9 +1486,12 @@
           variant: "highlight"
         - label: "Status: Open"
           variant: "high"
+      extra_attributes:
+        - name: "extra-attr"
+          value: "extra value"
   assertions:
     count:
-      'article.ecl-content-item div.ecl-content-item__content-block div.ecl-content-block__title a.ecl-link[href="http://example.com"]': 1
+      'article.ecl-content-item[extra-attr="extra value"] div.ecl-content-item__content-block div.ecl-content-block__title a.ecl-link[href="http://example.com"]': 1
       'article.ecl-content-item picture.ecl-content-item__picture--large': 0
       'article.ecl-content-item picture.ecl-content-item__picture--left': 0
       'article.ecl-content-item picture.ecl-content-item__picture--right': 0
@@ -1508,9 +1514,12 @@
       length: 6
       meta:
         - "Meta 1"
+      extra_attributes:
+        - name: "extra-attr"
+          value: "extra value"
   assertions:
     count:
-      'article.ecl-content-item div.ecl-content-item__content-block div.ecl-content-block__title a.ecl-link[href="http://example.com"]': 1
+      'article.ecl-content-item[extra-attr="extra value"] div.ecl-content-item__content-block div.ecl-content-block__title a.ecl-link[href="http://example.com"]': 1
       'article.ecl-content-item picture.ecl-content-item__picture--large': 0
       'article.ecl-content-item picture.ecl-content-item__picture--left': 0
       'article.ecl-content-item picture.ecl-content-item__picture--right': 0
@@ -1721,9 +1730,12 @@
       meta:
         - "Meta 1"
         - "Meta 2"
+      extra_attributes:
+        - name: "extra-attr"
+          value: "extra value"
   assertions:
     count:
-      'article.ecl-content-item div.ecl-content-item__content-block a.ecl-link[href="http://example.com"]': 1
+      'article.ecl-content-item[extra-attr="extra value"] div.ecl-content-item__content-block a.ecl-link[href="http://example.com"]': 1
       'article.ecl-content-item img.ecl-content-item__image[alt="Alternate text for primary image"]': 1
       'article.ecl-content-item img.ecl-content-item__image[src="http://via.placeholder.com/150x150"]': 1
       'article.ecl-content-item picture[data-ecl-picture-link]': 1
@@ -1748,9 +1760,12 @@
       meta:
         - "Meta 1"
         - "Meta 2"
+      extra_attributes:
+        - name: "extra-attr"
+          value: "extra value"
   assertions:
     count:
-      'article.ecl-content-item div.ecl-content-item__content-block a.ecl-link[href="http://example.com"]': 1
+      'article.ecl-content-item[extra-attr="extra value"] div.ecl-content-item__content-block a.ecl-link[href="http://example.com"]': 1
       'article.ecl-content-item img.ecl-content-item__image[alt="Alternate text for secondary image"]': 1
       'article.ecl-content-item img.ecl-content-item__image[src="http://via.placeholder.com/120x80"]': 1
       'article.ecl-content-item picture[data-ecl-picture-link]': 1
@@ -1782,9 +1797,12 @@
       secondary_meta:
         - label: "Brussels"
           icon: "location"
+      extra_attributes:
+        - name: "extra-attr"
+          value: "extra value"
   assertions:
     count:
-      article.ecl-card div.ecl-card__body div.ecl-content-block.ecl-card__content-block: 1
+      article.ecl-card[extra-attr="extra value"] div.ecl-card__body div.ecl-content-block.ecl-card__content-block: 1
       article.ecl-card div.ecl-card__body a.ecl-link--standalone[href="http://example.com"]: 1
       article.ecl-card img.ecl-card__image[alt="Alternate text for secondary image"]: 1
       article.ecl-card img.ecl-card__image[src="http://via.placeholder.com/300x300"]: 1
@@ -1814,6 +1832,9 @@
         alt: "Alternate text for secondary image"
       detail: "This is a very long description. Better to trim it off."
       length: 32
+      extra_attributes:
+        - name: "extra-attr"
+          value: "extra value"
   assertions:
     count:
       article.ecl-card div.ecl-card__body a.ecl-link--standalone[href="http://example.com"]: 1
@@ -1841,9 +1862,12 @@
           variant: "highlight"
         - label: "Status: Open"
           variant: "high"
+      extra_attributes:
+        - name: "extra-attr"
+          value: "extra value"
   assertions:
     count:
-      'article.ecl-card div.ecl-card__body a.ecl-link--standalone[href="http://example.com"]': 1
+      'article.ecl-card[extra-attr="extra value"] div.ecl-card__body a.ecl-link--standalone[href="http://example.com"]': 1
       'article.ecl-card div.ecl-card__image': 0
       'article.ecl-card div.ecl-card__body ul.ecl-content-block__primary-meta-container': 0
       'article.ecl-card div.ecl-card__body ul.ecl-content-block__label-container': 1
@@ -1875,9 +1899,12 @@
           variant: "highlight"
         - label: "Status: Open"
           variant: "medium"
+      extra_attributes:
+        - name: "extra-attr"
+          value: "extra value"
   assertions:
     count:
-      'article.ecl-content-item div.ecl-content-item__content-block a.ecl-link[href="http://example.com"]': 1
+      'article.ecl-content-item[extra-attr="extra value"] div.ecl-content-item__content-block a.ecl-link[href="http://example.com"]': 1
       'article.ecl-content-item time.ecl-date-block.ecl-date-block--ongoing.ecl-content-item__date': 1
       'article.ecl-content-item time.ecl-date-block.ecl-date-block--ongoing.ecl-content-item__date abbr.ecl-date-block__month[title="July"]': 1
     equals:
@@ -1913,9 +1940,12 @@
             definition: "Thursday 15 November, 08:00 AM to Friday 16 November"
           - term: "Where"
             definition: "The EGG, Rue Barra 175, 1070 Brussels, Belgium"
+      extra_attributes:
+        - name: "extra-attr"
+          value: "extra value"
   assertions:
     count:
-      'article.ecl-content-item div.ecl-content-item__content-block a.ecl-link[href="http://example.com"]': 1
+      'article.ecl-content-item[extra-attr="extra value"] div.ecl-content-item__content-block a.ecl-link[href="http://example.com"]': 1
       'article.ecl-content-item time.ecl-date-block.ecl-date-block--ongoing.ecl-content-item__date': 1
       'article.ecl-content-item time.ecl-date-block.ecl-date-block--ongoing.ecl-content-item__date abbr.ecl-date-block__month[title="July"]': 1
       'div.ecl-content-block__list-container dl.ecl-u-mb-xl .ecl-description-list__term': 2
@@ -3017,11 +3047,14 @@
           variant: "highlight"
         - label: "Status: Open"
           variant: "high"
+      extra_attributes:
+        - name: "extra-attr"
+          value: "extra value"
   assertions:
     count:
       "img.ecl-card__image[src=\"http://via.placeholder.com/120x80\"]": 1
       'div.ecl-content-block__title a.ecl-link--standalone[href="https://example.com"]': 1
-      'article.ecl-card picture[data-ecl-picture-link]': 1
+      'article.ecl-card[extra-attr="extra value"] picture[data-ecl-picture-link]': 1
       'a.ecl-button': 0
       'article.ecl-card div.ecl-card__body ul.ecl-content-block__label-container': 1
       'ul.ecl-content-block__label-container li.ecl-content-block__label-item': 2
@@ -3121,9 +3154,13 @@
         href: "https://example.com"
         label: "Link title"
       external_link: true
+      extra_attributes:
+        - name: "extra-attr"
+          value: "extra value"
   assertions:
     count:
       "div.ecl-card__image": 0
+      'article.ecl-card[extra-attr="extra value"]': 1
       'div.ecl-content-block__title a.ecl-link--standalone.ecl-link--icon[href="https://example.com"]': 1
       'a.ecl-button[href="https://example.com"]': 1
       'svg.ecl-icon.ecl-icon--xs.ecl-button__icon': 1
@@ -4547,6 +4584,9 @@
         image:
           src: "https://loremflickr.com/1200/900/arch"
           alt: "Highlighted item image"
+        extra_attributes:
+          - name: "extra-attr1"
+            value: "extra value1"
       items:
         - title: "Item 2"
           detail: "Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem."
@@ -4559,6 +4599,9 @@
           image:
             src: "https://loremflickr.com/1200/900/arch"
             alt: "Item 2 image"
+          extra_attributes:
+            - name: "extra-attr2"
+              value: "extra value2"
         - title: "Item 3"
           url: "https://external.com"
           detail: "In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam"
@@ -4612,8 +4655,8 @@
       'div.ecl-content-block__title': 4
       'div.ecl-content-block__title a': 3
       'picture.ecl-content-item__picture': 2
-      'div.ecl-col-l-8 picture.ecl-content-item__picture--large img.ecl-content-item__image[src="https://loremflickr.com/1200/900/arch"][alt="Highlighted item image"]': 1
-      'div.ecl-col-l-4 picture.ecl-content-item__picture--medium img.ecl-content-item__image[src="https://loremflickr.com/1200/900/arch"][alt="Item 2 image"]': 1
+      'div.ecl-col-l-8 article.ecl-content-item[extra-attr1="extra value1"] picture.ecl-content-item__picture--large img.ecl-content-item__image[src="https://loremflickr.com/1200/900/arch"][alt="Highlighted item image"]': 1
+      'div.ecl-col-l-4 article.ecl-content-item[extra-attr2="extra value2"] picture.ecl-content-item__picture--medium img.ecl-content-item__image[src="https://loremflickr.com/1200/900/arch"][alt="Item 2 image"]': 1
       'div#highlighted-news-block div.ecl-col-l-8 a': 1
       'div#highlighted-news-block div.ecl-col-l-4 a': 2
       'ul.ecl-content-block__primary-meta-container': 4
@@ -4783,6 +4826,9 @@
                 definition: "Thursday 15 November, 08:00 AM to Friday 16 November"
               - term: "Where"
                 definition: "The EGG, Rue Barra 175, 1070 Brussels, Belgium"
+          extra_attributes:
+            - name: "extra-attr1"
+              value: "extra value1"
         - title: "In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo"
           url: "https://external.com"
           detail: "In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam"
@@ -4845,6 +4891,7 @@
       'div div.ecl-row.ecl-u-border-color-neutral.ecl-u-border-width-1.ecl-u-border-bottom.ecl-u-pb-l': 1
       'div.ecl-row div.ecl-col-l-3.ecl-u-d-flex.ecl-u-flex-column': 4
       'div.ecl-row article.ecl-content-item.ecl-u-flex-grow-1': 6
+      'div.ecl-row article.ecl-content-item[extra-attr1="extra value1"].ecl-u-flex-grow-1': 1
       'div.ecl-row article.ecl-content-item--divider.ecl-u-flex-grow-1.ecl-u-mb-m': 2
       'div.ecl-content-block__title': 6
       'div.ecl-content-block__title a': 4
