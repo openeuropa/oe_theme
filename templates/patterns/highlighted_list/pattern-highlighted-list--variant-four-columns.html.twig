@@ -24,6 +24,7 @@
         'size': (loop.first or loop.index == 4) ? 'medium' : '',
       },
       'image_position': (loop.first or loop.index == 4) ? 'top' : '',
+      'picture_zoom': item.picture_zoom|default(false),
       'divider': (loop.index == 2 or loop.index == 5) ? true : false,
       'extra_classes': (loop.index == 2 or loop.index == 5) ? 'ecl-u-flex-grow-1 ecl-u-mb-m' : 'ecl-u-flex-grow-1',
       'contextual_links': item.contextual_links,

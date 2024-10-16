@@ -97,6 +97,12 @@ list_item:
       label: "Image position"
       description: "The image position: left (default), right, top."
       preview: "left"
+    picture_zoom:
+      type: "boolean"
+      label: "Picture zoom"
+      description: "Whether the picture should be animated or not (default: false)."
+      preview: true
+      escape: false
     icon:
       type: "text"
       label: "Icon (deprecated - to be removed in 5.x)"
