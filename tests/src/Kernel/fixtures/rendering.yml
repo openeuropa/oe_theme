@@ -1159,6 +1159,7 @@
       '.ecl-gallery[data-ecl-gallery][data-ecl-gallery-not-expandable]': 1
       '.ecl-gallery .ecl-gallery__list': 1
       '.ecl-gallery .ecl-gallery__list .ecl-gallery__item': 1
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item picture.ecl-picture--zoom': 0
       '.ecl-gallery .ecl-gallery__list .ecl-gallery__item .ecl-gallery__picture .ecl-gallery__image[src="https://loremflickr.com/800/600/cat"]': 1
       '.ecl-gallery .ecl-gallery__list .ecl-gallery__item .ecl-gallery__thumbnail .ecl-gallery__image[src="https://loremflickr.com/320/240/cat"]': 1
       '.ecl-gallery .ecl-gallery__list .ecl-gallery__item .ecl-gallery__thumbnail .ecl-gallery__image[alt="Example alt text"]': 1
@@ -1212,11 +1213,13 @@
       footer_link_label: 'Further media items'
       footer_link_external: true
       visible_items: 1
+      picture_zoom: true
   assertions:
     count:
       '.ecl-gallery[data-ecl-gallery-visible-items="1"]': 1
       '.ecl-gallery .ecl-gallery__list': 1
       '.ecl-gallery .ecl-gallery__list .ecl-gallery__item': 3
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item picture.ecl-picture--zoom': 3
       '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(1) .ecl-gallery__thumbnail .ecl-gallery__image[src="https://loremflickr.com/320/240/cat"]': 1
       '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(1) .ecl-gallery__thumbnail .ecl-gallery__image[alt="Example alt text cat"]': 1
       '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(1) .ecl-gallery__picture .ecl-gallery__image[src="https://loremflickr.com/800/600/cat"]': 1
@@ -1317,11 +1320,13 @@
       footer_link_external: true
       visible_items: 1
       grid: true
+      picture_zoom: false
   assertions:
     count:
       '.ecl-gallery[data-ecl-gallery-visible-items="1"]': 1
       '.ecl-gallery .ecl-gallery__list': 1
       '.ecl-gallery .ecl-gallery__list .ecl-gallery__item': 8
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item picture.ecl-picture--zoom': 0
       '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(1) .ecl-gallery__image[src="https://loremflickr.com/320/240/cat"]': 1
       '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(1) .ecl-gallery__image[alt="Example alt text cat"]': 2
       '.ecl-gallery .ecl-gallery__list .ecl-gallery__item figcaption.ecl-gallery__description span.ecl-gallery__title': 0
@@ -1428,11 +1433,13 @@
       columns: 4
       ratio: '3-1'
       disable_hover: true
+      picture_zoom: true
   assertions:
     count:
       '.ecl-gallery[data-ecl-gallery-visible-items="1"]': 1
       '.ecl-gallery .ecl-gallery__list': 1
       '.ecl-gallery .ecl-gallery__list .ecl-gallery__item': 8
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item picture.ecl-picture--zoom': 8
       '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(1) .ecl-gallery__image[src="https://loremflickr.com/320/240/cat"]': 1
       '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(1) .ecl-gallery__image[alt="Example alt text cat"]': 2
       '.ecl-gallery .ecl-gallery__list .ecl-gallery__item figcaption.ecl-gallery__description span.ecl-gallery__title': 0
@@ -1494,6 +1501,7 @@
       'article.ecl-content-item[extra-attr="extra value"] div.ecl-content-item__content-block div.ecl-content-block__title a.ecl-link[href="http://example.com"]': 1
       'article.ecl-content-item picture.ecl-content-item__picture--large': 0
       'article.ecl-content-item picture.ecl-content-item__picture--left': 0
+      'article.ecl-content-item picture.ecl-picture--zoom': 0
       'article.ecl-content-item picture.ecl-content-item__picture--right': 0
       'span.ecl-label.ecl-label--highlight': 1
       'span.ecl-label.ecl-label--high': 1
@@ -1517,12 +1525,14 @@
       extra_attributes:
         - name: "extra-attr"
           value: "extra value"
+      picture_zoom: true
   assertions:
     count:
       'article.ecl-content-item[extra-attr="extra value"] div.ecl-content-item__content-block div.ecl-content-block__title a.ecl-link[href="http://example.com"]': 1
       'article.ecl-content-item picture.ecl-content-item__picture--large': 0
       'article.ecl-content-item picture.ecl-content-item__picture--left': 0
       'article.ecl-content-item picture.ecl-content-item__picture--right': 0
+      'article.ecl-content-item picture.ecl-picture--zoom': 0
     equals:
       'article.ecl-content-item ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item': "Meta 1"
       'article.ecl-content-item div.ecl-content-item__content-block div.ecl-content-block__title .ecl-link': "Item title"
@@ -1741,6 +1751,39 @@
       'article.ecl-content-item picture[data-ecl-picture-link]': 1
       'article.ecl-content-item picture.ecl-content-item__picture--left': 1
       'article.ecl-content-item picture.ecl-content-item__picture--right': 0
+      'article.ecl-content-item picture.ecl-picture--zoom': 0
+    equals:
+      'article.ecl-content-item ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(1)': "Meta 1"
+      'article.ecl-content-item ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(2)': "Meta 2"
+      'article.ecl-content-item div.ecl-content-item__content-block div.ecl-content-block__title .ecl-link': "Item title"
+      'article.ecl-content-item div.ecl-content-block__description': "Item text"
+- array:
+    '#type': pattern
+    '#id': list_item
+    '#variant': "thumbnail_primary"
+    '#fields':
+      title: "Item title"
+      url: "http://example.com"
+      detail: "Item text"
+      image:
+        src: "http://via.placeholder.com/150x150"
+        alt: "Alternate text for primary image"
+      meta:
+        - "Meta 1"
+        - "Meta 2"
+      extra_attributes:
+        - name: "extra-attr"
+          value: "extra value"
+      picture_zoom: true
+  assertions:
+    count:
+      'article.ecl-content-item[extra-attr="extra value"] div.ecl-content-item__content-block a.ecl-link[href="http://example.com"]': 1
+      'article.ecl-content-item img.ecl-content-item__image[alt="Alternate text for primary image"]': 1
+      'article.ecl-content-item img.ecl-content-item__image[src="http://via.placeholder.com/150x150"]': 1
+      'article.ecl-content-item picture[data-ecl-picture-link]': 1
+      'article.ecl-content-item picture.ecl-content-item__picture--left': 1
+      'article.ecl-content-item picture.ecl-content-item__picture--right': 0
+      'article.ecl-content-item picture.ecl-picture--zoom': 1
     equals:
       'article.ecl-content-item ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(1)': "Meta 1"
       'article.ecl-content-item ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(2)': "Meta 2"
@@ -1771,6 +1814,71 @@
       'article.ecl-content-item picture[data-ecl-picture-link]': 1
       'article.ecl-content-item picture.ecl-content-item__picture--left': 0
       'article.ecl-content-item picture.ecl-content-item__picture--right': 1
+      'article.ecl-content-item picture.ecl-picture--zoom': 0
+    equals:
+      'article.ecl-content-item ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(1)': "Meta 1"
+      'article.ecl-content-item ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(2)': "Meta 2"
+      'article.ecl-content-item div.ecl-content-item__content-block div.ecl-content-block__title .ecl-link': "Item title"
+      'article.ecl-content-item div.ecl-content-block__description': "Item text"
+- array:
+    '#type': pattern
+    '#id': list_item
+    '#variant': "thumbnail_secondary"
+    '#fields':
+      title: "Item title"
+      url: "http://example.com"
+      detail: "Item text"
+      image:
+        src: "http://via.placeholder.com/120x80"
+        alt: "Alternate text for secondary image"
+      meta:
+        - "Meta 1"
+        - "Meta 2"
+      extra_attributes:
+        - name: "extra-attr"
+          value: "extra value"
+      picture_zoom: true
+  assertions:
+    count:
+      'article.ecl-content-item[extra-attr="extra value"] div.ecl-content-item__content-block a.ecl-link[href="http://example.com"]': 1
+      'article.ecl-content-item img.ecl-content-item__image[alt="Alternate text for secondary image"]': 1
+      'article.ecl-content-item img.ecl-content-item__image[src="http://via.placeholder.com/120x80"]': 1
+      'article.ecl-content-item picture[data-ecl-picture-link]': 1
+      'article.ecl-content-item picture.ecl-content-item__picture--left': 0
+      'article.ecl-content-item picture.ecl-content-item__picture--right': 1
+      'article.ecl-content-item picture.ecl-picture--zoom': 1
+    equals:
+      'article.ecl-content-item ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(1)': "Meta 1"
+      'article.ecl-content-item ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(2)': "Meta 2"
+      'article.ecl-content-item div.ecl-content-item__content-block div.ecl-content-block__title .ecl-link': "Item title"
+      'article.ecl-content-item div.ecl-content-block__description': "Item text"
+- array:
+    '#type': pattern
+    '#id': list_item
+    '#variant': "thumbnail_secondary"
+    '#fields':
+      title: "Item title"
+      url: "http://example.com"
+      detail: "Item text"
+      image:
+        src: "http://via.placeholder.com/120x80"
+        alt: "Alternate text for secondary image"
+      meta:
+        - "Meta 1"
+        - "Meta 2"
+      extra_attributes:
+        - name: "extra-attr"
+          value: "extra value"
+      picture_zoom: false
+  assertions:
+    count:
+      'article.ecl-content-item[extra-attr="extra value"] div.ecl-content-item__content-block a.ecl-link[href="http://example.com"]': 1
+      'article.ecl-content-item img.ecl-content-item__image[alt="Alternate text for secondary image"]': 1
+      'article.ecl-content-item img.ecl-content-item__image[src="http://via.placeholder.com/120x80"]': 1
+      'article.ecl-content-item picture[data-ecl-picture-link]': 1
+      'article.ecl-content-item picture.ecl-content-item__picture--left': 0
+      'article.ecl-content-item picture.ecl-content-item__picture--right': 1
+      'article.ecl-content-item picture.ecl-picture--zoom': 0
     equals:
       'article.ecl-content-item ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(1)': "Meta 1"
       'article.ecl-content-item ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(2)': "Meta 2"
@@ -1804,6 +1912,7 @@
     count:
       article.ecl-card[extra-attr="extra value"] div.ecl-card__body div.ecl-content-block.ecl-card__content-block: 1
       article.ecl-card div.ecl-card__body a.ecl-link--standalone[href="http://example.com"]: 1
+      article.ecl-card picture.ecl-picture--zoom: 0
       article.ecl-card img.ecl-card__image[alt="Alternate text for secondary image"]: 1
       article.ecl-card img.ecl-card__image[src="http://via.placeholder.com/300x300"]: 1
       article.ecl-card picture[data-ecl-picture-link]: 1
@@ -1835,9 +1944,11 @@
       extra_attributes:
         - name: "extra-attr"
           value: "extra value"
+      picture_zoom: true
   assertions:
     count:
       article.ecl-card div.ecl-card__body a.ecl-link--standalone[href="http://example.com"]: 1
+      article.ecl-card picture.ecl-picture--zoom: 1
       article.ecl-card img.ecl-card__image[alt="Alternate text for secondary image"]: 1
       article.ecl-card img.ecl-card__image[src="http://via.placeholder.com/300x300"]: 1
       article.ecl-card picture[data-ecl-picture-link]: 1
@@ -3056,6 +3167,7 @@
       'div.ecl-content-block__title a.ecl-link--standalone[href="https://example.com"]': 1
       'article.ecl-card[extra-attr="extra value"] picture[data-ecl-picture-link]': 1
       'a.ecl-button': 0
+      'article.ecl-card picture.ecl-picture--zoom': 0
       'article.ecl-card div.ecl-card__body ul.ecl-content-block__label-container': 1
       'ul.ecl-content-block__label-container li.ecl-content-block__label-item': 2
       'ul.ecl-content-block__primary-meta-container': 1
@@ -3083,12 +3195,46 @@
       link:
         href: "https://example.com"
         label: "Link title"
+      picture_zoom: true
   assertions:
     count:
       "img.ecl-card__image[src=\"http://via.placeholder.com/120x80\"]": 1
       'div.ecl-content-block__title a.ecl-link--standalone[href="https://example.com"]': 1
       'article.ecl-card picture[data-ecl-picture-link]': 1
       'a.ecl-button': 0
+      'article.ecl-card picture.ecl-picture--zoom': 1
+      'article.ecl-card div.ecl-card__body ul.ecl-content-block__label-container': 0
+      'ul.ecl-content-block__primary-meta-container': 1
+    equals:
+      'ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(1)': "Breaking news article"
+      'ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(2)': "Brussels"
+      'div.ecl-content-block__title a': "Example title"
+      'div.ecl-content-block__description': "Example..."
+- array:
+    '#type': pattern
+    '#id': featured_item
+    '#variant': "default"
+    '#fields':
+      title: "Example title"
+      description: "Example description"
+      length: 8
+      image:
+        src: "http://via.placeholder.com/120x80"
+        alt: "Alternative of image"
+      metas:
+        - "Breaking news article"
+        - "Brussels"
+      link:
+        href: "https://example.com"
+        label: "Link title"
+      picture_zoom: false
+  assertions:
+    count:
+      "img.ecl-card__image[src=\"http://via.placeholder.com/120x80\"]": 1
+      'div.ecl-content-block__title a.ecl-link--standalone[href="https://example.com"]': 1
+      'article.ecl-card picture[data-ecl-picture-link]': 1
+      'a.ecl-button': 0
+      'article.ecl-card picture.ecl-picture--zoom': 0
       'article.ecl-card div.ecl-card__body ul.ecl-content-block__label-container': 0
       'ul.ecl-content-block__primary-meta-container': 1
     equals:
@@ -4584,6 +4730,7 @@
         image:
           src: "https://loremflickr.com/1200/900/arch"
           alt: "Highlighted item image"
+        picture_zoom: true
         extra_attributes:
           - name: "extra-attr1"
             value: "extra value1"
@@ -4599,6 +4746,7 @@
           image:
             src: "https://loremflickr.com/1200/900/arch"
             alt: "Item 2 image"
+          picture_zoom: true
           extra_attributes:
             - name: "extra-attr2"
               value: "extra value2"
@@ -4614,6 +4762,7 @@
           image:
             src: "https://loremflickr.com/1200/900/arch"
             alt: "Alternative text for image"
+          picture_zoom: true
           image_position: "top"
         - title: "Item 4"
           url: "#"
@@ -4654,6 +4803,7 @@
       'div.ecl-row article.ecl-content-item--divider.ecl-u-flex-grow-1.ecl-u-mb-m': 2
       'div.ecl-content-block__title': 4
       'div.ecl-content-block__title a': 3
+      'article.ecl-content-item picture.ecl-picture--zoom': 2
       'picture.ecl-content-item__picture': 2
       'div.ecl-col-l-8 article.ecl-content-item[extra-attr1="extra value1"] picture.ecl-content-item__picture--large img.ecl-content-item__image[src="https://loremflickr.com/1200/900/arch"][alt="Highlighted item image"]': 1
       'div.ecl-col-l-4 article.ecl-content-item[extra-attr2="extra value2"] picture.ecl-content-item__picture--medium img.ecl-content-item__image[src="https://loremflickr.com/1200/900/arch"][alt="Item 2 image"]': 1
@@ -4758,6 +4908,7 @@
       'div.ecl-row article.ecl-content-item--divider.ecl-u-flex-grow-1.ecl-u-mb-m': 1
       'div.ecl-content-block__title': 3
       'div.ecl-content-block__title a': 1
+      'article.ecl-content-item picture.ecl-picture--zoom': 0
       'picture.ecl-content-item__picture': 2
       'div.ecl-col-l-8 picture.ecl-content-item__picture--large img.ecl-content-item__image[src="https://loremflickr.com/1200/900/arch"][alt="Highlighted item image"]': 1
       'div.ecl-col-l-4 picture.ecl-content-item__picture--medium img.ecl-content-item__image[src="https://loremflickr.com/1200/900/arch"][alt="Item 2 image"]': 1
@@ -4806,6 +4957,7 @@
         image:
           src: "https://loremflickr.com/1200/900/arch"
           alt: "Highlighted item image"
+        picture_zoom: true
       items:
         - title: "Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem"
           detail: "Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem."
@@ -4818,6 +4970,7 @@
           image:
             src: "https://loremflickr.com/1200/900/arch"
             alt: "Alternative text for 1st image"
+          picture_zoom: true
           badges:
             - label: "Highlighted"
               variant: "highlight"
@@ -4841,6 +4994,7 @@
           image:
             src: "https://loremflickr.com/1200/900/arch"
             alt: "Alternative text for image"
+          picture_zoom: true
           image_position: "top"
         - title: "Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim"
           url: "#"
@@ -4851,6 +5005,7 @@
           image:
             src: "https://loremflickr.com/1200/900/arch"
             alt: "Alternative text for image"
+          picture_zoom: true
           secondary_meta:
             - label: "3 minutes read"
               icon: "clock"
@@ -4865,6 +5020,7 @@
           image:
             src: "https://loremflickr.com/1200/900/arch"
             alt: "Alternative text for 2nd image"
+          picture_zoom: true
         - title: "Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero"
           url: "#"
           detail: "Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum."
@@ -4874,6 +5030,7 @@
           image:
             src: "https://loremflickr.com/1200/900/arch"
             alt: "Alternative text for image"
+          picture_zoom: true
         - title: "Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero"
           detail: "Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum."
         - title: "Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero"
@@ -4895,6 +5052,7 @@
       'div.ecl-row article.ecl-content-item--divider.ecl-u-flex-grow-1.ecl-u-mb-m': 2
       'div.ecl-content-block__title': 6
       'div.ecl-content-block__title a': 4
+      'article.ecl-content-item picture.ecl-picture--zoom': 2
       'picture.ecl-content-item__picture': 2
       'div.ecl-col-l-3 picture.ecl-content-item__picture--medium img.ecl-content-item__image[src="https://loremflickr.com/1200/900/arch"][alt="Alternative text for 1st image"]': 1
       'div.ecl-col-l-3 picture.ecl-content-item__picture--medium img.ecl-content-item__image[src="https://loremflickr.com/1200/900/arch"][alt="Alternative text for 2nd image"]': 1
@@ -4952,6 +5110,7 @@
           image:
             src: "https://loremflickr.com/1200/900/arch"
             alt: "Alternative text for 1st image"
+          picture_zoom: false
           badges:
             - label: "Highlighted"
               variant: "highlight"
@@ -4973,6 +5132,7 @@
             src: "https://loremflickr.com/1200/900/arch"
             alt: "Alternative text for image"
           image_position: "top"
+          picture_zoom: false
         - title: "Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim"
           url: "#"
           detail: "Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam"
@@ -4982,6 +5142,7 @@
           image:
             src: "https://loremflickr.com/1200/900/arch"
             alt: "Alternative text for image"
+          picture_zoom: false
           secondary_meta:
             - label: "3 minutes read"
               icon: "clock"
@@ -4998,6 +5159,7 @@
       'div.ecl-row article.ecl-content-item--divider.ecl-u-flex-grow-1.ecl-u-mb-m': 1
       'div.ecl-content-block__title': 3
       'div.ecl-content-block__title a': 2
+      'article.ecl-content-item picture.ecl-picture--zoom': 0
       'picture.ecl-content-item__picture': 1
       'div.ecl-col-l-3 picture.ecl-content-item__picture--medium img.ecl-content-item__image[src="https://loremflickr.com/1200/900/arch"][alt="Alternative text for 1st image"]': 1
       'ul.ecl-content-block__primary-meta-container': 3

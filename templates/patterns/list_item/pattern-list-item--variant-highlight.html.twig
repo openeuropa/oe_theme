@@ -68,6 +68,7 @@
 {% include '@ecl-twig/card' with {
   title: _title|default([]),
   picture: picture|default([]),
+  picture_zoom: picture_zoom|default(false),
   description: detail|smart_trim(_length),
   labels: badges,
   primary_meta: primary_meta|default([]),
