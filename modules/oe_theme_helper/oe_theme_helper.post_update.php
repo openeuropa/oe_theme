@@ -12,6 +12,7 @@ use Drupal\Core\Config\FileStorage;
 use Drupal\Core\Entity\Entity\EntityViewMode;
 use Drupal\block\Entity\Block;
 use Drupal\image\Entity\ImageStyle;
+use Drupal\responsive_image\Entity\ResponsiveImageStyle;
 
 /**
  * Use retina image styles on medium and small image styles.
@@ -432,5 +433,58 @@ function oe_theme_helper_post_update_40001(): void {
     ];
     $image_style->addImageEffect($effect);
     $image_style->save();
+  }
+}
+
+/**
+ * Create banner responsive image styles.
+ */
+function oe_theme_helper_post_update_40002(): void {
+  $banner_sizes = [
+    's' => [
+      'id' => 'oe_theme_5_1_banner',
+      'label' => '5:1 Banner',
+      'size_suffix' => '5_1',
+    ],
+    'm' => [
+      'id' => 'oe_theme_4_1_banner',
+      'label' => '4:1 Banner',
+      'size_suffix' => '4_1',
+    ],
+    'l' => [
+      'id' => 'oe_theme_3_1_banner',
+      'label' => '3:1 Banner',
+      'size_suffix' => '3_1',
+    ],
+  ];
+
+  foreach ($banner_sizes as $banner) {
+    $size_suffix = $banner['size_suffix'];
+    $image_styles_mapping = [
+      'extra_large' => "oe_theme_full_width_banner_{$size_suffix}",
+      'large' => "oe_theme_extra_large_{$size_suffix}_banner",
+      'medium' => "oe_theme_large_{$size_suffix}_banner",
+      'small' => "oe_theme_medium_{$size_suffix}_banner",
+      'extra_small' => "oe_theme_small_{$size_suffix}_banner",
+    ];
+
+    $image_style_map = [];
+    foreach ($image_styles_mapping as $key => $image_style_mapping) {
+      $image_style_map[] = [
+        'breakpoint_id' => 'oe_theme.' . $key,
+        'multiplier' => '1x',
+        'image_mapping_type' => 'image_style',
+        'image_mapping' => $image_style_mapping,
+      ];
+    }
+
+    $responsive_image_style = ResponsiveImageStyle::create([
+      'id' => $banner['id'],
+      'label' => $banner['label'],
+      'breakpoint_group' => 'oe_theme',
+      'image_style_mappings' => $image_style_map,
+      'fallback_image_style' => "oe_theme_full_width_banner_{$size_suffix}",
+    ]);
+    $responsive_image_style->save();
   }
 }

@@ -96,15 +96,15 @@ class CarouselAssert extends BasePatternAssert {
         $this->assertElementNotExists('picture source', $item);
       }
       else {
-        $small_media = $item->filter('picture source[media="(max-width: 480px)"]');
+        $small_media = $item->filter('picture source:not([media])');
         $this->assertStringContainsString($expected_item['sources']['small'], $small_media->attr('srcset'));
-        $medium_media = $item->filter('picture source[media="(max-width: 768px)"]');
+        $medium_media = $item->filter('picture source[media="all and (min-width: 480px)"]');
         $this->assertStringContainsString($expected_item['sources']['medium'], $medium_media->attr('srcset'));
-        $large_media = $item->filter('picture source[media="(max-width: 996px)"]');
+        $large_media = $item->filter('picture source[media="all and (min-width: 768px)"]');
         $this->assertStringContainsString($expected_item['sources']['large'], $large_media->attr('srcset'));
-        $extra_large_media = $item->filter('picture source[media="(max-width: 1140px)"]');
+        $extra_large_media = $item->filter('picture source[media="all and (min-width: 996px)"]');
         $this->assertStringContainsString($expected_item['sources']['extra_large'], $extra_large_media->attr('srcset'));
-        $full_width_media = $item->filter('picture source[media="(min-width: 1140px)"]');
+        $full_width_media = $item->filter('picture source[media="all and (min-width: 1140px)"]');
         $this->assertStringContainsString($expected_item['sources']['full_width'], $full_width_media->attr('srcset'));
       }
     }
