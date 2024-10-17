@@ -1473,6 +1473,231 @@
       - 'Meanwhile in Lisbon, the capital of Portugal'
 - array:
     '#type': pattern
+    '#id': gallery
+    '#variant': default
+    '#fields':
+      items:
+        - thumbnail:
+            src: 'https://loremflickr.com/320/240/cat'
+            alt: 'Example alt text cat'
+          source: 'https://loremflickr.com/800/600/cat'
+          caption: 'A picture of a cat'
+          type: 'image'
+        - thumbnail:
+            src: 'https://loremflickr.com/320/240/dog'
+            alt: 'Example alt text dog'
+          source: 'https://www.youtube.com/watch?v=1-g73ty9v04'
+          caption: "Energy, let's save it!"
+          meta: 'Copyright © 2021 EC'
+          type: 'video'
+        - thumbnail:
+            src: 'https://loremflickr.com/800/600/lisbon'
+            alt: 'Example alt text'
+          caption: 'Meanwhile in Lisbon, the capital of Portugal'
+          meta: 'Copyright © 2021, Author and Licence'
+          source: 'https://loremflickr.com/800/600/lisbon'
+          media_type: 'image'
+        - thumbnail:
+            src: 'https://loremflickr.com/800/600/lisbon'
+            alt: 'Example alt text'
+          caption: 'Meanwhile in Lisbon, the capital of Portugal'
+          meta: 'Copyright © 2021, Author and Licence'
+          source: 'https://loremflickr.com/800/600/lisbon'
+          media_type: 'image'
+        - thumbnail:
+            src: 'https://loremflickr.com/320/240/cat'
+            alt: 'Example alt text cat'
+          source: 'https://loremflickr.com/800/600/cat'
+          caption: 'A picture of a cat'
+          type: 'image'
+        - thumbnail:
+            src: 'https://loremflickr.com/320/240/dog'
+            alt: 'Example alt text dog'
+          source: 'https://www.youtube.com/watch?v=1-g73ty9v04'
+          caption: "Energy, let's save it!"
+          meta: 'Copyright © 2021 EC'
+          type: 'video'
+        - thumbnail:
+            src: 'https://loremflickr.com/800/600/lisbon'
+            alt: 'Example alt text'
+          caption: 'Meanwhile in Lisbon, the capital of Portugal'
+          meta: 'Copyright © 2021, Author and Licence'
+          source: 'https://loremflickr.com/800/600/lisbon'
+          media_type: 'image'
+        - thumbnail:
+            src: 'https://loremflickr.com/800/600/lisbon'
+            alt: 'Example alt text'
+          caption: 'Meanwhile in Lisbon, the capital of Portugal'
+          meta: 'Copyright © 2021, Author and Licence'
+          source: 'https://loremflickr.com/800/600/lisbon'
+          media_type: 'image'
+      grid: true
+      grid_template: 1
+      columns: 4
+  assertions:
+    count:
+      '.ecl-gallery.ecl-gallery--grid.ecl-gallery--template-1.ecl-gallery--ratio-3-2[data-ecl-gallery-visible-items="8"]': 1
+      '.ecl-gallery .ecl-gallery__list': 1
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item': 8
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(1) .ecl-gallery__image[src="https://loremflickr.com/320/240/cat"]': 1
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(1) .ecl-gallery__image[alt="Example alt text cat"]': 2
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item figcaption.ecl-gallery__description span.ecl-gallery__title': 0
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(1) figcaption.ecl-gallery__description': 1
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(1) .ecl-gallery__meta': 0
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(2) a.ecl-gallery__item-link[href="https://www.youtube.com/watch?v=1-g73ty9v04"]': 1
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(2) .ecl-gallery__image[src="https://loremflickr.com/320/240/dog"]': 1
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(2) .ecl-gallery__image[alt="Example alt text dog"]': 1
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(2) figcaption.ecl-gallery__description': 1
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(2) .ecl-gallery__meta': 1
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(2) .ecl-gallery__image-container div.ecl-gallery__item-icon-wrapper svg.ecl-icon': 1
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(3) .ecl-gallery__image[src="https://loremflickr.com/800/600/lisbon"]': 2
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(3) .ecl-gallery__image[alt="Example alt text"]': 2
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(3) figcaption.ecl-gallery__description': 1
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(3) .ecl-gallery__meta': 1
+      '.ecl-gallery .ecl-button.ecl-button--tertiary.ecl-gallery__slider-previous': 1
+      '.ecl-gallery .ecl-button.ecl-button--tertiary.ecl-gallery__slider-next': 1
+      'dialog.ecl-gallery__overlay[data-ecl-gallery-overlay]': 1
+      '.ecl-gallery--col-2': 0
+      '.ecl-gallery--col-3': 0
+      '.ecl-gallery--col-4': 0
+    equals:
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(2) .ecl-gallery__meta': 'Copyright © 2021 EC'
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(2) .ecl-gallery__image-container div.ecl-gallery__item-icon-wrapper svg.ecl-icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#play-filled"></use>'
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(3) .ecl-gallery__meta': 'Copyright © 2021, Author and Licence'
+    contains:
+      - 'A picture of a cat'
+      - 'Energy, let&#039;s save it!'
+      - 'Meanwhile in Lisbon, the capital of Portugal'
+- array:
+    '#type': pattern
+    '#id': gallery
+    '#variant': default
+    '#fields':
+      items:
+        - thumbnail:
+            src: 'https://loremflickr.com/320/240/cat'
+            alt: 'Example alt text cat'
+          source: 'https://loremflickr.com/800/600/cat'
+          caption: 'A picture of a cat'
+          type: 'image'
+        - thumbnail:
+            src: 'https://loremflickr.com/320/240/dog'
+            alt: 'Example alt text dog'
+          source: 'https://www.youtube.com/watch?v=1-g73ty9v04'
+          caption: "Energy, let's save it!"
+          meta: 'Copyright © 2021 EC'
+          type: 'video'
+        - thumbnail:
+            src: 'https://loremflickr.com/800/600/lisbon'
+            alt: 'Example alt text'
+          caption: 'Meanwhile in Lisbon, the capital of Portugal'
+          meta: 'Copyright © 2021, Author and Licence'
+          source: 'https://loremflickr.com/800/600/lisbon'
+          media_type: 'image'
+      grid: true
+      grid_template: 2
+      columns: 2
+  assertions:
+    count:
+      '.ecl-gallery.ecl-gallery--grid.ecl-gallery--template-2.ecl-gallery--ratio-3-2': 1
+      '.ecl-gallery .ecl-gallery__list': 1
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item': 3
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(1) .ecl-gallery__image[src="https://loremflickr.com/320/240/cat"]': 1
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(1) .ecl-gallery__image[alt="Example alt text cat"]': 2
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item figcaption.ecl-gallery__description span.ecl-gallery__title': 0
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(1) figcaption.ecl-gallery__description': 1
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(1) .ecl-gallery__meta': 0
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(2) a.ecl-gallery__item-link[href="https://www.youtube.com/watch?v=1-g73ty9v04"]': 1
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(2) .ecl-gallery__image[src="https://loremflickr.com/320/240/dog"]': 1
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(2) .ecl-gallery__image[alt="Example alt text dog"]': 1
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(2) figcaption.ecl-gallery__description': 1
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(2) .ecl-gallery__meta': 1
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(2) .ecl-gallery__image-container div.ecl-gallery__item-icon-wrapper svg.ecl-icon': 1
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(3) .ecl-gallery__image[src="https://loremflickr.com/800/600/lisbon"]': 2
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(3) .ecl-gallery__image[alt="Example alt text"]': 2
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(3) figcaption.ecl-gallery__description': 1
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(3) .ecl-gallery__meta': 1
+      '.ecl-gallery .ecl-button.ecl-button--tertiary.ecl-gallery__slider-previous': 1
+      '.ecl-gallery .ecl-button.ecl-button--tertiary.ecl-gallery__slider-next': 1
+      'dialog.ecl-gallery__overlay[data-ecl-gallery-overlay]': 1
+      '.ecl-gallery--col-2': 0
+      '.ecl-gallery--col-3': 0
+      '.ecl-gallery--col-4': 0
+    equals:
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(2) .ecl-gallery__meta': 'Copyright © 2021 EC'
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(2) .ecl-gallery__image-container div.ecl-gallery__item-icon-wrapper svg.ecl-icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#play-filled"></use>'
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(3) .ecl-gallery__meta': 'Copyright © 2021, Author and Licence'
+    contains:
+      - 'A picture of a cat'
+      - 'Energy, let&#039;s save it!'
+      - 'Meanwhile in Lisbon, the capital of Portugal'
+- array:
+    '#type': pattern
+    '#id': gallery
+    '#variant': default
+    '#fields':
+      items:
+        - thumbnail:
+            src: 'https://loremflickr.com/320/240/cat'
+            alt: 'Example alt text cat'
+          source: 'https://loremflickr.com/800/600/cat'
+          caption: 'A picture of a cat'
+          type: 'image'
+        - thumbnail:
+            src: 'https://loremflickr.com/320/240/dog'
+            alt: 'Example alt text dog'
+          source: 'https://www.youtube.com/watch?v=1-g73ty9v04'
+          caption: "Energy, let's save it!"
+          meta: 'Copyright © 2021 EC'
+          type: 'video'
+        - thumbnail:
+            src: 'https://loremflickr.com/800/600/lisbon'
+            alt: 'Example alt text'
+          caption: 'Meanwhile in Lisbon, the capital of Portugal'
+          meta: 'Copyright © 2021, Author and Licence'
+          source: 'https://loremflickr.com/800/600/lisbon'
+          media_type: 'image'
+      grid_template: 3
+      columns: 2
+  assertions:
+    count:
+      '.ecl-gallery': 1
+      '.ecl-gallery .ecl-gallery__list': 1
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item': 3
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(1) .ecl-gallery__image[src="https://loremflickr.com/320/240/cat"]': 1
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(1) .ecl-gallery__image[alt="Example alt text cat"]': 2
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item figcaption.ecl-gallery__description span.ecl-gallery__title': 0
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(1) figcaption.ecl-gallery__description': 1
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(1) .ecl-gallery__meta': 0
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(2) a.ecl-gallery__item-link[href="https://www.youtube.com/watch?v=1-g73ty9v04"]': 1
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(2) .ecl-gallery__image[src="https://loremflickr.com/320/240/dog"]': 1
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(2) .ecl-gallery__image[alt="Example alt text dog"]': 1
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(2) figcaption.ecl-gallery__description': 1
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(2) .ecl-gallery__meta': 1
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(2) .ecl-gallery__image-container div.ecl-gallery__item-icon-wrapper svg.ecl-icon': 1
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(3) .ecl-gallery__image[src="https://loremflickr.com/800/600/lisbon"]': 2
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(3) .ecl-gallery__image[alt="Example alt text"]': 2
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(3) figcaption.ecl-gallery__description': 1
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(3) .ecl-gallery__meta': 1
+      '.ecl-gallery .ecl-button.ecl-button--tertiary.ecl-gallery__slider-previous': 1
+      '.ecl-gallery .ecl-button.ecl-button--tertiary.ecl-gallery__slider-next': 1
+      'dialog.ecl-gallery__overlay[data-ecl-gallery-overlay]': 1
+      '.ecl-gallery--col-2': 0
+      '.ecl-gallery--col-3': 0
+      '.ecl-gallery--col-4': 0
+      '.ecl-gallery--grid': 0
+      '.ecl-gallery--template-3': 0
+      '.ecl-gallery--ratio-3-2': 0
+    equals:
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(2) .ecl-gallery__meta': 'Copyright © 2021 EC'
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(2) .ecl-gallery__image-container div.ecl-gallery__item-icon-wrapper svg.ecl-icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#play-filled"></use>'
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(3) .ecl-gallery__meta': 'Copyright © 2021, Author and Licence'
+    contains:
+      - 'A picture of a cat'
+      - 'Energy, let&#039;s save it!'
+      - 'Meanwhile in Lisbon, the capital of Portugal'
+- array:
+    '#type': pattern
     '#id': list_item
     '#fields':
       url: "http://example.com"
