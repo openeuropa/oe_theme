@@ -16,6 +16,12 @@ featured_item:
       preview:
         src: "https://loremflickr.com/1000/500/arch"
         alt: "Alternative text for featured item image"
+    picture_zoom:
+      type: "boolean"
+      label: "Picture zoom"
+      description: "Whether the picture should be animated or not (default: false)."
+      preview: true
+      escape: false
     description:
       type: "text"
       label: "Description"

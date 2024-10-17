@@ -20,6 +20,7 @@
       'size': 'large',
     },
     'image_position': 'top',
+    'picture_zoom': highlighted_item.picture_zoom|default(false),
     'divider': true,
     'extra_classes': 'ecl-u-flex-grow-1',
     'contextual_links': highlighted_item.contextual_links,
@@ -44,6 +45,7 @@
         'size': loop.first ? 'medium' : '',
       },
       'image_position': loop.first ? 'top' : '',
+      'picture_zoom': item.picture_zoom|default(false),
       'divider': true,
       'extra_classes': loop.last ? 'ecl-u-flex-grow-1' : 'ecl-u-flex-grow-1 ecl-u-mb-m',
       'contextual_links': item.contextual_links,
@@ -80,4 +82,3 @@
   'see_more': _see_more,
   'detail': detail|default(''),
 } only %}
-
