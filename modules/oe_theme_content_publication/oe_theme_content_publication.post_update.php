@@ -251,3 +251,14 @@ function oe_theme_content_publication_post_update_00011(): void {
     }
   }
 }
+
+/**
+ * Flush caches for the image style updated in post_update_00011.
+ */
+function oe_theme_content_publication_post_update_00012(): void {
+  $image_style = ImageStyle::load('oe_theme_publication_thumbnail');
+  if (!$image_style) {
+    return;
+  }
+  $image_style->flush();
+}
