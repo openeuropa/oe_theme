@@ -478,7 +478,7 @@ class ParagraphsTest extends ParagraphsTestBase {
     $html = $this->renderParagraph($paragraph);
     $crawler = new Crawler($html);
 
-    $this->assertEquals('Paragraph heading.', trim($crawler->filter('h2.ecl-u-type-heading-2')->text()));
+    $this->assertEquals('Paragraph heading.', trim($crawler->filter('div.ecl h2.ecl-u-type-heading-2')->text()));
   }
 
   /**
@@ -666,7 +666,7 @@ class ParagraphsTest extends ParagraphsTestBase {
       $paragraph->save();
       $html = $this->renderParagraph($paragraph);
       $crawler = new Crawler($html);
-      $this->assertCount(0, $crawler->filter('h2.ecl-u-type-heading-2'));
+      $this->assertCount(0, $crawler->filter('div.ecl h2.ecl-u-type-heading-2'));
       $this->assertCount(0, $crawler->filter('div.ecl-fact-figures__view-all a.ecl-link.ecl-link--standalone.ecl-fact-figures__view-all-link'));
       $this->assertCount(1, $crawler->filter('div.ecl-fact-figures.ecl-fact-figures--col-3 div.ecl-fact-figures__items'));
     }
@@ -776,8 +776,8 @@ class ParagraphsTest extends ParagraphsTestBase {
     $html = $this->renderParagraph($paragraph);
     $crawler = new Crawler($html);
 
-    $this->assertCount(1, ($crawler->filter('h2.ecl-u-type-heading-2')));
-    $this->assertEquals('Overview', trim($crawler->filter('h2.ecl-u-type-heading-2')->text()));
+    $this->assertCount(1, ($crawler->filter('div.ecl h2.ecl-u-type-heading-2')));
+    $this->assertEquals('Overview', trim($crawler->filter('div.ecl h2.ecl-u-type-heading-2')->text()));
     $this->assertCount(1, $crawler->filter('dl.ecl-description-list.ecl-description-list--horizontal'));
     $this->assertCount(5, $crawler->filter('dt.ecl-description-list__term'));
     $this->assertCount(5, $crawler->filter('dd.ecl-description-list__definition'));
