@@ -68,3 +68,17 @@ inpage_navigation:
   dependencies:
     - core/drupal
     - core/jquery
+
+style_ec_etr:
+  css:
+    theme:
+      dist/ec/styles/optional/ecl-ec-easy-to-read.css: { media: screen }
+  dependencies:
+    - core/drupal
+
+style_eu_etr:
+  css:
+    theme:
+      dist/eu/styles/optional/ecl-eu-easy-to-read.css: { media: screen }
+  dependencies:
+    - core/drupal
