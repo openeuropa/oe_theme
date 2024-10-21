@@ -111,7 +111,7 @@ class IllustrationListsParagraphsTest extends ParagraphsTestBase {
 
     // Assert paragraph header.
     $crawler = new Crawler($html);
-    $heading = $crawler->filter('h2.ecl-u-type-heading-2');
+    $heading = $crawler->filter('div.ecl h2.ecl-u-type-heading-2');
     $this->assertCount(1, $heading);
     $this->assertEquals('Illustration with flags test', trim($heading->text()));
     $icon = $crawler->filter('.ecl-list-illustration__icon use');
@@ -243,7 +243,7 @@ class IllustrationListsParagraphsTest extends ParagraphsTestBase {
 
     // Assert paragraph header.
     $crawler = new Crawler($html);
-    $heading = $crawler->filter('h2.ecl-u-type-heading-2');
+    $heading = $crawler->filter('div.ecl h2.ecl-u-type-heading-2');
     $this->assertCount(1, $heading);
     $this->assertEquals('Illustration with icons test', trim($heading->text()));
 
@@ -385,7 +385,7 @@ class IllustrationListsParagraphsTest extends ParagraphsTestBase {
 
     // Assert paragraph header.
     $crawler = new Crawler($html);
-    $heading = $crawler->filter('h2.ecl-u-type-heading-2');
+    $heading = $crawler->filter('div.ecl h2.ecl-u-type-heading-2');
     $this->assertCount(1, $heading);
     $this->assertEquals('Illustration with images test', trim($heading->text()));
 
