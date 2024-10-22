@@ -119,6 +119,12 @@ gallery:
       description: "Disables the overlay functionality."
       preview: true
       escape: false
+    picture_zoom:
+      type: "boolean"
+      label: "Picture zoom"
+      description: "Whether the thumbnail of the items should be animated or not (default false)."
+      preview: true
+      escape: false
     expandable:
       type: "boolean"
       label: "Expandable"
