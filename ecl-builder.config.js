@@ -39,6 +39,5 @@ module.exports = {
     { from: path.resolve(nodeModules, '@ecl/preset-eu/dist'), to: path.resolve(outputFolder, 'dist/eu') },
     { from: path.resolve(nodeModules, 'svg4everybody/dist'), patterns: 'svg4everybody.js', to: path.resolve(outputFolder, 'dist/js') },
     { from: path.resolve(nodeModules, 'pikaday'), patterns: 'pikaday.js', to: path.resolve(outputFolder, 'dist/js') },
-    { from: path.resolve(nodeModules, 'moment/min'), patterns: 'moment.min.js', to: path.resolve(outputFolder, 'dist/js') },
   ]
 };
