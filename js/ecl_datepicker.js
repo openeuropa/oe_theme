@@ -7,9 +7,7 @@
     attach: function attach(context, settings) {
       var elements = document.querySelectorAll('[data-ecl-datepicker-toggle]');
       for (var i = 0; i < elements.length; i++) {
-        var datepicker = new ECL.Datepicker(elements[i], {
-          format: settings.oe_theme.ecl_datepicker_format
-        });
+        var datepicker = new ECL.Datepicker(elements[i]);
         datepicker.init();
       }
     }
