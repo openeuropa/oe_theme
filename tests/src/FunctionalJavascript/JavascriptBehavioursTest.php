@@ -162,7 +162,7 @@ class JavascriptBehavioursTest extends WebDriverTestBase {
 
     // Assert the first date picker.
     $input = $this->getSession()->getPage()->find('css', 'input[name="test_datepicker_one"]');
-    $this->assertEquals('YYYY-MM-DD', $input->getAttribute('placeholder'));
+    $this->assertEquals('DD-MM-YYYY', $input->getAttribute('placeholder'));
     $this->assertNull($input->getAttribute('value'));
     $this->assertTrue($input->hasAttribute('data-ecl-datepicker-toggle'));
     $this->assertTrue($input->hasAttribute('required'));
@@ -205,14 +205,14 @@ class JavascriptBehavioursTest extends WebDriverTestBase {
     // Pick a date and assert it was set.
     $day = $datepickers[0]->find('css', 'button[data-pika-day=1]');
     $day->click();
-    $this->assertEquals($now->format('Y-m') . '-01', $input->getValue());
+    $this->assertEquals('01-' . $now->format('m-Y'), $input->getValue());
     // Give the datepicker a chance to hide.
     sleep(1);
     $this->assertFalse($datepickers[0]->isVisible());
 
     // Assert some small differences on the second date input element.
     $input = $this->getSession()->getPage()->find('css', 'input[name="test_datepicker_two"]');
-    $this->assertEquals('YYYY-MM-DD', $input->getAttribute('placeholder'));
+    $this->assertEquals('DD-MM-YYYY', $input->getAttribute('placeholder'));
     $this->assertStringContainsString('2020-05-10', $input->getAttribute('value'));
     $this->assertTrue($input->hasAttribute('data-ecl-datepicker-toggle'));
     $this->assertFalse($input->hasAttribute('required'));

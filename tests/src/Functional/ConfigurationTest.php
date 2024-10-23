@@ -65,7 +65,6 @@ class ConfigurationTest extends BrowserTestBase {
       $this->assertLinkContainsHref('/oe_theme/dist/ec/styles/optional/ecl-ec-default.css');
       $this->assertLinkContainsHref('/oe_theme/css/style-ec.css');
 
-      $this->assertScriptContainsSrc('/oe_theme/dist/js/moment.min.js');
       $this->assertScriptContainsSrc('/oe_theme/dist/ec/scripts/ecl-ec.js');
       $this->assertScriptContainsSrc('/oe_theme/js/ecl_auto_init.js');
 
@@ -119,7 +118,6 @@ class ConfigurationTest extends BrowserTestBase {
       $this->assertLinkContainsHref('/oe_theme/dist/eu/styles/optional/ecl-eu-default.css');
       $this->assertLinkContainsHref('/oe_theme/css/style-eu.css');
 
-      $this->assertScriptContainsSrc('/oe_theme/dist/js/moment.min.js');
       $this->assertScriptContainsSrc('/oe_theme/dist/eu/scripts/ecl-eu.js');
       $this->assertScriptContainsSrc('/oe_theme/js/ecl_auto_init.js');
 
@@ -163,7 +161,6 @@ class ConfigurationTest extends BrowserTestBase {
 
       $this->assertScriptContainsSrc('/oe_theme/dist/ec/scripts/ecl-ec.js');
       $this->assertScriptContainsSrc('/oe_theme/js/ecl_auto_init.js');
-      $this->assertScriptContainsSrc('/oe_theme/dist/js/moment.min.js');
 
       // Assert that we don't load rtl styling.
       $this->assertLinkNotContainsHref('/oe_theme/dist/ec/styles/optional/ecl-rtl.css');

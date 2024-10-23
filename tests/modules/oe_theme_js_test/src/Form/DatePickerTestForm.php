@@ -66,7 +66,7 @@ class DatePickerTestForm extends FormBase {
       '#type' => 'date',
       '#title' => $this->t('Test date picker two'),
       '#description' => $this->t('Date field two.'),
-      '#default_value' => DrupalDateTime::createFromFormat('Y-m-d', '2020-05-10'),
+      '#default_value' => DrupalDateTime::createFromFormat('d-m-Y', '10-05-2020', 'UTC'),
       '#required' => FALSE,
     ];
 
@@ -94,7 +94,7 @@ class DatePickerTestForm extends FormBase {
       if (!$value) {
         continue;
       }
-      $date = DrupalDateTime::createFromFormat('Y-m-d', $value);
+      $date = DrupalDateTime::createFromFormat('d-m-Y', $value);
       $this->messenger->addStatus($this->t('Date @key is @date', [
         '@key' => $key,
         '@date' => $date->format('j F Y'),
