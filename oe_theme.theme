@@ -1300,12 +1300,17 @@ function oe_theme_preprocess_block__system_branding_block(&$variables) {
     $site_logo_href = 'https://european-union.europa.eu';
   }
 
+  $map_non_eu_langcode = [
+    'nb' => 'no',
+    'ja' => 'jp',
+    'zh-hans' => 'zh',
+  ];
+
   // Provide correct icon for non-eu languages.
   $language_code = \Drupal::languageManager()->getCurrentLanguage()->getId();
   if (!EuropeanUnionLanguages::hasLanguage($language_code)) {
-    if ($language_code === 'nb') {
-      // Set correct icon for Norwegian language.
-      $variables['current_language_id'] = 'no';
+    if (isset($map_non_eu_langcode[$language_code])) {
+      $variables['current_language_id'] = $map_non_eu_langcode[$language_code];
     }
     else {
       // Check whether ECL provides a logo for the language.
@@ -1890,6 +1895,16 @@ function _oe_theme_preprocess_footer_logo(array &$variables): void {
     if ($variables['current_language_id'] === 'nb') {
       // Set correct icon for Norwegian language.
       $variables['desktop_logo_path'] = $footer_logo_path . 'logo-' . $variables['ecl_component_library'] . '--no.svg';
+      return;
+    }
+    if ($variables['current_language_id'] === 'ja') {
+      // Set correct icon for Norwegian language.
+      $variables['desktop_logo_path'] = $footer_logo_path . 'logo-' . $variables['ecl_component_library'] . '--jp.svg';
+      return;
+    }
+    if ($variables['current_language_id'] === 'zh-hans') {
+      // Set correct icon for Norwegian language.
+      $variables['desktop_logo_path'] = $footer_logo_path . 'logo-' . $variables['ecl_component_library'] . '--zh.svg';
       return;
     }
     // Check whether ECL provides a logo for the language.

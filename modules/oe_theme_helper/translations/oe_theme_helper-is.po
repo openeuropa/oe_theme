@@ -521,3 +521,138 @@ msgstr "Ég hef lesið og samþykki @link"
 
 msgid "personal data protection terms"
 msgstr "gagnaverndarskilmálanna"
+
+msgid "Ongoing"
+msgstr "Yfirstandandi"
+
+msgid "Opening of tenders"
+msgstr "Opnun fyrir tilboð"
+
+msgid "External event"
+msgstr "Ytri viðburður"
+
+msgid "Online only"
+msgstr "Eingöngu á netinu"
+
+msgid "Organisers"
+msgstr "Skipuleggjendur"
+
+msgid "Part of"
+msgstr "Hluti af"
+
+msgid "Programme"
+msgstr "Áætlun"
+
+msgid "Register here"
+msgstr "Skráðu þig hér"
+
+msgid "Report"
+msgstr "Skýrsla"
+
+msgid "Speakers"
+msgstr "Fyrirlesarar"
+
+msgid "Starts on @date"
+msgstr "Byrjar þann @date"
+
+msgid "The livestream has ended, but the event is ongoing."
+msgstr "Beinu streymi er lokið, en viðburðurinn er enn í gangi."
+
+msgid "The livestream has started."
+msgstr "Beint streymi er byrjað."
+
+msgid "This event has been cancelled."
+msgstr "Þessum viðburði hefur verið aflýst."
+
+msgid "This event has been postponed."
+msgstr "Þessum viðburði hefur verið frestað."
+
+msgid "This event has been rescheduled."
+msgstr "Þessum viðburði hefur verið breytt."
+
+msgid "This event has ended, but the livestream is ongoing."
+msgstr "Þessum viðburði er lokið, en beint streymi er enn í gangi."
+
+msgid "This event has ended."
+msgstr "Þessum viðburði er lokið."
+
+msgid "This event has started."
+msgstr "Þessi viðburður er byrjaður."
+
+msgid "This event has started. The livestream will start at @date."
+msgstr "Þessi viðburður er byrjaður. Beint streymi byrjar þann @date."
+
+msgid "This event has started. You can also watch it via livestream."
+msgstr "Þessi viðburður er byrjaður. Þú getur líka horft á viðburðinn í beinu streymi."
+
+msgid "This livestream has started."
+msgstr "Beint streymi fyrir þennan viðburð er hafið."
+
+msgid "Who should attend"
+msgstr "Hverjir ættu að mæta"
+
+msgid "@percentage% of the overall budget"
+msgstr "@percentage % af heildarfjárhagsáætlun"
+
+msgid "Clear all"
+msgstr "Hreinsa allt"
+
+msgid "Filter results"
+msgstr "Sía niðurstöður"
+
+msgid "This site is managed by:<br />@name"
+msgstr "Þessari síðu er stjórnað af:<br />@name"
+
+msgid "See all"
+msgstr "Sjá allt"
+
+msgid "You are here:"
+msgstr "Þú ert hér:"
+
+msgid "European Commission logo"
+msgstr "Kennimerki framkvæmdastjórnar Evrópusambandsins"
+
+msgid "European Union flag"
+msgstr "Fáni Evrópusambandsins"
+
+msgid "Access item's children"
+msgstr "Fá aðgang að dótturferli atriða"
+
+msgid "Collapse"
+msgstr "Leggja saman"
+
+msgid "Site navigation"
+msgstr "Síðuleiðsögn"
+
+msgid "Next news item"
+msgstr "Næsta fréttaatriði"
+
+msgid "Pause news ticker"
+msgstr "Hlé á frétta ticker"
+
+msgid "Play news ticker"
+msgstr "Spila frétta ticker"
+
+msgid "Previous news item"
+msgstr "Fyrra fréttatriði"
+
+msgid "Close"
+msgstr "Loka"
+
+msgid "Leadership and organisation"
+msgstr "Forysta og skipulag"
+
+msgid "European Union"
+msgstr "Evrópusambandið"
+
+msgid "Highlighted"
+msgstr "Auðkennt"
+
+msgid "Home"
+msgstr "Heim"
+
+msgid "Press contact"
+msgstr "Fjölmiðlatengiliður"
+
+msgid "Sources"
+msgstr "Heimildir"
