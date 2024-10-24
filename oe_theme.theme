@@ -1309,7 +1309,7 @@ function oe_theme_preprocess_block__system_branding_block(&$variables) {
   // Provide correct icon for non-eu languages.
   $language_code = \Drupal::languageManager()->getCurrentLanguage()->getId();
   if (!EuropeanUnionLanguages::hasLanguage($language_code)) {
-    if (in_array($language_code, $map_non_eu_langcode)) {
+    if (isset($map_non_eu_langcode[$language_code])) {
       $variables['current_language_id'] = $map_non_eu_langcode[$language_code];
     }
     else {
