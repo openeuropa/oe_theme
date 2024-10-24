@@ -5,6 +5,7 @@ oe_theme.extra_small:
   multipliers:
     - 1x
     - 2x
+  group: oe_theme
 oe_theme.small:
   label: Small
   mediaQuery: 'all and (min-width: 480px)'
@@ -12,6 +13,7 @@ oe_theme.small:
   multipliers:
     - 1x
     - 2x
+  group: oe_theme
 oe_theme.medium:
   label: Medium
   mediaQuery: 'all and (min-width: 768px)'
@@ -19,17 +21,20 @@ oe_theme.medium:
   multipliers:
     - 1x
     - 2x
+  group: oe_theme
 oe_theme.large:
   label: Large
-  mediaQuery: 'all and (min-width: 992px)'
+  mediaQuery: 'all and (min-width: 996px)'
   weight: 2
   multipliers:
     - 1x
     - 2x
+  group: oe_theme
 oe_theme.extra_large:
   label: 'Extra large'
-  mediaQuery: 'all and (min-width: 1200px)'
+  mediaQuery: 'all and (min-width: 1140px)'
   weight: 3
   multipliers:
     - 1x
     - 2x
+  group: oe_theme

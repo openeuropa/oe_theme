@@ -17,12 +17,34 @@ dependencies:
 
 config_devel:
   install:
-    - image.style.oe_theme_list_item
-    - image.style.oe_theme_list_item_featured
-    - image.style.oe_theme_list_item_2x
-    - image.style.oe_theme_list_item_featured_2x
-    - image.style.oe_theme_medium_2x_no_crop
-    - image.style.oe_theme_medium_no_crop
-    - image.style.oe_theme_small_2x_no_crop
-    - image.style.oe_theme_small_no_crop
-    - responsive_image.styles.oe_theme_main_content
+  - core.entity_view_mode.node.oe_compact_teaser
+  - image.style.oe_theme_extra_large_3_1_banner
+  - image.style.oe_theme_extra_large_4_1_banner
+  - image.style.oe_theme_extra_large_5_1_banner
+  - image.style.oe_theme_full_width
+  - image.style.oe_theme_full_width_banner_3_1
+  - image.style.oe_theme_full_width_banner_4_1
+  - image.style.oe_theme_full_width_banner_5_1
+  - image.style.oe_theme_large_3_1_banner
+  - image.style.oe_theme_large_4_1_banner
+  - image.style.oe_theme_large_5_1_banner
+  - image.style.oe_theme_list_item
+  - image.style.oe_theme_list_item_2x
+  - image.style.oe_theme_list_item_featured
+  - image.style.oe_theme_list_item_featured_2x
+  - image.style.oe_theme_medium_2x_no_crop
+  - image.style.oe_theme_medium_3_1_banner
+  - image.style.oe_theme_medium_4_1_banner
+  - image.style.oe_theme_medium_5_1_banner
+  - image.style.oe_theme_medium_no_crop
+  - image.style.oe_theme_ratio_3_2_medium
+  - image.style.oe_theme_small_2x_no_crop
+  - image.style.oe_theme_small_3_1_banner
+  - image.style.oe_theme_small_4_1_banner
+  - image.style.oe_theme_small_5_1_banner
+  - image.style.oe_theme_small_no_crop
+  - oe_theme_helper.internal_domains
+  - responsive_image.styles.oe_theme_3_1_banner
+  - responsive_image.styles.oe_theme_4_1_banner
+  - responsive_image.styles.oe_theme_5_1_banner
+  - responsive_image.styles.oe_theme_main_content
