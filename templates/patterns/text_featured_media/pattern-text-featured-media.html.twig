@@ -89,7 +89,9 @@
 {% endif %}
 
 {% if title %}
-  <h2 class='ecl-u-type-heading-2'>{{ title }}</h2>
+  <div class="ecl">
+    <h2 class='ecl-u-type-heading-2'>{{ title }}</h2>
+  </div>
 {% endif %}
 
 {% include '@ecl-twig/featured-item' with {

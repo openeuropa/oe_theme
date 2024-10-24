@@ -8,7 +8,9 @@
 #}
 {% extends "@paragraphs/paragraph.html.twig" %}
 {% block paragraph %}
-  {% block content %}
-    {{ content }}
-  {% endblock %}
+  <div{{ attributes }}>
+    {% block content %}
+      {{ content }}
+    {% endblock %}
+  </div>
 {% endblock paragraph %}

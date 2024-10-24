@@ -8,7 +8,9 @@
 #}
 
 {% if not paragraph.field_oe_title.isEmpty() %}
-  <h2 class="ecl-u-type-heading-2">{{ content.field_oe_title }}</h2>
+  <div class="ecl">
+    <h2 class="ecl-u-type-heading-2">{{ content.field_oe_title }}</h2>
+  </div>
 {% endif %}
 
 {% if iframe is not empty %}
