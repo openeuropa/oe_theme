@@ -3809,6 +3809,7 @@
       '.ecl-featured-item__media_container figure.ecl-media-container__figure': 1
       'img.ecl-media-container__media[src="http://via.placeholder.com/150x150"]': 1
       'iframe': 0
+      'video': 0
       'figcaption.ecl-media-container__caption': 1
       'a.ecl-link.ecl-link--standalone[href="http://example.com"]': 1
       'svg.ecl-icon.ecl-icon--xs.ecl-icon--primary.ecl-link__icon': 1
@@ -3846,6 +3847,7 @@
       '.ecl-featured-item__media_container figure.ecl-media-container__figure': 1
       'img.ecl-media-container__media[src="http://via.placeholder.com/150x150"]': 1
       'iframe': 0
+      'video': 0
       'figcaption.ecl-media-container__caption': 1
       'a.ecl-link.ecl-link--standalone[href="https://european-union.europa.eu/index_en"]': 1
       'svg.ecl-icon.ecl-icon--xs.ecl-icon--primary.ecl-link__icon': 1
@@ -3865,8 +3867,16 @@
     '#variant': "right_simple"
     '#fields':
       title: "Heading"
-      image:
-        src: "http://via.placeholder.com/150x150"
+      animation:
+        poster: "https://inno-ecl.s3.amazonaws.com/media/examples/example-image.jpg"
+        sources:
+          - src: "https://inno-ecl.s3.amazonaws.com/media/videos/big_buck_bunny.mp4"
+            src_type: "video/mp4"
+        tracks:
+          - src: "captions/bunny-en.vtt"
+            kind: "captions"
+            src_lang: "en"
+            label: "English"
       caption: "Some caption text for the image"
       text: "Some more text"
       link:
@@ -3885,7 +3895,10 @@
       'div.ecl-featured-item__container': 1
       'div.ecl-featured-item__title span.ecl-featured-item__title-content': 0
       '.ecl-featured-item__media_container figure.ecl-media-container__figure': 1
-      'img.ecl-media-container__media[src="http://via.placeholder.com/150x150"]': 1
+      'img.ecl-media-container__media': 0
+      'video.ecl-video.ecl-media-container__media[poster="https://inno-ecl.s3.amazonaws.com/media/examples/example-image.jpg"][autoplay][muted][loop]': 1
+      'video source[type="video/mp4"][src="https://inno-ecl.s3.amazonaws.com/media/videos/big_buck_bunny.mp4"]': 1
+      'video track[kind="captions"][label="English"][src="captions/bunny-en.vtt"][srclang="en"]': 1
       'iframe': 0
       'figcaption.ecl-media-container__caption': 1
       'a.ecl-link.ecl-link--standalone[href="http://example.com"]': 1
@@ -3950,6 +3963,7 @@
       '.ecl-featured-item__media_container figure.ecl-media-container__figure': 1
       'img.ecl-media-container__media[src="http://via.placeholder.com/150x150"]': 1
       'iframe': 0
+      'video': 0
       'figcaption.ecl-media-container__caption': 0
       'a.ecl-link.ecl-link--cta[href="http://example.com"]': 1
       'div.ecl-expandable.ecl-media-container__expandable': 0
@@ -4042,6 +4056,42 @@
       'div.ecl-media-container__media--ratio-1-1 iframe[src="//ec.europa.eu/avservices/play.cfm?ref=I-181645"]': 1
       'a.ecl-link.ecl-link--standalone[href="http://example.com"]': 1
       'div.ecl-expandable.ecl-media-container__expandable': 0
+- array:
+    '#type': pattern
+    '#id': text_featured_media
+    '#variant': "left_featured"
+    '#fields':
+      title: "Heading"
+      animation:
+        poster: "https://inno-ecl.s3.amazonaws.com/media/examples/example-image.jpg"
+        sources:
+          - src: "https://inno-ecl.s3.amazonaws.com/media/videos/big_buck_bunny.mp4"
+            src_type: "video/mp4"
+        tracks:
+          - src: "captions/bunny-en.vtt"
+            kind: "captions"
+            src_lang: "en"
+            label: "English"
+      text: "Some more text"
+      link:
+        label: "Call to action"
+        path: "http://example.com"
+  assertions:
+    count:
+      'article.ecl-featured-item.ecl-featured-item--highlight': 0
+      'div.ecl-featured-item__container.ecl-featured-item__container--right': 1
+      '.ecl-featured-item__media_container figure.ecl-media-container__figure': 1
+      'video.ecl-video.ecl-media-container__media[poster="https://inno-ecl.s3.amazonaws.com/media/examples/example-image.jpg"][autoplay][muted][loop]': 1
+      'video source[type="video/mp4"][src="https://inno-ecl.s3.amazonaws.com/media/videos/big_buck_bunny.mp4"]': 1
+      'video track[kind="captions"][label="English"][src="captions/bunny-en.vtt"][srclang="en"]': 1
+      'img.ecl-media-container__media': 0
+      'iframe': 0
+      'figcaption.ecl-media-container__caption': 0
+      'a.ecl-link.ecl-link--cta[href="http://example.com"]': 1
+    equals:
+      'h2.ecl-u-type-heading-2': "Heading"
+      'div.ecl-featured-item__item div.ecl-featured-item__description': "Some more text"
+      'a.ecl-link span.ecl-link__label': "Call to action"
 - array:
     '#type': pattern
     '#id': icons_with_text

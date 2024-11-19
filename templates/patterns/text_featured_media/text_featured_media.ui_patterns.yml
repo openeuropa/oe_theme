@@ -37,6 +37,20 @@ text_featured_media:
       label: "Video"
       description: "Embedded video as a renderable iframe (for example by using the 'html_tag' render element). Either this or the image need to be provided. If both are provided the image will take preference."
       preview: ""
+    animation:
+      type: "array"
+      label: "Animation"
+      description: "Animation: uses the media container parameters as defined by the ECL to render a video."
+      preview:
+        poster: "https://inno-ecl.s3.amazonaws.com/media/examples/example-image.jpg"
+        sources:
+          - src: "https://inno-ecl.s3.amazonaws.com/media/videos/big_buck_bunny.mp4"
+            src_type: "video/mp4"
+        tracks:
+          - src: "captions/bunny-en.vtt"
+            kind: "captions"
+            src_lang: "en"
+            label: "English"
     caption:
       type: "text"
       label: "Caption"

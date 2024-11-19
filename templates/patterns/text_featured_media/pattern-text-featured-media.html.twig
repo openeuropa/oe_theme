@@ -36,7 +36,7 @@
   }%}
 {% endif %}
 
-{% if image or video %}
+{% if image or video or animation %}
     {% if image %}
       {% set _media_container = {
         'picture': {
@@ -52,6 +52,25 @@
         'embedded_media': video,
         'ratio': video_ratio,
         'description': caption,
+      } %}
+    {% elseif animation.sources %}
+      {% set _animation = animation %}
+      {# We need to use src_type instead of type to avoid getting render
+        arrays due to using type. #}
+      {% set _sources = [] %}
+      {% for _source in _animation.sources %}
+        {% set _sources = _sources|merge([_source|merge({
+          type: _source.src_type
+        })]) %}
+      {% endfor %}
+      {% set _animation = _animation|merge({
+        sources: _sources
+      }) %}
+      {% set _media_container = {
+        'video': _animation,
+        'autoplay': true,
+        'description': caption,
+        'icon_path': ecl_icon_path,
       } %}
     {% endif %}
 {% endif %}
