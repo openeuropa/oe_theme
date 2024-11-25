@@ -3345,6 +3345,7 @@
       'ul.ecl-content-block__secondary-meta-container': 0
       'article.ecl-card div.ecl-card__body ul.ecl-content-block__label-container': 0
       'div.ecl-content-block__title a.ecl-link.ecl-link--standalone': 0
+      'div.ecl-content-block__list-container': 0
     equals:
       'div.ecl-content-block__title': "Example title"
 - array:
@@ -3362,6 +3363,7 @@
       'article.ecl-card div.ecl-card__body ul.ecl-content-block__label-container': 0
       'span.ecl-button__container a.ecl-button .ecl-button__label': 0
       'div.ecl-content-block__title a.ecl-link.ecl-link--standalone': 0
+      'div.ecl-content-block__list-container': 0
     equals:
       'div.ecl-content-block__title': "Example title"
 - array:
@@ -3385,6 +3387,20 @@
           variant: "highlight"
         - label: "Status: Open"
           variant: "high"
+      lists:
+        -
+          - term: "When"
+            definition: "Thursday 15 November, 08:00 AM to Friday 16 November"
+          - term: "Where"
+            definition:
+              - "The EGG, Rue Barra 175, 1070 Brussels, Belgium"
+              - "Rue Belliard 28, 1000 Brussels, Belgium"
+          - term: "Taxonomy list"
+            list_type: "taxonomy"
+            definition:
+              - label: "Taxonomy item 1"
+              - "Taxonomy item 2"
+              - "Taxonomy item 3"
       extra_attributes:
         - name: "extra-attr"
           value: "extra value"
@@ -3398,6 +3414,8 @@
       'article.ecl-card div.ecl-card__body ul.ecl-content-block__label-container': 1
       'ul.ecl-content-block__label-container li.ecl-content-block__label-item': 2
       'ul.ecl-content-block__primary-meta-container': 1
+      'div.ecl-content-block__list-container': 1
+      'dl.ecl-description-list.ecl-description-list--vertical.ecl-content-block__list': 1
     equals:
       'ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(1)': "Breaking news article"
       'ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(2)': "Brussels"
@@ -3405,6 +3423,14 @@
       'div.ecl-content-block__description': "Example description"
       'ul.ecl-content-block__label-container li.ecl-content-block__label-item:nth-child(1) span.ecl-label.ecl-label--highlight': "Highlighted"
       'ul.ecl-content-block__label-container li.ecl-content-block__label-item:nth-child(2) span.ecl-label.ecl-label--high': "Status: Open"
+      'div.ecl-content-block__list-container dt.ecl-description-list__term:nth-child(1)': "When"
+      'div.ecl-content-block__list-container dd.ecl-description-list__definition:nth-child(2)': "Thursday 15 November, 08:00 AM to Friday 16 November"
+      'div.ecl-content-block__list-container dt.ecl-description-list__term:nth-child(3)': "Where"
+      'div.ecl-content-block__list-container dd.ecl-description-list__definition:nth-child(4)': "The EGG, Rue Barra 175, 1070 Brussels, BelgiumRue Belliard 28, 1000 Brussels, Belgium"
+      'div.ecl-content-block__list-container dt.ecl-description-list__term:nth-child(5)': "Taxonomy list"
+      'div.ecl-content-block__list-container dd.ecl-description-list__definition.ecl-description-list__definition--taxonomy li.ecl-description-list__definition-item:nth-child(1)': "Taxonomy item 1"
+      'div.ecl-content-block__list-container dd.ecl-description-list__definition.ecl-description-list__definition--taxonomy li.ecl-description-list__definition-item:nth-child(2)': "Taxonomy item 2"
+      'div.ecl-content-block__list-container dd.ecl-description-list__definition.ecl-description-list__definition--taxonomy li.ecl-description-list__definition-item:nth-child(3)': "Taxonomy item 3"
 - array:
     '#type': pattern
     '#id': featured_item
@@ -3432,6 +3458,7 @@
       'article.ecl-card picture.ecl-picture--zoom': 1
       'article.ecl-card div.ecl-card__body ul.ecl-content-block__label-container': 0
       'ul.ecl-content-block__primary-meta-container': 1
+      'div.ecl-content-block__list-container': 0
     equals:
       'ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(1)': "Breaking news article"
       'ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(2)': "Brussels"
@@ -3464,6 +3491,7 @@
       'article.ecl-card picture.ecl-picture--zoom': 0
       'article.ecl-card div.ecl-card__body ul.ecl-content-block__label-container': 0
       'ul.ecl-content-block__primary-meta-container': 1
+      'div.ecl-content-block__list-container': 0
     equals:
       'ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(1)': "Breaking news article"
       'ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(2)': "Brussels"
