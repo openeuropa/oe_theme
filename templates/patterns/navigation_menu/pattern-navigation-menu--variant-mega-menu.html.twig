@@ -20,11 +20,6 @@
       see_all_attributes: child.see_all_attributes,
       extra_attributes: child.extra_attributes,
     } %}
-    {% if child.is_current is defined and child.is_current == true %}
-      {% set _child = _child|merge({
-        is_current: child.is_current,
-      }) %}
-    {% endif %}
     {% if child.external is defined and child.external == true %}
       {% set _child = _child|merge({
         external: child.external,
@@ -40,11 +35,6 @@
         label: grandchild.label,
         extra_attributes: grandchild.extra_attributes,
       } %}
-      {% if grandchild.is_current is defined and grandchild.is_current == true%}
-        {% set _grandchild = _grandchild|merge({
-          is_current: grandchild.is_current,
-        }) %}
-      {% endif %}
       {% if grandchild.external is defined and grandchild.external == true %}
         {% set _grandchild = _grandchild|merge({
           external: grandchild.external,
@@ -68,11 +58,6 @@
           label: featured_item.label,
           extra_attributes: featured_item.extra_attributes,
         } %}
-        {% if featured_item.is_current is defined and featured_item.is_current == true%}
-          {% set _featured_item = _featured_item|merge({
-            is_current: featured_item.is_current,
-          }) %}
-        {% endif %}
         {% if featured_item.external is defined and featured_item.external == true %}
           {% set _featured_item = _featured_item|merge({
             external: featured_item.external,
@@ -140,11 +125,6 @@
         container: item.container,
       }) %}
     {% endif %}
-  {% endif %}
-  {% if item.is_current is defined and item.is_current == true %}
-    {% set _item = _item|merge({
-      is_current: item.is_current,
-    }) %}
   {% endif %}
   {% set _items = _items|merge([_item]) %}
 {% endfor %}
