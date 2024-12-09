@@ -4183,7 +4183,6 @@
     '#variant': "default"
     '#fields':
       label: "Menu"
-      site_name: "Site name"
       items:
         - href: "#"
           label: 'Parent 1'
