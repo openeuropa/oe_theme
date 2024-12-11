@@ -112,7 +112,7 @@ class TimelineParagraphTest extends ParagraphsTestBase {
     $crawler = new Crawler($html);
 
     // No heading or introduction should be rendered.
-    $this->assertCount(0, $crawler->filter('h2.ecl-u-type-heading-2'));
+    $this->assertCount(0, $crawler->filter('div.ecl h2.ecl-u-type-heading-2'));
     $this->assertCount(0, $crawler->filter('div.ecl.ecl-u-mb-m'));
     $this->assertCount(1, $crawler->filter('ol.ecl-timeline'));
     $this->assertCount(7, $crawler->filter('ol.ecl-timeline li.ecl-timeline__item'));

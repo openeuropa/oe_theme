@@ -134,7 +134,7 @@ class ContactParagraphTest extends ParagraphsTestBase {
     $crawler = new Crawler($html);
 
     // Assert paragraph heading markup is not rendered if no title is set.
-    $this->assertCount(0, $crawler->filter('h2.ecl-u-type-heading-2'));
+    $this->assertCount(0, $crawler->filter('div.ecl h2.ecl-u-type-heading-2'));
     // Assert rendering of the first contact.
     $this->assertEquals('General contact', trim($crawler->filter('div.ecl-row.ecl-u-mv-xl:nth-child(1) h3.ecl-u-type-heading-3.ecl-u-mt-none div')->html()));
     $this->assertEquals('<p>General contact body text</p>', trim($crawler->filter('div.ecl-col-m-6 div.ecl-u-mb-l:nth-child(1) div.ecl')->html()));
