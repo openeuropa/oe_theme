@@ -124,7 +124,6 @@ navigation_menu:
                 items:
                   - href: "#"
                     label: "Featured link 2.1.1"
-                    is_current: TRUE
                   - href: "#"
                     label: "Featured link 2.1.2"
                   - href: "#"
@@ -184,7 +183,6 @@ navigation_menu:
                 items:
                   - href: "#"
                     label: "Featured link 6.1.1"
-                    is_current: TRUE
                   - href: "#"
                     label: "Featured link 6.1.2"
                   - href: "#"

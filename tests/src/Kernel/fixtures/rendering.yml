@@ -4258,7 +4258,6 @@
           children:
             - href: '#'
               label: 'Child 1.1'
-              is_current: true
               external: true
               extra_attributes:
                 - name: 'data-name2'
