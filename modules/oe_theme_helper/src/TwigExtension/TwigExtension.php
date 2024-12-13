@@ -431,9 +431,12 @@ class TwigExtension extends AbstractExtension {
     // Flag icon names for non EU members.
     $flag_icons_non_members = [
       'albania',
+      'armenia',
       'bosnia-and-herzegovina',
       'georgia',
       'iceland',
+      'israel',
+      'liechtenstein',
       'moldova',
       'montenegro',
       'north-macedonia',
@@ -442,6 +445,7 @@ class TwigExtension extends AbstractExtension {
       'switzerland',
       'turkey',
       'ukraine',
+      'united-kingdom',
     ];
     // Flag icons can have a -square string appended, so check if the icon name
     // starts with a country name.
