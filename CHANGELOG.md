@@ -1,5 +1,21 @@
 # Change Log
 
+## [4.3.0](https://github.com/openeuropa/oe_theme/tree/4.3.0) (2024-12-16)
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/4.2.1...4.3.0)
+
+**Merged pull requests:**
+
+- EWPP-4872: Update to ECL 4.9.0. [\#1534](https://github.com/openeuropa/oe_theme/pull/1534) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-4998: Remove is\_current flag of navigation\_menu's mega\_menu variant. [\#1533](https://github.com/openeuropa/oe_theme/pull/1533) ([22Alexandra](https://github.com/22Alexandra))
+- Release 4.2.1 [\#1531](https://github.com/openeuropa/oe_theme/pull/1531) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-4957: Add missing Non-EU Member states to flag options. [\#1528](https://github.com/openeuropa/oe_theme/pull/1528) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-4935: Add animation field to Text with featured media pattern. [\#1527](https://github.com/openeuropa/oe_theme/pull/1527) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-4888: Fix typo in a label in French. [\#1526](https://github.com/openeuropa/oe_theme/pull/1526) ([fmmribeiro](https://github.com/fmmribeiro))
+- EWPP-4830: Add ecl class to paragraphs and patterns heading so ECL default styling is applied. [\#1521](https://github.com/openeuropa/oe_theme/pull/1521) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-4835: Flush cache for oe\_theme\_publication\_thumbnail image style after it has been updated. [\#1519](https://github.com/openeuropa/oe_theme/pull/1519) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-4810: Add the ECL optional ETR styles to available libraries. [\#1516](https://github.com/openeuropa/oe_theme/pull/1516) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-4321: Ensure oe\_theme favicons are used if the subtheme is configured to use them and doesn't provide them. [\#1492](https://github.com/openeuropa/oe_theme/pull/1492) ([22Alexandra](https://github.com/22Alexandra))
+
 ## [4.2.1](https://github.com/openeuropa/oe_theme/tree/4.2.1) (2024-11-27)
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/4.2.0...4.2.1)
 
