@@ -1,5 +1,12 @@
 # Change Log
 
+## [4.4.0](https://github.com/openeuropa/oe_theme/tree/4.4.0) (2025-01-09)
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/4.3.0...4.4.0)
+
+**Merged pull requests:**
+
+- EWPP-5104: Update to ECL 4.10.0. [\#1539](https://github.com/openeuropa/oe_theme/pull/1539) ([22Alexandra](https://github.com/22Alexandra))
+
 ## [4.3.0](https://github.com/openeuropa/oe_theme/tree/4.3.0) (2024-12-16)
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/4.2.1...4.3.0)
 
