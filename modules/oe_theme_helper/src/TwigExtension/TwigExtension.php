@@ -452,7 +452,7 @@ class TwigExtension extends AbstractExtension {
     $found_icon = array_filter($flag_icons, function ($var) use ($icon) {
       if (strpos($icon, $var) === 0) {
         return TRUE;
-      };
+      }
       return FALSE;
     });
     if ($found_icon) {
@@ -461,7 +461,7 @@ class TwigExtension extends AbstractExtension {
     $found_icon = array_filter($flag_icons_non_members, function ($var) use ($icon) {
       if (strpos($icon, $var) === 0) {
         return TRUE;
-      };
+      }
       return FALSE;
     });
     if ($found_icon) {
@@ -488,7 +488,7 @@ class TwigExtension extends AbstractExtension {
     $found_icon = array_filter($social_icons, function ($var) use ($icon) {
       if (strpos($icon, $var) === 0) {
         return TRUE;
-      };
+      }
       return FALSE;
     });
     if ($found_icon) {
