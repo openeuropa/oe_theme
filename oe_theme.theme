@@ -1675,6 +1675,11 @@ function oe_theme_preprocess_paragraph__oe_banner(array &$variables): void {
 
   // Load needed images styles based on banner size.
   $image_style_storage = \Drupal::entityTypeManager()->getStorage('image_style');
+  $full_width = NULL;
+  $extra_large = NULL;
+  $large = NULL;
+  $medium = NULL;
+  $small = NULL;
   if ($variables['size'] === 's') {
     $full_width = $image_style_storage->load('oe_theme_full_width_banner_5_1');
     $extra_large = $image_style_storage->load('oe_theme_extra_large_5_1_banner');
@@ -2124,7 +2129,6 @@ function oe_theme_preprocess_paragraph__oe_illustration_list_images(array &$vari
     $language_id = $paragraph->language()->getId();
     $sub_paragraph = $entity_repository->getTranslationFromContext($sub_paragraph, $language_id);
     // Get the image from attached media.
-    $image = [];
     $media = _oe_theme_prepare_media($sub_paragraph->get('field_oe_media')->entity, $variables['user'], $cacheability, $language_id);
     if ($media) {
       $thumbnail = '';
@@ -2232,6 +2236,11 @@ function oe_theme_preprocess_paragraph__oe_carousel(array &$variables): void {
     $variables['size'] = substr($paragraph->get('field_oe_carousel_size')->value, 0, 1);
   }
   // Load needed images styles based on carousel size.
+  $full_width = NULL;
+  $extra_large = NULL;
+  $large = NULL;
+  $medium = NULL;
+  $small = NULL;
   $image_style_storage = \Drupal::entityTypeManager()->getStorage('image_style');
   if ($variables['size'] === 's') {
     $full_width = $image_style_storage->load('oe_theme_full_width_banner_5_1');
@@ -2261,7 +2270,6 @@ function oe_theme_preprocess_paragraph__oe_carousel(array &$variables): void {
     $sub_paragraph = \Drupal::service('entity.repository')
       ->getTranslationFromContext($sub_paragraph, $paragraph->language()->getId());
     // Add CTA, Title and description if available.
-    $link = '';
     $link_text = '';
     if (!$sub_paragraph->get('field_oe_link')->isEmpty()) {
       /** @var \Drupal\link\Plugin\Field\FieldType\LinkItem $link_item */

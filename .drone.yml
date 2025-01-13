@@ -19,8 +19,8 @@ services:
       - COMPOSERVER=--2
       - DOCUMENT_ROOT=/test/oe_theme
   mysql:
-    image: git.fpfis.tech.ec.europa.eu/fpfis/dependency_proxy/containers/percona:5.7
-    command: --innodb-log-file-size=1G --max_allowed_packet=1G --innodb-buffer-pool-size=512M --wait_timeout=3000 --net_write_timeout=3000 --log_error_verbosity=3
+    image: git.fpfis.tech.ec.europa.eu/fpfis/dependency_proxy/containers/percona:8.0
+    command: --innodb-log-file-size=1G --max_allowed_packet=1G --innodb-buffer-pool-size=512M --wait_timeout=3000 --net_write_timeout=3000 --log_error_verbosity=3 --skip-log-bin --innodb-flush-log-at-trx-commit=2 --innodb-read-io-threads=16 --innodb-write-io-threads=16
     environment:
       - MYSQL_ALLOW_EMPTY_PASSWORD=yes
       - MYSQL_DATABASE=drupal
@@ -130,22 +130,22 @@ pipeline:
 
 matrix:
   include:
-    - { PHP_VERSION: 8.1, CORE_VERSION: 10.2.0, TYPE: behat }
-    - { PHP_VERSION: 8.1, CORE_VERSION: 10.2.0, TYPE: phpunit, BATCH: batch1 }
-    - { PHP_VERSION: 8.1, CORE_VERSION: 10.2.0, TYPE: phpunit, BATCH: batch2 }
-    - { PHP_VERSION: 8.1, CORE_VERSION: 10.2.0, TYPE: phpunit, BATCH: batch3 }
-
-    - { PHP_VERSION: 8.2, CORE_VERSION: 10.2.0, TYPE: behat }
-    - { PHP_VERSION: 8.2, CORE_VERSION: 10.2.0, TYPE: phpunit, BATCH: batch1 }
-    - { PHP_VERSION: 8.2, CORE_VERSION: 10.2.0, TYPE: phpunit, BATCH: batch2 }
-    - { PHP_VERSION: 8.2, CORE_VERSION: 10.2.0, TYPE: phpunit, BATCH: batch3 }
-
     - { PHP_VERSION: 8.1, CORE_VERSION: 10.3.0, TYPE: behat }
     - { PHP_VERSION: 8.1, CORE_VERSION: 10.3.0, TYPE: phpunit, BATCH: batch1 }
     - { PHP_VERSION: 8.1, CORE_VERSION: 10.3.0, TYPE: phpunit, BATCH: batch2 }
     - { PHP_VERSION: 8.1, CORE_VERSION: 10.3.0, TYPE: phpunit, BATCH: batch3 }
 
-    - { PHP_VERSION: 8.2, CORE_VERSION: 10.3.0, TYPE: behat }
-    - { PHP_VERSION: 8.2, CORE_VERSION: 10.3.0, TYPE: phpunit, BATCH: batch1 }
-    - { PHP_VERSION: 8.2, CORE_VERSION: 10.3.0, TYPE: phpunit, BATCH: batch2 }
-    - { PHP_VERSION: 8.2, CORE_VERSION: 10.3.0, TYPE: phpunit, BATCH: batch3 }
+    - { PHP_VERSION: 8.3, CORE_VERSION: 10.3.0, TYPE: behat }
+    - { PHP_VERSION: 8.3, CORE_VERSION: 10.3.0, TYPE: phpunit, BATCH: batch1 }
+    - { PHP_VERSION: 8.3, CORE_VERSION: 10.3.0, TYPE: phpunit, BATCH: batch2 }
+    - { PHP_VERSION: 8.3, CORE_VERSION: 10.3.0, TYPE: phpunit, BATCH: batch3 }
+
+    - { PHP_VERSION: 8.1, CORE_VERSION: 10.4.0, TYPE: behat }
+    - { PHP_VERSION: 8.1, CORE_VERSION: 10.4.0, TYPE: phpunit, BATCH: batch1 }
+    - { PHP_VERSION: 8.1, CORE_VERSION: 10.4.0, TYPE: phpunit, BATCH: batch2 }
+    - { PHP_VERSION: 8.1, CORE_VERSION: 10.4.0, TYPE: phpunit, BATCH: batch3 }
+
+    - { PHP_VERSION: 8.3, CORE_VERSION: 10.4.0, TYPE: behat }
+    - { PHP_VERSION: 8.3, CORE_VERSION: 10.4.0, TYPE: phpunit, BATCH: batch1 }
+    - { PHP_VERSION: 8.3, CORE_VERSION: 10.4.0, TYPE: phpunit, BATCH: batch2 }
+    - { PHP_VERSION: 8.3, CORE_VERSION: 10.4.0, TYPE: phpunit, BATCH: batch3 }

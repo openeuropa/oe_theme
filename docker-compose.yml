@@ -1,7 +1,6 @@
-version: '2'
 services:
   web:
-    image: fpfis/httpd-php-dev:8.1
+    image: fpfis/httpd-php-dev:8.3
     working_dir: /var/www/html
     ports:
       - 8080:8080
@@ -17,8 +16,8 @@ services:
       # Enable step debugging for all PHP request. See ./README.md#step-debugging for more information.
       # XDEBUG_SESSION: 1
   mysql:
-    image: percona/percona-server:5.7
-    command: --innodb-log-file-size=1G --max_allowed_packet=1G --innodb-buffer-pool-size=512M --wait_timeout=3000 --net_write_timeout=3000 --log_error_verbosity=3
+    image: percona/percona-server:8.0
+    command: --innodb-log-file-size=1G --max_allowed_packet=1G --innodb-buffer-pool-size=512M --wait_timeout=3000 --net_write_timeout=3000 --log_error_verbosity=3 --skip-log-bin --innodb-flush-log-at-trx-commit=2 --innodb-read-io-threads=16 --innodb-write-io-threads=16
     environment:
       MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
   #    ports:

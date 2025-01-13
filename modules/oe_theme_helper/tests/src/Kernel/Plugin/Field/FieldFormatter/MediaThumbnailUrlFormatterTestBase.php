@@ -45,7 +45,7 @@ class MediaThumbnailUrlFormatterTestBase extends AbstractKernelTestBase {
     ]);
 
     // Call the install hook of the Media module.
-    module_load_include('install', 'media');
+    $this->container->get('module_handler')->loadInclude('media', 'install');
     media_install();
   }
 
