@@ -1,13 +1,13 @@
 @use "sass:map";
 @use '@ecl/theme-ec';
 @use '@ecl/theme-ec/theme';
-@use '@ecl/vanilla-layout-grid/mixins/breakpoints'  with (
+@use '@ecl/grid/mixins/breakpoints'  with (
   $theme: theme.$theme
 );
-@use '@ecl/vanilla-utility-background/background' with (
+@use '@ecl/utility-background/background' with (
   $theme: theme.$theme
 );
-@use '@ecl/vanilla-utility-border/border' with (
+@use '@ecl/utility-border/border' with (
   $theme: theme.$theme
 );
 // TODO: The help form component is not available on ECL v3.
