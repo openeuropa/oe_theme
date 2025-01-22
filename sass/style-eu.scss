@@ -10,8 +10,6 @@
 @use '@ecl/utility-border/border' with (
   $theme: theme.$theme
 );
-// TODO: The help form component is not available on ECL v3.
-//@use '@ecl/eu-component-form-help-block/eu-component-form-help-block';
 @use "./compositions/content_item";
 @use "./components/form";
 @use "./components/toolbar";
