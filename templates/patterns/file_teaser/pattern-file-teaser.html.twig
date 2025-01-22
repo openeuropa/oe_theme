@@ -14,11 +14,8 @@
   {% if item.file.size %}
     {% set _translation_meta = '(' ~ item.file.size|format_size ~ ' - ' ~ item.file.extension|upper  ~ ')' %}
   {% endif %}
-  {# 'lang_full' parameter is deprecated in ECL v4 - to be removed in 5.x of
-    oe_theme too. #}
   {% set _translations = _translations|merge([{
     'title': item.file.title,
-    'description': item.teaser|smart_trim(_length),
     'meta': _translation_meta,
     'lang': item.file.language_code|to_internal_language_id,
     'download': {
@@ -31,7 +28,6 @@
       },
       'extra_attributes': item.link_attributes|default([]),
     },
-    'lang_full': item.file.language_code|to_native_language
   }]) %}
 {% endfor %}
 {% set _detail_meta = [] %}
@@ -129,7 +125,6 @@
         'transform': 'rotate-180',
       },
     },
-    'description': more_info|default(''),
     'items': _translations,
   },
   'detail_meta': _detail_meta,

@@ -17,16 +17,6 @@ file_video:
       label: "Caption"
       description: "Description of the video."
       preview: "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit."
-    is_iframe:
-      type: "boolean"
-      label: "Iframe"
-      description: "Video is displayed in an iframe or not. (deprecated)"
-      preview: true
-    ratio:
-      type: "text"
-      label: "Ratio"
-      description: "Ratio of the video. (deprecated)"
-      preview: "16-9"
     alt:
       type: "text"
       label: "Alt"
