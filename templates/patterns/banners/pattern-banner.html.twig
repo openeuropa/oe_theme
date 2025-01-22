@@ -70,7 +70,7 @@
 {% endif %}
 
 {% set _picture = [] %}
-{% if image.src is not empty and variant != 'plain_background' %}
+{% if image.src is not empty %}
   {% set _picture = {
     img: {
       src: image.src|default(''),
@@ -120,25 +120,11 @@
 {% set _font_color = font_color|default('dark') %}
 {% set _font_size = font_size|default('m') %}
 {% set _box_background = box_background|default('light') %}
-
-{# Keep BC by setting the desired values based on the variant. #}
-{% if variant == 'plain_background' %}
-  {% set _font_color = 'light' %}
-  {% set _box_background = 'none' %}
-  {% set _picture = [] %}
-  {% set _video = [] %}
-  {% set extra_classes = 'ecl-banner--plain-background' %}
-{% elseif variant == 'text_overlay' %}
-  {% set _font_color = 'light' %}
-  {% set _box_background = 'dark' %}
-{% endif %}
-
 {% set _horizontal = horizontal|default('left') %}
 {% set _vertical = vertical|default('center') %}
 
-{# Keep BC when centered field is still used instead of horizontal field. #}
-{% if centered is defined and centered == true and (horizontal is not defined or horizontal is empty) %}
-  {% set _horizontal = 'center' %}
+{% if _font_color == 'light' and _box_background == 'none' %}
+  {% set extra_classes = 'ecl-banner--plain-background' %}
 {% endif %}
 
 <div{{ container_attributes }}>
