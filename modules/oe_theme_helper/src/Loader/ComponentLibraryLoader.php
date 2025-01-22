@@ -44,7 +44,7 @@ class ComponentLibraryLoader extends EuropaComponentLibraryLoader {
     }
 
     $this->logger = $logger_factory->get('ecl');
-    parent::__construct($namespaces, $path, $root, 'twig-component-', 'ecl-');
+    parent::__construct($namespaces, $path, $root, '', 'ecl-');
   }
 
 }
