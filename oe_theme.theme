@@ -1599,25 +1599,22 @@ function oe_theme_preprocess_paragraph__oe_banner(array &$variables): void {
   }
   // Get the alignment value.
   if ($paragraph->hasField('field_oe_banner_alignment') && !$paragraph->get('field_oe_banner_alignment')->isEmpty()) {
-    $variables['centered'] = $paragraph->get('field_oe_banner_alignment')->value === 'centered';
+    $variables['horizontal'] = $paragraph->get('field_oe_banner_alignment')->value === 'centered' ? 'center' : 'left';
   }
 
-  // Map the deprecated variants from oe_paragraphs to Banner pattern variants.
-  $deprecated_paragraph_variants_mapping = [
-    'default' => 'plain_background',
-    'primary' => 'plain_background',
-    'image' => 'text_box',
-    'image_shade' => 'text_overlay',
-    'text_highlight' => 'text_overlay',
-  ];
+  // Map Banner paragraph variants to their corresponding font_color and
+  // box_background.
   $variant = $paragraph->get('oe_paragraphs_variant')->first()->value;
-  if ($variant) {
-    $variant = str_replace('oe_banner_', '', $variant);
-    $variables['variant'] = $deprecated_paragraph_variants_mapping[$variant] ?? $variant;
+
+  if ($variant && (str_contains($variant, 'default') || str_contains($variant, 'primary'))) {
+    $variables['font_color'] = 'light';
+    $variables['box_background'] = 'none';
+    return;
   }
 
-  if ($variables['variant'] === 'plain_background') {
-    return;
+  if ($variant && (str_contains($variant, 'image_shade') || str_contains($variant, 'text_highlight'))) {
+    $variables['font_color'] = 'light';
+    $variables['box_background'] = 'dark';
   }
 
   // Bail out if there is no media present.

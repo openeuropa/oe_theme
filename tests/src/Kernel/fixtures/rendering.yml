@@ -217,7 +217,6 @@
 - array:
     '#type': pattern
     '#id': banner
-    '#variant': "text_box"
     '#fields':
       image:
         src: "http://via.placeholder.com/150x150"
@@ -225,7 +224,7 @@
       url: "http://example.com"
       label: "Subscribe"
       description: "Banner description"
-      centered: true
+      horizontal: center
       credit: "© Copyright or credit"
       size: "l"
   assertions:
@@ -254,7 +253,7 @@
       label: "Subscribe"
       description: "Banner description"
       title_description_link: true
-      centered: false
+      horizontal: left
       full_width: true
       credit: "© Copyright or credit"
       link_extra_attributes:
@@ -277,14 +276,13 @@
 - array:
     '#type': pattern
     '#id': banner
-    '#variant': "text_box"
     '#fields':
       description: "Banner description"
       url: "http://example.com"
       label: "Example"
       image:
         src: "http://via.placeholder.com/150x150"
-      centered: true
+      horizontal: center
       title_description_link: true
       full_width: false
       size: "s"
@@ -306,7 +304,6 @@
 - array:
     '#type': pattern
     '#id': banner
-    '#variant': "text_overlay"
     '#fields':
       title: "Banner title"
       description: "Banner description"
@@ -314,9 +311,11 @@
       label: "Example"
       image:
         src: "http://via.placeholder.com/150x150"
-      centered: false
+      horizontal: left
       full_width: false
       size: "l"
+      font_color: light
+      box_background: dark
   assertions:
     count:
       'section.ecl-banner.ecl-banner--font-m.ecl-banner--box-bg-dark.ecl-banner--color-light.ecl-banner--l.ecl-banner--h-center.ecl-banner--v-center': 0
@@ -335,7 +334,6 @@
 - array:
     '#type': pattern
     '#id': banner
-    '#variant': "text_overlay"
     '#fields':
       title: "Banner title"
       description: "Banner description"
@@ -355,10 +353,12 @@
           size: "xl"
         - src: "https://inno-ecl.s3.amazonaws.com/media/examples/example-image.jpg"
           size: "full_width"
-      centered: true
+      horizontal: center
       full_width: true
       credit: "© Copyright or credit"
       size: "l"
+      font_color: light
+      box_background: dark
   assertions:
     count:
       'section.ecl-banner.ecl-banner--font-m.ecl-banner--box-bg-dark.ecl-banner--color-light.ecl-banner--l.ecl-banner--h-center.ecl-banner--v-center.ecl-banner--full-width': 1
@@ -388,7 +388,7 @@
       label: "Example"
       image:
         src: "http://via.placeholder.com/150x150"
-      centered: false
+      horizontal: left
       full_width: true
       credit: "© Copyright or credit"
   assertions:
