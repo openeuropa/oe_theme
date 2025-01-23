@@ -163,22 +163,6 @@ class TwigExtension extends AbstractExtension {
   }
 
   /**
-   * Returns a list of language data.
-   *
-   * This is the data that is expected to be returned by the overridden language
-   * manager as supplied by the OpenEuropa Multilingual module.
-   *
-   * @return array
-   *   An array with language codes as keys, and English and native language
-   *   names as values.
-   *
-   * @deprecated use EuropeanUnionLanguages::getLanguageList() instead.
-   */
-  public static function getEuropeanUnionLanguageList(): array {
-    return EuropeanUnionLanguages::getLanguageList();
-  }
-
-  /**
    * Get date variant class given its status.
    *
    * @param string $status

@@ -14,11 +14,6 @@ navigation_menu:
       label: "Label"
       description: "Label for the menu, only visible on mobile."
       preview: "Navigation"
-    site_name:
-      type: "text"
-      label: "Site name - deprecated (will be removed in 5.x)"
-      description: "Name of the site."
-      preview: "Site name"
     close:
       type: "array"
       label: "Close button"
