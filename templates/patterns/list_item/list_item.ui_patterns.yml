@@ -103,11 +103,6 @@ list_item:
       description: "Whether the picture should be animated or not (default: false)."
       preview: true
       escape: false
-    icon:
-      type: "text"
-      label: "Icon (deprecated - to be removed in 5.x)"
-      description: "An optional icon to be used with the link."
-      preview: "list"
     badges:
       type: array
       label: "Badges"
