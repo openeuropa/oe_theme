@@ -82,3 +82,10 @@ style_eu_etr:
       dist/eu/styles/optional/ecl-eu-easy-to-read.css: { media: screen }
   dependencies:
     - core/drupal
+
+style_ec_color_modes:
+  css:
+    theme:
+      dist/ec/styles/ecl-ec-color-modes.css: { media: screen }
+  dependencies:
+    - core/drupal
