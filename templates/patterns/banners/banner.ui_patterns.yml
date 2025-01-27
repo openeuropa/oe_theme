@@ -32,7 +32,7 @@ banner:
       type: "text"
       label: "Box background"
       description: "The color of the box background (can be 'dark', 'light' or 'none'). Defaults to 'light'."
-      preview: "none"
+      preview: "dark"
     url:
       type: "Url"
       label: "URL"
