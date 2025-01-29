@@ -3,7 +3,6 @@ type: module
 description: 'OpenEuropa theme test module.'
 package: OpenEuropa
 hidden: true
-version: VERSION
 core_version_requirement: ^10
 
 config_devel:

@@ -40,6 +40,7 @@ class SocialMediaLinksFormatter extends SocialMediaBaseLinkFormatter {
    * {@inheritdoc}
    */
   public function settingsSummary() {
+    $settings = $this->getSettings();
     $summary = parent::settingsSummary();
 
     if (!empty($settings['title'])) {

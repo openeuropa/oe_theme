@@ -1,0 +1,2 @@
+includes:
+  - ./vendor/openeuropa/code-review-drupal/dist/phpstan.drupal.neon

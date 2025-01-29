@@ -89,7 +89,7 @@ class StatusMessagesTest extends AbstractKernelTestBase {
       $this->assertStringNotContainsString(
         $info['heading'],
         $html,
-        'No messages of type "%s" are present, but the related heading "%s" was found.', $type, $info['heading']
+        sprintf('No messages of type "%s" are present, but the related heading "%s" was found.', $type, $info['heading'])
       );
     }
 

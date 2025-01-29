@@ -79,7 +79,7 @@ class Iframe extends Thumbnail {
       ->viewField($media->get($source_field), 'oe_theme_main_content');
 
     // Bubble the cacheability information in the current render context.
-    $markup = $this->renderer->renderPlain($build);
+    $markup = $this->renderer->renderInIsolation($build);
 
     // If the source is rendered as iframe tag, use the src attribute.
     if (isset($build[0]['#type']) && $build[0]['#type'] === 'html_tag' && $build[0]['#tag'] === 'iframe') {

@@ -1,5 +1,4 @@
 name: 'OpenEuropa Theme subtheme test'
 type: theme
-version: VERSION
 core_version_requirement: ^10
 base theme: oe_theme
