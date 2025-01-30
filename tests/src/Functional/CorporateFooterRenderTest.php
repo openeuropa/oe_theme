@@ -321,7 +321,7 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     $this->assertEquals('Discover more on <a href="https://europa.eu/" class="ecl-link ecl-link--standalone">europa.eu</a>', trim($actual->getHtml()));
 
     // Assert presence of ecl logo in the standardised footer.
-    $this->assertEclLogoPresence($section, 'European Union');
+    $this->assertEclLogoPresence($section);
 
     $column = $assert->elementExists('css', 'footer.ecl-site-footer div.ecl-site-footer__row:nth-child(2) div.ecl-site-footer__column:nth-child(2)');
     $subsection = $assert->elementExists('css', '.ecl-site-footer__section:nth-child(1)', $column);

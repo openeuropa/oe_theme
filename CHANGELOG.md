@@ -1,5 +1,13 @@
 # Change Log
 
+## [4.5.0](https://github.com/openeuropa/oe_theme/tree/4.5.0) (2025-01-29)
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/4.4.0...4.5.0)
+
+**Merged pull requests:**
+
+- EWPP-4991: Ensure PHP8.3 compatibility. [\#1542](https://github.com/openeuropa/oe_theme/pull/1542) ([nagyad](https://github.com/nagyad))
+- EWPP-5104: Update 4.x branch with release 4.4.0 changes. [\#1541](https://github.com/openeuropa/oe_theme/pull/1541) ([22Alexandra](https://github.com/22Alexandra))
+
 ## [4.4.0](https://github.com/openeuropa/oe_theme/tree/4.4.0) (2025-01-09)
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/4.3.0...4.4.0)
 
@@ -12,6 +20,7 @@
 
 **Merged pull requests:**
 
+- Release 4.3.0 changelog. [\#1538](https://github.com/openeuropa/oe_theme/pull/1538) ([22Alexandra](https://github.com/22Alexandra))
 - EWPP-4872: Update to ECL 4.9.0. [\#1534](https://github.com/openeuropa/oe_theme/pull/1534) ([22Alexandra](https://github.com/22Alexandra))
 - EWPP-4998: Remove is\_current flag of navigation\_menu's mega\_menu variant. [\#1533](https://github.com/openeuropa/oe_theme/pull/1533) ([22Alexandra](https://github.com/22Alexandra))
 - Release 4.2.1 [\#1531](https://github.com/openeuropa/oe_theme/pull/1531) ([22Alexandra](https://github.com/22Alexandra))
@@ -35,10 +44,10 @@
 
 **Merged pull requests:**
 
+- Release-4.2.0: Update changelog. [\#1525](https://github.com/openeuropa/oe_theme/pull/1525) ([nagyad](https://github.com/nagyad))
 - EWPP-4825: Preview extension for file patterns. [\#1517](https://github.com/openeuropa/oe_theme/pull/1517) ([intelektron](https://github.com/intelektron))
 
 ## [4.1.0](https://github.com/openeuropa/oe_theme/tree/4.1.0) (2024-10-28)
-
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/4.0.1...4.1.0)
 
 **Merged pull requests:**
@@ -60,7 +69,6 @@
 - EWPP-4565: Adapt Thumbnail class to work with AV Portal media as well. [\#1485](https://github.com/openeuropa/oe_theme/pull/1485) ([22Alexandra](https://github.com/22Alexandra))
 
 ## [4.0.1](https://github.com/openeuropa/oe_theme/tree/4.0.1) (2024-09-17)
-
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/4.0.0...4.0.1)
 
 **Merged pull requests:**
@@ -68,7 +76,6 @@
 - EWPP-4770: Update to ECL 4.6.5. [\#1503](https://github.com/openeuropa/oe_theme/pull/1503) ([22Alexandra](https://github.com/22Alexandra))
 
 ## [4.0.0](https://github.com/openeuropa/oe_theme/tree/4.0.0) (2024-09-10)
-
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/4.0.0-beta8...4.0.0)
 
 **Merged pull requests:**
@@ -77,7 +84,6 @@
 - EWPP-4593: Allow Facts and figures content to be centered. [\#1491](https://github.com/openeuropa/oe_theme/pull/1491) ([22Alexandra](https://github.com/22Alexandra))
 
 ## [4.0.0-beta8](https://github.com/openeuropa/oe_theme/tree/4.0.0-beta8) (2024-09-04)
-
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/4.0.0-beta7...4.0.0-beta8)
 
 **Merged pull requests:**
@@ -88,7 +94,6 @@
 - EWPP-4697: Update to ECL 4.6.2. [\#1495](https://github.com/openeuropa/oe_theme/pull/1495) ([22Alexandra](https://github.com/22Alexandra))
 
 ## [4.0.0-beta7](https://github.com/openeuropa/oe_theme/tree/4.0.0-beta7) (2024-08-29)
-
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/4.0.0-beta6...4.0.0-beta7)
 
 **Merged pull requests:**
@@ -122,7 +127,6 @@
 - EWPP-4149: Update Publication thumbnail image style. [\#1443](https://github.com/openeuropa/oe_theme/pull/1443) ([22Alexandra](https://github.com/22Alexandra))
 
 ## [4.0.0-beta6](https://github.com/openeuropa/oe_theme/tree/4.0.0-beta6) (2024-06-14)
-
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/4.0.0-beta5...4.0.0-beta6)
 
 **Merged pull requests:**
@@ -145,7 +149,6 @@
 - EWPP-3721: Theming CircaBC docs. [\#1351](https://github.com/openeuropa/oe_theme/pull/1351) ([upchuk](https://github.com/upchuk))
 
 ## [4.0.0-beta5](https://github.com/openeuropa/oe_theme/tree/4.0.0-beta5) (2024-04-25)
-
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/4.0.0-beta4...4.0.0-beta5)
 
 **Closed issues:**
@@ -158,7 +161,6 @@
 - EWPP-4303: Update to ECL 4.1.2. [\#1444](https://github.com/openeuropa/oe_theme/pull/1444) ([22Alexandra](https://github.com/22Alexandra))
 
 ## [4.0.0-beta4](https://github.com/openeuropa/oe_theme/tree/4.0.0-beta4) (2024-04-16)
-
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/4.0.0-beta3...4.0.0-beta4)
 
 **Merged pull requests:**
@@ -167,7 +169,6 @@
 - EWPP-4139: Add a variant field to navigation\_list pattern. [\#1438](https://github.com/openeuropa/oe_theme/pull/1438) ([22Alexandra](https://github.com/22Alexandra))
 
 ## [4.0.0-beta3](https://github.com/openeuropa/oe_theme/tree/4.0.0-beta3) (2024-03-19)
-
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/4.0.0-beta2...4.0.0-beta3)
 
 **Merged pull requests:**
@@ -183,7 +184,6 @@
 - EWPP-3815: Add fields for extra\_attributes in banner, carousel and news ticker patterns. [\#1377](https://github.com/openeuropa/oe_theme/pull/1377) ([sergepavle](https://github.com/sergepavle))
 
 ## [4.0.0-beta2](https://github.com/openeuropa/oe_theme/tree/4.0.0-beta2) (2024-03-05)
-
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/4.0.0-beta1...4.0.0-beta2)
 
 **Merged pull requests:**
@@ -193,7 +193,6 @@
 - EWPP-0004: Update docker images. [\#1427](https://github.com/openeuropa/oe_theme/pull/1427) ([22Alexandra](https://github.com/22Alexandra))
 
 ## [4.0.0-beta1](https://github.com/openeuropa/oe_theme/tree/4.0.0-beta1) (2024-03-04)
-
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/3.10.0...4.0.0-beta1)
 
 **Merged pull requests:**
@@ -256,7 +255,6 @@
 - EWPP-3762: Update navigation menu pattern. [\#1338](https://github.com/openeuropa/oe_theme/pull/1338) ([22Alexandra](https://github.com/22Alexandra))
 
 ## [3.10.0](https://github.com/openeuropa/oe_theme/tree/3.10.0) (2024-02-19)
-
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/3.9.0...3.10.0)
 
 **Merged pull requests:**
@@ -266,7 +264,6 @@
 - EWPP-3777: Add language code to quote pattern and paragraph. [\#1367](https://github.com/openeuropa/oe_theme/pull/1367) ([22Alexandra](https://github.com/22Alexandra))
 
 ## [3.9.0](https://github.com/openeuropa/oe_theme/tree/3.9.0) (2024-01-15)
-
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/3.8.0...3.9.0)
 
 **Merged pull requests:**
@@ -283,7 +280,6 @@
 - EWPP-3808: Hide default Accessibility link for EU standardised footer. [\#1349](https://github.com/openeuropa/oe_theme/pull/1349) ([sergepavle](https://github.com/sergepavle))
 
 ## [3.8.0](https://github.com/openeuropa/oe_theme/tree/3.8.0) (2023-12-20)
-
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/3.7.0...3.8.0)
 
 **Closed issues:**
@@ -298,7 +294,6 @@
 - EWPP-3633: Add support for CKEditor 5 [\#1324](https://github.com/openeuropa/oe_theme/pull/1324) ([brummbar](https://github.com/brummbar))
 
 ## [3.7.0](https://github.com/openeuropa/oe_theme/tree/3.7.0) (2023-11-21)
-
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/3.6.0...3.7.0)
 
 **Merged pull requests:**
@@ -316,7 +311,6 @@
 - EWPP-3587: Pass core classes and attributes to ECL Table template. [\#1317](https://github.com/openeuropa/oe_theme/pull/1317) ([22Alexandra](https://github.com/22Alexandra))
 
 ## [3.6.0](https://github.com/openeuropa/oe_theme/tree/3.6.0) (2023-09-18)
-
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/3.5.2...3.6.0)
 
 **Merged pull requests:**
@@ -339,7 +333,6 @@
 - EWPP-3417: Map Norwegian Bokmål and Chinese, Simplified language codes to internal ones. [\#1290](https://github.com/openeuropa/oe_theme/pull/1290) ([22Alexandra](https://github.com/22Alexandra))
 
 ## [3.5.2](https://github.com/openeuropa/oe_theme/tree/3.5.2) (2023-08-07)
-
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/3.5.1...3.5.2)
 
 **Merged pull requests:**
@@ -348,7 +341,6 @@
 - EWPP-3489: Update to ECL 3.9.1. [\#1305](https://github.com/openeuropa/oe_theme/pull/1305) ([22Alexandra](https://github.com/22Alexandra))
 
 ## [3.5.1](https://github.com/openeuropa/oe_theme/tree/3.5.1) (2023-07-19)
-
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/3.5.0...3.5.1)
 
 **Merged pull requests:**
@@ -358,7 +350,6 @@
 - EWPP-3481: Temporarily override list with illustration css rules. [\#1301](https://github.com/openeuropa/oe_theme/pull/1301) ([imanoleguskiza](https://github.com/imanoleguskiza))
 
 ## [3.5.0](https://github.com/openeuropa/oe_theme/tree/3.5.0) (2023-06-30)
-
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/3.4.1...3.5.0)
 
 **Merged pull requests:**
@@ -386,7 +377,6 @@
 - EWPP-2792: Use the ECL Select component for select forms. [\#1259](https://github.com/openeuropa/oe_theme/pull/1259) ([22Alexandra](https://github.com/22Alexandra))
 
 ## [3.4.1](https://github.com/openeuropa/oe_theme/tree/3.4.1) (2023-06-30)
-
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/3.4.0...3.4.1)
 
 **Merged pull requests:**
@@ -395,7 +385,6 @@
 - EWPP-3421: Use D10 compatible release of ecl-twig-loader. [\#1291](https://github.com/openeuropa/oe_theme/pull/1291) ([brummbar](https://github.com/brummbar))
 
 ## [3.4.0](https://github.com/openeuropa/oe_theme/tree/3.4.0) (2023-06-02)
-
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/3.3.0...3.4.0)
 
 **Closed issues:**
@@ -413,7 +402,6 @@
 - EWPP-3123: Adjust max\_height value for avportal field formatter. [\#1262](https://github.com/openeuropa/oe_theme/pull/1262) ([sergepavle](https://github.com/sergepavle))
 
 ## [3.3.0](https://github.com/openeuropa/oe_theme/tree/3.3.0) (2023-03-21)
-
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/3.2.0...3.3.0)
 
 **Merged pull requests:**
@@ -423,7 +411,6 @@
 - EWPP-3056: Change project budget fields to decimal. [\#1251](https://github.com/openeuropa/oe_theme/pull/1251) ([nagyad](https://github.com/nagyad))
 
 ## [3.2.0](https://github.com/openeuropa/oe_theme/tree/3.2.0) (2023-03-13)
-
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/3.1.1...3.2.0)
 
 **Closed issues:**
@@ -450,7 +437,6 @@
 - EWPP-2937: Add translation from context for contact entity. [\#1229](https://github.com/openeuropa/oe_theme/pull/1229) ([sergepavle](https://github.com/sergepavle))
 
 ## [3.1.1](https://github.com/openeuropa/oe_theme/tree/3.1.1) (2023-02-01)
-
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/3.1.0...3.1.1)
 
 **Merged pull requests:**
@@ -459,7 +445,6 @@
 - EWPP-3048: Do not apply custom ratio class on iframes. [\#1237](https://github.com/openeuropa/oe_theme/pull/1237) ([nagyad](https://github.com/nagyad))
 
 ## [3.1.0](https://github.com/openeuropa/oe_theme/tree/3.1.0) (2023-01-05)
-
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/3.0.0...3.1.0)
 
 **Merged pull requests:**
@@ -480,7 +465,6 @@
 - EWPP-2706: Make sure featured media title is not printed when field is empty. [\#1194](https://github.com/openeuropa/oe_theme/pull/1194) ([nagyad](https://github.com/nagyad))
 
 ## [3.0.0](https://github.com/openeuropa/oe_theme/tree/3.0.0) (2022-12-06)
-
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/3.0.0-beta18...3.0.0)
 
 **Merged pull requests:**
@@ -490,7 +474,6 @@
 - EWPP-2835: Update ECL version. [\#1217](https://github.com/openeuropa/oe_theme/pull/1217) ([sergepavle](https://github.com/sergepavle))
 
 ## [3.0.0-beta18](https://github.com/openeuropa/oe_theme/tree/3.0.0-beta18) (2022-11-04)
-
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/3.0.0-beta17...3.0.0-beta18)
 
 **Merged pull requests:**
@@ -522,7 +505,6 @@
 - EWPP-2507: Update the list\_item pattern to use the ECL Content item component. [\#1156](https://github.com/openeuropa/oe_theme/pull/1156) ([22Alexandra](https://github.com/22Alexandra))
 
 ## [3.0.0-beta17](https://github.com/openeuropa/oe_theme/tree/3.0.0-beta17) (2022-10-11)
-
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/3.0.0-beta16...3.0.0-beta17)
 
 **Merged pull requests:**
@@ -532,7 +514,6 @@
 - EWPP-2680: Fix site-header for Core ecl branding. [\#1175](https://github.com/openeuropa/oe_theme/pull/1175) ([sergepavle](https://github.com/sergepavle))
 
 ## [3.0.0-beta16](https://github.com/openeuropa/oe_theme/tree/3.0.0-beta16) (2022-09-21)
-
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/3.0.0-beta15...3.0.0-beta16)
 
 **Merged pull requests:**
@@ -541,7 +522,6 @@
 - EWPP-2645: Upgrade ECL version to 3.4.2. [\#1166](https://github.com/openeuropa/oe_theme/pull/1166) ([sergepavle](https://github.com/sergepavle))
 
 ## [3.0.0-beta15](https://github.com/openeuropa/oe_theme/tree/3.0.0-beta15) (2022-09-16)
-
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/3.0.0-beta14...3.0.0-beta15)
 
 **Closed issues:**
@@ -565,7 +545,6 @@
 - EWPP-1973: Remove usage of t\(\) in test assertions. [\#1031](https://github.com/openeuropa/oe_theme/pull/1031) ([yenyasinn](https://github.com/yenyasinn))
 
 ## [3.0.0-beta14](https://github.com/openeuropa/oe_theme/tree/3.0.0-beta14) (2022-08-02)
-
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/3.0.0-beta13...3.0.0-beta14)
 
 **Merged pull requests:**
@@ -594,7 +573,6 @@
 - EWPP-2106: Page banner & carousel for page header. [\#1100](https://github.com/openeuropa/oe_theme/pull/1100) ([sergepavle](https://github.com/sergepavle))
 
 ## [3.0.0-beta13](https://github.com/openeuropa/oe_theme/tree/3.0.0-beta13) (2022-06-22)
-
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/3.0.0-beta12...3.0.0-beta13)
 
 **Merged pull requests:**
@@ -635,7 +613,6 @@
 - EWPP-1978: Enable failure of tests on javascript errors. [\#1059](https://github.com/openeuropa/oe_theme/pull/1059) ([sergepavle](https://github.com/sergepavle))
 
 ## [3.0.0-beta12](https://github.com/openeuropa/oe_theme/tree/3.0.0-beta12) (2022-04-11)
-
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/3.0.0-beta11...3.0.0-beta12)
 
 **Closed issues:**
@@ -667,7 +644,6 @@
 - EWPP-1564: Theme Timeline's paragraph introduction field. [\#1014](https://github.com/openeuropa/oe_theme/pull/1014) ([22Alexandra](https://github.com/22Alexandra))
 
 ## [3.0.0-beta11](https://github.com/openeuropa/oe_theme/tree/3.0.0-beta11) (2022-03-07)
-
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/3.0.0-beta10...3.0.0-beta11)
 
 **Merged pull requests:**
@@ -708,7 +684,6 @@
 - EWPP-1540: Render the Media field of Event CT using the Media gallery formatter. [\#948](https://github.com/openeuropa/oe_theme/pull/948) ([22Alexandra](https://github.com/22Alexandra))
 
 ## [3.0.0-beta10](https://github.com/openeuropa/oe_theme/tree/3.0.0-beta10) (2022-03-03)
-
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/3.0.0-beta9...3.0.0-beta10)
 
 **Closed issues:**
@@ -730,7 +705,6 @@
 - EWPP-1863: Add list with illustrations pattern. [\#1006](https://github.com/openeuropa/oe_theme/pull/1006) ([imanoleguskiza](https://github.com/imanoleguskiza))
 
 ## [3.0.0-beta9](https://github.com/openeuropa/oe_theme/tree/3.0.0-beta9) (2022-02-17)
-
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/3.0.0-beta8...3.0.0-beta9)
 
 **Closed issues:**
@@ -743,7 +717,6 @@
 - EWPP-1920: Upgrade to PHP8 and Composer v2. [\#1029](https://github.com/openeuropa/oe_theme/pull/1029) ([22Alexandra](https://github.com/22Alexandra))
 
 ## [3.0.0-beta8](https://github.com/openeuropa/oe_theme/tree/3.0.0-beta8) (2022-02-08)
-
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/3.0.0-beta7...3.0.0-beta8)
 
 **Closed issues:**
@@ -768,7 +741,6 @@
 - EWPP-756: Add highlighted label to nodes teaser view mode. [\#955](https://github.com/openeuropa/oe_theme/pull/955) ([22Alexandra](https://github.com/22Alexandra))
 
 ## [3.0.0-beta7](https://github.com/openeuropa/oe_theme/tree/3.0.0-beta7) (2021-12-06)
-
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/3.0.0-beta6...3.0.0-beta7)
 
 **Merged pull requests:**
@@ -785,7 +757,6 @@
 - EWPP-1557: Translate "@date in" to Arabic and Turkish languages. [\#958](https://github.com/openeuropa/oe_theme/pull/958) ([yenyasinn](https://github.com/yenyasinn))
 
 ## [3.0.0-beta6](https://github.com/openeuropa/oe_theme/tree/3.0.0-beta6) (2021-11-08)
-
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/3.0.0-beta5...3.0.0-beta6)
 
 **Merged pull requests:**
@@ -797,11 +768,9 @@
 - OEL-60: Drupal 9 Compatibility fixes. [\#880](https://github.com/openeuropa/oe_theme/pull/880) ([escuriola](https://github.com/escuriola))
 
 ## [3.0.0-beta5](https://github.com/openeuropa/oe_theme/tree/3.0.0-beta5) (2021-10-29)
-
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/3.0.0-beta4...3.0.0-beta5)
 
 ## [3.0.0-beta4](https://github.com/openeuropa/oe_theme/tree/3.0.0-beta4) (2021-09-27)
-
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/3.0.0-beta3...3.0.0-beta4)
 
 **Merged pull requests:**
@@ -823,7 +792,6 @@
 - \[EWPP-1360\] EWPP-1362: Use PublicationDate extra field to display the publication date and last update date fields for News. [\#901](https://github.com/openeuropa/oe_theme/pull/901) ([22Alexandra](https://github.com/22Alexandra))
 
 ## [3.0.0-beta3](https://github.com/openeuropa/oe_theme/tree/3.0.0-beta3) (2021-09-23)
-
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/3.0.0-beta2...3.0.0-beta3)
 
 **Merged pull requests:**
@@ -856,7 +824,6 @@
 - EWPP-866: Use extend in list-item templates. [\#817](https://github.com/openeuropa/oe_theme/pull/817) ([nagyad](https://github.com/nagyad))
 
 ## [3.0.0-beta2](https://github.com/openeuropa/oe_theme/tree/3.0.0-beta2) (2021-08-25)
-
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/3.0.0-beta1...3.0.0-beta2)
 
 **Merged pull requests:**
@@ -873,7 +840,6 @@
 - EWPP-1345: Translations for facets. [\#905](https://github.com/openeuropa/oe_theme/pull/905) ([yenyasinn](https://github.com/yenyasinn))
 
 ## [3.0.0-beta1](https://github.com/openeuropa/oe_theme/tree/3.0.0-beta1) (2021-08-16)
-
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/3.0.0-alpha1...3.0.0-beta1)
 
 **Closed issues:**

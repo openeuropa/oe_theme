@@ -27,6 +27,20 @@ class ContactRenderTest extends ContentRenderTestBase {
   ];
 
   /**
+   * The contact entity storage.
+   *
+   * @var \Drupal\Core\Entity\EntityStorageInterface
+   */
+  protected $contactStorage;
+
+  /**
+   * The contact view builder.
+   *
+   * @var \Drupal\Core\Entity\EntityViewBuilderInterface
+   */
+  protected $contactViewBuilder;
+
+  /**
    * {@inheritdoc}
    */
   protected function setUp(): void {
