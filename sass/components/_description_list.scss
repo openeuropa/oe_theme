@@ -2,7 +2,7 @@
  * @file
  * Add a featured modifier to ECL description list style.
  */
-@use '@ecl/vanilla-utility-border/border' as *;
+@use '@ecl/utility-border/border' as *;
 $background-color: var(--ecl-color-neutral-40) !default;
 $border-color: var(--ecl-color-neutral-40) !default;
 

@@ -50,10 +50,9 @@ file_teaser:
     translations:
       type: "array"
       label: "Files"
-      description: "List of items with the following properties: teaser (teaser is deprecated - to be removed in 5.x) text, FileValueObject and link attributes, respectively keyed with 'teaser', 'file' and 'link_attributes'."
+      description: "List of items with the following properties: FileValueObject and link attributes, respectively keyed with 'file' and 'link_attributes'."
       preview:
-        - teaser: "Morbi fringilla turpis augue, et interdum ipsum egestas sed. Proin tristique, ante id aliquet malesuada, lorem dolor vulputate magna, a commodo purus ante nec massa."
-          file:
+        - file:
             title: "French translation"
             mime: "application/pdf"
             url: "http://example.com/document_fr.pdf"
@@ -63,8 +62,7 @@ file_teaser:
           link_attributes:
             - "name": "data-attribute-translation-foo"
               "value": "bar"
-        - teaser: "Proin sagittis nisi hendrerit purus porta, at suscipit est hendrerit. Duis facilisis augue imperdiet, pharetra nisl sed, molestie nulla."
-          file:
+        - file:
             title: "Italian translation"
             mime: "application/pdf"
             url: "http://example.com/document_it.pdf"
@@ -74,8 +72,7 @@ file_teaser:
           link_attributes:
             - "name": "data-attribute-translation-foo"
               "value": "bar"
-        - teaser: "Duis eget lacinia arcu. Nullam mattis ornare nibh. Proin tristique, ante id aliquet malesuada. Pellentesque porttitor commodo libero sed fringilla. Curabitur varius sodales elit, id tincidunt erat. Aenean tincidunt luctus molestie."
-          file:
+        - file:
             title: "Hungarian translation"
             mime: "application/pdf"
             url: "http://example.com/document_hu.pdf"
@@ -111,11 +108,6 @@ file_teaser:
               path: 'https://example.com/2'
             - path: 'https://example.com/3'
               external_link: TRUE
-    more_info:
-      type: "text"
-      label: "More information (deprecated - to be removed in 5.x)"
-      description: "Informative text about the available translations."
-      preview: "Looking for another language which is not on the list? Find out why."
     length:
       type: numeric
       label: "Max length"

@@ -1,16 +1,6 @@
 banner:
   label: "Banner"
   description: "The Banner consists of a title, description, and CTA with an optional image."
-  variants:
-    plain_background:
-      label: "Plain background (deprecated - to be removed in 5.x)"
-      description: "Plain background contains title, description and CTA with blue background."
-    text_box:
-      label: "Text box (deprecated - to be removed in 5.x)"
-      description: "Wraps the title, description and CTA inside a white text box with a background image."
-    text_overlay:
-      label: "Text overlay (deprecated - to be removed in 5.x)"
-      description: "Text overlay contains title, description and CTA with an overlay effect on the background image."
   fields:
     title:
       type: "text"
@@ -42,7 +32,7 @@ banner:
       type: "text"
       label: "Box background"
       description: "The color of the box background (can be 'dark', 'light' or 'none'). Defaults to 'light'."
-      preview: "none"
+      preview: "dark"
     url:
       type: "Url"
       label: "URL"
@@ -87,12 +77,6 @@ banner:
       label: "Size"
       description: "Size of the banner (can be 's', 'm', 'l'). Defaults to 'm'."
       preview: "l"
-    centered:
-      type: "boolean"
-      label: "Centered (deprecated - to be removed in 5.x)"
-      description: "Define if the banner should be centered. Deprecated - use horizontal and vertical fields instead."
-      preview: false
-      escape: false
     horizontal:
       type: "text"
       label: "Horizontal alignment"

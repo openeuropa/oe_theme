@@ -121,14 +121,9 @@ class FileTeaserAssert extends FileTranslationAssert {
    * {@inheritdoc}
    */
   protected function assertTranslation(array $expected_file, Crawler $crawler): void {
-    // Assert details.
-    $file_info_element = $crawler->filter('div.ecl-file__translation-detail');
-    $this->assertElementText($expected_file['title'], ' div.ecl-file__translation-title', $file_info_element);
-    $this->assertElementText($expected_file['description'], 'div.ecl-file__translation-description', $file_info_element);
-
-    // Assert information.
+    // Assert translation information.
     $file_info_element = $crawler->filter('div.ecl-file__translation-info');
-    $this->assertElementText($expected_file['language'], ' div.ecl-file__translation-language', $file_info_element);
+    $this->assertElementText($expected_file['title'], 'div.ecl-file__translation-title', $file_info_element);
     $this->assertElementText($expected_file['meta'], 'div.ecl-file__translation-meta', $file_info_element);
 
     // Assert download link.

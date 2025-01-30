@@ -1,8 +1,8 @@
-diff --git a/node_modules/@ecl/twig-component-tabs/tabs.html.twig b/node_modules/@ecl/twig-component-tabs/tabs.html.twig
-index 428181c..f114135 100644
---- a/node_modules/@ecl/twig-component-tabs/tabs.html.twig
-+++ b/node_modules/@ecl/twig-component-tabs/tabs.html.twig
-@@ -80,6 +80,9 @@
+diff --git a/node_modules/@ecl/tabs/tabs.html.twig b/node_modules/@ecl/tabs/tabs.html.twig
+index 1ff2bfd..9584fad 100644
+--- a/node_modules/@ecl/tabs/tabs.html.twig
++++ b/node_modules/@ecl/tabs/tabs.html.twig
+@@ -83,6 +83,9 @@
            {% else %}
              {% set _item_extra_attributes = _item_extra_attributes|merge([{ name: 'aria-selected', value: 'false' }]) %}
            {% endif %}

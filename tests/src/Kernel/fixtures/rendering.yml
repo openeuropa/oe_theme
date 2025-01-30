@@ -217,7 +217,6 @@
 - array:
     '#type': pattern
     '#id': banner
-    '#variant': "text_box"
     '#fields':
       image:
         src: "http://via.placeholder.com/150x150"
@@ -225,7 +224,7 @@
       url: "http://example.com"
       label: "Subscribe"
       description: "Banner description"
-      centered: true
+      horizontal: center
       credit: "© Copyright or credit"
       size: "l"
   assertions:
@@ -254,7 +253,7 @@
       label: "Subscribe"
       description: "Banner description"
       title_description_link: true
-      centered: false
+      horizontal: left
       full_width: true
       credit: "© Copyright or credit"
       link_extra_attributes:
@@ -277,14 +276,13 @@
 - array:
     '#type': pattern
     '#id': banner
-    '#variant': "text_box"
     '#fields':
       description: "Banner description"
       url: "http://example.com"
       label: "Example"
       image:
         src: "http://via.placeholder.com/150x150"
-      centered: true
+      horizontal: center
       title_description_link: true
       full_width: false
       size: "s"
@@ -306,7 +304,6 @@
 - array:
     '#type': pattern
     '#id': banner
-    '#variant': "text_overlay"
     '#fields':
       title: "Banner title"
       description: "Banner description"
@@ -314,9 +311,11 @@
       label: "Example"
       image:
         src: "http://via.placeholder.com/150x150"
-      centered: false
+      horizontal: left
       full_width: false
       size: "l"
+      font_color: light
+      box_background: dark
   assertions:
     count:
       'section.ecl-banner.ecl-banner--font-m.ecl-banner--box-bg-dark.ecl-banner--color-light.ecl-banner--l.ecl-banner--h-center.ecl-banner--v-center': 0
@@ -335,7 +334,6 @@
 - array:
     '#type': pattern
     '#id': banner
-    '#variant': "text_overlay"
     '#fields':
       title: "Banner title"
       description: "Banner description"
@@ -355,10 +353,12 @@
           size: "xl"
         - src: "https://inno-ecl.s3.amazonaws.com/media/examples/example-image.jpg"
           size: "full_width"
-      centered: true
+      horizontal: center
       full_width: true
       credit: "© Copyright or credit"
       size: "l"
+      font_color: light
+      box_background: dark
   assertions:
     count:
       'section.ecl-banner.ecl-banner--font-m.ecl-banner--box-bg-dark.ecl-banner--color-light.ecl-banner--l.ecl-banner--h-center.ecl-banner--v-center.ecl-banner--full-width': 1
@@ -388,7 +388,7 @@
       label: "Example"
       image:
         src: "http://via.placeholder.com/150x150"
-      centered: false
+      horizontal: left
       full_width: true
       credit: "© Copyright or credit"
   assertions:
@@ -830,7 +830,6 @@
           name: "document.doc"
           language_code: "pt-pt"
       translation_toggle_label: "Other translations"
-      more_info: "Custom information snippet."
       publication_date: "31 August 2020"
   assertions:
     count:
@@ -854,15 +853,14 @@
       'div.ecl-file__meta': "(9.77 KB - PDF)"
       'a.ecl-file__download .ecl-link__label': "Download"
       'button.ecl-file__translation-toggle .ecl-button__label': "Other translations (4)"
-      '.ecl-file__translation-item:nth-child(1) div.ecl-file__translation-title': "français"
+      '.ecl-file__translation-item:nth-child(1) div.ecl-file__translation-title[lang="fr"]': "français"
       '.ecl-file__translation-item:nth-child(1) div.ecl-file__translation-meta': "(146.48 KB - XLS)"
-      '.ecl-file__translation-item:nth-child(2) div.ecl-file__translation-title': "italiano"
+      '.ecl-file__translation-item:nth-child(2) div.ecl-file__translation-title[lang="it"]': "italiano"
       '.ecl-file__translation-item:nth-child(2) div.ecl-file__translation-meta': "(156.25 KB - PPT)"
-      '.ecl-file__translation-item:nth-child(3) div.ecl-file__translation-title': "magyar"
+      '.ecl-file__translation-item:nth-child(3) div.ecl-file__translation-title[lang="hu"]': "magyar"
       '.ecl-file__translation-item:nth-child(3) div.ecl-file__translation-meta': "(166.02 KB - PDF)"
-      '.ecl-file__translation-item:nth-child(4) div.ecl-file__translation-title': "português"
+      '.ecl-file__translation-item:nth-child(4) div.ecl-file__translation-title[lang="pt"]': "português"
       '.ecl-file__translation-item:nth-child(4) div.ecl-file__translation-meta': "(175.78 KB - DOC)"
-      '.ecl-file__translation-description': "Custom information snippet."
       '.ecl-file__info ul.ecl-file__detail-meta li.ecl-file__detail-meta-item:nth-child(1)': '31 AUGUST 2020'
 - array:
     '#type': pattern
@@ -883,7 +881,6 @@
           size: "150000"
           name: "document.xls"
           language_code: "fr"
-      more_info: "Custom information snippet."
   assertions:
     count:
       'svg.ecl-file__icon': 1
@@ -899,9 +896,8 @@
       'div.ecl-file__meta': "(9.77 KB - PDF)"
       'a.ecl-file__download .ecl-link__label': "Download"
       'button.ecl-file__translation-toggle .ecl-button__label': "Other languages (1)"
-      '.ecl-file__translation-item:nth-child(1) div.ecl-file__translation-title': "français"
+      '.ecl-file__translation-item:nth-child(1) div.ecl-file__translation-title[lang="fr"]': "français"
       '.ecl-file__translation-item:nth-child(1) div.ecl-file__translation-meta': "(146.48 KB - XLS)"
-      '.ecl-file__translation-description': "Custom information snippet."
 - array:
     '#type': pattern
     '#id': file_teaser
@@ -924,8 +920,7 @@
       resource_type: "RESOURCE TYPE"
       publication_date: "2020-31-08"
       translations:
-        - teaser: "Morbi fringilla turpis augue, et interdum ipsum egestas sed. Proin tristique, ante id aliquet malesuada, lorem dolor vulputate magna, a commodo purus ante nec massa."
-          file:
+        - file:
             title: "French translation"
             mime: "application/vnd.ms-excel"
             url: "http://example.com/document_fr.xls"
@@ -935,8 +930,7 @@
           link_attributes:
             - name: "data-attribute-translation-foo"
               value: "bar"
-        - teaser: "Proin sagittis nisi hendrerit purus porta, at suscipit est hendrerit. Duis facilisis augue imperdiet, pharetra nisl sed, molestie nulla."
-          file:
+        - file:
             title: "Italian translation"
             mime: "application/vnd.ms-powerpoint"
             url: "http://example.com/document_it.ppt"
@@ -946,8 +940,7 @@
           link_attributes:
             - name: "data-attribute-translation-foo"
               value: "bar"
-        - teaser: "Duis eget lacinia arcu. Nullam mattis ornare nibh. Proin tristique, ante id aliquet malesuada. Pellentesque porttitor commodo libero sed fringilla. Curabitur varius sodales elit, id tincidunt erat. Aenean tincidunt luctus molestie."
-          file:
+        - file:
             title: "Hungarian translation"
             mime: "application/pdf"
             url: "http://example.com/document_hu.pdf"
@@ -957,8 +950,7 @@
           link_attributes:
             - name: "data-attribute-translation-foo"
               value: "bar"
-        - teaser: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce at finibus purus, eu ultricies nisl. Vivamus vitae ex lectus. In hac habitasse platea dictumst. Proin malesuada est eget vulputate malesuada."
-          file:
+        - file:
             title: "Portugies translation"
             mime: "application/doc"
             url: "http://example.com/document_pt.doc"
@@ -969,7 +961,6 @@
             - name: "data-attribute-translation-foo"
               value: "bar"
       translation_toggle_label: "Other translations"
-      more_info: "Looking for another language which is not on the list? Find out why."
       badges:
         - label: "Highlighted"
           variant: "highlight"
@@ -1004,27 +995,18 @@
       'div.ecl-file__footer div.ecl-file__meta': "(136.72 KB - PDF)"
       'div.ecl-file__footer a.ecl-file__download .ecl-link__label': "Download"
       'button.ecl-file__translation-toggle .ecl-button__label': "Other translations (4)"
-      '.ecl-file__translation-item:nth-child(1) div.ecl-file__translation-title': "French translation"
-      '.ecl-file__translation-item:nth-child(1) div.ecl-file__translation-description': "Morbi fringilla turpis augue, et interdum ipsum egestas sed. Proin tristique, ante id aliquet malesuada, lorem dolor vulputate magna, a commodo purus ante nec massa."
-      '.ecl-file__translation-item:nth-child(1) div.ecl-file__translation-language': "français"
+      '.ecl-file__translation-item:nth-child(1) div.ecl-file__translation-title[lang="fr"]': "French translation"
       '.ecl-file__translation-item:nth-child(1) div.ecl-file__translation-meta': "(146.48 KB - XLS)"
       '.ecl-file__translation-item:nth-child(1) .ecl-link__label': "Download"
-      '.ecl-file__translation-item:nth-child(2) div.ecl-file__translation-title': "Italian translation"
-      '.ecl-file__translation-item:nth-child(2) div.ecl-file__translation-description': "Proin sagittis nisi hendrerit purus porta, at suscipit est hendrerit. Duis facilisis augue imperdiet, pharetra nisl sed, molestie nulla."
-      '.ecl-file__translation-item:nth-child(2) div.ecl-file__translation-language': "italiano"
+      '.ecl-file__translation-item:nth-child(2) div.ecl-file__translation-title[lang="it"]': "Italian translation"
       '.ecl-file__translation-item:nth-child(2) div.ecl-file__translation-meta': "(156.25 KB - PPT)"
       '.ecl-file__translation-item:nth-child(2) .ecl-link__label': "Download"
-      '.ecl-file__translation-item:nth-child(3) div.ecl-file__translation-title': "Hungarian translation"
-      '.ecl-file__translation-item:nth-child(3) div.ecl-file__translation-description': "Duis eget lacinia arcu. Nullam mattis ornare nibh. Proin tristique, ante id aliquet malesuada. Pellentesque porttitor commodo libero sed fringilla. Curabitur varius sodales elit, id tincidunt erat. Aenean tincidunt luctus molestie."
-      '.ecl-file__translation-item:nth-child(3) div.ecl-file__translation-language': "magyar"
+      '.ecl-file__translation-item:nth-child(3) div.ecl-file__translation-title[lang="hu"]': "Hungarian translation"
       '.ecl-file__translation-item:nth-child(3) div.ecl-file__translation-meta': "(166.02 KB - PDF)"
       '.ecl-file__translation-item:nth-child(3) .ecl-link__label': "Download"
-      '.ecl-file__translation-item:nth-child(4) div.ecl-file__translation-title': "Portugies translation"
-      '.ecl-file__translation-item:nth-child(4) div.ecl-file__translation-description': "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce at finibus purus, eu ultricies nisl. Vivamus vitae ex lectus. In hac habitasse platea dictumst. Proin malesuada est eget vulputate malesuada."
-      '.ecl-file__translation-item:nth-child(4) div.ecl-file__translation-language': "português"
+      '.ecl-file__translation-item:nth-child(4) div.ecl-file__translation-title[lang="pt"]': "Portugies translation"
       '.ecl-file__translation-item:nth-child(4) div.ecl-file__translation-meta': "(175.78 KB - DOC)"
       '.ecl-file__translation-item:nth-child(4) .ecl-link__label': "Download"
-      'li.ecl-file__translation-item.ecl-file__translation-description': "Looking for another language which is not on the list? Find out why."
       'div.ecl-file__label span.ecl-label.ecl-label--highlight': "Highlighted"
 - array:
     '#type': pattern
@@ -1045,8 +1027,7 @@
       resource_type: "RESOURCE TYPE"
       publication_date: "2020-31-08"
       translations:
-        - teaser: "Morbi fringilla turpis augue, et interdum ipsum egestas sed. Proin tristique, ante id aliquet malesuada, lorem dolor vulputate magna, a commodo purus ante nec massa."
-          file:
+        - file:
             title: "French translation"
             mime: "application/vnd.ms-excel"
             url: "http://example.com/document_fr.xls"
@@ -1071,7 +1052,6 @@
               external_link: TRUE
             - path: 'https://example.com/3'
               external_link: TRUE
-      more_info: "Looking for another language which is not on the list? Find out why."
       length: 10
   assertions:
     count:
@@ -1104,12 +1084,9 @@
       'div.ecl-file__footer div.ecl-file__meta': "(136.72 KB - PDF)"
       'div.ecl-file__footer a.ecl-file__download .ecl-link__label': "Download"
       'button.ecl-file__translation-toggle .ecl-button__label': "Other languages (1)"
-      '.ecl-file__translation-item:nth-child(1) div.ecl-file__translation-title': "French translation"
-      '.ecl-file__translation-item:nth-child(1) div.ecl-file__translation-description': "Morbi..."
-      '.ecl-file__translation-item:nth-child(1) div.ecl-file__translation-language': "français"
+      '.ecl-file__translation-item:nth-child(1) div.ecl-file__translation-title[lang="fr"]': "French translation"
       '.ecl-file__translation-item:nth-child(1) div.ecl-file__translation-meta': "(146.48 KB - XLS)"
       '.ecl-file__translation-item:nth-child(1) .ecl-link__label': "Download"
-      'li.ecl-file__translation-item.ecl-file__translation-description': "Looking for another language which is not on the list? Find out why."
       'dt.ecl-description-list__term:nth-of-type(1)': 'Keywords'
       'dt.ecl-description-list__term:nth-of-type(2)': 'Country'
       'dt.ecl-description-list__term:nth-of-type(3)': 'External links'

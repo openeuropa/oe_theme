@@ -46,11 +46,6 @@ button:
       label: "Label"
       description: "Label of the button."
       preview: "Button"
-    is_block:
-      type: "boolean"
-      label: "Block status"
-      description: "Whether the button needs to be treated as a block or not. (deprecated)"
-      preview: false
     disabled:
       type: "boolean"
       label: "Disabled status"
