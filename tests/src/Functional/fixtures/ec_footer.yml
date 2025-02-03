@@ -1,13 +1,6 @@
 corporate_site_link:
   href: 'https://commission.europa.eu/index_en'
   label: 'European Commission website'
-class_navigation:
-  -
-    label: '1st section 1st link'
-    href: 'http://example.com/1-1.html'
-  -
-    label: '1st section 2nd link'
-    href: 'http://example.com/1-2.html'
 service_navigation:
   -
     label: '2nd section 1st link'
