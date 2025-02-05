@@ -94,11 +94,13 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     $data = $this->getFixtureContent('ec_footer.yml');
     $this->overrideCorporateBlocksFooter($this->library, $data);
 
+    $ec_core_links = $this->linkManager->getLinksBySection('ec_core_column');
+
     $this->drupalGet('<front>');
     $assert = $this->assertSession();
 
     // Make sure that footer block is present.
-    $this->assertFooterPresence(4);
+    $this->assertFooterPresence(3);
 
     $section = $assert->elementExists('css', 'footer.ecl-site-footer div.ecl-site-footer__column:nth-child(1) div.ecl-site-footer__section:nth-child(1)');
     // Assert presence of ecl logo in the core footer.
@@ -108,24 +110,13 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     $assert->elementNotExists('css', 'div.ecl-site-footer__description');
 
     $section = $assert->elementExists('css', 'footer.ecl-site-footer div.ecl-site-footer__column:nth-child(2) div.ecl-site-footer__section:nth-child(1)');
-    $items = $data['class_navigation'];
-
-    foreach ($items as $key => $expected) {
+    foreach (array_values($ec_core_links) as $key => $expected) {
       $index = $key + 1;
       $actual = $section->find('css', "ul li:nth-child({$index}) > a");
-      $this->assertListLink($actual, $expected);
+      $this->assertListLink($actual, ['label' => $expected->label(), 'href' => $expected->getUrl()->toString()]);
     }
 
-    $section = $assert->elementExists('css', 'footer.ecl-site-footer div.ecl-site-footer__column:nth-child(2) div.ecl-site-footer__section:nth-child(2)');
-    $items = $data['service_navigation'];
-
-    foreach ($items as $key => $expected) {
-      $index = $key + 1;
-      $actual = $section->find('css', "ul li:nth-child({$index}) > a");
-      $this->assertListLink($actual, $expected);
-    }
-
-    $section = $assert->elementExists('css', 'footer.ecl-site-footer div.ecl-site-footer__column:nth-child(2) div.ecl-site-footer__section:nth-child(3)');
+    $section = $assert->elementExists('css', 'footer.ecl-site-footer div.ecl-site-footer__column div.ecl-site-footer__section.ecl-site-footer__section--extra-link');
     $items = $data['legal_navigation'];
 
     foreach ($items as $key => $expected) {
@@ -872,6 +863,42 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     // We should not have any icon present.
     $assert->elementNotExists('css', 'svg.ecl-icon.ecl-icon--xs.ecl-link__icon', $actual);
 
+    // Test European Commission footer core block
+    // rendering again but with social links.
+    $this->branding = 'core';
+    $this->library = 'ec';
+    $this->configFactory->getEditable('oe_theme.settings')->set('component_library', $this->library)->save();
+    $this->configFactory->getEditable('oe_theme.settings')->set('branding', $this->branding)->save();
+    $this->drupalGet('<front>');
+
+    $subsection = $assert->elementExists('css', 'footer.ecl-site-footer div.ecl-site-footer__column div.ecl-site-footer__section.ecl-site-footer__section--social');
+    $actual = $assert->elementExists('css', '.ecl-site-footer__title', $subsection);
+    $this->assertEquals('Follow us', $actual->getText());
+
+    $social_link = $subsection->find('css', 'ul li:nth-child(1) > a');
+    $social_label = $subsection->find('css', 'ul li:nth-child(1) > a span.ecl-link__label');
+    $expected = [
+      'label' => 'Social 1',
+      'href' => 'http://example.com/social-1',
+      'icon_name' => 'facebook',
+    ];
+    $this->assertSocialLink($social_label, $social_link, $expected);
+
+    $social_link = $subsection->find('css', 'ul li:nth-child(2) > a');
+    $social_label = $subsection->find('css', 'ul li:nth-child(2) > a span.ecl-link__label');
+    $expected = [
+      'label' => 'Social 2',
+      'href' => 'http://example.com/social-2',
+      'icon_name' => 'instagram',
+    ];
+    $this->assertSocialLink($social_label, $social_link, $expected);
+
+    // Go back to the standardised branding
+    // and assert the footer is still correct.
+    $this->branding = 'standardised';
+    $this->configFactory->getEditable('oe_theme.settings')->set('branding', $this->branding)->save();
+    $this->drupalGet('<front>');
+
     // Assert deleting sections in backend is reflected in the footer.
     $this->deleteEntity('footer_link_section', 'about_us');
     $this->deleteEntity('footer_link_section', 'contact_us');
@@ -957,7 +984,8 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     $icon = $link->find('css', 'svg.ecl-icon.ecl-icon--m.ecl-link__icon use');
     $this->assertStringContainsString('icons-social-media.svg#' . $expected['icon_name'], $icon->getAttribute('xlink:href'));
     $inverted_class = $this->library == 'ec' ? 'ecl-link--inverted ' : '';
-    $this->assertEquals("ecl-link ecl-link--standalone {$inverted_class}ecl-link--icon ecl-site-footer__link", $link->getAttribute('class'));
+    $icon_only = $this->library == 'ec' && $this->branding == 'core' ? ' ecl-link--icon-only' : '';
+    $this->assertEquals("ecl-link ecl-link--standalone {$inverted_class}ecl-link--icon ecl-site-footer__link{$icon_only}", $link->getAttribute('class'));
   }
 
   /**
