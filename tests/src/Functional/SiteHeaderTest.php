@@ -114,6 +114,14 @@ class SiteHeaderTest extends BrowserTestBase {
       $assert->elementsCount('css', 'div.ecl-site-header__top', 1, $header_container);
       $assert->elementAttributeExists('css', 'div.ecl-site-header__top', 'data-ecl-site-header-top');
 
+      // Check correct default sizes and header structure.
+      if ($component === 'ec') {
+        $assert->elementExists('css', '.ecl-site-header-with-logo-l .ecl-site-header__inner .ecl-site-header__logo-image--l');
+      }
+      else {
+        $assert->elementExists('css', '.ecl-site-header-with-logo-m .ecl-site-header__inner .ecl-site-header__logo-image--m');
+      }
+
       // Assert the logo element.
       $logo = $assert->elementExists('css', 'a.ecl-link.ecl-link--standalone.ecl-site-header__logo-link', $header_top);
       if ($component === 'ec') {

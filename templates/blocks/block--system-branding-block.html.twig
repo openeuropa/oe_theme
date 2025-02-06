@@ -7,6 +7,7 @@
  */
 #}
 {% block content %}
+  {% set _logo_size = ecl_component_library == 'ec' ? 'l' : 'm' %}
   <a
     class="ecl-link ecl-link--standalone ecl-site-header__logo-link"
     href="{{ site_logo_href }}"
@@ -43,7 +44,7 @@
     {% include '@ecl-twig/picture' with {
       picture: _picture,
       extra_classes: "ecl-site-header__picture",
-      extra_image_classes: 'ecl-site-header__logo-image',
+      extra_image_classes: 'ecl-site-header__logo-image ecl-site-header__logo-image--' ~ _logo_size,
       extra_attributes: [{ name: 'title', value: site_logo_title }],
     } only %}
   </a>

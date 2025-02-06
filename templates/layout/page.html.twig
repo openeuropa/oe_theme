@@ -8,19 +8,23 @@
 #}
 {% block site_header %}
   {% set has_menu = page.navigation|render|striptags|trim is not empty %}
+  {% set _logo_size = ecl_component_library == 'ec' ? 'l' : 'm' %}
+  {% set _header_with_logo_size = ecl_logo_path ? 'ecl-site-header-with-logo-' ~ _logo_size: '' %}
 <header
-  class="ecl-site-header {% if has_menu %}ecl-site-header--has-menu{% endif %}"
+  class="ecl-site-header {{ _header_with_logo_size }} {% if has_menu %}ecl-site-header--has-menu{% endif %}"
   data-ecl-auto-init="SiteHeader"
 >
   {{ page.site_top_bar }}
   {% block site_header_container %}
-    <div class="ecl-site-header__background">
-      <div class="ecl-site-header__header">
-        <div class="ecl-site-header__container ecl-container">
-          <div class="ecl-site-header__top" data-ecl-site-header-top>
-            {{ page.site_header }}
-            <div class="ecl-site-header__action">
-              {{ page.site_header_secondary }}
+    <div class="ecl-site-header__inner">
+      <div class="ecl-site-header__background">
+        <div class="ecl-site-header__header">
+          <div class="ecl-site-header__container ecl-container">
+            <div class="ecl-site-header__top" data-ecl-site-header-top>
+              {{ page.site_header }}
+              <div class="ecl-site-header__action">
+                {{ page.site_header_secondary }}
+              </div>
             </div>
           </div>
         </div>
