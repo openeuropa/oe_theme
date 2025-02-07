@@ -8,6 +8,9 @@ navigation_list:
     illustration:
       label: "Illustration"
       description: "Displays the image in the top right corner."
+    image_as_illustration:
+      label: "Image as illustration"
+      description: "Displays the image in the top right corner without a background."
   fields:
     title:
       type: "text"

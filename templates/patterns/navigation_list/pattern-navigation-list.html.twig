@@ -62,6 +62,7 @@
 {% endif %}
 
 {% set _variant = (variant == 'illustration') ? 'illustration' : '' %}
+{% set _variant = variant|replace({'_':'-'})|default('') %}
 {% include '@ecl-twig/navigation-list/navigation-list-item.html.twig' with {
   'variant': _variant,
   'title': title|default({}),
