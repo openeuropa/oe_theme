@@ -14,16 +14,16 @@ carousel:
           image: "https://picsum.photos/seed/picsum/600/300"
           image_alt: "alternative text"
           sources:
-            - src: "https://loremflickr.com/480/160/arch"
-              size: "s"
-            - src: "https://loremflickr.com/768/256/dog"
-              size: "m"
-            - src: "https://loremflickr.com/996/332/paris"
-              size: "l"
-            - src: "https://loremflickr.com/1140/380/brazil"
-              size: "xl"
             - src: "https://inno-ecl.s3.amazonaws.com/media/examples/example-image.jpg"
-              size: "full_width"
+              media: '(min-width: 1140px)'
+            - src: "https://loremflickr.com/1140/380/brazil"
+              media: '(min-width: 996px)'
+            - src: "https://loremflickr.com/996/332/paris"
+              media: '(min-width: 768px)'
+            - src: "https://loremflickr.com/768/256/dog"
+              media: '(min-width: 480px)'
+            - src: "https://loremflickr.com/480/160/arch"
+              media: ""
           variant: "text-box"
           centered: false
           credit: "© Copyright first item"

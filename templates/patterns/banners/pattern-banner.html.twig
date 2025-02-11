@@ -79,25 +79,7 @@
   } %}
 {% endif %}
 {% if sources is not empty and sources is iterable %}
-  {% set _sources = [] %}
-  {% for source in sources %}
-    {% set media = '' %}
-    {% if source.size == 's' %}
-      {% set media = '(max-width: 480px)' %}
-    {% elseif source.size == 'm' %}
-      {% set media = '(max-width: 768px)' %}
-    {% elseif source.size == 'l' %}
-      {% set media = '(max-width: 996px)' %}
-    {% elseif source.size == 'xl' %}
-      {% set media = '(max-width: 1140px)' %}
-    {% elseif source.size == 'full_width' %}
-      {% set media = '(min-width: 1140px)' %}
-    {% endif %}
-    {% set _sources = _sources|merge([{
-      'src': source.src,
-      'media': media,
-    }]) %}
-  {% endfor %}
+  {% set _sources = sources %}
 {% endif %}
 {% set _picture = _picture|merge({
   'sources': _sources,
