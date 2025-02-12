@@ -1,6 +1,25 @@
 # Change Log
 
-## [4.5.0](https://github.com/openeuropa/oe_theme/tree/4.5.0) (2025-01-29)
+
+# Change Log
+
+## [5.0.0-beta1](https://github.com/openeuropa/oe_theme/tree/5.0.0-beta1) (2025-02-12)
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/4.5.0...5.0.0-beta1)
+
+**Merged pull requests:**
+
+- EWPP-5228: Update to ECL 5.0.0-alpha4. [\#1551](https://github.com/openeuropa/oe_theme/pull/1551) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-5177: Apply changes in template for ec-core footer. [\#1550](https://github.com/openeuropa/oe_theme/pull/1550) ([sergepavle](https://github.com/sergepavle))
+- EWPP-5198: Update to ECL 5.0.0-alpha3 and remove obsolete patches. [\#1549](https://github.com/openeuropa/oe_theme/pull/1549) ([22Alexandra](https://github.com/22Alexandra))
+- Update 5.x branch from 4.x. [\#1548](https://github.com/openeuropa/oe_theme/pull/1548) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-5135: Include missing classes for site logo. [\#1545](https://github.com/openeuropa/oe_theme/pull/1545) ([fmmribeiro](https://github.com/fmmribeiro))
+- EWPP-5096: Add ECL color modes to oe\_theme available libraries. [\#1544](https://github.com/openeuropa/oe_theme/pull/1544) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-5156: Update to ECL 5.0.0-alpha1. [\#1543](https://github.com/openeuropa/oe_theme/pull/1543) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-5047: Add new variant to navigation\_list pattern. [\#1537](https://github.com/openeuropa/oe_theme/pull/1537) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-4953: Add support for lists in featured item pattern. [\#1532](https://github.com/openeuropa/oe_theme/pull/1532) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-4578: Use Banner retina images with responsive image styles. [\#1513](https://github.com/openeuropa/oe_theme/pull/1513) ([fmmribeiro](https://github.com/fmmribeiro))
+
+## [4.5.0](https://github.com/openeuropa/oe_theme/tree/4.5.0) (2025-01-30)
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/4.4.0...4.5.0)
 
 **Merged pull requests:**
