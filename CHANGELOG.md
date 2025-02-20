@@ -1,13 +1,18 @@
 # Change Log
 
+## [5.0.0-beta2](https://github.com/openeuropa/oe_theme/tree/5.0.0-beta2) (2025-02-20)
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/5.0.0-beta1...5.0.0-beta2)
 
-# Change Log
+**Merged pull requests:**
+
+- EWPP-5286: Fix issue with simple banner variant with image background. [\#1553](https://github.com/openeuropa/oe_theme/pull/1553) ([sergepavle](https://github.com/sergepavle))
 
 ## [5.0.0-beta1](https://github.com/openeuropa/oe_theme/tree/5.0.0-beta1) (2025-02-12)
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/4.5.0...5.0.0-beta1)
 
 **Merged pull requests:**
 
+- Release-5.0.0-beta1: Update changelog. [\#1552](https://github.com/openeuropa/oe_theme/pull/1552) ([nagyad](https://github.com/nagyad))
 - EWPP-5228: Update to ECL 5.0.0-alpha4. [\#1551](https://github.com/openeuropa/oe_theme/pull/1551) ([22Alexandra](https://github.com/22Alexandra))
 - EWPP-5177: Apply changes in template for ec-core footer. [\#1550](https://github.com/openeuropa/oe_theme/pull/1550) ([sergepavle](https://github.com/sergepavle))
 - EWPP-5198: Update to ECL 5.0.0-alpha3 and remove obsolete patches. [\#1549](https://github.com/openeuropa/oe_theme/pull/1549) ([22Alexandra](https://github.com/22Alexandra))
