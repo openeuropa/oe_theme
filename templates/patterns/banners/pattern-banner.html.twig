@@ -69,6 +69,11 @@
   {% endif %}
 {% endif %}
 
+{# Add by default plain-background for banner without image or video. #}
+{% if image.src is empty and video is empty %}
+  {% set extra_classes = 'ecl-banner--plain-background' %}
+{% endif %}
+
 {% set _picture = [] %}
 {% if image.src is not empty %}
   {% set _picture = {
@@ -104,10 +109,6 @@
 {% set _box_background = box_background|default('light') %}
 {% set _horizontal = horizontal|default('left') %}
 {% set _vertical = vertical|default('center') %}
-
-{% if _font_color == 'light' and _box_background == 'none' %}
-  {% set extra_classes = 'ecl-banner--plain-background' %}
-{% endif %}
 
 <div{{ container_attributes }}>
   {% include '@ecl-twig/banner' with {
