@@ -1,12 +1,12 @@
 component_library_ec:
   css:
     theme:
-      dist/ec/styles/optional/ecl-reset.css: { media: screen }
-      dist/ec/styles/optional/ecl-ec-default.css: { media: screen }
-      dist/ec/styles/optional/ecl-ec-utilities.css: { media: screen }
-      dist/ec/styles/ecl-ec.css: { media: screen }
-      dist/ec/styles/ecl-ec-print.css: { media: print }
-      css/style-ec.css: { media: screen }
+      dist/ec/styles/optional/ecl-reset.css: { preprocess: false, media: screen }
+      dist/ec/styles/optional/ecl-ec-default.css: { preprocess: false, media: screen }
+      dist/ec/styles/optional/ecl-ec-utilities.css: { preprocess: false, media: screen }
+      dist/ec/styles/ecl-ec.css: { preprocess: false, media: screen }
+      dist/ec/styles/ecl-ec-print.css: { preprocess: false, media: print }
+      css/style-ec.css: { preprocess: false, media: screen }
   js:
     dist/js/moment.min.js: { minified: true }
     dist/ec/scripts/ecl-ec.js: {}
@@ -17,12 +17,12 @@ component_library_ec:
 component_library_eu:
   css:
     theme:
-      dist/eu/styles/optional/ecl-reset.css: { media: screen }
-      dist/eu/styles/optional/ecl-eu-default.css: { media: screen }
-      dist/eu/styles/optional/ecl-eu-utilities.css: { media: screen }
-      dist/eu/styles/ecl-eu.css: { media: screen }
-      dist/eu/styles/ecl-eu-print.css: { media: print }
-      css/style-eu.css: { media: screen }
+      dist/eu/styles/optional/ecl-reset.css: { preprocess: false, media: screen }
+      dist/eu/styles/optional/ecl-eu-default.css: { preprocess: false, media: screen }
+      dist/eu/styles/optional/ecl-eu-utilities.css: { preprocess: false, media: screen }
+      dist/eu/styles/ecl-eu.css: { preprocess: false, media: screen }
+      dist/eu/styles/ecl-eu-print.css: { preprocess: false, media: print }
+      css/style-eu.css: { preprocess: false, media: screen }
   js:
     dist/js/moment.min.js: { minified: true }
     dist/eu/scripts/ecl-eu.js: {}
@@ -33,14 +33,14 @@ component_library_eu:
 style_ec_rtl:
   css:
     theme:
-      dist/ec/styles/optional/ecl-rtl.css: { media: screen }
+      dist/ec/styles/optional/ecl-rtl.css: { preprocess: false, media: screen }
   dependencies:
     - core/drupal
 
 style_eu_rtl:
   css:
     theme:
-      dist/eu/styles/optional/ecl-rtl.css: { media: screen }
+      dist/eu/styles/optional/ecl-rtl.css: { preprocess: false, media: screen }
   dependencies:
     - core/drupal
 
@@ -60,7 +60,7 @@ ecl_datepicker:
 print:
   css:
     theme:
-      css/print.css: { media: print }
+      css/print.css: { preprocess: false, media: print }
 
 inpage_navigation:
   js:
@@ -72,20 +72,20 @@ inpage_navigation:
 style_ec_etr:
   css:
     theme:
-      dist/ec/styles/optional/ecl-ec-easy-to-read.css: { media: screen }
+      dist/ec/styles/optional/ecl-ec-easy-to-read.css: { preprocess: false, media: screen }
   dependencies:
     - core/drupal
 
 style_eu_etr:
   css:
     theme:
-      dist/eu/styles/optional/ecl-eu-easy-to-read.css: { media: screen }
+      dist/eu/styles/optional/ecl-eu-easy-to-read.css: { preprocess: false, media: screen }
   dependencies:
     - core/drupal
 
 style_ec_color_modes:
   css:
     theme:
-      dist/ec/styles/ecl-ec-color-modes.css: { media: screen }
+      dist/ec/styles/ecl-ec-color-modes.css: { preprocess: false, media: screen }
   dependencies:
     - core/drupal
