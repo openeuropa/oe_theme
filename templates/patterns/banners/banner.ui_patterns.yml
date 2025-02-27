@@ -130,3 +130,8 @@ banner:
       label: "Screen reader control: Pause"
       description: "Screen reader label for the pause button."
       preview: "Pause"
+    color_mode:
+      type: "text"
+      label: "Color mode"
+      description: "Name of the color mode."
+      preview: "orange"

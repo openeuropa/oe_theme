@@ -24,3 +24,8 @@ blockquote:
       label: "Language code"
       description: "The language code for the blockquote - it changes the type of quotes. (defaults to 'en')"
       preview: "pt-pt"
+    color_mode:
+      type: "text"
+      label: "Color mode"
+      description: "Name of the color mode."
+      preview: "blue-electric"

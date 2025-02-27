@@ -53,3 +53,8 @@ facts_figures:
       label: "Centered"
       description: "Whether the items' content should be centered."
       preview: true
+    color_mode:
+      type: "text"
+      label: "Color mode"
+      description: "Name of the color mode."
+      preview: "purple"
