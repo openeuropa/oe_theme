@@ -56,6 +56,9 @@ class TextFeaturedMediaAssert extends BasePatternAssert {
       'expandable' => [
         [$this, 'assertExpandable'],
       ],
+      'color_mode' => [
+        [$this, 'assertColorMode'],
+      ],
     ];
   }
 
@@ -162,6 +165,36 @@ class TextFeaturedMediaAssert extends BasePatternAssert {
     }
     $content = $crawler->filter('div.ecl-expandable__content');
     $this->assertEquals($expected_block['content'], $content->text());
+  }
+
+  /**
+   * Asserts the presence or absence of the color mode.
+   *
+   * @param string $color_mode
+   *   The name of the color mode.
+   * @param \Symfony\Component\DomCrawler\Crawler $crawler
+   *   The DomCrawler where to check the element.
+   */
+  protected function assertColorMode(string $color_mode, Crawler $crawler): void {
+    $color_modes = [
+      'blue',
+      'green-dark',
+      'orange',
+      'green',
+      'purple',
+      'blue-navy',
+      'blue-electric',
+    ];
+    if (!in_array($color_mode, $color_modes)) {
+      throw new Exception("The color mode '$color_mode' is not supported.");
+    }
+    if (empty($color_mode)) {
+      foreach ($color_modes as $mode) {
+        $this->assertElementNotExists("article.ecl-color-mode--$mode", $crawler);
+      }
+    }
+
+    $this->assertElementExists("article.ecl-color-mode--$color_mode", $crawler);
   }
 
   /**

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Drupal\Tests\oe_theme\PatternAssertions;
 
+use PHPUnit\Framework\Exception;
 use Symfony\Component\DomCrawler\Crawler;
 
 /**
@@ -23,6 +24,9 @@ class CarouselAssert extends BasePatternAssert {
       ],
       'full_width' => [
         [$this, 'assertFullWidth'],
+      ],
+      'color_mode' => [
+        [$this, 'assertColorMode'],
       ],
     ];
   }
@@ -57,6 +61,9 @@ class CarouselAssert extends BasePatternAssert {
       }
       else {
         $this->assertElementExists('section.ecl-banner.ecl-banner--box-bg-light.ecl-banner--color-dark', $item);
+      }
+      if (isset($expected_item['color_mode'])) {
+        $this->assertElementExists('section.ecl-banner.ecl-color-mode--' . $expected_item['color_mode'], $item);
       }
       // Assert title.
       if (!isset($expected_item['title'])) {
@@ -128,6 +135,36 @@ class CarouselAssert extends BasePatternAssert {
       return;
     }
     $this->assertElementExists('div.ecl-carousel.ecl-carousel--full-width', $crawler);
+  }
+
+  /**
+   * Asserts the presence or absence of the color mode.
+   *
+   * @param string $color_mode
+   *   The name of the color mode.
+   * @param \Symfony\Component\DomCrawler\Crawler $crawler
+   *   The DomCrawler where to check the element.
+   */
+  protected function assertColorMode(string $color_mode, Crawler $crawler): void {
+    $color_modes = [
+      'blue',
+      'green-dark',
+      'orange',
+      'green',
+      'purple',
+      'blue-navy',
+      'blue-electric',
+    ];
+    if (!in_array($color_mode, $color_modes)) {
+      throw new Exception("The color mode '$color_mode' is not supported.");
+    }
+    if (empty($color_mode)) {
+      foreach ($color_modes as $mode) {
+        $this->assertElementNotExists("section.ecl-carousel.ecl-color-mode--$mode", $crawler);
+      }
+    }
+
+    $this->assertElementExists("section.ecl-carousel.ecl-color-mode--$color_mode", $crawler);
   }
 
 }
