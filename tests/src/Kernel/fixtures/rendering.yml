@@ -259,9 +259,10 @@
       link_extra_attributes:
         - name: 'data-name'
           value: 'data value'
+      color_mode: "purple"
   assertions:
     count:
-      'section.ecl-banner.ecl-banner--font-m.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--m.ecl-banner--full-width.ecl-banner--h-left.ecl-banner--v-center': 1
+      'section.ecl-banner.ecl-color-mode--purple.ecl-banner--font-m.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--m.ecl-banner--full-width.ecl-banner--h-left.ecl-banner--v-center': 1
       'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-banner__link-cta[href="http://example.com"]': 0
       'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-banner__link-cta[data-name="data value"]': 0
       'div.ecl-container div.ecl-banner__container div.ecl-banner__content div.ecl-banner__title span.ecl-banner__title-text a.ecl-link.ecl-link--icon.ecl-banner__title-link[href="http://example.com"]': 1
@@ -280,6 +281,7 @@
       description: "Banner description"
       url: "http://example.com"
       label: "Example"
+      color_mode: "orange"
       image:
         src: "http://via.placeholder.com/150x150"
       horizontal: center
@@ -291,7 +293,7 @@
           value: 'data value'
   assertions:
     count:
-      'section.ecl-banner.ecl-banner--font-m.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--s.ecl-banner--h-center.ecl-banner--v-center': 1
+      'section.ecl-banner.ecl-color-mode--orange.ecl-banner--font-m.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--s.ecl-banner--h-center.ecl-banner--v-center': 1
       'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-banner__link-cta[href="http://example.com"]': 0
       'div.ecl-container div.ecl-banner__container div.ecl-banner__content p.ecl-banner__description span.ecl-banner__description-text a.ecl-link.ecl-link--icon.ecl-banner__description-link[href="http://example.com"]': 1
       'div.ecl-container div.ecl-banner__container div.ecl-banner__content p.ecl-banner__description span.ecl-banner__description-text a.ecl-link.ecl-link--icon.ecl-banner__description-link[data-name="data value"]': 1
@@ -3135,8 +3137,10 @@
       body: "Quote text"
       author: "Quote author"
       language_code: "bg"
+      color_mode: "blue-electric"
   assertions:
     count:
+      'figure.ecl-blockquote.ecl-color-mode--blue-electric': 1
       'img.ecl-blockquote__image': 0
     equals:
       '.ecl-blockquote__author': "Quote author"
@@ -3147,11 +3151,13 @@
     '#fields':
       body: "Quote text"
       author: "Quote author"
+      color_mode: "purple"
       image:
         src: "http://via.placeholder.com/120x80"
         alt: "Alternative of image"
   assertions:
     count:
+      'figure.ecl-blockquote.ecl-color-mode--purple': 1
       'img.ecl-blockquote__image[src="http://via.placeholder.com/120x80"]': 1
       'img.ecl-blockquote__image[alt="Alternative of image"]': 1
     equals:
@@ -3618,6 +3624,7 @@
     '#fields':
       limit: 2
       limit_to: 4
+      color_mode: "green-dark"
       items:
         -
           label: "13 September 2017"
@@ -3642,7 +3649,7 @@
     count:
       'h2.ecl-u-type-heading-2': 0
       'div.ecl.ecl-u-mb-m': 0
-      'ol.ecl-timeline': 1
+      'ol.ecl-timeline.ecl-color-mode--green-dark': 1
       'li.ecl-timeline__item': 7
       '.ecl-timeline__item.ecl-timeline__item--toggle': 1
       '.ecl-timeline__item.ecl-timeline__item--collapsed': 2
@@ -3667,6 +3674,7 @@
     '#type': pattern
     '#id': timeline
     '#fields':
+      color_mode: "orange"
       items:
         -
           title: "Item 1"
@@ -3690,7 +3698,7 @@
     count:
       'h2.ecl-u-type-heading-2': 0
       'div.ecl.ecl-u-mb-m': 0
-      'ol.ecl-timeline': 1
+      'ol.ecl-timeline.ecl-color-mode--orange': 1
       'li.ecl-timeline__item': 6
       '.ecl-timeline__item.ecl-timeline__item--toggle': 0
       '.ecl-timeline__item.ecl-timeline__item--collapsed': 0
@@ -3827,8 +3835,10 @@
         label: "Call to action"
         path: "http://example.com"
       highlighted: false
+      color_mode: "purple"
   assertions:
     count:
+      'article.ecl-color-mode--purple': 1
       'article.ecl-featured-item.ecl-featured-item--highlight': 0
       'div.ecl-featured-item__container.ecl-featured-item__container--right': 1
       'div.ecl-featured-item__item': 2
@@ -3865,9 +3875,10 @@
       expandable:
         content:
           '#markup': "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Non enim iam stirpis bonum quaeret, sed animalis;<b>A mene tu?</b></p>"
+      color_mode: "blue-navy"
   assertions:
     count:
-      'article.ecl-featured-item.ecl-featured-item--highlight': 1
+      'article.ecl-featured-item.ecl-featured-item--highlight.ecl-color-mode--blue-navy': 1
       'h2.ecl-u-type-heading-2': 0
       'div.ecl-featured-item__container': 1
       'div.ecl-featured-item__title': 1
@@ -3915,9 +3926,10 @@
         label_expanded: "Expand"
         label_collapsed: "Collapse"
         content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+      color_mode: "orange"
   assertions:
     count:
-      'article.ecl-featured-item.ecl-featured-item--highlight': 1
+      'article.ecl-featured-item.ecl-featured-item--highlight.ecl-color-mode--orange': 1
       'h2.ecl-u-type-heading-2': 1
       'div.ecl-featured-item__container': 1
       'div.ecl-featured-item__title span.ecl-featured-item__title-content': 0
@@ -3950,8 +3962,10 @@
         id: 'text-featured-media-1'
         hidden: true
         content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+      color_mode: "orange"
   assertions:
     count:
+      'article.ecl-color-mode--orange': 1
       'article.ecl-featured-item.ecl-featured-item--highlight': 0
       'div.ecl-featured-item__container': 1
       'div.ecl-col-md-6': 0
@@ -4510,9 +4524,10 @@
       external_link: true
       centered: true
       font_size: 'm'
+      color_mode: 'purple'
   assertions:
     count:
-      'div.ecl-fact-figures.ecl-fact-figures--col-2.ecl-fact-figures--font-m.ecl-fact-figures--centered div.ecl-fact-figures__items': 1
+      'div.ecl-fact-figures.ecl-fact-figures--col-2.ecl-color-mode--purple.ecl-fact-figures--font-m.ecl-fact-figures--centered div.ecl-fact-figures__items': 1
       'div.ecl-fact-figures__item:nth-child(1) svg.ecl-icon.ecl-icon--l.ecl-fact-figures__icon': 1
       'div.ecl-fact-figures__item:nth-child(2) svg.ecl-icon.ecl-icon--l.ecl-fact-figures__icon': 1
       'div.ecl-fact-figures__view-all': 1
@@ -4544,9 +4559,10 @@
           value: "00.0 million"
           title: "Donec suscipit interdum augue, ac dapibus eros finibus a."
           description: "Cras vestibulum efficitur mi, quis porta tellus rutrum ut. Quisque at pulvinar sem."
+      color_mode: 'orange'
   assertions:
     count:
-      'div.ecl-fact-figures.ecl-fact-figures--col-3 div.ecl-fact-figures__items': 1
+      'div.ecl-fact-figures.ecl-fact-figures--col-3.ecl-color-mode--orange div.ecl-fact-figures__items': 1
       'div.ecl-fact-figures.ecl-fact-figures--col-3.ecl-fact-figures--centered': 0
       'div.ecl-fact-figures__view-all': 0
       '.ecl-fact-figures--font-m': 0
@@ -4881,9 +4897,11 @@
     '#type': 'pattern'
     '#id': 'carousel'
     '#fields':
+      color_mode: "green"
       items:
         - title: "Lorem ipsum dolor sit amet"
           description: "Nullam sollicitudin suscipit diam, ac blandit ipsum tempor consectetur"
+          color_mode: "purple"
           url: "https://example.com"
           url_text: "CTA 1"
           image: "https://picsum.photos/seed/picsum/600/300"
@@ -4906,6 +4924,7 @@
               value: 'data value'
         - title: "Duis vitae pulvinar turpis"
           description: "Integer quis lorem tellus. Nullam sollicitudin suscipit diam, ac blandit ipsum tempor consectetur"
+          color_mode: "orange"
           url: "https://example.com"
           url_text: "CTA 2"
           image: "https://picsum.photos/seed/picsum/600/300"
@@ -4939,14 +4958,16 @@
   assertions:
     count:
       section.ecl-carousel.ecl-carousel--full-width: 0
-      section.ecl-carousel: 1
+      section.ecl-carousel.ecl-color-mode--green: 1
       div.ecl-carousel__container: 1
       div.ecl-carousel__slides: 1
       div.ecl-carousel__slide: 6
       div.ecl-carousel__slide section.ecl-banner.ecl-banner--box-bg-light.ecl-banner--color-dark: 2
       div.ecl-carousel__slide section.ecl-banner.ecl-banner.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--h-center: 1
+      div.ecl-carousel__slide section.ecl-banner.ecl-banner.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-color-mode--purple: 1
       div.ecl-carousel__slide section.ecl-banner.ecl-banner--box-bg-dark.ecl-banner--color-light: 2
       div.ecl-carousel__slide section.ecl-banner.ecl-banner--box-bg-dark.ecl-banner--color-light.ecl-banner--h-center: 1
+      div.ecl-carousel__slide section.ecl-banner.ecl-banner--box-bg-dark.ecl-banner--color-light.ecl-color-mode--orange: 1
       div.ecl-carousel__slide section.ecl-banner.ecl-banner--box-bg-none.ecl-banner--color-dark: 2
       div.ecl-carousel__slide section.ecl-banner.ecl-banner--box-bg-none.ecl-banner--color-dark.ecl-banner--h-center: 1
       div.ecl-carousel__controls: 1

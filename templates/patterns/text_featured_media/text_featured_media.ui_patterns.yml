@@ -15,6 +15,11 @@ text_featured_media:
       label: 'Right featured'
       description: 'Text on the right, featured call to action'
   fields:
+    color_mode:
+      type: "text"
+      label: "Color mode"
+      description: "Name of the color mode."
+      preview: "blue-navy"
     title:
       type: "text"
       label: "Heading"

@@ -32,6 +32,11 @@ timeline:
       type: "text"
       label: "Button label hidden"
       description: "Hidden timeline button label."
+    color_mode:
+      type: "text"
+      label: "Color mode"
+      description: "Name of the color mode."
+      preview: "green-dark"
     items:
       type: "array"
       label: "Timeline items"
