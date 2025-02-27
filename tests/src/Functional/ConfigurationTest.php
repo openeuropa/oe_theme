@@ -62,6 +62,7 @@ class ConfigurationTest extends BrowserTestBase {
       $this->assertLinkContainsHref('/oe_theme/dist/ec/styles/optional/ecl-reset.css');
       $this->assertLinkContainsHref('/oe_theme/dist/ec/styles/ecl-ec.css');
       $this->assertLinkContainsHref('/oe_theme/dist/ec/styles/ecl-ec-print.css');
+      $this->assertLinkContainsHref('/oe_theme/dist/ec/styles/ecl-ec-color-modes.css');
       $this->assertLinkContainsHref('/oe_theme/dist/ec/styles/optional/ecl-ec-default.css');
       $this->assertLinkContainsHref('/oe_theme/css/style-ec.css');
 
@@ -71,9 +72,6 @@ class ConfigurationTest extends BrowserTestBase {
 
       // Assert that rtl styling is not loaded.
       $this->assertLinkNotContainsHref('/oe_theme/dist/ec/styles/optional/ecl-rtl.css');
-
-      // Assert that color modes styling is not loaded.
-      $this->assertLinkNotContainsHref('/oe_theme/dist/ec/styles/ecl-ec-color-modes.css');
 
       // Assert that we do not load the EU component library by default.
       $this->assertLinkNotContainsHref('/oe_theme/dist/eu/styles/ecl-eu.css');
