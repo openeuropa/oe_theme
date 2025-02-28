@@ -2123,6 +2123,7 @@
     '#fields':
       title: "Item title"
       url: "http://example.com"
+      color_mode: "green-dark"
       image:
         src: "http://via.placeholder.com/300x300"
         alt: "Alternate text for secondary image"
@@ -2143,7 +2144,7 @@
   assertions:
     count:
       article.ecl-card[extra-attr="extra value"] div.ecl-card__body div.ecl-content-block.ecl-card__content-block: 1
-      article.ecl-card div.ecl-card__body a.ecl-link--standalone[href="http://example.com"]: 1
+      article.ecl-card.ecl-color-mode--green-dark div.ecl-card__body a.ecl-link--standalone[href="http://example.com"]: 1
       article.ecl-card picture.ecl-picture--zoom: 0
       article.ecl-card img.ecl-card__image[alt="Alternate text for secondary image"]: 1
       article.ecl-card img.ecl-card__image[src="http://via.placeholder.com/300x300"]: 1
@@ -2168,6 +2169,7 @@
     '#fields':
       title: "Item title"
       url: "http://example.com"
+      color_mode: "blue-electric"
       image:
         src: "http://via.placeholder.com/300x300"
         alt: "Alternate text for secondary image"
@@ -2179,7 +2181,7 @@
       picture_zoom: true
   assertions:
     count:
-      article.ecl-card div.ecl-card__body a.ecl-link--standalone[href="http://example.com"]: 1
+      article.ecl-card.ecl-color-mode--blue-electric div.ecl-card__body a.ecl-link--standalone[href="http://example.com"]: 1
       article.ecl-card picture.ecl-picture--zoom: 1
       article.ecl-card img.ecl-card__image[alt="Alternate text for secondary image"]: 1
       article.ecl-card img.ecl-card__image[src="http://via.placeholder.com/300x300"]: 1
