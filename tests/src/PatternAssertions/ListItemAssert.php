@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Drupal\Tests\oe_theme\PatternAssertions;
 
+use PHPUnit\Framework\Exception;
 use Symfony\Component\DomCrawler\Crawler;
 
 /**
@@ -30,6 +31,9 @@ class ListItemAssert extends BasePatternAssert {
         ],
         'image' => [
           [$this, 'assertHighlightImage'],
+        ],
+        'color_mode' => [
+          [$this, 'assertColorMode'],
         ],
       ];
     }
@@ -219,6 +223,36 @@ class ListItemAssert extends BasePatternAssert {
     $image_div = $crawler->filter('article.ecl-card header.ecl-card__header div.ecl-card__image');
     self::assertEquals($expected_image['alt'], $image_div->attr('aria-label'));
     self::assertStringContainsString($expected_image['src'], $image_div->attr('style'));
+  }
+
+  /**
+   * Asserts the presence or absence of the color mode.
+   *
+   * @param string $color_mode
+   *   The name of the color mode.
+   * @param \Symfony\Component\DomCrawler\Crawler $crawler
+   *   The DomCrawler where to check the element.
+   */
+  protected function assertColorMode(string $color_mode, Crawler $crawler): void {
+    $color_modes = [
+      'blue',
+      'green-dark',
+      'orange',
+      'green',
+      'purple',
+      'blue-navy',
+      'blue-electric',
+    ];
+    if (!in_array($color_mode, $color_modes)) {
+      throw new Exception("The color mode '$color_mode' is not supported.");
+    }
+    if (empty($color_mode)) {
+      foreach ($color_modes as $mode) {
+        $this->assertElementNotExists("article.ecl-color-mode--$mode", $crawler);
+      }
+    }
+
+    $this->assertElementExists("article.ecl-color-mode--$color_mode", $crawler);
   }
 
   /**
