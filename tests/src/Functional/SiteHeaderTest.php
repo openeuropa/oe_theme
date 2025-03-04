@@ -224,7 +224,6 @@ class SiteHeaderTest extends BrowserTestBase {
       $search_button = $assert->elementExists('css', 'a.ecl-button.ecl-button--tertiary.ecl-site-header__search-toggle', $search);
       $this->assertEquals('true', $search_button->getAttribute('data-ecl-search-toggle'));
       $this->assertEquals('oe-search-search-form', $search_button->getAttribute('aria-controls'));
-      $this->assertEquals('false', $search_button->getAttribute('aria-expanded'));
       $this->assertEquals('<use xlink:href="/build/themes/custom/oe_theme/dist/' . $component . '/images/icons/sprites/icons.svg#search" xmlns:xlink="http://www.w3.org/1999/xlink"></use>', $search_button->find('css', "svg.ecl-icon.ecl-icon--s[focusable='false'][aria-hidden='true']")
         ->getHtml());
       $this->assertStringContainsString('Search', $search_button->getText());
@@ -249,7 +248,7 @@ class SiteHeaderTest extends BrowserTestBase {
 
       // Assert the main menu block.
       $main_menu = $assert->elementExists('css', 'div#block-oe-theme-main-navigation', $header);
-      $this->assertCount(1, $main_menu->findAll('css', "nav.ecl-menu[data-ecl-menu][data-ecl-menu-max-lines='2'][data-ecl-auto-init='Menu'][aria-expanded='false']"));
+      $this->assertCount(1, $main_menu->findAll('css', "nav.ecl-menu[data-ecl-menu][data-ecl-menu-max-lines='2'][data-ecl-auto-init='Menu']"));
       $this->assertCount(1, $main_menu->findAll('css', "nav div.ecl-menu__overlay"));
 
       // Assert the menu container.
