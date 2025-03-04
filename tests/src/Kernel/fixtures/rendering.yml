@@ -2928,12 +2928,13 @@
       title_url: 'http://example.com'
       description: 'Navigation list description'
       border: true
+      color_mode: 'red-tomato'
       image:
         src: "https://placeimg.com/1000/500/arch"
         alt: "Alternative text for image"
   assertions:
     count:
-      'article.ecl-navigation-list__item.ecl-navigation-list__item--illustration': 1
+      'article.ecl-navigation-list__item.ecl-navigation-list__item--illustration.ecl-color-mode--red-tomato': 1
       '.ecl-content-block.ecl-navigation-list__content-block': 1
       "picture.ecl-navigation-list__picture  img.ecl-navigation-list__image[src=\"https://placeimg.com/1000/500/arch\"]": 1
       'picture.ecl-navigation-list__picture  img.ecl-navigation-list__image[alt="Alternative text for image"]': 1
