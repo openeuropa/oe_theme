@@ -69,11 +69,6 @@
   {% endif %}
 {% endif %}
 
-{# Add by default plain-background for banner without image or video. #}
-{% if image.src is empty and video is empty %}
-  {% set extra_classes = 'ecl-banner--plain-background' %}
-{% endif %}
-
 {% set _picture = [] %}
 {% if image.src is not empty %}
   {% set _picture = {
