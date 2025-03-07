@@ -126,6 +126,11 @@ featured_item:
       label: "Lists variant"
       description: "An optional parameter for the layout of the lists (vertical or horizontal). It defaults to vertical."
       preview: "vertical"
+    color_mode:
+      type: "text"
+      label: "Color mode"
+      description: "Name of the color mode."
+      preview: "orange"
     extra_attributes:
       type: "array"
       label: "Extra attributes"

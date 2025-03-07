@@ -3368,9 +3368,11 @@
     '#variant': "default"
     '#fields':
       title: "Example title"
+      color_mode: "purple"
   assertions:
     count:
       "img.ecl-card__image": 0
+      'article.ecl-card.ecl-color-mode--purple': 1
       'div.ecl-content-block__title': 1
       'div.ecl-content-block__description': 0
       'ul.ecl-content-block__secondary-meta-container': 0
@@ -3413,6 +3415,7 @@
       link:
         href: "https://example.com"
         label: "Link title"
+      color_mode: "orange"
       badges:
         - label: "Highlighted"
           variant: "highlight"
@@ -3437,6 +3440,7 @@
           value: "extra value"
   assertions:
     count:
+      'article.ecl-card.ecl-color-mode--orange': 1
       "img.ecl-card__image[src=\"http://via.placeholder.com/120x80\"]": 1
       'div.ecl-content-block__title a.ecl-link--standalone[href="https://example.com"]': 1
       'article.ecl-card[extra-attr="extra value"] picture[data-ecl-picture-link]': 1
