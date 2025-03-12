@@ -425,7 +425,7 @@ function oe_theme_preprocess_fieldset(array &$variables): void {
  * label is already rendered in the input template.
  */
 function oe_theme_preprocess_form_element(array &$variables): void {
-  if (in_array($variables['element']['#type'], ['checkbox', 'radio'])) {
+  if (in_array($variables['element']['#type'], ['checkbox', 'radio', 'select'])) {
     $variables['label_display'] = 'none';
   }
   $ecl_type_mappings = [
@@ -2501,6 +2501,18 @@ function oe_theme_preprocess_select(&$variables) {
     $variables['classes'] = implode(' ', $attributes['class']);
     unset($attributes['class']);
   }
+
+  // Unset the ID field, as it collides with the ID of the <select>.
+  unset($attributes['id']);
+
+  // Unset the parameters that do not belong to the <div> element.
+  unset($attributes['name']);
+  unset($attributes['multiple']);
+
+  // Set the label here and let ECL decide how to focus input elements.
+  // This will work both for select and multiselect form widgets.
+  $variables['label'] = $variables['element']['#title'] ?? '';
+
   foreach ($attributes as $name => $value) {
     $variables['extra_attributes'][] = [
       'name' => $name,
