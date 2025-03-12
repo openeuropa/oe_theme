@@ -1610,7 +1610,7 @@ function oe_theme_preprocess_paragraph__oe_banner(array &$variables): void {
   $variant = $paragraph->get('oe_paragraphs_variant')->first()->value;
 
   if ($variant && (str_contains($variant, 'default') || str_contains($variant, 'primary'))) {
-    $variables['font_color'] = 'light';
+    $variables['font_color'] = 'dark';
     $variables['box_background'] = 'none';
     return;
   }

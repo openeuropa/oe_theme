@@ -49,11 +49,14 @@ class CarouselAssert extends BasePatternAssert {
     foreach ($expected_items as $index => $expected_item) {
       $item = $items->eq($index);
       // Assert carousel item (banner) variant.
-      if (!isset($expected_item['variant'])) {
-        $this->assertElementExists('section.ecl-banner.ecl-banner--plain-background.ecl-banner--l', $item);
+      if (!isset($expected_item['variant']) || $expected_item['variant'] === 'plain-background') {
+        $this->assertElementExists('section.ecl-banner.ecl-banner--box-bg-none.ecl-banner--color-dark.ecl-banner--l', $item);
+      }
+      elseif ($expected_item['variant'] === 'text-overlay') {
+        $this->assertElementExists('section.ecl-banner.ecl-banner--box-bg-dark.ecl-banner--color-light', $item);
       }
       else {
-        $this->assertElementExists('section.ecl-banner.ecl-banner--' . $expected_item['variant'], $item);
+        $this->assertElementExists('section.ecl-banner.ecl-banner--box-bg-light.ecl-banner--color-dark', $item);
       }
       // Assert title.
       if (!isset($expected_item['title'])) {

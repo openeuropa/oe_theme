@@ -449,7 +449,6 @@ class MediaParagraphsTest extends ParagraphsTestBase {
    * Test 'banner' paragraph rendering.
    */
   public function testBanner(): void {
-
     $breakpoints_by_group = \Drupal::service('breakpoint.manager')->getBreakpointsByGroup('oe_theme');
     $this->assertCount(5, $breakpoints_by_group);
 
@@ -760,7 +759,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $html = $this->renderParagraph($paragraph);
     $crawler = new Crawler($html);
 
-    $this->assertCount(1, $crawler->filter('section.ecl-banner.ecl-banner--plain-background.ecl-banner--l.ecl-banner--h-center'));
+    $this->assertCount(1, $crawler->filter('section.ecl-banner.ecl-banner--box-bg-none.ecl-banner--color-dark.ecl-banner--l.ecl-banner--h-center'));
 
     // No image should be displayed on 'default' variant.
     $this->assertCount(0, $crawler->filter('section.ecl-banner picture.ecl-picture.ecl-banner__picture img.ecl-banner__image'));
@@ -779,8 +778,8 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $html = $this->renderParagraph($paragraph);
     $crawler = new Crawler($html);
 
-    $this->assertCount(0, $crawler->filter('section.ecl-banner.ecl-banner--plain-background.ecl-banner--h-center'));
-    $this->assertCount(1, $crawler->filter('section.ecl-banner.ecl-banner--plain-background.ecl-banner--l.ecl-banner--full-width'));
+    $this->assertCount(0, $crawler->filter('section.ecl-banner.ecl-banner--box-bg-none.ecl-banner--color-dark.ecl-banner--h-center'));
+    $this->assertCount(1, $crawler->filter('section.ecl-banner.ecl-banner--box-bg-none.ecl-banner--color-dark.ecl-banner--l.ecl-banner--full-width'));
 
     // No image should be displayed on 'default' variant.
     $this->assertCount(0, $crawler->filter('section.ecl-banner picture.ecl-picture.ecl-banner__picture img.ecl-banner__image'));
@@ -798,7 +797,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $html = $this->renderParagraph($paragraph);
     $crawler = new Crawler($html);
 
-    $this->assertCount(1, $crawler->filter('section.ecl-banner.ecl-banner--plain-background.ecl-banner--m.ecl-banner--h-center.ecl-banner--full-width'));
+    $this->assertCount(1, $crawler->filter('section.ecl-banner.ecl-banner--box-bg-none.ecl-banner--color-dark.ecl-banner--m.ecl-banner--h-center.ecl-banner--full-width'));
 
     // No image should be displayed on 'default' variant.
     $this->assertCount(0, $crawler->filter('section.ecl-banner picture.ecl-picture.ecl-banner__picture img.ecl-banner__image'));
@@ -815,8 +814,8 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $html = $this->renderParagraph($paragraph);
     $crawler = new Crawler($html);
 
-    $this->assertCount(0, $crawler->filter('section.ecl-banner.ecl-banner--plain-background.ecl-banner--m.ecl-banner--h-center'));
-    $this->assertCount(1, $crawler->filter('section.ecl-banner.ecl-banner--plain-background.ecl-banner--m.ecl-banner--full-width'));
+    $this->assertCount(0, $crawler->filter('section.ecl-banner.ecl-banner--box-bg-none.ecl-banner--color-dark.ecl-banner--m.ecl-banner--h-center'));
+    $this->assertCount(1, $crawler->filter('section.ecl-banner.ecl-banner--box-bg-none.ecl-banner--color-dark.ecl-banner--m.ecl-banner--full-width'));
 
     // No image should be displayed on 'default' variant.
     $this->assertCount(0, $crawler->filter('section.ecl-banner picture.ecl-picture.ecl-banner__picture img.ecl-banner__image'));
@@ -835,7 +834,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $html = $this->renderParagraph($paragraph);
     $crawler = new Crawler($html);
 
-    $this->assertCount(1, $crawler->filter('section.ecl-banner.ecl-banner--plain-background.ecl-banner--l.ecl-banner--h-center.ecl-banner--full-width'));
+    $this->assertCount(1, $crawler->filter('section.ecl-banner.ecl-banner--box-bg-none.ecl-banner--color-dark.ecl-banner--l.ecl-banner--h-center.ecl-banner--full-width'));
 
     // No image should be displayed on 'primary' variant.
     $this->assertCount(0, $crawler->filter('section.ecl-banner picture.ecl-picture.ecl-banner__picture img.ecl-banner__image'));
