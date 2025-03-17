@@ -450,7 +450,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
    */
   public function testBanner(): void {
     $breakpoints_by_group = \Drupal::service('breakpoint.manager')->getBreakpointsByGroup('oe_theme');
-    $this->assertCount(5, $breakpoints_by_group);
+    $this->assertCount(6, $breakpoints_by_group);
 
     // Set image media translatable.
     $this->container->get('content_translation.manager')->setEnabled('media', 'image', TRUE);
@@ -540,7 +540,10 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $extra_large_media = $crawler->filter('section.ecl-banner.ecl-banner--font-m.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--h-center picture source[media="all and (min-width: 996px)"]');
     $this->assertCount(1, $extra_large_media);
     $this->assertStringContainsString('oe_theme_extra_large_3_1_banner/public/example_1_en.jpeg', $extra_large_media->attr('srcset'));
-    $full_width_media = $crawler->filter('section.ecl-banner.ecl-banner--font-m.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--h-center picture source[media="all and (min-width: 1140px)"]');
+    $extra_extra_large_media = $crawler->filter('section.ecl-banner.ecl-banner--font-m.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--h-center picture source[media="all and (min-width: 1140px)"]');
+    $this->assertCount(1, $extra_extra_large_media);
+    $this->assertStringContainsString('oe_theme_extra_extra_large_3_1_banner/public/example_1_en.jpeg', $extra_extra_large_media->attr('srcset'));
+    $full_width_media = $crawler->filter('section.ecl-banner.ecl-banner--font-m.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--h-center picture source[media="all and (min-width: 1368px)"]');
     $this->assertCount(1, $full_width_media);
     $this->assertStringContainsString('oe_theme_full_width_banner_3_1/public/example_1_en.jpeg', $full_width_media->attr('srcset'));
     $this->assertStringContainsString('Alt en', $image_element->attr('alt'));
@@ -635,7 +638,10 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $extra_large_media = $crawler->filter('section.ecl-banner.ecl-banner--font-m.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--h-center picture source[media="all and (min-width: 996px)"]');
     $this->assertCount(1, $extra_large_media);
     $this->assertStringContainsString('oe_theme_extra_large_4_1_banner/public/example_1_en.jpeg', $extra_large_media->attr('srcset'));
-    $full_width_media = $crawler->filter('section.ecl-banner.ecl-banner--font-m.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--h-center picture source[media="all and (min-width: 1140px)"]');
+    $extra_extra_large_media = $crawler->filter('section.ecl-banner.ecl-banner--font-m.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--h-center picture source[media="all and (min-width: 1140px)"]');
+    $this->assertCount(1, $extra_extra_large_media);
+    $this->assertStringContainsString('oe_theme_extra_extra_large_4_1_banner/public/example_1_en.jpeg', $extra_extra_large_media->attr('srcset'));
+    $full_width_media = $crawler->filter('section.ecl-banner.ecl-banner--font-m.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--h-center picture source[media="all and (min-width: 1368px)"]');
     $this->assertCount(1, $full_width_media);
     $this->assertStringContainsString('oe_theme_full_width_banner_4_1/public/example_1_en.jpeg', $full_width_media->attr('srcset'));
     $this->assertEquals('Banner', trim($crawler->filter('div.ecl-banner__content div.ecl-banner__title')->text()));
@@ -1151,6 +1157,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
             'medium' => 'oe_theme_medium_3_1_banner/public/example_1_en.jpeg',
             'large' => 'oe_theme_large_3_1_banner/public/example_1_en.jpeg',
             'extra_large' => 'oe_theme_extra_large_3_1_banner/public/example_1_en.jpeg',
+            'extra_extra_large' => 'oe_theme_extra_extra_large_3_1_banner/public/example_1_en.jpeg',
             'full_width' => 'oe_theme_full_width_banner_3_1/public/example_1_en.jpeg',
           ],
           'variant' => 'text-overlay',
@@ -1166,6 +1173,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
             'medium' => 'oe_theme_medium_3_1_banner/public/example_2_en.jpeg',
             'large' => 'oe_theme_large_3_1_banner/public/example_2_en.jpeg',
             'extra_large' => 'oe_theme_extra_large_3_1_banner/public/example_2_en.jpeg',
+            'extra_extra_large' => 'oe_theme_extra_extra_large_3_1_banner/public/example_2_en.jpeg',
             'full_width' => 'oe_theme_full_width_banner_3_1/public/example_2_en.jpeg',
           ],
           'variant' => 'text-overlay',
@@ -1179,6 +1187,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
             'medium' => 'oe_theme_medium_3_1_banner/public/example_1_en.jpeg',
             'large' => 'oe_theme_large_3_1_banner/public/example_1_en.jpeg',
             'extra_large' => 'oe_theme_extra_large_3_1_banner/public/example_1_en.jpeg',
+            'extra_extra_large' => 'oe_theme_extra_extra_large_3_1_banner/public/example_1_en.jpeg',
             'full_width' => 'oe_theme_full_width_banner_3_1/public/example_1_en.jpeg',
           ],
           'variant' => 'text-overlay',
@@ -1194,6 +1203,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
             'medium' => 'oe_theme_medium_3_1_banner/public/example_2_en.jpeg',
             'large' => 'oe_theme_large_3_1_banner/public/example_2_en.jpeg',
             'extra_large' => 'oe_theme_extra_large_3_1_banner/public/example_2_en.jpeg',
+            'extra_extra_large' => 'oe_theme_extra_extra_large_3_1_banner/public/example_2_en.jpeg',
             'full_width' => 'oe_theme_full_width_banner_3_1/public/example_2_en.jpeg',
           ],
           'variant' => 'text-overlay',
@@ -1216,6 +1226,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
       'medium' => 'oe_theme_medium_3_1_banner/public/example_1_bg.jpeg',
       'large' => 'oe_theme_large_3_1_banner/public/example_1_bg.jpeg',
       'extra_large' => 'oe_theme_extra_large_3_1_banner/public/example_1_bg.jpeg',
+      'extra_extra_large' => 'oe_theme_extra_extra_large_3_1_banner/public/example_1_bg.jpeg',
       'full_width' => 'oe_theme_full_width_banner_3_1/public/example_1_bg.jpeg',
     ];
     $expected_values['items'][1]['title'] = 'BG Item 2';
@@ -1227,6 +1238,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
       'medium' => 'oe_theme_medium_3_1_banner/public/example_2_bg.jpeg',
       'large' => 'oe_theme_large_3_1_banner/public/example_2_bg.jpeg',
       'extra_large' => 'oe_theme_extra_large_3_1_banner/public/example_2_bg.jpeg',
+      'extra_extra_large' => 'oe_theme_extra_extra_large_3_1_banner/public/example_2_bg.jpeg',
       'full_width' => 'oe_theme_full_width_banner_3_1/public/example_2_bg.jpeg',
     ];
     $expected_values['items'][2]['title'] = 'BG Item 3';
@@ -1237,6 +1249,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
       'medium' => 'oe_theme_medium_3_1_banner/public/example_1_bg.jpeg',
       'large' => 'oe_theme_large_3_1_banner/public/example_1_bg.jpeg',
       'extra_large' => 'oe_theme_extra_large_3_1_banner/public/example_1_bg.jpeg',
+      'extra_extra_large' => 'oe_theme_extra_extra_large_3_1_banner/public/example_1_bg.jpeg',
       'full_width' => 'oe_theme_full_width_banner_3_1/public/example_1_bg.jpeg',
     ];
     $expected_values['items'][3]['title'] = 'BG Item 4';
@@ -1249,6 +1262,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
       'medium' => 'oe_theme_medium_3_1_banner/public/example_2_bg.jpeg',
       'large' => 'oe_theme_large_3_1_banner/public/example_2_bg.jpeg',
       'extra_large' => 'oe_theme_extra_large_3_1_banner/public/example_2_bg.jpeg',
+      'extra_extra_large' => 'oe_theme_extra_extra_large_3_1_banner/public/example_2_bg.jpeg',
       'full_width' => 'oe_theme_full_width_banner_3_1/public/example_2_bg.jpeg',
     ];
     $assert->assertPattern($expected_values, $html);

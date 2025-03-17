@@ -18,6 +18,9 @@ dependencies:
 config_devel:
   install:
   - core.entity_view_mode.node.oe_compact_teaser
+  - image.style.oe_theme_extra_extra_large_3_1_banner
+  - image.style.oe_theme_extra_extra_large_4_1_banner
+  - image.style.oe_theme_extra_extra_large_5_1_banner
   - image.style.oe_theme_extra_large_3_1_banner
   - image.style.oe_theme_extra_large_4_1_banner
   - image.style.oe_theme_extra_large_5_1_banner

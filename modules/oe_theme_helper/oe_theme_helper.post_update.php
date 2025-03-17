@@ -488,3 +488,82 @@ function oe_theme_helper_post_update_40002(): void {
     $responsive_image_style->save();
   }
 }
+
+/**
+ * New breakpoint xxl.
+ */
+function oe_theme_helper_post_update_40003(): void {
+  // Create new image style xxl.
+  $image_styles = [
+    'oe_theme_extra_extra_large_3_1_banner' => [
+      'label' => 'Extra extra large banner 3:1',
+      'width' => '1368',
+      'height' => '456',
+    ],
+    'oe_theme_extra_extra_large_4_1_banner' => [
+      'label' => 'Extra extra large banner 4:1',
+      'width' => '1368',
+      'height' => '342',
+    ],
+    'oe_theme_extra_extra_large_5_1_banner' => [
+      'label' => 'Extra extra large banner 5:1',
+      'width' => '1368',
+      'height' => '91',
+    ],
+  ];
+
+  $image_style_storage = \Drupal::entityTypeManager()
+    ->getStorage('image_style');
+  foreach ($image_styles as $style_id => $style_data) {
+    $style = $image_style_storage->load($style_id);
+    // If the image style already exists, skip it.
+    if ($style) {
+      continue;
+    }
+    // Create image style.
+    $image_style = ImageStyle::create([
+      'name' => $style_id,
+      'label' => $style_data['label'],
+    ]);
+    // Add scale&crop effect to the image style.
+    $effect = [
+      'id' => 'image_scale_and_crop',
+      'weight' => 1,
+      'data' => [
+        'width' => $style_data['width'],
+        'height' => $style_data['height'],
+        'anchor' => 'center-center',
+      ],
+    ];
+    $image_style->addImageEffect($effect);
+    $image_style->save();
+  }
+
+  // Update existing responsive image styles.
+  $responsive_image_styles_ids = ['3_1', '4_1', '5_1'];
+  foreach ($responsive_image_styles_ids as $responsive_image_style_id) {
+    /** @var \Drupal\responsive_image\Entity\ResponsiveImageStyle $responsive_image_style */
+    $responsive_image_style = ResponsiveImageStyle::load('oe_theme_' . $responsive_image_style_id . '_banner');
+    $image_mappings = $responsive_image_style->getImageStyleMappings();
+    foreach ($image_mappings as $key => $image_style_mapping) {
+      // Assign extra large breakpoint to new xxl image style.
+      if ($image_style_mapping['breakpoint_id'] === 'oe_theme.extra_large') {
+        $image_mappings[$key]['image_mapping'] = 'oe_theme_extra_extra_large_' . $responsive_image_style_id . '_banner';
+      }
+    }
+
+    // Add extra large breakpoint to full width image style.
+    $new_image_style_mapping = [
+      "image_mapping_type" => "image_style",
+      "image_mapping" => "oe_theme_full_width_banner_" . $responsive_image_style_id,
+      "breakpoint_id" => "oe_theme.extra_extra_large",
+      "multiplier" => "1x",
+    ];
+
+    if (!empty($image_mappings)) {
+      array_unshift($image_mappings, $new_image_style_mapping);
+      $responsive_image_style->set('image_style_mappings', $image_mappings);
+      $responsive_image_style->save();
+    }
+  }
+}

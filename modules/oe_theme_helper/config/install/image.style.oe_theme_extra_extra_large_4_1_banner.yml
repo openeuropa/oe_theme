@@ -1,0 +1,14 @@
+langcode: en
+status: true
+dependencies: {  }
+name: oe_theme_extra_extra_large_4_1_banner
+label: 'Extra extra large banner 4:1'
+effects:
+  8a7ddc86-1162-4c4e-a083-db16037c3995:
+    uuid: 8a7ddc86-1162-4c4e-a083-db16037c3995
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 1368
+      height: 342
+      anchor: center-center

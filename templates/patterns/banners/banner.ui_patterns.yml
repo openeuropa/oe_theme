@@ -63,6 +63,8 @@ banner:
       description: "Array containing different sized image for each banner size."
       preview:
         - src: "https://inno-ecl.s3.amazonaws.com/media/examples/example-image.jpg"
+          media: '(min-width: 1368px)'
+        - src: "https://loremflickr.com/1368/456/snow"
           media: '(min-width: 1140px)'
         - src: "https://loremflickr.com/1140/380/brazil"
           media: '(min-width: 996px)'
