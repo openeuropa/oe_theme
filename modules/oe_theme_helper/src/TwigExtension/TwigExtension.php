@@ -674,7 +674,7 @@ class TwigExtension extends AbstractExtension {
    *   The border color class.
    */
   public function eclBorderColor(array $context): string {
-    return $context['ecl_component_library'] === 'ec' ? 'ecl-u-border-color-neutral-40' : 'ecl-u-border-color-primary-10';
+    return $context['ecl_component_library'] === 'ec' ? 'ecl-u-border-color-neutral-dark-50' : 'ecl-u-border-color-primary-10';
   }
 
   /**
@@ -687,7 +687,7 @@ class TwigExtension extends AbstractExtension {
    *   The background color class.
    */
   public function eclBackgroundColor(array $context): string {
-    return $context['ecl_component_library'] === 'ec' ? 'ecl-u-bg-neutral-40' : 'ecl-u-bg-primary-5';
+    return $context['ecl_component_library'] === 'ec' ? 'ecl-u-bg-neutral-light-50' : 'ecl-u-bg-primary-5';
   }
 
   /**

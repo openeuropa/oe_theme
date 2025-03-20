@@ -297,7 +297,7 @@ class ContentProjectRenderTest extends ContentRenderTestBase {
         ],
       ],
     ];
-    $field_list_wrapper = $project_stakeholders->find('css', '.ecl-u-flex-grow-1.ecl-u-type-color-dark');
+    $field_list_wrapper = $project_stakeholders->find('css', '.ecl-u-flex-grow-1.ecl-u-type-color-neutral-dark-400');
     $field_list_html = $field_list_wrapper->getHtml();
     $field_list_assert->assertPattern($first_field_list_expected_values, $field_list_html);
 
@@ -409,7 +409,7 @@ class ContentProjectRenderTest extends ContentRenderTestBase {
         ],
       ],
     ];
-    $field_list_wrapper = $rendered_stakeholder_element->find('css', '.ecl-u-flex-grow-1.ecl-u-type-color-dark');
+    $field_list_wrapper = $rendered_stakeholder_element->find('css', '.ecl-u-flex-grow-1.ecl-u-type-color-neutral-dark-400');
     $field_list_html = $field_list_wrapper->getHtml();
     $field_list_assert->assertPattern($first_field_list_expected_values, $field_list_html);
     $field_list_assert->assertVariant('horizontal', $field_list_html);

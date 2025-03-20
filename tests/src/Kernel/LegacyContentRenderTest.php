@@ -55,7 +55,7 @@ class LegacyContentRenderTest extends ContentRenderTestBase {
     // Related links.
     $related_links_heading = $crawler->filter('.ecl-u-type-heading-2');
     $this->assertStringContainsString('Related links', $related_links_heading->text());
-    $related_links = $crawler->filter('div.ecl-u-border-bottom.ecl-u-border-color-neutral-40.ecl-u-pt-m.ecl-u-pb-m a');
+    $related_links = $crawler->filter('div.ecl-u-border-bottom.ecl-u-border-color-neutral-dark-50.ecl-u-pt-m.ecl-u-pb-m a');
     $this->assertCount(2, $related_links);
 
     // Test short title fallback.

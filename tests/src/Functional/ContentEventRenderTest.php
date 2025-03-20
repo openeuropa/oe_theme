@@ -550,7 +550,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     $this->drupalGet($node->toUrl());
 
     $this->assertRegistrationButtonDisabled($registration_content, 'Register here');
-    $registration_info_content = $this->assertSession()->elementExists('css', 'p.ecl-u-type-paragraph.ecl-u-type-color-dark-100');
+    $registration_info_content = $this->assertSession()->elementExists('css', 'p.ecl-u-type-paragraph.ecl-u-type-color-neutral-dark-900');
     $this->assertEquals('Registration will open in 1 day. You can register from 18 February 2020, 15:00 CET, until 21 February 2020, 15:00 CET.', $registration_info_content->getText());
 
     // Assert "Registration date" field when registration will start today in
@@ -670,7 +670,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
 
     $general_contacts_content = $this->assertSession()->elementExists('css', '#event-contacts-general', $event_contacts_content);
     $this->assertContactHeader($general_contacts_content, 'General contact');
-    $general_contacts_border = $general_contacts_content->findAll('css', '.ecl-u-mb-xl.ecl-u-pb-xl.ecl-u-border-bottom.ecl-u-border-color-neutral-40');
+    $general_contacts_border = $general_contacts_content->findAll('css', '.ecl-u-mb-xl.ecl-u-pb-xl.ecl-u-border-bottom.ecl-u-border-color-neutral-dark-50');
     $this->assertCount(1, $general_contacts_border);
     $general_contacts = $general_contacts_content->findAll('css', '.ecl-row.ecl-u-mv-xl');
     $this->assertContactDefaultRender($general_contacts[0], 'first_general_contact');
@@ -678,7 +678,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
 
     $press_contacts_content = $this->assertSession()->elementExists('css', '#event-contacts-press', $event_contacts_content);
     $this->assertContactHeader($press_contacts_content, 'Press contact');
-    $press_contacts_border = $press_contacts_content->findAll('css', '.ecl-u-mb-xl.ecl-u-pb-xl.ecl-u-border-bottom.ecl-u-border-color-neutral-40');
+    $press_contacts_border = $press_contacts_content->findAll('css', '.ecl-u-mb-xl.ecl-u-pb-xl.ecl-u-border-bottom.ecl-u-border-color-neutral-dark-50');
     $this->assertCount(1, $press_contacts_border);
     $press_contacts = $press_contacts_content->findAll('css', '.ecl-row.ecl-u-mv-xl');
     $this->assertContactDefaultRender($press_contacts[0], 'first_press_contact');
@@ -937,7 +937,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
 
     $this->drupalGet($node->toUrl());
     $speakers = $this->assertSession()->elementExists('css', '.ecl-row.field-oe-event-speakers');
-    $speakers_items = $speakers->findAll('css', '.ecl-u-d-flex.ecl-u-pv-m.ecl-u-border-bottom.ecl-u-border-color-neutral-40.ecl-col-12.ecl-col-m-6.ecl-col-l-4');
+    $speakers_items = $speakers->findAll('css', '.ecl-u-d-flex.ecl-u-pv-m.ecl-u-border-bottom.ecl-u-border-color-neutral-dark-50.ecl-col-12.ecl-col-m-6.ecl-col-l-4');
     $this->assertCount(1, $speakers_items);
 
     // Make sure that adding of additional Event speakers
@@ -946,19 +946,19 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     $node->save();
     $this->drupalGet($node->toUrl());
     $speakers = $this->assertSession()->elementExists('css', '.ecl-row.field-oe-event-speakers');
-    $speakers_items = $speakers->findAll('css', '.ecl-u-d-flex.ecl-u-pv-m.ecl-u-border-bottom.ecl-u-border-color-neutral-40.ecl-col-12.ecl-col-m-6.ecl-col-l-4');
+    $speakers_items = $speakers->findAll('css', '.ecl-u-d-flex.ecl-u-pv-m.ecl-u-border-bottom.ecl-u-border-color-neutral-dark-50.ecl-col-12.ecl-col-m-6.ecl-col-l-4');
     $this->assertCount(2, $speakers_items);
     $portrait = $this->assertSession()->elementExists('css', '.ecl-u-flex-shrink-0.ecl-u-mr-s.ecl-u-media-a-m.ecl-u-media-bg-size-contain.ecl-u-media-bg-repeat-none', $speakers_items[0]);
     // Assert default image of speaker.
     $this->assertStringContainsString('oe_theme/images/user_icon.svg', $portrait->getAttribute('style'));
-    $meta = $this->assertSession()->elementExists('css', '.ecl-content-item__meta.ecl-u-type-s.ecl-u-type-color-dark-100.ecl-u-mb-s.ecl-u-type-uppercase', $speakers_items[0]);
+    $meta = $this->assertSession()->elementExists('css', '.ecl-content-item__meta.ecl-u-type-s.ecl-u-type-color-neutral-dark-900.ecl-u-mb-s.ecl-u-type-uppercase', $speakers_items[0]);
     // Assert event role of speaker.
     $this->assertEquals('event role 1', $meta->getText());
     // Assert Person link.
     $link = $this->assertSession()->elementExists('css', '.ecl-link.ecl-link--standalone.ecl-u-type-bold', $speakers_items[0]);
     $this->assertStringContainsString($person->toUrl()->toString(), $link->getAttribute('href'));
     $this->assertEquals($person->label(), $link->getText());
-    $person_jobs = $this->assertSession()->elementExists('css', '.ecl-u-type-s.ecl-u-type-color-dark-100.ecl-u-mt-s', $speakers_items[0]);
+    $person_jobs = $this->assertSession()->elementExists('css', '.ecl-u-type-s.ecl-u-type-color-neutral-dark-900.ecl-u-mt-s', $speakers_items[0]);
     // Assert person jobs.
     $this->assertEquals('Adviser, Chief Adviser', $person_jobs->getText());
 
@@ -966,14 +966,14 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     $event_speaker->set('oe_event_role', 'event role 2');
     $event_speaker->save();
     $this->drupalGet($node->toUrl());
-    $meta = $this->assertSession()->elementExists('css', '.ecl-content-item__meta.ecl-u-type-s.ecl-u-type-color-dark-100.ecl-u-mb-s.ecl-u-type-uppercase', $speakers_items[0]);
+    $meta = $this->assertSession()->elementExists('css', '.ecl-content-item__meta.ecl-u-type-s.ecl-u-type-color-neutral-dark-900.ecl-u-mb-s.ecl-u-type-uppercase', $speakers_items[0]);
     $this->assertEquals('event role 2', $meta->getText());
 
     // Assert that changes in person job are applied.
     $person_job_1->set('oe_role_reference', 'http://publications.europa.eu/resource/authority/role-qualifier/ADVIS_COMMU');
     $person_job_1->save();
     $this->drupalGet($node->toUrl());
-    $person_jobs = $this->assertSession()->elementExists('css', '.ecl-u-type-s.ecl-u-type-color-dark-100.ecl-u-mt-s', $speakers_items[0]);
+    $person_jobs = $this->assertSession()->elementExists('css', '.ecl-u-type-s.ecl-u-type-color-neutral-dark-900.ecl-u-mt-s', $speakers_items[0]);
     $this->assertEquals('Communication Adviser, Chief Adviser', $person_jobs->getText());
 
     // Assert that changes in person photo are applied.

@@ -122,8 +122,13 @@ class WysiwygTableTest extends WebDriverTestBase {
     $this->assertNotEmpty($web_assert->waitForElement('css', '.cke_editor_edit-body-0-value_dialog'));
     $this->assertSession()->waitForElementVisible('css', '.cke_editor_edit-body-0-value_dialog .cke_dialog_ui_checkbox');
     $checkboxes = $this->getSession()->getPage()->findAll('css', '.cke_editor_edit-body-0-value_dialog .cke_dialog_ui_checkbox');
-    $this->assertEquals('Simple table', $checkboxes[0]->getText());
-    $this->assertEquals('Zebra striping', $checkboxes[1]->getText());
+    $checkbox_labels = [];
+    foreach ($checkboxes as $checkbox) {
+      $checkbox_labels[] = $checkbox->getText();
+    }
+    $this->assertTrue(in_array('Simple table', $checkbox_labels));
+    $this->assertTrue(in_array('Zebra striping', $checkbox_labels));
+
     // "Zebra striping" and "Simple table" checkboxes should not be visible in
     // Table properties dialog with disabled ECL table filter.
     FilterFormat::load('full_html')

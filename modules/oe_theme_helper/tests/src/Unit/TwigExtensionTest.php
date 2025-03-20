@@ -479,7 +479,7 @@ class TwigExtensionTest extends UnitTestCase {
     return [
       [
         'ec',
-        'ecl-u-border-color-neutral-40',
+        'ecl-u-border-color-neutral-dark-50',
       ],
       [
         'eu',
@@ -519,7 +519,7 @@ class TwigExtensionTest extends UnitTestCase {
     return [
       [
         'ec',
-        'ecl-u-bg-neutral-40',
+        'ecl-u-bg-neutral-light-50',
       ],
       [
         'eu',
