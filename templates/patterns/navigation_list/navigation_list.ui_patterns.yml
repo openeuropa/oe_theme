@@ -80,3 +80,8 @@ navigation_list:
       preview:
         src: "https://loremflickr.com/1000/500/arch"
         alt: "Alternative text for image"
+    color_mode:
+      type: "text"
+      label: "Color mode"
+      description: "Name of the color mode (only working with the illustration variant)."
+      preview: "red-tomato"

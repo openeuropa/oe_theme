@@ -2,6 +2,11 @@ carousel:
   label: "Carousel"
   description: "The Carousel component renders multiple banner slides."
   fields:
+    color_mode:
+      type: "text"
+      label: "Color mode"
+      description: "Name of the color mode."
+      preview: "green"
     items:
       type: "array"
       label: "Carousel items"
@@ -11,6 +16,7 @@ carousel:
           description: "Nullam sollicitudin suscipit diam, ac blandit ipsum tempor consectetur"
           url: "https://example.com"
           url_text: "CTA"
+          color_mode: "purple"
           image: "https://picsum.photos/seed/picsum/600/300"
           image_alt: "alternative text"
           sources:
@@ -31,6 +37,7 @@ carousel:
           credit: "© Copyright first item"
         - title: "Duis vitae pulvinar turpis"
           description: "Integer quis lorem tellus. Nullam sollicitudin suscipit diam, ac blandit ipsum tempor consectetur"
+          color_mode: "blue-navy"
           url: "https://example.com"
           url_text: "CTA"
           image: "https://picsum.photos/seed/picsum/600/300"
@@ -46,6 +53,7 @@ carousel:
           centered: false
         - title: "Donec maximus pharetra ex a ultricies"
           description: "Integer quis lorem tellus. Nullam sollicitudin suscipit diam, ac blandit ipsum tempor consectetur. Duis vitae pulvinar turpis. Donec maximus pharetra ex a ultricies"
+          color_mode: "green-dark"
           url: "https://example.com"
           url_text: "CTA"
           image: "https://picsum.photos/seed/picsum/600/300"
