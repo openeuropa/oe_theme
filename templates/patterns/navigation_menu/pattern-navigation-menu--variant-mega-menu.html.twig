@@ -54,14 +54,19 @@
       {% set _featured_items = [] %}
       {% for featured_item in child.featured.items %}
         {% set _featured_item = {
-          path: featured_item.href,
-          label: featured_item.label,
+          path: featured_item.href|default(''),
+          label: featured_item.label|default(''),
           extra_attributes: featured_item.extra_attributes,
         } %}
         {% if featured_item.external is defined and featured_item.external == true %}
           {% set _featured_item = _featured_item|merge({
             external: featured_item.external,
             icon_path: ecl_icon_path
+          }) %}
+        {% endif %}
+        {% if featured_item.picture is defined and featured_item.picture is not empty %}
+          {% set _featured_item = _featured_item|merge({
+            picture: featured_item.picture,
           }) %}
         {% endif %}
         {% set _featured_items = _featured_items|merge([_featured_item]) %}
