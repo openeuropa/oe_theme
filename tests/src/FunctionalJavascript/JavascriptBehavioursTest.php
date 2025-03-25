@@ -127,6 +127,16 @@ class JavascriptBehavioursTest extends WebDriverTestBase {
     $select_dropdown = $this->getSession()->getPage()->find('css', 'div.ecl-select__multiple-dropdown.ecl-select__container.ecl-select__container--m');
     Assert::assertFalse($this->getSession()->getDriver()->isVisible($select_dropdown->getXpath()));
 
+    // Assert the label is present and it points to the right id.
+    $form_item = $this->getSession()->getPage()->find('css', 'div.form-item-multi-select');
+    $form_label = $form_item->find('css', 'label');
+    $this->assertEquals('edit-multi-select-toggle', $form_label->getAttribute('for'));
+
+    // Assert the form group does not have an ID taken from the <select>.
+    $form_group = $form_item->find('css', '.ecl-form-group');
+    $form_select = $form_group->find('css', 'select');
+    $this->assertNotEquals($form_select->getAttribute('id'), $form_group->getAttribute('id'));
+
     // Click the input and assert the dropdown is now visible.
     $select_input->click();
     $select_dropdown = $this->getSession()->getPage()->find('css', 'div.ecl-select__multiple-dropdown.ecl-select__container.ecl-select__container--m');
