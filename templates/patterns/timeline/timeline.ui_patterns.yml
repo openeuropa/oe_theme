@@ -37,6 +37,11 @@ timeline:
       label: "Color mode"
       description: "Name of the color mode."
       preview: "green-dark"
+    extra_classes:
+      type: 'text'
+      label: 'Extra classes string'
+      description: 'Extra classes string'
+      preview: ''
     items:
       type: "array"
       label: "Timeline items"
