@@ -1,10 +1,26 @@
 # Change Log
 
+## [5.0.0-beta3](https://github.com/openeuropa/oe_theme/tree/5.0.0-beta3) (2025-03-26)
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/5.0.0-beta2...5.0.0-beta3)
+
+**Merged pull requests:**
+
+- EWPP-5369: Move the "Report an IT vulnerability" link [\#1567](https://github.com/openeuropa/oe_theme/pull/1567) ([intelektron](https://github.com/intelektron))
+- EWPP-5374: Update to ECL 5.0.0-alpha.6. [\#1564](https://github.com/openeuropa/oe_theme/pull/1564) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-5342: Add picture key to featured items for mega\_menu variant of the navigation\_menu pattern. [\#1563](https://github.com/openeuropa/oe_theme/pull/1563) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-5290: Replace deprecated classes related to colors to new one. [\#1562](https://github.com/openeuropa/oe_theme/pull/1562) ([sergepavle](https://github.com/sergepavle))
+- EWPP-5343: Fix duplicated IDs in select and multiselect facets. [\#1561](https://github.com/openeuropa/oe_theme/pull/1561) ([intelektron](https://github.com/intelektron))
+- EWPP-5316: Add color\_mode to featured\_item pattern. [\#1560](https://github.com/openeuropa/oe_theme/pull/1560) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-5333: New breakpoint xxl. [\#1559](https://github.com/openeuropa/oe_theme/pull/1559) ([fmmribeiro](https://github.com/fmmribeiro))
+- EWPP-5339: Update to ECL 5.0.0-alpha.5. [\#1558](https://github.com/openeuropa/oe_theme/pull/1558) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-5315: Add color mode parameter to various patterns. [\#1557](https://github.com/openeuropa/oe_theme/pull/1557) ([22Alexandra](https://github.com/22Alexandra))
+
 ## [5.0.0-beta2](https://github.com/openeuropa/oe_theme/tree/5.0.0-beta2) (2025-02-20)
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/5.0.0-beta1...5.0.0-beta2)
 
 **Merged pull requests:**
 
+- Release-5.0.0-beta2: Update changelog. [\#1554](https://github.com/openeuropa/oe_theme/pull/1554) ([nagyad](https://github.com/nagyad))
 - EWPP-5286: Fix issue with simple banner variant with image background. [\#1553](https://github.com/openeuropa/oe_theme/pull/1553) ([sergepavle](https://github.com/sergepavle))
 
 ## [5.0.0-beta1](https://github.com/openeuropa/oe_theme/tree/5.0.0-beta1) (2025-02-12)
