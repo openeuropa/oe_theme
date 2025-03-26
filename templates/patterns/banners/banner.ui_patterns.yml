@@ -135,3 +135,8 @@ banner:
       label: "Color mode"
       description: "Name of the color mode."
       preview: "orange"
+    extra_classes:
+      type: 'text'
+      label: 'Extra classes string'
+      description: 'Extra classes string'
+      preview: ''
