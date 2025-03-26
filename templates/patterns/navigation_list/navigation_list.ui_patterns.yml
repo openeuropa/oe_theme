@@ -85,3 +85,8 @@ navigation_list:
       label: "Color mode"
       description: "Name of the color mode (only working with the illustration variant)."
       preview: "red-tomato"
+    extra_classes:
+      type: 'text'
+      label: 'Extra classes string'
+      description: 'Extra classes string'
+      preview: ''
