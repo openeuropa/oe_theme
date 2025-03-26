@@ -49,7 +49,8 @@
     font_color: font_color,
     horizontal: item.centered is defined and item.centered == false ? 'left' : 'center',
     color_mode: item.color_mode|default(''),
-    credit: item.credit|default('')
+    credit: item.credit|default(''),
+    extra_classes: item.extra_classes|default(''),
   }]) %}
   {% set _link = {} %}
 {% endfor %}
