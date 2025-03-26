@@ -58,3 +58,8 @@ facts_figures:
       label: "Color mode"
       description: "Name of the color mode."
       preview: "purple"
+    extra_classes:
+      type: 'text'
+      label: 'Extra classes string'
+      description: 'Extra classes string'
+      preview: ''
