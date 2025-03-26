@@ -112,6 +112,9 @@
             },
             "drupal/address": {
                 "https://www.drupal.org/project/address/issues/3144823": "https://www.drupal.org/files/issues/2020-11-05/3144823-6.patch"
+            },
+            "openeuropa/oe_corporate_blocks": {
+                "EWPP-5369": "https://github.com/openeuropa/oe_corporate_blocks/compare/5.x...EWPP-5369.diff"
             }
         },
         "drupal-scaffold": {

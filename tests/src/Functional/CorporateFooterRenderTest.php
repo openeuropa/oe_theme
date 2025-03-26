@@ -170,6 +170,12 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     $section = $assert->elementExists('css', 'footer.ecl-site-footer div.ecl-site-footer__row:nth-child(2) div.ecl-site-footer__column:nth-child(2) div.ecl-site-footer__section:nth-child(1)');
     $items = $data['service_navigation'];
 
+    // The "Report an IT vulnerability" link should be added to this column.
+    $items[] = [
+      'label' => 'Report an IT vulnerability',
+      'href' => 'https://commission.europa.eu/legal-notice/vulnerability-disclosure-policy_en',
+    ];
+
     foreach ($items as $key => $expected) {
       $index = $key + 1;
       $actual = $section->find('css', "ul li:nth-child({$index}) > a");
@@ -178,6 +184,9 @@ class CorporateFooterRenderTest extends BrowserTestBase {
 
     $section = $assert->elementExists('css', 'footer.ecl-site-footer div.ecl-site-footer__row:nth-child(2) div.ecl-site-footer__column:nth-child(3) div.ecl-site-footer__section:nth-child(1)');
     $items = $data['legal_navigation'];
+
+    // The "Report an IT vulnerability" link should be removed from this column.
+    array_shift($items);
 
     foreach ($items as $key => $expected) {
       $index = $key + 1;
