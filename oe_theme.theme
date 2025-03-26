@@ -1842,6 +1842,18 @@ function oe_theme_preprocess_oe_corporate_blocks_ec_footer(array &$variables) {
   }
   _oe_theme_preprocess_site_specific_footer_links($variables);
   _oe_theme_preprocess_accessibility_link($variables);
+
+  // Move the "Report an IT vulnerability" link to the end of the first
+  // column of the footer, only for standardised branding.
+  if ($variables['ecl_branding'] === 'standardised') {
+    foreach ($variables['corporate_footer']['legal_navigation'] as $index => $link) {
+      if (str_starts_with($link['href'], 'https://commission.europa.eu/legal-notice/vulnerability-disclosure-policy')) {
+        $variables['corporate_footer']['service_navigation'][] = $link;
+        unset($variables['corporate_footer']['legal_navigation'][$index]);
+        break;
+      }
+    }
+  }
 }
 
 /**

@@ -10,6 +10,9 @@ service_navigation:
     href: 'http://example.com/2-2.html'
 legal_navigation:
   -
+    label: 'Report an IT vulnerability'
+    href: 'https://commission.europa.eu/legal-notice/vulnerability-disclosure-policy_en'
+  -
     label: '3rd section 1st link'
     href: 'http://example.com/3-1.html'
   -
