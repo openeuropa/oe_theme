@@ -242,6 +242,14 @@ class ListItemAssert extends BasePatternAssert {
       'purple',
       'blue-navy',
       'blue-electric',
+      'blue-ocean',
+      'green-lemon',
+      'green-pine',
+      'warm-grey',
+      'red-crayola',
+      'yellow-gold',
+      'purple-violet',
+      'red-tomato',
     ];
     if (!in_array($color_mode, $color_modes)) {
       throw new Exception("The color mode '$color_mode' is not supported.");
