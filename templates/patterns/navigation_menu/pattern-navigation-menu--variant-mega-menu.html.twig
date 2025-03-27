@@ -103,7 +103,8 @@
             transform: "flip-horizontal",
             size: "xs"
           },
-          'extra_classes': "ecl-mega-menu__info-link"
+          'extra_classes': "ecl-mega-menu__info-link",
+          'extra_attributes': item.info.link.extra_attributes|default([]),
         },
       }) %}
     {% endif %}
