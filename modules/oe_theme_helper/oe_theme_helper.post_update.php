@@ -567,3 +567,29 @@ function oe_theme_helper_post_update_40003(): void {
     }
   }
 }
+
+/**
+ * Fix image style xxl 5_1 height (ratio).
+ */
+function oe_theme_helper_post_update_40004(): void {
+
+  $image_style = \Drupal::entityTypeManager()
+    ->getStorage('image_style')
+    ->load('oe_theme_extra_extra_large_5_1_banner');
+
+  if (!$image_style) {
+    return;
+  }
+
+  // Set new height for image_scale_and_crop.
+  foreach ($image_style->getEffects() as $effect) {
+    if ($effect->getPluginId() === 'image_scale_and_crop') {
+      $config = $effect->getConfiguration();
+      $config_data = &$config['data'];
+      $config_data['height'] = '274';
+      $effect->setConfiguration($config);
+    }
+  }
+  $image_style->save();
+  $image_style->flush();
+}
