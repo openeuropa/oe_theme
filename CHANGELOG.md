@@ -1,5 +1,12 @@
 # Change Log
 
+## [5.0.0-beta4](https://github.com/openeuropa/oe_theme/tree/5.0.0-beta4) (2025-04-02)
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/5.0.0-beta3...5.0.0-beta4)
+
+**Merged pull requests:**
+
+- EWPP-5426: Update to ECL 5.0.0-alpha.7. [\#1571](https://github.com/openeuropa/oe_theme/pull/1571) ([22Alexandra](https://github.com/22Alexandra))
+
 ## [5.0.0-beta3](https://github.com/openeuropa/oe_theme/tree/5.0.0-beta3) (2025-03-26)
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/5.0.0-beta2...5.0.0-beta3)
 
