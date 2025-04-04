@@ -16,7 +16,17 @@
         {% if item.event_speaker.oe_event_role.value %}
           <div class="ecl-content-item__meta ecl-u-type-s ecl-u-type-color-neutral-dark-900 ecl-u-mb-s ecl-u-type-uppercase">{{ item.event_speaker.oe_event_role.value }}</div>
         {% endif %}
-        <a href="{{ path('entity.node.canonical', {'node': item.event_speaker.oe_person.entity.id}) }}" class="ecl-link ecl-link--standalone ecl-u-type-bold">{{ item.event_speaker.label() }}</a>
+        {% set item_url = item.content['#url'] ?? path('entity.node.canonical', {'node': item.event_speaker.oe_person.entity.id}) %}
+        {% include '@ecl-twig/link' with {
+          link: {
+            type: 'standalone',
+            label: item.event_speaker.label(),
+            path: item_url,
+            external: item_url|is_external_url,
+            icon_path: ecl_icon_path
+          },
+          extra_classes: 'ecl-u-type-bold'
+        } %}
         {% if item.content.person_jobs %}
           <div class="ecl-u-type-s ecl-u-type-color-neutral-dark-900 ecl-u-mt-s">{{ item.content.person_jobs }}</div>
         {% endif %}
