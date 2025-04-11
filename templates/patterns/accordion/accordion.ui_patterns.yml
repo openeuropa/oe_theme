@@ -7,6 +7,11 @@ accordion:
       label: "Name"
       description: "Unique machine readable name. Optional."
       preview: "my-unique-id"
+    color_mode:
+      type: "text"
+      label: "Color mode"
+      description: "Name of the color mode."
+      preview: "purple-violet"
     items:
       type: "array"
       label: "Accordion items"
