@@ -2987,6 +2987,30 @@
       '.ecl-accordion__content#id-1-content': "Body 2"
 - array:
     '#type': pattern
+    '#id': accordion
+    '#fields':
+      identifier: "id"
+      color_mode: "purple-violet"
+      items:
+        - title: "Title 1"
+          body: "Body 1"
+        - title: "Title 2"
+          body: "Body 2"
+  assertions:
+    count:
+      '.ecl-accordion.ecl-color-mode--purple-violet': 1
+      '.ecl-accordion__title': 2
+      '.ecl-accordion__title button.ecl-accordion__toggle .ecl-accordion__toggle-icon': 4
+      '.ecl-accordion__title button.ecl-accordion__toggle .ecl-accordion__toggle-title': 2
+      '.ecl-accordion__content#id-0-content': 1
+      '.ecl-accordion__content#id-1-content': 1
+    equals:
+      '.ecl-accordion__title button.ecl-accordion__toggle[aria-controls="id-0-content"] .ecl-accordion__toggle-title': "Title 1"
+      '.ecl-accordion__content#id-0-content': "Body 1"
+      '.ecl-accordion__title button.ecl-accordion__toggle[aria-controls="id-1-content"] .ecl-accordion__toggle-title': "Title 2"
+      '.ecl-accordion__content#id-1-content': "Body 2"
+- array:
+    '#type': pattern
     '#id': dropdown
     '#fields':
       button_label: "Dropdown"
@@ -4619,6 +4643,7 @@
       square_image: false
       zebra: true
       column: 1
+      color_mode: "red-crayola"
       items:
         - title: "Business, Economy, Euro"
           description: "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
@@ -4634,7 +4659,7 @@
     count:
       ul.ecl-list-illustration: 1
       ul.ecl-list-illustration.ecl-list-illustration--centered: 0
-      ul.ecl-list-illustration.ecl-list-illustration--zebra: 1
+      ul.ecl-list-illustration.ecl-color-mode--red-crayola.ecl-list-illustration--zebra: 1
       li.ecl-list-illustration__item: 2
       div.ecl-list-illustration__value: 0
       img.ecl-list-illustration__image: 2
@@ -4656,6 +4681,7 @@
       square_image: true
       zebra: true
       column: 1
+      color_mode: "blue-electric"
       centered: true
       items:
         - title: "Business, Economy, Euro"
@@ -4674,7 +4700,7 @@
   assertions:
     count:
       ul.ecl-list-illustration: 1
-      ul.ecl-list-illustration.ecl-list-illustration--zebra: 1
+      ul.ecl-list-illustration.ecl-color-mode--blue-electric.ecl-list-illustration--zebra: 1
       li.ecl-list-illustration__item: 2
       img.ecl-list-illustration__image: 2
       div.ecl-list-illustration__value: 1
@@ -4697,6 +4723,7 @@
       square_image: false
       zebra: false
       column: 1
+      color_mode: "green-pine"
       items:
         - title: "Business, Economy, Euro"
           description: "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
@@ -4706,7 +4733,7 @@
           icon: "budget"
   assertions:
     count:
-      ul.ecl-list-illustration: 1
+      ul.ecl-list-illustration.ecl-color-mode--green-pine: 1
       ul.ecl-list-illustration.ecl-list-illustration--centered: 0
       ul.ecl-list-illustration.ecl-list-illustration--zebra: 0
       li.ecl-list-illustration__item: 2

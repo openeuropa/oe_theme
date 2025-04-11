@@ -24,6 +24,11 @@ list_with_illustration:
       description: "Define if the items should be centered."
       preview: true
       escape: false
+    color_mode:
+      type: "text"
+      label: "Color mode"
+      description: "Name of the color mode. Applies to icons and zebra background."
+      preview: "red-crayola"
     items:
       type: "array"
       label: "Items"
