@@ -2588,3 +2588,13 @@ function oe_theme_page_attachments_alter(array &$attachments) {
 function _oe_theme_sanitize_url($url): mixed {
   return $url instanceof Url ? $url : UrlHelper::filterBadProtocol($url);
 }
+
+/**
+ * Implements hook_library_info_alter().
+ */
+function oe_theme_library_info_alter(array &$libraries) {
+  $component_library = theme_get_setting('component_library') ?? 'ec';
+  if (isset($libraries['inpage_navigation'])) {
+    $libraries['inpage_navigation']['dependencies'][] = 'oe_theme/component_library_' . $component_library;
+  }
+}
