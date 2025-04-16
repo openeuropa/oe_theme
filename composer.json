@@ -8,7 +8,7 @@
     "require": {
         "php": ">=8.1",
         "cweagans/composer-patches": "~1.4 || ^2.0",
-        "drupal/core": "^10",
+        "drupal/core": "^10 || ^11",
         "drupal/smart_trim": "^2",
         "drupal/stable": "^2.0",
         "drupal/twig_field_value": "^2.0",
@@ -19,7 +19,7 @@
     "require-dev": {
         "behat/mink-selenium2-driver": "~1.6.0",
         "composer/installers": "~1.5",
-        "drupal/address": "~1.11",
+        "drupal/address": "^2.0",
         "drupal/ckeditor": "^1.0",
         "drupal/composite_reference": "^2.1",
         "drupal/config_devel": "^1.9",
@@ -112,9 +112,6 @@
             },
             "drupal/drupal-driver": {
                 "allow-date-only-date-fields": "https://patch-diff.githubusercontent.com/raw/jhedstrom/DrupalDriver/pull/235.patch"
-            },
-            "drupal/address": {
-                "https://www.drupal.org/project/address/issues/3144823": "https://www.drupal.org/files/issues/2020-11-05/3144823-6.patch"
             }
         },
         "drupal-scaffold": {
