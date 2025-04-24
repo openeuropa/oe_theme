@@ -138,3 +138,8 @@ featured_item:
       preview:
         - name: "extra-attr"
           value: "extra value"
+    extra_classes:
+      type: 'text'
+      label: 'Extra classes string'
+      description: 'Extra classes string'
+      preview: ''

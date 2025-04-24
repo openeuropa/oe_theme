@@ -20,6 +20,11 @@ text_featured_media:
       label: "Color mode"
       description: "Name of the color mode."
       preview: "blue-navy"
+    extra_classes:
+      type: 'text'
+      label: 'Extra classes string'
+      description: 'Extra classes string'
+      preview: ''
     title:
       type: "text"
       label: "Heading"
