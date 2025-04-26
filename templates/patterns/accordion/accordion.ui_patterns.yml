@@ -12,6 +12,11 @@ accordion:
       label: "Color mode"
       description: "Name of the color mode."
       preview: "purple-violet"
+    extra_classes:
+      type: 'text'
+      label: 'Extra classes string'
+      description: 'Extra classes string'
+      preview: ''
     items:
       type: "array"
       label: "Accordion items"
