@@ -251,13 +251,15 @@ class ListItemAssert extends BasePatternAssert {
       'purple-violet',
       'red-tomato',
     ];
-    if (!in_array($color_mode, $color_modes)) {
-      throw new Exception("The color mode '$color_mode' is not supported.");
-    }
     if (empty($color_mode)) {
       foreach ($color_modes as $mode) {
         $this->assertElementNotExists("article.ecl-color-mode--$mode", $crawler);
       }
+      return;
+    }
+
+    if (!in_array($color_mode, $color_modes)) {
+      throw new Exception("The color mode '$color_mode' is not supported.");
     }
 
     $this->assertElementExists("article.ecl-color-mode--$color_mode", $crawler);
