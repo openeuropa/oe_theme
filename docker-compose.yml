@@ -46,7 +46,7 @@ services:
       - ./:/home/node/app
     command: "sleep infinity"
   sparql:
-    image: openeuropa/triple-store-dev
+    image: registry.fpfis.eu/fpfis/triple-store
     environment:
       - SPARQL_UPDATE=true
       - DBA_PASSWORD=dba
