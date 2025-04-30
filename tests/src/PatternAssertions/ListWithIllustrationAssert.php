@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Drupal\Tests\oe_theme\PatternAssertions;
 
+use PHPUnit\Framework\Exception;
 use Symfony\Component\DomCrawler\Crawler;
 
 /**
@@ -30,6 +31,9 @@ class ListWithIllustrationAssert extends BasePatternAssert {
       ],
       'centered' => [
         [$this, 'assertCentered'],
+      ],
+      'color_mode' => [
+        [$this, 'assertColorMode'],
       ],
     ];
   }
@@ -156,6 +160,46 @@ class ListWithIllustrationAssert extends BasePatternAssert {
     else {
       self::assertElementNotExists('.ecl-list-illustration--centered', $crawler);
     }
+  }
+
+  /**
+   * Asserts the color mode of the list.
+   *
+   * @param string $color_mode
+   *   The name of the color mode.
+   * @param \Symfony\Component\DomCrawler\Crawler $crawler
+   *   The DomCrawler where to check the element.
+   */
+  protected function assertColorMode(string $color_mode, Crawler $crawler): void {
+    $color_modes = [
+      'blue',
+      'green-dark',
+      'orange',
+      'green',
+      'purple',
+      'blue-navy',
+      'blue-electric',
+      'blue-ocean',
+      'green-lemon',
+      'green-pine',
+      'warm-grey',
+      'red-crayola',
+      'yellow-gold',
+      'purple-violet',
+      'red-tomato',
+    ];
+    if (empty($color_mode)) {
+      foreach ($color_modes as $mode) {
+        $this->assertElementNotExists(".ecl-color-mode--$mode", $crawler);
+      }
+      return;
+    }
+
+    if (!in_array($color_mode, $color_modes)) {
+      throw new Exception("The color mode '$color_mode' is not supported.");
+    }
+
+    $this->assertElementExists(".ecl-color-mode--$color_mode", $crawler);
   }
 
 }
