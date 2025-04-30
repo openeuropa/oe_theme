@@ -108,7 +108,7 @@
                 "https://www.drupal.org/project/drupal/issues/3151609": "https://www.drupal.org/files/issues/2024-06-11/link_internal_as_text_v11-3151609.patch"
             },
             "drupal/drupal-driver": {
-                "allow-date-only-date-fields": "https://patch-diff.githubusercontent.com/raw/jhedstrom/DrupalDriver/pull/235.patch"
+                "allow-date-only-date-fields": "https://github.com/jhedstrom/DrupalDriver/commit/eaa9238c8c8e34372dc82ebe5367e6d24b5854e7.patch"
             },
             "drupal/address": {
                 "https://www.drupal.org/project/address/issues/3144823": "https://www.drupal.org/files/issues/2020-11-05/3144823-6.patch"
@@ -123,7 +123,8 @@
             "behat/mink-selenium2-driver locked to 1.6.x as version 1.7.0 introduces issues with mouse dragging and keyboard key events.",
             "Explicit requirement of nikic/php-parser as ^5.0 generates GrumPHP Parser issues.",
             "autoload-dev: explicitly mapping EntityReferenceFieldCreationTrait to prevent failures.",
-            "Locking drupal/media_avportal to 1.8.0 until D10.2 support is dropped."
+            "Locking drupal/media_avportal to 1.8.0 until D10.2 support is dropped.",
+            "Patch for drupal/driver refers to https://github.com/jhedstrom/DrupalDriver/pull/235"
         ]
     },
     "config": {
