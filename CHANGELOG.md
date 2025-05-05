@@ -1,5 +1,20 @@
 # Change Log
 
+## [5.0.0-beta4](https://github.com/openeuropa/oe_theme/tree/5.0.0-beta5) (2025-05-05)
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/5.0.0-beta4...5.0.0-beta5)
+
+**Merged pull requests:**
+
+- EWPP-5524: Update to ECL 5.0.0-alpha.10. [\#1582](https://github.com/openeuropa/oe_theme/pull/1582) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-5429: Add color mode to Accordion and List with illustration patterns. [\#1577](https://github.com/openeuropa/oe_theme/pull/1577) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-5461: Update sparql image in docker-compose.yml and for drone.yml. [\#1578](https://github.com/openeuropa/oe_theme/pull/1578) ([sergepavle](https://github.com/sergepavle))
+- EWPP-5370: Use check-filled instead of deprecated success icon. [\#1580](https://github.com/openeuropa/oe_theme/pull/1580) ([fmmribeiro](https://github.com/fmmribeiro))
+- EWPP-5129: Add support for other bundles of event speakers. [\#1574](https://github.com/openeuropa/oe_theme/pull/1574) ([intelektron](https://github.com/intelektron))
+- EWPP-5359: Add support of extra_attributes for mega menu info link. [\#1570](https://github.com/openeuropa/oe_theme/pull/1570) ([sergepavle](https://github.com/sergepavle))
+- EWPP-5326: Added support for extra classes. [\#1566](https://github.com/openeuropa/oe_theme/pull/1566) ([gorsky87](https://github.com/gorsky87))
+- EWPP-5473: Fix dependencies for inpage_navigation library. [\#1579](https://github.com/openeuropa/oe_theme/pull/1579) ([sergepavle](https://github.com/sergepavle))
+- EWPP-5441: Update to ECL 5.0.0-alpha.8. [\#1575](https://github.com/openeuropa/oe_theme/pull/1575) ([22Alexandra](https://github.com/22Alexandra))
+
 ## [5.0.0-beta4](https://github.com/openeuropa/oe_theme/tree/5.0.0-beta4) (2025-04-02)
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/5.0.0-beta3...5.0.0-beta4)
 
