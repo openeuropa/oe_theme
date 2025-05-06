@@ -109,6 +109,9 @@
         "patches": {
             "drupal/core": {
                 "https://www.drupal.org/project/drupal/issues/3151609": "https://www.drupal.org/files/issues/2024-06-11/link_internal_as_text_v11-3151609.patch"
+            },
+            "drupal/drupal-driver": {
+                "allow-date-only-date-fields": "patches/drupal-driver.patch"
             }
         },
         "drupal-scaffold": {
