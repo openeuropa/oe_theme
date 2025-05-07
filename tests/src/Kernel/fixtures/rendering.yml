@@ -480,6 +480,41 @@
     '#type': pattern
     '#id': banner
     '#fields':
+      title: "Banner title"
+      url: "http://example.com"
+      label: "Subscribe"
+      size: "l"
+      font_size: "l"
+      font_color: "dark"
+      box_background: "light"
+      description: "Banner description"
+      horizontal: "center"
+      vertical: "bottom"
+      full_width: false
+      credit: "© Copyright or credit"
+      color_mode: green
+      link_extra_attributes:
+        - name: 'data-name'
+          value: 'data value'
+  assertions:
+    count:
+      'section.ecl-banner.ecl-color-mode--green.ecl-banner--font-l.ecl-banner--no-media.ecl-banner--l.ecl-banner--h-center.ecl-banner--v-bottom': 1
+      '.ecl-banner--box-bg-light': 0
+      '.ecl-banner--color-dark': 0
+      'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-banner__link-cta[href="http://example.com"]': 1
+      'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-banner__link-cta[data-name="data value"]': 1
+      'svg.ecl-icon.ecl-icon--xs.ecl-icon--rotate-90.ecl-link__icon': 1
+      'picture': 0
+      'footer.ecl-banner__credit': 0
+      'video': 0
+    equals:
+      'div.ecl-container div.ecl-banner__container div.ecl-banner__content div.ecl-banner__title span.ecl-banner__title-text': Banner title
+      'div.ecl-container div.ecl-banner__container div.ecl-banner__content p.ecl-banner__description span.ecl-banner__description-text': Banner description
+      'a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-banner__link-cta[href="http://example.com"] span.ecl-link__label': Subscribe
+- array:
+    '#type': pattern
+    '#id': banner
+    '#fields':
       title: "Banner video title"
       url: "http://example.com"
       label: "Subscribe"
