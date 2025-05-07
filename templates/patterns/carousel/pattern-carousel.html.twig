@@ -27,11 +27,10 @@
     } %}
   {% endif %}
   {% if item.sources is not empty and item.sources is iterable %}
-    {% set _sources = item.sources %}
+    {% set _picture = _picture|merge({
+      'sources': item.sources,
+    }) %}
   {% endif %}
-  {% set _picture = _picture|merge({
-    'sources': _sources,
-  }) %}
   {% set box_background = 'light' %}
   {% set font_color = 'dark' %}
   {% if item.variant is not empty and item.variant == 'text-overlay' %}

@@ -17,6 +17,7 @@
         "openeuropa/oe_time_caching": "^1.5"
     },
     "require-dev": {
+        "behat/behat": "~3.16.0",
         "behat/mink-selenium2-driver": "~1.6.0",
         "composer/installers": "~1.5",
         "drupal/address": "~1.11",
@@ -120,6 +121,7 @@
             }
         },
         "_readme": [
+            "Locking behat/behat on 3.16.* until we can have behat/behat 3.20.",
             "behat/mink-selenium2-driver locked to 1.6.x as version 1.7.0 introduces issues with mouse dragging and keyboard key events.",
             "Explicit requirement of nikic/php-parser as ^5.0 generates GrumPHP Parser issues.",
             "autoload-dev: explicitly mapping EntityReferenceFieldCreationTrait to prevent failures.",
