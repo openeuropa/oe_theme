@@ -86,11 +86,10 @@ class FilterEclTable extends FilterBase {
         $this->elementAddClass($th, 'ecl-table__header');
       }
 
-      // Do not process tables that use th cells anywhere but in the first
-      // column.
-      $ths_in_body = $xpath->query('.//tr[not(parent::thead)]/*[position()>1 and self::th]', $table);
-      if ($ths_in_body->count() !== 0) {
-        continue;
+      // Add header classes to th cells outside the thead.
+      foreach ($xpath->query('.//tr[not(parent::thead)]/th', $table) as $th) {
+        $this->elementAddClass($th, 'ecl-table__head');
+        $this->elementAddClass($th, 'ecl-table__header');
       }
 
       $headers = [];
