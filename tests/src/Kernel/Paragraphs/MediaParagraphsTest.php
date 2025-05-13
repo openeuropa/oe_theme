@@ -401,7 +401,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $expected_values['link'] = [
       'label' => 'Read more',
       'path' => '/',
-      'icon' => 'corner-arrow',
+      'icon' => 'arrow-left',
     ];
     $assert->assertPattern($expected_values, $html);
     $assert->assertVariant('left_featured', $html);
@@ -435,7 +435,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
       'link' => [
         'label' => 'Read more',
         'path' => '/',
-        'icon' => 'corner-arrow',
+        'icon' => 'arrow-left',
       ],
     ];
     $html = $this->renderParagraph($paragraph);

@@ -106,7 +106,7 @@ class TextFeaturedMediaAssert extends BasePatternAssert {
     $label_element = $link_element->filter('span.ecl-link__label');
     self::assertEquals($expected_link['label'], $label_element->text());
 
-    $svg = $link_element->filter('svg.ecl-icon.ecl-icon--xs.ecl-link__icon use');
+    $svg = $link_element->filter('svg.ecl-icon.ecl-icon--m.ecl-link__icon use');
     self::assertStringContainsString('icons.svg#' . $expected_link['icon'], $svg->attr('xlink:href'));
   }
 

@@ -24,7 +24,15 @@
 {% endif %}
 
 {% if link %}
-  {% set link_highlighted =  'featured' in variant ? true : false %}
+  {% set link_highlighted = 'featured' in variant ? true : false %}
+  {% set _icon = get_link_icon(link.path, 'm') %}
+  {% if _icon['name'] == 'corner-arrow' %}
+    {% set _icon = _icon|merge({
+      'name': 'arrow-left',
+      'transform': 'flip-horizontal',
+    }) %}
+  {% endif %}
+  {{ dump(_icon['name']) }}
   {% set call_to_action_link = {
     link: {
       type: 'standalone',
@@ -32,7 +40,7 @@
       path: link.path,
       icon_position: 'after'
     },
-    icon: get_link_icon(link.path, 'xs')
+    icon: _icon,
   }%}
 {% endif %}
 
