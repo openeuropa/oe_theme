@@ -24,10 +24,10 @@
 {% endif %}
 
 {% if link %}
-  {% set link_type = 'featured' in variant ? 'cta' : 'standalone' %}
+  {% set link_highlighted =  'featured' in variant ? true : false %}
   {% set call_to_action_link = {
     link: {
-      type: link_type,
+      type: 'standalone',
       label: link.label,
       path: link.path,
       icon_position: 'after'
@@ -121,6 +121,7 @@
   link: call_to_action_link,
   media_container: _media_container|default([]),
   position: _position,
+  link_highlighted: link_highlighted|default(false),
   extra_attributes: extra_attributes|default([]),
   extra_classes: extra_classes|default(''),
 } %}
