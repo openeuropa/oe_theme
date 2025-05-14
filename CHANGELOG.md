@@ -1,6 +1,14 @@
 # Change Log
 
-## [5.0.0-beta4](https://github.com/openeuropa/oe_theme/tree/5.0.0-beta5) (2025-05-05)
+## [5.0.0-beta6](https://github.com/openeuropa/oe_theme/tree/5.0.0-beta6) (2025-05-14)
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/5.0.0-beta5...5.0.0-beta6)
+
+**Merged pull requests:**
+
+- EWPP-5562: Update the highlighted link of Text with featured media pattern. [\#1588](https://github.com/openeuropa/oe_theme/pull/1588) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-5503: Fix Banner and Carousel templates for no media case. [\#1585](https://github.com/openeuropa/oe_theme/pull/1585) ([22Alexandra](https://github.com/22Alexandra))
+
+## [5.0.0-beta5](https://github.com/openeuropa/oe_theme/tree/5.0.0-beta5) (2025-05-05)
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/5.0.0-beta4...5.0.0-beta5)
 
 **Merged pull requests:**
