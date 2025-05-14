@@ -29,6 +29,7 @@ $font-family: null !default;
   display: block;
   margin-right: var(--ecl-spacing-s);
   padding-right: var(--ecl-spacing-s);
+  font: var(--ecl-font-s);
 }
 
 .ecl-contextual-navigation__item:last-child {

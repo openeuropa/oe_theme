@@ -52,7 +52,7 @@
   >
     {% if _items is not empty and _items is iterable %}
       {% for item in _items %}
-        {% set _item_classes = 'ecl-contextual-navigation__item ecl-u-mb-s' %}
+        {% set _item_classes = 'ecl-contextual-navigation__item ecl-u-mt-2xs' %}
         {% if loop.index > _items_limit %}
           {% set _item_classes = _item_classes ~ ' ' ~ 'ecl-contextual-navigation__item--collapsed' %}
         {% endif %}
