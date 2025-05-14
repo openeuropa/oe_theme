@@ -3918,7 +3918,7 @@
       'video': 0
       'figcaption.ecl-media-container__caption': 1
       'a.ecl-link.ecl-link--standalone[href="http://example.com"]': 1
-      'svg.ecl-icon.ecl-icon--xs.ecl-icon--primary.ecl-link__icon': 1
+      'svg.ecl-icon.ecl-icon--m.ecl-icon--primary.ecl-link__icon': 1
       'div.ecl-expandable.ecl-media-container__expandable': 0
     equals:
       'h2.ecl-u-type-heading-2': "Heading"
@@ -3926,7 +3926,7 @@
       'figcaption.ecl-media-container__caption': "Some caption text for the image"
       'div.ecl-featured-item__item div.ecl-featured-item__description': "Some more text"
       'a.ecl-link span.ecl-link__label': "Call to action"
-      'svg.ecl-icon.ecl-icon--xs.ecl-icon--primary.ecl-link__icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>'
+      'svg.ecl-icon.ecl-icon--m.ecl-icon--primary.ecl-link__icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>'
 - array:
     '#type': pattern
     '#id': text_featured_media
@@ -3957,7 +3957,7 @@
       'video': 0
       'figcaption.ecl-media-container__caption': 1
       'a.ecl-link.ecl-link--standalone[href="https://european-union.europa.eu/index_en"]': 1
-      'svg.ecl-icon.ecl-icon--xs.ecl-icon--primary.ecl-link__icon': 1
+      'svg.ecl-icon.ecl-icon--m.ecl-icon--primary.ecl-link__icon': 1
       'div.ecl-expandable.ecl-media-container__expandable': 1
       'button[data-ecl-label-expanded="Expanded"][data-ecl-label-collapsed="Collapsed"]': 1
     equals:
@@ -3965,8 +3965,8 @@
       'figcaption.ecl-media-container__caption': "Some caption text for the image"
       'div.ecl-featured-item__item div.ecl-featured-item__description': "Some more text"
       'a.ecl-link span.ecl-link__label': "Call to action"
-      'svg.ecl-icon.ecl-icon--xs.ecl-icon--primary.ecl-link__icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#corner-arrow"></use>'
-      'span.ecl-button__container svg.ecl-icon.ecl-icon--fluid.ecl-icon--rotate-180.ecl-button__icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#corner-arrow"></use>'
+      'svg.ecl-icon.ecl-icon--m.ecl-icon--primary.ecl-link__icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#arrow-left"></use>'
+      'a.ecl-link svg.ecl-icon.ecl-icon--flip-horizontal.ecl-icon--primary.ecl-link__icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#arrow-left"></use>'
       'div.ecl-expandable__content': "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Non enim iam stirpis bonum quaeret, sed animalis;<b>A mene tu?</b></p>"
 - array:
     '#type': pattern
@@ -4068,6 +4068,7 @@
   assertions:
     count:
       'article.ecl-featured-item.ecl-featured-item--highlight': 0
+      'article.ecl-featured-item.ecl-featured-item--link-highlighted': 1
       'div.ecl-featured-item__container': 1
       'div.ecl-featured-item__title': 1
       '.ecl-featured-item__media_container figure.ecl-media-container__figure': 1
@@ -4075,7 +4076,7 @@
       'iframe': 0
       'video': 0
       'figcaption.ecl-media-container__caption': 0
-      'a.ecl-link.ecl-link--cta[href="http://example.com"]': 1
+      'a.ecl-link.ecl-link--standalone.ecl-featured-item__link[href="http://example.com"]': 1
       'div.ecl-expandable.ecl-media-container__expandable': 0
     equals:
       'h2.ecl-u-type-heading-2': "Heading"
@@ -4122,12 +4123,13 @@
   assertions:
     count:
       'article.ecl-featured-item.ecl-featured-item--highlight': 0
+      'article.ecl-featured-item.ecl-featured-item--link-highlighted': 1
       'div.ecl-featured-item__container.ecl-featured-item__container--right': 1
       '.ecl-featured-item__media_container figure.ecl-media-container__figure': 1
       'img.ecl-media-container__media[src="http://via.placeholder.com/150x150"]': 0
       'iframe[src="//ec.europa.eu/avservices/play.cfm?ref=I-181645"]': 1
       'figcaption.ecl-media-container__caption': 0
-      'a.ecl-link.ecl-link--cta[href="http://example.com"]': 1
+      'a.ecl-link.ecl-link--standalone.ecl-featured-item__link[href="http://example.com"]': 1
     equals:
       'h2.ecl-u-type-heading-2': "Heading"
       'div.ecl-featured-item__item div.ecl-featured-item__description': "Some more text"
@@ -4189,6 +4191,7 @@
   assertions:
     count:
       'article.ecl-featured-item.ecl-featured-item--highlight': 0
+      'article.ecl-featured-item.ecl-featured-item--link-highlighted': 1
       'div.ecl-featured-item__container.ecl-featured-item__container--right': 1
       '.ecl-featured-item__media_container figure.ecl-media-container__figure': 1
       'video.ecl-video.ecl-media-container__media[poster="https://inno-ecl.s3.amazonaws.com/media/examples/example-image.jpg"][autoplay][muted][loop]': 1
@@ -4197,7 +4200,7 @@
       'img.ecl-media-container__media': 0
       'iframe': 0
       'figcaption.ecl-media-container__caption': 0
-      'a.ecl-link.ecl-link--cta[href="http://example.com"]': 1
+      'a.ecl-link.ecl-link--standalone.ecl-featured-item__link[href="http://example.com"]': 1
     equals:
       'h2.ecl-u-type-heading-2': "Heading"
       'div.ecl-featured-item__item div.ecl-featured-item__description': "Some more text"

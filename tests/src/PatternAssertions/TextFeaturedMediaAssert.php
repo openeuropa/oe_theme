@@ -106,7 +106,7 @@ class TextFeaturedMediaAssert extends BasePatternAssert {
     $label_element = $link_element->filter('span.ecl-link__label');
     self::assertEquals($expected_link['label'], $label_element->text());
 
-    $svg = $link_element->filter('svg.ecl-icon.ecl-icon--xs.ecl-link__icon use');
+    $svg = $link_element->filter('svg.ecl-icon.ecl-icon--m.ecl-link__icon use');
     self::assertStringContainsString('icons.svg#' . $expected_link['icon'], $svg->attr('xlink:href'));
   }
 
@@ -229,10 +229,10 @@ class TextFeaturedMediaAssert extends BasePatternAssert {
     $link_variant = 'simple';
     $link_element = $crawler->filter('a.ecl-link.ecl-link--icon');
     if ($link_element->count()) {
-      $link_class = $link_element->attr('class');
-      if (strpos($link_class, 'ecl-link--cta') !== FALSE) {
-        // If we have a link set and the "ecl-link--cta" class is present, then
-        // we have a featured variant.
+      $highlighted_link = $crawler->filter('.ecl-featured-item--link-highlighted');
+      if ($highlighted_link->count() > 0) {
+        // If we have a link set and the "ecl-featured-item--link-highlighted"
+        // class is present in the pattern, then we have a featured variant.
         $link_variant = 'featured';
       }
     }
