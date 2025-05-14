@@ -480,6 +480,41 @@
     '#type': pattern
     '#id': banner
     '#fields':
+      title: "Banner title"
+      url: "http://example.com"
+      label: "Subscribe"
+      size: "l"
+      font_size: "l"
+      font_color: "dark"
+      box_background: "light"
+      description: "Banner description"
+      horizontal: "center"
+      vertical: "bottom"
+      full_width: false
+      credit: "© Copyright or credit"
+      color_mode: green
+      link_extra_attributes:
+        - name: 'data-name'
+          value: 'data value'
+  assertions:
+    count:
+      'section.ecl-banner.ecl-color-mode--green.ecl-banner--font-l.ecl-banner--no-media.ecl-banner--l.ecl-banner--h-center.ecl-banner--v-bottom': 1
+      '.ecl-banner--box-bg-light': 0
+      '.ecl-banner--color-dark': 0
+      'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-banner__link-cta[href="http://example.com"]': 1
+      'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-banner__link-cta[data-name="data value"]': 1
+      'svg.ecl-icon.ecl-icon--xs.ecl-icon--rotate-90.ecl-link__icon': 1
+      'picture': 0
+      'footer.ecl-banner__credit': 0
+      'video': 0
+    equals:
+      'div.ecl-container div.ecl-banner__container div.ecl-banner__content div.ecl-banner__title span.ecl-banner__title-text': Banner title
+      'div.ecl-container div.ecl-banner__container div.ecl-banner__content p.ecl-banner__description span.ecl-banner__description-text': Banner description
+      'a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-banner__link-cta[href="http://example.com"] span.ecl-link__label': Subscribe
+- array:
+    '#type': pattern
+    '#id': banner
+    '#fields':
       title: "Banner video title"
       url: "http://example.com"
       label: "Subscribe"
@@ -5017,23 +5052,21 @@
       div.ecl-carousel__slide section.ecl-banner.ecl-banner--box-bg-dark.ecl-banner--color-light: 2
       div.ecl-carousel__slide section.ecl-banner.ecl-banner--box-bg-dark.ecl-banner--color-light.ecl-banner--h-center: 1
       div.ecl-carousel__slide section.ecl-banner.ecl-banner--box-bg-dark.ecl-banner--color-light.ecl-color-mode--orange: 1
-      div.ecl-carousel__slide section.ecl-banner.ecl-banner--box-bg-none.ecl-banner--color-dark: 2
-      div.ecl-carousel__slide section.ecl-banner.ecl-banner--box-bg-none.ecl-banner--color-dark.ecl-banner--h-center: 1
+      div.ecl-carousel__slide section.ecl-banner.ecl-banner--box-bg-none.ecl-banner--color-dark: 0
+      div.ecl-carousel__slide section.ecl-banner.ecl-banner--no-media: 2
+      div.ecl-carousel__slide section.ecl-banner.ecl-banner--no-media.ecl-banner--h-center: 1
       div.ecl-carousel__controls: 1
       section.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--m.ecl-banner--h-center picture.ecl-picture.ecl-banner__picture img.ecl-banner__image[src="https://picsum.photos/seed/picsum/600/300"]: 1
-      section.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--m.ecl-banner--h-center picture source: 6
-      'section.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--m.ecl-banner--h-center picture source[srcset="https://loremflickr.com/480/480/arch"]:not([media])': 1
-      'section.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--m.ecl-banner--h-center picture source[srcset="https://picsum.photos/seed/picsum/768/768"][media="(min-width: 480px)"]': 1
-      'section.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--m.ecl-banner--h-center picture source[srcset="https://picsum.photos/seed/picsum/996/996"][media="(min-width: 768px)"]': 1
-      'section.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--m.ecl-banner--h-center picture source[srcset="https://loremflickr.com/1140/380/brazil"][media="(min-width: 996px)"]': 1
-      'section.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--m.ecl-banner--h-center picture source[srcset="https://loremflickr.com/1368/456/snow"][media="(min-width: 1140px)"]': 1
-      'section.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--m.ecl-banner--h-center picture source[srcset="https://inno-ecl.s3.amazonaws.com/media/examples/example-image.jpg"][media="(min-width: 1368px)"]': 1
+      section.ecl-banner.ecl-color-mode--purple.ecl-banner--font-m.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--m.ecl-banner--h-left picture source: 6
+      'section.ecl-banner.ecl-color-mode--purple.ecl-banner--font-m.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--m.ecl-banner--h-left picture source[srcset="https://loremflickr.com/480/480/arch"]:not([media])': 1
+      'section.ecl-banner.ecl-color-mode--purple.ecl-banner--font-m.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--m.ecl-banner--h-left picture source[srcset="https://picsum.photos/seed/picsum/768/768"][media="(min-width: 480px)"]': 1
+      'section.ecl-banner.ecl-color-mode--purple.ecl-banner--font-m.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--m.ecl-banner--h-left picture source[srcset="https://picsum.photos/seed/picsum/996/996"][media="(min-width: 768px)"]': 1
+      'section.ecl-banner.ecl-color-mode--purple.ecl-banner--font-m.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--m.ecl-banner--h-left picture source[srcset="https://loremflickr.com/1140/380/brazil"][media="(min-width: 996px)"]': 1
+      'section.ecl-banner.ecl-color-mode--purple.ecl-banner--font-m.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--m.ecl-banner--h-left picture source[srcset="https://loremflickr.com/1368/456/snow"][media="(min-width: 1140px)"]': 1
+      'section.ecl-banner.ecl-color-mode--purple.ecl-banner--font-m.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--m.ecl-banner--h-left picture source[srcset="https://inno-ecl.s3.amazonaws.com/media/examples/example-image.jpg"][media="(min-width: 1368px)"]': 1
       section.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--m:not(.ecl-banner--h-center) picture.ecl-picture.ecl-banner__picture img.ecl-banner__image[src="https://picsum.photos/seed/picsum/600/300"]: 1
       section.ecl-banner--box-bg-dark.ecl-banner--color-light.ecl-banner--m:not(.ecl-banner--h-center) picture.ecl-picture.ecl-banner__picture img.ecl-banner__image[src="https://picsum.photos/seed/picsum/600/300"]: 1
       section.ecl-banner--box-bg-dark.ecl-banner--color-light.ecl-banner--m.ecl-banner--h-center picture.ecl-picture.ecl-banner__picture img.ecl-banner__image[src="https://picsum.photos/seed/picsum/600/300"]: 1
-      div.ecl-carousel__slide section.ecl-banner--box-bg-none.ecl-banner--color-dark.ecl-banner--m div.ecl-banner__content div.ecl-banner__title: 2
-      div.ecl-carousel__slide section.ecl-banner--box-bg-none.ecl-banner--color-dark.ecl-banner--m div.ecl-banner__content p.ecl-banner__description: 1
-      div.ecl-carousel__slide section.ecl-banner--box-bg-none.ecl-banner--color-dark.ecl-banner--m div.ecl-banner__content div.ecl-banner__cta: 1
       div.ecl-carousel__slide div.ecl-banner__content div.ecl-banner__cta a[data-name="data value"]: 4
     equals:
       div.ecl-carousel__slide section.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--m:not(.ecl-banner--h-center) div.ecl-banner__content div.ecl-banner__title .ecl-banner__title-text: 'Lorem ipsum dolor sit amet'
@@ -5043,10 +5076,10 @@
       div.ecl-carousel__slide section.ecl-banner.ecl-banner--box-bg-dark.ecl-banner--color-light.ecl-banner--h-center div.ecl-banner__title .ecl-banner__title-text: 'Duis vitae pulvinar turpis'
       div.ecl-carousel__slide section.ecl-banner.ecl-banner--box-bg-dark.ecl-banner--color-light.ecl-banner--h-center p.ecl-banner__description .ecl-banner__description-text: 'Integer quis lorem tellus. Nullam sollicitudin suscipit diam, ac blandit ipsum tempor consectetur'
       div.ecl-carousel__slide section.ecl-banner.ecl-banner--box-bg-dark.ecl-banner--color-light.ecl-banner--h-center div.ecl-banner__cta a[href="https://example.com"] span.ecl-link__label: 'CTA 2'
-      div.ecl-carousel__slide section.ecl-banner--box-bg-none.ecl-banner--color-dark.ecl-banner--m.ecl-banner--h-center div.ecl-banner__title .ecl-banner__title-text: 'Donec maximus pharetra ex a ultricies'
-      div.ecl-carousel__slide section.ecl-banner--box-bg-none.ecl-banner--color-dark.ecl-banner--m.ecl-banner--h-center p.ecl-banner__description .ecl-banner__description-text: 'Integer quis lorem tellus.'
-      div.ecl-carousel__slide section.ecl-banner--box-bg-none.ecl-banner--color-dark.ecl-banner--m.ecl-banner--h-center div.ecl-banner__cta a[href="https://example.com"] span.ecl-link__label: 'CTA 3'
-      div.ecl-carousel__slide section.ecl-banner--box-bg-none.ecl-banner--color-dark.ecl-banner--m:not(.ecl-banner--h-center) div.ecl-banner__title .ecl-banner__title-text: 'Donec maximus pharetra'
+      div.ecl-carousel__slide section.ecl-banner--no-media.ecl-banner--m.ecl-banner--h-center div.ecl-banner__title .ecl-banner__title-text: 'Donec maximus pharetra ex a ultricies'
+      div.ecl-carousel__slide section.ecl-banner--no-media.ecl-banner--m.ecl-banner--h-center p.ecl-banner__description .ecl-banner__description-text: 'Integer quis lorem tellus.'
+      div.ecl-carousel__slide section.ecl-banner--no-media.ecl-banner--m.ecl-banner--h-center div.ecl-banner__cta a[href="https://example.com"] span.ecl-link__label: 'CTA 3'
+      div.ecl-carousel__slide section.ecl-banner--no-media.ecl-banner--m:not(.ecl-banner--h-center) div.ecl-banner__title .ecl-banner__title-text: 'Donec maximus pharetra'
       div.ecl-carousel__slide section.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--m.ecl-banner--h-center div.ecl-banner__content div.ecl-banner__title .ecl-banner__title-text: 'Lorem ipsum dolor sit amet'
       div.ecl-carousel__slide section.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--m.ecl-banner--h-center div.ecl-banner__content p.ecl-banner__description .ecl-banner__description-text: 'Nullam sollicitudin suscipit diam, ac blandit ipsum tempor consectetur'
       div.ecl-carousel__slide section.ecl-banner--box-bg-dark.ecl-banner--color-light.ecl-banner--m:not(.ecl-banner--h-center) div.ecl-banner__content div.ecl-banner__title .ecl-banner__title-text: 'Duis vitae pulvinar turpis'
@@ -5088,19 +5121,19 @@
       section.ecl-carousel.ecl-carousel--full-width: 1
       div.ecl-carousel__slide: 3
       div.ecl-carousel__slide section.ecl-banner.ecl-banner--l.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--h-center: 1
-      div.ecl-carousel__slide section.ecl-banner.ecl-banner--l.ecl-banner--box-bg-none.ecl-banner--color-dark: 2
+      div.ecl-carousel__slide section.ecl-banner.ecl-banner--l.ecl-banner--no-media: 2
       section.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--l picture.ecl-picture.ecl-banner__picture img.ecl-banner__image[src="https://picsum.photos/seed/picsum/600/300"]: 1
       picture source: 0
     contains:
       div.ecl-carousel__slide section.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--l.ecl-banner--h-center div.ecl-banner__content div.ecl-banner__title: 'Donec maximus pharetra ex a ultricies'
       div.ecl-carousel__slide section.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--l.ecl-banner--h-center div.ecl-banner__content p.ecl-banner__description: 'Integer quis lorem tellus. Nullam sollicitudin suscipit diam, ac blandit ipsum tempor consectetur. Duis vitae pulvinar turpis. Donec maximus pharetra ex a ultricies'
       div.ecl-carousel__slide section.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--l.ecl-banner--h-center div.ecl-banner__content div.ecl-banner__cta a span.ecl-link__label: 'CTA 1'
-      div.ecl-carousel__slide section.ecl-banner--box-bg-none.ecl-banner--color-dark:nth-child(1).ecl-banner--l div.ecl-banner__content div.ecl-banner__title: 'Lorem ipsum dolor sit amet'
-      div.ecl-carousel__slide section.ecl-banner--box-bg-none.ecl-banner--color-dark:nth-child(1).ecl-banner--l div.ecl-banner__content p.ecl-banner__description: 'Nullam sollicitudin suscipit diam, ac blandit ipsum tempor consectetur'
-      div.ecl-carousel__slide section.ecl-banner--box-bg-none.ecl-banner--color-dark:nth-child(1).ecl-banner--l div.ecl-banner__content div.ecl-banner__cta a span.ecl-link__label: 'CTA 2'
-      div.ecl-carousel__slide section.ecl-banner--box-bg-none.ecl-banner--color-dark:nth-child(2).ecl-banner--l div.ecl-banner__content div.ecl-banner__title: 'Duis vitae pulvinar turpis'
-      div.ecl-carousel__slide section.ecl-banner--box-bg-none.ecl-banner--color-dark:nth-child(2).ecl-banner--l div.ecl-banner__content p.ecl-banner__description: 'Integer quis lorem tellus. Nullam sollicitudin suscipit diam, ac blandit ipsum tempor consectetur'
-      div.ecl-carousel__slide section.ecl-banner--box-bg-none.ecl-banner--color-dark:nth-child(2).ecl-banner--l div.ecl-banner__content div.ecl-banner__cta a span.ecl-link__label: 'CTA 3'
+      div.ecl-carousel__slide section.ecl-banner--no-media:nth-child(1).ecl-banner--l div.ecl-banner__content div.ecl-banner__title: 'Lorem ipsum dolor sit amet'
+      div.ecl-carousel__slide section.ecl-banner--no-media:nth-child(1).ecl-banner--l div.ecl-banner__content p.ecl-banner__description: 'Nullam sollicitudin suscipit diam, ac blandit ipsum tempor consectetur'
+      div.ecl-carousel__slide section.ecl-banner--no-media:nth-child(1).ecl-banner--l div.ecl-banner__content div.ecl-banner__cta a span.ecl-link__label: 'CTA 2'
+      div.ecl-carousel__slide section.ecl-banner--no-media:nth-child(2).ecl-banner--l div.ecl-banner__content div.ecl-banner__title: 'Duis vitae pulvinar turpis'
+      div.ecl-carousel__slide section.ecl-banner--no-media:nth-child(2).ecl-banner--l div.ecl-banner__content p.ecl-banner__description: 'Integer quis lorem tellus. Nullam sollicitudin suscipit diam, ac blandit ipsum tempor consectetur'
+      div.ecl-carousel__slide section.ecl-banner--no-media:nth-child(2).ecl-banner--l div.ecl-banner__content div.ecl-banner__cta a span.ecl-link__label: 'CTA 3'
       div.ecl-carousel__pagination: 'in 3'
 - array:
     '#type': pattern

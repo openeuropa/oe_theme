@@ -79,11 +79,10 @@
   } %}
 {% endif %}
 {% if sources is not empty and sources is iterable %}
-  {% set _sources = sources %}
+  {% set _picture = _picture|merge({
+    'sources': sources,
+  }) %}
 {% endif %}
-{% set _picture = _picture|merge({
-  'sources': _sources,
-}) %}
 
 {# We need to use src_type instead of type to avoid getting render arrays due to using type. #}
 {% set _video = video|default({}) %}
