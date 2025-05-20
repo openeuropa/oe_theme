@@ -93,7 +93,7 @@
 {% if site_specific_footer.social_links is not empty %}
   {% set section_common = section_common|merge({
     'social_media': {
-      'description': "Follow the European Commission",
+      'description': 'Follow us'|t,
       'description_inline': true,
       'links': ecl_footer_links(site_specific_footer.social_links),
     },

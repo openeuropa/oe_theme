@@ -442,8 +442,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
       'body' => 'Event website',
     ];
     $field_list_assert->assertPattern($field_list_expected_values, $practical_list_content->getOuterHtml());
-    $event_website_link_icon = $this->assertSession()->elementExists('css', 'dl.ecl-description-list dd a.ecl-link svg.ecl-icon.ecl-icon--2xs.ecl-link__icon');
-    $this->assertEquals('<use xlink:href="/build/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external" xmlns:xlink="http://www.w3.org/1999/xlink"></use>', $event_website_link_icon->getHtml());
+    $this->assertSession()->elementExists('css', 'dl.ecl-description-list dd a.ecl-link span.ecl-icon.ecl-icon--2xs.ecl-link__icon.wt-icon--external');
 
     // Assert "Registration capacity" field.
     $node->set('oe_event_registration_capacity', 'event registration capacity')->save();
@@ -609,7 +608,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     $online_button = $this->assertSession()->elementExists('css', 'a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-u-mt-l.ecl-u-mb-l.ecl-u-d-inline-block', $details_content);
     $this->assertEquals('Link to online event', $online_button->find('css', 'span.ecl-link__label')->getText());
     $this->assertEquals('http://www.example.com/online_link', $online_button->getAttribute('href'));
-    $this->assertEquals('<use xlink:href="/build/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external" xmlns:xlink="http://www.w3.org/1999/xlink"></use>', $online_button->find('css', 'svg.ecl-icon.ecl-icon--2xs.ecl-link__icon')->getHtml());
+    $this->assertSession()->elementExists('css', 'span.ecl-icon.ecl-icon--2xs.ecl-link__icon.wt-icon--external', $online_button);
 
     $description_summary = $this->assertSession()->elementExists('css', 'div > div:nth-of-type(2) .ecl', $details_content);
     $this->assertEquals('Event report summary', $description_summary->getText());
@@ -632,8 +631,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     $this->assertEmpty($caption->find('css', '.ecl-gallery__meta')->getText());
     // Assert media links.
     $this->assertSession()->linkExistsExact('Main link for media items');
-    $more_media_link_icon = $this->assertSession()->elementExists('css', 'div#event-media a.ecl-link svg.ecl-icon.ecl-icon--2xs.ecl-link__icon');
-    $this->assertEquals('<use xlink:href="/build/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external" xmlns:xlink="http://www.w3.org/1999/xlink"></use>', $more_media_link_icon->getHtml());
+    $this->assertSession()->elementExists('css', 'div#event-media a.ecl-link span.ecl-icon.ecl-icon--2xs.ecl-link__icon.wt-icon--external');
     $this->assertSession()->pageTextContainsOnce('More media links');
 
     // Assert that summary and description fields are not displayed anymore.
@@ -646,8 +644,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     // finished but the livestream is ongoing.
     $status_container = $this->assertSession()->elementExists('css', 'div.ecl-notification.ecl-notification--warning.ecl-u-mb-2xl');
     // Assert the livestream icon is rendered.
-    $icon = $status_container->find('css', 'svg.ecl-icon.ecl-icon--l.ecl-notification__icon use');
-    $this->assertStringContainsString('livestreaming', $icon->getAttribute('xlink:href'));
+    $this->assertSession()->elementExists('css', 'span.ecl-icon.ecl-icon--l.ecl-notification__icon.wt-icon--livestreaming', $status_container);
     // Assert the message.
     $this->assertStringContainsString('This event has ended, but the livestream is ongoing.', $status_container->find('css', 'div.ecl-notification__content div.ecl-notification__description')->getText());
 
@@ -1103,7 +1100,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     if ($external) {
       $rendered_button = $this->assertSession()->elementExists('css', 'span.ecl-u-mt-2xl.ecl-u-d-inline-block a.ecl-link.ecl-link--cta.ecl-link--icon', $parent_element);
       $this->assertEquals($text, $rendered_button->find('css', 'span.ecl-link__label')->getText());
-      $this->assertEquals('<use xlink:href="/build/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external" xmlns:xlink="http://www.w3.org/1999/xlink"></use>', $rendered_button->find('css', 'svg.ecl-icon.ecl-icon--2xs.ecl-link__icon')->getHtml());
+      $this->assertSession()->elementExists('css', 'span.ecl-icon.ecl-icon--2xs.ecl-link__icon.wt-icon--external', $rendered_button);
     }
     else {
       $this->assertSession()->elementNotExists('css', 'span.ecl-u-mt-2xl.ecl-u-d-inline-block a.ecl-link.ecl-link--cta.ecl-link--icon', $parent_element);

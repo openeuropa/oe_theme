@@ -478,17 +478,14 @@ abstract class ContentRenderTestBase extends BrowserTestBase {
     $this->assertCount(1, $label);
     $this->assertEquals($title, $label[0]->getText());
 
-    $svg_locator = 'svg.ecl-icon.ecl-icon--' . $icon_size . '.ecl-icon--primary.ecl-link__icon';
+    $icon_base_selector = 'span.ecl-icon.ecl-icon--' . $icon_size . '.ecl-icon--primary.ecl-link__icon';
     $icon_type = 'external';
     if (!$is_external) {
-      $svg_locator = 'svg.ecl-icon.ecl-icon--' . $icon_size . '.ecl-icon--rotate-90.ecl-icon--primary.ecl-link__icon';
+      $icon_base_selector = 'span.ecl-icon.ecl-icon--' . $icon_size . '.ecl-icon--rotate-90.ecl-icon--primary.ecl-link__icon';
       $icon_type = 'corner-arrow';
     }
-    $svg = $link[0]->findAll('css', $svg_locator);
-    $this->assertCount(1, $svg);
-    $icon = $svg[0]->findAll('css', 'use');
-    $this->assertCount(1, $icon);
-    $this->assertStringContainsString($icon_type, $icon[0]->getAttribute('xlink:href'));
+    $icon_selector = $link[0]->findAll('css', $icon_base_selector . '.wt-icon--' . $icon_type);
+    $this->assertCount(1, $icon_selector);
   }
 
   /**
