@@ -10,16 +10,48 @@
  * @see ./module/contrib/oe_corporate_blocks/templates/oe-corporate-blocks-ec-footer.html.twig
  */
 #}
+{# Populate the site info section. #}
+{% set section_site_info = {
+  'logo': {
+    'picture': {
+      'img': {
+        'alt': 'European Commission logo'|t,
+        'src': desktop_logo_path,
+      },
+    },
+    'language': current_language_id,
+    'path': path,
+  },
+  'description': site_owner ? 'This site is managed by:<br />@name'|t({'@name': site_owner}),
+} %}
 
-{% set _top_row_links = [] %}
+{# Populate the core section. #}
+{% set section_core = {
+    'links': ecl_footer_links(corporate_footer.ec_core_section),
+} %}
+
+{% set section_common = [] %}
+{# Populate the common section. #}
+{% if site_specific_footer.social_links is not empty %}
+  {# Add social links if we have. #}
+  {% set section_common = section_common|merge({
+    'social_media': {
+      'description': 'Follow us'|t,
+      'links': ecl_footer_links(site_specific_footer.social_links),
+      'description_inline': true,
+      'section_class_name': 'ecl-site-footer__section--social',
+    }
+  }) %}
+{% endif %}
+{# Add the accessibility link, if available. #}
+{% set _accessibility_link = [] %}
 {% if accessibility_link is not empty %}
-  {% set _top_row_links = {
+  {% set _accessibility_link = {
     links: {
       link: {
         label: 'Accessibility'|t,
         path: accessibility_link,
         external: accessibility_link|is_external_url,
-        icon_path: ecl_icon_path,
         inverted: ecl_component_library == 'ec',
       },
       extra_attributes: [
@@ -31,54 +63,22 @@
     }
   } %}
 {% endif %}
-
-{% set _first_column = [
-  {
-    'logo': {
-      'alt': 'European Commission logo'|t,
-      'title': 'European Commission'|t,
-      'language': current_language_id,
-      'path': path,
-      'src_desktop': desktop_logo_path,
-    },
-    'description': site_owner ? 'This site is managed by:<br />@name'|t({'@name': site_owner}),
-    'links': _top_row_links,
-  },
-] %}
-
-{% set _second_column = [
-  {
-    'links': ecl_footer_links(corporate_footer.ec_core_section),
-    'links_columns': true,
-  },
-]
-%}
-
-{% set _bottom_navigation_row = [] %}
-
-{# Add social links if we have. #}
-{% if site_specific_footer.social_links is not empty %}
-  {% set _bottom_navigation_row = _bottom_navigation_row|merge([{
-    'title': 'Follow us'|t,
-    'links': ecl_footer_links(site_specific_footer.social_links),
-    'links_inline': true,
-    'section_class_name': 'ecl-site-footer__section--social',
-  }]) %}
-{% endif %}
-
 {# Add legal navigation links. #}
 {% if corporate_footer.legal_navigation is not empty %}
-  {% set _bottom_navigation_row = _bottom_navigation_row|merge([{
-    'links': ecl_footer_links(corporate_footer.legal_navigation),
+  {% set _links = ecl_footer_links(corporate_footer.legal_navigation) %}
+  {% set _links = _links|merge(_accessibility_link) %}
+  {% set section_common = section_common|merge({
+    'links': _links,
     'links_inline': true,
     'links_separator': true,
     'section_class_name': 'ecl-site-footer__section--extra-link',
-  }]) %}
+  }) %}
 {% endif %}
 
 {% block content %}
-  {% include '@ecl-twig/site-footer' with {
-    'rows': [[_first_column, _second_column], [_bottom_navigation_row]],
-    'split_columns': true,
+  {% include '@ecl-twig/site-footer/ecl-site-footer-ec.html.twig' with {
+    'section_site_info': section_site_info,
+    'section_core': section_core,
+    'section_common': section_common,
   } %}
 {% endblock %}
