@@ -14,7 +14,8 @@
         "drupal/twig_field_value": "^2.0",
         "drupal/ui_patterns": "^1.5",
         "openeuropa/ecl-twig-loader": "^4.0",
-        "openeuropa/oe_time_caching": "^1.5"
+        "openeuropa/oe_time_caching": "^1.5",
+        "openeuropa/oe_webtools": "^1.35"
     },
     "require-dev": {
         "behat/behat": "~3.16.0",
@@ -56,7 +57,6 @@
         "openeuropa/oe_multilingual": "^1.18",
         "openeuropa/oe_paragraphs": "^1.20",
         "openeuropa/oe_search": "^2.9",
-        "openeuropa/oe_webtools": "^1.35",
         "openeuropa/rdf_skos": "^1.0.0",
         "openeuropa/task-runner-drupal-project-symlink": "^1.0",
         "phpspec/prophecy-phpunit": "^2",
