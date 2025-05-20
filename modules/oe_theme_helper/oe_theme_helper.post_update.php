@@ -593,3 +593,11 @@ function oe_theme_helper_post_update_40004(): void {
   $image_style->save();
   $image_style->flush();
 }
+
+/**
+ * Enable OpenEuropa Webtools module.
+ */
+function oe_theme_helper_post_update_50001(): void {
+  \Drupal::service('module_installer')->install(['oe_webtools']);
+  \Drupal::service('kernel')->invalidateContainer();
+}
