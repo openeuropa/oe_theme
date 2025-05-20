@@ -636,11 +636,13 @@ class TwigExtension extends AbstractExtension {
 
       if (!empty($link['social_network'])) {
         $ecl_link['link']['icon_position'] = 'before';
-        $ecl_link['link']['hide_label'] = $context['ecl_component_library'] === 'ec' && $context['ecl_branding'] === 'core';
+        $ecl_link['link']['hide_label'] = $context['ecl_component_library'] === 'ec';
         $ecl_link += [
           'icon' => [
-            'path' => $context['ecl_icon_social_media_path'],
-            'name' => $context['ecl_component_library'] == 'eu' ? $link['social_network'] : $link['social_network'] . '-negative',
+            'family' => 'networks',
+            'name' => $link['social_network'],
+            'size' => $context['ecl_component_library'] == 'eu' ? 'xs' : '',
+            'style' => $context['ecl_component_library'] == 'eu' ? '' : 'inverted',
           ],
         ];
       }

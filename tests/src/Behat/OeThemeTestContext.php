@@ -298,7 +298,9 @@ class OeThemeTestContext extends RawDrupalContext {
     Assert::assertEquals($link, $logo_link->getAttribute('href'));
     $picture = $logo_link->find('css', 'picture');
     Assert::assertEquals($img_alt, $picture->find('css', 'img')->getAttribute('alt'));
-    Assert::assertEquals($img_title, $picture->getAttribute('title'));
+    if ($component_library === 'European Union') {
+      Assert::assertEquals($img_title, $picture->getAttribute('title'));
+    }
   }
 
   /**
@@ -360,7 +362,7 @@ class OeThemeTestContext extends RawDrupalContext {
    *   'European Union' or 'European Commission'.
    */
   protected function getFooterType(): string {
-    $ec_footer_selector = $this->getSession()->getPage()->find('css', 'footer.ecl-site-footer.ecl-site-footer--split-columns');
+    $ec_footer_selector = $this->getSession()->getPage()->find('css', 'footer.ecl-site-footer div.ecl-site-footer__row.ecl-site-footer__row--specific');
     if (!$ec_footer_selector) {
       return 'European Union';
     }
