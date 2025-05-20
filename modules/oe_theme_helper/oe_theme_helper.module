@@ -44,6 +44,11 @@ function oe_theme_helper_page_attachments(array &$page) {
     $component_library = theme_get_setting('component_library') ?? 'ec';
     $page['#attached']['library'][] = 'oe_theme/component_library_' . $component_library;
   }
+
+  // From ECL 5.0.0-alpha.11 the ECL icons have been moved to Webtools, so
+  // OE Webtools becomes a dependency of oe_theme and the webtools smartloader
+  // library is required for the icons to be loaded.
+  $page['#attached']['library'][] = 'oe_webtools/drupal.webtools-smartloader';
 }
 
 /**
