@@ -54,32 +54,32 @@ class SocialMediaFollowTest extends ParagraphsTestBase {
     // Verify that the paragraph contains all the links.
     $links_html = $links->html();
     $this->assertStringContainsString('Email', $links_html);
-    $this->assertCount(1, $crawler->filterXPath('//*[name()=\'use\' and substring(@*, string-length(@*) - 5) = \'#email\']'));
+    $this->assertCount(1, $crawler->filter('span.wt-icon-networks--email'));
     // Assert that the Facebook link is rendered but not the Facebook icon, as
     // this link has no type associated.
     $this->assertStringContainsString('Facebook', $links_html);
-    $this->assertCount(0, $crawler->filterXPath('//*[name()=\'use\' and substring(@*, string-length(@*) - 8) = \'#facebook\']'));
+    $this->assertCount(0, $crawler->filter('span.wt-icon-networks--facebook'));
     $this->assertStringContainsString('Flickr', $links_html);
-    $this->assertCount(1, $crawler->filterXPath('//*[name()=\'use\' and substring(@*, string-length(@*) - 6) = \'#flickr\']'));
+    $this->assertCount(1, $crawler->filter('span.wt-icon-networks--flickr'));
     $this->assertStringContainsString('Google+', $links_html);
-    $this->assertCount(1, $crawler->filterXPath('//*[name()=\'use\' and substring(@*, string-length(@*) - 6) = \'#google\']'));
+    $this->assertCount(1, $crawler->filter('span.wt-icon-networks--google'));
     $this->assertStringContainsString('Instagram', $links_html);
-    $this->assertCount(1, $crawler->filterXPath('//*[name()=\'use\' and substring(@*, string-length(@*) - 9) = \'#instagram\']'));
+    $this->assertCount(1, $crawler->filter('span.wt-icon-networks--instagram'));
     $this->assertStringContainsString('LinkedIn', $links_html);
-    $this->assertCount(1, $crawler->filterXPath('//*[name()=\'use\' and substring(@*, string-length(@*) - 8) = \'#linkedin\']'));
+    $this->assertCount(1, $crawler->filter('span.wt-icon-networks--linkedin'));
     $this->assertStringContainsString('Pinterest', $links_html);
-    $this->assertCount(1, $crawler->filterXPath('//*[name()=\'use\' and substring(@*, string-length(@*) - 9) = \'#pinterest\']'));
+    $this->assertCount(1, $crawler->filter('span.wt-icon-networks--pinterest'));
     $this->assertStringContainsString('RSS', $links_html);
-    $this->assertCount(1, $crawler->filterXPath('//*[name()=\'use\' and substring(@*, string-length(@*) - 3) = \'#rss\']'));
+    $this->assertCount(1, $crawler->filter('span.wt-icon-networks--rss'));
     $this->assertStringContainsString('Storify', $links_html);
-    $this->assertCount(1, $crawler->filterXPath('//*[name()=\'use\' and substring(@*, string-length(@*) - 7) = \'#storify\']'));
+    $this->assertCount(1, $crawler->filter('span.wt-icon-networks--storify'));
     $this->assertStringContainsString('1st Twitter', $links_html);
     $this->assertStringContainsString('2nd Twitter', $links_html);
-    $this->assertCount(2, $crawler->filterXPath('//*[name()=\'use\' and substring(@*, string-length(@*) - 7) = \'#twitter\']'));
+    $this->assertCount(2, $crawler->filter('span.wt-icon-networks--twitter'));
     $this->assertStringContainsString('Yammer', $links_html);
-    $this->assertCount(1, $crawler->filterXPath('//*[name()=\'use\' and substring(@*, string-length(@*) - 6) = \'#yammer\']'));
+    $this->assertCount(1, $crawler->filter('span.wt-icon-networks--yammer'));
     $this->assertStringContainsString('Youtube', $links_html);
-    $this->assertCount(1, $crawler->filterXPath('//*[name()=\'use\' and substring(@*, string-length(@*) - 7) = \'#youtube\']'));
+    $this->assertCount(1, $crawler->filter('span.wt-icon-networks--youtube'));
     $this->assertStringContainsString('Other social networks', $links_html);
 
     // Fix the Facebook link type.
@@ -89,7 +89,7 @@ class SocialMediaFollowTest extends ParagraphsTestBase {
     $crawler = new Crawler($html);
 
     // Verify that the Facebook icon is now rendered.
-    $this->assertCount(1, $crawler->filterXPath('//*[name()=\'use\' and substring(@*, string-length(@*) - 8) = \'#facebook\']'));
+    $this->assertCount(1, $crawler->filter('span.wt-icon-networks--facebook'));
   }
 
   /**
