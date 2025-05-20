@@ -174,12 +174,12 @@ class SiteHeaderTest extends BrowserTestBase {
         $this->assertEquals('Change language, current language is English - English', $language_switcher_button->getAttribute('aria-label'));
       }
       $this->assertEquals('language-list-overlay', $language_switcher_button->getAttribute('aria-controls'));
-      $icon = $language_switcher_button->find('css', "span.ecl-site-header__language-icon svg.ecl-icon.ecl-icon--s.ecl-site-header__icon[focusable='false'][aria-hidden='false']");
+      $this->assertSession()->elementExists('css', "span.ecl-site-header__language-icon span.ecl-icon.ecl-icon--s.ecl-site-header__icon.wt-icon--global", $language_switcher_button);
       if ($component === 'ec') {
-        $this->assertEquals('<title>en</title><use xlink:href="/build/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#global" xmlns:xlink="http://www.w3.org/1999/xlink"></use>', $icon->getHtml());
+        $this->assertEquals('en', $language_switcher_button->getText());
       }
       else {
-        $this->assertEquals('<title>English</title><use xlink:href="/build/themes/custom/oe_theme/dist/eu/images/icons/sprites/icons.svg#global" xmlns:xlink="http://www.w3.org/1999/xlink"></use>', $icon->getHtml());
+        $this->assertEquals('English', $language_switcher_button->getText());
       }
 
       // Assert the language switcher container.
@@ -203,12 +203,11 @@ class SiteHeaderTest extends BrowserTestBase {
         ->getAttribute('data-ecl-label'));
       $this->assertEquals('Close', $close_button->find('css', 'span.ecl-button__container span.ecl-button__label')
         ->getText());
-      $icon = $close_button->find('css', "span.ecl-button__container svg.ecl-icon.ecl-icon--m.ecl-button__icon[focusable='false'][aria-hidden='true'][data-ecl-icon]");
       if ($component === 'ec') {
-        $this->assertEquals('<use xlink:href="/build/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#close" xmlns:xlink="http://www.w3.org/1999/xlink"></use>', $icon->getHtml());
+        $this->assertSession()->elementExists('css', "span.ecl-button__container span.ecl-icon.ecl-icon--m.ecl-button__icon.wt-icon--close", $close_button);
       }
       else {
-        $this->assertEquals('<use xlink:href="/build/themes/custom/oe_theme/dist/eu/images/icons/sprites/icons.svg#close-filled" xmlns:xlink="http://www.w3.org/1999/xlink"></use>', $icon->getHtml());
+        $this->assertSession()->elementExists('css', "span.ecl-button__container span.ecl-icon.ecl-icon--m.ecl-button__icon.wt-icon--close-filled", $close_button);
       }
 
       // Assert the language switcher content.
@@ -224,8 +223,7 @@ class SiteHeaderTest extends BrowserTestBase {
       $search_button = $assert->elementExists('css', 'a.ecl-button.ecl-button--tertiary.ecl-site-header__search-toggle', $search);
       $this->assertEquals('true', $search_button->getAttribute('data-ecl-search-toggle'));
       $this->assertEquals('oe-search-search-form', $search_button->getAttribute('aria-controls'));
-      $this->assertEquals('<use xlink:href="/build/themes/custom/oe_theme/dist/' . $component . '/images/icons/sprites/icons.svg#search" xmlns:xlink="http://www.w3.org/1999/xlink"></use>', $search_button->find('css', "svg.ecl-icon.ecl-icon--s[focusable='false'][aria-hidden='true']")
-        ->getHtml());
+      $this->assertSession()->elementExists('css', "span.ecl-icon.ecl-icon--s.wt-icon--search", $search_button);
       $this->assertStringContainsString('Search', $search_button->getText());
 
       // Assert the search form.
@@ -243,8 +241,7 @@ class SiteHeaderTest extends BrowserTestBase {
       }
       $this->assertEquals('Search', $search_form_button->find('css', "span.ecl-button__container span.ecl-button__label[data-ecl-label='true']")
         ->getText());
-      $icon = $search_form_button->find('css', "span.ecl-button__container svg.ecl-icon.ecl-icon--xs.ecl-button__icon[focusable='false'][aria-hidden='true'][data-ecl-icon]");
-      $this->assertEquals('<use xlink:href="/build/themes/custom/oe_theme/dist/' . $component . '/images/icons/sprites/icons.svg#search" xmlns:xlink="http://www.w3.org/1999/xlink"></use>', $icon->getHtml());
+      $this->assertSession()->elementExists('css', "span.ecl-button__container span.ecl-icon.ecl-icon--xs.ecl-button__icon.wt-icon--search", $search_form_button);
 
       // Assert the main menu block.
       $main_menu = $assert->elementExists('css', 'div#block-oe-theme-main-navigation', $header);
@@ -255,8 +252,7 @@ class SiteHeaderTest extends BrowserTestBase {
       $menu_container = $assert->elementExists('css', 'nav div.ecl-container.ecl-menu__container', $main_menu);
       $this->assertStringContainsString('Menu', $menu_container->find('css', "button.ecl-button--tertiary.ecl-menu__open.ecl-button--icon-only[data-ecl-menu-open] span.ecl-button__label")
         ->getText());
-      $icon = $menu_container->find('css', "button.ecl-menu__open svg.ecl-icon.ecl-icon--m[focusable='false'][aria-hidden='true']");
-      $this->assertEquals('<use xlink:href="/build/themes/custom/oe_theme/dist/' . $component . '/images/icons/sprites/icons.svg#hamburger" xmlns:xlink="http://www.w3.org/1999/xlink"></use>', $icon->getHtml());
+      $this->assertSession()->elementExists('css', "button.ecl-menu__open span.ecl-icon.ecl-icon--m.wt-icon--hamburger", $menu_container);
       $assert->elementExists('css', "section.ecl-menu__inner[data-ecl-menu-inner]", $menu_container);
       $assert->elementExists('css', 'section header.ecl-menu__inner-header', $menu_container);
       $assert->elementExists('css', "section header button.ecl-menu__close.ecl-button.ecl-button--ghost[type='submit'][data-ecl-menu-close]", $menu_container);
@@ -280,8 +276,7 @@ class SiteHeaderTest extends BrowserTestBase {
         ->getText());
       // Assert the button.
       $second_item_button = $assert->elementExists('css', "button.ecl-button.ecl-button--ghost.ecl-menu__button-caret[type='button'][data-ecl-menu-caret]");
-      $icon = $second_item_button->find('css', "span.ecl-button__container svg.ecl-icon.ecl-icon--xs.ecl-icon--rotate-180.ecl-button__icon[focusable='false'][aria-hidden='true'][data-ecl-icon]");
-      $this->assertEquals('<use xlink:href="/build/themes/custom/oe_theme/dist/' . $component . '/images/icons/sprites/icons.svg#corner-arrow" xmlns:xlink="http://www.w3.org/1999/xlink"></use>', $icon->getHtml());
+      $this->assertSession()->elementExists('css', "span.ecl-button__container span.ecl-icon.ecl-icon--xs.ecl-icon--rotate-180.ecl-button__icon.wt-icon--corner-arrow", $second_item_button);
 
       // Assert the children in the sublist.
       $this->assertCount(1, $second_item->findAll('css', "div.ecl-menu__mega[data-ecl-menu-mega] ul.ecl-menu__sublist"));

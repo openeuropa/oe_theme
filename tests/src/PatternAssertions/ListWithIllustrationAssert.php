@@ -136,8 +136,7 @@ class ListWithIllustrationAssert extends BasePatternAssert {
         }
       }
       if (isset($expected_item['icon'])) {
-        $icon_element = $item_element->filter('svg.ecl-icon use');
-        $this::assertStringContainsString('#' . $expected_item['icon'], $icon_element->attr('xlink:href'));
+        self::assertElementExists('span.ecl-icon.wt-icon--' . $expected_item['icon'], $item_element);
         if (isset($expected_item['media_size'])) {
           self::assertCount(count($expected_items), $crawler->filter('.ecl-icon--' . $expected_item['media_size']));
         }

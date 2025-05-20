@@ -53,8 +53,7 @@ class FileAssert extends BasePatternAssert {
     $this->assertElementAttribute($expected_file['url'], 'div.ecl-file div.ecl-file__footer a.ecl-file__download', 'href', $crawler);
 
     // Assert icon.
-    $icon = $crawler->filter('div.ecl-file div.ecl-file__container svg.ecl-file__icon use');
-    self::assertStringContainsString($expected_file['icon'], $icon->attr('xlink:href'));
+    self:self::assertCount(1, $crawler->filter('div.ecl-file div.ecl-file__container span.ecl-file__icon.wt-icon--' . $expected_file['icon']));
   }
 
 }

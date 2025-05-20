@@ -56,7 +56,7 @@ class LinkPatternRenderingTest extends AbstractKernelTestBase {
     $crawler = new Crawler($html);
     $this->assertEquals('Link text', $crawler->filter('a.ecl-link.ecl-link--standalone.ecl-link--icon span.ecl-link__label')->text());
     $this->assertEquals('https://example.com', $crawler->filter('a.ecl-link.ecl-link--standalone.ecl-link--icon')->attr('href'));
-    $this->assertEquals('<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>', $crawler->filter('svg.ecl-icon.ecl-icon--2xs.ecl-link__icon')->html());
+    $this->assertCount(1, $crawler->filter('span.ecl-icon.ecl-icon--2xs.ecl-link__icon.wt-icon--external'));
   }
 
 }
