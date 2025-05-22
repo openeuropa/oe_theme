@@ -325,13 +325,12 @@ class ListItemAssert extends BasePatternAssert {
    *   The DomCrawler where to check the element.
    */
   protected function assertIcon(?string $expected, Crawler $crawler): void {
-    $icon_selector = 'a.ecl-link.ecl-link--standalone.ecl-link--icon.ecl-link--icon-after svg.ecl-icon.ecl-icon--s.ecl-link__icon use';
+    $icon_selector = 'a.ecl-link.ecl-link--standalone.ecl-link--icon.ecl-link--icon-after span.ecl-icon.ecl-icon--s.ecl-link__icon';
     if (is_null($expected)) {
       $this->assertElementNotExists($icon_selector, $crawler);
       return;
     }
-    $icon = $crawler->filter($icon_selector);
-    self::assertStringContainsString($expected, $icon->attr('xlink:href'));
+    self:$this->assertElementExists($icon_selector . '.wt-icon--' . $expected, $crawler);
   }
 
   /**
@@ -394,8 +393,7 @@ class ListItemAssert extends BasePatternAssert {
     self::assertCount(count($expected_items), $actual_items, 'The expected secondary meta items do not match the found items.');
     foreach ($expected_items as $index => $expected_item) {
       $info_element = $actual_items->eq($index);
-      $icon_element = $info_element->filter('svg.ecl-icon.ecl-icon--s.ecl-content-block__secondary-meta-icon use');
-      $this::assertStringContainsString('#' . $expected_item['icon'], $icon_element->attr('xlink:href'));
+      self:$this->assertElementExists('span.ecl-icon.ecl-icon--s.ecl-content-block__secondary-meta-icon.wt-icon--' . $expected_item['icon'], $info_element);
       $this->assertElementText($expected_item['text'], 'span.ecl-content-block__secondary-meta-label', $info_element);
     }
   }
