@@ -26,6 +26,13 @@
   },
   'description': site_owner ? 'This site is managed by:<br />@name'|t({'@name': site_owner}),
 } %}
+{% if site_specific_footer.social_links is not empty %}
+  {% set section_site_info = section_site_info|merge({
+    'social_media': {
+      'links': ecl_footer_links(site_specific_footer.social_links),
+    },
+  }) %}
+{% endif %}
 
 {# Populate the top right row sections containing the site specific links. #}
 {% set section_contact = [] %}
@@ -90,15 +97,6 @@
   'links_inline': true,
   'links': _links,
 } %}
-{% if site_specific_footer.social_links is not empty %}
-  {% set section_common = section_common|merge({
-    'social_media': {
-      'description': 'Follow us'|t,
-      'description_inline': true,
-      'links': ecl_footer_links(site_specific_footer.social_links),
-    },
-  }) %}
-{% endif %}
 
 {% block content %}
   {% include '@ecl-twig/site-footer/ecl-site-footer-ec.html.twig' with {
