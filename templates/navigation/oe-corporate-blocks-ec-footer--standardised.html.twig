@@ -26,6 +26,13 @@
   },
   'description': site_owner ? 'This site is managed by:<br />@name'|t({'@name': site_owner}),
 } %}
+{% if site_specific_footer.social_links is not empty %}
+  {% set section_site_info = section_site_info|merge({
+    'social_media': {
+      'links': ecl_footer_links(site_specific_footer.social_links),
+    },
+  }) %}
+{% endif %}
 
 {# Populate the top right row sections containing the site specific links. #}
 {% set section_contact = [] %}
@@ -33,17 +40,17 @@
 {% set section_more = [] %}
 {% set section_related = [] %}
 {% for section in site_specific_footer.other_links %}
-  {% if section.label == 'Contact us' %}
+  {% if section_contact is empty %}
     {% set section_contact = {
       'title': section.label,
       'links': ecl_footer_links(section.links),
     } %}
-  {% elseif section.label == 'About us' %}
+  {% elseif section_about is empty %}
     {% set section_about = {
       'title': section.label,
       'links': ecl_footer_links(section.links),
     } %}
-  {% elseif section.label == 'Related sites' %}
+  {% elseif section_related is empty %}
     {% set section_related = {
       'title': section.label,
       'links': ecl_footer_links(section.links),
@@ -90,15 +97,6 @@
   'links_inline': true,
   'links': _links,
 } %}
-{% if site_specific_footer.social_links is not empty %}
-  {% set section_common = section_common|merge({
-    'social_media': {
-      'description': 'Follow us'|t,
-      'description_inline': true,
-      'links': ecl_footer_links(site_specific_footer.social_links),
-    },
-  }) %}
-{% endif %}
 
 {% block content %}
   {% include '@ecl-twig/site-footer/ecl-site-footer-ec.html.twig' with {
