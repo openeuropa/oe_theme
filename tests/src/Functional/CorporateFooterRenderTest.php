@@ -728,11 +728,11 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     // We should have the external icon present.
     $this->assertSession()->elementExists('css', 'span.ecl-icon.ecl-icon--xs.ecl-link__icon.wt-icon--external', $actual);
 
-    $column = $assert->elementExists('css', 'footer.ecl-site-footer div.ecl-site-footer__row--common');
-    $subsection = $assert->elementExists('css', '.ecl-site-footer__section--common', $column);
-
-    $actual = $assert->elementExists('css', '.ecl-social-media-follow__description', $subsection);
-    $this->assertEquals('Follow us', $actual->getText());
+    $column = $assert->elementExists('css', 'footer.ecl-site-footer div.ecl-site-footer__row--specific');
+    $subsection = $assert->elementExists('css', '.ecl-site-footer__social-media', $column);
+    // Title no longer available for site specific social media links.
+//    $actual = $assert->elementExists('css', '.ecl-social-media-follow__description', $subsection);
+//    $this->assertEquals('Follow us', $actual->getText());
 
     $social_link = $subsection->find('css', 'ul li:nth-child(1) > a');
     $social_label = $subsection->find('css', 'ul li:nth-child(1) > a span.ecl-link__label');

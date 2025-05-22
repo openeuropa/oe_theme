@@ -46,11 +46,11 @@
   }) %}
 
   {% set social_media = [] %}
-  {% if section_common.social_media['links'] is not empty %}
+  {% if section_site_info.social_media['links'] is not empty %}
     {% set social_media = social_media|merge({
       'title': 'Follow us',
       'title_with_separator': true,
-      'links': section_common.social_media['links'],
+      'links': section_site_info.social_media['links'],
     }) %}
   {% endif %}
   {% set _top_left_column = [] %}
