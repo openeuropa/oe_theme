@@ -116,8 +116,9 @@ class FeaturedItemAssert extends BasePatternAssert {
     self::assertCount(count($expected_info_items), $info_elements, 'The expected info items do not match the found info items.');
     foreach ($expected_info_items as $index => $expected_info_item) {
       $info_element = $info_elements->eq($index);
-      $icon_element = $info_element->filter('svg.ecl-icon.ecl-icon--s.ecl-content-block__secondary-meta-icon use');
-      $this::assertStringContainsString('#' . $expected_info_item['icon'], $icon_element->attr('xlink:href'));
+      self::assertEquals($expected_info_item['text'], trim($info_element->text()));
+      $icon_selector = 'span.ecl-icon.ecl-icon--s.ecl-content-block__secondary-meta-icon.wt-icon--' . $expected_info_item['icon'];
+      $this->assertElementExists($icon_selector, $info_element);
       $this->assertElementText($expected_info_item['text'], 'span.ecl-content-block__secondary-meta-label', $info_element);
     }
   }
