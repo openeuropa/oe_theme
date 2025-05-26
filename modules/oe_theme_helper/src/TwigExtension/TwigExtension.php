@@ -13,6 +13,7 @@ use Drupal\Core\Render\BubbleableMetadata;
 use Drupal\Core\Render\Markup;
 use Drupal\Core\Render\RenderableInterface;
 use Drupal\Core\Render\RendererInterface;
+use Drupal\Core\StringTranslation\ByteSizeMarkup;
 use Drupal\Core\Template\Attribute;
 use Drupal\Core\Template\TwigExtension as CoreTwigExtension;
 use Drupal\oe_theme_helper\EuropeanUnionLanguages;
@@ -75,7 +76,7 @@ class TwigExtension extends AbstractExtension {
    */
   public function getFilters(): array {
     return [
-      new TwigFilter('format_size', 'format_size'),
+      new TwigFilter('format_size', [$this, 'formatSize']),
       new TwigFilter('to_language', [$this, 'toLanguageName']),
       new TwigFilter('to_native_language', [$this, 'toNativeLanguageName']),
       new TwigFilter('to_internal_language_id', [$this, 'toInternalLanguageId']),
@@ -100,6 +101,19 @@ class TwigExtension extends AbstractExtension {
       new TwigFunction('ecl_class_border_color', [$this, 'eclBorderColor'], ['needs_context' => TRUE]),
       new TwigFunction('ecl_class_background_color', [$this, 'eclBackgroundColor'], ['needs_context' => TRUE]),
     ];
+  }
+
+  /**
+   * Format bytes.
+   *
+   * @param int $bytes
+   *   Raw bytes.
+   *
+   * @return string
+   *   Formatted bytes.
+   */
+  public function formatSize($bytes) {
+    return ByteSizeMarkup::create((int) $bytes)->getUntranslatedString();
   }
 
   /**
