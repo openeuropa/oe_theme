@@ -32,3 +32,4 @@ yarn-error.log
 !/images/required.svg
 !/images/user_icon.svg
 /.gitattributes
+/recipes
