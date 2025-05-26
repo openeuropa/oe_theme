@@ -6,7 +6,7 @@ namespace Drupal\Tests\oe_theme_helper\FunctionalJavascript;
 
 use Behat\Mink\Element\NodeElement;
 use Drupal\FunctionalJavascriptTests\WebDriverTestBase;
-use Drupal\Tests\ckeditor\Traits\CKEditorTestTrait;
+use Drupal\Tests\ckeditor5\Traits\CKEditor5TestTrait;
 use Drupal\editor\Entity\Editor;
 use Drupal\filter\Entity\FilterFormat;
 use Drupal\user\RoleInterface;
@@ -21,7 +21,7 @@ use Drupal\user\UserInterface;
  */
 class WysiwygTableTest extends WebDriverTestBase {
 
-  use CKEditorTestTrait;
+  use CKEditor5TestTrait;
 
   /**
    * Disabled until FRONT-4076 is fixed.
