@@ -81,19 +81,12 @@ class WysiwygTableTest extends WebDriverTestBase {
 
     Editor::create([
       'format' => 'full_html',
-      'editor' => 'ckeditor',
+      'editor' => 'ckeditor5',
       'settings' => [
         'toolbar' => [
-          'rows' => [
-            0 => [
-              0 => [
-                'name' => 'Group with table',
-                'items' => [
-                  'Table',
-                  'Source',
-                ],
-              ],
-            ],
+          'items' => [
+            'Table',
+            'Source',
           ],
         ],
       ],
