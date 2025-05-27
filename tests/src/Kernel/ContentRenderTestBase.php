@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Drupal\Tests\oe_theme\Kernel;
 
+use Drupal\Tests\oe_theme\Kernel\Traits\MockSessionTrait;
 use Drupal\Tests\sparql_entity_storage\Traits\SparqlConnectionTrait;
 use Drupal\media\MediaInterface;
 use Drupal\oe_content_entity\Entity\CorporateEntityInterface;
@@ -21,6 +22,7 @@ use Symfony\Component\HttpFoundation\Session\Storage\MockArraySessionStorage;
 abstract class ContentRenderTestBase extends MultilingualAbstractKernelTestBase {
 
   use SparqlConnectionTrait;
+  use MockSessionTrait;
 
   /**
    * The node storage.
@@ -98,16 +100,7 @@ abstract class ContentRenderTestBase extends MultilingualAbstractKernelTestBase 
   protected function setUp(): void {
     parent::setUp();
 
-    // Manually create a mock session.
-    $session = new Session(new MockArraySessionStorage());
-    $session->start();
-
-    // Create a request and attach the session.
-    $request = Request::create('/');
-    $request->setSession($session);
-
-    // Push the request with session into the request stack
-    \Drupal::service('request_stack')->push($request);
+    $this->setUpMockSessionRequest();
     $this->installEntitySchema('node');
     $this->installSchema('file', 'file_usage');
     $this->installSchema('node', ['node_access']);
