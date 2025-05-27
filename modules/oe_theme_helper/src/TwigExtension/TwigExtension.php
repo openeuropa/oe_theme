@@ -113,7 +113,7 @@ class TwigExtension extends AbstractExtension {
    *   Formatted bytes.
    */
   public function formatSize($bytes) {
-    return ByteSizeMarkup::create((int) $bytes)->getUntranslatedString();
+    return ByteSizeMarkup::create((int) $bytes);
   }
 
   /**
