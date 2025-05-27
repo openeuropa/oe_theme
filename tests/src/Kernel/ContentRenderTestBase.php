@@ -11,6 +11,9 @@ use Drupal\oe_content_entity_contact\Entity\Contact;
 use Drupal\oe_content_entity_contact\Entity\ContactInterface;
 use Drupal\user\Entity\Role;
 use Drupal\user\RoleInterface;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Session\Session;
+use Symfony\Component\HttpFoundation\Session\Storage\MockArraySessionStorage;
 
 /**
  * Base class for testing the content being rendered.
@@ -95,6 +98,16 @@ abstract class ContentRenderTestBase extends MultilingualAbstractKernelTestBase 
   protected function setUp(): void {
     parent::setUp();
 
+    // Manually create a mock session.
+    $session = new Session(new MockArraySessionStorage());
+    $session->start();
+
+    // Create a request and attach the session.
+    $request = Request::create('/');
+    $request->setSession($session);
+
+    // Push the request with session into the request stack
+    \Drupal::service('request_stack')->push($request);
     $this->installEntitySchema('node');
     $this->installSchema('file', 'file_usage');
     $this->installSchema('node', ['node_access']);
