@@ -321,7 +321,7 @@ class MediaRenderTest extends MultilingualAbstractKernelTestBase {
         'button_label' => 'Download',
         'file' => [
           'title' => 'Test sample file',
-          'url' => 'https://example.com/circabc-ewpp/d/d/workspace/SpacesStore/e74e3bc0-a639-4e04-a839-3bbd60ed5688/file.bin',
+          'url' => 'https://example.com/circabc-ewpp/d/d/workspace/SpacesStore/e74e3bc0-a639-4e04-a839-3bbd60ed5688/download',
           'language' => 'English',
           'meta' => '(2.96 KB - PDF)',
           'icon' => 'file',
@@ -329,13 +329,13 @@ class MediaRenderTest extends MultilingualAbstractKernelTestBase {
         'translations' => [
           [
             'title' => 'français',
-            'url' => 'https://example.com/circabc-ewpp/d/d/workspace/SpacesStore/5d634abd-fec1-452a-ae0b-62e4cf080506/file.bin',
+            'url' => 'https://example.com/circabc-ewpp/d/d/workspace/SpacesStore/5d634abd-fec1-452a-ae0b-62e4cf080506/download',
             'meta' => '(2.96 KB - PDF)',
             'icon' => 'file',
           ],
           [
             'title' => 'português',
-            'url' => 'https://example.com/circabc-ewpp/d/d/workspace/SpacesStore/78634abd-fec1-452a-ae0b-62e4cf080578/file.bin',
+            'url' => 'https://example.com/circabc-ewpp/d/d/workspace/SpacesStore/78634abd-fec1-452a-ae0b-62e4cf080578/download',
             'meta' => '(4.91 KB - PDF)',
             'icon' => 'file',
           ],
