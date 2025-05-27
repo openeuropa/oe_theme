@@ -46,6 +46,16 @@ navigation_menu:
       description: "Number of maximum lines for each first level item label. It defaults to 2, set it to zero to remove this behavior."
       preview: 1
       escape: false
+    featured_priority:
+      type: "text"
+      label: "Featured priority (only used in mega menu variant)"
+      description: "Determines whether the featured list of the 1st level items or the 2nd level items should be first shown. It can be 'primary' or 'secondary' (default)."
+      preview: "secondary"
+    extra_classes:
+      type: 'text'
+      label: 'Extra classes'
+      description: 'Extra classes to be added on the wrapper of the ECL component.'
+      preview: ''
     items:
       type: "array"
       label: "Links"
@@ -61,6 +71,19 @@ navigation_menu:
               label: 'Child 1.2'
             - href: '#'
               label: 'Child 1.3'
+              featured:
+                title: "featured column 1"
+                items:
+                  - href: "#"
+                    label: "Featured link 1.1.1"
+                    description: "Description of the featured link 1.1.1"
+                    external: true
+                  - href: "#"
+                    description: "Description of the picture"
+                    picture:
+                      img:
+                        src: "https://loremflickr.com/1000/500/arch"
+                        alt: "alternative text of the 2nd featured item"
             - href: '#'
               label: 'Child 1.4'
             - href: '#'
@@ -73,6 +96,17 @@ navigation_menu:
             - href: '#'
               label: 'Child 1.8'
               external: true
+          featured:
+            title: "Featured column belonging to the About the eu item"
+            items:
+              - href: "#"
+                label: "Featured link of the main item"
+                description: "Description text of the featured link of the main item"
+                picture:
+                  img:
+                    src: "https://inno-ecl.s3.amazonaws.com/media/examples/example-image.jpg"
+                    alt: "alternative text of the featured item"
+                external: true
         - href: "#"
           label: "EU law"
           external: true
@@ -113,7 +147,7 @@ navigation_menu:
                   label: 'Granchild 2.1.5'
                   external: true
               featured:
-                title: "featured column 1"
+                title: "featured column 2"
                 content:
                   '#markup': "<article class=\"ecl-navigation-list__item\">\n    <picture class=\"ecl-picture ecl-navigation-list__picture\"><img class=\"ecl-navigation-list__image\" src=\"https://inno-ecl.s3.amazonaws.com/media/examples/example-image.jpg\" alt=\"Alt text for the image\" /></picture>\n    <div class=\"ecl-content-block ecl-navigation-list__content-block\" data-ecl-auto-init=\"ContentBlock\" data-ecl-content-block>\n      <div class=\"ecl-content-block__title\" data-ecl-title-link><a href=\"/example#qspea\" class=\"ecl-link ecl-link--standalone\">Title 1</a></div>\n      <div class=\"ecl-content-block__description\">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus gravida ipsum ut lorem cursus</div>\n    </div>\n  </article>"
                 items:
@@ -140,6 +174,7 @@ navigation_menu:
               external: true
         - href: "#"
           label: "Principles, countries, history"
+          promotional: true
         - href: "#"
           label: "Institutions, law, budget"
           external: true
@@ -172,7 +207,7 @@ navigation_menu:
                   label: 'Granchild 6.1.5'
                   external: true
               featured:
-                title: "featured column 2"
+                title: "featured column 3"
                 content:
                   '#markup': "<article class=\"ecl-navigation-list__item\">\n    <picture class=\"ecl-picture ecl-navigation-list__picture\"><img class=\"ecl-navigation-list__image\" src=\"https://inno-ecl.s3.amazonaws.com/media/examples/example-image.jpg\" alt=\"Alt text for the image\" /></picture>\n    <div class=\"ecl-content-block ecl-navigation-list__content-block\" data-ecl-auto-init=\"ContentBlock\" data-ecl-content-block>\n      <div class=\"ecl-content-block__title\" data-ecl-title-link><a href=\"/example#qspea\" class=\"ecl-link ecl-link--standalone\">Title 2</a></div>\n      <div class=\"ecl-content-block__description\">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus gravida ipsum ut lorem cursus</div>\n    </div>\n  </article>"
                 items:
