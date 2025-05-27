@@ -39,8 +39,8 @@ class PageHeaderRenderingTest extends AbstractKernelTestBase {
    * @return array
    *   An array of test data and assertions.
    */
-  public function dataProvider(): array {
-    return $this->getFixtureContent('patterns/page_header_rendering.yml');
+  static public function dataProvider(): array {
+    return self::getFixtureContent('patterns/page_header_rendering.yml');
   }
 
 }

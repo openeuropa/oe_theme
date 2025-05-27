@@ -41,8 +41,8 @@ class OrganisationTeaserPatternRenderingTest extends AbstractKernelTestBase {
    * @return array
    *   An array of test data arrays with assertions.
    */
-  public function dataProvider(): array {
-    $data = $this->getFixtureContent('patterns/organisation_teaser_rendering.yml');
+  static public function dataProvider(): array {
+    $data = self::getFixtureContent('patterns/organisation_teaser_rendering.yml');
 
     foreach ($data as &$item) {
       foreach ($item['fields'] as $field_name => $field_value) {
