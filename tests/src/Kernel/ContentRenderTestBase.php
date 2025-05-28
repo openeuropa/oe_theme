@@ -12,9 +12,6 @@ use Drupal\oe_content_entity_contact\Entity\Contact;
 use Drupal\oe_content_entity_contact\Entity\ContactInterface;
 use Drupal\user\Entity\Role;
 use Drupal\user\RoleInterface;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Session\Session;
-use Symfony\Component\HttpFoundation\Session\Storage\MockArraySessionStorage;
 
 /**
  * Base class for testing the content being rendered.

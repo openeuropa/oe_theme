@@ -9,6 +9,10 @@ use Drupal\editor\Entity\Editor;
 /**
  * Defines the "table_zebra_striping" with altering Table plugins.
  *
+ * @deprecated This is a CKEditor 4 plugin.
+ *  CKEditor 4 is not supported in Drupal 11.
+ *  This plugin will be removed in version 6.x+ of the theme.
+ *
  * @CKEditorPlugin(
  *   id = "table_zebra_striping",
  *   label = @Translation("Zebra striping")
