@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Drupal\Tests\oe_theme\Kernel;
 
 use Drupal\Core\Site\Settings;
-use Drupal\Tests\oe_theme\Kernel\Traits\MockSessionTrait;
 use Drupal\Tests\oe_theme\PatternAssertions\FileTranslationAssert;
 use Symfony\Component\DomCrawler\Crawler;
 
@@ -15,8 +14,6 @@ use Symfony\Component\DomCrawler\Crawler;
  * @group batch1
  */
 class MediaRenderTest extends MultilingualAbstractKernelTestBase {
-
-  use MockSessionTrait;
 
   /**
    * The media storage.
@@ -61,7 +58,6 @@ class MediaRenderTest extends MultilingualAbstractKernelTestBase {
   protected function setUp(): void {
     parent::setUp();
 
-    $this->setUpMockSessionRequest();
     $settings = Settings::getInstance() ? Settings::getAll() : [];
     $settings['circabc'] = [
       'url' => 'https://example.com/circabc-ewpp',

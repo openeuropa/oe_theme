@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Drupal\Tests\oe_theme\Kernel;
 
-use Drupal\Tests\oe_theme\Kernel\Traits\MockSessionTrait;
 use Drupal\Tests\sparql_entity_storage\Traits\SparqlConnectionTrait;
 use Drupal\media\MediaInterface;
 use Drupal\oe_content_entity\Entity\CorporateEntityInterface;
@@ -19,7 +18,6 @@ use Drupal\user\RoleInterface;
 abstract class ContentRenderTestBase extends MultilingualAbstractKernelTestBase {
 
   use SparqlConnectionTrait;
-  use MockSessionTrait;
 
   /**
    * The node storage.
@@ -97,7 +95,6 @@ abstract class ContentRenderTestBase extends MultilingualAbstractKernelTestBase 
   protected function setUp(): void {
     parent::setUp();
 
-    $this->setUpMockSessionRequest();
     $this->installEntitySchema('node');
     $this->installSchema('file', 'file_usage');
     $this->installSchema('node', ['node_access']);

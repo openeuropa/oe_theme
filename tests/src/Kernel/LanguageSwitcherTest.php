@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Drupal\Tests\oe_theme\Kernel;
 
 use Drupal\language\Entity\ConfigurableLanguage;
-use Drupal\Tests\oe_theme\Kernel\Traits\MockSessionTrait;
 use Symfony\Component\DomCrawler\Crawler;
 
 /**
@@ -14,16 +13,6 @@ use Symfony\Component\DomCrawler\Crawler;
  * @group batch3
  */
 class LanguageSwitcherTest extends MultilingualAbstractKernelTestBase {
-
-  use MockSessionTrait;
-
-  /**
-   * {@inheritdoc}
-   */
-  protected function setUp(): void {
-    parent::setUp();
-    $this->setUpMockSessionRequest();
-  }
 
   /**
    * Test language switcher link list rendering.

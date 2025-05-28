@@ -24,9 +24,8 @@ trait MockSessionTrait {
     // Create a request and attach the session.
     $request = Request::create('/');
     $request->setSession($session);
-
     // Push the request with session into the request stack.
-    \Drupal::service('request_stack')->push($request);
+    $this->container->get('request_stack')->push($request);
   }
 
 }
