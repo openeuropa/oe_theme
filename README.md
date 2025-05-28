@@ -111,6 +111,19 @@ Each component library can use one of the following ECL brandings:
 
 To learn more about EC/EU families and ECL branding visit the [ECL website](https://ec.europa.eu/component-library).
 
+### CKEditor 4 Table Plugins (Deprecated)
+
+This theme includes a set of **CKEditor 4 plugins** to enhance table functionality within the classic WYSIWYG editor. These plugins are:
+
+* [`TableSimple.php`](./modules/oe_theme_helper/src/Plugin/CKEditorPlugin/TableSimple.php): Adds support for simplified tables.
+* [`TableSort.php`](./modules/oe_theme_helper/src/Plugin/CKEditorPlugin/TableSort.php): Enables sortable table columns.
+* [`TableZebraStriping.php`](./modules/oe_theme_helper/src/Plugin/CKEditorPlugin/TableZebraStriping.php): Adds zebra striping to table rows for improved readability.
+
+These plugins are built for **CKEditor 4**, which is **not supported in Drupal 11**, if you are using this theme with
+**Drupal 10**, you can continue to use these plugins without issue.
+
+These plugins are considered **deprecated** and will be removed in version 6.x or later of the theme.
+
 ### Upgrade to 4.0.0
 
 #### The following patterns have been removed:
