@@ -8,10 +8,12 @@ use Drupal\Core\Breadcrumb\Breadcrumb;
 use Drupal\Core\Link;
 use Drupal\Core\Site\Settings;
 use Drupal\KernelTests\Core\Entity\EntityKernelTestBase;
+use Drupal\Tests\oe_theme\Kernel\Traits\MockSessionTrait;
 use Drupal\Tests\oe_theme\Traits\RenderTrait;
 use Drupal\Tests\oe_theme\Traits\RequestTrait;
 use Drupal\entity_test\Entity\EntityTest;
 use Symfony\Component\DomCrawler\Crawler;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Tests that the breadcrumb is properly displayed.
@@ -22,6 +24,7 @@ class BreadcrumbTest extends EntityKernelTestBase {
 
   use RequestTrait;
   use RenderTrait;
+  use MockSessionTrait;
 
   /**
    * {@inheritdoc}
@@ -37,9 +40,6 @@ class BreadcrumbTest extends EntityKernelTestBase {
     'responsive_image',
   ];
 
-  /**
-   * {@inheritdoc}
-   */
   protected function setUp(): void {
     parent::setUp();
 
@@ -68,6 +68,14 @@ class BreadcrumbTest extends EntityKernelTestBase {
     // @see EntityConverter::convert().
     \Drupal::moduleHandler()->loadInclude('user', 'install');
     user_install();
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  protected function tearDown(): void {
+    $this->setUpMockSessionRequest();
+    parent::tearDown();
   }
 
   /**

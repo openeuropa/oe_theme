@@ -6,6 +6,7 @@ namespace Drupal\Tests\oe_theme\Kernel;
 
 use Drupal\Core\Plugin\ContextAwarePluginInterface;
 use Drupal\Core\Site\Settings;
+use Drupal\Tests\oe_theme\Kernel\Traits\MockSessionTrait;
 use Drupal\Tests\oe_theme\Traits\RenderTrait;
 use Drupal\Tests\token\Kernel\TokenKernelTestBase;
 use Symfony\Component\Yaml\Yaml;
@@ -16,6 +17,7 @@ use Symfony\Component\Yaml\Yaml;
 abstract class AbstractKernelTestBase extends TokenKernelTestBase {
 
   use RenderTrait;
+  use MockSessionTrait;
 
   /**
    * {@inheritdoc}
@@ -72,6 +74,14 @@ abstract class AbstractKernelTestBase extends TokenKernelTestBase {
     // @see EntityConverter::convert().
     \Drupal::moduleHandler()->loadInclude('user', 'install');
     user_install();
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  protected function tearDown(): void {
+    $this->setUpMockSessionRequest();
+    parent::tearDown();
   }
 
   /**
