@@ -172,16 +172,19 @@ class WysiwygTableTest extends WebDriverTestBase {
     $this->assertNotEmpty($web_assert->waitForElement('css', '.cke_editor_edit-body-0-value_dialog'));
     $this->assertTrue($page->findField('Zebra striping')->isChecked());
     $this->assertTrue($page->findField('Simple table')->isChecked());
-    // Enable first row headers for table.
-    $this->getOpenedDialogElement()->selectFieldOption('Headers', 'First Row');
+    // Enable row and column headers for table.
+    $this->getOpenedDialogElement()->selectFieldOption('Headers', 'Both');
     $this->getOpenedDialogElement()->getParent()->getParent()->pressButton('OK');
     // Put content for table headers.
     $javascript = <<<JS
 (function(){
   var editor = CKEDITOR.instances['edit-body-0-value'];
   var header_cols = editor.document.find('table > thead > tr > th');
-  header_cols.getItem(0).setHtml('<i>Header text 1</i>');
-  header_cols.getItem(1).setHtml('<i>Header text 2</i>');
+  header_cols.getItem(0).setHtml('<i>Header text 1.1</i>');
+  header_cols.getItem(1).setHtml('<i>Header text 2.1</i>');
+  var body_cols = editor.document.find('table > tbody > tr > th');
+  body_cols.getItem(0).setHtml('<i>Header text 1.2</i>');
+  body_cols.getItem(1).setHtml('<i>Header text 1.3</i>');
 })()
 JS;
     $this->getSession()->evaluateScript($javascript);
@@ -193,6 +196,14 @@ JS;
     $page->fillField('Subject tags (value 1)', 'financing (http://data.europa.eu/uxp/1000)');
     $page->pressButton('Save');
     $web_assert->elementExists('css', 'article .ecl table.ecl-table.ecl-table--simple.ecl-table--zebra');
+    // Assert the presence of header classes on the top row.
+    $web_assert->elementTextEquals('css', 'thead.ecl-table__head tr.ecl-table__row th.ecl-table__header:nth-of-type(1)', 'Header text 1.1');
+    $web_assert->elementTextEquals('css', 'thead.ecl-table__head tr.ecl-table__row th.ecl-table__header:nth-of-type(2)', 'Header text 2.1');
+    // Assert the presence of header classes on left column.
+    $web_assert->elementTextEquals('css', 'tbody.ecl-table__body tr.ecl-table__row:nth-of-type(1) th.ecl-table__header', 'Header text 1.2');
+    $web_assert->elementAttributeContains('css', 'tbody.ecl-table__body tr.ecl-table__row:nth-of-type(1) th.ecl-table__header', 'data-ecl-table-header', 'Header text 1.1');
+    $web_assert->elementTextEquals('css', 'tbody.ecl-table__body tr.ecl-table__row:nth-of-type(2) th.ecl-table__header', 'Header text 1.3');
+    $web_assert->elementAttributeContains('css', 'tbody.ecl-table__body tr.ecl-table__row:nth-of-type(2) th.ecl-table__header', 'data-ecl-table-header', 'Header text 1.1');
     // Assert absence of classes in table related to "Zebra striping" and
     // "Simple table" with disabled option.
     $this->drupalGet('node/1/edit');
