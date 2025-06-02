@@ -67,9 +67,6 @@ msgstr "Контакты для прессы"
 msgid "Call for tenders"
 msgstr "Приглашение к участию в торгах"
 
-msgid "Related links"
-msgstr "Соответствующие ссылки"
-
 msgid "Practical information"
 msgstr "Практическая информация"
 
@@ -244,8 +241,8 @@ msgstr "Следить за нами"
 msgid "About us"
 msgstr "О нас"
 
-msgid "Related sites"
-msgstr "Смежные сайты"
+msgid "Related links"
+msgstr "Ссылки по теме"
 
 msgid "More information on:"
 msgstr "Дополнительная информация на:"

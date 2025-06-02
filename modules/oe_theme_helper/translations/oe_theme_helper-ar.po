@@ -317,9 +317,6 @@ msgstr "تابعنا"
 msgid "About us"
 msgstr "معلومات حولنا"
 
-msgid "Related sites"
-msgstr "مواقع ذات صلة"
-
 msgid "More information on:"
 msgstr "المزيد من المعلومات في:"
 

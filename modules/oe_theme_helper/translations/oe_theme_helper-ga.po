@@ -244,9 +244,6 @@ msgstr "Lean sinn"
 msgid "About us"
 msgstr "Eolas fúinn"
 
-msgid "Related sites"
-msgstr "Suíomhanna gaolmhara"
-
 msgid "More information on:"
 msgstr "Tuilleadh Eolais:"
 
@@ -653,3 +650,6 @@ msgstr "Loingseoireacht an tsuímh"
 
 msgid "You are here:"
 msgstr "Anseo atá tú:"
+
+msgid "Follow the European Commission"
+msgstr "Lean an Coimisiún Eorpach"

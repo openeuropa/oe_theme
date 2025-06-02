@@ -313,9 +313,6 @@ msgstr "Følg oss"
 msgid "About us"
 msgstr "Om oss"
 
-msgid "Related sites"
-msgstr "Relevante nettsted"
-
 msgid "More information on:"
 msgstr "Mer informasjon om:"
 

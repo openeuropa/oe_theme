@@ -623,6 +623,9 @@ class TwigExtension extends AbstractExtension {
     $ecl_links = [];
 
     foreach ($links as $link) {
+      if (!is_array($link)) {
+        continue;
+      }
       // Skip if the link is limited to some ECL branding and the current
       // ECL branding does not match.
       if (!empty($link['branding']) && $context['ecl_branding'] !== $link['branding']) {
@@ -650,7 +653,7 @@ class TwigExtension extends AbstractExtension {
 
       if (!empty($link['social_network'])) {
         $ecl_link['link']['icon_position'] = 'before';
-        $ecl_link['link']['hide_label'] = $context['ecl_component_library'] === 'ec' && $context['ecl_branding'] === 'core';
+        $ecl_link['link']['hide_label'] = $link['hide_label'] ?? $context['ecl_component_library'] === 'ec' && $context['ecl_branding'] === 'core';
         $ecl_link += [
           'icon' => [
             'family' => 'networks',

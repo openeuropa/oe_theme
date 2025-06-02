@@ -67,9 +67,6 @@ msgstr "Median yhteydenotot"
 msgid "Call for tenders"
 msgstr "Tarjouspyyntö"
 
-msgid "Related links"
-msgstr "Aiheeseen liittyvää"
-
 msgid "Practical information"
 msgstr "Käytännön tietoa"
 
@@ -244,8 +241,8 @@ msgstr "Seuraa toimintaamme"
 msgid "About us"
 msgstr "Tietoa organisaatiosta"
 
-msgid "Related sites"
-msgstr "Aiheeseen liittyvää"
+msgid "Related links"
+msgstr "Linkit"
 
 msgid "More information on:"
 msgstr "Lisätietoa:"
@@ -653,3 +650,6 @@ msgstr "Sivustovalikko"
 
 msgid "You are here:"
 msgstr "Olet tässä:"
+
+msgid "Follow the European Commission"
+msgstr "Seuraa Euroopan komissiota"

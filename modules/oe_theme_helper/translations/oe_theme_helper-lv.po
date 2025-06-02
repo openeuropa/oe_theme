@@ -67,9 +67,6 @@ msgstr "Kontaktpersonas presei"
 msgid "Call for tenders"
 msgstr "Uzaicinājums iesniegt piedāvājumus"
 
-msgid "Related links"
-msgstr "Līdzīgas saites"
-
 msgid "Practical information"
 msgstr "Praktiska informācija"
 
@@ -244,8 +241,8 @@ msgstr "Sekojiet mums"
 msgid "About us"
 msgstr "Par mums"
 
-msgid "Related sites"
-msgstr "Saistītās vietnes"
+msgid "Related links"
+msgstr "Noderīgas saites"
 
 msgid "More information on:"
 msgstr "Plašāka informācija:"
@@ -653,3 +650,6 @@ msgstr "Navigācija lapā"
 
 msgid "You are here:"
 msgstr "Jūs esat šeit:"
+
+msgid "Follow the European Commission"
+msgstr "Sekojiet Eiropas Komisijai"

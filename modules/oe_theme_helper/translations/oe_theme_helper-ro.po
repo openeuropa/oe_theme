@@ -67,9 +67,6 @@ msgstr "Puncte de contact pentru presă"
 msgid "Call for tenders"
 msgstr "Cerere de oferte"
 
-msgid "Related links"
-msgstr "Linkuri către pagini conexe"
-
 msgid "Practical information"
 msgstr "Informații practice"
 
@@ -244,8 +241,8 @@ msgstr "Urmăriți-ne"
 msgid "About us"
 msgstr "Despre noi"
 
-msgid "Related sites"
-msgstr "Site-uri conexe"
+msgid "Related links"
+msgstr "Linkuri conexe"
 
 msgid "More information on:"
 msgstr "Pentru detalii:"
@@ -653,3 +650,6 @@ msgstr "Meniu de navigare pe site"
 
 msgid "You are here:"
 msgstr "Sunteți aici:"
+
+msgid "Follow the European Commission"
+msgstr "Urmăriți Comisia Europeană"

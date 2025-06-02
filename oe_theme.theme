@@ -1840,6 +1840,12 @@ function oe_theme_preprocess_oe_corporate_blocks_ec_footer(array &$variables) {
   else {
     $variables['path'] = 'https://commission.europa.eu/index_' . EuropeanUnionLanguages::getInternalLanguageCode($variables['current_language_id']);
   }
+
+  foreach ($variables['corporate_footer']['social_media_common_links'] as $index => $link) {
+    $variables['corporate_footer']['social_media_common_links'][$index]['social_network'] = $link['label'] !== 'Other' ? strtolower($link['label']) : 'chain';
+    $variables['corporate_footer']['social_media_common_links'][$index]['hide_label'] = TRUE;
+  }
+
   _oe_theme_preprocess_site_specific_footer_links($variables);
   _oe_theme_preprocess_accessibility_link($variables);
 }
@@ -1920,6 +1926,16 @@ function _oe_theme_preprocess_footer_logo(array &$variables): void {
  *   The variables array from the preprocess hook.
  */
 function _oe_theme_preprocess_site_specific_footer_links(array &$variables): void {
+  if (!empty($variables['site_specific_footer']['social_links'])) {
+    $social_media_footer_links_config = \Drupal::configFactory()->get('oe_corporate_blocks.social_media_footer_links_settings');
+    $alignment = $social_media_footer_links_config->get('alignment');
+    $display_labels = (bool) $social_media_footer_links_config->get('display_labels');
+    foreach ($variables['site_specific_footer']['social_links'] as $index => $link) {
+      $variables['site_specific_footer']['social_links'][$index]['hide_label'] = !$display_labels;
+    }
+    $variables['site_specific_footer']['social_links']['variant'] = $alignment;
+  }
+
   if (empty($variables['site_specific_footer']['other_links'])) {
     return;
   }

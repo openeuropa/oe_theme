@@ -244,9 +244,6 @@ msgstr "Folgen Sie uns"
 msgid "About us"
 msgstr "Über uns"
 
-msgid "Related sites"
-msgstr "Themenverwandte Websites"
-
 msgid "More information on:"
 msgstr "Weitere Informationen:"
 
@@ -653,3 +650,6 @@ msgstr "Navigationsmenü"
 
 msgid "You are here:"
 msgstr "Sie sind hier:"
+
+msgid "Follow the European Commission"
+msgstr "Folgen Sie der Europäischen Kommission"

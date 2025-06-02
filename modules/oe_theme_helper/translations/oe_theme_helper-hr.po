@@ -67,9 +67,6 @@ msgstr "Kontakti za medije"
 msgid "Call for tenders"
 msgstr "Poziv na podnošenje ponuda"
 
-msgid "Related links"
-msgstr "Povezane poveznice"
-
 msgid "Practical information"
 msgstr "Praktične informacije"
 
@@ -244,8 +241,8 @@ msgstr "Pratite nas"
 msgid "About us"
 msgstr "O nama"
 
-msgid "Related sites"
-msgstr "Povezane stranice"
+msgid "Related links"
+msgstr "Korisne poveznice"
 
 msgid "More information on:"
 msgstr "Dodatne informacije:"
@@ -653,3 +650,6 @@ msgstr "Navigacija portalom"
 
 msgid "You are here:"
 msgstr "Nalazite se ovdje:"
+
+msgid "Follow the European Commission"
+msgstr "Pratite Europsku komisiju"

@@ -67,9 +67,6 @@ msgstr "Υπεύθυνοι επικοινωνίας με τα ΜΜΕ"
 msgid "Call for tenders"
 msgstr "Πρόσκληση υποβολής προσφορών"
 
-msgid "Related links"
-msgstr "Σχετικοί σύνδεσμοι"
-
 msgid "Practical information"
 msgstr "Πρακτικές πληροφορίες"
 
@@ -244,8 +241,8 @@ msgstr "Ακολουθήστε μας"
 msgid "About us"
 msgstr "Ποιοι είμαστε"
 
-msgid "Related sites"
-msgstr "Σχετικοί ιστότοποι"
+msgid "Related links"
+msgstr "Συναφείς σύνδεσμοι"
 
 msgid "More information on:"
 msgstr "Περισσότερες πληροφορίες για:"
@@ -653,3 +650,6 @@ msgstr "Πλοήγηση στον ιστότοπο"
 
 msgid "You are here:"
 msgstr "Είστε εδώ:"
+
+msgid "Follow the European Commission"
+msgstr "Ακολουθήστε την Ευρωπαϊκή Επιτροπή"

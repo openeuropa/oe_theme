@@ -26,10 +26,12 @@
   },
   'description': site_owner ? 'This site is managed by:<br />@name'|t({'@name': site_owner}),
 } %}
+
 {% if site_specific_footer.social_links is not empty %}
   {% set section_site_info = section_site_info|merge({
     'social_media': {
       'links': ecl_footer_links(site_specific_footer.social_links),
+      'variant': site_specific_footer.social_links['variant'],
     },
   }) %}
 {% endif %}
@@ -39,24 +41,27 @@
 {% set section_about = [] %}
 {% set section_more = [] %}
 {% set section_related = [] %}
-{% for section in site_specific_footer.other_links %}
-  {% if section_contact is empty %}
-    {% set section_contact = {
-      'title': section.label,
-      'links': ecl_footer_links(section.links),
-    } %}
-  {% elseif section_about is empty %}
-    {% set section_about = {
-      'title': section.label,
-      'links': ecl_footer_links(section.links),
-    } %}
-  {% elseif section_related is empty %}
-    {% set section_related = {
-      'title': section.label,
-      'links': ecl_footer_links(section.links),
-    } %}
-  {% endif %}
-{% endfor %}
+
+{% if site_specific_footer.other_links['contact_us'] is defined and site_specific_footer.other_links['contact_us']['links'] is not empty %}
+  {% set section_contact = {
+    'title': site_specific_footer.other_links['contact_us'].label,
+    'links': ecl_footer_links(site_specific_footer.other_links['contact_us']['links']),
+  } %}
+{% endif %}
+
+{% if site_specific_footer.other_links['about_us'] is defined and site_specific_footer.other_links['about_us']['links'] is not empty %}
+  {% set section_about = {
+    'title': site_specific_footer.other_links['about_us'].label,
+    'links': ecl_footer_links(site_specific_footer.other_links['about_us']['links']),
+  } %}
+{% endif %}
+
+{% if site_specific_footer.other_links['related_sites'] is defined and site_specific_footer.other_links['related_sites']['links'] is not empty %}
+  {% set section_related = {
+    'title': site_specific_footer.other_links['related_sites'].label,
+    'links': ecl_footer_links(site_specific_footer.other_links['related_sites']['links']),
+  } %}
+{% endif %}
 
 {# Populate the common section. #}
 {% set _accessibility_link = [] %}
@@ -76,11 +81,19 @@
     ],
   } %}
 {% endif %}
+
 {% set _links = corporate_footer.legal_navigation ? ecl_footer_links(corporate_footer.legal_navigation) : '' %}
 {% if _links is not empty %}
   {% set _links = _links|merge([_accessibility_link]) %}
 {% else %}
   {% set _links = _accessibility_link %}
+{% endif %}
+{% if corporate_footer.social_media_common_links is not empty %}
+  {% set _social_media = {
+    description: 'Follow the European Commission'|t,
+    description_inline: true,
+    links: ecl_footer_links(corporate_footer.social_media_common_links)
+  } %}
 {% endif %}
 
 {% set section_common = {
@@ -96,6 +109,8 @@
   },
   'links_inline': true,
   'links': _links,
+  'social_media': _social_media,
+  'extra_links': corporate_footer.extra_links ? ecl_footer_links(corporate_footer.extra_links) : [],
 } %}
 
 {% block content %}

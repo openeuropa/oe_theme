@@ -244,9 +244,6 @@ msgstr "Spremljajte nas"
 msgid "About us"
 msgstr "O nas"
 
-msgid "Related sites"
-msgstr "Sorodna spletišča"
-
 msgid "More information on:"
 msgstr "Več informacij:"
 
@@ -653,3 +650,6 @@ msgstr "Navigacija po spletišču"
 
 msgid "You are here:"
 msgstr "Ste tukaj:"
+
+msgid "Follow the European Commission"
+msgstr "Sledite Evropski komisiji"

@@ -91,7 +91,6 @@ class CorporateFooterRenderTest extends BrowserTestBase {
    * @SuppressWarnings(PHPMD.NPathComplexity)
    */
   public function testCorporateFooterRendering(): void {
-    $this->markTestSkipped('Skip this test due to changes in ECL 5.0.0-alpha.11 that will be addressed in a follow up.');
     $user = $this->createUser([], '', TRUE);
     // First test European Commission footer core block rendering.
     $data = $this->getFixtureContent('ec_footer.yml');
@@ -166,7 +165,7 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     $this->assertEclLogoPresence($section);
 
     // Assert accessibility's link presence.
-    $actual = $section->find('css', 'ul li:last-of-type a.ecl-link.ecl-link--standalone.ecl-site-footer__link');
+    $actual = $section->find('css', 'ul.ecl-site-footer__list--inline:nth-child(3) li:last-of-type a.ecl-link.ecl-link--standalone.ecl-site-footer__link');
     $this->assertEquals('Accessibility', $actual->getText());
     $this->assertEquals('/build/', $actual->getAttribute('href'));
 
@@ -174,9 +173,40 @@ class CorporateFooterRenderTest extends BrowserTestBase {
 
     foreach ($items as $key => $expected) {
       $index = $key + 1;
-      $actual = $section->find('css', "ul li:nth-child({$index}) > a");
+      $actual = $section->find('css', "ul.ecl-site-footer__list--inline:nth-child(3) li:nth-child({$index}) > a");
       $this->assertListLink($actual, $expected);
     }
+
+    // Assert the common social media links.
+    $social_media_links = $section->find('css', '.ecl-site-footer__extra-links-container .ecl-social-media-follow--description_inline.ecl-site-footer__social-media');
+    $actual = $social_media_links->find('css', '.ecl-social-media-follow__description');
+    $this->assertEquals('Follow the European Commission', $actual->getText());
+    $social_link = $social_media_links->find('css', 'ul li:nth-child(1) > a');
+    $social_label = $social_media_links->find('css', 'ul li:nth-child(1) > a span.ecl-link__label');
+    $expected = [
+      'label' => 'Facebook',
+      'href' => 'https://www.facebook.com/EuropeanCommission',
+      'icon_name' => 'facebook',
+      'icon_only' => TRUE,
+    ];
+    $this->assertSocialLink($social_label, $social_link, $expected);
+    $social_link = $social_media_links->find('css', 'ul li:nth-child(2) > a');
+    $social_label = $social_media_links->find('css', 'ul li:nth-child(2) > a span.ecl-link__label');
+    $expected = [
+      'label' => 'Other',
+      'href' => 'https://www.example.com/chain-social-media-link',
+      'icon_name' => 'chain',
+      'icon_only' => TRUE,
+    ];
+    $this->assertSocialLink($social_label, $social_link, $expected);
+
+    // Assert the common extra link.
+    $extra_link = $section->find('css', '.ecl-site-footer__extra-links-container ul.ecl-site-footer__list--inline li > a');
+    $expected = [
+      'label' => 'Contact us',
+      'href' => 'https://commission.europa.eu/about/contact_en',
+    ];
+    $this->assertListLink($extra_link, $expected);
 
     // Update settings, assert footer changed.
     $this->updateSiteSettings('http://publications.europa.eu/resource/authority/corporate-body/DG11', 'EC Standardised Site Name');
@@ -438,8 +468,7 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     $subsection = $assert->elementExists('css', '.ecl-site-footer__section:nth-child(2)', $column);
 
     $actual = $assert->elementExists('css', '.ecl-site-footer__title', $subsection);
-    $this->assertEquals('Related sites', $actual->getText());
-
+    $this->assertEquals('Related links', $actual->getText());
     $actual = $subsection->find('css', 'ul li:nth-child(1) > a');
     $expected = [
       'label' => 'Custom related 1',
@@ -496,6 +525,7 @@ class CorporateFooterRenderTest extends BrowserTestBase {
       'label' => 'Social 1',
       'href' => 'http://example.com/social-1',
       'icon_name' => 'facebook',
+      'icon_only' => TRUE,
     ];
     $this->assertSocialLink($social_label, $social_link, $expected);
 
@@ -505,6 +535,7 @@ class CorporateFooterRenderTest extends BrowserTestBase {
       'label' => 'Social 2',
       'href' => 'http://example.com/social-2',
       'icon_name' => 'instagram',
+      'icon_only' => TRUE,
     ];
     $this->assertSocialLink($social_label, $social_link, $expected);
 
@@ -527,7 +558,7 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     $subsection = $assert->elementExists('css', '.ecl-site-footer__section:nth-child(2)', $column);
 
     $actual = $assert->elementExists('css', '.ecl-site-footer__title', $subsection);
-    $this->assertEquals('Related sites', $actual->getText());
+    $this->assertEquals('Related links', $actual->getText());
 
     $actual = $subsection->find('css', 'ul li:nth-child(1) > a');
     $expected = [
@@ -565,7 +596,7 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     $subsection = $assert->elementExists('css', '.ecl-site-footer__section:nth-child(2)', $column);
 
     $actual = $assert->elementExists('css', '.ecl-site-footer__title', $subsection);
-    $this->assertEquals('Related sites', $actual->getText());
+    $this->assertEquals('Related links', $actual->getText());
 
     $actual = $subsection->find('css', 'ul li:nth-child(1) > a');
     $expected = [
@@ -589,6 +620,7 @@ class CorporateFooterRenderTest extends BrowserTestBase {
       'label' => 'Social 1',
       'href' => 'http://example.com/social-1',
       'icon_name' => 'facebook',
+      'icon_only' => TRUE,
     ];
     $this->assertSocialLink($social_label, $social_link, $expected);
 
@@ -598,6 +630,7 @@ class CorporateFooterRenderTest extends BrowserTestBase {
       'label' => 'Social 2',
       'href' => 'http://example.com/social-2',
       'icon_name' => 'instagram',
+      'icon_only' => TRUE,
     ];
     $this->assertSocialLink($social_label, $social_link, $expected);
 
@@ -691,10 +724,8 @@ class CorporateFooterRenderTest extends BrowserTestBase {
 //    $this->assertEquals('Section altered', $actual->getText());
 
     $subsection = $assert->elementExists('css', '.ecl-site-footer__section:nth-child(2)', $column);
-
     $actual = $assert->elementExists('css', '.ecl-site-footer__title', $subsection);
-    $this->assertEquals('Related sites', $actual->getText());
-
+    $this->assertEquals('Related links', $actual->getText());
     // Change component library to ec, assert other links structure.
     $this->library = 'ec';
     $this->configFactory->getEditable('oe_theme.settings')->set('component_library', $this->library)->save();
@@ -741,6 +772,7 @@ class CorporateFooterRenderTest extends BrowserTestBase {
       'label' => 'Social 1',
       'href' => 'http://example.com/social-1',
       'icon_name' => 'facebook',
+      'icon_only' => TRUE,
     ];
     $this->assertSocialLink($social_label, $social_link, $expected);
 
@@ -750,6 +782,7 @@ class CorporateFooterRenderTest extends BrowserTestBase {
       'label' => 'Social 2',
       'href' => 'http://example.com/social-2',
       'icon_name' => 'instagram',
+      'icon_only' => TRUE,
     ];
     $this->assertSocialLink($social_label, $social_link, $expected);
 
@@ -771,7 +804,7 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     $subsection = $assert->elementExists('css', '.ecl-site-footer__row:nth-child(2)', $column);
 
     $actual = $assert->elementExists('css', '.ecl-site-footer__title', $subsection);
-    $this->assertEquals('Related sites', $actual->getText());
+    $this->assertEquals('Related links', $actual->getText());
 
     $actual = $subsection->find('css', 'ul li:nth-child(1) > a');
     $expected = [
@@ -802,7 +835,7 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     $this->assertSession()->elementExists('css', 'span.ecl-icon.ecl-icon--xs.ecl-link__icon.wt-icon--external', $actual);
 
     $subsection = $assert->elementExists('css', '.ecl-site-footer__row:nth-child(2)', $column);
-    file_put_contents('test.html', $this->getSession()->getPage()->getHtml());
+
     $actual = $assert->elementExists('css', '.ecl-site-footer__title', $subsection);
     $this->assertNotEquals('About us', $actual->getText());
 //    $this->assertEquals('Related sites', $actual->getText());
@@ -880,7 +913,7 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     $assert->elementNotExists('css', 'footer.ecl-site-footer div.ecl-site-footer__section--contact');
     $assert->elementNotExists('css', 'footer.ecl-site-footer div.ecl-site-footer__section--about');
     $assert->elementNotExists('css', 'footer.ecl-site-footer div.ecl-site-footer__section--related');
-    $assert->elementNotExists('css', 'footer.ecl-site-footer div.ecl-site-footer__section--common .ecl-social-media-follow');
+    $assert->elementNotExists('css', 'footer.ecl-site-footer div.ecl-site-footer__row--specific .ecl-social-media-follow');
   }
 
   /**
@@ -956,6 +989,9 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     $this->assertSession()->elementExists('css', 'span.ecl-icon.ecl-icon--' . $size . '.ecl-link__icon.wt-icon-networks--' . $expected['icon_name'], $link);
     $inverted_class = $this->library == 'ec' ? 'ecl-link--inverted ' : '';
     $icon_only = $this->library == 'ec' && $this->branding == 'core' ? ' ecl-link--icon-only' : '';
+    if (isset($expected['icon_only']) && $expected['icon_only'] && empty($icon_only)) {
+      $icon_only = ' ecl-link--icon-only';
+    }
     $icon_class = $this->library == 'eu' ? ' ecl-site-footer__link' : ' ecl-social-media-follow__link';
     $icon_link_not_visited = $this->library == 'ec' ? 'ecl-link--no-visited ' : '';
     $this->assertEquals("ecl-link ecl-link--standalone {$inverted_class}{$icon_link_not_visited}ecl-link--icon{$icon_class}{$icon_only}", $link->getAttribute('class'));

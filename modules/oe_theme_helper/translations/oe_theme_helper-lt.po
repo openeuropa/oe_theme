@@ -244,9 +244,6 @@ msgstr "Sekite mus"
 msgid "About us"
 msgstr "Apie mus"
 
-msgid "Related sites"
-msgstr "Susijusios svetainės"
-
 msgid "More information on:"
 msgstr "Daugiau informacijos apie:"
 
@@ -653,3 +650,6 @@ msgstr "Naršymas svetainėje"
 
 msgid "You are here:"
 msgstr "Esate čia:"
+
+msgid "Follow the European Commission"
+msgstr "Sekite Europos Komisijos naujienas"

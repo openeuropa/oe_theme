@@ -244,9 +244,6 @@ msgstr "Følg os"
 msgid "About us"
 msgstr "Om os"
 
-msgid "Related sites"
-msgstr "Relaterede websites"
-
 msgid "More information on:"
 msgstr "Du kan læse mere på:"
 
@@ -653,3 +650,6 @@ msgstr "Navigation"
 
 msgid "You are here:"
 msgstr "Du er her:"
+
+msgid "Follow the European Commission"
+msgstr "Følg Europa-Kommissionen"

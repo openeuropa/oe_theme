@@ -466,9 +466,6 @@ msgstr "フォロー"
 msgid "More information on:"
 msgstr "さらなる情報はこちら："
 
-msgid "Related sites"
-msgstr "関連サイト"
-
 msgid "This site is managed by:<br />@name"
 msgstr "サイト管理者:<br />@name"
 

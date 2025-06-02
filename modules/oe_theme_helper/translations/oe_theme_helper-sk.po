@@ -244,9 +244,6 @@ msgstr "Sledujte nás"
 msgid "About us"
 msgstr "O nás"
 
-msgid "Related sites"
-msgstr "Súvisiace webové sídla"
-
 msgid "More information on:"
 msgstr "Viac informácií:"
 
@@ -653,3 +650,6 @@ msgstr "Navigačné menu lokality"
 
 msgid "You are here:"
 msgstr "Nachádzate sa tu:"
+
+msgid "Follow the European Commission"
+msgstr "Sledujte Európsku komisiu"
