@@ -1,2 +1,11 @@
 includes:
   - ./vendor/openeuropa/code-review-drupal/dist/phpstan.drupal.neon
+parameters:
+    excludePaths:
+        # @todo This class should be removed and approach changed to new event system during upgrade to phpunit 10.
+        - %currentWorkingDirectory%/tests/src/EnsurePHPUnitBatchingTestExtension.php
+        # Ignore these as CKEditor 4 is not supported anymore and it will be removed in 6.x.
+        - %currentWorkingDirectory%/modules/oe_theme_helper/src/Plugin/CKEditorPlugin/EclTablePluginBase.php
+        - %currentWorkingDirectory%/modules/oe_theme_helper/src/Plugin/CKEditorPlugin/TableSimple.php
+        - %currentWorkingDirectory%/modules/oe_theme_helper/src/Plugin/CKEditorPlugin/TableSort.php
+        - %currentWorkingDirectory%/modules/oe_theme_helper/src/Plugin/CKEditorPlugin/TableZebraStriping.php
