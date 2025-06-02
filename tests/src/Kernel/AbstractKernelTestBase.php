@@ -93,7 +93,7 @@ abstract class AbstractKernelTestBase extends TokenKernelTestBase {
    * @return array
    *   A set of test data.
    */
-  static protected function getFixtureContent(string $filepath): array {
+  protected static function getFixtureContent(string $filepath): array {
     return Yaml::parse(file_get_contents(__DIR__ . "/fixtures/{$filepath}"));
   }
 

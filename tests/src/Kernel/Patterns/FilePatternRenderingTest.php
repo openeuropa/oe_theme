@@ -68,7 +68,7 @@ class FilePatternRenderingTest extends AbstractKernelTestBase {
    * @return array
    *   An array of test data arrays with assertions.
    */
-  static public function dataProvider(): array {
+  public static function dataProvider(): array {
     return self::getFixtureContent('patterns/file_pattern_rendering.yml');
   }
 
