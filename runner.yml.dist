@@ -43,6 +43,7 @@ drupal:
     - "./vendor/bin/drush config-set system.theme default oe_theme -y"
     - "./vendor/bin/drush config-set system.theme admin claro -y"
     - "./vendor/bin/drush config-set node.settings use_admin_theme 1 -y"
+    - "./vendor/bin/drush config-set user.settings register visitors -y"
     - "./vendor/bin/drush cr"
   settings:
     settings:
