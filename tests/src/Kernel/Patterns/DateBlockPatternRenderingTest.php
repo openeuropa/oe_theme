@@ -48,7 +48,7 @@ class DateBlockPatternRenderingTest extends AbstractKernelTestBase {
    * @return array
    *   An array of test data arrays with assertions.
    */
-  static public function fromArrayDataProvider(): array {
+  public static function fromArrayDataProvider(): array {
     return self::getFixtureContent('patterns/date_block_pattern_rendering.yml');
   }
 

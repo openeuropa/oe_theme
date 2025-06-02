@@ -68,15 +68,14 @@ pipeline:
       matrix:
         TYPE: behat
 
-# @todo temporarily disable this.
-#  grumphp:
-#    group: test
-#    image: registry.fpfis.eu/fpfis/httpd-php:${PHP_VERSION}-ci
-#    commands:
-#      - ./vendor/bin/grumphp run
-#    when:
-#      event:
-#        exclude: tag
+  grumphp:
+    group: test
+    image: registry.fpfis.eu/fpfis/httpd-php:${PHP_VERSION}-ci
+    commands:
+      - ./vendor/bin/grumphp run
+    when:
+      event:
+        exclude: tag
 
   phpunit:
     group: test

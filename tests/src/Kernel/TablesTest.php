@@ -42,7 +42,7 @@ class TablesTest extends AbstractKernelTestBase {
    * @return array
    *   A set of dump data for testing.
    */
-  static public function dataProvider(): array {
+  public static function dataProvider(): array {
     return self::getFixtureContent('table_rendering.yml');
   }
 

@@ -13,7 +13,6 @@ use Drupal\Tests\oe_theme\Traits\RenderTrait;
 use Drupal\Tests\oe_theme\Traits\RequestTrait;
 use Drupal\entity_test\Entity\EntityTest;
 use Symfony\Component\DomCrawler\Crawler;
-use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Tests that the breadcrumb is properly displayed.
@@ -40,6 +39,9 @@ class BreadcrumbTest extends EntityKernelTestBase {
     'responsive_image',
   ];
 
+  /**
+   * {@inheritdoc}
+   */
   protected function setUp(): void {
     parent::setUp();
 
