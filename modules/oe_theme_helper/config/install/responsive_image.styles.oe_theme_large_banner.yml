@@ -6,12 +6,12 @@ dependencies:
     - image.style.oe_theme_extra_large_3_1_banner
     - image.style.oe_theme_full_width_banner_3_1
     - image.style.oe_theme_large_3_1_banner
-    - image.style.oe_theme_medium_3_1_banner
-    - image.style.oe_theme_small_3_1_banner
+    - image.style.oe_theme_medium_3_2_banner
+    - image.style.oe_theme_small_3_2_banner
   module:
     - oe_theme_helper
-id: oe_theme_3_1_banner
-label: '3:1 Banner (Deprecated)'
+id: oe_theme_large_banner
+label: 'Large Banner'
 image_style_mappings:
   -
     image_mapping_type: image_style
@@ -35,12 +35,12 @@ image_style_mappings:
     multiplier: 1x
   -
     image_mapping_type: image_style
-    image_mapping: oe_theme_medium_3_1_banner
+    image_mapping: oe_theme_medium_3_2_banner
     breakpoint_id: oe_theme.small
     multiplier: 1x
   -
     image_mapping_type: image_style
-    image_mapping: oe_theme_small_3_1_banner
+    image_mapping: oe_theme_small_3_2_banner
     breakpoint_id: oe_theme.extra_small
     multiplier: 1x
 breakpoint_group: oe_theme

@@ -601,3 +601,104 @@ function oe_theme_helper_post_update_50001(): void {
   \Drupal::service('module_installer')->install(['oe_webtools']);
   \Drupal::service('kernel')->invalidateContainer();
 }
+
+/**
+ * Mark banner responsive image styles as deprecated and add new banner styles.
+ */
+function oe_theme_helper_post_update_50006(): void {
+
+  // Mark existing responsive image styles as deprecated.
+  $style_ids = [
+    'oe_theme_3_1_banner',
+    'oe_theme_4_1_banner',
+    'oe_theme_5_1_banner',
+  ];
+
+  $responsive_image_style_storage = \Drupal::entityTypeManager()->getStorage('responsive_image_style');
+
+  foreach ($style_ids as $style_id) {
+    /** @var \Drupal\responsive_image\Entity\ResponsiveImageStyle $responsive_image_style */
+    $responsive_image_style = $responsive_image_style_storage->load($style_id);
+
+    if (!$responsive_image_style) {
+      continue;
+    }
+
+    $label = $responsive_image_style->label();
+    if (!str_contains($label, '(Deprecated)')) {
+      $new_label = trim($label) . ' (Deprecated)';
+      $responsive_image_style->set('label', $new_label);
+      $responsive_image_style->save();
+      \Drupal::logger('oe_theme_helper')->notice('Updated label of responsive image style "@id" to "@label".', [
+        '@id' => $style_id,
+        '@label' => $new_label,
+      ]);
+    }
+  }
+
+  // Add new banner styles.
+  $image_styles = [
+    'oe_theme_medium_3_2_banner' => [
+      'label' => 'Medium banner 3:2',
+      'width' => '768',
+      'height' => '512',
+    ],
+    'oe_theme_small_3_2_banner' => [
+      'label' => 'Small banner 3:2',
+      'width' => '480',
+      'height' => '320',
+    ],
+  ];
+
+  $image_style_storage = \Drupal::entityTypeManager()->getStorage('image_style');
+  foreach ($image_styles as $style_id => $style_data) {
+    $style = $image_style_storage->load($style_id);
+    // If the image style already exists, skip it.
+    if ($style) {
+      continue;
+    }
+    // Create image style.
+    $image_style = ImageStyle::create([
+      'name' => $style_id,
+      'label' => $style_data['label'],
+    ]);
+    // Add scale&crop effect to the image style.
+    $effect = [
+      'id' => 'image_scale_and_crop',
+      'weight' => 1,
+      'data' => [
+        'width' => $style_data['width'],
+        'height' => $style_data['height'],
+        'anchor' => 'center-center',
+      ],
+    ];
+    $image_style->addImageEffect($effect);
+    $image_style->save();
+    \Drupal::logger('oe_theme_helper')->notice('Created image style "@id" with label "@label".', [
+      '@id' => $style_id,
+      '@label' => $style_data['label'],
+    ]);
+  }
+
+  // Create responsive image styles for the new banner styles.
+  $config_path = \Drupal::service('extension.list.module')->getPath('oe_theme_helper') . '/config/install';
+  $source = new FileStorage($config_path);
+  $config_storage = \Drupal::service('config.storage');
+
+  $styles = [
+    'responsive_image.styles.oe_theme_small_banner',
+    'responsive_image.styles.oe_theme_medium_banner',
+    'responsive_image.styles.oe_theme_large_banner',
+  ];
+
+  foreach ($styles as $style_config_name) {
+    $data = $source->read($style_config_name);
+    if ($data !== NULL) {
+      $config_storage->write($style_config_name, $data);
+      \Drupal::logger('oe_theme_helper')->notice('Responsive image style configuration "%style_config_name" has been created.', [
+        '%style_config_name' => $style_config_name,
+      ]);
+    }
+  }
+
+}

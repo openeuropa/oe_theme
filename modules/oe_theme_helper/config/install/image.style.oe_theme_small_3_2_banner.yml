@@ -1,0 +1,14 @@
+langcode: en
+status: true
+dependencies: {  }
+name: oe_theme_small_3_2_banner
+label: 'Small banner 3:2'
+effects:
+  ff8d0583-f47e-4819-860b-b89c248575cf:
+    uuid: ff8d0583-f47e-4819-860b-b89c248575cf
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 480
+      height: 320
+      anchor: center-center
