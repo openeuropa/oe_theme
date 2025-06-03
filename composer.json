@@ -121,7 +121,6 @@
             "behat/mink-selenium2-driver locked to 1.6.x as version 1.7.0 introduces issues with mouse dragging and keyboard key events.",
             "Explicit requirement of nikic/php-parser as ^5.0 generates GrumPHP Parser issues.",
             "autoload-dev: explicitly mapping EntityReferenceFieldCreationTrait to prevent failures.",
-            "Locking drupal/media_avportal to 1.8.0 until D10.2 support is dropped.",
             "Patch for drupal/driver refers to https://github.com/jhedstrom/DrupalDriver/pull/235"
         ]
     },
