@@ -114,8 +114,10 @@ class IllustrationListsParagraphsTest extends ParagraphsTestBase {
     $heading = $crawler->filter('div.ecl h2.ecl-u-type-heading-2');
     $this->assertCount(1, $heading);
     $this->assertEquals('Illustration with flags test', trim($heading->text()));
-    $icon = $crawler->filter('.ecl-list-illustration__icon use');
-    $this->assertStringNotContainsString('-square', $icon->attr('xlink:href'));
+    $this->assertCount(0, $crawler->filter('span.ecl-list-illustration__icon.wt-icon--austria-square'));
+    $this->assertCount(0, $crawler->filter('span.ecl-list-illustration__icon.wt-icon--belgium-square'));
+    $this->assertCount(0, $crawler->filter('span.ecl-list-illustration__icon.wt-icon--france-square'));
+    $this->assertCount(0, $crawler->filter('span.ecl-list-illustration__icon.wt-icon--north-macedonia-square'));
 
     // Assert rendered items.
     $expected_values = [
@@ -170,8 +172,10 @@ class IllustrationListsParagraphsTest extends ParagraphsTestBase {
     ];
     $assert->assertPattern($expected_values, $html);
     $crawler = new Crawler($html);
-    $icon = $crawler->filter('.ecl-list-illustration__icon use');
-    $this->assertStringContainsString('-square', $icon->attr('xlink:href'));
+    $this->assertCount(1, $crawler->filter('span.ecl-list-illustration__icon.wt-icon--austria-square'));
+    $this->assertCount(1, $crawler->filter('span.ecl-list-illustration__icon.wt-icon--belgium-square'));
+    $this->assertCount(1, $crawler->filter('span.ecl-list-illustration__icon.wt-icon--france-square'));
+    $this->assertCount(1, $crawler->filter('span.ecl-list-illustration__icon.wt-icon--north-macedonia-square'));
 
     // Assert vertical variant.
     $list_paragraph->set('oe_paragraphs_variant', 'oe_illustration_vertical')->save();

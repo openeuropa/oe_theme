@@ -106,8 +106,7 @@ class TextFeaturedMediaAssert extends BasePatternAssert {
     $label_element = $link_element->filter('span.ecl-link__label');
     self::assertEquals($expected_link['label'], $label_element->text());
 
-    $svg = $link_element->filter('svg.ecl-icon.ecl-icon--m.ecl-link__icon use');
-    self::assertStringContainsString('icons.svg#' . $expected_link['icon'], $svg->attr('xlink:href'));
+    $this->assertElementExists('span.ecl-icon.ecl-icon--m.ecl-link__icon.wt-icon--' . $expected_link['icon'], $link_element);
   }
 
   /**
@@ -156,8 +155,7 @@ class TextFeaturedMediaAssert extends BasePatternAssert {
     $this->assertElementExists('div.ecl-expandable.ecl-media-container__expandable', $crawler);
     // Assert the button with its toggle labels and icon.
     $this->assertElementExists('button.ecl-button.ecl-button--secondary.ecl-expandable__toggle', $crawler);
-    $svg = $crawler->filter('span.ecl-button__container svg.ecl-icon.ecl-icon--fluid.ecl-icon--rotate-180.ecl-button__icon.ecl-button__icon--after use');
-    $this->assertStringContainsString('icons.svg#corner-arrow', $svg->attr('xlink:href'));
+    $this->assertElementExists('span.ecl-button__container span.ecl-icon.ecl-icon--fluid.ecl-icon--rotate-180.ecl-button__icon.ecl-button__icon--after.wt-icon--corner-arrow', $crawler);
     $this->assertElementExists('button[data-ecl-label-expanded="' . $expected_block['label_expanded'] . '"][data-ecl-label-collapsed="' . $expected_block['label_collapsed'] . '"]', $crawler);
     // Assert the content id and its text.
     if (isset($expected_block['id'])) {
