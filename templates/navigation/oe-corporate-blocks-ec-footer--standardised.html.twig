@@ -41,6 +41,7 @@
 {% set section_about = [] %}
 {% set section_more = [] %}
 {% set section_related = [] %}
+{% set sections_custom = [] %}
 
 {% if site_specific_footer.other_links['contact_us'] is defined and site_specific_footer.other_links['contact_us']['links'] is not empty %}
   {% set section_contact = {
@@ -61,6 +62,16 @@
     'title': site_specific_footer.other_links['related_sites'].label,
     'links': ecl_footer_links(site_specific_footer.other_links['related_sites']['links']),
   } %}
+{% endif %}
+
+{# Build the custom sections array. #}
+{% if site_specific_footer.other_links['sections_custom'] is defined and site_specific_footer.other_links['sections_custom'] is iterable %}
+  {% for section in site_specific_footer.other_links['sections_custom'] %}
+    {% set sections_custom = sections_custom|merge([{
+      'title': section.label,
+      'links': ecl_footer_links(section['links']),
+    }]) %}
+  {% endfor %}
 {% endif %}
 
 {# Populate the common section. #}
@@ -121,5 +132,6 @@
     'section_more': section_more,
     'section_related': section_related,
     'section_common': section_common|default([]),
+    'sections_custom': sections_custom|default([]),
   } %}
 {% endblock %}

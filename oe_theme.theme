@@ -1928,6 +1928,9 @@ function _oe_theme_preprocess_footer_logo(array &$variables): void {
 function _oe_theme_preprocess_site_specific_footer_links(array &$variables): void {
   if (!empty($variables['site_specific_footer']['social_links'])) {
     $social_media_footer_links_config = \Drupal::configFactory()->get('oe_corporate_blocks.social_media_footer_links_settings');
+    CacheableMetadata::createFromRenderArray($variables)
+      ->addCacheableDependency($social_media_footer_links_config)
+      ->applyTo($variables);
     $alignment = $social_media_footer_links_config->get('alignment');
     $display_labels = (bool) $social_media_footer_links_config->get('display_labels');
     foreach ($variables['site_specific_footer']['social_links'] as $index => $link) {
@@ -1939,6 +1942,12 @@ function _oe_theme_preprocess_site_specific_footer_links(array &$variables): voi
   if (empty($variables['site_specific_footer']['other_links'])) {
     return;
   }
+
+  $predefined_sections = [
+    'contact_us',
+    'about_us',
+    'related_sites',
+  ];
 
   $external_link_service = \Drupal::service('oe_theme_helper.external_links');
 
@@ -1955,6 +1964,11 @@ function _oe_theme_preprocess_site_specific_footer_links(array &$variables): voi
       if ($external_link_service->isExternalLink($link['href'])) {
         $variables['site_specific_footer']['other_links'][$section]['links'][$index]['external'] = TRUE;
       }
+    }
+    if (!in_array($section, $predefined_sections)) {
+      // If it's a custom section, move it in a different subset.
+      $variables['site_specific_footer']['other_links']['sections_custom'][$section] = $variables['site_specific_footer']['other_links'][$section];
+      unset($variables['site_specific_footer']['other_links'][$section]);
     }
   }
 }

@@ -49,7 +49,7 @@
         "openeuropa/code-review-drupal": "^1.0.0-alpha",
         "openeuropa/oe_contact_forms": "^1.14",
         "openeuropa/oe_content": "^4.0.0",
-        "openeuropa/oe_corporate_blocks": "dev-EWPP-5626",
+        "openeuropa/oe_corporate_blocks": "^5.0@beta",
         "openeuropa/oe_corporate_countries": "^2.3",
         "openeuropa/oe_corporate_site_info": "^1.2",
         "openeuropa/oe_media": "^1.32",
