@@ -1,10 +1,23 @@
-# Change Log
+# Changelog
+
+## [5.0.0-beta7](https://github.com/openeuropa/oe_theme/tree/5.0.0-beta7) (2025-06-06)
+
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/5.0.0-beta6...5.0.0-beta7)
+
+**Merged pull requests:**
+
+- EWPP-4648: Drupal 11 [\#1594](https://github.com/openeuropa/oe_theme/pull/1594) ([ademarco](https://github.com/ademarco))
+- EWPP-5553: Update sparql image in docker-compose.yml and .drone.yml. [\#1593](https://github.com/openeuropa/oe_theme/pull/1593) ([sergepavle](https://github.com/sergepavle))
+- EWPP-5585: Update to ECL 5.0.0-alpha.11. [\#1592](https://github.com/openeuropa/oe_theme/pull/1592) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-5526: Allow table header on columns. [\#1586](https://github.com/openeuropa/oe_theme/pull/1586) ([22Alexandra](https://github.com/22Alexandra))
 
 ## [5.0.0-beta6](https://github.com/openeuropa/oe_theme/tree/5.0.0-beta6) (2025-05-14)
+
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/5.0.0-beta5...5.0.0-beta6)
 
 **Merged pull requests:**
 
+- Release 5.0.0-beta6 changelog. [\#1590](https://github.com/openeuropa/oe_theme/pull/1590) ([22Alexandra](https://github.com/22Alexandra))
 - EWPP-5562: Update the highlighted link of Text with featured media pattern. [\#1588](https://github.com/openeuropa/oe_theme/pull/1588) ([22Alexandra](https://github.com/22Alexandra))
 - EWPP-5503: Fix Banner and Carousel templates for no media case. [\#1585](https://github.com/openeuropa/oe_theme/pull/1585) ([22Alexandra](https://github.com/22Alexandra))
 
