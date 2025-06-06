@@ -121,8 +121,8 @@ class RenderingTest extends AbstractKernelTestBase implements FormInterface {
    * @return array
    *   A set of dump data for testing.
    */
-  public function renderingDataProvider(): array {
-    return $this->getFixtureContent('rendering.yml');
+  public static function renderingDataProvider(): array {
+    return self::getFixtureContent('rendering.yml');
   }
 
 }

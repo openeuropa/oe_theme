@@ -6,6 +6,7 @@ namespace Drupal\Tests\oe_theme\Kernel;
 
 use Drupal\Core\Plugin\ContextAwarePluginInterface;
 use Drupal\Core\Site\Settings;
+use Drupal\Tests\oe_theme\Kernel\Traits\MockSessionTrait;
 use Drupal\Tests\oe_theme\Traits\RenderTrait;
 use Drupal\Tests\token\Kernel\TokenKernelTestBase;
 use Symfony\Component\Yaml\Yaml;
@@ -16,6 +17,7 @@ use Symfony\Component\Yaml\Yaml;
 abstract class AbstractKernelTestBase extends TokenKernelTestBase {
 
   use RenderTrait;
+  use MockSessionTrait;
 
   /**
    * {@inheritdoc}
@@ -75,6 +77,14 @@ abstract class AbstractKernelTestBase extends TokenKernelTestBase {
   }
 
   /**
+   * {@inheritdoc}
+   */
+  protected function tearDown(): void {
+    $this->setUpMockSessionRequest();
+    parent::tearDown();
+  }
+
+  /**
    * Get fixture content.
    *
    * @param string $filepath
@@ -83,7 +93,7 @@ abstract class AbstractKernelTestBase extends TokenKernelTestBase {
    * @return array
    *   A set of test data.
    */
-  protected function getFixtureContent(string $filepath): array {
+  protected static function getFixtureContent(string $filepath): array {
     return Yaml::parse(file_get_contents(__DIR__ . "/fixtures/{$filepath}"));
   }
 

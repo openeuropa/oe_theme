@@ -1,8 +1,11 @@
 /**
  * @file
  * Plugin for adding zebra striping of table.
+ *
+ * @deprecated This is a CKEditor 4 plugin.
+ * CKEditor 4 is not supported in Drupal 11.
+ * This plugin will be removed in version 6.x+ of the theme.
  */
-
 (function ($, CKEDITOR) {
   "use strict";
 

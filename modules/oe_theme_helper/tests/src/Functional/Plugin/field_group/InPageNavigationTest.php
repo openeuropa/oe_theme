@@ -187,7 +187,7 @@ class InPageNavigationTest extends BrowserTestBase {
     // Assert second field group.
     $content_second_group = $content_items[1]->getText();
     $this->assertStringContainsString('Single text', $content_second_group);
-    $this->assertStringContainsString('Output from SingleTextFieldTest', $content_second_group);
+    $this->assertStringContainsString('Output from SingleTextField', $content_second_group);
     $this->assertStringContainsString('Aap', $content_second_group);
     $this->assertStringContainsString('Noot', $content_second_group);
 
