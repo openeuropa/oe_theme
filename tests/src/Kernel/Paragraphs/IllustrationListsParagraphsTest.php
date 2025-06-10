@@ -114,10 +114,10 @@ class IllustrationListsParagraphsTest extends ParagraphsTestBase {
     $heading = $crawler->filter('div.ecl h2.ecl-u-type-heading-2');
     $this->assertCount(1, $heading);
     $this->assertEquals('Illustration with flags test', trim($heading->text()));
-    $this->assertCount(0, $crawler->filter('span.ecl-list-illustration__icon.wt-icon--austria-square'));
-    $this->assertCount(0, $crawler->filter('span.ecl-list-illustration__icon.wt-icon--belgium-square'));
-    $this->assertCount(0, $crawler->filter('span.ecl-list-illustration__icon.wt-icon--france-square'));
-    $this->assertCount(0, $crawler->filter('span.ecl-list-illustration__icon.wt-icon--north-macedonia-square'));
+    $this->assertCount(1, $crawler->filter('span.ecl-list-illustration__icon.wt-icon-flag--at'));
+    $this->assertCount(1, $crawler->filter('span.ecl-list-illustration__icon.wt-icon-flag--be'));
+    $this->assertCount(1, $crawler->filter('span.ecl-list-illustration__icon.wt-icon-flag--fr'));
+    $this->assertCount(1, $crawler->filter('span.ecl-list-illustration__icon.wt-icon-flag--mk'));
 
     // Assert rendered items.
     $expected_values = [
@@ -127,17 +127,21 @@ class IllustrationListsParagraphsTest extends ParagraphsTestBase {
         [
           'title' => 'Term 1',
           'description' => 'Description 1',
-          'icon' => 'austria',
+          'icon' => 'at',
+          'icon_family' => 'flag',
         ], [
           'title' => 'Term 2',
-          'icon' => 'belgium',
+          'icon' => 'be',
+          'icon_family' => 'flag',
           'value' => 'Highlighted Term 2',
         ], [
           'description' => 'Description 3',
-          'icon' => 'france',
+          'icon' => 'fr',
+          'icon_family' => 'flag',
           'value' => 'Highlighted Term 3',
         ], [
-          'icon' => 'north-macedonia',
+          'icon' => 'mk',
+          'icon_family' => 'flag',
         ],
       ],
       'centered' => FALSE,
@@ -147,7 +151,6 @@ class IllustrationListsParagraphsTest extends ParagraphsTestBase {
 
     // Assert number of columns and ratio.
     $list_paragraph->set('field_oe_illustration_columns', 4);
-    $list_paragraph->set('field_oe_illustration_ratio', 'square')->save();
     $html = $this->renderParagraph($list_paragraph);
     $expected_values = [
       'column' => 4,
@@ -156,26 +159,30 @@ class IllustrationListsParagraphsTest extends ParagraphsTestBase {
         [
           'title' => 'Term 1',
           'description' => 'Description 1',
-          'icon' => 'austria-square',
+          'icon' => 'at',
+          'icon_family' => 'flag',
         ], [
           'title' => 'Term 2',
-          'icon' => 'belgium-square',
+          'icon' => 'be',
+          'icon_family' => 'flag',
           'value' => 'Highlighted Term 2',
         ], [
           'description' => 'Description 3',
-          'icon' => 'france-square',
+          'icon' => 'fr',
+          'icon_family' => 'flag',
           'value' => 'Highlighted Term 3',
         ], [
-          'icon' => 'north-macedonia-square',
+          'icon' => 'mk',
+          'icon_family' => 'flag',
         ],
       ],
     ];
     $assert->assertPattern($expected_values, $html);
     $crawler = new Crawler($html);
-    $this->assertCount(1, $crawler->filter('span.ecl-list-illustration__icon.wt-icon--austria-square'));
-    $this->assertCount(1, $crawler->filter('span.ecl-list-illustration__icon.wt-icon--belgium-square'));
-    $this->assertCount(1, $crawler->filter('span.ecl-list-illustration__icon.wt-icon--france-square'));
-    $this->assertCount(1, $crawler->filter('span.ecl-list-illustration__icon.wt-icon--north-macedonia-square'));
+    $this->assertCount(1, $crawler->filter('span.ecl-list-illustration__icon.wt-icon-flag--at'));
+    $this->assertCount(1, $crawler->filter('span.ecl-list-illustration__icon.wt-icon-flag--be'));
+    $this->assertCount(1, $crawler->filter('span.ecl-list-illustration__icon.wt-icon-flag--fr'));
+    $this->assertCount(1, $crawler->filter('span.ecl-list-illustration__icon.wt-icon-flag--mk'));
 
     // Assert vertical variant.
     $list_paragraph->set('oe_paragraphs_variant', 'oe_illustration_vertical')->save();

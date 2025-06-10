@@ -16,6 +16,7 @@ use Drupal\Core\Render\RendererInterface;
 use Drupal\Core\StringTranslation\ByteSizeMarkup;
 use Drupal\Core\Template\Attribute;
 use Drupal\Core\Template\TwigExtension as CoreTwigExtension;
+use Drupal\oe_theme\Traits\CountryMappingTrait;
 use Drupal\oe_theme_helper\EuropeanUnionLanguages;
 use Drupal\oe_theme_helper\ExternalLinksInterface;
 use Drupal\smart_trim\TruncateHTML;
@@ -33,6 +34,8 @@ use Twig\TwigFunction;
  * @SuppressWarnings(PHPMD.ExcessiveClassComplexity)
  */
 class TwigExtension extends AbstractExtension {
+
+  use CountryMappingTrait;
 
   /**
    * The language manager.
@@ -286,12 +289,19 @@ class TwigExtension extends AbstractExtension {
    *   The icon to be converted.
    * @param string $size
    *   The icon size.
+   * @param string $icon_family
+   *   The icon family.
    *
    * @return array
    *   Icon array for ECL components containing icon name, path and rotation.
    */
-  public function toEclIcon(array $context, $icon, string $size = ''): array {
+  public function toEclIcon(array $context, $icon, string $size = '', string $icon_family = ''): array {
     $path = $this->getIconPath($context, $icon);
+
+    $country_code = $this->getCountryCode($icon);
+    if ($country_code !== NULL) {
+      $icon = $country_code;
+    }
 
     // Icons that require transforming.
     $transformed_icons = [
@@ -378,8 +388,11 @@ class TwigExtension extends AbstractExtension {
     ];
     if ($size) {
       $icon['size'] = $size;
-
     }
+    if ($icon_family) {
+      $icon['family'] = $icon_family;
+    }
+
     return $icon;
   }
 

@@ -34,6 +34,11 @@ list_with_illustration:
       label: 'Extra classes string'
       description: 'Extra classes string'
       preview: ''
+    icon_family:
+      type: "text"
+      label: "Icon family"
+      description: "Name of the icon family. Applies to icons."
+      preview: "flags"
     items:
       type: "array"
       label: "Items"

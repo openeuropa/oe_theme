@@ -4774,6 +4774,7 @@
       zebra: false
       column: 1
       color_mode: "green-pine"
+      icon_family: 'flag'
       items:
         - title: "Business, Economy, Euro"
           description: "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
@@ -4788,8 +4789,8 @@
       ul.ecl-list-illustration.ecl-list-illustration--zebra: 0
       li.ecl-list-illustration__item: 2
       img.ecl-list-illustration__image: 0
-      'li.ecl-list-illustration__item:nth-child(1) span.ecl-icon.wt-icon--growth': 1
-      'li.ecl-list-illustration__item:nth-child(2) span.ecl-icon.wt-icon--budget': 1
+      'li.ecl-list-illustration__item:nth-child(1) span.ecl-icon.wt-icon-flag--growth': 1
+      'li.ecl-list-illustration__item:nth-child(2) span.ecl-icon.wt-icon-flag--budget': 1
     contains:
       'li.ecl-list-illustration__item:nth-child(1) div.ecl-list-illustration__title': 'Business, Economy, Euro'
       'li.ecl-list-illustration__item:nth-child(1) div.ecl-list-illustration__description': 'EU economy, the euro, and practical information for EU businesses and entrepreneurs.'

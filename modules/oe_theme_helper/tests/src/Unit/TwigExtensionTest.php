@@ -347,16 +347,7 @@ class TwigExtensionTest extends UnitTestCase {
       [
         'spain',
         [
-          'name' => 'spain',
-          'path' => '/path/to/theme/resources/flag-icons/',
-          'size' => 'xs',
-        ],
-        'xs',
-      ],
-      [
-        'spain-square',
-        [
-          'name' => 'spain-square',
+          'name' => 'es',
           'path' => '/path/to/theme/resources/flag-icons/',
           'size' => 'xs',
         ],
