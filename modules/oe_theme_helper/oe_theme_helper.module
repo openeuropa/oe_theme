@@ -105,6 +105,8 @@ function oe_theme_helper_theme($existing, $type, $theme, $path) {
         'button_previous_label' => '',
         'button_next_label' => '',
         'max_lines' => '',
+        'featured_priority' => '',
+        'extra_classes' => '',
         'variant' => '',
       ],
     ],

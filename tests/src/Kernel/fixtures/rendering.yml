@@ -4400,6 +4400,8 @@
     '#variant': "mega_menu"
     '#fields':
       label: "Menu"
+      featured_priority: "primary"
+      extra_classes: "custom-class1 custom-class2"
       items:
         - href: "#"
           label: 'Parent 1'
@@ -4431,6 +4433,17 @@
           info:
             title: "About the Parent 2 link"
             content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+          featured:
+            title: "Featured column belonging to the About the Parent 2 link"
+            items:
+              - href: "#parent-2-featured-item-link"
+                label: "Featured link of the main item"
+                description: "Description text of the featured link of the main item"
+                picture:
+                  img:
+                    src: "https://inno-ecl.s3.amazonaws.com/media/examples/example-image.jpg"
+                    alt: "alternative text of the featured item"
+                external: true
           children:
             - href: '#child-2.1'
               label: 'Child 2.1'
@@ -4491,13 +4504,17 @@
           label: "Parent 3 with container"
           container:
             '#markup': "<article class=\"ecl-navigation-list__item\">\n    <picture class=\"ecl-picture ecl-navigation-list__picture\"><img class=\"ecl-navigation-list__image\" src=\"https://inno-ecl.s3.amazonaws.com/media/examples/example-image.jpg\" alt=\"Alt text for the image\" /></picture>\n    <div class=\"ecl-content-block ecl-navigation-list__content-block\" data-ecl-auto-init=\"ContentBlock\" data-ecl-content-block>\n      <div class=\"ecl-content-block__title\" data-ecl-title-link><a href=\"/example#qspea\" class=\"ecl-link ecl-link--standalone\">Title 3</a></div>\n      <div class=\"ecl-content-block__description\">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus gravida ipsum ut lorem cursus</div>\n    </div>\n  </article>"
+        - href: "#"
+          label: "Promotional Parent 4 with no dropdown"
+          promotional: true
   assertions:
     count:
-      "nav.ecl-mega-menu[data-ecl-mega-menu][data-ecl-auto-init=\"MegaMenu\"][role=\"navigation\"][aria-label=\"Site navigation\"]": 1
+      "nav.ecl-mega-menu.ecl-mega-menu--featured--primary.custom-class1.custom-class2[data-ecl-mega-menu][data-ecl-auto-init=\"MegaMenu\"][role=\"navigation\"][aria-label=\"Site navigation\"]": 1
       "li.ecl-mega-menu__item.ecl-mega-menu__item--has-children:nth-child(1)[data-ecl-has-children]": 1
       "li.ecl-mega-menu__subitem.ecl-mega-menu__see-all": 2
       "li.ecl-mega-menu__item.ecl-mega-menu__item--has-children:nth-child(2)[data-ecl-has-children]": 1
       "li.ecl-mega-menu__item.ecl-mega-menu__item--has-container[data-ecl-has-container]": 1
+      "li.ecl-mega-menu__item.ecl-mega-menu__item--promotional": 1
       "div.ecl-container.ecl-mega-menu__container section.ecl-mega-menu__inner[data-ecl-mega-menu-inner]": 1
       "button.ecl-button.ecl-button--tertiary.ecl-mega-menu__open.ecl-button--icon-only[data-ecl-mega-menu-open]": 1
       "div.ecl-mega-menu__info.ecl-mega-menu__info--has-link": 1
@@ -4531,6 +4548,8 @@
       'li.ecl-mega-menu__item.ecl-mega-menu__item--has-children:nth-child(2) button.ecl-mega-menu__link .ecl-button__label': "Parent 2"
       'li.ecl-mega-menu__item.ecl-mega-menu__item--has-children:nth-child(2) div.ecl-mega-menu__info .ecl-mega-menu__info-title': 'About the Parent 2 link'
       'li.ecl-mega-menu__item.ecl-mega-menu__item--has-children:nth-child(2) div.ecl-mega-menu__info .ecl-mega-menu__info-scrollable .ecl-mega-menu__info-content': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
+      'li.ecl-mega-menu__item--has-children:nth-child(2) div.ecl-mega-menu__mega--has-featured div.ecl-mega-menu__featured .ecl-mega-menu__featured-title#ecl-mega-menu-featured-title-': "Featured column belonging to the About the Parent 2 link"
+      'li.ecl-mega-menu__item--has-children:nth-child(2) div.ecl-mega-menu__mega--has-featured div.ecl-mega-menu__featured li.ecl-mega-menu__featured-list__item--combo a.ecl-mega-menu__featured-link[href="#parent-2-featured-item-link"]': '<picture class="ecl-picture ecl-mega-menu__featured-picture"><img class="ecl-mega-menu__featured-image" src="https://inno-ecl.s3.amazonaws.com/media/examples/example-image.jpg" alt="alternative text of the featured item"></picture>  Featured link of the main item'
       'li.ecl-mega-menu__item--has-children:nth-child(2) ul.ecl-mega-menu__sublist li.ecl-mega-menu__subitem:nth-child(1) button.ecl-mega-menu__sublink:nth-child(1) .ecl-button__label': 'Child 2.1'
       'li.ecl-mega-menu__item--has-children:nth-child(2) ul.ecl-mega-menu__sublist li.ecl-mega-menu__subitem:nth-child(1) div.ecl-mega-menu__mega--level-2 ul.ecl-mega-menu__sublist li.ecl-mega-menu__subitem:nth-child(1) a.ecl-mega-menu__sublink': 'Granchild 2.1.1'
       'li.ecl-mega-menu__item--has-children:nth-child(2) ul.ecl-mega-menu__sublist li.ecl-mega-menu__subitem:nth-child(1) div.ecl-mega-menu__mega--level-2 ul.ecl-mega-menu__sublist li.ecl-mega-menu__subitem:nth-child(2) a.ecl-mega-menu__sublink .ecl-link__label': 'Granchild 2.1.2'
@@ -4550,6 +4569,7 @@
       'li.ecl-mega-menu__item--has-children ul.ecl-mega-menu__sublist li.ecl-mega-menu__subitem div.ecl-mega-menu__mega--level-2 ul.ecl-mega-menu__sublist li.ecl-mega-menu__subitem a.ecl-mega-menu__sublink[href="#granchild-2.3.2"] .ecl-link__label': 'Granchild 2.3.2'
       'li.ecl-mega-menu__item.ecl-mega-menu__item--has-container button.ecl-button--primary.ecl-mega-menu__link .ecl-button__label': "Parent 3 with container"
       'li.ecl-mega-menu__item.ecl-mega-menu__item--has-container div.ecl-mega-menu__mega-container-scrollable': '<article class="ecl-navigation-list__item"><img class="ecl-navigation-list__image" src="https://inno-ecl.s3.amazonaws.com/media/examples/example-image.jpg" alt="Alt text for the image"><div class="ecl-content-block ecl-navigation-list__content-block" data-ecl-auto-init="ContentBlock" data-ecl-content-block><div class="ecl-content-block__title" data-ecl-title-link><a href="/example#qspea" class="ecl-link ecl-link--standalone">Title 3</a></div><div class="ecl-content-block__description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus gravida ipsum ut lorem cursus</div></div></article>'
+      'li.ecl-mega-menu__item.ecl-mega-menu__item--promotional a.ecl-link--standalone.ecl-mega-menu__link': 'Promotional Parent 4 with no dropdown'
 - array:
     '#type': 'pattern'
     '#id': 'link'
