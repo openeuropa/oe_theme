@@ -3,7 +3,7 @@
 [![Build Status](https://drone.fpfis.eu/api/badges/openeuropa/oe_theme/status.svg?branch=master)](https://drone.fpfis.eu/openeuropa/oe_theme)
 [![Packagist](https://img.shields.io/packagist/v/openeuropa/oe_theme.svg)](https://packagist.org/packages/openeuropa/oe_theme)
 
-Drupal 10 theme based on the [Europa Component Library][1] (ECL).
+Drupal theme based on the [Europa Component Library][1] (ECL).
 
 **Table of contents:**
 
@@ -33,7 +33,7 @@ Drupal 10 theme based on the [Europa Component Library][1] (ECL).
 
 This depends on the following software:
 
-* [PHP 8.1 or 8.2](http://php.net/)
+* [PHP 8.1 or 8.2 or 8.3](http://php.net/)
 
 ## Installation
 
