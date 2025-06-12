@@ -2,7 +2,7 @@ langcode: en
 status: true
 dependencies: {  }
 name: oe_theme_small_4_1_banner
-label: 'Small banner 4:1'
+label: 'Small banner 4:1 (Deprecated)'
 effects:
   453a96ce-6d6d-4786-a5e7-472cfe836c14:
     uuid: 453a96ce-6d6d-4786-a5e7-472cfe836c14

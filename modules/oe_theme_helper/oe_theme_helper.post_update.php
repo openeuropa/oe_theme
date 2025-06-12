@@ -605,7 +605,7 @@ function oe_theme_helper_post_update_50001(): void {
 /**
  * Mark banner responsive image styles as deprecated and add new banner styles.
  */
-function oe_theme_helper_post_update_50006(): void {
+function oe_theme_helper_post_update_50002(): void {
 
   // Mark existing responsive image styles as deprecated.
   $style_ids = [
@@ -631,6 +631,38 @@ function oe_theme_helper_post_update_50006(): void {
       $responsive_image_style->save();
       \Drupal::logger('oe_theme_helper')->notice('Updated label of responsive image style "@id" to "@label".', [
         '@id' => $style_id,
+        '@label' => $new_label,
+      ]);
+    }
+  }
+
+  // Mark existing image styles as deprecated.
+  $image_style_ids = [
+    'oe_theme_medium_3_1_banner',
+    'oe_theme_medium_4_1_banner',
+    'oe_theme_medium_5_1_banner',
+    'oe_theme_small_3_1_banner',
+    'oe_theme_small_4_1_banner',
+    'oe_theme_small_5_1_banner',
+  ];
+
+  $image_style_storage = \Drupal::entityTypeManager()->getStorage('image_style');
+
+  foreach ($image_style_ids as $image_style_id) {
+    /** @var \Drupal\image\Entity\ImageStyle $image_style */
+    $image_style = $image_style_storage->load($image_style_id);
+
+    if (!$image_style) {
+      continue;
+    }
+
+    $label = $image_style->label();
+    if (!str_contains($label, '(Deprecated)')) {
+      $new_label = trim($label) . ' (Deprecated)';
+      $image_style->set('label', $new_label);
+      $image_style->save();
+      \Drupal::logger('oe_theme_helper')->notice('Updated label of image style "@id" to "@label".', [
+        '@id' => $image_style_id,
         '@label' => $new_label,
       ]);
     }

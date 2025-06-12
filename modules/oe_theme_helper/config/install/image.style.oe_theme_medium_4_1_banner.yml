@@ -2,7 +2,7 @@ langcode: en
 status: true
 dependencies: {  }
 name: oe_theme_medium_4_1_banner
-label: 'Medium banner 4:1'
+label: 'Medium banner 4:1 (Deprecated)'
 effects:
   818def00-02f3-4a6b-b9c0-935ca56e3ae5:
     uuid: 818def00-02f3-4a6b-b9c0-935ca56e3ae5
