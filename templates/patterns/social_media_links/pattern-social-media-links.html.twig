@@ -18,7 +18,6 @@
   {% if link.service is not empty %}
     {% set _link = _link|merge({
       icon: {
-        path: ecl_icon_social_media_path,
         name: link.service,
         size: 'xs'
       }

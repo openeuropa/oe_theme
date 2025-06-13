@@ -6,6 +6,7 @@ namespace Drupal\oe_theme_helper\EventSubscriber;
 
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\oe_paragraphs\Event\FlagOptionsEvent;
+use Drupal\oe_theme_helper\WebtoolsIconsProviderInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 /**
@@ -14,6 +15,23 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 class FlagOptionsEventSubscriber implements EventSubscriberInterface {
 
   use StringTranslationTrait;
+
+  /**
+   * The webtools icons provider.
+   *
+   * @var \Drupal\oe_theme_helper\WebtoolsIconsProviderInterface
+   */
+  protected $webtoolsIconsProvider;
+
+  /**
+   * Constructs a new FlagOptionsEventSubscriber object.
+   *
+   * @param \Drupal\oe_theme_helper\WebtoolsIconsProviderInterface $webtoolsIconsProvider
+   *   The webtools icons provider service.
+   */
+  public function __construct(WebtoolsIconsProviderInterface $webtoolsIconsProvider) {
+    $this->webtoolsIconsProvider = $webtoolsIconsProvider;
+  }
 
   /**
    * {@inheritdoc}
@@ -31,27 +49,7 @@ class FlagOptionsEventSubscriber implements EventSubscriberInterface {
    *   The event.
    */
   public function alterFlagOptions(FlagOptionsEvent $event): void {
-    $options['EU Member states'] = $event->getFlagOptions();
-    $options['Non-EU Member states'] = [
-      'albania' => $this->t('Albania'),
-      'armenia' => $this->t('Armenia'),
-      'bosnia-and-herzegovina' => $this->t('Bosnia and Herzegovina'),
-      'georgia' => $this->t('Georgia'),
-      'iceland' => $this->t('Iceland'),
-      'israel' => $this->t('Israel'),
-      'liechtenstein' => $this->t('Liechtenstein'),
-      'moldova' => $this->t('Moldova'),
-      'montenegro' => $this->t('Montenegro'),
-      'north-macedonia' => $this->t('North Macedonia'),
-      'norway' => $this->t('Norway'),
-      'serbia' => $this->t('Serbia'),
-      'switzerland' => $this->t('Switzerland'),
-      'turkey' => $this->t('Turkey'),
-      'ukraine' => $this->t('Ukraine'),
-      'united-kingdom' => $this->t('United Kingdom'),
-    ];
-    ksort($options);
-    $event->setFlagOptions($options);
+    $event->setFlagOptions($this->webtoolsIconsProvider->getAllowedIconValues(['flags']));
   }
 
 }

@@ -9,6 +9,7 @@ use Drupal\Core\Language\LanguageInterface;
 use Drupal\Core\Language\LanguageManagerInterface;
 use Drupal\Core\Render\Renderer;
 use Drupal\Core\Template\Loader\StringLoader;
+use Drupal\oe_theme_webtools_mock\WebtoolsIconsMockDecorator;
 use Drupal\Tests\UnitTestCase;
 use Drupal\oe_theme_helper\EuropeanUnionLanguages;
 use Drupal\oe_theme_helper\ExternalLinksInterface;
@@ -63,6 +64,13 @@ class TwigExtensionTest extends UnitTestCase {
   protected $externalLinks;
 
   /**
+   * The webtools icons provider.
+   *
+   * @var \Prophecy\Prophecy\ProphecyInterface|\Drupal\oe_theme_helper\WebtoolsIconsProvider
+   */
+  protected $webtoolsIconsProvider;
+
+  /**
    * {@inheritdoc}
    */
   protected function setUp(): void {
@@ -90,8 +98,11 @@ class TwigExtensionTest extends UnitTestCase {
     // Create the external link service mock.
     $this->externalLinks = $this->prophesize(ExternalLinksInterface::class);
 
+    // Create the webtools icons provider mock.
+    $this->webtoolsIconsProvider = $this->prophesize(WebtoolsIconsMockDecorator::class);
+
     // Instantiate the system under test.
-    $this->extension = new TwigExtension($this->languageManager->reveal(), $this->renderer->reveal(), $this->externalLinks->reveal());
+    $this->extension = new TwigExtension($this->languageManager->reveal(), $this->renderer->reveal(), $this->externalLinks->reveal(), $this->webtoolsIconsProvider->reveal());
 
     // For convenience, make a version of the Twig environment available that
     // has the tested extension preloaded.
@@ -288,20 +299,14 @@ class TwigExtensionTest extends UnitTestCase {
    * @dataProvider toEclIconProvider
    */
   public function testToEclIcon(string $icon_name, array $expected_icon_array, ?string $size = NULL) {
-    $context = [
-      'ecl_icon_path' => '/path/to/theme/resources/icons/',
-      'ecl_icon_social_media_path' => '/path/to/theme/resources/social-media-icons/',
-      'ecl_icon_flag_path' => '/path/to/theme/resources/flag-icons/',
-      'ecl_icon_flag_non_members_path' => '/path/to/theme/resources/non-members-flag-icons/',
-    ];
     // We join the resulting array from to_ecl_icon() function so that we have
     // a visual representation of the array being returned by the function.
     if ($size === NULL) {
-      $result = $this->twig->render("{{ to_ecl_icon('$icon_name')|join('|') }}", $context);
+      $result = $this->twig->render("{{ to_ecl_icon('$icon_name')|join('|') }}");
       $this->assertEquals(implode('|', array_filter($expected_icon_array)), $result);
     }
     else {
-      $result = $this->twig->render("{{ to_ecl_icon('$icon_name', '$size')|join('|') }}", $context);
+      $result = $this->twig->render("{{ to_ecl_icon('$icon_name', '$size')|join('|') }}");
       $this->assertEquals(implode('|', array_filter($expected_icon_array)), $result);
     }
   }
@@ -321,7 +326,6 @@ class TwigExtensionTest extends UnitTestCase {
         [
           'name' => 'corner-arrow',
           'transform' => 'rotate-90',
-          'path' => '/path/to/theme/resources/icons/',
           'size' => 'xs',
         ],
         'xs',
@@ -330,7 +334,6 @@ class TwigExtensionTest extends UnitTestCase {
         'instagram',
         [
           'name' => 'instagram',
-          'path' => '/path/to/theme/resources/social-media-icons/',
           'size' => 'xs',
         ],
         'xs',
@@ -339,25 +342,22 @@ class TwigExtensionTest extends UnitTestCase {
         'instagram-color',
         [
           'name' => 'instagram-color',
-          'path' => '/path/to/theme/resources/social-media-icons/',
           'size' => 'xs',
         ],
         'xs',
       ],
       [
-        'spain',
+        'es',
         [
           'name' => 'es',
-          'path' => '/path/to/theme/resources/flag-icons/',
           'size' => 'xs',
         ],
         'xs',
       ],
       [
-        'close-dark',
+        'close-filled',
         [
           'name' => 'close-filled',
-          'path' => '/path/to/theme/resources/icons/',
           'size' => 'xl',
         ],
         'xl',
@@ -366,7 +366,6 @@ class TwigExtensionTest extends UnitTestCase {
         'not-supported-icon',
         [
           'name' => 'not-supported-icon',
-          'path' => '/path/to/theme/resources/icons/',
           'size' => 'm',
         ],
         'm',
@@ -375,7 +374,6 @@ class TwigExtensionTest extends UnitTestCase {
         'no-size',
         [
           'name' => 'no-size',
-          'path' => '/path/to/theme/resources/icons/',
         ],
         NULL,
       ],
@@ -383,58 +381,9 @@ class TwigExtensionTest extends UnitTestCase {
         'empty-size',
         [
           'name' => 'empty-size',
-          'path' => '/path/to/theme/resources/icons/',
           'size' => '',
         ],
         '',
-      ],
-      [
-        'back',
-        [
-          'name' => 'arrow-left',
-          'path' => '/path/to/theme/resources/icons/',
-        ],
-        NULL,
-      ],
-      [
-        'gear',
-        [
-          'name' => 'settings',
-          'path' => '/path/to/theme/resources/icons/',
-        ],
-        NULL,
-      ],
-      [
-        'basket',
-        [
-          'name' => 'shopping-bag',
-          'path' => '/path/to/theme/resources/icons/',
-        ],
-        NULL,
-      ],
-      [
-        'video',
-        [
-          'name' => 'play-filled',
-          'path' => '/path/to/theme/resources/icons/',
-        ],
-        NULL,
-      ],
-      [
-        'generic-lang',
-        [
-          'name' => 'global',
-          'path' => '/path/to/theme/resources/icons/',
-        ],
-        NULL,
-      ],
-      [
-        'language',
-        [
-          'name' => 'feedback',
-          'path' => '/path/to/theme/resources/icons/',
-        ],
-        NULL,
       ],
     ];
   }

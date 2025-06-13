@@ -1,0 +1,12 @@
+services:
+  ewcms_webtools_mock.decorator:
+    class: Drupal\oe_theme_webtools_mock\WebtoolsIconsMockDecorator
+    decorates: oe_theme_helper.webtools_icons_provider
+    public: false
+    arguments:
+      - '@http_client'
+      - '@cache.default'
+      - '@logger.factory'
+      - '@datetime.time'
+      - '@oe_time_caching.time_based_cache_tag_generator'
+      - '@extension.path.resolver'

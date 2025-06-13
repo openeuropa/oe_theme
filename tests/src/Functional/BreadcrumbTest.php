@@ -20,6 +20,7 @@ class BreadcrumbTest extends ContentRenderTestBase {
     'config',
     'system',
     'oe_theme_helper',
+    'oe_time_caching',
     'path',
     'oe_theme_content_news',
     'block',

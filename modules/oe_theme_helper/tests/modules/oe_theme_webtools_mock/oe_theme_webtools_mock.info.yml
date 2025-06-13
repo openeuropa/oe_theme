@@ -1,0 +1,8 @@
+name: OE Theme Webtools mock
+description: Mocks the Webtools related services.
+package: OpenEuropa
+type: module
+core_version_requirement: ^10 || ^11
+
+dependencies:
+  - oe_time_caching:oe_time_caching

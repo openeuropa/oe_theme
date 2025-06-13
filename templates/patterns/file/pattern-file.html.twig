@@ -10,7 +10,6 @@
   'language': file.language_code|to_native_language,
   'meta': '(' ~ file.size|format_size ~ ' - ' ~ file.extension|upper ~ ')',
   'icon': {
-    'path': ecl_icon_path,
     'name': file.extension|to_file_icon,
     'size': file_icon_size,
   },

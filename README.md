@@ -10,6 +10,8 @@ Drupal 10 theme based on the [Europa Component Library][1] (ECL).
 - [Requirements](#requirements)
 - [Installation](#installation)
   - [Enable the theme](#enable-the-theme)
+  - [Upgrade to 5.0.0](#upgrade-to-5.0.0)
+  - [Upgrade to 4.0.0](#upgrade-to-4.0.0)
   - [Upgrade to 3.0.0](#upgrade-to-3.0.0)
   - [Upgrade to 2.17.0](#upgrade-to-2.17.0)
   - [Upgrade to 2.15.0](#upgrade-to-2.15.0)
@@ -123,6 +125,25 @@ These plugins are built for **CKEditor 4**, which is **not supported in Drupal 1
 **Drupal 10**, you can continue to use these plugins without issue.
 
 These plugins are considered **deprecated** and will be removed in version 6.x or later of the theme.
+
+### Upgrade to 5.0.0
+
+#### Icons allowed values are now fetched from webtools:
+The icon selection for the following fields now should be done using the webtools service `WebtoolsIconsProvider` in oe_theme_helper to retrieve the list of available icons.
+You can use the `allowed_values_function` config provided by options module to rely on a function instead of a static list.
+The list of impacted fields are the following:
+  - 'oe_contact.oe_social_media'
+  - 'node.oe_social_media_links'
+  - 'paragraph.field_oe_social_media_links'
+  - 'paragraph.field_oe_icon'
+  - 'paragraph.field_oe_flag'
+
+The country flag values have changed. This means that country values like "austria" or "belgium" are no longer valid, and you should use the icon name instead, like "at" or "be".
+We advise to migrate your existing values to the new format, as the old values will not be rendered as of 6.x version of the theme, because the
+temporary mapping will be removed.
+The rest of the icons like "arrow-right", "arrow-left", etc... and social media icons like "facebook", etc... are still valid and can be used as before.
+
+For more information on the service please refer to the [oe_theme_helper README](./modules/oe_theme_helper/README.md#webtools-icons-provider).
 
 ### Upgrade to 4.0.0
 

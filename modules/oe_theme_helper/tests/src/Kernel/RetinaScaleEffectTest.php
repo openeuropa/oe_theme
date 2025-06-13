@@ -32,6 +32,7 @@ class RetinaScaleEffectTest extends TokenKernelTestBase {
     'image',
     'image_test',
     'oe_theme_helper',
+    'oe_time_caching',
     'system',
   ];
 

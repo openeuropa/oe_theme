@@ -46,7 +46,6 @@
   'language': file.language_code|to_language,
   'meta': _meta,
   'icon': {
-    'path': ecl_icon_path,
     'name': file.extension|to_file_icon,
     'size': file_icon_size,
   },
@@ -64,7 +63,6 @@
     'toggle': {
       'label': translation_toggle_label|default("Other languages"|t) ~ " (" ~ translations|length ~ ")",
       'icon': {
-        'path': ecl_icon_path,
         'name': 'corner-arrow',
         'size': 'fluid',
         'transform': 'rotate-180',

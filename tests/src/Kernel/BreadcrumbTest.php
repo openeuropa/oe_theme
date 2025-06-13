@@ -34,6 +34,7 @@ class BreadcrumbTest extends EntityKernelTestBase {
     'ui_patterns',
     'ui_patterns_library',
     'oe_theme_helper',
+    'oe_time_caching',
     'image',
     'breakpoint',
     'responsive_image',
