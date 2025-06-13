@@ -1,4 +1,4 @@
-- array:
+- structure:
     '#header':
       - 'Name'
       - 'Registration date'
@@ -30,7 +30,7 @@
       'tbody.ecl-table__body td.ecl-table__cell[data-ecl-table-header="Name"]': "John Doe"
       'tbody.ecl-table__body td.ecl-table__cell[data-ecl-table-header="Registration date"]': "01/01/2016"
       'tbody.ecl-table__body td.ecl-table__cell[data-ecl-table-header="Email"]': "john.doe@mail.com"
-- array:
+- structure:
     '#header':
       - 'Name'
       - 'Registration date'
@@ -82,7 +82,7 @@
       'tbody.ecl-table__body tr.ecl-table__row:nth-child(3) td.ecl-table__cell[data-ecl-table-header="Name"]': "Jack Doe"
       'tbody.ecl-table__body tr.ecl-table__row:nth-child(3) td.ecl-table__cell[data-ecl-table-header="Registration date"]': "03/05/2017"
       'tbody.ecl-table__body tr.ecl-table__row:nth-child(3) td.ecl-table__cell[data-ecl-table-header="Email"]': "jack.doe@mail.com"
-- array:
+- structure:
     '#header':
       - 'Header 1'
       - { data: 'Header 2', colspan: 2 }
@@ -117,7 +117,7 @@
       'tbody.ecl-table__body tr.ecl-table__row:nth-child(1) td.ecl-table__cell[data-ecl-table-header="Header 2"]': "Cell 2"
       'tbody.ecl-table__body tr.ecl-table__row:nth-child(1) td.ecl-table__cell[data-ecl-table-header="Header 2"] ~ td': "Cell 3"
       'tbody.ecl-table__body tr.ecl-table__row:nth-child(1) td.ecl-table__cell[data-ecl-table-header="Header 3"]': "Cell 4"
-- array:
+- structure:
     '#header':
       - data:
           '#markup': '<b>Bold header</b>'
@@ -125,7 +125,7 @@
   assertions:
     contains:
       'thead.ecl-table__head th.ecl-table__header:nth-child(1)': '<b>Bold header</b>'
-- array:
+- structure:
     '#header': []
     '#rows':
       -
