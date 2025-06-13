@@ -21,7 +21,7 @@ abstract class AbstractUnitTestBase extends UnitTestCase {
    * @return array
    *   A set of test data.
    */
-  protected function getFixtureContent(string $filepath): array {
+  protected static function getFixtureContent(string $filepath): array {
     return Yaml::parse(file_get_contents(__DIR__ . "/fixtures/{$filepath}"));
   }
 

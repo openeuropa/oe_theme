@@ -70,8 +70,9 @@ class TwigExtensionTest extends AbstractKernelTestBase {
    * @return array
    *   An array of test data arrays with assertions.
    */
-  public function smartTrimFilterDataProvider(): array {
-    $cache_contexts_manager = $this->getMockBuilder('Drupal\Core\Cache\Context\CacheContextsManager')
+  public static function smartTrimFilterDataProvider(): array {
+    $cache_contexts_manager = (new TwigExtensionTest('TwigExtensionTest'))
+      ->getMockBuilder('Drupal\Core\Cache\Context\CacheContextsManager')
       ->disableOriginalConstructor()
       ->getMock();
     $cache_contexts_manager->method('assertValidTokens')->willReturn(TRUE);

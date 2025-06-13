@@ -103,7 +103,7 @@ class StatusMessagesTest extends AbstractKernelTestBase {
    *
    * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
    */
-  public function statusMessagesProvider(): array {
+  public static function statusMessagesProvider(): array {
     return [
       // A test case with no messages.
       [

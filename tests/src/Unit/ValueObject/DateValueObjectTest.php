@@ -62,8 +62,8 @@ class DateValueObjectTest extends AbstractUnitTestBase {
    * @return array
    *   Test data.
    */
-  public function dataProvider() {
-    return $this->getFixtureContent('value_object/date_value_object.yml');
+  public static function dataProvider() {
+    return self::getFixtureContent('value_object/date_value_object.yml');
   }
 
 }

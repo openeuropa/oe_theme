@@ -485,7 +485,7 @@ class ParagraphsTest extends ParagraphsTestBase {
    * @return array
    *   A set of dump data for testing.
    */
-  public function quoteDataProvider(): array {
+  public static function quoteDataProvider(): array {
     return [
       // Test case with no data.
       [

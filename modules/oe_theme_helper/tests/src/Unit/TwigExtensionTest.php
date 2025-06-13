@@ -138,7 +138,7 @@ class TwigExtensionTest extends UnitTestCase {
    *
    * @see ::testToLanguageName()
    */
-  public function toLanguageNameProvider(): array {
+  public static function toLanguageNameProvider(): array {
     return [
       ['bg', 'Bulgarian'],
       ['cs', 'Czech'],
@@ -194,7 +194,7 @@ class TwigExtensionTest extends UnitTestCase {
    *
    * @see ::testToNativeLanguageName()
    */
-  public function toNativeLanguageNameProvider(): array {
+  public static function toNativeLanguageNameProvider(): array {
     return [
       ['bg', 'български'],
       ['cs', 'čeština'],
@@ -256,7 +256,7 @@ class TwigExtensionTest extends UnitTestCase {
    *
    * @see ::testPassingInvalidLanguageCodesToNativeLanguageName()
    */
-  public function invalidLanguageCodesProvider(): array {
+  public static function invalidLanguageCodesProvider(): array {
     return [
       [NULL],
       [TRUE],
@@ -319,7 +319,7 @@ class TwigExtensionTest extends UnitTestCase {
    *
    * @see ::testToEclIcon()
    */
-  public function toEclIconProvider(): array {
+  public static function toEclIconProvider(): array {
     return [
       [
         'right',
@@ -415,7 +415,7 @@ class TwigExtensionTest extends UnitTestCase {
    *
    * @see ::testEclBorderColor()
    */
-  public function eclBorderColorProvider(): array {
+  public static function eclBorderColorProvider(): array {
     return [
       [
         'ec',
@@ -455,7 +455,7 @@ class TwigExtensionTest extends UnitTestCase {
    *
    * @see ::testEclBackgroundColor()
    */
-  public function eclBackgroundColorProvider(): array {
+  public static function eclBackgroundColorProvider(): array {
     return [
       [
         'ec',
@@ -503,7 +503,7 @@ class TwigExtensionTest extends UnitTestCase {
    *
    * @see ::testToInternalLanguageId()
    */
-  public function toInternalLanguageIdProvider(): array {
+  public static function toInternalLanguageIdProvider(): array {
     return [
       ['bg', 'bg'],
       ['cs', 'cs'],
