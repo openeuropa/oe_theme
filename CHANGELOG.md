@@ -1,11 +1,23 @@
 # Changelog
 
-## [5.0.0-beta7](https://github.com/openeuropa/oe_theme/tree/5.0.0-beta7) (2025-06-06)
+## [5.0.0-beta8](https://github.com/openeuropa/oe_theme/tree/5.0.0-beta8) (2025-06-13)
+
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/5.0.0-beta7...5.0.0-beta8)
+
+**Merged pull requests:**
+
+- EWPP-5695: Update to ECL 5.0.0-alpha.13. [\#1603](https://github.com/openeuropa/oe_theme/pull/1603) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-5681: Hide social share from printing. [\#1600](https://github.com/openeuropa/oe_theme/pull/1600) ([sergepavle](https://github.com/sergepavle))
+- EWPP-5625: Allow featured list and promotional control for 1st level items of Mega menu. [\#1595](https://github.com/openeuropa/oe_theme/pull/1595) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-5368: Add mapping for info icon in notification component. [\#1591](https://github.com/openeuropa/oe_theme/pull/1591) ([nagyad](https://github.com/nagyad))
+
+## [5.0.0-beta7](https://github.com/openeuropa/oe_theme/tree/5.0.0-beta7) (2025-06-09)
 
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/5.0.0-beta6...5.0.0-beta7)
 
 **Merged pull requests:**
 
+- Release-5.0.0-beta7: Update changelog. [\#1599](https://github.com/openeuropa/oe_theme/pull/1599) ([nagyad](https://github.com/nagyad))
 - EWPP-4648: Drupal 11 [\#1594](https://github.com/openeuropa/oe_theme/pull/1594) ([ademarco](https://github.com/ademarco))
 - EWPP-5553: Update sparql image in docker-compose.yml and .drone.yml. [\#1593](https://github.com/openeuropa/oe_theme/pull/1593) ([sergepavle](https://github.com/sergepavle))
 - EWPP-5585: Update to ECL 5.0.0-alpha.11. [\#1592](https://github.com/openeuropa/oe_theme/pull/1592) ([22Alexandra](https://github.com/22Alexandra))
