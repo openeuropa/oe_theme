@@ -18,12 +18,13 @@
         "openeuropa/oe_webtools": "^1.35"
     },
     "require-dev": {
-        "behat/mink-selenium2-driver": "~1.6.0",
+        "lullabot/mink-selenium2-driver": "1.6.0 as 1.7.3",
         "composer/installers": "~1.5",
         "drupal/address": "~2",
         "drupal/composite_reference": "^2.1",
         "drupal/config_devel": "^1.9",
         "drupal/core-composer-scaffold": "^10.3 || ^11",
+        "drupal/core-dev": "^10.3 || ^11",
         "drupal/core-utility": "^10.3 || ^11",
         "drupal/datetime_range_timezone": "^1.0.0-alpha4",
         "drupal/datetime_testing": "^1.0",
@@ -42,8 +43,6 @@
         "drupal/typed_link": "^2.0",
         "drush/drush": "^12.4 || ^13",
         "friends-of-behat/service-container-extension": "^1.0",
-        "mikey179/vfsstream": "^1.6.10",
-        "nikic/php-parser": "^4.18 || ^5.0",
         "openeuropa/behat-transformation-context": "^0.3",
         "openeuropa/code-review-drupal": "^1.0.0-alpha1",
         "openeuropa/oe_contact_forms": "^1.14",
@@ -56,9 +55,7 @@
         "openeuropa/oe_paragraphs": "^1.20",
         "openeuropa/oe_search": "^2.9",
         "openeuropa/rdf_skos": "^1.0.0",
-        "openeuropa/task-runner-drupal-project-symlink": "^1.0",
-        "phpspec/prophecy-phpunit": "^2",
-        "symfony/phpunit-bridge": "^6.0"
+        "openeuropa/task-runner-drupal-project-symlink": "^1.0"
     },
     "scripts": {
         "post-install-cmd": "./vendor/bin/run drupal:site-setup",
@@ -116,8 +113,7 @@
             }
         },
         "_readme": [
-            "behat/mink-selenium2-driver locked to 1.6.x as version 1.7.0 introduces issues with mouse dragging and keyboard key events.",
-            "Explicit requirement of nikic/php-parser as ^5.0 generates GrumPHP Parser issues.",
+            "Explicit requirement of lullabot/mink-selenium2-driver v1.6.0 to ensure dragTo() keeps working in tests. Aliased as 1.7.3 because core-dev requires it on that version.",
             "autoload-dev: explicitly mapping EntityReferenceFieldCreationTrait to prevent failures.",
             "Patch for drupal/driver refers to https://github.com/jhedstrom/DrupalDriver/pull/235"
         ]
@@ -130,9 +126,9 @@
             "dealerdirect/phpcodesniffer-composer-installer": true,
             "drupal/core-composer-scaffold": true,
             "php-http/discovery": false,
-            "phpro/grumphp": true,
             "phpro/grumphp-shim": true,
-            "phpstan/extension-installer": true
+            "phpstan/extension-installer": true,
+            "tbachert/spi": false
         }
     }
 }
