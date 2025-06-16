@@ -588,9 +588,6 @@ msgstr "Iwwer eis"
 msgid "Contact us"
 msgstr "Kontaktéiert eis"
 
-msgid "Related sites"
-msgstr "Änlech Sitten"
-
 msgid "Follow us"
 msgstr "Suivéiert eis"
 

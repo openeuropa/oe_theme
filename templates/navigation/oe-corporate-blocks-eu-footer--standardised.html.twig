@@ -67,6 +67,17 @@
   {% if section_related['links'] is not empty %}
     {% set _top_right_column = _top_right_column|merge([section_related]) %}
   {% endif %}
+  {# Handle the custom sections. #}
+  {% if sections_custom is not empty %}
+    {% for section in sections_custom %}
+      {% if loop.index is odd %}
+        {% set _top_left_column = _top_left_column|merge([section]) %}
+      {% else %}
+        {% set _top_right_column = _top_right_column|merge([section]) %}
+      {% endif %}
+    {% endfor %}
+  {% endif %}
+
   {% set _top_row = [
     [
       {

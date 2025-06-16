@@ -313,9 +313,6 @@ msgstr "Fylgja okkur"
 msgid "About us"
 msgstr "Um okkur"
 
-msgid "Related sites"
-msgstr "Tengdar heimasíður"
-
 msgid "More information on:"
 msgstr "Nánari upplýsingar:"
 

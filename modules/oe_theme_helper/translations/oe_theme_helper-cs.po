@@ -653,3 +653,6 @@ msgstr "Navigace stránek"
 
 msgid "You are here:"
 msgstr "Nacházíte se zde:"
+
+msgid "Follow the European Commission"
+msgstr "Следвайте Европейската комисия"

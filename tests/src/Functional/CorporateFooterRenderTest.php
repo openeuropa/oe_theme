@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Drupal\Tests\oe_theme\Functional;
 
-// phpcs:ignoreFile Portions of this file's assertions had to be commented.
-
 use Behat\Mink\Element\NodeElement;
 use Drupal\Component\Utility\Html;
 use Drupal\Tests\BrowserTestBase;
@@ -91,7 +89,6 @@ class CorporateFooterRenderTest extends BrowserTestBase {
    * @SuppressWarnings(PHPMD.NPathComplexity)
    */
   public function testCorporateFooterRendering(): void {
-    $this->markTestSkipped('Skip this test due to changes in ECL 5.0.0-alpha.11 that will be addressed in a follow up.');
     $user = $this->createUser([], '', TRUE);
     // First test European Commission footer core block rendering.
     $data = $this->getFixtureContent('ec_footer.yml');
@@ -166,7 +163,7 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     $this->assertEclLogoPresence($section);
 
     // Assert accessibility's link presence.
-    $actual = $section->find('css', 'ul li:last-of-type a.ecl-link.ecl-link--standalone.ecl-site-footer__link');
+    $actual = $section->find('css', 'ul.ecl-site-footer__list--inline:nth-child(3) li:last-of-type a.ecl-link.ecl-link--standalone.ecl-site-footer__link');
     $this->assertEquals('Accessibility', $actual->getText());
     $this->assertEquals('/build/', $actual->getAttribute('href'));
 
@@ -174,9 +171,40 @@ class CorporateFooterRenderTest extends BrowserTestBase {
 
     foreach ($items as $key => $expected) {
       $index = $key + 1;
-      $actual = $section->find('css', "ul li:nth-child({$index}) > a");
+      $actual = $section->find('css', "ul.ecl-site-footer__list--inline:nth-child(3) li:nth-child({$index}) > a");
       $this->assertListLink($actual, $expected);
     }
+
+    // Assert the common social media links.
+    $social_media_links = $section->find('css', '.ecl-site-footer__extra-links-container .ecl-social-media-follow--description_inline.ecl-site-footer__social-media');
+    $actual = $social_media_links->find('css', '.ecl-social-media-follow__description');
+    $this->assertEquals('Follow the European Commission', $actual->getText());
+    $social_link = $social_media_links->find('css', 'ul li:nth-child(1) > a');
+    $social_label = $social_media_links->find('css', 'ul li:nth-child(1) > a span.ecl-link__label');
+    $expected = [
+      'label' => 'Facebook',
+      'href' => 'https://www.facebook.com/EuropeanCommission',
+      'icon_name' => 'facebook',
+      'icon_only' => TRUE,
+    ];
+    $this->assertSocialLink($social_label, $social_link, $expected);
+    $social_link = $social_media_links->find('css', 'ul li:nth-child(2) > a');
+    $social_label = $social_media_links->find('css', 'ul li:nth-child(2) > a span.ecl-link__label');
+    $expected = [
+      'label' => 'Other',
+      'href' => 'https://www.example.com/chain-social-media-link',
+      'icon_name' => 'chain',
+      'icon_only' => TRUE,
+    ];
+    $this->assertSocialLink($social_label, $social_link, $expected);
+
+    // Assert the common extra link.
+    $extra_link = $section->find('css', '.ecl-site-footer__extra-links-container ul.ecl-site-footer__list--inline li > a');
+    $expected = [
+      'label' => 'Contact us',
+      'href' => 'https://commission.europa.eu/about/contact_en',
+    ];
+    $this->assertListLink($extra_link, $expected);
 
     // Update settings, assert footer changed.
     $this->updateSiteSettings('http://publications.europa.eu/resource/authority/corporate-body/DG11', 'EC Standardised Site Name');
@@ -438,8 +466,7 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     $subsection = $assert->elementExists('css', '.ecl-site-footer__section:nth-child(2)', $column);
 
     $actual = $assert->elementExists('css', '.ecl-site-footer__title', $subsection);
-    $this->assertEquals('Related sites', $actual->getText());
-
+    $this->assertEquals('Related links', $actual->getText());
     $actual = $subsection->find('css', 'ul li:nth-child(1) > a');
     $expected = [
       'label' => 'Custom related 1',
@@ -496,6 +523,7 @@ class CorporateFooterRenderTest extends BrowserTestBase {
       'label' => 'Social 1',
       'href' => 'http://example.com/social-1',
       'icon_name' => 'facebook',
+      'icon_only' => TRUE,
     ];
     $this->assertSocialLink($social_label, $social_link, $expected);
 
@@ -505,6 +533,7 @@ class CorporateFooterRenderTest extends BrowserTestBase {
       'label' => 'Social 2',
       'href' => 'http://example.com/social-2',
       'icon_name' => 'instagram',
+      'icon_only' => TRUE,
     ];
     $this->assertSocialLink($social_label, $social_link, $expected);
 
@@ -527,7 +556,7 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     $subsection = $assert->elementExists('css', '.ecl-site-footer__section:nth-child(2)', $column);
 
     $actual = $assert->elementExists('css', '.ecl-site-footer__title', $subsection);
-    $this->assertEquals('Related sites', $actual->getText());
+    $this->assertEquals('Related links', $actual->getText());
 
     $actual = $subsection->find('css', 'ul li:nth-child(1) > a');
     $expected = [
@@ -565,7 +594,7 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     $subsection = $assert->elementExists('css', '.ecl-site-footer__section:nth-child(2)', $column);
 
     $actual = $assert->elementExists('css', '.ecl-site-footer__title', $subsection);
-    $this->assertEquals('Related sites', $actual->getText());
+    $this->assertEquals('Related links', $actual->getText());
 
     $actual = $subsection->find('css', 'ul li:nth-child(1) > a');
     $expected = [
@@ -589,6 +618,7 @@ class CorporateFooterRenderTest extends BrowserTestBase {
       'label' => 'Social 1',
       'href' => 'http://example.com/social-1',
       'icon_name' => 'facebook',
+      'icon_only' => TRUE,
     ];
     $this->assertSocialLink($social_label, $social_link, $expected);
 
@@ -598,8 +628,23 @@ class CorporateFooterRenderTest extends BrowserTestBase {
       'label' => 'Social 2',
       'href' => 'http://example.com/social-2',
       'icon_name' => 'instagram',
+      'icon_only' => TRUE,
     ];
     $this->assertSocialLink($social_label, $social_link, $expected);
+
+    // Assert the custom section.
+    $subsection = $assert->elementExists('css', '.ecl-site-footer__section:nth-child(3)', $column);
+    $actual = $assert->elementExists('css', '.ecl-site-footer__title', $subsection);
+    $this->assertEquals('Section 1', $actual->getText());
+
+    $actual = $subsection->find('css', 'ul li:nth-child(1) > a');
+    $expected = [
+      'label' => 'Custom link 1',
+      'href' => 'http://example.com/custom-link-1',
+    ];
+    $this->assertListLink($actual, $expected, TRUE);
+    // We should have the external icon present.
+    $this->assertSession()->elementExists('css', 'span.ecl-icon.ecl-icon--xs.ecl-link__icon.wt-icon--external', $actual);
 
     $column = $assert->elementExists('css', 'footer.ecl-site-footer div.ecl-site-footer__row:nth-child(1) div.ecl-site-footer__column:nth-child(3)');
     $subsection = $assert->elementExists('css', '.ecl-site-footer__section:nth-child(1)', $column);
@@ -616,23 +661,6 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     // We should have the external icon present.
     $this->assertSession()->elementExists('css', 'span.ecl-icon.ecl-icon--xs.ecl-link__icon.wt-icon--external', $actual);
 
-    $subsection = $assert->elementExists('css', '.ecl-site-footer__section:nth-child(2)', $column);
-
-    $actual = $assert->elementExists('css', '.ecl-site-footer__title', $subsection);
-    // @todo Additional sections are not supported in ECL 5.0.0-alpha.11.
-    // Restore related tests one ECL fixes that and remove phpcs:ignorefile.
-//    $this->assertEquals('Section 1', $actual->getText());
-
-//    $actual = $subsection->find('css', 'ul li:nth-child(1) > a');
-    $expected = [
-      'label' => 'Custom link 1',
-      'href' => 'http://example.com/custom-link-1',
-    ];
-//    $this->assertListLink($actual, $expected, TRUE);
-    // We should have the external icon present.
-//    $icon = $actual->find('css', 'svg.ecl-icon.ecl-icon--xs.ecl-link__icon use');
-//    $this->assertStringContainsString('external', $icon->getAttribute('xlink:href'));
-
     // Assert updating a general link also changes the footer content.
     $this->updateGeneralLink('custom-link-1', [
       'label' => 'Custom link altered',
@@ -640,20 +668,20 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     ]);
     $this->drupalGet('<front>');
 
-    $column = $assert->elementExists('css', 'footer.ecl-site-footer div.ecl-site-footer__row:nth-child(1) div.ecl-site-footer__column:nth-child(3)');
-    $subsection = $assert->elementExists('css', '.ecl-site-footer__section:nth-child(2)', $column);
+    $column = $assert->elementExists('css', 'footer.ecl-site-footer div.ecl-site-footer__row:nth-child(1) div.ecl-site-footer__column:nth-child(2)');
+    $subsection = $assert->elementExists('css', '.ecl-site-footer__section:nth-child(3)', $column);
 
-//    $actual = $assert->elementExists('css', '.ecl-site-footer__title', $subsection);
-//    $this->assertEquals('Section 1', $actual->getText());
+    $actual = $assert->elementExists('css', '.ecl-site-footer__title', $subsection);
+    $this->assertEquals('Section 1', $actual->getText());
 
     $actual = $subsection->find('css', 'ul li:nth-child(1) > a');
     $expected = [
       'label' => 'Custom link altered',
       'href' => 'http://example.com/custom-link-altered',
     ];
-//    $this->assertListLink($actual, $expected, TRUE);
+    $this->assertListLink($actual, $expected, TRUE);
     // We should have the external icon present.
-//    $this->assertSession()->elementExists('css', 'span.ecl-icon.ecl-icon--xs.ecl-link__icon.wt-icon--external', $actual);
+    $this->assertSession()->elementExists('css', 'span.ecl-icon.ecl-icon--xs.ecl-link__icon.wt-icon--external', $actual);
 
     // Update the link with local path, so the external icon won't be present.
     $this->updateGeneralLink('custom-link-1', [
@@ -662,20 +690,20 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     ]);
     $this->drupalGet('<front>');
 
-    $column = $assert->elementExists('css', 'footer.ecl-site-footer div.ecl-site-footer__row:nth-child(1) div.ecl-site-footer__column:nth-child(3)');
-    $subsection = $assert->elementExists('css', '.ecl-site-footer__section:nth-child(2)', $column);
+    $column = $assert->elementExists('css', 'footer.ecl-site-footer div.ecl-site-footer__row:nth-child(1) div.ecl-site-footer__column:nth-child(2)');
+    $subsection = $assert->elementExists('css', '.ecl-site-footer__section:nth-child(3)', $column);
 
-//    $actual = $assert->elementExists('css', '.ecl-site-footer__title', $subsection);
-//    $this->assertEquals('Section 1', $actual->getText());
+    $actual = $assert->elementExists('css', '.ecl-site-footer__title', $subsection);
+    $this->assertEquals('Section 1', $actual->getText());
 
     $actual = $subsection->find('css', 'ul li:nth-child(1) > a');
     $expected = [
       'label' => 'Custom link altered',
       'href' => '/build/',
     ];
-//    $this->assertListLink($actual, $expected);
+    $this->assertListLink($actual, $expected);
     // We should not have any icon present.
-//    $assert->elementNotExists('css', 'svg.ecl-icon.ecl-icon--xs.ecl-link__icon', $actual);
+    $assert->elementNotExists('css', 'span.ecl-icon.ecl-icon--xs.ecl-link__icon', $actual);
 
     // Assert updating a section also changes the footer content.
     $this->updateSection('section_1', [
@@ -684,17 +712,19 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     ]);
     $this->drupalGet('<front>');
 
-    $column = $assert->elementExists('css', 'footer.ecl-site-footer div.ecl-site-footer__row:nth-child(1) div.ecl-site-footer__column:nth-child(3)');
-    $subsection = $assert->elementExists('css', '.ecl-site-footer__section:nth-child(1)', $column);
+    $column = $assert->elementExists('css', 'footer.ecl-site-footer div.ecl-site-footer__row:nth-child(1) div.ecl-site-footer__column:nth-child(2)');
+    $subsection = $assert->elementExists('css', '.ecl-site-footer__section:nth-child(3)', $column);
 
     $actual = $assert->elementExists('css', '.ecl-site-footer__title', $subsection);
-//    $this->assertEquals('Section altered', $actual->getText());
+    $this->assertEquals('Section altered', $actual->getText());
 
     $subsection = $assert->elementExists('css', '.ecl-site-footer__section:nth-child(2)', $column);
-
     $actual = $assert->elementExists('css', '.ecl-site-footer__title', $subsection);
-    $this->assertEquals('Related sites', $actual->getText());
+    $this->assertEquals('Follow us', $actual->getText());
 
+    $subsection = $assert->elementExists('css', '.ecl-site-footer__section:nth-child(1)', $column);
+    $actual = $assert->elementExists('css', '.ecl-site-footer__title', $subsection);
+    $this->assertEquals('Contact us', $actual->getText());
     // Change component library to ec, assert other links structure.
     $this->library = 'ec';
     $this->configFactory->getEditable('oe_theme.settings')->set('component_library', $this->library)->save();
@@ -732,8 +762,7 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     $column = $assert->elementExists('css', 'footer.ecl-site-footer div.ecl-site-footer__row--specific');
     $subsection = $assert->elementExists('css', '.ecl-site-footer__social-media', $column);
     // Title no longer available for site specific social media links.
-//    $actual = $assert->elementExists('css', '.ecl-social-media-follow__description', $subsection);
-//    $this->assertEquals('Follow us', $actual->getText());
+    $assert->elementNotExists('css', '.ecl-social-media-follow__description', $subsection);
 
     $social_link = $subsection->find('css', 'ul li:nth-child(1) > a');
     $social_label = $subsection->find('css', 'ul li:nth-child(1) > a span.ecl-link__label');
@@ -741,6 +770,7 @@ class CorporateFooterRenderTest extends BrowserTestBase {
       'label' => 'Social 1',
       'href' => 'http://example.com/social-1',
       'icon_name' => 'facebook',
+      'icon_only' => TRUE,
     ];
     $this->assertSocialLink($social_label, $social_link, $expected);
 
@@ -750,28 +780,29 @@ class CorporateFooterRenderTest extends BrowserTestBase {
       'label' => 'Social 2',
       'href' => 'http://example.com/social-2',
       'icon_name' => 'instagram',
+      'icon_only' => TRUE,
     ];
     $this->assertSocialLink($social_label, $social_link, $expected);
 
-     $column = $assert->elementExists('css', 'footer.ecl-site-footer div.ecl-site-footer__row--specific');
-//    $subsection = $assert->elementExists('css', '.ecl-site-footer__section:nth-child(1)', $column);
+    $column = $assert->elementExists('css', 'footer.ecl-site-footer div.ecl-site-footer__row--specific');
+    $subsection = $assert->elementExists('css', '.ecl-site-footer__section--custom-1', $column);
 
-//    $actual = $assert->elementExists('css', '.ecl-site-footer__title', $subsection);
-//    $this->assertEquals('Section altered', $actual->getText());
+    $actual = $assert->elementExists('css', '.ecl-site-footer__title', $subsection);
+    $this->assertEquals('Section altered', $actual->getText());
 
-//    $actual = $subsection->find('css', 'ul li:nth-child(1) > a');
+    $actual = $subsection->find('css', 'ul li:nth-child(1) > a');
     $expected = [
       'label' => 'Custom link altered',
       'href' => '/build/',
     ];
-//    $this->assertListLink($actual, $expected);
+    $this->assertListLink($actual, $expected);
     // We should not have any icon present.
-//    $assert->elementNotExists('css', 'span.ecl-icon.ecl-icon--xs.ecl-link__icon', $actual);
+    $assert->elementNotExists('css', 'span.ecl-icon.ecl-icon--xs.ecl-link__icon', $actual);
 
     $subsection = $assert->elementExists('css', '.ecl-site-footer__row:nth-child(2)', $column);
 
     $actual = $assert->elementExists('css', '.ecl-site-footer__title', $subsection);
-    $this->assertEquals('Related sites', $actual->getText());
+    $this->assertEquals('Related links', $actual->getText());
 
     $actual = $subsection->find('css', 'ul li:nth-child(1) > a');
     $expected = [
@@ -802,35 +833,35 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     $this->assertSession()->elementExists('css', 'span.ecl-icon.ecl-icon--xs.ecl-link__icon.wt-icon--external', $actual);
 
     $subsection = $assert->elementExists('css', '.ecl-site-footer__row:nth-child(2)', $column);
-    file_put_contents('test.html', $this->getSession()->getPage()->getHtml());
+
     $actual = $assert->elementExists('css', '.ecl-site-footer__title', $subsection);
     $this->assertNotEquals('About us', $actual->getText());
-//    $this->assertEquals('Related sites', $actual->getText());
-//    $actual = $subsection->find('css', 'ul li:nth-child(1) > a');
-//    $expected = [
-//      'label' => 'Custom related 1',
-//      'href' => 'http://example.com/custom-related-1',
-//    ];
-//    $this->assertListLink($actual, $expected, TRUE);
+    $this->assertEquals('Related links', $actual->getText());
+    $actual = $subsection->find('css', 'ul li:nth-child(1) > a');
+    $expected = [
+      'label' => 'Custom related 1',
+      'href' => 'http://example.com/custom-related-1',
+    ];
+    $this->assertListLink($actual, $expected, TRUE);
 
     // Update the link with europa.eu path, so the external icon won't be
     // present.
-//    $this->updateGeneralLink('custom-link-1', [
-//      'label' => 'Custom link altered',
-//      'url' => 'http://ec.europa.eu/info',
-//    ]);
-//    $this->drupalGet('<front>');
+    $this->updateGeneralLink('custom-link-1', [
+      'label' => 'Custom link altered',
+      'url' => 'http://ec.europa.eu/info',
+    ]);
+    $this->drupalGet('<front>');
 
-//    $column = $assert->elementExists('css', 'footer.ecl-site-footer div.ecl-site-footer__row:nth-child(1) div.ecl-site-footer__column:nth-child(3)');
-//    $subsection = $assert->elementExists('css', '.ecl-site-footer__section:nth-child(1)', $column);
-//    $actual = $subsection->find('css', 'ul li:nth-child(1) > a');
+    $column = $assert->elementExists('css', 'footer.ecl-site-footer div.ecl-site-footer__row:nth-child(1) div.ecl-site-footer__row:nth-child(3)');
+    $subsection = $assert->elementExists('css', '.ecl-site-footer__section:nth-child(1)', $column);
+    $actual = $subsection->find('css', 'ul li:nth-child(1) > a');
     $expected = [
       'label' => 'Custom link altered',
       'href' => 'http://ec.europa.eu/info',
     ];
-//    $this->assertListLink($actual, $expected);
+    $this->assertListLink($actual, $expected);
     // We should not have any icon present.
-//    $this->assertSession()->elementExists('css', 'span.ecl-icon.ecl-icon--xs.ecl-link__icon', $actual);
+    $this->assertSession()->elementNotExists('css', 'span.ecl-icon.ecl-icon--xs.ecl-link__icon', $actual);
 
     // Test European Commission footer core block
     // rendering again but with social links.
@@ -880,7 +911,7 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     $assert->elementNotExists('css', 'footer.ecl-site-footer div.ecl-site-footer__section--contact');
     $assert->elementNotExists('css', 'footer.ecl-site-footer div.ecl-site-footer__section--about');
     $assert->elementNotExists('css', 'footer.ecl-site-footer div.ecl-site-footer__section--related');
-    $assert->elementNotExists('css', 'footer.ecl-site-footer div.ecl-site-footer__section--common .ecl-social-media-follow');
+    $assert->elementNotExists('css', 'footer.ecl-site-footer div.ecl-site-footer__row--specific .ecl-social-media-follow');
   }
 
   /**
@@ -956,6 +987,9 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     $this->assertSession()->elementExists('css', 'span.ecl-icon.ecl-icon--' . $size . '.ecl-link__icon.wt-icon-networks--' . $expected['icon_name'], $link);
     $inverted_class = $this->library == 'ec' ? 'ecl-link--inverted ' : '';
     $icon_only = $this->library == 'ec' && $this->branding == 'core' ? ' ecl-link--icon-only' : '';
+    if (isset($expected['icon_only']) && $expected['icon_only'] && empty($icon_only)) {
+      $icon_only = ' ecl-link--icon-only';
+    }
     $icon_class = $this->library == 'eu' ? ' ecl-site-footer__link' : ' ecl-social-media-follow__link';
     $icon_link_not_visited = $this->library == 'ec' ? 'ecl-link--no-visited ' : '';
     $this->assertEquals("ecl-link ecl-link--standalone {$inverted_class}{$icon_link_not_visited}ecl-link--icon{$icon_class}{$icon_only}", $link->getAttribute('class'));

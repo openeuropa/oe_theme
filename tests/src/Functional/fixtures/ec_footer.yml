@@ -1,13 +1,6 @@
 corporate_site_link:
   href: 'https://commission.europa.eu/index_en'
   label: 'European Commission website'
-service_navigation:
-  -
-    label: '2nd section 1st link'
-    href: 'http://example.com/2-1.html'
-  -
-    label: '2nd section 2nd link'
-    href: 'http://example.com/2-2.html'
 legal_navigation:
   -
     label: 'Report an IT vulnerability'
@@ -18,3 +11,14 @@ legal_navigation:
   -
     label: '3rd section 2nd link'
     href: 'http://example.com/3-2.html'
+social_media_common_links:
+  -
+    href: 'https://www.facebook.com/EuropeanCommission'
+    label: 'Facebook'
+  -
+    href: 'https://www.example.com/chain-social-media-link'
+    label: 'Other'
+extra_links:
+  -
+    href: 'https://commission.europa.eu/about/contact_en'
+    label: 'Contact us'

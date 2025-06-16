@@ -317,9 +317,6 @@ msgstr "Seguiu-nos"
 msgid "About us"
 msgstr "Coneixeu-nos"
 
-msgid "Related sites"
-msgstr "Webs relacionats"
-
 msgid "More information on:"
 msgstr "Més informació a:"
 

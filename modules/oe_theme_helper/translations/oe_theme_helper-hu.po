@@ -244,9 +244,6 @@ msgstr "Közösségi média"
 msgid "About us"
 msgstr "Bemutatkozás"
 
-msgid "Related sites"
-msgstr "Kapcsolódó oldalak"
-
 msgid "More information on:"
 msgstr "További információk:"
 
@@ -653,3 +650,6 @@ msgstr "Honlap-navigáció"
 
 msgid "You are here:"
 msgstr "Ön itt van:"
+
+msgid "Follow the European Commission"
+msgstr "Kövesse az Európai Bizottságot"

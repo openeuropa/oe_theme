@@ -67,9 +67,6 @@ msgstr "Presskontakter"
 msgid "Call for tenders"
 msgstr "Upphandling"
 
-msgid "Related links"
-msgstr "Fler länkar"
-
 msgid "Practical information"
 msgstr "Praktisk information"
 
@@ -244,8 +241,8 @@ msgstr "Följ oss"
 msgid "About us"
 msgstr "Om oss"
 
-msgid "Related sites"
-msgstr "Andra webbplatser"
+msgid "Related links"
+msgstr "Länkar"
 
 msgid "More information on:"
 msgstr "Läs mer på:"
@@ -653,3 +650,6 @@ msgstr "Navigeringsmeny"
 
 msgid "You are here:"
 msgstr "Du är här:"
+
+msgid "Follow the European Commission"
+msgstr "Följ kommissionen"

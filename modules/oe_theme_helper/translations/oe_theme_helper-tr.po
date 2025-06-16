@@ -317,9 +317,6 @@ msgstr "Bizi takip edin"
 msgid "About us"
 msgstr "Hakkımızda"
 
-msgid "Related sites"
-msgstr "İlgili siteler"
-
 msgid "More information on:"
 msgstr "Daha fazla bilgi için:"
 
