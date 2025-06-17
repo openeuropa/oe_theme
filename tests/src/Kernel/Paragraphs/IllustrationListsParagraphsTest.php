@@ -106,7 +106,6 @@ class IllustrationListsParagraphsTest extends ParagraphsTestBase {
       'field_oe_title' => 'Illustration with flags test',
       'field_oe_paragraphs' => $items,
       'field_oe_illustration_columns' => 2,
-      'field_oe_illustration_ratio' => 'landscape',
       'field_oe_center' => FALSE,
     ]);
     $html = $this->renderParagraph($list_paragraph);

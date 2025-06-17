@@ -2071,7 +2071,6 @@ function oe_theme_preprocess_paragraph__oe_illustration_list_flags(array &$varia
   $variables['items'] = [];
 
   $paragraph = $variables['paragraph'];
-  $ratio = $paragraph->get('field_oe_illustration_ratio')->first()->value;
   $builder = \Drupal::entityTypeManager()->getViewBuilder('paragraph');
   /** @var \Drupal\paragraphs\Entity\Paragraph $sub_paragraph */
   foreach ($paragraph->get('field_oe_paragraphs')->referencedEntities() as $sub_paragraph) {
