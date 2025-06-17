@@ -2,7 +2,7 @@ langcode: en
 status: true
 dependencies: {  }
 name: oe_theme_large_5_1_banner
-label: 'Large banner 5:1'
+label: 'Large banner 5:1 (Deprecated)'
 effects:
   84375c60-ce2a-4c39-8121-306207802cb0:
     uuid: 84375c60-ce2a-4c39-8121-306207802cb0

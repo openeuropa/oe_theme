@@ -638,6 +638,10 @@ function oe_theme_helper_post_update_50002(): void {
 
   // Mark existing image styles as deprecated.
   $image_style_ids = [
+    'oe_theme_extra_large_4_1_banner',
+    'oe_theme_extra_large_5_1_banner',
+    'oe_theme_large_4_1_banner',
+    'oe_theme_large_5_1_banner',
     'oe_theme_medium_3_1_banner',
     'oe_theme_medium_4_1_banner',
     'oe_theme_medium_5_1_banner',
