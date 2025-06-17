@@ -302,11 +302,6 @@ class TwigExtension extends AbstractExtension {
    *   Icon array for ECL components containing icon name, path and rotation.
    */
   public function toEclIcon(array $context, ?string $icon, string $size = ''): array {
-    // Remove -square suffix from the icon name.
-    if ($icon && str_contains($icon, '-square')) {
-      $icon = str_replace('-square', '', $icon);
-    }
-
     if ($country_code = $this->getCountryCode($icon)) {
       $icon = $country_code;
     }
