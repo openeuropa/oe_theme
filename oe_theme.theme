@@ -1675,9 +1675,9 @@ function oe_theme_preprocess_paragraph__oe_banner(array &$variables): void {
   }
 
   $banner_type = match ($variables['size']) {
-    's' => '5_1',
-    'm' => '4_1',
-    'l' => '3_1',
+    's' => 'small',
+    'm' => 'medium',
+    'l' => 'large',
   };
 
   $responsive_image = _oe_theme_load_from_responsive_image_style_id("oe_theme_{$banner_type}_banner", $uri);

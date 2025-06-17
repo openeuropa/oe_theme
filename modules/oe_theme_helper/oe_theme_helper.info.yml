@@ -38,12 +38,14 @@ config_devel:
   - image.style.oe_theme_list_item_featured_2x
   - image.style.oe_theme_medium_2x_no_crop
   - image.style.oe_theme_medium_3_1_banner
+  - image.style.oe_theme_medium_3_2_banner
   - image.style.oe_theme_medium_4_1_banner
   - image.style.oe_theme_medium_5_1_banner
   - image.style.oe_theme_medium_no_crop
   - image.style.oe_theme_ratio_3_2_medium
   - image.style.oe_theme_small_2x_no_crop
   - image.style.oe_theme_small_3_1_banner
+  - image.style.oe_theme_small_3_2_banner
   - image.style.oe_theme_small_4_1_banner
   - image.style.oe_theme_small_5_1_banner
   - image.style.oe_theme_small_no_crop
@@ -52,3 +54,6 @@ config_devel:
   - responsive_image.styles.oe_theme_4_1_banner
   - responsive_image.styles.oe_theme_5_1_banner
   - responsive_image.styles.oe_theme_main_content
+  - responsive_image.styles.oe_theme_large_banner
+  - responsive_image.styles.oe_theme_medium_banner
+  - responsive_image.styles.oe_theme_small_banner

@@ -11,7 +11,7 @@ dependencies:
   module:
     - oe_theme_helper
 id: oe_theme_4_1_banner
-label: '4:1 Banner'
+label: '4:1 Banner (Deprecated)'
 image_style_mappings:
   -
     image_mapping_type: image_style

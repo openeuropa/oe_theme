@@ -346,22 +346,33 @@ The following is a list of all the vailable styles and their preferred usage:
 * Main content (`oe_theme_main_content`): Responsive image style, to be used on any image that is rendered inside
 a content page.
 * Full width (3840) (`oe_theme_full_width`): Full width image (3840px x 3840px).
+
+### Responsive image banner styles
+* Large Banner (`oe_theme_large_banner`)
+* Medium Banner (`oe_theme_medium_banner`)
+* Small Banner (`oe_theme_small_banner`)
+* 3:1 Banner (Deprecated) (`oe_theme_3_1_banner`)
+* 4:1 Banner (Deprecated) (`oe_theme_4_1_banner`)
+* 5:1 Banner (Deprecated) (`oe_theme_5_1_banner`)
+
 ### Banner image styles for different ratios
 * Full width banner 3:1 (`oe_theme_full_width_banner_3_1`)
 * Extra large banner 3:1 (`oe_theme_extra_large_3_1_banner`)
 * Large banner 3:1 (`oe_theme_large_3_1_banner`)
-* Medium banner 3:1 (`oe_theme_medium_3_1_banner`)
-* Small banner 3:1 (`oe_theme_small_3_1_banner`)
+* Medium banner 3:1 (Deprecated) (`oe_theme_medium_3_1_banner`)
+* Small banner 3:1 (Deprecated) (`oe_theme_small_3_1_banner`)
 * Full width banner 4:1 (`oe_theme_full_width_banner_4_1`)
 * Extra large banner 4:1 (`oe_theme_extra_large_4_1_banner`)
 * Large banner 4:1 (`oe_theme_large_4_1_banner`)
-* Medium banner 4:1 (`oe_theme_medium_4_1_banner`)
-* Small banner 4:1 (`oe_theme_small_4_1_banner`)
+* Medium banner 3:2 (`oe_theme_medium_3_2_banner`)
+* Medium banner 4:1 (Deprecated) (`oe_theme_medium_4_1_banner`)
+* Small banner 4:1 (Deprecated) (`oe_theme_small_4_1_banner`)
 * Full width banner 5:1 (`oe_theme_full_width_banner_5_1`)
-* Extra large banner 5:1 (`oe_theme_extra_large_5_1_banner`)
+* Extra large banner 5:1 (Deprecated) (`oe_theme_extra_large_5_1_banner`)
 * Large banner 5:1 (`oe_theme_large_5_1_banner`)
-* Medium banner 5:1 (`oe_theme_medium_5_1_banner`)
-* Small banner 5:1 (`oe_theme_small_5_1_banner`)
+* Small banner 3:2 (`oe_theme_small_3_2_banner`)
+* Medium banner 5:1 (Deprecated) (`oe_theme_medium_5_1_banner`)
+* Small banner 5:1 (Deprecated) (`oe_theme_small_5_1_banner`)
 
 ## Development
 
