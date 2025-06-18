@@ -13,7 +13,7 @@
 {% for item in items %}
   {# Transform icon into ecl array. #}
   {% if item.icon %}
-    {% set item = item|merge({'icon': to_ecl_icon(item.icon)}) %}
+    {% set item = item|merge({'icon': to_ecl_icon(item.icon, '')}) %}
   {% endif %}
   {# Set square image if needed. #}
   {% if item.image %}

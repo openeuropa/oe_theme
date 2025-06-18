@@ -5,6 +5,29 @@ theming an OpenEuropa website.
 
 Here is an overview of the features it offers:
 
+## Services
+
+### Webtools icons provider
+
+The `webtools_icons_provider` service provides a way to retrieve icons from the webtools service.
+Like this your site automatically get any new icons added by ECL and Webtools without a release of oe_theme.
+There are 3 main category of icons available for now:
+  - icons (generic icons)
+  - flags (country flags)
+  - networks (social media icons)
+
+You can use this service to get all possible values for the specified categories.
+```php
+\Drupal::service('oe_theme_helper.webtools_icons_provider')->getAllowedIconValues(['icons', 'networks']);
+```
+Using this, you can define a custom function that can be used as an `allowed_values_function` in your field storage definition config.
+```yml
+settings:
+  allowed_values: { ... old values ... }
+  allowed_values_function: _custom_function_calling_the_webtools_icons_provider
+```
+For more information take a look at the [Webtools Icons Provider](modules/oe_theme_helper/src/WebtoolsIconsProviderInterface.php) interface.
+
 ## Additional Twig filters
 
 ### format_size

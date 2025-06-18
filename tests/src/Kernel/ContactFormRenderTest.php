@@ -22,6 +22,7 @@ class ContactFormRenderTest extends ContactFormTestBase {
     'ui_patterns',
     'ui_patterns_library',
     'oe_theme_helper',
+    'oe_time_caching',
     'breakpoint',
     'responsive_image',
     'image',

@@ -24,11 +24,11 @@ class SocialMediaIconsListFormatterTest extends SocialMediaLinksFormatterTestBas
     ]);
     $this->assertRendering($this->renderRoot($build), [
       'count' => [
-        'a.ecl-link[href="mailto:socialmedialink@example.com"] span.wt-icon--email.ecl-social-media-follow__icon' => 1,
-        'a.ecl-link[href="http://facebook.com"] span.wt-icon--facebook.ecl-social-media-follow__icon' => 1,
-        'a.ecl-link[href="http://twitter.com"] span.wt-icon--twitter.ecl-social-media-follow__icon' => 1,
-        'a.ecl-link[href="http://t.me/example"] span.wt-icon--telegram.ecl-social-media-follow__icon' => 1,
-        'a.ecl-link[href="http://mastodon.social/@example"] span.wt-icon--mastodon.ecl-social-media-follow__icon' => 1,
+        'a.ecl-link[href="mailto:socialmedialink@example.com"] span.wt-icon-networks--email.ecl-social-media-follow__icon' => 1,
+        'a.ecl-link[href="http://facebook.com"] span.wt-icon-networks--facebook.ecl-social-media-follow__icon' => 1,
+        'a.ecl-link[href="http://twitter.com"] span.wt-icon-networks--twitter.ecl-social-media-follow__icon' => 1,
+        'a.ecl-link[href="http://t.me/example"] span.wt-icon-networks--telegram.ecl-social-media-follow__icon' => 1,
+        'a.ecl-link[href="http://mastodon.social/@example"] span.wt-icon-networks--mastodon.ecl-social-media-follow__icon' => 1,
       ],
       'equals' => [
         'a.ecl-link[href="mailto:socialmedialink@example.com"] span.ecl-link__label' => "Email",
@@ -48,11 +48,11 @@ class SocialMediaIconsListFormatterTest extends SocialMediaLinksFormatterTestBas
     ]);
     $this->assertRendering($this->renderRoot($build), [
       'count' => [
-        'a.ecl-link[href="mailto:socialmedialink@example.com"] span.wt-icon--email.ecl-social-media-follow__icon' => 1,
-        'a.ecl-link[href="http://facebook.com"] span.wt-icon--facebook.ecl-social-media-follow__icon' => 1,
-        'a.ecl-link[href="http://twitter.com"] span.wt-icon--twitter.ecl-social-media-follow__icon' => 1,
-        'a.ecl-link[href="http://t.me/example"] span.wt-icon--telegram.ecl-social-media-follow__icon' => 1,
-        'a.ecl-link[href="http://mastodon.social/@example"] span.wt-icon--mastodon.ecl-social-media-follow__icon' => 1,
+        'a.ecl-link[href="mailto:socialmedialink@example.com"] span.wt-icon-networks--email.ecl-social-media-follow__icon' => 1,
+        'a.ecl-link[href="http://facebook.com"] span.wt-icon-networks--facebook.ecl-social-media-follow__icon' => 1,
+        'a.ecl-link[href="http://twitter.com"] span.wt-icon-networks--twitter.ecl-social-media-follow__icon' => 1,
+        'a.ecl-link[href="http://t.me/example"] span.wt-icon-networks--telegram.ecl-social-media-follow__icon' => 1,
+        'a.ecl-link[href="http://mastodon.social/@example"] span.wt-icon-networks--mastodon.ecl-social-media-follow__icon' => 1,
       ],
       'equals' => [
         'a.ecl-link[href="mailto:socialmedialink@example.com"] span.ecl-link__label' => "Email",

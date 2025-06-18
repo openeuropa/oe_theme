@@ -19,6 +19,7 @@ class AddressCountryInlineFormatterTest extends FormatterTestBase {
    */
   protected static $modules = [
     'oe_theme_helper',
+    'oe_time_caching',
   ];
 
   /**
@@ -49,7 +50,7 @@ class AddressCountryInlineFormatterTest extends FormatterTestBase {
    * @return array[]
    *   An array of test data arrays with expected result.
    */
-  public function addressFieldTestData(): array {
+  protected function addressFieldTestData(): array {
     return [
       'Single item' => [
         'address' => [

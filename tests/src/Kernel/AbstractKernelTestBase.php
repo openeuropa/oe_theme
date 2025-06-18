@@ -26,6 +26,7 @@ abstract class AbstractKernelTestBase extends TokenKernelTestBase {
     'breakpoint',
     'image',
     'oe_theme_helper',
+    'oe_time_caching',
     'responsive_image',
     'system',
     'twig_field_value',

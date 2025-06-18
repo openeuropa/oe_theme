@@ -31,6 +31,8 @@ class IllustrationListsParagraphsTest extends ParagraphsTestBase {
     'options',
     'oe_paragraphs_media_field_storage',
     'oe_paragraphs_illustrations_lists',
+    'oe_time_caching',
+    'oe_theme_webtools_mock',
   ];
 
   /**
@@ -68,7 +70,7 @@ class IllustrationListsParagraphsTest extends ParagraphsTestBase {
       'type' => 'oe_illustration_item_flag',
       'field_oe_title' => 'Term 1',
       'field_oe_text_long' => 'Description 1',
-      'field_oe_flag' => 'austria',
+      'field_oe_flag' => 'at',
     ]);
     $paragraph->save();
     $items[] = $paragraph;
@@ -77,7 +79,7 @@ class IllustrationListsParagraphsTest extends ParagraphsTestBase {
       'type' => 'oe_illustration_item_flag',
       'field_oe_subtitle' => 'Highlighted Term 2',
       'field_oe_title' => 'Term 2',
-      'field_oe_flag' => 'belgium',
+      'field_oe_flag' => 'be',
     ]);
     $paragraph->save();
     $items[] = $paragraph;
@@ -86,14 +88,14 @@ class IllustrationListsParagraphsTest extends ParagraphsTestBase {
       'type' => 'oe_illustration_item_flag',
       'field_oe_subtitle' => 'Highlighted Term 3',
       'field_oe_text_long' => 'Description 3',
-      'field_oe_flag' => 'france',
+      'field_oe_flag' => 'fr',
     ]);
     $paragraph->save();
     $items[] = $paragraph;
 
     $paragraph = Paragraph::create([
       'type' => 'oe_illustration_item_flag',
-      'field_oe_flag' => 'north-macedonia',
+      'field_oe_flag' => 'mk',
     ]);
     $paragraph->save();
     $items[] = $paragraph;
@@ -104,7 +106,6 @@ class IllustrationListsParagraphsTest extends ParagraphsTestBase {
       'field_oe_title' => 'Illustration with flags test',
       'field_oe_paragraphs' => $items,
       'field_oe_illustration_columns' => 2,
-      'field_oe_illustration_ratio' => 'landscape',
       'field_oe_center' => FALSE,
     ]);
     $html = $this->renderParagraph($list_paragraph);
@@ -114,10 +115,10 @@ class IllustrationListsParagraphsTest extends ParagraphsTestBase {
     $heading = $crawler->filter('div.ecl h2.ecl-u-type-heading-2');
     $this->assertCount(1, $heading);
     $this->assertEquals('Illustration with flags test', trim($heading->text()));
-    $this->assertCount(0, $crawler->filter('span.ecl-list-illustration__icon.wt-icon--austria-square'));
-    $this->assertCount(0, $crawler->filter('span.ecl-list-illustration__icon.wt-icon--belgium-square'));
-    $this->assertCount(0, $crawler->filter('span.ecl-list-illustration__icon.wt-icon--france-square'));
-    $this->assertCount(0, $crawler->filter('span.ecl-list-illustration__icon.wt-icon--north-macedonia-square'));
+    $this->assertCount(1, $crawler->filter('span.ecl-list-illustration__icon.wt-icon-flags--at'));
+    $this->assertCount(1, $crawler->filter('span.ecl-list-illustration__icon.wt-icon-flags--be'));
+    $this->assertCount(1, $crawler->filter('span.ecl-list-illustration__icon.wt-icon-flags--fr'));
+    $this->assertCount(1, $crawler->filter('span.ecl-list-illustration__icon.wt-icon-flags--mk'));
 
     // Assert rendered items.
     $expected_values = [
@@ -127,17 +128,21 @@ class IllustrationListsParagraphsTest extends ParagraphsTestBase {
         [
           'title' => 'Term 1',
           'description' => 'Description 1',
-          'icon' => 'austria',
+          'icon' => 'at',
+          'icon_family' => 'flags',
         ], [
           'title' => 'Term 2',
-          'icon' => 'belgium',
+          'icon' => 'be',
           'value' => 'Highlighted Term 2',
+          'icon_family' => 'flags',
         ], [
           'description' => 'Description 3',
-          'icon' => 'france',
+          'icon' => 'fr',
           'value' => 'Highlighted Term 3',
+          'icon_family' => 'flags',
         ], [
-          'icon' => 'north-macedonia',
+          'icon' => 'mk',
+          'icon_family' => 'flags',
         ],
       ],
       'centered' => FALSE,
@@ -147,7 +152,6 @@ class IllustrationListsParagraphsTest extends ParagraphsTestBase {
 
     // Assert number of columns and ratio.
     $list_paragraph->set('field_oe_illustration_columns', 4);
-    $list_paragraph->set('field_oe_illustration_ratio', 'square')->save();
     $html = $this->renderParagraph($list_paragraph);
     $expected_values = [
       'column' => 4,
@@ -156,26 +160,30 @@ class IllustrationListsParagraphsTest extends ParagraphsTestBase {
         [
           'title' => 'Term 1',
           'description' => 'Description 1',
-          'icon' => 'austria-square',
+          'icon' => 'at',
+          'icon_family' => 'flags',
         ], [
           'title' => 'Term 2',
-          'icon' => 'belgium-square',
+          'icon' => 'be',
           'value' => 'Highlighted Term 2',
+          'icon_family' => 'flags',
         ], [
           'description' => 'Description 3',
-          'icon' => 'france-square',
+          'icon' => 'fr',
           'value' => 'Highlighted Term 3',
+          'icon_family' => 'flags',
         ], [
-          'icon' => 'north-macedonia-square',
+          'icon' => 'mk',
+          'icon_family' => 'flags',
         ],
       ],
     ];
     $assert->assertPattern($expected_values, $html);
     $crawler = new Crawler($html);
-    $this->assertCount(1, $crawler->filter('span.ecl-list-illustration__icon.wt-icon--austria-square'));
-    $this->assertCount(1, $crawler->filter('span.ecl-list-illustration__icon.wt-icon--belgium-square'));
-    $this->assertCount(1, $crawler->filter('span.ecl-list-illustration__icon.wt-icon--france-square'));
-    $this->assertCount(1, $crawler->filter('span.ecl-list-illustration__icon.wt-icon--north-macedonia-square'));
+    $this->assertCount(1, $crawler->filter('span.ecl-list-illustration__icon.wt-icon-flags--at'));
+    $this->assertCount(1, $crawler->filter('span.ecl-list-illustration__icon.wt-icon-flags--be'));
+    $this->assertCount(1, $crawler->filter('span.ecl-list-illustration__icon.wt-icon-flags--fr'));
+    $this->assertCount(1, $crawler->filter('span.ecl-list-illustration__icon.wt-icon-flags--mk'));
 
     // Assert vertical variant.
     $list_paragraph->set('oe_paragraphs_variant', 'oe_illustration_vertical')->save();
@@ -267,6 +275,7 @@ class IllustrationListsParagraphsTest extends ParagraphsTestBase {
           'icon' => 'facebook',
           'value' => 'Highlighted Term 2',
           'media_size' => 'l',
+          'icon_family' => 'networks',
         ], [
           'description' => 'Description 3',
           'icon' => 'global',

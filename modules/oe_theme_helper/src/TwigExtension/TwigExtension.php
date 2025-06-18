@@ -18,6 +18,7 @@ use Drupal\Core\Template\Attribute;
 use Drupal\Core\Template\TwigExtension as CoreTwigExtension;
 use Drupal\oe_theme_helper\EuropeanUnionLanguages;
 use Drupal\oe_theme_helper\ExternalLinksInterface;
+use Drupal\oe_theme_helper\WebtoolsIconsProviderInterface;
 use Drupal\smart_trim\TruncateHTML;
 use Twig\Environment;
 use Twig\Extension\AbstractExtension;
@@ -56,6 +57,13 @@ class TwigExtension extends AbstractExtension {
   protected $externalLinks;
 
   /**
+   * The webtools icons provider.
+   *
+   * @var \Drupal\oe_theme_helper\WebtoolsIconsProviderInterface
+   */
+  protected $webtoolsIconsProvider;
+
+  /**
    * Constructs a new TwigExtension object.
    *
    * @param \Drupal\Core\Language\LanguageManagerInterface $languageManager
@@ -64,11 +72,14 @@ class TwigExtension extends AbstractExtension {
    *   The renderer service.
    * @param \Drupal\oe_theme_helper\ExternalLinksInterface $external_links
    *   The external links service.
+   * @param \Drupal\oe_theme_helper\WebtoolsIconsProviderInterface $webtoolsIconsProvider
+   *   The webtools icons provider service.
    */
-  public function __construct(LanguageManagerInterface $languageManager, RendererInterface $renderer, ExternalLinksInterface $external_links) {
+  public function __construct(LanguageManagerInterface $languageManager, RendererInterface $renderer, ExternalLinksInterface $external_links, WebtoolsIconsProviderInterface $webtoolsIconsProvider) {
     $this->languageManager = $languageManager;
     $this->renderer = $renderer;
     $this->externalLinks = $external_links;
+    $this->webtoolsIconsProvider = $webtoolsIconsProvider;
   }
 
   /**
@@ -290,32 +301,15 @@ class TwigExtension extends AbstractExtension {
    * @return array
    *   Icon array for ECL components containing icon name, path and rotation.
    */
-  public function toEclIcon(array $context, $icon, string $size = ''): array {
-    $path = $this->getIconPath($context, $icon);
+  public function toEclIcon(array $context, ?string $icon, string $size = ''): array {
+    if ($country_code = $this->getCountryCode($icon)) {
+      $icon = $country_code;
+    }
+
+    $family = $this->webtoolsIconsProvider->getIconFamily($icon);
 
     // Icons that require transforming.
     $transformed_icons = [
-      'googleplus' => [
-        'name' => 'digital',
-      ],
-      'slides' => [
-        'name' => 'presentation',
-      ],
-      'info' => [
-        'name' => 'information',
-      ],
-      'close-dark' => [
-        'name' => 'close-filled',
-      ],
-      'in' => [
-        'name' => 'download',
-      ],
-      'tag-close' => [
-        'name' => 'close',
-      ],
-      'up' => [
-        'name' => 'corner-arrow',
-      ],
       'arrow-down' => [
         'name' => 'solid-arrow',
         'transform' => 'rotate-180',
@@ -339,31 +333,15 @@ class TwigExtension extends AbstractExtension {
         'name' => 'corner-arrow',
         'transform' => 'rotate-90',
       ],
-      'back' => [
-        'name' => 'arrow-left',
-      ],
-      'gear' => [
-        'name' => 'settings',
-      ],
-      'basket' => [
-        'name' => 'shopping-bag',
-      ],
-      'video' => [
-        'name' => 'play-filled',
-      ],
-      'generic-lang' => [
-        'name' => 'global',
-      ],
-      'language' => [
-        'name' => 'feedback',
-      ],
     ];
 
     // Check whether the icon needs any transformation.
     if (array_key_exists($icon, $transformed_icons)) {
-      $transformed_icons[$icon]['path'] = $path;
       if ($size) {
         $transformed_icons[$icon]['size'] = $size;
+      }
+      if ($family) {
+        $transformed_icons[$icon]['family'] = $family;
       }
       return $transformed_icons[$icon];
     }
@@ -374,125 +352,15 @@ class TwigExtension extends AbstractExtension {
     }
     $icon = [
       'name' => $icon,
-      'path' => $path,
     ];
     if ($size) {
       $icon['size'] = $size;
-
     }
+    if ($family) {
+      $icon['family'] = $family;
+    }
+
     return $icon;
-  }
-
-  /**
-   * Returns the file path for an ECL icon.
-   *
-   * @param array $context
-   *   The twig context.
-   * @param string $icon
-   *   The icon to be converted.
-   *
-   * @return string
-   *   ECL icon file path.
-   */
-  protected function getIconPath(array $context, string $icon): string {
-    // Flag icon names.
-    $flag_icons = [
-      'austria',
-      'belgium',
-      'bulgaria',
-      'croatia',
-      'cyprus',
-      'czech-republic',
-      'denmark',
-      'estonia',
-      'EU',
-      'finland',
-      'france',
-      'germany',
-      'greece',
-      'hungary',
-      'ireland',
-      'italy',
-      'latvia',
-      'lithuania',
-      'luxembourg',
-      'malta',
-      'netherlands',
-      'poland',
-      'portugal',
-      'romania',
-      'slovakia',
-      'slovenia',
-      'spain',
-      'sweden',
-    ];
-    // Flag icon names for non EU members.
-    $flag_icons_non_members = [
-      'albania',
-      'armenia',
-      'bosnia-and-herzegovina',
-      'georgia',
-      'iceland',
-      'israel',
-      'liechtenstein',
-      'moldova',
-      'montenegro',
-      'north-macedonia',
-      'norway',
-      'serbia',
-      'switzerland',
-      'turkey',
-      'ukraine',
-      'united-kingdom',
-    ];
-    // Flag icons can have a -square string appended, so check if the icon name
-    // starts with a country name.
-    $found_icon = array_filter($flag_icons, function ($var) use ($icon) {
-      if (strpos($icon, $var) === 0) {
-        return TRUE;
-      }
-      return FALSE;
-    });
-    if ($found_icon) {
-      return $context['ecl_icon_flag_path'];
-    }
-    $found_icon = array_filter($flag_icons_non_members, function ($var) use ($icon) {
-      if (strpos($icon, $var) === 0) {
-        return TRUE;
-      }
-      return FALSE;
-    });
-    if ($found_icon) {
-      return $context['ecl_icon_flag_non_members_path'];
-    }
-
-    // Social media icon names.
-    $social_icons = [
-      'blog',
-      'facebook',
-      'flickr',
-      'foursquare',
-      'instagram',
-      'linkedin',
-      'pinterest',
-      'reddit',
-      'skype',
-      'spotify',
-      'twitter',
-      'youtube',
-    ];
-    // Social icons can have a -color or a -negative string appended,
-    // so check if the icon name starts with a social name.
-    $found_icon = array_filter($social_icons, function ($var) use ($icon) {
-      if (strpos($icon, $var) === 0) {
-        return TRUE;
-      }
-      return FALSE;
-    });
-    if ($found_icon) {
-      return $context['ecl_icon_social_media_path'];
-    }
-    return $context['ecl_icon_path'];
   }
 
   /**
@@ -590,10 +458,8 @@ class TwigExtension extends AbstractExtension {
    *   Icon settings to be used in the ecl-twig/link component.
    */
   public function getLinkIcon(array $context, string $path, string $size = 's'): array {
-    $icon_path = $context['ecl_icon_path'];
 
     $icon = [
-      'path' => $icon_path,
       'size' => $size,
       'color' => 'primary',
     ];
@@ -644,7 +510,6 @@ class TwigExtension extends AbstractExtension {
       if (!empty($link['external']) && $link['external'] === TRUE) {
         $ecl_link += [
           'icon' => [
-            'path' => $context['ecl_icon_path'],
             'name' => 'external',
             'size' => 'xs',
           ],
@@ -720,6 +585,73 @@ class TwigExtension extends AbstractExtension {
    */
   public function createMarkup($string): MarkupInterface {
     return Markup::create($string);
+  }
+
+  /**
+   * Get the country code for a given country name.
+   *
+   * This function is added after implementation of the new webtools icons
+   * service to provide a mapping from country names to their iso codes, since
+   * only those are supported in ECL. This function should be removed eventually
+   * after the moving to the webtools icons service is complete.
+   *
+   * @param string $country_name
+   *   The name of the country, in lowercase and with hyphens instead of spaces.
+   *
+   * @return string|null
+   *   The ISO country code, or NULL if not found.
+   */
+  protected function getCountryCode(string $country_name): ?string {
+    $map = [
+      'austria' => 'at',
+      'belgium' => 'be',
+      'bulgaria' => 'bg',
+      'croatia' => 'hr',
+      'cyprus' => 'cy',
+      'czech-republic' => 'cz',
+      'denmark' => 'dk',
+      'estonia' => 'ee',
+      'EU' => 'eu',
+      'finland' => 'fi',
+      'france' => 'fr',
+      'germany' => 'de',
+      'greece' => 'el',
+      'hungary' => 'hu',
+      'ireland' => 'ie',
+      'italy' => 'it',
+      'latvia' => 'lv',
+      'lithuania' => 'lt',
+      'luxembourg' => 'lu',
+      'malta' => 'mt',
+      'netherlands' => 'nl',
+      'poland' => 'pl',
+      'portugal' => 'pt',
+      'romania' => 'ro',
+      'slovakia' => 'sk',
+      'slovenia' => 'si',
+      'spain' => 'es',
+      'sweden' => 'se',
+      'switzerland' => 'ch',
+      'iceland' => 'is',
+      'liechtenstein' => 'li',
+      'norway' => 'no',
+      'albania' => 'al',
+      'bosnia-and-herzegovina' => 'ba',
+      'georgia' => 'ge',
+      'moldova' => 'md',
+      'montenegro' => 'me',
+      'north-macedonia' => 'mk',
+      'serbia' => 'rs',
+      'turkey' => 'tr',
+      'ukraine' => 'ua',
+      'united-kingdom' => 'uk',
+    ];
+
+    if (in_array($country_name, array_keys($map))) {
+      return $map[$country_name];
+    }
+
+    return NULL;
   }
 
 }

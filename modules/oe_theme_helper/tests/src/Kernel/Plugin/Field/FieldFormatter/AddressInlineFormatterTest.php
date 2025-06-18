@@ -19,6 +19,7 @@ class AddressInlineFormatterTest extends FormatterTestBase {
    */
   protected static $modules = [
     'oe_theme_helper',
+    'oe_time_caching',
   ];
 
   /**

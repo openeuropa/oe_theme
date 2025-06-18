@@ -80,10 +80,6 @@ function oe_theme_preprocess(&$variables) {
   $variables['ecl_images_path'] = base_path() . \Drupal::service('extension.list.theme')->getPath('oe_theme') . '/dist/' . $variables['ecl_component_library'] . '/images';
   $variables['ecl_icon_path'] = $variables['ecl_images_path'] . '/icons/sprites/icons.svg';
   $variables['ecl_logo_path'] = $variables['ecl_images_path'] . '/logo';
-  $variables['ecl_social_icon_path'] = base_path() . \Drupal::service('extension.list.theme')->getPath('oe_theme') . '/dist/ec/images/social-icons/sprites/icons-social.svg';
-  $variables['ecl_icon_social_media_path'] = $variables['ecl_images_path'] . '/icons-social-media/sprites/icons-social-media.svg';
-  $variables['ecl_icon_flag_path'] = $variables['ecl_images_path'] . '/icons-flag/sprites/icons-flag.svg';
-  $variables['ecl_icon_flag_non_members_path'] = $variables['ecl_images_path'] . '/icons-flag/sprites/icons-flag-non-members.svg';
   $variables['current_language_id'] = \Drupal::languageManager()->getCurrentLanguage()->getId();
 }
 
@@ -119,7 +115,6 @@ function oe_theme_preprocess_breadcrumb(array &$variables): void {
 
   $variables['navigation_text'] = '';
   $variables['ellipsis_label'] = '';
-  $variables['icon_file_path'] = $variables['ecl_icon_path'];
 }
 
 /**
@@ -503,7 +498,6 @@ function oe_theme_preprocess_pager(array &$variables): void {
   $nav_link = [
     'link' => [
       'icon' => [
-        'path' => $variables['ecl_icon_path'],
         'type' => 'ui',
         'name' => 'corner-arrow',
         'size' => 'xs',
@@ -2077,7 +2071,6 @@ function oe_theme_preprocess_paragraph__oe_illustration_list_flags(array &$varia
   $variables['items'] = [];
 
   $paragraph = $variables['paragraph'];
-  $ratio = $paragraph->get('field_oe_illustration_ratio')->first()->value;
   $builder = \Drupal::entityTypeManager()->getViewBuilder('paragraph');
   /** @var \Drupal\paragraphs\Entity\Paragraph $sub_paragraph */
   foreach ($paragraph->get('field_oe_paragraphs')->referencedEntities() as $sub_paragraph) {
@@ -2086,7 +2079,6 @@ function oe_theme_preprocess_paragraph__oe_illustration_list_flags(array &$varia
       ->getTranslationFromContext($sub_paragraph, $paragraph->language()->getId());
     $highlight = '';
     $icon = $sub_paragraph->get('field_oe_flag')->value;
-    $icon .= $ratio === 'square' ? '-square' : '';
     if ($sub_paragraph->hasField('field_oe_subtitle') && !$sub_paragraph->get('field_oe_subtitle')->isEmpty()) {
       $highlight = $sub_paragraph->get('field_oe_subtitle')->isEmpty() ? '' : $builder->viewField($sub_paragraph->get('field_oe_subtitle'));
     }
