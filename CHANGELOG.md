@@ -1,11 +1,23 @@
 # Changelog
 
+## [5.0.0-beta9](https://github.com/openeuropa/oe_theme/tree/5.0.0-beta9) (2025-06-18)
+
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/5.0.0-beta8...5.0.0-beta9)
+
+**Merged pull requests:**
+
+- EWPP-5628: Implement service to fetch allowed icons from webtools. [\#1601](https://github.com/openeuropa/oe_theme/pull/1601) ([nagyad](https://github.com/nagyad))
+- EWPP-5631: Change aspect ratio to 3:2 on mobile banners. [\#1597](https://github.com/openeuropa/oe_theme/pull/1597) ([gorsky87](https://github.com/gorsky87))
+- EWPP-5626: Update EC Standardised footer links. [\#1596](https://github.com/openeuropa/oe_theme/pull/1596) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-5511: Improve contextual navigation links' alignment. [\#1589](https://github.com/openeuropa/oe_theme/pull/1589) ([22Alexandra](https://github.com/22Alexandra))
+
 ## [5.0.0-beta8](https://github.com/openeuropa/oe_theme/tree/5.0.0-beta8) (2025-06-13)
 
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/5.0.0-beta7...5.0.0-beta8)
 
 **Merged pull requests:**
 
+- Release-5.0.0-beta8: Update changelog. [\#1607](https://github.com/openeuropa/oe_theme/pull/1607) ([sergepavle](https://github.com/sergepavle))
 - EWPP-5695: Update to ECL 5.0.0-alpha.13. [\#1603](https://github.com/openeuropa/oe_theme/pull/1603) ([22Alexandra](https://github.com/22Alexandra))
 - EWPP-5681: Hide social share from printing. [\#1600](https://github.com/openeuropa/oe_theme/pull/1600) ([sergepavle](https://github.com/sergepavle))
 - EWPP-5625: Allow featured list and promotional control for 1st level items of Mega menu. [\#1595](https://github.com/openeuropa/oe_theme/pull/1595) ([22Alexandra](https://github.com/22Alexandra))
