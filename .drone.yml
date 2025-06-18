@@ -14,7 +14,7 @@ workspace:
 
 services:
   web:
-    image: registry.fpfis.eu/fpfis/httpd-php:${PHP_VERSION}-ci
+    image: registry.fpfis.eu/digit/devsecops/httpd-php:${PHP_VERSION}-ci
     environment:
       - COMPOSERVER=--2
       - DOCUMENT_ROOT=/test/oe_theme
@@ -50,7 +50,7 @@ pipeline:
 
   composer-install:
     group: post-prepare
-    image: registry.fpfis.eu/fpfis/httpd-php:${PHP_VERSION}-ci
+    image: registry.fpfis.eu/digit/devsecops/httpd-php:${PHP_VERSION}-ci
     volumes:
       - /cache:/cache
     commands:
@@ -58,7 +58,7 @@ pipeline:
       - composer require drupal/core:~${CORE_VERSION} drupal/core-composer-scaffold:~${CORE_VERSION} --update-with-all-dependencies --ansi --no-progress --no-interaction
 
   site-install:
-    image: registry.fpfis.eu/fpfis/httpd-php:${PHP_VERSION}-ci
+    image: registry.fpfis.eu/digit/devsecops/httpd-php:${PHP_VERSION}-ci
     commands:
       - while ! mysqladmin ping -h mysql --silent; do sleep 1; done
       - ./vendor/bin/run drupal:site-install
@@ -70,7 +70,7 @@ pipeline:
 
   grumphp:
     group: test
-    image: registry.fpfis.eu/fpfis/httpd-php:${PHP_VERSION}-ci
+    image: registry.fpfis.eu/digit/devsecops/httpd-php:${PHP_VERSION}-ci
     commands:
       - ./vendor/bin/grumphp run
     when:
@@ -79,7 +79,7 @@ pipeline:
 
   phpunit:
     group: test
-    image: registry.fpfis.eu/fpfis/httpd-php:${PHP_VERSION}-ci
+    image: registry.fpfis.eu/digit/devsecops/httpd-php:${PHP_VERSION}-ci
     commands:
       - ./vendor/bin/run drupal:site-setup
       - ./vendor/bin/phpunit --group $BATCH
@@ -91,7 +91,7 @@ pipeline:
 
   behat:
     group: test
-    image: registry.fpfis.eu/fpfis/httpd-php:${PHP_VERSION}-ci
+    image: registry.fpfis.eu/digit/devsecops/httpd-php:${PHP_VERSION}-ci
     commands:
       - ./vendor/bin/behat --strict --tags="~@wip"
     when:
@@ -101,7 +101,7 @@ pipeline:
         TYPE: behat
 
   before-release:
-    image: registry.fpfis.eu/fpfis/httpd-php:${PHP_VERSION}-dev
+    image: registry.fpfis.eu/digit/devsecops/httpd-php:${PHP_VERSION}-dev
     commands:
       - apt-get update
       - apt-get install zip

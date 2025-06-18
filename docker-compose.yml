@@ -1,6 +1,6 @@
 services:
   web:
-    image: fpfis/httpd-php-dev:8.3
+    image: registry.fpfis.eu/digit/devsecops/httpd-php:8.3-dev
     working_dir: /var/www/html
     ports:
       - 8080:8080
