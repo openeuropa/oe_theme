@@ -129,8 +129,8 @@ pipeline:
       event:
         include: tag
       matrix:
-        CORE_VERSION: "10.3.0"
-        PHP_VERSION: "8.1"
+        CORE_VERSION: "10.4.0"
+        PHP_VERSION: "8.3"
 
   github-release:
     image: registry.fpfis.eu/drone-plugins/github-release
@@ -142,25 +142,11 @@ pipeline:
       event:
         include: tag
       matrix:
-        CORE_VERSION: "10.3.0"
-        PHP_VERSION: "8.1"
+        CORE_VERSION: "10.4.0"
+        PHP_VERSION: "8.3"
 
 matrix:
   include:
-    - { PHP_VERSION: 8.1, CORE_VERSION: 10.3.0, TYPE: behat }
-    - { PHP_VERSION: 8.1, CORE_VERSION: 10.3.0, TYPE: phpunit, BATCH: batch1 }
-    - { PHP_VERSION: 8.1, CORE_VERSION: 10.3.0, TYPE: phpunit, BATCH: batch2 }
-    - { PHP_VERSION: 8.1, CORE_VERSION: 10.3.0, TYPE: phpunit, BATCH: batch3 }
-
-    - { PHP_VERSION: 8.3, CORE_VERSION: 10.3.0, TYPE: behat }
-    - { PHP_VERSION: 8.3, CORE_VERSION: 10.3.0, TYPE: phpunit, BATCH: batch1 }
-    - { PHP_VERSION: 8.3, CORE_VERSION: 10.3.0, TYPE: phpunit, BATCH: batch2 }
-    - { PHP_VERSION: 8.3, CORE_VERSION: 10.3.0, TYPE: phpunit, BATCH: batch3 }
-
-    - { PHP_VERSION: 8.1, CORE_VERSION: 10.4.0, TYPE: behat }
-    - { PHP_VERSION: 8.1, CORE_VERSION: 10.4.0, TYPE: phpunit, BATCH: batch1 }
-    - { PHP_VERSION: 8.1, CORE_VERSION: 10.4.0, TYPE: phpunit, BATCH: batch2 }
-    - { PHP_VERSION: 8.1, CORE_VERSION: 10.4.0, TYPE: phpunit, BATCH: batch3 }
 
     - { PHP_VERSION: 8.3, CORE_VERSION: 10.4.0, TYPE: behat }
     - { PHP_VERSION: 8.3, CORE_VERSION: 10.4.0, TYPE: phpunit, BATCH: batch1 }
