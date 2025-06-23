@@ -222,7 +222,7 @@ class PagerTest extends AbstractKernelTestBase {
    *   An array of pager test cases. Each case contains the current page and
    *   the number of total pages, using a 1-based array notation.
    */
-  public function singlePagerDataProvider(): array {
+  public static function singlePagerDataProvider(): array {
     return [
       '1st page out of 15' => [1, 15],
       '2nd page out of 15' => [2, 15],

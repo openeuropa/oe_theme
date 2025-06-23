@@ -41,7 +41,7 @@ class FilterEclTableTest extends UnitTestCase {
    * @return array
    *   The test data.
    */
-  public function processDataProvider(): array {
+  public static function processDataProvider(): array {
     return [
       'Full table with thead and tfoot' => [
         '<p>Some text before table</p><table><caption>Caption</caption><thead><tr><th>Column 1</th><th>Column 2</th></tr></thead><tbody><tr><td colspan="1">1-1</td><td>1-2</td></tr><tr><td rowspan="1">2-1</td><td>2-2</td></tr></tbody><tfoot><tr><td>Footer 1</td><td>Footer 2</td></tr></tfoot></table><p>Some text after table</p>',

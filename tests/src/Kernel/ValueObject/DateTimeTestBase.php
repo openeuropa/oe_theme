@@ -68,7 +68,7 @@ abstract class DateTimeTestBase extends FieldKernelTestBase {
    * @return array
    *   Data provider for factory methods test.
    */
-  public function dataProviderForFactory(): array {
+  public static function dataProviderForFactory(): array {
     return Yaml::parse(file_get_contents(__DIR__ . '/../../Unit/fixtures/value_object/date_value_object.yml'));
   }
 

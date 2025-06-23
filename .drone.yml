@@ -77,6 +77,21 @@ pipeline:
       event:
         exclude: tag
 
+  phpunit9:
+    group: test
+    image: registry.fpfis.eu/fpfis/httpd-php:${PHP_VERSION}-ci
+    commands:
+      - ./vendor/bin/run drupal:site-setup
+      - ./vendor/bin/run setup:phpunit9
+      - ./vendor/bin/phpunit --group $BATCH
+    when:
+      event:
+        exclude: tag
+      matrix:
+        exclude:
+          CORE_VERSION: 11.1.0
+        TYPE: phpunit
+
   phpunit:
     group: test
     image: registry.fpfis.eu/digit/devsecops/httpd-php:${PHP_VERSION}-ci
@@ -87,6 +102,8 @@ pipeline:
       event:
         exclude: tag
       matrix:
+        include:
+          CORE_VERSION: 11.1.0
         TYPE: phpunit
 
   behat:
@@ -112,8 +129,8 @@ pipeline:
       event:
         include: tag
       matrix:
-        CORE_VERSION: "10.3.0"
-        PHP_VERSION: "8.1"
+        CORE_VERSION: "10.4.0"
+        PHP_VERSION: "8.3"
 
   github-release:
     image: registry.fpfis.eu/drone-plugins/github-release
@@ -125,25 +142,11 @@ pipeline:
       event:
         include: tag
       matrix:
-        CORE_VERSION: "10.3.0"
-        PHP_VERSION: "8.1"
+        CORE_VERSION: "10.4.0"
+        PHP_VERSION: "8.3"
 
 matrix:
   include:
-    - { PHP_VERSION: 8.1, CORE_VERSION: 10.3.0, TYPE: behat }
-    - { PHP_VERSION: 8.1, CORE_VERSION: 10.3.0, TYPE: phpunit, BATCH: batch1 }
-    - { PHP_VERSION: 8.1, CORE_VERSION: 10.3.0, TYPE: phpunit, BATCH: batch2 }
-    - { PHP_VERSION: 8.1, CORE_VERSION: 10.3.0, TYPE: phpunit, BATCH: batch3 }
-
-    - { PHP_VERSION: 8.3, CORE_VERSION: 10.3.0, TYPE: behat }
-    - { PHP_VERSION: 8.3, CORE_VERSION: 10.3.0, TYPE: phpunit, BATCH: batch1 }
-    - { PHP_VERSION: 8.3, CORE_VERSION: 10.3.0, TYPE: phpunit, BATCH: batch2 }
-    - { PHP_VERSION: 8.3, CORE_VERSION: 10.3.0, TYPE: phpunit, BATCH: batch3 }
-
-    - { PHP_VERSION: 8.1, CORE_VERSION: 10.4.0, TYPE: behat }
-    - { PHP_VERSION: 8.1, CORE_VERSION: 10.4.0, TYPE: phpunit, BATCH: batch1 }
-    - { PHP_VERSION: 8.1, CORE_VERSION: 10.4.0, TYPE: phpunit, BATCH: batch2 }
-    - { PHP_VERSION: 8.1, CORE_VERSION: 10.4.0, TYPE: phpunit, BATCH: batch3 }
 
     - { PHP_VERSION: 8.3, CORE_VERSION: 10.4.0, TYPE: behat }
     - { PHP_VERSION: 8.3, CORE_VERSION: 10.4.0, TYPE: phpunit, BATCH: batch1 }

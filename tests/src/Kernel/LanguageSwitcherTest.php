@@ -205,7 +205,7 @@ class LanguageSwitcherTest extends MultilingualAbstractKernelTestBase {
    * @return array
    *   An array of language codes and native language names.
    */
-  public function renderingDataProvider(): array {
+  public static function renderingDataProvider(): array {
     return [
       ['bg', 'български'],
       ['cs', 'čeština'],

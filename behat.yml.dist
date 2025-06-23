@@ -62,7 +62,7 @@ default:
           browserName: chrome
           version: '*'
           extra_capabilities:
-            chromeOptions:
+            goog:chromeOptions:
               w3c: false
               args:
                 - '--no-sandbox'

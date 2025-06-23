@@ -1,58 +1,58 @@
-- array:
+- structure:
     '#plain_text': 'Dummy placeholder for form rendering test.'
-  assert:
+  assertions:
     count:
       'form.ecl-form': 1
-- array:
+- structure:
     '#type': button
     '#value': Preview
-  assert:
+  assertions:
     contains:
       - 'Preview'
     count:
       'button.ecl-button.ecl-button': 1
-- array:
+- structure:
     '#type': textfield
     '#value': Textfield
-  assert:
+  assertions:
     contains:
       - 'Textfield'
     count:
       'input.form-text.ecl-text-input.ecl-u-mt-none': 1
-- array:
+- structure:
     '#type': password
     '#value': Password
-  assert:
+  assertions:
     contains:
       - 'password'
     count:
       'input.form-text.ecl-text-input': 1
-- array:
+- structure:
     '#type': email
     '#value': Email
-  assert:
+  assertions:
     contains:
       - 'Email'
     count:
       'input.form-email.ecl-text-input': 1
-- array:
+- structure:
     '#type': textarea
     '#title': Textarea
     '#value': Text
-  assert:
+  assertions:
     contains:
       - 'Textarea'
       - 'Text'
     count:
       'textarea.form-textarea.ecl-text-area': 1
-- array:
+- structure:
     '#type': select
     '#title': Select element
     '#options':
       1: One
       2: Two
       3: Three
-  assert:
+  assertions:
     count:
       'div.ecl-form-group div.ecl-select__container.ecl-select__container--m': 1
       'select.ecl-select': 1
@@ -64,7 +64,7 @@
       'div.ecl-form-group div.ecl-select__container.ecl-select__container--m select.ecl-select option[value="1"]': 'One'
       'div.ecl-form-group div.ecl-select__container.ecl-select__container--m select.ecl-select option[value="2"]': 'Two'
       'div.ecl-form-group div.ecl-select__container.ecl-select__container--m select.ecl-select option[value="3"]': 'Three'
-- array:
+- structure:
     '#type': select
     '#title': Select element
     '#multiple': true
@@ -72,7 +72,7 @@
       1: One
       2: Two
       3: Three
-  assert:
+  assertions:
     count:
       'div.ecl-form-group div.ecl-select__container.ecl-select__container--m': 1
       'select.ecl-select': 1
@@ -84,7 +84,7 @@
       'div.ecl-form-group div.ecl-select__container.ecl-select__container--m select.ecl-select option[value="1"]': 'One'
       'div.ecl-form-group div.ecl-select__container.ecl-select__container--m select.ecl-select option[value="2"]': 'Two'
       'div.ecl-form-group div.ecl-select__container.ecl-select__container--m select.ecl-select option[value="3"]': 'Three'
-- array:
+- structure:
     '#type': select
     '#title': Select element
     '#options':
@@ -93,7 +93,7 @@
         '2.1': 'Two point one'
         '2.2': 'Two point two'
       3: Three
-  assert:
+  assertions:
     count:
       'div.ecl-form-group div.ecl-select__container.ecl-select__container--m': 1
       'select.ecl-select': 1
@@ -106,7 +106,7 @@
       'div.ecl-form-group div.ecl-select__container.ecl-select__container--m select.ecl-select optgroup[label="Two"] option[value="2.1"]': 'Two point one'
       'div.ecl-form-group div.ecl-select__container.ecl-select__container--m select.ecl-select optgroup[label="Two"] option[value="2.2"]': 'Two point two'
       'div.ecl-form-group div.ecl-select__container.ecl-select__container--m select.ecl-select option[value="3"]': 'Three'
-- array:
+- structure:
     '#type': select
     '#title': Select element
     '#multiple': true
@@ -116,7 +116,7 @@
         '2.1': 'Two point one'
         '2.2': 'Two point two'
       3: Three
-  assert:
+  assertions:
     count:
       'div.ecl-form-group div.ecl-select__container.ecl-select__container--m': 1
       'select.ecl-select': 1
@@ -129,7 +129,7 @@
       'div.ecl-form-group div.ecl-select__container.ecl-select__container--m select.ecl-select optgroup[label="Two"] option[value="2.1"]': 'Two point one'
       'div.ecl-form-group div.ecl-select__container.ecl-select__container--m select.ecl-select optgroup[label="Two"] option[value="2.2"]': 'Two point two'
       'div.ecl-form-group div.ecl-select__container.ecl-select__container--m select.ecl-select option[value="3"]': 'Three'
-- array:
+- structure:
     '#type': radios
     '#title': Radios
     '#title_display': above
@@ -138,12 +138,12 @@
     '#options':
       0: Closed
       1: Active
-  assert:
+  assertions:
     contains:
       - 'Radios'
     count:
       'div#test-radios': 1
-- array:
+- structure:
     '#type': radios
     '#title': Radios
     '#set_validation_error': true
@@ -157,12 +157,12 @@
       - 'Radio'
     count:
       'div.ecl-radio__group--invalid': 1
-- array:
+- structure:
     '#type': checkbox
     '#title': Checkbox
     '#attributes':
       'foo': bar
-  assert:
+  assertions:
     contains:
       - 'Checkbox'
       - 'foo="bar"'
@@ -170,47 +170,47 @@
       'label.ecl-checkbox__label': 1
       'input.ecl-checkbox__input': 1
       'span.ecl-checkbox__box': 1
-- array:
+- structure:
     '#type': checkbox
     '#title': Checkbox
     '#disabled': true
-  assert:
+  assertions:
     contains:
       - 'Checkbox'
     count:
       'div.ecl-checkbox.ecl-checkbox--disabled': 1
-- array:
+- structure:
     '#type': checkbox
     '#title': Checkbox
     '#set_validation_error': true
-  assert:
+  assertions:
     contains:
       - 'Checkbox'
     count:
       'div.ecl-checkbox.ecl-checkbox--invalid': 1
-- array:
+- structure:
     '#type': radio
     '#title': Radio
     '#attributes':
       'foo': bar
-  assert:
+  assertions:
     contains:
       - 'Radio'
       - 'foo="bar"'
     count:
       'div.ecl-radio label.ecl-radio__label': 1
       'div.ecl-radio span.ecl-radio__box': 1
-- array:
+- structure:
     '#type': radio
     '#title': Radio
     '#disabled': true
-  assert:
+  assertions:
     contains:
       - 'Radio'
     count:
       'div.ecl-radio--disabled label.ecl-radio__label': 1
       'div.ecl-radio--disabled input[disabled]': 1
-- array:
+- structure:
     '#type': pattern
     '#id': banner
     '#fields':
@@ -238,7 +238,7 @@
       'div.ecl-container div.ecl-banner__container div.ecl-banner__content p.ecl-banner__description span.ecl-banner__description-text': Banner description
       'a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-banner__link-cta[href="http://example.com"] span.ecl-link__label': Subscribe
       'footer.ecl-banner__credit div.ecl-container': © Copyright or credit
-- array:
+- structure:
     '#type': pattern
     '#id': banner
     '#fields':
@@ -270,7 +270,7 @@
     equals:
       'div.ecl-container div.ecl-banner__container div.ecl-banner__content div.ecl-banner__title span.ecl-banner__title-text a[href="http://example.com"] span.ecl-link__label': Banner title
       'div.ecl-container div.ecl-banner__container div.ecl-banner__content p.ecl-banner__description span.ecl-banner__description-text': Banner description
-- array:
+- structure:
     '#type': pattern
     '#id': banner
     '#fields':
@@ -299,7 +299,7 @@
       'footer.ecl-banner__credit div.ecl-container': 0
     equals:
       'div.ecl-container div.ecl-banner__container div.ecl-banner__content p.ecl-banner__description span.ecl-banner__description-text a[href="http://example.com"] span.ecl-link__label': Banner description
-- array:
+- structure:
     '#type': pattern
     '#id': banner
     '#fields':
@@ -329,7 +329,7 @@
       'div.ecl-container div.ecl-banner__container div.ecl-banner__content div.ecl-banner__title span.ecl-banner__title-text': Banner title
       'div.ecl-container div.ecl-banner__container div.ecl-banner__content p.ecl-banner__description span.ecl-banner__description-text': Banner description
       'a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-banner__link-cta[href="http://example.com"] span.ecl-link__label': Example
-- array:
+- structure:
     '#type': pattern
     '#id': banner
     '#fields':
@@ -379,7 +379,7 @@
       'div.ecl-container div.ecl-banner__container div.ecl-banner__content p.ecl-banner__description span.ecl-banner__description-text': Banner description
       'a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-banner__link-cta[href="http://example.com"] span.ecl-link__label': Example
       'footer.ecl-banner__credit div.ecl-container': © Copyright or credit
-- array:
+- structure:
     '#type': pattern
     '#id': banner
     '#fields':
@@ -404,7 +404,7 @@
       'div.ecl-container div.ecl-banner__container div.ecl-banner__content div.ecl-banner__title span.ecl-banner__title-text': Banner title
       'div.ecl-container div.ecl-banner__container div.ecl-banner__content p.ecl-banner__description span.ecl-banner__description-text': Banner description
       'a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-banner__link-cta[href="http://example.com"] span.ecl-link__label': Example
-- array:
+- structure:
     '#type': pattern
     '#id': banner
     '#fields':
@@ -437,7 +437,7 @@
       'div.ecl-container div.ecl-banner__container div.ecl-banner__content div.ecl-banner__title span.ecl-banner__title-text': Banner title
       'div.ecl-container div.ecl-banner__container div.ecl-banner__content p.ecl-banner__description span.ecl-banner__description-text': Banner description
       'a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-banner__link-cta[href="http://example.com"] span.ecl-link__label': Subscribe
-- array:
+- structure:
     '#type': pattern
     '#id': banner
     '#fields':
@@ -472,7 +472,7 @@
       'div.ecl-container div.ecl-banner__container div.ecl-banner__content div.ecl-banner__title span.ecl-banner__title-text': Banner title
       'div.ecl-container div.ecl-banner__container div.ecl-banner__content p.ecl-banner__description span.ecl-banner__description-text': Banner description
       'a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-banner__link-cta[href="http://example.com"] span.ecl-link__label': Subscribe
-- array:
+- structure:
     '#type': pattern
     '#id': banner
     '#fields':
@@ -507,7 +507,7 @@
       'div.ecl-container div.ecl-banner__container div.ecl-banner__content div.ecl-banner__title span.ecl-banner__title-text': Banner title
       'div.ecl-container div.ecl-banner__container div.ecl-banner__content p.ecl-banner__description span.ecl-banner__description-text': Banner description
       'a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-banner__link-cta[href="http://example.com"] span.ecl-link__label': Subscribe
-- array:
+- structure:
     '#type': pattern
     '#id': banner
     '#fields':
@@ -563,7 +563,7 @@
       'a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-banner__link-cta[href="http://example.com"] span.ecl-link__label': Subscribe
       'button.ecl-banner__pause span span.ecl-button__label': Pause video
       'button.ecl-banner__play span span.ecl-button__label': Play video
-- array:
+- structure:
     '#type': pattern
     '#id': banner
     '#fields':
@@ -619,7 +619,7 @@
       'a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-banner__link-cta[href="http://example.com"] span.ecl-link__label': Subscribe
       'button.ecl-banner__pause span span.ecl-button__label': Pause video
       'button.ecl-banner__play span span.ecl-button__label': Play video
-- array:
+- structure:
     '#type': pattern
     '#id': banner
     '#fields':
@@ -671,7 +671,7 @@
       'a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-banner__link-cta[href="http://example.com"] span.ecl-link__label': Subscribe
       'button.ecl-banner__pause span span.ecl-button__label': Pause
       'button.ecl-banner__play span span.ecl-button__label': Play
-- array:
+- structure:
     '#type': pattern
     '#id': banner
     '#fields':
@@ -722,7 +722,7 @@
       'a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-banner__link-cta[href="http://example.com"] span.ecl-link__label': Subscribe
       'button.ecl-banner__pause span span.ecl-button__label': Pause video
       'button.ecl-banner__play span span.ecl-button__label': Play video
-- array:
+- structure:
     '#type': pattern
     '#id': banner
     '#fields':
@@ -787,7 +787,7 @@
       'a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-banner__link-cta[href="http://example.com"] span.ecl-link__label': Subscribe
       'button.ecl-banner__pause span span.ecl-button__label': Pause video
       'button.ecl-banner__play span span.ecl-button__label': Play video
-- array:
+- structure:
     '#type': pattern
     '#id': banner_video
     '#fields':
@@ -807,7 +807,7 @@
     equals:
       'figcaption.ecl-media-container__caption': 'Video caption'
       'p.ecl-u-type-paragraph': "Banner description"
-- array:
+- structure:
     '#type': pattern
     '#id': file
     '#fields':
@@ -828,7 +828,7 @@
       'div.ecl-file__language': "English"
       'div.ecl-file__meta': "(9.77 KB - PDF)"
       'a.ecl-file__download .ecl-link__label': "Download"
-- array:
+- structure:
     '#type': pattern
     '#id': file_translation
     '#fields':
@@ -898,7 +898,7 @@
       '.ecl-file__translation-item:nth-child(4) div.ecl-file__translation-title[lang="pt"]': "português"
       '.ecl-file__translation-item:nth-child(4) div.ecl-file__translation-meta': "(175.78 KB - DOC)"
       '.ecl-file__info ul.ecl-file__detail-meta li.ecl-file__detail-meta-item:nth-child(1)': '31 AUGUST 2020'
-- array:
+- structure:
     '#type': pattern
     '#id': file_translation
     '#fields':
@@ -934,7 +934,7 @@
       'button.ecl-file__translation-toggle .ecl-button__label': "Other languages (1)"
       '.ecl-file__translation-item:nth-child(1) div.ecl-file__translation-title[lang="fr"]': "français"
       '.ecl-file__translation-item:nth-child(1) div.ecl-file__translation-meta': "(146.48 KB - XLS)"
-- array:
+- structure:
     '#type': pattern
     '#id': file_teaser
     '#fields':
@@ -1044,7 +1044,7 @@
       '.ecl-file__translation-item:nth-child(4) div.ecl-file__translation-meta': "(175.78 KB - DOC)"
       '.ecl-file__translation-item:nth-child(4) .ecl-link__label': "Download"
       'div.ecl-file__label span.ecl-label.ecl-label--highlight': "Highlighted"
-- array:
+- structure:
     '#type': pattern
     '#id': file_teaser
     '#fields':
@@ -1135,7 +1135,7 @@
       'dd.ecl-description-list__definition--taxonomy:nth-of-type(3) li.ecl-description-list__definition-item:nth-of-type(1) a[href="https://example.com/1"]': 'First external link'
       'dd.ecl-description-list__definition--taxonomy:nth-of-type(3) li.ecl-description-list__definition-item:nth-of-type(2) a[href="https://example.com/2"] .ecl-link__label': 'Second external link'
       'dd.ecl-description-list__definition--taxonomy:nth-of-type(3) li.ecl-description-list__definition-item:nth-of-type(3) a[href="https://example.com/3"] .ecl-link__label': 'https://example.com/3'
-- array:
+- structure:
     '#type': pattern
     '#id': file_image
     '#fields':
@@ -1149,7 +1149,7 @@
       'img.ecl-media-container__media[src="https://placehold.it/450x250"]': 1
     equals:
       'figcaption.ecl-media-container__caption': "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit."
-- array:
+- structure:
     '#type': pattern
     '#id': file_video
     '#fields':
@@ -1173,7 +1173,7 @@
       'video.ecl-media-container__media track[srclang="en"]': 1
     equals:
       'figcaption.ecl-media-container__caption': "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit."
-- array:
+- structure:
     '#type': pattern
     '#id': gallery
     '#variant': default
@@ -1221,7 +1221,7 @@
       '.ecl-gallery .ecl-gallery__list .ecl-gallery__item .ecl-gallery__meta': 'Copyright © 2021, Author and Licence'
     contains:
       - 'A picture of a cat'
-- array:
+- structure:
     '#type': pattern
     '#id': gallery
     '#variant': default
@@ -1293,7 +1293,7 @@
       - 'A picture of a cat'
       - 'Energy, let&#039;s save it!'
       - 'Meanwhile in Lisbon, the capital of Portugal'
-- array:
+- structure:
     '#type': pattern
     '#id': gallery
     '#variant': default
@@ -1403,7 +1403,7 @@
       - 'A picture of a cat'
       - 'Energy, let&#039;s save it!'
       - 'Meanwhile in Lisbon, the capital of Portugal'
-- array:
+- structure:
     '#type': pattern
     '#id': gallery
     '#variant': default
@@ -1516,7 +1516,7 @@
       - 'A picture of a cat'
       - 'Energy, let&#039;s save it!'
       - 'Meanwhile in Lisbon, the capital of Portugal'
-- array:
+- structure:
     '#type': pattern
     '#id': gallery
     '#variant': default
@@ -1613,7 +1613,7 @@
       - 'A picture of a cat'
       - 'Energy, let&#039;s save it!'
       - 'Meanwhile in Lisbon, the capital of Portugal'
-- array:
+- structure:
     '#type': pattern
     '#id': gallery
     '#variant': default
@@ -1676,7 +1676,7 @@
       - 'A picture of a cat'
       - 'Energy, let&#039;s save it!'
       - 'Meanwhile in Lisbon, the capital of Portugal'
-- array:
+- structure:
     '#type': pattern
     '#id': gallery
     '#variant': default
@@ -1741,7 +1741,7 @@
       - 'A picture of a cat'
       - 'Energy, let&#039;s save it!'
       - 'Meanwhile in Lisbon, the capital of Portugal'
-- array:
+- structure:
     '#type': pattern
     '#id': list_item
     '#fields':
@@ -1775,7 +1775,7 @@
       'article.ecl-content-item ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(2)': "Meta 2"
       'article.ecl-content-item div.ecl-content-item__content-block div.ecl-content-block__title .ecl-link': "Item title"
       'article.ecl-content-item div.ecl-content-block__description': "Item text"
-- array:
+- structure:
     '#type': pattern
     '#id': list_item
     '#fields':
@@ -1800,7 +1800,7 @@
       'article.ecl-content-item ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item': "Meta 1"
       'article.ecl-content-item div.ecl-content-item__content-block div.ecl-content-block__title .ecl-link': "Item title"
       'article.ecl-content-item div.ecl-content-block__description': "Item..."
-- array:
+- structure:
     '#type': pattern
     '#id': list_item
     '#fields':
@@ -1828,7 +1828,7 @@
       'div.ecl-content-block__list-container dl.ecl-description-list.ecl-description-list--horizontal.ecl-content-block__list .ecl-description-list__definition:nth-child(2)': "Thursday 15 November, 08:00 AM to Friday 16 November"
       'div.ecl-content-block__list-container dl.ecl-description-list.ecl-description-list--horizontal.ecl-content-block__list .ecl-description-list__term:nth-child(3)': "Where"
       'div.ecl-content-block__list-container dl.ecl-description-list.ecl-description-list--horizontal.ecl-content-block__list .ecl-description-list__definition:nth-child(4)': "The EGG, Rue Barra 175, 1070 Brussels, Belgium"
-- array:
+- structure:
     '#type': pattern
     '#id': list_item
     '#fields':
@@ -1851,7 +1851,7 @@
       'article.ecl-content-item ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(1)': "Meta 1"
       'article.ecl-content-item ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(2)': "Meta 2"
       'article.ecl-content-item div.ecl-content-block__description': "<div>This is the detail. It...</div>"
-- array:
+- structure:
     '#type': pattern
     '#id': list_item
     '#fields':
@@ -1876,7 +1876,7 @@
       'article.ecl-content-item ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(2)': "Meta 2"
       'article.ecl-content-item div.ecl-content-item__content-block div.ecl-content-block__title .ecl-link span.ecl-link__label': "Item title"
       'article.ecl-content-item div.ecl-content-block__description': '<div>This <a href="https://example.com">is the detail</a> with a link...</div>'
-- array:
+- structure:
     '#type': pattern
     '#id': list_item
     '#fields':
@@ -1899,7 +1899,7 @@
       'article.ecl-content-item ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(2)': "Meta 2"
       'article.ecl-content-item div.ecl-content-item__content-block div.ecl-content-block__title .ecl-link': "Item title"
       'article.ecl-content-item div.ecl-content-block__description': '&lt;div&gt;This is the detail...'
-- array:
+- structure:
     '#type': pattern
     '#id': list_item
     '#fields':
@@ -1924,7 +1924,7 @@
       'article.ecl-content-item ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(2)': "Meta 2"
       'article.ecl-content-item div.ecl-content-item__content-block div.ecl-content-block__title .ecl-link': "Item title"
       'article.ecl-content-item div.ecl-content-block__description': '<p>&lt;div&gt;This is the detail...</p>'
-- array:
+- structure:
     '#type': pattern
     '#id': list_item
     '#fields':
@@ -1950,7 +1950,7 @@
       'article.ecl-content-item ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(2)': "Meta 2"
       'article.ecl-content-item div.ecl-content-item__content-block div.ecl-content-block__title .ecl-link': "Item title"
       'article.ecl-content-item div.ecl-content-block__description': '<p>&lt;div&gt;This is the detail...</p>'
-- array:
+- structure:
     '#type': pattern
     '#id': list_item
     '#fields':
@@ -1959,7 +1959,7 @@
   assertions:
     equals:
       'article.ecl-content-item div.ecl-content-block__description': "This is a very long description..."
-- array:
+- structure:
     '#type': pattern
     '#id': list_item
     '#variant': "thumbnail_primary"
@@ -1969,7 +1969,7 @@
   assertions:
     equals:
       'article.ecl-content-item div.ecl-content-block__description': "This is a very long description..."
-- array:
+- structure:
     '#type': pattern
     '#id': list_item
     '#variant': "thumbnail_secondary"
@@ -1979,7 +1979,7 @@
   assertions:
     equals:
       'article.ecl-content-item div.ecl-content-block__description': "This is a very long description..."
-- array:
+- structure:
     '#type': pattern
     '#id': list_item
     '#variant': "navigation"
@@ -1989,7 +1989,7 @@
   assertions:
     equals:
       'article.ecl-content-item div.ecl-content-block__description': "This is a very long description..."
-- array:
+- structure:
     '#type': pattern
     '#id': list_item
     '#variant': "thumbnail_primary"
@@ -2020,7 +2020,7 @@
       'article.ecl-content-item ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(2)': "Meta 2"
       'article.ecl-content-item div.ecl-content-item__content-block div.ecl-content-block__title .ecl-link': "Item title"
       'article.ecl-content-item div.ecl-content-block__description': "Item text"
-- array:
+- structure:
     '#type': pattern
     '#id': list_item
     '#variant': "thumbnail_primary"
@@ -2052,7 +2052,7 @@
       'article.ecl-content-item ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(2)': "Meta 2"
       'article.ecl-content-item div.ecl-content-item__content-block div.ecl-content-block__title .ecl-link': "Item title"
       'article.ecl-content-item div.ecl-content-block__description': "Item text"
-- array:
+- structure:
     '#type': pattern
     '#id': list_item
     '#variant': "thumbnail_secondary"
@@ -2083,7 +2083,7 @@
       'article.ecl-content-item ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(2)': "Meta 2"
       'article.ecl-content-item div.ecl-content-item__content-block div.ecl-content-block__title .ecl-link': "Item title"
       'article.ecl-content-item div.ecl-content-block__description': "Item text"
-- array:
+- structure:
     '#type': pattern
     '#id': list_item
     '#variant': "thumbnail_secondary"
@@ -2115,7 +2115,7 @@
       'article.ecl-content-item ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(2)': "Meta 2"
       'article.ecl-content-item div.ecl-content-item__content-block div.ecl-content-block__title .ecl-link': "Item title"
       'article.ecl-content-item div.ecl-content-block__description': "Item text"
-- array:
+- structure:
     '#type': pattern
     '#id': list_item
     '#variant': "thumbnail_secondary"
@@ -2147,7 +2147,7 @@
       'article.ecl-content-item ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(2)': "Meta 2"
       'article.ecl-content-item div.ecl-content-item__content-block div.ecl-content-block__title .ecl-link': "Item title"
       'article.ecl-content-item div.ecl-content-block__description': "Item text"
-- array:
+- structure:
     '#type': pattern
     '#id': list_item
     '#variant': "highlight"
@@ -2193,7 +2193,7 @@
       ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(1): "Meta 1"
       ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(2): "Meta 2"
       ul.ecl-content-block__secondary-meta-container li.ecl-content-block__secondary-meta-item .ecl-content-block__secondary-meta-label: "Brussels"
-- array:
+- structure:
     '#type': pattern
     '#id': list_item
     '#variant': "highlight"
@@ -2225,7 +2225,7 @@
     equals:
       article.ecl-card div.ecl-card__body div.ecl-content-block__title .ecl-link: "Item title"
       article.ecl-card div.ecl-card__body div.ecl-content-block__description: "This is a very long description..."
-- array:
+- structure:
     '#type': pattern
     '#id': list_item
     '#variant': "block"
@@ -2253,7 +2253,7 @@
       'article.ecl-card div.ecl-card__body div.ecl-content-block__description': "Item test"
       'ul.ecl-content-block__label-container li.ecl-content-block__label-item:nth-child(1) span.ecl-label.ecl-label--highlight': "Highlighted"
       'ul.ecl-content-block__label-container li.ecl-content-block__label-item:nth-child(2) span.ecl-label.ecl-label--high': "Status: Open"
-- array:
+- structure:
     '#type': pattern
     '#id': list_item
     '#variant': "date"
@@ -2293,7 +2293,7 @@
       'article.ecl-content-item time.ecl-date-block.ecl-content-item__date span.ecl-date-block__day': '14'
       'article.ecl-content-item time.ecl-date-block.ecl-content-item__date abbr.ecl-date-block__month': 'Jul'
       'article.ecl-content-item time.ecl-date-block.ecl-content-item__date span.ecl-date-block__year': '2021'
-- array:
+- structure:
     '#type': pattern
     '#id': list_item
     '#variant': "date"
@@ -2338,7 +2338,7 @@
       'div.ecl-content-block__list-container dl.ecl-description-list.ecl-description-list--horizontal.ecl-content-block__list .ecl-description-list__definition:nth-child(2)': "Thursday 15 November, 08:00 AM to Friday 16 November"
       'div.ecl-content-block__list-container dl.ecl-description-list.ecl-description-list--horizontal.ecl-content-block__list .ecl-description-list__term:nth-child(3)': "Where"
       'div.ecl-content-block__list-container dl.ecl-description-list.ecl-description-list--horizontal.ecl-content-block__list .ecl-description-list__definition:nth-child(4)': "The EGG, Rue Barra 175, 1070 Brussels, Belgium"
-- array:
+- structure:
     '#type': pattern
     '#id': list_item
     '#variant': "date_cancelled"
@@ -2352,7 +2352,7 @@
   assertions:
     count:
       'time.ecl-date-block.ecl-date-block--past.ecl-content-item__date': 1
-- array:
+- structure:
     '#type': pattern
     '#id': list_item
     '#variant': "date_ongoing"
@@ -2366,7 +2366,7 @@
   assertions:
     count:
       'time.ecl-date-block.ecl-date-block--ongoing.ecl-content-item__date': 1
-- array:
+- structure:
     '#type': pattern
     '#id': list_item
     '#variant': "date_past"
@@ -2380,7 +2380,7 @@
   assertions:
     count:
       'time.ecl-date-block.ecl-date-block--past.ecl-content-item__date': 1
-- array:
+- structure:
     '#type': pattern
     '#id': list_item
     '#variant': "navigation"
@@ -2397,7 +2397,7 @@
     equals:
       'article.ecl-content-item div.ecl-content-item__content-block div.ecl-content-block__title .ecl-link': "Item title"
       'article.ecl-content-item div.ecl-content-item__content-block div.ecl-content-block__description': "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
-- array:
+- structure:
     '#type': pattern
     '#id': list_item_block_one_column
     '#fields':
@@ -2433,7 +2433,7 @@
       'div.ecl-content-item-block__item:nth-child(1) article.ecl-content-item div.ecl-content-item__content-block div.ecl-content-block__title': "Business, Economy, Euro"
       'div.ecl-content-item-block__item:nth-child(1) article.ecl-content-item div.ecl-content-block__description': "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
       'div.ecl-content-item-block__button .ecl-u-clearfix': "Button nolink"
-- array:
+- structure:
     '#type': pattern
     '#id': list_item_block_one_column
     '#fields':
@@ -2470,7 +2470,7 @@
       'div.ecl-content-item-block__item:nth-child(1) article.ecl-content-item div.ecl-content-item__content-block div.ecl-content-block__title': "Business, Economy, Euro"
       'div.ecl-content-item-block__item:nth-child(1) article.ecl-content-item div.ecl-content-block__description': "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
       'a.ecl-link span.ecl-link__label': "View all"
-- array:
+- structure:
     '#type': pattern
     '#id': list_item_block_one_column
     '#fields':
@@ -2505,7 +2505,7 @@
       'div.ecl-content-item-block__item:nth-child(1) article.ecl-content-item div.ecl-content-item__content-block div.ecl-content-block__title': "Business, Economy, Euro"
       'div.ecl-content-item-block__item:nth-child(1) article.ecl-content-item div.ecl-content-block__description': "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
       'a.ecl-link span.ecl-link__label': "View all"
-- array:
+- structure:
     '#type': pattern
     '#id': list_item_block_one_column
     '#fields':
@@ -2534,7 +2534,7 @@
     equals:
       'div.ecl-content-item-block__item:nth-child(1) article.ecl-content-item div.ecl-content-item__content-block div.ecl-content-block__title': "Business, Economy, Euro"
       'div.ecl-content-item-block__item:nth-child(1) article.ecl-content-item div.ecl-content-block__description': "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
-- array:
+- structure:
     '#type': pattern
     '#id': list_item_block_one_column
     '#fields':
@@ -2568,7 +2568,7 @@
       'div.ecl-content-item-block__item:nth-child(1) article.ecl-content-item div.ecl-content-item__content-block div.ecl-content-block__title': "Business, Economy, Euro"
       'div.ecl-content-item-block__item:nth-child(1) article.ecl-content-item div.ecl-content-block__description': "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
       'a.ecl-link span.ecl-link__label': 'View all'
-- array:
+- structure:
     '#type': pattern
     '#id': list_item_block_one_column
     '#fields':
@@ -2603,7 +2603,7 @@
       'div.ecl-content-item-block__item:nth-child(1) article.ecl-content-item div.ecl-content-item__content-block div.ecl-content-block__title': "Business, Economy, Euro"
       'div.ecl-content-item-block__item:nth-child(1) article.ecl-content-item div.ecl-content-block__description': "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
       'a.ecl-link span.ecl-link__label': 'View all'
-- array:
+- structure:
     '#type': pattern
     '#id': list_item_block_two_columns
     '#fields':
@@ -2637,7 +2637,7 @@
       'div.ecl-content-item-block__item:nth-child(1) article.ecl-content-item div.ecl-content-block__description': "Description for list item 1."
       'div.ecl-content-item-block__item:nth-child(2) article.ecl-content-item div.ecl-content-item__content-block div.ecl-content-block__title': "List item 2"
       'div.ecl-content-item-block__item:nth-child(2) article.ecl-content-item div.ecl-content-block__description': "Description for list item 2."
-- array:
+- structure:
     '#type': pattern
     '#id': list_item_block_two_columns
     '#fields':
@@ -2679,7 +2679,7 @@
       'div.ecl-content-item-block__item:nth-child(2) article.ecl-content-item div.ecl-content-item__content-block div.ecl-content-block__title': "List item 2"
       'div.ecl-content-item-block__item:nth-child(2) article.ecl-content-item div.ecl-content-block__description': "Description for list item 2."
       'a.ecl-link span.ecl-link__label': 'View all'
-- array:
+- structure:
     '#type': pattern
     '#id': list_item_block_three_columns
     '#fields':
@@ -2736,7 +2736,7 @@
       'div.ecl-content-item-block__item.ecl-col-12.ecl-col-l-4:nth-child(2) div.ecl-content-item-block__item.ecl-u-mb-l:nth-child(2) article div.ecl-content-block__description': "Description for list item 4."
       'div.ecl-content-item-block__item.ecl-col-12.ecl-col-l-4:nth-child(3) div.ecl-content-item-block__item.ecl-u-mb-l:nth-child(1) article div.ecl-content-block__title': "List item 5"
       'div.ecl-content-item-block__item.ecl-col-12.ecl-col-l-4:nth-child(3) div.ecl-content-item-block__item.ecl-u-mb-l:nth-child(1) article div.ecl-content-block__description': "Description for list item 5."
-- array:
+- structure:
     '#type': pattern
     '#id': list_item_block_three_columns
     '#fields':
@@ -2799,7 +2799,7 @@
       'div.ecl-content-item-block__item:nth-child(5) article.ecl-content-item div.ecl-content-item__content-block div.ecl-content-block__title': "List item 5"
       'div.ecl-content-item-block__item:nth-child(5) article.ecl-content-item div.ecl-content-block__description': "Description for list item 5."
       'a.ecl-link span.ecl-link__label': 'View all'
-- array:
+- structure:
     '#type': pattern
     '#id': list_item_block_four_columns
     '#fields':
@@ -2826,7 +2826,7 @@
       'div.ecl-content-item-block__item.ecl-col-l-3:nth-child(3) a.ecl-link': 'A simple link 3'
       'div.ecl-content-item-block__item.ecl-col-l-3:nth-child(4) a.ecl-link': 'A simple link 4'
       'a.ecl-link--icon span.ecl-link__label': 'View all'
-- array:
+- structure:
     '#type': pattern
     '#id': list_item_block_six_columns
     '#fields':
@@ -2857,7 +2857,7 @@
       'div.ecl-content-item-block__item.ecl-col-l-2:nth-child(5) a.ecl-link': 'A simple link 5'
       'div.ecl-content-item-block__item.ecl-col-l-2:nth-child(6) a.ecl-link': 'A simple link 6'
       'a.ecl-link--icon span.ecl-link__label': 'View all'
-- array:
+- structure:
     '#type': pattern
     '#id': navigation_list
     '#fields':
@@ -2915,7 +2915,7 @@
       '.ecl-content-block__link-list:nth-child(1) li.ecl-content-block__link-item:nth-child(1) a.ecl-link[extra-attr1="extra value1"]': 1
       '.ecl-content-block__link-list:nth-child(2) li.ecl-content-block__link-item:nth-child(1) a.ecl-link[extra-attr2="extra value2"]': 1
       'div.ecl-content-block__title a.ecl-link[extra-attr="extra value"]': 1
-- array:
+- structure:
     '#type': pattern
     '#id': navigation_list
     '#fields':
@@ -2932,7 +2932,7 @@
       ul.ecl-content-block__link-list: 0
       li.ecl-content-block__link-item: 0
       div.ecl-navigation-list__image: 0
-- array:
+- structure:
     '#type': pattern
     '#id': navigation_list
     '#fields':
@@ -2956,7 +2956,7 @@
       li.ecl-content-block__link-item: 3
       div.ecl-content-block__description: 0
       div.ecl-navigation-list__image: 0
-- array:
+- structure:
     '#type': pattern
     '#id': navigation_list
     '#fields':
@@ -2978,7 +2978,7 @@
     equals:
       'div.ecl-content-block__title a.ecl-link--standalone.ecl-link[href="http://example.com"]': 'Navigation list title'
       'div.ecl-content-block__description': 'Navigation list description'
-- array:
+- structure:
     '#type': pattern
     '#id': navigation_list
     '#fields':
@@ -3000,7 +3000,7 @@
     equals:
       'div.ecl-content-block__title a.ecl-link--standalone.ecl-link[href="http://example.com"]': 'Navigation list title'
       'div.ecl-content-block__description': 'Navigation list description'
-- array:
+- structure:
     '#type': pattern
     '#id': accordion
     '#fields':
@@ -3022,7 +3022,7 @@
       '.ecl-accordion__content#id-0-content': "Body 1"
       '.ecl-accordion__title button.ecl-accordion__toggle[aria-controls="id-1-content"] .ecl-accordion__toggle-title': "Title 2"
       '.ecl-accordion__content#id-1-content': "Body 2"
-- array:
+- structure:
     '#type': pattern
     '#id': accordion
     '#fields':
@@ -3046,7 +3046,7 @@
       '.ecl-accordion__content#id-0-content': "Body 1"
       '.ecl-accordion__title button.ecl-accordion__toggle[aria-controls="id-1-content"] .ecl-accordion__toggle-title': "Title 2"
       '.ecl-accordion__content#id-1-content': "Body 2"
-- array:
+- structure:
     '#type': pattern
     '#id': dropdown
     '#fields':
@@ -3068,7 +3068,7 @@
       '.ecl-expandable__content .ecl-unordered-list .ecl-unordered-list__item:nth-child(1) a': "Link 1"
       '.ecl-expandable__content .ecl-unordered-list .ecl-unordered-list__item:nth-child(2) a': "Link 2"
       '.ecl-expandable__content .ecl-unordered-list .ecl-unordered-list__item:nth-child(3) a': "Link 3"
-- array:
+- structure:
     '#type': pattern
     '#id': field
     '#variant': default
@@ -3083,7 +3083,7 @@
     equals:
       '.ecl-description-list__term': "Field text"
       '.ecl-description-list__definition': "Field body"
-- array:
+- structure:
     '#type': pattern
     '#id': field
     '#variant': horizontal
@@ -3098,7 +3098,7 @@
     equals:
       '.ecl-description-list__term': "Field label"
       '.ecl-description-list__definition': "Field body"
-- array:
+- structure:
     '#type': pattern
     '#id': field_list
     '#variant': horizontal
@@ -3122,7 +3122,7 @@
       '.ecl-description-list .ecl-description-list__definition:nth-child(4)': "The EGG, Rue Barra 175, 1070 Brussels, Belgium"
       '.ecl-description-list .ecl-description-list__term:nth-child(5)': "Live streaming"
       '.ecl-description-list .ecl-description-list__definition:nth-child(6)': "08:00 CET | 00d:23h:35m"
-- array:
+- structure:
     '#type': pattern
     '#variant': default
     '#id': field_list
@@ -3146,7 +3146,7 @@
       '.ecl-description-list .ecl-description-list__definition:nth-child(4)': "The EGG, Rue Barra 175, 1070 Brussels, Belgium"
       '.ecl-description-list .ecl-description-list__term:nth-child(5)': "Live streaming"
       '.ecl-description-list .ecl-description-list__definition:nth-child(6)': "08:00 CET | 00d:23h:35m"
-- array:
+- structure:
     '#type': pattern
     '#id': link_block
     '#fields':
@@ -3175,7 +3175,7 @@
       '.ecl-link-block__list .ecl-link-block__item:nth-child(1) .ecl-link .ecl-link__label': "Link 1"
       '.ecl-link-block__list .ecl-link-block__item:nth-child(2) .ecl-link .ecl-link__label': "Link 2"
       '.ecl-link-block__list .ecl-link-block__item:nth-child(3) .ecl-link': "Link 3"
-- array:
+- structure:
     '#type': pattern
     '#id': link_block
     '#fields':
@@ -3197,7 +3197,7 @@
       '.ecl-link-block__list .ecl-link-block__item:nth-child(1) .ecl-link': "Link 1"
       '.ecl-link-block__list .ecl-link-block__item:nth-child(2) .ecl-link': "Link 2"
       '.ecl-link-block__list .ecl-link-block__item:nth-child(3) .ecl-link': "Link 3"
-- array:
+- structure:
     '#type': pattern
     '#id': blockquote
     '#fields':
@@ -3212,7 +3212,7 @@
     equals:
       '.ecl-blockquote__author': "Quote author"
       '.ecl-blockquote__citation[lang="bg"]': "Quote text"
-- array:
+- structure:
     '#type': pattern
     '#id': blockquote
     '#fields':
@@ -3230,7 +3230,7 @@
     equals:
       '.ecl-blockquote__author': "Quote author"
       '.ecl-blockquote__citation[lang="en"]': "Quote text"
-- array:
+- structure:
     '#type': pattern
     '#id': context_nav
     '#fields':
@@ -3267,7 +3267,7 @@
       'li.ecl-contextual-navigation__item.ecl-u-mt-2xs a.ecl-contextual-navigation__link[href="http://link-5.com"] span.ecl-link__label': "Item five"
       'div#nav-label.ecl-contextual-navigation__label': "Navigation title"
       'button.ecl-contextual-navigation__more .ecl-button__label': "More label"
-- array:
+- structure:
     '#type': pattern
     '#id': button
     '#variant': default
@@ -3282,7 +3282,7 @@
       'a.ecl-link--standalone.ecl-link--icon span.ecl-icon.ecl-icon--s.ecl-link__icon.wt-icon--caret-right': 1
     equals:
       'a.ecl-link--standalone[href="http://example.com"] .ecl-link__label': "Button label"
-- array:
+- structure:
     '#type': pattern
     '#id': button
     '#variant': default
@@ -3298,7 +3298,7 @@
       'a.ecl-link--standalone.ecl-link--icon span.ecl-icon.ecl-icon--2xs.ecl-link__icon.wt-icon--external': 1
     equals:
       'a.ecl-link--standalone[href="http://example.com"] .ecl-link__label': "Button label"
-- array:
+- structure:
     '#type': pattern
     '#id': button
     '#variant': default
@@ -3313,7 +3313,7 @@
       'span.ecl-icon.ecl-icon--2xs.ecl-link__icon.wt-icon--external': 1
     equals:
       'a.ecl-link--standalone[href="http://example.com"] .ecl-link__label': "Button label"
-- array:
+- structure:
     '#type': pattern
     '#id': button
     '#fields':
@@ -3325,7 +3325,7 @@
       'button.ecl-button[type="submit"]': 1
     equals:
       'button.ecl-button--primary': "Button label"
-- array:
+- structure:
     '#type': pattern
     '#id': button
     '#variant': secondary
@@ -3338,7 +3338,7 @@
       'button.ecl-button[type="submit"]': 1
     equals:
       'button.ecl-button--secondary': "Button label"
-- array:
+- structure:
     '#type': pattern
     '#id': button
     '#variant': primary
@@ -3348,7 +3348,7 @@
   assertions:
     count:
       'button.ecl-button[type="reset"]': 1
-- array:
+- structure:
     '#type': pattern
     '#id': button
     '#variant': primary
@@ -3359,7 +3359,7 @@
   assertions:
     count:
       'button.ecl-button[type="button"]': 1
-- array:
+- structure:
     '#type': pattern
     '#id': button
     '#variant': secondary
@@ -3368,7 +3368,7 @@
   assertions:
     equals:
       'button.ecl-button--secondary': "Button label"
-- array:
+- structure:
     '#type': pattern
     '#id': button
     '#variant': ghost
@@ -3377,7 +3377,7 @@
   assertions:
     equals:
       'button.ecl-button--ghost': "Button label"
-- array:
+- structure:
     '#type': pattern
     '#id': button
     '#variant': search
@@ -3386,7 +3386,7 @@
   assertions:
     equals:
       'button.ecl-button--search': "Button label"
-- array:
+- structure:
     '#type': pattern
     '#id': button
     '#variant': call
@@ -3395,7 +3395,7 @@
   assertions:
     equals:
       'button.ecl-button--call': "Button label"
-- array:
+- structure:
     '#type': pattern
     '#id': social_icon
     '#fields':
@@ -3408,7 +3408,7 @@
       'span.ecl-icon--xs.ecl-link__icon.ecl-social-media-follow__icon': 1
     equals:
       'a.ecl-link.ecl-link--standalone.ecl-link--icon span.ecl-link__label': "Facebook"
-- array:
+- structure:
     '#type': pattern
     '#id': social_icon
     '#fields':
@@ -3422,7 +3422,7 @@
       'span.ecl-icon--l.ecl-link__icon.ecl-social-media-follow__icon': 1
     equals:
       'a.ecl-link.ecl-link--standalone.ecl-link--icon span.ecl-link__label': "Facebook"
-- array:
+- structure:
     '#type': pattern
     '#id': featured_item
     '#variant': "default"
@@ -3441,7 +3441,7 @@
       'div.ecl-content-block__list-container': 0
     equals:
       'div.ecl-content-block__title': "Example title"
-- array:
+- structure:
     '#type': pattern
     '#id': featured_item
     '#variant': "extended"
@@ -3459,7 +3459,7 @@
       'div.ecl-content-block__list-container': 0
     equals:
       'div.ecl-content-block__title': "Example title"
-- array:
+- structure:
     '#type': pattern
     '#id': featured_item
     '#variant': "default"
@@ -3526,7 +3526,7 @@
       'div.ecl-content-block__list-container dd.ecl-description-list__definition.ecl-description-list__definition--taxonomy li.ecl-description-list__definition-item:nth-child(1)': "Taxonomy item 1"
       'div.ecl-content-block__list-container dd.ecl-description-list__definition.ecl-description-list__definition--taxonomy li.ecl-description-list__definition-item:nth-child(2)': "Taxonomy item 2"
       'div.ecl-content-block__list-container dd.ecl-description-list__definition.ecl-description-list__definition--taxonomy li.ecl-description-list__definition-item:nth-child(3)': "Taxonomy item 3"
-- array:
+- structure:
     '#type': pattern
     '#id': featured_item
     '#variant': "default"
@@ -3559,7 +3559,7 @@
       'ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(2)': "Brussels"
       'div.ecl-content-block__title a': "Example title"
       'div.ecl-content-block__description': "Example..."
-- array:
+- structure:
     '#type': pattern
     '#id': featured_item
     '#variant': "default"
@@ -3592,7 +3592,7 @@
       'ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(2)': "Brussels"
       'div.ecl-content-block__title a': "Example title"
       'div.ecl-content-block__description': "Example..."
-- array:
+- structure:
     '#type': pattern
     '#id': featured_item
     '#variant': "default"
@@ -3607,7 +3607,7 @@
   assertions:
     equals:
       'div.ecl-content-block__description': '<figure class="ecl-blockquote"><div class="ecl-blockquote__body"><blockquote class="ecl-blockquote__quote"><p class="ecl-blockquote__citation" lang="en">Lorem ipsum dolor sit...</p></blockquote></div></figure>'
-- array:
+- structure:
     '#type': pattern
     '#id': featured_item
     '#variant': "default"
@@ -3618,7 +3618,7 @@
   assertions:
     equals:
       'div.ecl-content-block__description': '<div>Example...</div>'
-- array:
+- structure:
     '#type': pattern
     '#id': featured_item
     '#variant': "extended"
@@ -3638,7 +3638,7 @@
       'div.ecl-content-block__title a': "Example title"
       'div.ecl-content-block__description .ecl-paragraph': "Example description"
       'a.ecl-button .ecl-button__label': "Link title"
-- array:
+- structure:
     '#type': pattern
     '#id': featured_item
     '#variant': "extended"
@@ -3665,7 +3665,7 @@
       'div.ecl-content-block__title a span.ecl-link__label': "Example title"
       'div.ecl-content-block__description .ecl-paragraph': "Example description"
       'a.ecl-button .ecl-button__label': "Link title"
-- array:
+- structure:
     '#type': pattern
     '#id': featured_item
     '#variant': "default"
@@ -3686,7 +3686,7 @@
     equals:
       'li.ecl-content-block__secondary-meta-item:nth-child(1) span.ecl-content-block__secondary-meta-label' : '15-16 November 2019, 08:00 AM'
       'li.ecl-content-block__secondary-meta-item:nth-child(2) span.ecl-content-block__secondary-meta-label' : 'Brussels, Belgium'
-- array:
+- structure:
     '#type': pattern
     '#id': timeline
     '#fields':
@@ -3738,7 +3738,7 @@
       '.ecl-timeline__item:nth-child(4) .ecl-timeline__content': 'Lorem Ipsum 4'
       '.ecl-timeline__item:nth-child(6) .ecl-timeline__content': 'Lorem Ipsum 5'
       '.ecl-timeline__item:nth-child(7) .ecl-timeline__content': 'Lorem Ipsum 6'
-- array:
+- structure:
     '#type': pattern
     '#id': timeline
     '#fields':
@@ -3783,7 +3783,7 @@
       '.ecl-timeline__item:nth-child(4) .ecl-timeline__content': 'Lorem Ipsum 4'
       '.ecl-timeline__item:nth-child(5) .ecl-timeline__content': 'Lorem Ipsum 5'
       '.ecl-timeline__item:nth-child(6) .ecl-timeline__content': 'Lorem Ipsum 6'
-- array:
+- structure:
     '#type': pattern
     '#id': timeline
     '#fields':
@@ -3834,7 +3834,7 @@
       '.ecl-timeline__item:nth-child(4) .ecl-timeline__content': 'Lorem Ipsum 4'
       '.ecl-timeline__item:nth-child(5) .ecl-timeline__content': 'Lorem Ipsum 5'
       '.ecl-timeline__item:nth-child(6) .ecl-timeline__content': 'Lorem Ipsum 6'
-- array:
+- structure:
     '#type': pattern
     '#id': timeline
     '#fields':
@@ -3888,7 +3888,7 @@
       '.ecl-timeline__item:nth-child(4) .ecl-timeline__content': 'Lorem Ipsum 4'
       '.ecl-timeline__item:nth-child(5) .ecl-timeline__content': 'Lorem Ipsum 5'
       '.ecl-timeline__item:nth-child(6) .ecl-timeline__content': 'Lorem Ipsum 6'
-- array:
+- structure:
     '#type': pattern
     '#id': text_featured_media
     '#variant': "left_simple"
@@ -3925,7 +3925,7 @@
       'figcaption.ecl-media-container__caption': "Some caption text for the image"
       'div.ecl-featured-item__item div.ecl-featured-item__description': "Some more text"
       'a.ecl-link span.ecl-link__label': "Call to action"
-- array:
+- structure:
     '#type': pattern
     '#id': text_featured_media
     '#variant': "right_simple"
@@ -3965,7 +3965,7 @@
       'div.ecl-featured-item__item div.ecl-featured-item__description': "Some more text"
       'a.ecl-link span.ecl-link__label': "Call to action"
       'div.ecl-expandable__content': "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Non enim iam stirpis bonum quaeret, sed animalis;<b>A mene tu?</b></p>"
-- array:
+- structure:
     '#type': pattern
     '#id': text_featured_media
     '#variant': "right_simple"
@@ -4016,7 +4016,7 @@
       'div.ecl-featured-item__item div.ecl-featured-item__description': "Some more text"
       'a.ecl-link span.ecl-link__label': "Call to action"
       'div.ecl-expandable__content': "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-- array:
+- structure:
     '#type': pattern
     '#id': text_featured_media
     '#fields':
@@ -4049,7 +4049,7 @@
       'div.ecl-featured-item__title': "Title"
       'div.ecl-featured-item__item div.ecl-featured-item__description': "Some more text"
       'div#text-featured-media-1.text-featured-media-hidden-content': "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-- array:
+- structure:
     '#type': pattern
     '#id': text_featured_media
     '#variant': "right_featured"
@@ -4080,7 +4080,7 @@
       'div.ecl-featured-item__title': "Title"
       'div.ecl-featured-item__item div.ecl-featured-item__description': "Some more text"
       'a.ecl-link span.ecl-link__label': "Call to action"
-- array:
+- structure:
     '#type': pattern
     '#id': text_featured_media
     '#fields':
@@ -4101,7 +4101,7 @@
       'div.ecl-expandable.ecl-media-container__expandable': 0
     equals:
       'h2.ecl-u-type-heading-2': "Heading"
-- array:
+- structure:
     '#type': pattern
     '#id': text_featured_media
     '#variant': "left_featured"
@@ -4131,7 +4131,7 @@
       'h2.ecl-u-type-heading-2': "Heading"
       'div.ecl-featured-item__item div.ecl-featured-item__description': "Some more text"
       'a.ecl-link span.ecl-link__label': "Call to action"
-- array:
+- structure:
     '#type': pattern
     '#id': text_featured_media
     '#fields':
@@ -4146,7 +4146,7 @@
     count:
       'iframe[src="//ec.europa.eu/avservices/play.cfm?ref=I-181645"]': 1
       'div.ecl-expandable.ecl-media-container__expandable': 0
-- array:
+- structure:
     '#type': pattern
     '#id': text_featured_media
     '#fields':
@@ -4165,7 +4165,7 @@
       'div.ecl-media-container__media--ratio-1-1 iframe[src="//ec.europa.eu/avservices/play.cfm?ref=I-181645"]': 1
       'a.ecl-link.ecl-link--standalone[href="http://example.com"]': 1
       'div.ecl-expandable.ecl-media-container__expandable': 0
-- array:
+- structure:
     '#type': pattern
     '#id': text_featured_media
     '#variant': "left_featured"
@@ -4202,7 +4202,7 @@
       'h2.ecl-u-type-heading-2': "Heading"
       'div.ecl-featured-item__item div.ecl-featured-item__description': "Some more text"
       'a.ecl-link span.ecl-link__label': "Call to action"
-- array:
+- structure:
     '#type': pattern
     '#id': icons_with_text
     '#fields':
@@ -4230,13 +4230,13 @@
       'ul li.ecl-unordered-list__item:nth-child(2) span.ecl-icon.ecl-icon--s.ecl-u-mr-s.ecl-u-flex-shrink-0.wt-icon--calendar': 1
       'ul li.ecl-unordered-list__item:nth-child(3) span.ecl-icon.ecl-icon--m.ecl-u-mr-s.ecl-u-flex-shrink-0.wt-icon--location': 1
       'ul li.ecl-unordered-list__item:nth-child(4) span.ecl-icon.ecl-icon--xs.ecl-u-mr-s.ecl-u-flex-shrink-0.wt-icon--livestreaming': 1
-- array:
+- structure:
     '#type': pattern
     '#id': icons_with_text
   assertions:
     count:
       'ul.ecl-unordered-list--no-marker.ecl-u-mh-none.ecl-u-ph-none': 0
-- array:
+- structure:
     '#type': pattern
     '#id': icons_with_text
     '#fields':
@@ -4259,7 +4259,7 @@
       'ul li.ecl-unordered-list__item:nth-child(1) span.ecl-icon.ecl-icon--m.ecl-u-mr-s.ecl-u-flex-shrink-0.wt-icon--file': 1
       'ul li.ecl-unordered-list__item:nth-child(2) span.ecl-icon.ecl-icon--m.ecl-u-mr-s.ecl-u-flex-shrink-0.wt-icon--file': 1
       'ul li.ecl-unordered-list__item:nth-child(3) span.ecl-icon.ecl-icon--m.ecl-u-mr-s.ecl-u-flex-shrink-0.wt-icon--livestreaming': 1
-- array:
+- structure:
     '#type': "pattern"
     '#id': "tag"
     '#variant': "default"
@@ -4272,7 +4272,7 @@
       'a.ecl-tag': "Tag label"
     count:
       'a.ecl-tag[href="http://example.com"]': 1
-- array:
+- structure:
     '#type': "pattern"
     '#id': "tag"
     '#variant': "default"
@@ -4285,7 +4285,7 @@
       '.ecl-tag': "Tag label"
     count:
       '.ecl-tag--removable': 1
-- array:
+- structure:
     '#type': "pattern"
     '#id': "navigation_menu"
     '#variant': "default"
@@ -4351,7 +4351,7 @@
       'li.ecl-menu__item:nth-child(3) a.ecl-menu__link': "Link"
       'li.ecl-menu__item:nth-child(1) a.ecl-menu__link[data-name1="data value1"]': "Parent 1"
       'li.ecl-menu__item:nth-child(1) ul.ecl-menu__sublist li.ecl-menu__subitem--current a.ecl-menu__sublink.ecl-link--icon[data-name2="data value2"] .ecl-link__label': 'Child 1.1'
-- array:
+- structure:
     '#type': "pattern"
     '#id': "navigation_menu"
     '#fields':
@@ -4394,7 +4394,7 @@
       'li.ecl-menu__item:nth-child(1) ul.ecl-menu__sublist li.ecl-menu__subitem:nth-child(6) a.ecl-menu__sublink': 'Child 1.6'
       'li.ecl-menu__item:nth-child(1) ul.ecl-menu__sublist li.ecl-menu__subitem:nth-child(7) a.ecl-menu__sublink': 'Child 1.7'
       'li.ecl-menu__item:nth-child(1) ul.ecl-menu__sublist li.ecl-menu__subitem:nth-child(8) a.ecl-menu__sublink': 'Child 1.8'
-- array:
+- structure:
     '#type': "pattern"
     '#id': "navigation_menu"
     '#variant': "mega_menu"
@@ -4570,7 +4570,7 @@
       'li.ecl-mega-menu__item.ecl-mega-menu__item--has-container button.ecl-button--primary.ecl-mega-menu__link .ecl-button__label': "Parent 3 with container"
       'li.ecl-mega-menu__item.ecl-mega-menu__item--has-container div.ecl-mega-menu__mega-container-scrollable': '<article class="ecl-navigation-list__item"><img class="ecl-navigation-list__image" src="https://inno-ecl.s3.amazonaws.com/media/examples/example-image.jpg" alt="Alt text for the image"><div class="ecl-content-block ecl-navigation-list__content-block" data-ecl-auto-init="ContentBlock" data-ecl-content-block><div class="ecl-content-block__title" data-ecl-title-link><a href="/example#qspea" class="ecl-link ecl-link--standalone">Title 3</a></div><div class="ecl-content-block__description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus gravida ipsum ut lorem cursus</div></div></article>'
       'li.ecl-mega-menu__item.ecl-mega-menu__item--promotional a.ecl-link--standalone.ecl-mega-menu__link': 'Promotional Parent 4 with no dropdown'
-- array:
+- structure:
     '#type': 'pattern'
     '#id': 'link'
     '#fields':
@@ -4581,7 +4581,7 @@
       'a.ecl-link.ecl-link--standalone': 'Link text'
     count:
       'a.ecl-link[href="/"]': 1
-- array:
+- structure:
     '#type': 'pattern'
     '#id': 'link'
     '#fields':
@@ -4591,7 +4591,7 @@
   assertions:
     equals:
       'a.ecl-link.ecl-link--standalone': 'Link text'
-- array:
+- structure:
     '#type': 'pattern'
     '#id': 'link'
     '#fields':
@@ -4601,7 +4601,7 @@
   assertions:
     equals:
       'a.ecl-link.ecl-link--cta': 'Link text'
-- array:
+- structure:
     '#type': 'pattern'
     '#id': 'facts_figures'
     '#fields':
@@ -4636,7 +4636,7 @@
       'div.ecl-fact-figures__item:nth-child(2) div.ecl-fact-figures__title': 'Nam lacinia nisl eget diam mattis'
       'div.ecl-fact-figures__item:nth-child(2) div.ecl-fact-figures__description': 'Sed efficitur bibendum rutrum. Nunc feugiat congue augue ac consectetur.'
       'div.ecl-fact-figures__view-all a.ecl-link.ecl-link--standalone.ecl-link--icon.ecl-fact-figures__view-all-link[href="https://example.com"] span.ecl-link__label': 'View all metrics'
-- array:
+- structure:
     '#type': 'pattern'
     '#id': 'facts_figures'
     '#fields':
@@ -4661,7 +4661,7 @@
       'div.ecl-fact-figures__view-all': 0
       '.ecl-fact-figures--font-m': 0
       '.ecl-fact-figures--font-l': 0
-- array:
+- structure:
     '#type': 'pattern'
     '#id': 'active_search_filters'
     '#fields':
@@ -4686,7 +4686,7 @@
       'div.ecl-u-mr-xs.ecl-u-mt-s.ecl-tag.ecl-tag--removable': 'No link'
     equals:
       'div.active-search-filters__name span': 'Source'
-- array:
+- structure:
     '#type': 'pattern'
     '#id': 'list_with_illustration'
     '#fields':
@@ -4724,7 +4724,7 @@
       'li.ecl-list-illustration__item:nth-child(1) div.ecl-list-illustration__description': 'EU economy, the euro, and practical information for EU businesses and entrepreneurs.'
       'li.ecl-list-illustration__item:nth-child(2) div.ecl-list-illustration__title': 'About the European Union'
       'li.ecl-list-illustration__item:nth-child(2) div.ecl-list-illustration__description': 'The EU and its institutions, how to visit and work at the EU.'
-- array:
+- structure:
     '#type': 'pattern'
     '#id': 'list_with_illustration'
     '#fields':
@@ -4766,7 +4766,7 @@
       'li.ecl-list-illustration__item:nth-child(2) div.ecl-list-illustration__value': 'Highlighted image'
       'li.ecl-list-illustration__item:nth-child(2) div.ecl-list-illustration__title': 'About the European Union'
       'li.ecl-list-illustration__item:nth-child(2) div.ecl-list-illustration__description': 'The EU and its institutions, how to visit and work at the EU.'
-- array:
+- structure:
     '#type': 'pattern'
     '#id': 'list_with_illustration'
     '#fields':
@@ -4795,7 +4795,7 @@
       'li.ecl-list-illustration__item:nth-child(1) div.ecl-list-illustration__description': 'EU economy, the euro, and practical information for EU businesses and entrepreneurs.'
       'li.ecl-list-illustration__item:nth-child(2) div.ecl-list-illustration__title': 'About the European Union'
       'li.ecl-list-illustration__item:nth-child(2) div.ecl-list-illustration__description': 'The EU and its institutions, how to visit and work at the EU.'
-- array:
+- structure:
     '#type': 'pattern'
     '#id': 'list_with_illustration'
     '#fields':
@@ -4831,7 +4831,7 @@
       'li.ecl-list-illustration__item:nth-child(1) div.ecl-list-illustration__description': 'EU economy, the euro, and practical information for EU businesses and entrepreneurs.'
       'li.ecl-list-illustration__item:nth-child(2) div.ecl-list-illustration__title': 'About the European Union'
       'li.ecl-list-illustration__item:nth-child(2) div.ecl-list-illustration__description': 'The EU and its institutions, how to visit and work at the EU.'
-- array:
+- structure:
     '#type': 'pattern'
     '#id': 'list_with_illustration'
     '#fields':
@@ -4869,7 +4869,7 @@
       'li.ecl-list-illustration__item:nth-child(1) div.ecl-list-illustration__description': 'EU economy, the euro, and practical information for EU businesses and entrepreneurs.'
       'li.ecl-list-illustration__item:nth-child(2) div.ecl-list-illustration__title': 'About the European Union'
       'li.ecl-list-illustration__item:nth-child(2) div.ecl-list-illustration__description': 'The EU and its institutions, how to visit and work at the EU.'
-- array:
+- structure:
     '#type': 'pattern'
     '#id': 'list_with_illustration'
     '#fields':
@@ -4895,7 +4895,7 @@
       'li.ecl-list-illustration__item:nth-child(1) div.ecl-list-illustration__description': 'EU economy, the euro, and practical information for EU businesses and entrepreneurs.'
       'li.ecl-list-illustration__item:nth-child(2) div.ecl-list-illustration__title': 'About the European Union'
       'li.ecl-list-illustration__item:nth-child(2) div.ecl-list-illustration__description': 'The EU and its institutions, how to visit and work at the EU.'
-- array:
+- structure:
     '#type': 'pattern'
     '#id': 'news_ticker'
     '#fields':
@@ -4959,7 +4959,7 @@
       button.ecl-news-ticker__next span.ecl-button__label: 'Next news item'
       button.ecl-news-ticker__pause span.ecl-button__label: 'Pause news ticker'
       button.ecl-news-ticker__play span.ecl-button__label: 'Play news ticker'
-- array:
+- structure:
     '#type': 'pattern'
     '#id': 'news_ticker'
     '#fields':
@@ -4988,7 +4988,7 @@
       div.ecl-news-ticker__counter: '<span class="ecl-news-ticker__counter--current">1</span> in'
     equals:
       div.ecl-news-ticker__counter span.ecl-news-ticker__counter--max: '3'
-- array:
+- structure:
     '#type': 'pattern'
     '#id': 'carousel'
     '#fields':
@@ -5103,7 +5103,7 @@
       button.ecl-carousel__navigation-item:nth-child(4): '4'
       button.ecl-carousel__navigation-item:nth-child(5): '5'
       button.ecl-carousel__navigation-item:nth-child(6): '6'
-- array:
+- structure:
     '#type': 'pattern'
     '#id': 'carousel'
     '#fields':
@@ -5148,7 +5148,7 @@
       div.ecl-carousel__slide section.ecl-banner--no-media:nth-child(2).ecl-banner--l div.ecl-banner__content p.ecl-banner__description: 'Integer quis lorem tellus. Nullam sollicitudin suscipit diam, ac blandit ipsum tempor consectetur'
       div.ecl-carousel__slide section.ecl-banner--no-media:nth-child(2).ecl-banner--l div.ecl-banner__content div.ecl-banner__cta a span.ecl-link__label: 'CTA 3'
       div.ecl-carousel__pagination: 'in 3'
-- array:
+- structure:
     '#type': pattern
     '#id': highlighted_list
     '#variant': default
@@ -5287,7 +5287,7 @@
       'div.ecl-col-l-4 article:nth-child(3) li.ecl-content-block__secondary-meta-item:nth-child(2) span.ecl-content-block__secondary-meta-label': 'Brussels'
       'div#highlighted-news-block > div.ecl-u-mt-m a.ecl-link.ecl-link--standalone.ecl-link--icon[href="https://example.com"] .ecl-link__label': 'Read more news'
       'div#highlighted-news-block div.ecl.ecl-u-mt-s': '<div>This <a href="https://example.com">is the detail</a> rich text field which contains a link.</div>'
-- array:
+- structure:
     '#type': pattern
     '#id': highlighted_list
     '#variant': default
@@ -5375,7 +5375,7 @@
       'div.ecl-col-l-4 article.ecl-u-mb-m:nth-child(1) li.ecl-content-block__secondary-meta-item span.ecl-content-block__secondary-meta-label': '5 minutes read'
       'div.ecl-col-l-4 article:nth-child(2) .ecl-content-block__title a.ecl-link.ecl-link--standalone[href="https://external.com"]': 'Item 3'
       'div#highlighted-news-block > div.ecl-u-mt-m a.ecl-link.ecl-link--standalone.ecl-link--icon[href="#"] .ecl-link__label': '#'
-- array:
+- structure:
     '#type': pattern
     '#id': highlighted_list
     '#variant': four_columns
@@ -5534,7 +5534,7 @@
       'div.ecl-col-l-3:nth-child(4) article:nth-child(2) .ecl-content-block__title': 'Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero'
       'div#highlighted-news-block > div.ecl-u-mt-m a.ecl-link.ecl-link--standalone.ecl-link--icon[href="https://example.com"] .ecl-link__label': 'Read more news'
       'div#highlighted-news-block div.ecl.ecl-u-mt-s': '<div>This <a href="https://example.com">is the detail</a> rich text field which contains a link.</div>'
-- array:
+- structure:
     '#type': pattern
     '#id': highlighted_list
     '#variant': four_columns
@@ -5629,7 +5629,7 @@
       'div.ecl-col-l-3:nth-child(2) article:nth-child(2) li.ecl-content-block__secondary-meta-item:nth-child(2) span.ecl-content-block__secondary-meta-label': 'Brussels'
       'div.ecl-col-l-3:nth-child(2) article:nth-child(2) ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(1)': 'Item 4 primary meta'
       'div.ecl-col-l-3:nth-child(2) article:nth-child(2) ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(2)': 'DD Month Year'
-- array:
+- structure:
     '#type': 'pattern'
     '#id': 'tabs'
     '#fields':
@@ -5652,7 +5652,7 @@
       div.ecl-tabs div.ecl-tabs__container button.ecl-button span.ecl-button__label: 'More (%d)'
       div.ecl-tabs div.ecl-tabs__controls button.ecl-tabs__prev: 'Previous'
       div.ecl-tabs div.ecl-tabs__controls button.ecl-tabs__Next: 'Next'
-- array:
+- structure:
     '#type': 'pattern'
     '#id': 'tabs'
     '#fields':
