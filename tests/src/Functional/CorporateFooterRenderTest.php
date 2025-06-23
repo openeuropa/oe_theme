@@ -523,7 +523,6 @@ class CorporateFooterRenderTest extends BrowserTestBase {
       'label' => 'Social 1',
       'href' => 'http://example.com/social-1',
       'icon_name' => 'facebook',
-      'icon_only' => TRUE,
     ];
     $this->assertSocialLink($social_label, $social_link, $expected);
 
@@ -533,7 +532,6 @@ class CorporateFooterRenderTest extends BrowserTestBase {
       'label' => 'Social 2',
       'href' => 'http://example.com/social-2',
       'icon_name' => 'instagram',
-      'icon_only' => TRUE,
     ];
     $this->assertSocialLink($social_label, $social_link, $expected);
 
@@ -618,7 +616,6 @@ class CorporateFooterRenderTest extends BrowserTestBase {
       'label' => 'Social 1',
       'href' => 'http://example.com/social-1',
       'icon_name' => 'facebook',
-      'icon_only' => TRUE,
     ];
     $this->assertSocialLink($social_label, $social_link, $expected);
 
@@ -628,7 +625,6 @@ class CorporateFooterRenderTest extends BrowserTestBase {
       'label' => 'Social 2',
       'href' => 'http://example.com/social-2',
       'icon_name' => 'instagram',
-      'icon_only' => TRUE,
     ];
     $this->assertSocialLink($social_label, $social_link, $expected);
 
