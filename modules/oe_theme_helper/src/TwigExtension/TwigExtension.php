@@ -524,7 +524,7 @@ class TwigExtension extends AbstractExtension {
             'family' => 'networks',
             'name' => $link['social_network'],
             'size' => $context['ecl_component_library'] == 'eu' ? 'xs' : '',
-            'style' => $context['ecl_component_library'] == 'eu' ? '' : 'inverted',
+            'style' => $context['ecl_component_library'] == 'eu' ? 'primary' : 'inverted',
           ],
         ];
       }

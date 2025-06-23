@@ -984,7 +984,8 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     $this->assertEquals($expected['label'], $label->getText());
     $this->assertEquals($expected['href'], $link->getAttribute('href'));
     $size = $this->library == 'ec' ? 'm' : 'xs';
-    $this->assertSession()->elementExists('css', 'span.ecl-icon.ecl-icon--' . $size . '.ecl-link__icon.wt-icon-networks--' . $expected['icon_name'], $link);
+    $icon_class = $this->library == 'ec' ? 'wt-icon--inverted' : 'wt-icon--primary';
+    $this->assertSession()->elementExists('css', 'span.ecl-icon.ecl-icon--' . $size . '.ecl-link__icon.wt-icon-networks--' . $expected['icon_name'] . '.' . $icon_class, $link);
     $inverted_class = $this->library == 'ec' ? 'ecl-link--inverted ' : '';
     $icon_only = $this->library == 'ec' && $this->branding == 'core' ? ' ecl-link--icon-only' : '';
     if (isset($expected['icon_only']) && $expected['icon_only'] && empty($icon_only)) {
