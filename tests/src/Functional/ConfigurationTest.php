@@ -64,6 +64,7 @@ class ConfigurationTest extends BrowserTestBase {
       $this->assertLinkContainsHref('/oe_theme/dist/ec/styles/ecl-ec-print.css');
       $this->assertLinkContainsHref('/oe_theme/dist/ec/styles/ecl-ec-color-modes.css');
       $this->assertLinkContainsHref('/oe_theme/dist/ec/styles/optional/ecl-ec-default.css');
+      $this->assertLinkContainsHref('/oe_theme/dist/ec/styles/optional/ecl-ec-default-print.css');
       $this->assertLinkContainsHref('/oe_theme/css/style-ec.css');
 
       $this->assertScriptContainsSrc('/oe_theme/dist/js/moment.min.js');
@@ -77,6 +78,7 @@ class ConfigurationTest extends BrowserTestBase {
       $this->assertLinkNotContainsHref('/oe_theme/dist/eu/styles/ecl-eu.css');
       $this->assertLinkNotContainsHref('/oe_theme/dist/eu/styles/ecl-eu-print.css');
       $this->assertLinkNotContainsHref('/oe_theme/dist/eu/styles/optional/ecl-eu-default.css');
+      $this->assertLinkNotContainsHref('/oe_theme/dist/eu/styles/optional/ecl-eu-default-print.css');
       $this->assertLinkNotContainsHref('/oe_theme/css/style-eu.css');
 
       $this->assertScriptNotContainsSrc('/oe_theme/dist/eu/scripts/ecl-eu.js');
@@ -118,6 +120,7 @@ class ConfigurationTest extends BrowserTestBase {
       $this->assertLinkContainsHref('/oe_theme/dist/eu/styles/ecl-eu.css');
       $this->assertLinkContainsHref('/oe_theme/dist/eu/styles/ecl-eu-print.css');
       $this->assertLinkContainsHref('/oe_theme/dist/eu/styles/optional/ecl-eu-default.css');
+      $this->assertLinkContainsHref('/oe_theme/dist/eu/styles/optional/ecl-eu-default-print.css');
       $this->assertLinkContainsHref('/oe_theme/css/style-eu.css');
 
       $this->assertScriptContainsSrc('/oe_theme/dist/js/moment.min.js');
@@ -138,6 +141,7 @@ class ConfigurationTest extends BrowserTestBase {
       $this->assertLinkNotContainsHref('/oe_theme/dist/ec/styles/ecl-ec.css');
       $this->assertLinkNotContainsHref('/oe_theme/dist/ec/styles/ecl-ec-print.css');
       $this->assertLinkNotContainsHref('/oe_theme/dist/ec/styles/optional/ecl-ec-default.css');
+      $this->assertLinkNotContainsHref('/oe_theme/dist/ec/styles/optional/ecl-ec-default-print.css');
       $this->assertLinkNotContainsHref('/oe_theme/css/style-ec.css');
 
       $this->assertScriptNotContainsSrc('/oe_theme/dist/ec/scripts/ecl-ec.js');
@@ -162,6 +166,7 @@ class ConfigurationTest extends BrowserTestBase {
       $this->assertLinkContainsHref('/oe_theme/dist/ec/styles/ecl-ec.css');
       $this->assertLinkContainsHref('/oe_theme/dist/ec/styles/ecl-ec-print.css');
       $this->assertLinkContainsHref('/oe_theme/dist/ec/styles/optional/ecl-ec-default.css');
+      $this->assertLinkContainsHref('/oe_theme/dist/ec/styles/optional/ecl-ec-default-print.css');
       $this->assertLinkContainsHref('/oe_theme/css/style-ec.css');
 
       $this->assertScriptContainsSrc('/oe_theme/dist/ec/scripts/ecl-ec.js');
@@ -182,6 +187,7 @@ class ConfigurationTest extends BrowserTestBase {
       $this->assertLinkNotContainsHref('/oe_theme/dist/eu/styles/ecl-eu.css');
       $this->assertLinkNotContainsHref('/oe_theme/dist/eu/styles/ecl-eu-print.css');
       $this->assertLinkNotContainsHref('/oe_theme/dist/eu/styles/optional/ecl-eu-default.css');
+      $this->assertLinkNotContainsHref('/oe_theme/dist/eu/styles/optional/ecl-eu-default-print.css');
       $this->assertLinkNotContainsHref('/oe_theme/css/style-eu.css');
 
       $this->assertScriptNotContainsSrc('/oe_theme/dist/eu/scripts/ecl-eu.js');
