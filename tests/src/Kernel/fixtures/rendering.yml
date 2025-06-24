@@ -1806,6 +1806,31 @@
     '#fields':
       url: "http://example.com"
       title: "Item title"
+      detail: " "
+      length: 6
+      meta:
+        - "Meta 1"
+      extra_attributes:
+        - name: "extra-attr"
+          value: "extra value"
+      picture_zoom: true
+  assertions:
+    count:
+      'article.ecl-content-item[extra-attr="extra value"] div.ecl-content-item__content-block div.ecl-content-block__title a.ecl-link[href="http://example.com"]': 1
+      'article.ecl-content-item picture.ecl-content-item__picture--large': 0
+      'article.ecl-content-item picture.ecl-content-item__picture--left': 0
+      'article.ecl-content-item picture.ecl-content-item__picture--right': 0
+      'article.ecl-content-item picture.ecl-picture--zoom': 0
+      'article.ecl-content-item div.ecl-content-block__description': 0
+    equals:
+      'article.ecl-content-item ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item': "Meta 1"
+      'article.ecl-content-item div.ecl-content-item__content-block div.ecl-content-block__title .ecl-link': "Item title"
+- structure:
+    '#type': pattern
+    '#id': list_item
+    '#fields':
+      url: "http://example.com"
+      title: "Item title"
       lists:
         -
           - term: "When"

@@ -94,7 +94,7 @@
 {% else %}
   {% set _title = title %}
 {%- endif -%}
-{% if detail is not empty %}
+{% if detail|render|spaceless is not empty %}
   {% set description = detail|smart_trim(_length) %}
 {% endif %}
 
