@@ -1926,7 +1926,7 @@ function _oe_theme_preprocess_site_specific_footer_links(array &$variables): voi
       ->addCacheableDependency($social_media_footer_links_config)
       ->applyTo($variables);
     $alignment = $social_media_footer_links_config->get('alignment');
-    $display_labels = (bool) $social_media_footer_links_config->get('display_labels');
+    $display_labels = $variables['ecl_component_library'] === 'eu' || (bool) $social_media_footer_links_config->get('display_labels');
     foreach ($variables['site_specific_footer']['social_links'] as $index => $link) {
       $variables['site_specific_footer']['social_links'][$index]['hide_label'] = !$display_labels;
     }
