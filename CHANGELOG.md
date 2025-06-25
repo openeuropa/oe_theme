@@ -1,5 +1,16 @@
 # Changelog
 
+## [5.0.0-beta10](https://github.com/openeuropa/oe_theme/tree/5.0.0-beta10) (2025-06-25)
+
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/5.0.0-beta9...5.0.0-beta10)
+
+**Merged pull requests:**
+
+- EWPP-5747: Update to ECL 5.0.0-alpha.14. [\#1610](https://github.com/openeuropa/oe_theme/pull/1610) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-5749: Do not send the monochrome style for social network icons anymore. [\#1612](https://github.com/openeuropa/oe_theme/pull/1612) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-5742: Use primary style for EU footer social media icons. [\#1609](https://github.com/openeuropa/oe_theme/pull/1609) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-5656: Fix tests after D11 update. [\#1602](https://github.com/openeuropa/oe_theme/pull/1602) ([nagyad](https://github.com/nagyad))
+
 ## [5.0.0-beta9](https://github.com/openeuropa/oe_theme/tree/5.0.0-beta9) (2025-06-18)
 
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/5.0.0-beta8...5.0.0-beta9)
