@@ -1822,6 +1822,7 @@
       'article.ecl-content-item picture.ecl-content-item__picture--right': 0
       'article.ecl-content-item picture.ecl-picture--zoom': 0
       'article.ecl-content-item div.ecl-content-block__description': 0
+      'article.ecl-content-item div.ecl-content-item__content-block ecl-content-block__list-container': 0
     equals:
       'article.ecl-content-item ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item': "Meta 1"
       'article.ecl-content-item div.ecl-content-item__content-block div.ecl-content-block__title .ecl-link': "Item title"
