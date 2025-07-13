@@ -1153,8 +1153,8 @@ class MediaParagraphsTest extends ParagraphsTestBase {
           'image' => $this->container->get('file_url_generator')->transformRelative($en_file_1_url),
           'image_alt' => 'First image alt en',
           'sources' => [
-            'small' => 'oe_theme_small_3_1_banner/public/example_1_en.jpeg',
-            'medium' => 'oe_theme_medium_3_1_banner/public/example_1_en.jpeg',
+            'small' => 'oe_theme_small_3_2_banner/public/example_1_en.jpeg',
+            'medium' => 'oe_theme_medium_3_2_banner/public/example_1_en.jpeg',
             'large' => 'oe_theme_large_3_1_banner/public/example_1_en.jpeg',
             'extra_large' => 'oe_theme_extra_large_3_1_banner/public/example_1_en.jpeg',
             'extra_extra_large' => 'oe_theme_extra_extra_large_3_1_banner/public/example_1_en.jpeg',
@@ -1169,8 +1169,8 @@ class MediaParagraphsTest extends ParagraphsTestBase {
           'url_text' => 'CTA 2',
           'image' => $this->container->get('file_url_generator')->transformRelative($en_file_2_url),
           'sources' => [
-            'small' => 'oe_theme_small_3_1_banner/public/example_2_en.jpeg',
-            'medium' => 'oe_theme_medium_3_1_banner/public/example_2_en.jpeg',
+            'small' => 'oe_theme_small_3_2_banner/public/example_2_en.jpeg',
+            'medium' => 'oe_theme_medium_3_2_banner/public/example_2_en.jpeg',
             'large' => 'oe_theme_large_3_1_banner/public/example_2_en.jpeg',
             'extra_large' => 'oe_theme_extra_large_3_1_banner/public/example_2_en.jpeg',
             'extra_extra_large' => 'oe_theme_extra_extra_large_3_1_banner/public/example_2_en.jpeg',
@@ -1183,8 +1183,8 @@ class MediaParagraphsTest extends ParagraphsTestBase {
           'image' => $this->container->get('file_url_generator')->transformRelative($en_file_1_url),
           'image_alt' => 'First image alt en',
           'sources' => [
-            'small' => 'oe_theme_small_3_1_banner/public/example_1_en.jpeg',
-            'medium' => 'oe_theme_medium_3_1_banner/public/example_1_en.jpeg',
+            'small' => 'oe_theme_small_3_2_banner/public/example_1_en.jpeg',
+            'medium' => 'oe_theme_medium_3_2_banner/public/example_1_en.jpeg',
             'large' => 'oe_theme_large_3_1_banner/public/example_1_en.jpeg',
             'extra_large' => 'oe_theme_extra_large_3_1_banner/public/example_1_en.jpeg',
             'extra_extra_large' => 'oe_theme_extra_extra_large_3_1_banner/public/example_1_en.jpeg',
@@ -1199,8 +1199,8 @@ class MediaParagraphsTest extends ParagraphsTestBase {
           'url_text' => 'CTA 4',
           'image' => $this->container->get('file_url_generator')->transformRelative($en_file_2_url),
           'sources' => [
-            'small' => 'oe_theme_small_3_1_banner/public/example_2_en.jpeg',
-            'medium' => 'oe_theme_medium_3_1_banner/public/example_2_en.jpeg',
+            'small' => 'oe_theme_small_3_2_banner/public/example_2_en.jpeg',
+            'medium' => 'oe_theme_medium_3_2_banner/public/example_2_en.jpeg',
             'large' => 'oe_theme_large_3_1_banner/public/example_2_en.jpeg',
             'extra_large' => 'oe_theme_extra_large_3_1_banner/public/example_2_en.jpeg',
             'extra_extra_large' => 'oe_theme_extra_extra_large_3_1_banner/public/example_2_en.jpeg',
@@ -1222,8 +1222,8 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $expected_values['items'][0]['image'] = $this->container->get('file_url_generator')->transformRelative($bg_file_1_url);
     $expected_values['items'][0]['image_alt'] = 'First image alt bg';
     $expected_values['items'][0]['sources'] = [
-      'small' => 'oe_theme_small_3_1_banner/public/example_1_bg.jpeg',
-      'medium' => 'oe_theme_medium_3_1_banner/public/example_1_bg.jpeg',
+      'small' => 'oe_theme_small_3_2_banner/public/example_1_bg.jpeg',
+      'medium' => 'oe_theme_medium_3_2_banner/public/example_1_bg.jpeg',
       'large' => 'oe_theme_large_3_1_banner/public/example_1_bg.jpeg',
       'extra_large' => 'oe_theme_extra_large_3_1_banner/public/example_1_bg.jpeg',
       'extra_extra_large' => 'oe_theme_extra_extra_large_3_1_banner/public/example_1_bg.jpeg',
@@ -1234,8 +1234,8 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $expected_values['items'][1]['url_text'] = 'BG CTA 2';
     $expected_values['items'][1]['image'] = $this->container->get('file_url_generator')->transformRelative($bg_file_2_url);
     $expected_values['items'][1]['sources'] = [
-      'small' => 'oe_theme_small_3_1_banner/public/example_2_bg.jpeg',
-      'medium' => 'oe_theme_medium_3_1_banner/public/example_2_bg.jpeg',
+      'small' => 'oe_theme_small_3_2_banner/public/example_2_bg.jpeg',
+      'medium' => 'oe_theme_medium_3_2_banner/public/example_2_bg.jpeg',
       'large' => 'oe_theme_large_3_1_banner/public/example_2_bg.jpeg',
       'extra_large' => 'oe_theme_extra_large_3_1_banner/public/example_2_bg.jpeg',
       'extra_extra_large' => 'oe_theme_extra_extra_large_3_1_banner/public/example_2_bg.jpeg',
@@ -1245,8 +1245,8 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $expected_values['items'][2]['image'] = $this->container->get('file_url_generator')->transformRelative($bg_file_1_url);
     $expected_values['items'][2]['image_alt'] = 'First image alt bg';
     $expected_values['items'][2]['sources'] = [
-      'small' => 'oe_theme_small_3_1_banner/public/example_1_bg.jpeg',
-      'medium' => 'oe_theme_medium_3_1_banner/public/example_1_bg.jpeg',
+      'small' => 'oe_theme_small_3_2_banner/public/example_1_bg.jpeg',
+      'medium' => 'oe_theme_medium_3_2_banner/public/example_1_bg.jpeg',
       'large' => 'oe_theme_large_3_1_banner/public/example_1_bg.jpeg',
       'extra_large' => 'oe_theme_extra_large_3_1_banner/public/example_1_bg.jpeg',
       'extra_extra_large' => 'oe_theme_extra_extra_large_3_1_banner/public/example_1_bg.jpeg',
@@ -1258,8 +1258,8 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $expected_values['items'][3]['url_text'] = 'BG CTA 4';
     $expected_values['items'][3]['image'] = $this->container->get('file_url_generator')->transformRelative($bg_file_2_url);
     $expected_values['items'][3]['sources'] = [
-      'small' => 'oe_theme_small_3_1_banner/public/example_2_bg.jpeg',
-      'medium' => 'oe_theme_medium_3_1_banner/public/example_2_bg.jpeg',
+      'small' => 'oe_theme_small_3_2_banner/public/example_2_bg.jpeg',
+      'medium' => 'oe_theme_medium_3_2_banner/public/example_2_bg.jpeg',
       'large' => 'oe_theme_large_3_1_banner/public/example_2_bg.jpeg',
       'extra_large' => 'oe_theme_extra_large_3_1_banner/public/example_2_bg.jpeg',
       'extra_extra_large' => 'oe_theme_extra_extra_large_3_1_banner/public/example_2_bg.jpeg',

@@ -2251,9 +2251,9 @@ function oe_theme_preprocess_paragraph__oe_carousel(array &$variables): void {
   }
   // Load needed images styles based on carousel size.
   $banner_type = match ($variables['size']) {
-    's' => '5_1',
-    'm' => '4_1',
-    'l' => '3_1',
+    's' => 'small',
+    'm' => 'medium',
+    'l' => 'large',
   };
 
   /** @var \Drupal\paragraphs\Entity\Paragraph $sub_paragraph */
