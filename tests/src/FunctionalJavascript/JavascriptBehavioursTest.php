@@ -130,7 +130,7 @@ class JavascriptBehavioursTest extends WebDriverTestBase {
     // Assert the label is present and it points to the right id.
     $form_item = $this->getSession()->getPage()->find('css', 'div.form-item-multi-select');
     $form_label = $form_item->find('css', 'label');
-    $this->assertEquals('edit-multi-select-toggle', $form_label->getAttribute('for'));
+    $this->assertEquals('edit-multi-select', $form_label->getAttribute('for'));
 
     // Assert the form group does not have an ID taken from the <select>.
     $form_group = $form_item->find('css', '.ecl-form-group');
