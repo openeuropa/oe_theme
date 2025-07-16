@@ -1,5 +1,14 @@
 # Changelog
 
+## [5.0.0-beta12](https://github.com/openeuropa/oe_theme/tree/5.0.0-beta12) (2025-07-16)
+
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/5.0.0-beta11...5.0.0-beta12)
+
+**Merged pull requests:**
+
+- EWPP-5800: Update moment.js library to 2.29.4. [\#1621](https://github.com/openeuropa/oe_theme/pull/1621) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-5792: Set small and medium banners in carousel to ratio 3:2. [\#1619](https://github.com/openeuropa/oe_theme/pull/1619) ([fmmribeiro](https://github.com/fmmribeiro))
+
 ## [5.0.0-beta11](https://github.com/openeuropa/oe_theme/tree/5.0.0-beta11) (2025-06-27)
 
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/5.0.0-beta10...5.0.0-beta11)
