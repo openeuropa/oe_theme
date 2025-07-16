@@ -776,3 +776,37 @@ function oe_theme_helper_post_update_50003(): void {
     }
   }
 }
+
+/**
+ * Migrate custom icon values to webtools icon values #2.
+ */
+function oe_theme_helper_post_update_50004(): void {
+  $map = [
+    'breadcrumb' => 'corner-arrow-right',
+    'down' => 'corner-arrow-down',
+    'left' => 'corner-arrow-left',
+    'right' => 'corner-arrow-right',
+    'up' => 'corner-arrow-up',
+    'corner-arrow' => 'corner-arrow-up',
+    'solid-arrow' => 'solid-arrow-up',
+  ];
+
+  $tables = [
+    'paragraph__field_oe_icon',
+    'paragraph_revision__field_oe_icon',
+  ];
+
+  foreach ($tables as $table) {
+    // Check if the table exists first.
+    if (!\Drupal::database()->schema()->tableExists($table)) {
+      continue;
+    }
+    foreach ($map as $name => $code) {
+      \Drupal::database()
+        ->update($table)
+        ->fields(['field_oe_icon_value' => $code])
+        ->condition('field_oe_icon_value', $name)
+        ->execute();
+    }
+  }
+}
