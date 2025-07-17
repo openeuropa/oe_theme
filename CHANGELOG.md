@@ -1,5 +1,13 @@
 # Changelog
 
+## [5.0.0-beta13](https://github.com/openeuropa/oe_theme/tree/5.0.0-beta13) (2025-07-17)
+
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/5.0.0-beta12...5.0.0-beta13)
+
+**Merged pull requests:**
+
+- EWPP-5770: Update existing icon values to valid webtools icons. [\#1625](https://github.com/openeuropa/oe_theme/pull/1625) ([nagyad](https://github.com/nagyad))
+
 ## [5.0.0-beta12](https://github.com/openeuropa/oe_theme/tree/5.0.0-beta12) (2025-07-16)
 
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/5.0.0-beta11...5.0.0-beta12)
