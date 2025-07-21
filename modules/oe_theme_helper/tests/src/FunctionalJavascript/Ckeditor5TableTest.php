@@ -113,7 +113,7 @@ class Ckeditor5TableTest extends WebDriverTestBase {
       'status' => 1,
       'title' => 'Test page',
       'body' => [
-        'value' => '<table data-simple="true"><tbody><tr><td>&nbsp;</td><td>&nbsp;</td></tr><tr><td>&nbsp;</td><td>&nbsp;</td></tr></tbody></table>',
+        'value' => '<table class="table" data-simple="true"><tbody><tr><td>&nbsp;</td><td>&nbsp;</td></tr><tr><td>&nbsp;</td><td>&nbsp;</td></tr></tbody></table>',
         'format' => 'test_format',
       ],
     ]);
@@ -135,7 +135,7 @@ class Ckeditor5TableTest extends WebDriverTestBase {
     $assert_session->elementNotExists('css', '.ck-widget.table.table-simple', $editor);
     $assert_session->elementsCount('css', '.ck-widget.table', 1, $editor);
     $this->assertEquals(
-      '<table><tbody><tr><td>&nbsp;</td><td>&nbsp;</td></tr><tr><td>&nbsp;</td><td>&nbsp;</td></tr></tbody></table>',
+      '<table class="table"><tbody><tr><td>&nbsp;</td><td>&nbsp;</td></tr><tr><td>&nbsp;</td><td>&nbsp;</td></tr></tbody></table>',
       $this->getEditorDataAsHtmlString()
     );
 
@@ -144,7 +144,7 @@ class Ckeditor5TableTest extends WebDriverTestBase {
     $assert_session->elementsCount('css', '.ck-widget.table', 1, $editor);
     $assert_session->elementsCount('css', '.ck-widget.table.table-simple', 1, $editor);
     $this->assertEquals(
-      '<table data-simple="true"><tbody><tr><td>&nbsp;</td><td>&nbsp;</td></tr><tr><td>&nbsp;</td><td>&nbsp;</td></tr></tbody></table>',
+      '<table class="table" data-simple="true"><tbody><tr><td>&nbsp;</td><td>&nbsp;</td></tr><tr><td>&nbsp;</td><td>&nbsp;</td></tr></tbody></table>',
       $this->getEditorDataAsHtmlString()
     );
   }
@@ -158,7 +158,7 @@ class Ckeditor5TableTest extends WebDriverTestBase {
       'status' => 1,
       'title' => 'Test page',
       'body' => [
-        'value' => '<table data-striped="true"><tbody><tr><td>&nbsp;</td><td>&nbsp;</td></tr><tr><td>&nbsp;</td><td>&nbsp;</td></tr></tbody></table>',
+        'value' => '<table class="table" data-striped="true"><tbody><tr><td>&nbsp;</td><td>&nbsp;</td></tr><tr><td>&nbsp;</td><td>&nbsp;</td></tr></tbody></table>',
         'format' => 'test_format',
       ],
     ]);
@@ -180,7 +180,7 @@ class Ckeditor5TableTest extends WebDriverTestBase {
     $assert_session->elementNotExists('css', '.ck-widget.table.table-zebra-striped', $editor);
     $assert_session->elementsCount('css', '.ck-widget.table', 1, $editor);
     $this->assertEquals(
-      '<table><tbody><tr><td>&nbsp;</td><td>&nbsp;</td></tr><tr><td>&nbsp;</td><td>&nbsp;</td></tr></tbody></table>',
+      '<table class="table"><tbody><tr><td>&nbsp;</td><td>&nbsp;</td></tr><tr><td>&nbsp;</td><td>&nbsp;</td></tr></tbody></table>',
       $this->getEditorDataAsHtmlString()
     );
 
@@ -189,7 +189,7 @@ class Ckeditor5TableTest extends WebDriverTestBase {
     $assert_session->elementsCount('css', '.ck-widget.table', 1, $editor);
     $assert_session->elementsCount('css', '.ck-widget.table.table-zebra-striped', 1, $editor);
     $this->assertEquals(
-      '<table data-striped="true"><tbody><tr><td>&nbsp;</td><td>&nbsp;</td></tr><tr><td>&nbsp;</td><td>&nbsp;</td></tr></tbody></table>',
+      '<table class="table" data-striped="true"><tbody><tr><td>&nbsp;</td><td>&nbsp;</td></tr><tr><td>&nbsp;</td><td>&nbsp;</td></tr></tbody></table>',
       $this->getEditorDataAsHtmlString()
     );
   }
@@ -206,7 +206,7 @@ class Ckeditor5TableTest extends WebDriverTestBase {
         // A table with the 3 columns and 2 rows. The first row is set as header
         // and cell 1 and 3 are set as sortable.
         // In the body of the table, one cell is set (incorrectly) as sortable.
-        'value' => '<table><thead><tr><th data-sortable="true">&nbsp;</th><th>&nbsp;</th><th data-sortable="true">&nbsp;</th></tr></thead><tbody><tr><td>&nbsp;</td><td>&nbsp;</td><td data-sortable="true">&nbsp;</td></tr></tbody></table>',
+        'value' => '<table class="table"><thead><tr><th data-sortable="true">&nbsp;</th><th>&nbsp;</th><th data-sortable="true">&nbsp;</th></tr></thead><tbody><tr><td>&nbsp;</td><td>&nbsp;</td><td data-sortable="true">&nbsp;</td></tr></tbody></table>',
         'format' => 'test_format',
       ],
     ]);
@@ -243,7 +243,7 @@ class Ckeditor5TableTest extends WebDriverTestBase {
     $this->getBalloonButton('Toggle column sort on')->click();
     $this->assertTrue($header_cells[1]->hasClass('cell-sortable'));
     $this->assertEquals(
-      '<table><thead><tr><th data-sortable="true">&nbsp;</th><th data-sortable="true">&nbsp;</th><th data-sortable="true">&nbsp;</th></tr></thead><tbody><tr><td>&nbsp;</td><td>&nbsp;</td><td data-sortable="true">&nbsp;</td></tr></tbody></table>',
+      '<table class="table"><thead><tr><th data-sortable="true">&nbsp;</th><th data-sortable="true">&nbsp;</th><th data-sortable="true">&nbsp;</th></tr></thead><tbody><tr><td>&nbsp;</td><td>&nbsp;</td><td data-sortable="true">&nbsp;</td></tr></tbody></table>',
       $this->getEditorDataAsHtmlString()
     );
 
@@ -251,7 +251,7 @@ class Ckeditor5TableTest extends WebDriverTestBase {
     $this->getBalloonButton('Toggle column sort off')->click();
     $this->assertFalse($header_cells[1]->hasClass('cell-sortable'));
     $this->assertEquals(
-      '<table><thead><tr><th data-sortable="true">&nbsp;</th><th>&nbsp;</th><th data-sortable="true">&nbsp;</th></tr></thead><tbody><tr><td>&nbsp;</td><td>&nbsp;</td><td data-sortable="true">&nbsp;</td></tr></tbody></table>',
+      '<table class="table"><thead><tr><th data-sortable="true">&nbsp;</th><th>&nbsp;</th><th data-sortable="true">&nbsp;</th></tr></thead><tbody><tr><td>&nbsp;</td><td>&nbsp;</td><td data-sortable="true">&nbsp;</td></tr></tbody></table>',
       $this->getEditorDataAsHtmlString()
     );
 
@@ -270,7 +270,7 @@ class Ckeditor5TableTest extends WebDriverTestBase {
     // The third cell was already set to sortable.
     $this->assertTrue($header_cells[2]->hasClass('cell-sortable'));
     $this->assertEquals(
-      '<table><thead><tr><th data-sortable="true">&nbsp;</th><th data-sortable="true">&nbsp;</th><th data-sortable="true">&nbsp;</th></tr></thead><tbody><tr><td>&nbsp;</td><td>&nbsp;</td><td data-sortable="true">&nbsp;</td></tr></tbody></table>',
+      '<table class="table"><thead><tr><th data-sortable="true">&nbsp;</th><th data-sortable="true">&nbsp;</th><th data-sortable="true">&nbsp;</th></tr></thead><tbody><tr><td>&nbsp;</td><td>&nbsp;</td><td data-sortable="true">&nbsp;</td></tr></tbody></table>',
       $this->getEditorDataAsHtmlString()
     );
     // Click again the button to disable the sorting.
@@ -281,7 +281,7 @@ class Ckeditor5TableTest extends WebDriverTestBase {
     // The third cell retained the sorting.
     $this->assertTrue($header_cells[2]->hasClass('cell-sortable'));
     $this->assertEquals(
-      '<table><thead><tr><th>&nbsp;</th><th>&nbsp;</th><th data-sortable="true">&nbsp;</th></tr></thead><tbody><tr><td>&nbsp;</td><td>&nbsp;</td><td data-sortable="true">&nbsp;</td></tr></tbody></table>',
+      '<table class="table"><thead><tr><th>&nbsp;</th><th>&nbsp;</th><th data-sortable="true">&nbsp;</th></tr></thead><tbody><tr><td>&nbsp;</td><td>&nbsp;</td><td data-sortable="true">&nbsp;</td></tr></tbody></table>',
       $this->getEditorDataAsHtmlString()
     );
 
@@ -327,7 +327,7 @@ class Ckeditor5TableTest extends WebDriverTestBase {
     // as for CKEditor that is a generic attribute, since the upcast didn't
     // apply to it.
     $this->assertEquals(
-      '<table><tbody><tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr><tr><td>&nbsp;</td><td>&nbsp;</td><td data-sortable="true">&nbsp;</td></tr></tbody></table>',
+      '<table class="table"><tbody><tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr><tr><td>&nbsp;</td><td>&nbsp;</td><td data-sortable="true">&nbsp;</td></tr></tbody></table>',
       $this->getEditorDataAsHtmlString()
     );
 
