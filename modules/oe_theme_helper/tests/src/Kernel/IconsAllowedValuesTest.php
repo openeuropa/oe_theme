@@ -89,6 +89,7 @@ class IconsAllowedValuesTest extends AbstractKernelTestBase {
   protected function getExpectedIconValues(): array {
     return [
       'icons' => [
+        'arrow-down' => 'Arrow-down',
         'arrow-left' => 'Arrow-left',
         'audio' => 'Audio',
         'book' => 'Book',
