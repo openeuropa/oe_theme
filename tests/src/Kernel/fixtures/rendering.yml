@@ -3744,7 +3744,9 @@
       'h2.ecl-u-type-heading-2': 0
       'div.ecl.ecl-u-mb-m': 0
       'ol.ecl-timeline.ecl-color-mode--green-dark': 1
+      'ol.ecl-timeline.ecl-color-mode--green-dark.ecl-timeline--has-headline': 0
       'li.ecl-timeline__item': 7
+      'li.ecl-timeline__item--headline': 0
       '.ecl-timeline__item.ecl-timeline__item--toggle': 1
       '.ecl-timeline__item.ecl-timeline__item--collapsed': 2
       '.ecl-timeline__item:nth-child(3) .ecl-timeline__title': 0
@@ -3769,6 +3771,11 @@
     '#id': timeline
     '#fields':
       color_mode: "orange"
+      headline:
+        label: "2025"
+        title: "Headline title"
+        body:
+          '#markup': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. <strong>Vivamus eu metus risus.</strong>'
       items:
         -
           title: "Item 1"
@@ -3792,23 +3799,27 @@
     count:
       'h2.ecl-u-type-heading-2': 0
       'div.ecl.ecl-u-mb-m': 0
-      'ol.ecl-timeline.ecl-color-mode--orange': 1
-      'li.ecl-timeline__item': 6
+      'ol.ecl-timeline.ecl-color-mode--orange.ecl-timeline--has-headline': 1
+      'li.ecl-timeline__item': 7
+      'li.ecl-timeline__item--headline': 1
       '.ecl-timeline__item.ecl-timeline__item--toggle': 0
       '.ecl-timeline__item.ecl-timeline__item--collapsed': 0
     equals:
-      '.ecl-timeline__item:nth-child(1) .ecl-timeline__title': "Item 1"
-      '.ecl-timeline__item:nth-child(2) .ecl-timeline__title': "Item 2"
-      '.ecl-timeline__item:nth-child(3) .ecl-timeline__title': "Item 3"
-      '.ecl-timeline__item:nth-child(4) .ecl-timeline__title': "Item 4"
-      '.ecl-timeline__item:nth-child(5) .ecl-timeline__title': "Item 5"
-      '.ecl-timeline__item:nth-child(6) .ecl-timeline__title': "Item 6"
-      '.ecl-timeline__item:nth-child(1) .ecl-timeline__content': 'Lorem Ipsum 1'
-      '.ecl-timeline__item:nth-child(2) .ecl-timeline__content': 'Lorem Ipsum 2'
-      '.ecl-timeline__item:nth-child(3) .ecl-timeline__content': 'Lorem Ipsum 3'
-      '.ecl-timeline__item:nth-child(4) .ecl-timeline__content': 'Lorem Ipsum 4'
-      '.ecl-timeline__item:nth-child(5) .ecl-timeline__content': 'Lorem Ipsum 5'
-      '.ecl-timeline__item:nth-child(6) .ecl-timeline__content': 'Lorem Ipsum 6'
+      'li.ecl-timeline__item--headline .ecl-timeline__title': "Headline title"
+      'li.ecl-timeline__item--headline .ecl-timeline__label': "2025"
+      'li.ecl-timeline__item--headline .ecl-timeline__content': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. <strong>Vivamus eu metus risus.</strong>'
+      '.ecl-timeline__item:nth-child(2) .ecl-timeline__title': "Item 1"
+      '.ecl-timeline__item:nth-child(3) .ecl-timeline__title': "Item 2"
+      '.ecl-timeline__item:nth-child(4) .ecl-timeline__title': "Item 3"
+      '.ecl-timeline__item:nth-child(5) .ecl-timeline__title': "Item 4"
+      '.ecl-timeline__item:nth-child(6) .ecl-timeline__title': "Item 5"
+      '.ecl-timeline__item:nth-child(7) .ecl-timeline__title': "Item 6"
+      '.ecl-timeline__item:nth-child(2) .ecl-timeline__content': 'Lorem Ipsum 1'
+      '.ecl-timeline__item:nth-child(3) .ecl-timeline__content': 'Lorem Ipsum 2'
+      '.ecl-timeline__item:nth-child(4) .ecl-timeline__content': 'Lorem Ipsum 3'
+      '.ecl-timeline__item:nth-child(5) .ecl-timeline__content': 'Lorem Ipsum 4'
+      '.ecl-timeline__item:nth-child(6) .ecl-timeline__content': 'Lorem Ipsum 5'
+      '.ecl-timeline__item:nth-child(7) .ecl-timeline__content': 'Lorem Ipsum 6'
 - structure:
     '#type': pattern
     '#id': timeline
@@ -3840,7 +3851,9 @@
       'h2.ecl-u-type-heading-2': 0
       'div.ecl.ecl-u-mb-m': 0
       'ol.ecl-timeline': 1
+      'ol.ecl-timeline.ecl-timeline--has-headline': 0
       'li.ecl-timeline__item': 7
+      'li.ecl-timeline__item--headline': 0
       '.ecl-timeline__item.ecl-timeline__item--toggle': 1
       '.ecl-timeline__item.ecl-timeline__item--collapsed': 4
       '.ecl-timeline__item:nth-child(3) .ecl-timeline__title': 0
@@ -3892,7 +3905,9 @@
       'h2.ecl-u-type-heading-2': 1
       'div.ecl.ecl-u-mb-m': 1
       'ol.ecl-timeline': 1
+      'ol.ecl-timeline.ecl-timeline--has-headline': 0
       'li.ecl-timeline__item': 7
+      'li.ecl-timeline__item--headline': 0
       '.ecl-timeline__item.ecl-timeline__item--toggle': 1
       '.ecl-timeline__item.ecl-timeline__item--collapsed': 4
       '.ecl-timeline__item:nth-child(3) .ecl-timeline__title': 0

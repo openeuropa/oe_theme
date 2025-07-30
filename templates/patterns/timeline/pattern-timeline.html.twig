@@ -21,6 +21,14 @@
 {% set _toggle_collapsed = button_label ? button_label|t : 'Show @numb more items'|trans({'@numb': hidden_num}) %}
 {% set _toggle_expanded = button_label_hidden ? button_label_hidden| t : 'Hide @numb items'|trans({'@numb': hidden_num}) %}
 
+{% if headline is not empty %}
+  {% set _headline = {
+    label: headline.label|default(''),
+    title: headline.title|default(''),
+    content: headline.body|default(''),
+  } %}
+{% endif %}
+
 {% if title %}
   <div class="ecl">
     <h2 class="ecl-u-type-heading-2">
@@ -33,6 +41,7 @@
     {{ introduction }}
   </div>
 {% endif %}
+
 {% include '@ecl-twig/timeline' with {
   'toggle_collapsed': _toggle_collapsed,
   'toggle_expanded': _toggle_expanded,
@@ -40,6 +49,7 @@
     'from': limit,
     'to': limit_to|default(0),
   },
+  'headline': _headline|default([]),
   'items': _items,
   'icon_path': ecl_icon_path,
   'color_mode': color_mode|default(''),
