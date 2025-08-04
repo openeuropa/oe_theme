@@ -558,7 +558,7 @@ class TwigExtension extends AbstractExtension {
    *   The border color class.
    */
   public function eclBorderColor(array $context): string {
-    return $context['ecl_component_library'] === 'ec' ? 'ecl-u-border-color-neutral-dark-50' : 'ecl-u-border-color-primary-10';
+    return $context['ecl_component_library'] === 'ec' ? 'ecl-u-border-color-neutral-50' : 'ecl-u-border-color-primary-10';
   }
 
   /**
