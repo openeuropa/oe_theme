@@ -175,7 +175,7 @@ class SiteNavigationBlock extends SystemMenuBlock {
     $links = array_map(function ($item) {
       return [
         'label' => $item['title'],
-        'href' => $item['url'],
+        'href' => ($item['url']->isRouted() && $item['url']->getRouteName() === '<nolink>') ? NULL : $item['url'],
         'is_current' => $item['in_active_trail'],
       ];
     }, $items);
@@ -184,7 +184,7 @@ class SiteNavigationBlock extends SystemMenuBlock {
       $links[$name]['children'] = array_map(function ($item) {
         return [
           'label' => $item['title'],
-          'href' => $item['url'],
+          'href' => ($item['url']->isRouted() && $item['url']->getRouteName() === '<nolink>') ? NULL : $item['url'],
           'is_current' => $item['in_active_trail'],
         ];
       }, $items[$name]['below']);

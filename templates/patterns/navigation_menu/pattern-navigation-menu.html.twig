@@ -12,7 +12,7 @@
   {% set _children = [] %}
   {% for child in item.children %}
     {% set _child = {
-      path: child.href,
+      path: child.href|default(null),
       label: child.label,
       extra_attributes: child.extra_attributes,
     } %}
@@ -32,7 +32,7 @@
 
   {# Process menu items. #}
   {% set _item = {
-    path: item.href,
+    path: item.href|default(null),
     label: item.label,
     children: _children,
     trigger_aria_label: "Access item's children"|t,
