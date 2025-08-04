@@ -140,6 +140,14 @@ function oe_theme_helper_field_widget_single_element_oe_paragraphs_variants_form
   // Hide icon field as it's not supported in ECL 2.
   if (isset($element['subform']['field_oe_icon'])) {
     $element['subform']['field_oe_icon']['#access'] = FALSE;
+    if (isset($element['subform']['field_oe_icon']['widget']['#default_value']) && empty($element['subform']['field_oe_icon']['widget']['#default_value'])) {
+      // We have to do this, because the icon field is required in the form and
+      // the field is not accessible. Default value defined in the field
+      // definition is applied only for new paragraph. Some cases, it can happen
+      // that the paragraph is created with empty icon field, so we have to set
+      // the default value here.
+      $element['subform']['field_oe_icon']['widget']['#default_value'] = 'arrow-down';
+    }
   }
 }
 
