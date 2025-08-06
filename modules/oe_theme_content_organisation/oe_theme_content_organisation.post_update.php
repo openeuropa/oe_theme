@@ -72,3 +72,23 @@ function oe_theme_content_organisation_post_update_00003() {
     $updated_view_display->save();
   }
 }
+
+/**
+ * Update the 'full' entity view display on the organisation CT.
+ */
+function oe_theme_content_organisation_post_update_00004(): void {
+  $storage = new FileStorage(\Drupal::service('extension.list.module')->getPath('oe_theme_content_organisation') . '/config/post_updates/00004_update_full_view_display');
+  $view_display_values = $storage->read('core.entity_view_display.node.oe_organisation.full');
+  // We are updating the config which means that we are also shipping
+  // it in the config/install folder so we want to make sure it gets the hash
+  // so Drupal treats it as a shipped config. This means that it gets exposed
+  // to be translated via the locale system as well.
+  $view_display_values['_core']['default_config_hash'] = Crypt::hashBase64(serialize($view_display_values));
+  $view_display = EntityViewDisplay::load($view_display_values['id']);
+  if ($view_display) {
+    $updated_view_display = \Drupal::entityTypeManager()
+      ->getStorage($view_display->getEntityTypeId())
+      ->updateFromStorageRecord($view_display, $view_display_values);
+    $updated_view_display->save();
+  }
+}

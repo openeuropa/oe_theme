@@ -653,3 +653,6 @@ msgstr "Tinsab hawn:"
 
 msgid "Follow the European Commission"
 msgstr "Segwi lill-Kummissjoni Ewropea"
+
+msgid "Plans and reports"
+msgstr "Pjanijiet u rapporti"

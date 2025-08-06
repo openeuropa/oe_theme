@@ -653,3 +653,6 @@ msgstr "Du er her:"
 
 msgid "Follow the European Commission"
 msgstr "Følg Europa-Kommissionen"
+
+msgid "Plans and reports"
+msgstr "Planer og rapporter"

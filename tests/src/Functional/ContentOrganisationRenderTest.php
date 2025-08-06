@@ -289,6 +289,69 @@ class ContentOrganisationRenderTest extends ContentRenderTestBase {
     $this->getSession()->reload();
     $person_content = $content_items[2]->findAll('css', 'article.ecl-u-d-flex.ecl-u-pv-m.ecl-u-border-bottom.ecl-u-border-color-neutral-50');
     $this->assertEquals('Adviser, Chief Adviser', $person_content[0]->find('css', '.ecl-content-item__meta.ecl-u-type-s.ecl-u-type-color-neutral-dark-900.ecl-u-mb-xs')->getText());
+
+    // Set value for Transparency and Transparency links fields and assert
+    // rendering is updated.
+    $node->set('oe_organisation_transparency', 'My transparency text.');
+    $node->set('oe_organisation_transp_links', [
+      [
+        'uri' => 'http://example.com/1',
+        'title' => 'Transparency link 1',
+      ], [
+        'uri' => 'http://example.com/2',
+      ],
+    ])->save();
+    $this->drupalGet($node->toUrl());
+    $inpage_nav_expected_values = [
+      'title' => 'Page contents',
+      'list' => [
+        ['label' => 'Overview', 'href' => '#overview'],
+        ['label' => 'Leadership and organisation', 'href' => '#leadership-and-organisation'],
+        ['label' => 'Transparency', 'href' => '#transparency'],
+        ['label' => 'Contact', 'href' => '#contact'],
+      ],
+    ];
+    $inpage_nav_assert->assertPattern($inpage_nav_expected_values, $navigation->getOuterHtml());
+    $content_items = $content->findAll('xpath', '/div');
+
+    // Assert header of the Transparency field group.
+    $this->assertContentHeader($content_items[3], 'Transparency', 'transparency');
+    // Assert the text.
+    $transparency_text = $content_items[3]->findAll('css', '.ecl');
+    $this->assertCount(1, $transparency_text);
+    $this->assertEquals('My transparency text.', $transparency_text[0]->getText());
+    // Assert the links.
+    $transparency_links_items = $content_items[3]->findAll('css', 'div.ecl-u-pt-l.ecl-u-pb-m.ecl-u-border-bottom.ecl-u-border-color-neutral-50 a');
+    $this->assertCount(2, $transparency_links_items);
+    $this->assertEquals('http://example.com/1', $transparency_links_items[0]->getAttribute('href'));
+    $this->assertEquals('Transparency link 1', $transparency_links_items[0]->getText());
+    $this->assertSession()->elementExists('css', 'a.ecl-link span.ecl-icon.ecl-icon--2xs.ecl-link__icon.wt-icon--external', $transparency_links_items[0]);
+    $this->assertEquals('http://example.com/2', $transparency_links_items[1]->getAttribute('href'));
+    $this->assertEquals('http://example.com/2', $transparency_links_items[1]->getText());
+    $this->assertSession()->elementExists('css', 'a.ecl-link span.ecl-icon.ecl-icon--2xs.ecl-link__icon.wt-icon--external', $transparency_links_items[1]);
+
+    // Set value for Plans and report field and assert rendering is updated.
+    $node->set('oe_organisation_plans_reports', 'My Plans and reports text.');
+    $node->save();
+    $this->drupalGet($node->toUrl());
+    $inpage_nav_expected_values = [
+      'title' => 'Page contents',
+      'list' => [
+        ['label' => 'Overview', 'href' => '#overview'],
+        ['label' => 'Leadership and organisation', 'href' => '#leadership-and-organisation'],
+        ['label' => 'Transparency', 'href' => '#transparency'],
+        ['label' => 'Contact', 'href' => '#contact'],
+        ['label' => 'Plans and reports', 'href' => '#plans-and-reports'],
+      ],
+    ];
+    $inpage_nav_assert->assertPattern($inpage_nav_expected_values, $navigation->getOuterHtml());
+    $content_items = $content->findAll('xpath', '/div');
+    // Assert header of the Transparency field group.
+    $this->assertContentHeader($content_items[5], 'Plans and reports', 'plans-and-reports');
+    // Assert the text.
+    $plans_reports_text = $content_items[5]->findAll('css', '.ecl');
+    $this->assertCount(1, $plans_reports_text);
+    $this->assertEquals('My Plans and reports text.', $plans_reports_text[0]->getText());
   }
 
 }
