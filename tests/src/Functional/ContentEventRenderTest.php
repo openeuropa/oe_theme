@@ -667,7 +667,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
 
     $general_contacts_content = $this->assertSession()->elementExists('css', '#event-contacts-general', $event_contacts_content);
     $this->assertContactHeader($general_contacts_content, 'General contact');
-    $general_contacts_border = $general_contacts_content->findAll('css', '.ecl-u-mb-xl.ecl-u-pb-xl.ecl-u-border-bottom.ecl-u-border-color-neutral-dark-50');
+    $general_contacts_border = $general_contacts_content->findAll('css', '.ecl-u-mb-xl.ecl-u-pb-xl.ecl-u-border-bottom.ecl-u-border-color-neutral-50');
     $this->assertCount(1, $general_contacts_border);
     $general_contacts = $general_contacts_content->findAll('css', '.ecl-row.ecl-u-mv-xl');
     $this->assertContactDefaultRender($general_contacts[0], 'first_general_contact');
@@ -675,7 +675,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
 
     $press_contacts_content = $this->assertSession()->elementExists('css', '#event-contacts-press', $event_contacts_content);
     $this->assertContactHeader($press_contacts_content, 'Press contact');
-    $press_contacts_border = $press_contacts_content->findAll('css', '.ecl-u-mb-xl.ecl-u-pb-xl.ecl-u-border-bottom.ecl-u-border-color-neutral-dark-50');
+    $press_contacts_border = $press_contacts_content->findAll('css', '.ecl-u-mb-xl.ecl-u-pb-xl.ecl-u-border-bottom.ecl-u-border-color-neutral-50');
     $this->assertCount(1, $press_contacts_border);
     $press_contacts = $press_contacts_content->findAll('css', '.ecl-row.ecl-u-mv-xl');
     $this->assertContactDefaultRender($press_contacts[0], 'first_press_contact');
@@ -934,7 +934,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
 
     $this->drupalGet($node->toUrl());
     $speakers = $this->assertSession()->elementExists('css', '.ecl-row.field-oe-event-speakers');
-    $speakers_items = $speakers->findAll('css', '.ecl-u-d-flex.ecl-u-pv-m.ecl-u-border-bottom.ecl-u-border-color-neutral-dark-50.ecl-col-12.ecl-col-m-6.ecl-col-l-4');
+    $speakers_items = $speakers->findAll('css', '.ecl-u-d-flex.ecl-u-pv-m.ecl-u-border-bottom.ecl-u-border-color-neutral-50.ecl-col-12.ecl-col-m-6.ecl-col-l-4');
     $this->assertCount(1, $speakers_items);
 
     // Make sure that adding of additional Event speakers
@@ -943,7 +943,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     $node->save();
     $this->drupalGet($node->toUrl());
     $speakers = $this->assertSession()->elementExists('css', '.ecl-row.field-oe-event-speakers');
-    $speakers_items = $speakers->findAll('css', '.ecl-u-d-flex.ecl-u-pv-m.ecl-u-border-bottom.ecl-u-border-color-neutral-dark-50.ecl-col-12.ecl-col-m-6.ecl-col-l-4');
+    $speakers_items = $speakers->findAll('css', '.ecl-u-d-flex.ecl-u-pv-m.ecl-u-border-bottom.ecl-u-border-color-neutral-50.ecl-col-12.ecl-col-m-6.ecl-col-l-4');
     $this->assertCount(2, $speakers_items);
     $portrait = $this->assertSession()->elementExists('css', '.ecl-u-flex-shrink-0.ecl-u-mr-s.ecl-u-media-a-m.ecl-u-media-bg-size-contain.ecl-u-media-bg-repeat-none', $speakers_items[0]);
     // Assert default image of speaker.

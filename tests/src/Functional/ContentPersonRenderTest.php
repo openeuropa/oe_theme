@@ -430,7 +430,7 @@ class ContentPersonRenderTest extends ContentRenderTestBase {
     $this->drupalGet($node->toUrl());
 
     $content_items = $content->findAll('xpath', '/div');
-    $transparency_links_items = $content_items[5]->findAll('css', 'div.ecl-u-pt-l.ecl-u-pb-m.ecl-u-border-bottom.ecl-u-border-color-neutral-dark-50 a');
+    $transparency_links_items = $content_items[5]->findAll('css', 'div.ecl-u-pt-l.ecl-u-pb-m.ecl-u-border-bottom.ecl-u-border-color-neutral-50 a');
     $this->assertCount(2, $transparency_links_items);
     $this->assertEquals('http://example.com/link_1', $transparency_links_items[0]->getAttribute('href'));
     $this->assertEquals('Person link 1', $transparency_links_items[0]->getText());
@@ -538,7 +538,7 @@ class ContentPersonRenderTest extends ContentRenderTestBase {
     $content_items = $content->findAll('xpath', '/div');
     $this->assertCount(8, $content_items);
     $this->assertMediaDocumentDefaultRender($content_items[7], 'document_reference', 'English', '2.96 KB - PDF', "sample_document_reference.pdf", 'Download');
-    $publication_teaser_content = $content_items[7]->find('css', 'div.ecl-u-border-bottom.ecl-u-border-color-neutral-dark-50');
+    $publication_teaser_content = $content_items[7]->find('css', 'div.ecl-u-border-bottom.ecl-u-border-color-neutral-50');
     $publication_teaser_assert = new ListItemAssert();
     $publication_teaser_expected_values = [
       'title' => 'publication_reference',
