@@ -13,6 +13,7 @@
     {{ contacts }}
   {% else %}
     {% include '@ecl-twig/expandable' with {
+      'id': 'oe-organisation-contact-expandable'|clean_unique_id,
       'label_expanded': 'Hide contact details'|t,
       'label_collapsed': 'Show contact details'|t,
       'button': {

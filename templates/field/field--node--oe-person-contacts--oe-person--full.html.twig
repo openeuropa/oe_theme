@@ -10,6 +10,7 @@
 
 {% if contacts is not empty %}
   {% include '@ecl-twig/expandable' with {
+    'id': 'oe-person-contacts-expandable'|clean_unique_id,
     'label_expanded': 'Hide contact details'|t,
     'label_collapsed': 'Show contact details'|t,
     'button': {
