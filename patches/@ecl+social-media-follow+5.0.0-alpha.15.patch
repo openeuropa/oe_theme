@@ -1,0 +1,12 @@
+diff --git a/node_modules/@ecl/social-media-follow/social-media-follow.html.twig b/node_modules/@ecl/social-media-follow/social-media-follow.html.twig
+index c9fe14bf..f40c440d 100644
+--- a/node_modules/@ecl/social-media-follow/social-media-follow.html.twig
++++ b/node_modules/@ecl/social-media-follow/social-media-follow.html.twig
+@@ -87,6 +87,7 @@
+             family: 'networks',
+           }),
+           extra_classes: _link_extra_classes,
++          extra_attributes: link.extra_attributes,
+         } only %}
+       </li>
+     {% endfor %}
