@@ -83,6 +83,8 @@ class JavascriptBehavioursTest extends WebDriverTestBase {
     // We need to close the dropdown now. Clicking on the container will do.
     $this->getSession()->getPage()->find('css', 'button[data-ecl-label-expanded="Dropdown 0"]')->press();
 
+    // Assert extra attributes and extra classes of the submit button.
+    $this->assertSession()->elementExists('css', 'button.ecl-button.ecl-button--primary.button.js-form-submit.form-submit[type="submit"][data-drupal-selector="edit-add-more"][id="edit-add-more"][name="add_more"][value="Add another"][data-once="drupal-ajax"]');
     // Add a new dropdown.
     $this->getSession()->getPage()->pressButton('Add another');
     $this->assertSession()->assertWaitOnAjaxRequest();

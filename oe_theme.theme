@@ -354,6 +354,10 @@ function oe_theme_preprocess_input__submit(array &$variables): void {
   if (isset($variables['element']['#button_type'])) {
     $variables['variant'] = $variables['element']['#button_type'];
   }
+  if (isset($variables['attributes']['class'])) {
+    $variables['classes'] = implode(' ', $variables['attributes']['class']);
+    unset($variables['attributes']['class']);
+  }
 }
 
 /**

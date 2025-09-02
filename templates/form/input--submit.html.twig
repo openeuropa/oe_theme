@@ -14,5 +14,6 @@
 {% include '@ecl-twig/button' with {
   label: attributes.value,
   variant: variant|default('primary'),
-  extra_attributes: extraAttributes
+  extra_attributes: extraAttributes,
+  extra_classes: classes|default(''),
 } %}
