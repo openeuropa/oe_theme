@@ -653,3 +653,6 @@ msgstr "Anseo atá tú:"
 
 msgid "Follow the European Commission"
 msgstr "Lean an Coimisiún Eorpach"
+
+msgid "Plans and reports"
+msgstr "Pleananna agus tuarascálacha"

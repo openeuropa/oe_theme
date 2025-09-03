@@ -653,3 +653,6 @@ msgstr "Είστε εδώ:"
 
 msgid "Follow the European Commission"
 msgstr "Ακολουθήστε την Ευρωπαϊκή Επιτροπή"
+
+msgid "Plans and reports"
+msgstr "Σχέδια και εκθέσεις"

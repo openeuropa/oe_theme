@@ -653,3 +653,6 @@ msgstr "Ön itt van:"
 
 msgid "Follow the European Commission"
 msgstr "Kövesse az Európai Bizottságot"
+
+msgid "Plans and reports"
+msgstr "Tervek és jelentések"
