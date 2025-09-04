@@ -42,6 +42,15 @@ timeline:
       label: 'Extra classes string'
       description: 'Extra classes string'
       preview: ''
+    headline:
+      type: "array"
+      label: "Timeline headline"
+      description: "The timeline headline will be displayed as the first item of the timeline and it has the same structure as a regular timeline item."
+      preview:
+        label: "2025"
+        title: "Headline title"
+        body:
+          '#markup': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. <strong>Vivamus eu metus risus.</strong>'
     items:
       type: "array"
       label: "Timeline items"
