@@ -3707,7 +3707,7 @@
     count:
       'ul.ecl-content-block__secondary-meta-container': 1
       'article.ecl-card div.ecl-card__body ul.ecl-content-block__label-container': 0
-      'li.ecl-content-block__secondary-meta-item:nth-child(1) span.ecl-icon.ecl-icon--s.ecl-content-block__secondary-meta-icon.wt-icon--calendar' : 1
+      'li.ecl-content-block__secondary-meta-item:nth-child(1) span.ecl-icon.ecl-icon--s.ecl-content-block__secondary-meta-icon.wt-icon-ecl--calendar' : 1
       'li.ecl-content-block__secondary-meta-item:nth-child(2) span.ecl-icon.ecl-icon--s.ecl-content-block__secondary-meta-icon.wt-icon--location' : 1
     equals:
       'li.ecl-content-block__secondary-meta-item:nth-child(1) span.ecl-content-block__secondary-meta-label' : '15-16 November 2019, 08:00 AM'
@@ -4935,7 +4935,7 @@
       ul.ecl-list-illustration.ecl-list-illustration--zebra: 0
       li.ecl-list-illustration__item: 2
       img.ecl-list-illustration__image: 0
-      'li.ecl-list-illustration__item:nth-child(1) span.ecl-icon.wt-icon--growth': 1
+      'li.ecl-list-illustration__item:nth-child(1) span.ecl-icon.wt-icon-ecl--growth': 1
       'li.ecl-list-illustration__item:nth-child(2) span.ecl-icon.wt-icon--budget': 1
     contains:
       'li.ecl-list-illustration__item:nth-child(1) div.ecl-list-illustration__title': 'Business, Economy, Euro'
@@ -5035,7 +5035,7 @@
       ul.ecl-list-illustration.ecl-list-illustration--col-2: 1
       li.ecl-list-illustration__item: 2
       img.ecl-list-illustration__image: 0
-      'li.ecl-list-illustration__item:nth-child(1) span.ecl-icon.wt-icon--growth': 1
+      'li.ecl-list-illustration__item:nth-child(1) span.ecl-icon.wt-icon-ecl--growth': 1
       'li.ecl-list-illustration__item:nth-child(2) span.ecl-icon.wt-icon--budget': 1
     contains:
       'li.ecl-list-illustration__item:nth-child(1) div.ecl-list-illustration__title': 'Business, Economy, Euro'

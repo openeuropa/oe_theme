@@ -132,6 +132,7 @@ class WebtoolsIconsProvider implements WebtoolsIconsProviderInterface {
         'flags' => $icons['flags'] ?? [],
         'icons' => $icons['icons'] ?? [],
         'networks' => $icons['networks'] ?? [],
+        'ecl' => $icons['ecl'] ?? [],
       ],
       CacheBackendInterface::CACHE_PERMANENT,
       $this->getCacheTags()
