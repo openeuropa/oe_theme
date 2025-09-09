@@ -1,4 +1,22 @@
-# Changelog
+# Change Log
+
+## [5.0.0-beta14](https://github.com/openeuropa/oe_theme/tree/5.0.0-beta14) (2025-09-09)
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/5.0.0-beta13...5.0.0-beta14)
+
+**Merged pull requests:**
+
+- EWPP-5888: Locking drupal/entity\_browser and fix the webtools icons related tests. [\#1638](https://github.com/openeuropa/oe_theme/pull/1638) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-5627: Add missing extra\_attributes to social links. [\#1635](https://github.com/openeuropa/oe_theme/pull/1635) ([intelektron](https://github.com/intelektron))
+- EWPP-5825: Update Organisation CT full view with the new fields. [\#1633](https://github.com/openeuropa/oe_theme/pull/1633) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-5637: Set id attribute for ecl expandable component used in oe\_p… [\#1632](https://github.com/openeuropa/oe_theme/pull/1632) ([sergepavle](https://github.com/sergepavle))
+- EWPP-5829: Add new field to Timeline pattern and new Timeline set pattern. [\#1631](https://github.com/openeuropa/oe_theme/pull/1631) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-5777: Allow passing extra classes to input--submit template and extra classes and attributes to select template. [\#1630](https://github.com/openeuropa/oe_theme/pull/1630) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-5827: Ensure default value is set on existing accordion items wi… [\#1629](https://github.com/openeuropa/oe_theme/pull/1629) ([nagyad](https://github.com/nagyad))
+- EWPP-5768: Update to Drupal 10.5. [\#1628](https://github.com/openeuropa/oe_theme/pull/1628) ([intelektron](https://github.com/intelektron))
+- EWPP-5804: Replace node-sass with sass. [\#1627](https://github.com/openeuropa/oe_theme/pull/1627) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-5806: Update to ECL 5.0.0-alpha.15. [\#1623](https://github.com/openeuropa/oe_theme/pull/1623) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-5799: Do not pass a href for \<nolink\> menu items. [\#1620](https://github.com/openeuropa/oe_theme/pull/1620) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-5664: Check if in list\_item pattern detail field is empty. [\#1611](https://github.com/openeuropa/oe_theme/pull/1611) ([sergepavle](https://github.com/sergepavle))
 
 ## [5.0.0-beta13](https://github.com/openeuropa/oe_theme/tree/5.0.0-beta13) (2025-07-17)
 
@@ -6,6 +24,7 @@
 
 **Merged pull requests:**
 
+- Release 5.0.0-beta13 changelog. [\#1626](https://github.com/openeuropa/oe_theme/pull/1626) ([22Alexandra](https://github.com/22Alexandra))
 - EWPP-5770: Update existing icon values to valid webtools icons. [\#1625](https://github.com/openeuropa/oe_theme/pull/1625) ([nagyad](https://github.com/nagyad))
 
 ## [5.0.0-beta12](https://github.com/openeuropa/oe_theme/tree/5.0.0-beta12) (2025-07-16)
@@ -14,6 +33,7 @@
 
 **Merged pull requests:**
 
+- Release 5.0.0-beta12 changelog. [\#1624](https://github.com/openeuropa/oe_theme/pull/1624) ([22Alexandra](https://github.com/22Alexandra))
 - EWPP-5800: Update moment.js library to 2.29.4. [\#1621](https://github.com/openeuropa/oe_theme/pull/1621) ([22Alexandra](https://github.com/22Alexandra))
 - EWPP-5792: Set small and medium banners in carousel to ratio 3:2. [\#1619](https://github.com/openeuropa/oe_theme/pull/1619) ([fmmribeiro](https://github.com/fmmribeiro))
 
