@@ -119,7 +119,8 @@ class ProgrammeExtraField extends EventExtraFieldBase {
    */
   public function viewElements(ContentEntityInterface $entity) {
     if ($entity->get('oe_event_programme')->isEmpty()) {
-      return;
+      $this->isEmpty = TRUE;
+      return [];
     }
 
     $cache = new CacheableMetadata();
@@ -181,6 +182,7 @@ class ProgrammeExtraField extends EventExtraFieldBase {
     }
 
     if (!$items) {
+      $this->isEmpty = TRUE;
       return [];
     }
 

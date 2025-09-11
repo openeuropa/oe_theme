@@ -42,16 +42,22 @@ class OrganiserExtraField extends EventExtraFieldBase {
       // If the organiser is not internal and we have an organiser name, use
       // that. Without an organiser name we return an empty array to indicate
       // an empty field.
-      return !$entity->get('oe_event_organiser_name')->isEmpty() ? ['#markup' => $entity->get('oe_event_organiser_name')->value] : [];
+      if ($entity->get('oe_event_organiser_name')->isEmpty()) {
+        $this->isEmpty = TRUE;
+        return [];
+      }
+      return ['#markup' => $entity->get('oe_event_organiser_name')->value];
     }
 
     // If the organiser is internal and not empty, show it.
     if ($entity->get('oe_event_organiser_internal')->isEmpty()) {
+      $this->isEmpty = TRUE;
       return [];
     }
 
     $organiser = $entity->get('oe_event_organiser_internal')->entity;
     if (!$organiser instanceof ConceptInterface) {
+      $this->isEmpty = TRUE;
       return [];
     }
 

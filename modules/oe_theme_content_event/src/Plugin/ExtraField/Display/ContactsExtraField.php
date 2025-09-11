@@ -36,6 +36,7 @@ class ContactsExtraField extends EventExtraFieldBase {
 
     // Return an empty array if empty, so the field can be considered empty.
     if ($entity->get('oe_event_contact')->isEmpty()) {
+      $this->isEmpty = TRUE;
       return [];
     }
 

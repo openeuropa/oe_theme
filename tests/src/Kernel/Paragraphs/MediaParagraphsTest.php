@@ -30,7 +30,6 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     'oe_webtools',
     'oe_webtools_media',
     'json_field',
-    'allowed_formats',
     'oe_paragraphs_media_field_storage',
     'oe_paragraphs_iframe_media',
     'oe_paragraphs_banner',
