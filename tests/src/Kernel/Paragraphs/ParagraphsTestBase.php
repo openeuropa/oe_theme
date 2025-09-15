@@ -29,7 +29,6 @@ abstract class ParagraphsTestBase extends AbstractKernelTestBase {
     'options',
     'typed_link',
     'oe_paragraphs',
-    'allowed_formats',
     'locale',
     'oe_multilingual',
     'oe_multilingual_demo',
