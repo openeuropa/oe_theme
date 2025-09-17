@@ -40,6 +40,30 @@ interface WebtoolsIconsProviderInterface {
   public function getWebtoolsIcons(): array;
 
   /**
+   * Get the SVG URL for a given icon name.
+   *
+   * @param string $icon_name
+   *   The name of the icon to retrieve the SVG URL for.
+   *
+   * @return string|null
+   *   The SVG URL if found, or NULL if not found.
+   */
+  public function getSvgPath(string $icon_name): ?string;
+
+  /**
+   * Get information values for a given icon name and language.
+   *
+   * @param string $icon_name
+   *   The name of the icon to retrieve information for.
+   * @param string|null $language_name
+   *   The language code for the desired language (default is 'default').
+   *
+   * @return array
+   *   An associative array containing the icon's information values.
+   */
+  public function getInfoValues(string $icon_name, ?string $language_name = 'default'): array;
+
+  /**
    * Get the cache tags for the webtools icons.
    *
    * @return array

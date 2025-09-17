@@ -144,6 +144,47 @@ class WebtoolsIconsProvider implements WebtoolsIconsProviderInterface {
   /**
    * {@inheritdoc}
    */
+  public function getSvgPath(string $icon_name): ?string {
+    $icons = $this->getWebtoolsIcons();
+    foreach ($icons as $icon_set) {
+      if (empty($icon_set['name'])) {
+        continue;
+      }
+
+      if (in_array($icon_name, $icon_set['name'], TRUE) && !empty($icon_set['path'])) {
+        return str_replace('{name}', $icon_name, $icon_set['path']);
+      }
+    }
+
+    return NULL;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getInfoValues(string $icon_name, ?string $language_name = 'default'): array {
+    $icons = $this->getWebtoolsIcons();
+    foreach ($icons as $icon_set) {
+      if (empty($icon_set['name'])) {
+        continue;
+      }
+
+      if (in_array($icon_name, $icon_set['name'], TRUE) && !empty($icon_set['all'][$icon_name])) {
+        if (!empty($icon_set['all'][$icon_name]['languages'][$language_name])) {
+          return $icon_set['all'][$icon_name]['languages'][$language_name];
+        }
+        else {
+          return $icon_set['all'][$icon_name]['default'] ?? [];
+        }
+      }
+    }
+
+    return [];
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function getCacheTags(): array {
     if ($cache = $this->cache->get(static::CACHE_ID)) {
       // Return the same oe_timed_cache tags as the cache item.
