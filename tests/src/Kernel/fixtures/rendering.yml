@@ -226,8 +226,8 @@
   assertions:
     count:
       'section.ecl-banner.ecl-banner--font-m.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--l.ecl-banner--h-center.ecl-banner--v-center': 1
-      'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-banner__link-cta[href="http://example.com"]': 1
-      'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-banner__link-cta[data-name="data value"]': 0
+      'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--primary-highlight.ecl-link--icon.ecl-banner__link-cta[href="http://example.com"]': 1
+      'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--primary-highlight.ecl-link--icon.ecl-banner__link-cta[data-name="data value"]': 0
       'span.ecl-icon.ecl-icon--xs.ecl-icon--rotate-90.ecl-link__icon': 1
       'picture.ecl-picture.ecl-banner__picture img.ecl-banner__image[src="http://via.placeholder.com/150x150"]': 1
       '.ecl-banner--full-width': 0
@@ -236,7 +236,7 @@
     equals:
       'div.ecl-container div.ecl-banner__container div.ecl-banner__content div.ecl-banner__title span.ecl-banner__title-text': Banner title
       'div.ecl-container div.ecl-banner__container div.ecl-banner__content p.ecl-banner__description span.ecl-banner__description-text': Banner description
-      'a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-banner__link-cta[href="http://example.com"] span.ecl-link__label': Subscribe
+      'a.ecl-link.ecl-link--primary-highlight.ecl-link--icon.ecl-banner__link-cta[href="http://example.com"] span.ecl-link__label': Subscribe
       'footer.ecl-banner__credit div.ecl-container': © Copyright or credit
 - structure:
     '#type': pattern
@@ -259,8 +259,8 @@
   assertions:
     count:
       'section.ecl-banner.ecl-color-mode--purple.ecl-banner--font-m.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--m.ecl-banner--full-width.ecl-banner--h-left.ecl-banner--v-center': 1
-      'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-banner__link-cta[href="http://example.com"]': 0
-      'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-banner__link-cta[data-name="data value"]': 0
+      'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--primary-highlight.ecl-link--icon.ecl-banner__link-cta[href="http://example.com"]': 0
+      'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--primary-highlight.ecl-link--icon.ecl-banner__link-cta[data-name="data value"]': 0
       'div.ecl-container div.ecl-banner__container div.ecl-banner__content div.ecl-banner__title span.ecl-banner__title-text a.ecl-link.ecl-link--icon.ecl-banner__title-link[href="http://example.com"]': 1
       'div.ecl-container div.ecl-banner__container div.ecl-banner__content div.ecl-banner__title span.ecl-banner__title-text a.ecl-link.ecl-link--icon.ecl-banner__title-link[data-name="data value"]': 1
       'span.ecl-icon.ecl-icon--xs.ecl-icon--rotate-90.ecl-link__icon': 1
@@ -290,7 +290,7 @@
   assertions:
     count:
       'section.ecl-banner.ecl-color-mode--orange.ecl-banner--font-m.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--s.ecl-banner--h-center.ecl-banner--v-center': 1
-      'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-banner__link-cta[href="http://example.com"]': 0
+      'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--primary-highlight.ecl-link--icon.ecl-banner__link-cta[href="http://example.com"]': 0
       'div.ecl-container div.ecl-banner__container div.ecl-banner__content p.ecl-banner__description span.ecl-banner__description-text a.ecl-link.ecl-link--icon.ecl-banner__description-link[href="http://example.com"]': 1
       'div.ecl-container div.ecl-banner__container div.ecl-banner__content p.ecl-banner__description span.ecl-banner__description-text a.ecl-link.ecl-link--icon.ecl-banner__description-link[data-name="data value"]': 1
       'span.ecl-icon.ecl-icon--xs.ecl-icon--rotate-90.ecl-link__icon': 1
@@ -318,7 +318,7 @@
     count:
       'section.ecl-banner.ecl-banner--font-m.ecl-banner--box-bg-dark.ecl-banner--color-light.ecl-banner--l.ecl-banner--h-center.ecl-banner--v-center': 0
       'section.ecl-banner.ecl-banner--font-m.ecl-banner--box-bg-dark.ecl-banner--color-light.ecl-banner--l.ecl-banner--h-left.ecl-banner--v-center': 1
-      'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-banner__link-cta[href="http://example.com"]': 1
+      'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--primary-highlight.ecl-link--icon.ecl-banner__link-cta[href="http://example.com"]': 1
       'span.ecl-icon.ecl-icon--xs.ecl-icon--rotate-90.ecl-link__icon': 1
       'picture.ecl-picture.ecl-banner__picture img.ecl-banner__image[src="http://via.placeholder.com/150x150"]': 1
       'picture source': 0
@@ -328,7 +328,7 @@
     equals:
       'div.ecl-container div.ecl-banner__container div.ecl-banner__content div.ecl-banner__title span.ecl-banner__title-text': Banner title
       'div.ecl-container div.ecl-banner__container div.ecl-banner__content p.ecl-banner__description span.ecl-banner__description-text': Banner description
-      'a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-banner__link-cta[href="http://example.com"] span.ecl-link__label': Example
+      'a.ecl-link.ecl-link--primary-highlight.ecl-link--icon.ecl-banner__link-cta[href="http://example.com"] span.ecl-link__label': Example
 - structure:
     '#type': pattern
     '#id': banner
@@ -362,7 +362,7 @@
   assertions:
     count:
       'section.ecl-banner.ecl-banner--font-m.ecl-banner--box-bg-dark.ecl-banner--color-light.ecl-banner--l.ecl-banner--h-center.ecl-banner--v-center.ecl-banner--full-width': 1
-      'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-banner__link-cta[href="http://example.com"]': 1
+      'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--primary-highlight.ecl-link--icon.ecl-banner__link-cta[href="http://example.com"]': 1
       'span.ecl-icon.ecl-icon--xs.ecl-icon--rotate-90.ecl-link__icon': 1
       'picture.ecl-picture.ecl-banner__picture img.ecl-banner__image[src="http://via.placeholder.com/150x150"][alt="alternative text"]': 1
       'picture source': 6
@@ -377,7 +377,7 @@
     equals:
       'div.ecl-container div.ecl-banner__container div.ecl-banner__content div.ecl-banner__title span.ecl-banner__title-text': Banner title
       'div.ecl-container div.ecl-banner__container div.ecl-banner__content p.ecl-banner__description span.ecl-banner__description-text': Banner description
-      'a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-banner__link-cta[href="http://example.com"] span.ecl-link__label': Example
+      'a.ecl-link.ecl-link--primary-highlight.ecl-link--icon.ecl-banner__link-cta[href="http://example.com"] span.ecl-link__label': Example
       'footer.ecl-banner__credit div.ecl-container': © Copyright or credit
 - structure:
     '#type': pattern
@@ -395,7 +395,7 @@
   assertions:
     count:
       'section.ecl-banner.ecl-banner--font-m.ecl-banner--box-bg-light.ecl-banner--m.ecl-banner--full-width.ecl-banner--h-left.ecl-banner--v-center': 1
-      'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-banner__link-cta[href="http://example.com"]': 1
+      'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--primary-highlight.ecl-link--icon.ecl-banner__link-cta[href="http://example.com"]': 1
       'span.ecl-icon.ecl-icon--xs.ecl-icon--rotate-90.ecl-link__icon': 1
       'picture.ecl-picture.ecl-banner__picture img.ecl-banner__image[src="http://via.placeholder.com/150x150"]': 1
       'footer.ecl-banner__credit div.ecl-container': 1
@@ -403,7 +403,7 @@
     equals:
       'div.ecl-container div.ecl-banner__container div.ecl-banner__content div.ecl-banner__title span.ecl-banner__title-text': Banner title
       'div.ecl-container div.ecl-banner__container div.ecl-banner__content p.ecl-banner__description span.ecl-banner__description-text': Banner description
-      'a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-banner__link-cta[href="http://example.com"] span.ecl-link__label': Example
+      'a.ecl-link.ecl-link--primary-highlight.ecl-link--icon.ecl-banner__link-cta[href="http://example.com"] span.ecl-link__label': Example
 - structure:
     '#type': pattern
     '#id': banner
@@ -427,8 +427,8 @@
   assertions:
     count:
       'section.ecl-banner.ecl-banner--font-l.ecl-banner--box-bg-none.ecl-banner--color-light.ecl-banner--m.ecl-banner--full-width.ecl-banner--h-right.ecl-banner--v-top': 1
-      'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-banner__link-cta[href="http://example.com"]': 1
-      'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-banner__link-cta[data-name="data value"]': 1
+      'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--primary-highlight.ecl-link--icon.ecl-banner__link-cta[href="http://example.com"]': 1
+      'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--primary-highlight.ecl-link--icon.ecl-banner__link-cta[data-name="data value"]': 1
       'span.ecl-icon.ecl-icon--xs.ecl-icon--rotate-90.ecl-link__icon': 1
       'picture.ecl-picture.ecl-banner__picture img.ecl-banner__image[src="http://via.placeholder.com/150x150"]': 1
       'footer.ecl-banner__credit div.ecl-container': 1
@@ -436,7 +436,7 @@
     equals:
       'div.ecl-container div.ecl-banner__container div.ecl-banner__content div.ecl-banner__title span.ecl-banner__title-text': Banner title
       'div.ecl-container div.ecl-banner__container div.ecl-banner__content p.ecl-banner__description span.ecl-banner__description-text': Banner description
-      'a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-banner__link-cta[href="http://example.com"] span.ecl-link__label': Subscribe
+      'a.ecl-link.ecl-link--primary-highlight.ecl-link--icon.ecl-banner__link-cta[href="http://example.com"] span.ecl-link__label': Subscribe
 - structure:
     '#type': pattern
     '#id': banner
@@ -462,8 +462,8 @@
     count:
       'section.ecl-banner.ecl-banner--font-l.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--l.ecl-banner--full-width.ecl-banner--h-center.ecl-banner--v-bottom': 0
       'section.ecl-banner.ecl-banner--font-l.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--l.ecl-banner--h-center.ecl-banner--v-bottom': 1
-      'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-banner__link-cta[href="http://example.com"]': 1
-      'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-banner__link-cta[data-name="data value"]': 1
+      'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--primary-highlight.ecl-link--icon.ecl-banner__link-cta[href="http://example.com"]': 1
+      'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--primary-highlight.ecl-link--icon.ecl-banner__link-cta[data-name="data value"]': 1
       'span.ecl-icon.ecl-icon--xs.ecl-icon--rotate-90.ecl-link__icon': 1
       'picture.ecl-picture.ecl-banner__picture img.ecl-banner__image[src="http://via.placeholder.com/150x150"]': 1
       'footer.ecl-banner__credit div.ecl-container': 1
@@ -471,7 +471,7 @@
     equals:
       'div.ecl-container div.ecl-banner__container div.ecl-banner__content div.ecl-banner__title span.ecl-banner__title-text': Banner title
       'div.ecl-container div.ecl-banner__container div.ecl-banner__content p.ecl-banner__description span.ecl-banner__description-text': Banner description
-      'a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-banner__link-cta[href="http://example.com"] span.ecl-link__label': Subscribe
+      'a.ecl-link.ecl-link--primary-highlight.ecl-link--icon.ecl-banner__link-cta[href="http://example.com"] span.ecl-link__label': Subscribe
 - structure:
     '#type': pattern
     '#id': banner
@@ -497,8 +497,8 @@
       'section.ecl-banner.ecl-color-mode--green.ecl-banner--font-l.ecl-banner--no-media.ecl-banner--l.ecl-banner--h-center.ecl-banner--v-bottom': 1
       '.ecl-banner--box-bg-light': 0
       '.ecl-banner--color-dark': 0
-      'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-banner__link-cta[href="http://example.com"]': 1
-      'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-banner__link-cta[data-name="data value"]': 1
+      'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--primary-highlight.ecl-link--icon.ecl-banner__link-cta[href="http://example.com"]': 1
+      'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--primary-highlight.ecl-link--icon.ecl-banner__link-cta[data-name="data value"]': 1
       'span.ecl-icon.ecl-icon--xs.ecl-icon--rotate-90.ecl-link__icon': 1
       'picture': 0
       'footer.ecl-banner__credit': 0
@@ -506,7 +506,7 @@
     equals:
       'div.ecl-container div.ecl-banner__container div.ecl-banner__content div.ecl-banner__title span.ecl-banner__title-text': Banner title
       'div.ecl-container div.ecl-banner__container div.ecl-banner__content p.ecl-banner__description span.ecl-banner__description-text': Banner description
-      'a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-banner__link-cta[href="http://example.com"] span.ecl-link__label': Subscribe
+      'a.ecl-link.ecl-link--primary-highlight.ecl-link--icon.ecl-banner__link-cta[href="http://example.com"] span.ecl-link__label': Subscribe
 - structure:
     '#type': pattern
     '#id': banner
@@ -542,8 +542,8 @@
     count:
       'section.ecl-banner.ecl-banner--font-l.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--l.ecl-banner--full-width.ecl-banner--h-center.ecl-banner--v-bottom': 1
       'section.ecl-banner.ecl-banner--font-l.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--l.ecl-banner--h-center.ecl-banner--v-bottom': 1
-      'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-banner__link-cta[href="http://example.com"]': 1
-      'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-banner__link-cta[data-name="data value"]': 1
+      'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--primary-highlight.ecl-link--icon.ecl-banner__link-cta[href="http://example.com"]': 1
+      'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--primary-highlight.ecl-link--icon.ecl-banner__link-cta[data-name="data value"]': 1
       'span.ecl-icon.ecl-icon--xs.ecl-icon--rotate-90.ecl-link__icon': 1
       'picture.ecl-picture.ecl-banner__picture img.ecl-banner__image[src="http://via.placeholder.com/150x150"]': 0
       'video[poster="https://inno-ecl.s3.amazonaws.com/media/examples/example-image.jpg"]': 1
@@ -560,7 +560,7 @@
     equals:
       'div.ecl-container div.ecl-banner__container div.ecl-banner__content div.ecl-banner__title span.ecl-banner__title-text': Banner video title
       'div.ecl-container div.ecl-banner__container div.ecl-banner__content p.ecl-banner__description span.ecl-banner__description-text': Banner video description
-      'a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-banner__link-cta[href="http://example.com"] span.ecl-link__label': Subscribe
+      'a.ecl-link.ecl-link--primary-highlight.ecl-link--icon.ecl-banner__link-cta[href="http://example.com"] span.ecl-link__label': Subscribe
       'button.ecl-banner__pause span span.ecl-button__label': Pause video
       'button.ecl-banner__play span span.ecl-button__label': Play video
 - structure:
@@ -597,8 +597,8 @@
     count:
       'section.ecl-banner.ecl-banner--font-l.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--l.ecl-banner--full-width.ecl-banner--h-center.ecl-banner--v-bottom': 1
       'section.ecl-banner.ecl-banner--font-l.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--l.ecl-banner--h-center.ecl-banner--v-bottom': 1
-      'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-banner__link-cta[href="http://example.com"]': 1
-      'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-banner__link-cta[data-name="data value"]': 1
+      'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--primary-highlight.ecl-link--icon.ecl-banner__link-cta[href="http://example.com"]': 1
+      'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--primary-highlight.ecl-link--icon.ecl-banner__link-cta[data-name="data value"]': 1
       'span.ecl-icon.ecl-icon--xs.ecl-icon--rotate-90.ecl-link__icon': 1
       'picture.ecl-picture.ecl-banner__picture img.ecl-banner__image[src="http://via.placeholder.com/150x150"]': 0
       'video[poster="https://inno-ecl.s3.amazonaws.com/media/examples/example-image.jpg"]': 0
@@ -616,7 +616,7 @@
     equals:
       'div.ecl-container div.ecl-banner__container div.ecl-banner__content div.ecl-banner__title span.ecl-banner__title-text': Banner video title
       'div.ecl-container div.ecl-banner__container div.ecl-banner__content p.ecl-banner__description span.ecl-banner__description-text': Banner video description
-      'a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-banner__link-cta[href="http://example.com"] span.ecl-link__label': Subscribe
+      'a.ecl-link.ecl-link--primary-highlight.ecl-link--icon.ecl-banner__link-cta[href="http://example.com"] span.ecl-link__label': Subscribe
       'button.ecl-banner__pause span span.ecl-button__label': Pause video
       'button.ecl-banner__play span span.ecl-button__label': Play video
 - structure:
@@ -649,8 +649,8 @@
     count:
       'section.ecl-banner.ecl-banner--font-l.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--l.ecl-banner--full-width.ecl-banner--h-center.ecl-banner--v-bottom': 1
       'section.ecl-banner.ecl-banner--font-l.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--l.ecl-banner--h-center.ecl-banner--v-bottom': 1
-      'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-banner__link-cta[href="http://example.com"]': 1
-      'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-banner__link-cta[data-name="data value"]': 1
+      'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--primary-highlight.ecl-link--icon.ecl-banner__link-cta[href="http://example.com"]': 1
+      'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--primary-highlight.ecl-link--icon.ecl-banner__link-cta[data-name="data value"]': 1
       'span.ecl-icon.ecl-icon--xs.ecl-icon--rotate-90.ecl-link__icon': 1
       'picture.ecl-picture.ecl-banner__picture img.ecl-banner__image[src="http://via.placeholder.com/150x150"]': 0
       'video[poster="https://inno-ecl.s3.amazonaws.com/media/examples/example-image.jpg"]': 1
@@ -668,7 +668,7 @@
     equals:
       'div.ecl-container div.ecl-banner__container div.ecl-banner__content div.ecl-banner__title span.ecl-banner__title-text': Banner video title
       'div.ecl-container div.ecl-banner__container div.ecl-banner__content p.ecl-banner__description span.ecl-banner__description-text': Banner video description
-      'a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-banner__link-cta[href="http://example.com"] span.ecl-link__label': Subscribe
+      'a.ecl-link.ecl-link--primary-highlight.ecl-link--icon.ecl-banner__link-cta[href="http://example.com"] span.ecl-link__label': Subscribe
       'button.ecl-banner__pause span span.ecl-button__label': Pause
       'button.ecl-banner__play span span.ecl-button__label': Play
 - structure:
@@ -701,8 +701,8 @@
     count:
       'section.ecl-banner.ecl-banner--font-l.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--l.ecl-banner--full-width.ecl-banner--h-center.ecl-banner--v-bottom': 1
       'section.ecl-banner.ecl-banner--font-l.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--l.ecl-banner--h-center.ecl-banner--v-bottom': 1
-      'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-banner__link-cta[href="http://example.com"]': 1
-      'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-banner__link-cta[data-name="data value"]': 1
+      'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--primary-highlight.ecl-link--icon.ecl-banner__link-cta[href="http://example.com"]': 1
+      'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--primary-highlight.ecl-link--icon.ecl-banner__link-cta[data-name="data value"]': 1
       'span.ecl-icon.ecl-icon--xs.ecl-icon--rotate-90.ecl-link__icon': 1
       'picture.ecl-picture.ecl-banner__picture img.ecl-banner__image[src="http://via.placeholder.com/150x150"]': 0
       'video[poster="https://inno-ecl.s3.amazonaws.com/media/examples/example-image.jpg"]': 1
@@ -719,7 +719,7 @@
     equals:
       'div.ecl-container div.ecl-banner__container div.ecl-banner__content div.ecl-banner__title span.ecl-banner__title-text': Banner video title
       'div.ecl-container div.ecl-banner__container div.ecl-banner__content p.ecl-banner__description span.ecl-banner__description-text': Banner video description
-      'a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-banner__link-cta[href="http://example.com"] span.ecl-link__label': Subscribe
+      'a.ecl-link.ecl-link--primary-highlight.ecl-link--icon.ecl-banner__link-cta[href="http://example.com"] span.ecl-link__label': Subscribe
       'button.ecl-banner__pause span span.ecl-button__label': Pause video
       'button.ecl-banner__play span span.ecl-button__label': Play video
 - structure:
@@ -763,8 +763,8 @@
     count:
       'section.ecl-banner.ecl-banner--font-l.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--l.ecl-banner--full-width.ecl-banner--h-center.ecl-banner--v-bottom': 1
       'section.ecl-banner.ecl-banner--font-l.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--l.ecl-banner--h-center.ecl-banner--v-bottom': 1
-      'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-banner__link-cta[href="http://example.com"]': 1
-      'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-banner__link-cta[data-name="data value"]': 1
+      'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--primary-highlight.ecl-link--icon.ecl-banner__link-cta[href="http://example.com"]': 1
+      'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--primary-highlight.ecl-link--icon.ecl-banner__link-cta[data-name="data value"]': 1
       'span.ecl-icon.ecl-icon--xs.ecl-icon--rotate-90.ecl-link__icon': 1
       'picture.ecl-picture.ecl-banner__picture img.ecl-banner__image[src="http://via.placeholder.com/150x150"]': 0
       'video[poster="https://inno-ecl.s3.amazonaws.com/media/examples/example-image.jpg"]': 1
@@ -784,7 +784,7 @@
     equals:
       'div.ecl-container div.ecl-banner__container div.ecl-banner__content div.ecl-banner__title span.ecl-banner__title-text': Banner video title
       'div.ecl-container div.ecl-banner__container div.ecl-banner__content p.ecl-banner__description span.ecl-banner__description-text': Banner video description
-      'a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-banner__link-cta[href="http://example.com"] span.ecl-link__label': Subscribe
+      'a.ecl-link.ecl-link--primary-highlight.ecl-link--icon.ecl-banner__link-cta[href="http://example.com"] span.ecl-link__label': Subscribe
       'button.ecl-banner__pause span span.ecl-button__label': Pause video
       'button.ecl-banner__play span span.ecl-button__label': Play video
 - structure:
@@ -4770,11 +4770,12 @@
       color_mode: 'purple'
   assertions:
     count:
-      'div.ecl-fact-figures.ecl-fact-figures--col-2.ecl-color-mode--purple.ecl-fact-figures--font-m.ecl-fact-figures--centered div.ecl-fact-figures__items': 1
+      'div.ecl-fact-figures.ecl-fact-figures--col-2.ecl-color-mode--purple.ecl-fact-figures--centered div.ecl-fact-figures__items': 1
       'div.ecl-fact-figures__item:nth-child(1) span.ecl-icon.ecl-icon--l.ecl-fact-figures__icon.wt-icon-networks--instagram': 1
       'div.ecl-fact-figures__item:nth-child(2) span.ecl-icon.ecl-icon--l.ecl-fact-figures__icon.wt-icon--external': 1
       'div.ecl-fact-figures__view-all': 1
       'div.ecl-fact-figures__view-all span.ecl-icon.ecl-icon--2xs.ecl-link__icon.wt-icon--external': 1
+      'div.ecl-fact-figures__item.ecl-fact-figures__item--font-m': 2
     equals:
       'div.ecl-fact-figures__item:nth-child(1) div.ecl-fact-figures__value': '00.0 million'
       'div.ecl-fact-figures__item:nth-child(1) div.ecl-fact-figures__title': 'Lorem ipsum'
@@ -4806,8 +4807,7 @@
       'div.ecl-fact-figures.ecl-fact-figures--col-3.ecl-color-mode--orange div.ecl-fact-figures__items': 1
       'div.ecl-fact-figures.ecl-fact-figures--col-3.ecl-fact-figures--centered': 0
       'div.ecl-fact-figures__view-all': 0
-      '.ecl-fact-figures--font-m': 0
-      '.ecl-fact-figures--font-l': 0
+      '.ecl-fact-figures__item--font-m': 0
 - structure:
     '#type': 'pattern'
     '#id': 'active_search_filters'
@@ -5796,7 +5796,7 @@
       div.ecl-tabs div.ecl-tabs__container div.ecl-tabs__list div.ecl-tabs__item a.ecl-tabs__link:nth-child(1): 'View'
       div.ecl-tabs div.ecl-tabs__container div.ecl-tabs__list div.ecl-tabs__item a.ecl-tabs__link--active: 'Edit'
       div.ecl-tabs div.ecl-tabs__container div.ecl-tabs__list div.ecl-tabs__item a.ecl-tabs__link:nth-child(3): 'Delete'
-      div.ecl-tabs div.ecl-tabs__container button.ecl-button span.ecl-button__label: 'More (%d)'
+      div.ecl-tabs div.ecl-tabs__container button.ecl-button span.ecl-button__label: 'More'
       div.ecl-tabs div.ecl-tabs__controls button.ecl-tabs__prev: 'Previous'
       div.ecl-tabs div.ecl-tabs__controls button.ecl-tabs__Next: 'Next'
 - structure:

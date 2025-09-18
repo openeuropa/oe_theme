@@ -197,7 +197,7 @@ class ContentPersonRenderTest extends ContentRenderTestBase {
     $this->assertContentHeader($content_items[1], 'Contact', 'contact');
     $this->assertContactDefaultRender($content_items[1], 'direct_contact');
 
-    $expandable_button = $content_items[1]->find('css', '.ecl-expandable button.ecl-button.ecl-button--ghost.ecl-expandable__toggle');
+    $expandable_button = $content_items[1]->find('css', '.ecl-expandable button.ecl-button.ecl-button--tertiary.ecl-expandable__toggle');
     $this->assertEquals('Show contact details', $expandable_button->getAttribute('data-ecl-label-collapsed'));
     $this->assertEquals('Hide contact details', $expandable_button->getAttribute('data-ecl-label-expanded'));
 
