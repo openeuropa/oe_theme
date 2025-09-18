@@ -93,7 +93,7 @@ class SocialMediaLinksAssert extends BasePatternAssert {
         // Service icon exists.
         $link_element = $li_item->filter('a.ecl-link.ecl-link--standalone.ecl-link--icon.ecl-social-media-follow__link');
         $label_element = $link_element->filter('span.ecl-link__label');
-        self::assertCount(1, $link_element->filter('span.ecl-icon.ecl-icon--m.ecl-link__icon.wt-icon-networks--' . $expected_item['service']));
+        self::assertCount(1, $link_element->filter('span.ecl-icon.ecl-icon--s.ecl-link__icon.wt-icon-networks--' . $expected_item['service']));
       }
 
       self::assertEquals($expected_item['label'], trim($label_element->text()));

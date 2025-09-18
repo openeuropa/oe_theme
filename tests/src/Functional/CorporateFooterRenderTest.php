@@ -979,7 +979,7 @@ class CorporateFooterRenderTest extends BrowserTestBase {
   protected function assertSocialLink(NodeElement $label, NodeElement $link, array $expected): void {
     $this->assertEquals($expected['label'], $label->getText());
     $this->assertEquals($expected['href'], $link->getAttribute('href'));
-    $size = $this->library == 'ec' ? 'm' : 'xs';
+    $size = $this->library == 'ec' ? 's' : 'xs';
     $icon_class = $this->library == 'ec' ? 'wt-icon--inverted' : 'wt-icon--primary';
     $this->assertSession()->elementExists('css', 'span.ecl-icon.ecl-icon--' . $size . '.ecl-link__icon.wt-icon-networks--' . $expected['icon_name'] . '.' . $icon_class, $link);
     $inverted_class = $this->library == 'ec' ? 'ecl-link--inverted ' : '';

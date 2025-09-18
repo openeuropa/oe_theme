@@ -101,7 +101,7 @@ class MainMenuTest extends AbstractKernelTestBase {
     $this->assertCount(1, $links->eq(0)->filter('a.ecl-menu__link span.ecl-icon.ecl-icon--2xs.wt-icon--external'));
     // Assert that the parent item renders the corner arrow icon because it has
     // children, although it's an external link.
-    $this->assertCount(1, $links->eq(1)->filter('button.ecl-button--ghost.ecl-menu__button-caret span.ecl-icon.ecl-icon--xs.ecl-icon--rotate-180.ecl-button__icon.wt-icon--corner-arrow'));
+    $this->assertCount(1, $links->eq(1)->filter('button.ecl-button--tertiary.ecl-menu__button-caret span.ecl-icon.ecl-icon--xs.ecl-icon--rotate-180.ecl-button__icon.wt-icon--corner-arrow'));
 
     // Assert that parent link is correctly rendered.
     // Remove all non-printable characters.
