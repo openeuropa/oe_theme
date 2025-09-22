@@ -1,0 +1,20 @@
+{#
+/**
+ * @file
+ * Spotlight pattern template.
+ */
+#}
+
+{% include '@ecl-twig/spotlight' with {
+  header: header|default(''),
+  title: title|default(''),
+  font_size: font_size|default('l'),
+  path: path|default(''),
+  picture: picture|default([]),
+  full_width: full_width ?? false,
+  credit: credit|default(''),
+  color_mode: color_mode|default(''),
+  has_anchor: has_anchor ?? true,
+  extra_classes: extra_classes|default(''),
+  extra_attributes: extra_attributes|default([]),
+} only %}

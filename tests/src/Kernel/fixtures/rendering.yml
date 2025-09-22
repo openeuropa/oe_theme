@@ -5816,3 +5816,60 @@
       div.ecl-tabs div.ecl-tabs__container button.ecl-button span.ecl-button__label: 'Custom more label'
       div.ecl-tabs div.ecl-tabs__controls button.ecl-tabs__prev: 'Custom previous label'
       div.ecl-tabs div.ecl-tabs__controls button.ecl-tabs__next: 'Custom next label'
+- structure:
+    '#type': pattern
+    '#id': spotlight
+    '#fields':
+      header: "In focus"
+      title: "Proin molestie sapien ut blandit"
+      font_size: "m"
+      path: "http://example.com"
+      picture:
+        img:
+          src: "https://inno-ecl.s3.amazonaws.com/media/examples/example-image.jpg"
+          alt: "alternative text"
+      full_width: true
+      credit: "© Copyright or credit"
+      color_mode: "red-tomato"
+      has_anchor: true
+      extra_classes: "custom-class1 custom-class2"
+      extra_attributes:
+        - name: "extra-attr"
+          value: "extra value"
+  assertions:
+    count:
+      'section.ecl-spotlight.ecl-color-mode--red-tomato.ecl-spotlight--full-width.custom-class1.custom-class2[extra-attr="extra value"]': 1
+      'div.ecl-spotlight__header': 1
+      'a.ecl-spotlight__link[href="http://example.com"]': 1
+      'a figure.ecl-spotlight__picture-container picture.ecl-picture.ecl-spotlight__picture[data-ecl-spotlight-image] img.ecl-spotlight__image[src="https://inno-ecl.s3.amazonaws.com/media/examples/example-image.jpg"][alt="alternative text"]': 1
+      'a div.ecl-spotlight__container[data-ecl-spotlight-container] div.ecl-container': 1
+      'a div.ecl-spotlight__container[data-ecl-spotlight-container] div.ecl-container .ecl-spotlight__anchor[aria-hidden="true"]': 1
+      'a div.ecl-spotlight__container[data-ecl-spotlight-container] footer.ecl-spotlight__credit': 1
+    equals:
+      'div.ecl-spotlight__header div.ecl-container': "In focus"
+      'a .ecl-spotlight__container .ecl-container div.ecl-spotlight__title': "Proin molestie sapien ut blandit"
+      'a .ecl-spotlight__container footer.ecl-spotlight__credit': "© Copyright or credit"
+- structure:
+    '#type': pattern
+    '#id': spotlight
+    '#fields':
+      header: "In focus"
+      picture:
+        img:
+          src: "https://inno-ecl.s3.amazonaws.com/media/examples/example-image.jpg"
+          alt: "alternative text"
+      full_width: false
+      has_anchor: false
+  assertions:
+    count:
+      'section.ecl-spotlight.ecl-spotlight--full-width': 0
+      'section.ecl-spotlight.ecl-spotlight--font-m': 0
+      'section.ecl-spotlight.ecl-spotlight--font-l': 1
+      'div.ecl-spotlight__header': 1
+      'a.ecl-spotlight__link': 0
+      'figure.ecl-spotlight__picture-container picture.ecl-picture.ecl-spotlight__picture[data-ecl-spotlight-image] img.ecl-spotlight__image[src="https://inno-ecl.s3.amazonaws.com/media/examples/example-image.jpg"][alt="alternative text"]': 1
+      '.ecl-spotlight__anchor': 0
+      'div.ecl-spotlight__title': 0
+      'footer.ecl-spotlight__credit': 0
+    equals:
+      'div.ecl-spotlight__header div.ecl-container': "In focus"
