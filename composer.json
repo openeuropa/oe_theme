@@ -7,7 +7,7 @@
     "prefer-stable": true,
     "require": {
         "php": ">=8.1",
-        "cweagans/composer-patches": "^1.7 || ^2.0",
+        "cweagans/composer-patches": "^2.0",
         "drupal/core": "^10.3 || ^11",
         "drupal/smart_trim": "^2",
         "drupal/stable": "^2.0",
@@ -31,9 +31,9 @@
         "drupal/description_list_field": "^1.0",
         "drupal/drupal-extension": "^5.0",
         "drupal/emr": "^1.3",
-        "drupal/entity_browser": "2.13",
+        "drupal/entity_browser": "^2.15",
         "drupal/entity_reference_revisions": "~1.11",
-        "drupal/extra_field": "~3",
+        "drupal/extra_field": "3.0.0-beta1",
         "drupal/field_group": "~3.2",
         "drupal/inline_entity_form": "~3",
         "drupal/json_field": "^1.2",
@@ -52,8 +52,8 @@
         "openeuropa/oe_corporate_site_info": "^1.2",
         "openeuropa/oe_media": "^1.32",
         "openeuropa/oe_multilingual": "^1.18",
-        "openeuropa/oe_paragraphs": "^1.20",
-        "openeuropa/oe_search": "^2.9",
+        "openeuropa/oe_paragraphs": "dev-master",
+        "openeuropa/oe_search": "2.x-dev",
         "openeuropa/rdf_skos": "^1.0.0",
         "openeuropa/task-runner-drupal-project-symlink": "^1.0"
     },
@@ -116,7 +116,7 @@
             "Explicit requirement of lullabot/mink-selenium2-driver v1.6.0 to ensure dragTo() keeps working in tests. Aliased as 1.7.3 because core-dev requires it on that version.",
             "autoload-dev: explicitly mapping EntityReferenceFieldCreationTrait to prevent failures.",
             "Patch for drupal/driver refers to https://github.com/jhedstrom/DrupalDriver/pull/235",
-            "Locked drupal/entity_browser to 2.13 to version because newer release is breaking media avportal entity browser."
+            "Locking extra_field to 3.0.0-beta1 due to issues, will be fixed in EWPP-6001."
         ]
     },
     "config": {
