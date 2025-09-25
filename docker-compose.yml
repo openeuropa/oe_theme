@@ -15,6 +15,12 @@ services:
       PHP_IDE_CONFIG: "serverName=Docker"
       # Enable step debugging for all PHP request. See ./README.md#step-debugging for more information.
       # XDEBUG_SESSION: 1
+      DRUPAL_DATABASE_NAME: "drupal"
+      DRUPAL_DATABASE_USERNAME: "root"
+      DRUPAL_DATABASE_PASSWORD: ""
+      DRUPAL_DATABASE_HOST: "mysql"
+      DRUPAL_DATABASE_PORT: "3306"
+      DRUPAL_DATABASE_PREFIX: ""
   mysql:
     image: percona/percona-server:8.0
     command: --innodb-log-file-size=1G --max_allowed_packet=1G --innodb-buffer-pool-size=512M --wait_timeout=3000 --net_write_timeout=3000 --log_error_verbosity=3 --skip-log-bin --innodb-flush-log-at-trx-commit=2 --innodb-read-io-threads=16 --innodb-write-io-threads=16
@@ -35,16 +41,6 @@ services:
     expose:
       - '4444'
     shm_size: 2g
-  node:
-    image: node:22.11.0
-    user: "node"
-    working_dir: /home/node/app
-    environment:
-      - NODE_ENV=${NODE_ENV}
-      - SHELL=bash
-    volumes:
-      - ./:/home/node/app
-    command: "sleep infinity"
   sparql:
     image: registry.fpfis.eu/digit/devsecops/triplestore
     environment:
