@@ -73,6 +73,7 @@
         ],
         "psr-4": {
             "Drupal\\Tests\\oe_theme\\": "./tests/src/",
+            "Drupal\\oe_theme_commands\\": "./toolkit/src/",
             "Drupal\\Tests\\oe_content\\": "./build/modules/contrib/oe_content/tests/src/",
             "Drupal\\Tests\\oe_media\\": "./build/modules/contrib/oe_media/tests/src/"
         }
