@@ -22,7 +22,7 @@
 {% else %}
   {% include '@ecl-twig/button' with {
     'label': label,
-    'variant': variant|replace({'_':'-'}),
+    'variant': variant,
     'type': type_attribute,
     'icon': {
       'name': external_link ? 'external' : icon,
