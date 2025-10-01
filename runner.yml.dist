@@ -72,7 +72,7 @@ commands:
   setup:behat:
     - { task: "process", source: "behat.yml.dist", destination: "behat.yml" }
   toolkit:code-review:
-      - { task: "exec", command: "./vendor/bin/grumphp run --verbose" }
+      - { task: "exec", command: "./vendor/bin/grumphp run" }
   toolkit:test-phpunit:
     - { task: "run", command: "toolkit:test-phpunit-batches" }
 release:
