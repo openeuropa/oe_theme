@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Drupal\oe_theme\TaskRunner\Commands;
+namespace Drupal\Tests\oe_theme\TaskRunner\Commands;
 
 use EcEuropa\Toolkit\TaskRunner\AbstractCommands;
 use Robo\Exception\AbortTasksException;
@@ -10,7 +10,7 @@ use Robo\Exception\AbortTasksException;
 /**
  * Defines ec-europa/toolkit commands to run tests.
  */
-class TestsCommands extends AbstractCommands {
+class BatchCommands extends AbstractCommands {
 
   /**
    * Run PHPUnit tests in parallel, by batches.
