@@ -695,11 +695,11 @@ class ParagraphsTest extends ParagraphsTestBase {
     $this->assertEquals('30 millions', trim($crawler->filter('div.ecl-fact-figures__item:nth-child(3) div.ecl-fact-figures__value')->text()));
     $this->assertEquals('40 millions', trim($crawler->filter('div.ecl-fact-figures__item:nth-child(4) div.ecl-fact-figures__value')->text()));
     $this->assertEquals('50 millions', trim($crawler->filter('div.ecl-fact-figures__item:nth-child(5) div.ecl-fact-figures__value')->text()));
-    $this->assertEquals('Fact 1', trim($crawler->filter('div.ecl-fact-figures__item:nth-child(1) div.ecl-fact-figures__title')->text()));
-    $this->assertEquals('Fact 2', trim($crawler->filter('div.ecl-fact-figures__item:nth-child(2) div.ecl-fact-figures__title')->text()));
-    $this->assertEquals('Fact 3', trim($crawler->filter('div.ecl-fact-figures__item:nth-child(3) div.ecl-fact-figures__title')->text()));
-    $this->assertEquals('Fact 4', trim($crawler->filter('div.ecl-fact-figures__item:nth-child(4) div.ecl-fact-figures__title')->text()));
-    $this->assertEquals('Fact 5', trim($crawler->filter('div.ecl-fact-figures__item:nth-child(5) div.ecl-fact-figures__title')->text()));
+    $this->assertEquals('Fact 1', trim($crawler->filter('div.ecl-fact-figures__item:nth-child(1) span.ecl-fact-figures__title')->text()));
+    $this->assertEquals('Fact 2', trim($crawler->filter('div.ecl-fact-figures__item:nth-child(2) span.ecl-fact-figures__title')->text()));
+    $this->assertEquals('Fact 3', trim($crawler->filter('div.ecl-fact-figures__item:nth-child(3) span.ecl-fact-figures__title')->text()));
+    $this->assertEquals('Fact 4', trim($crawler->filter('div.ecl-fact-figures__item:nth-child(4) span.ecl-fact-figures__title')->text()));
+    $this->assertEquals('Fact 5', trim($crawler->filter('div.ecl-fact-figures__item:nth-child(5) span.ecl-fact-figures__title')->text()));
     $this->assertEquals('Fact description 1', trim($crawler->filter('div.ecl-fact-figures__item:nth-child(1) div.ecl-fact-figures__description')->text()));
     $this->assertEquals('Fact description 2', trim($crawler->filter('div.ecl-fact-figures__item:nth-child(2) div.ecl-fact-figures__description')->text()));
     $this->assertEquals('Fact description 3', trim($crawler->filter('div.ecl-fact-figures__item:nth-child(3) div.ecl-fact-figures__description')->text()));
