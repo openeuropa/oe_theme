@@ -1,0 +1,13 @@
+diff --git a/node_modules/@ecl/page-header/page-header-expandable.html.twig b/node_modules/@ecl/page-header/page-header-expandable.html.twig
+index d9affa1..a90bffb 100644
+--- a/node_modules/@ecl/page-header/page-header-expandable.html.twig
++++ b/node_modules/@ecl/page-header/page-header-expandable.html.twig
+@@ -68,7 +68,7 @@
+     data-ecl-page-header-expandable-header
+   >
+     <div class="ecl-container">
+-      <div class="ecl-page-header-expandable__header-text" style="--ecl-page-header-expandable-separator: '{{ _separator }}'">
++      <div class="ecl-page-header-expandable__header-text" style="--ecl-page-header-expandable-separator: '{{ _separator|raw }}'">
+       {% if _title is not empty %}
+         <span  class="ecl-page-header-expandable__title">{{ _title }}</span>
+       {% endif %}
