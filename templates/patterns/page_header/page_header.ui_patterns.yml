@@ -59,3 +59,27 @@ page_header:
       label: "Hide title"
       description: "Hide the h1 title, for screen reader only. Defaults to 'false'"
       preview: false
+    header_message:
+      type: "array"
+      label: "Header message"
+      description: "A header message displayed at the top of the page header in an expandable banner."
+      preview:
+        title: "Political advertisement"
+        sponsor: "The sponsor is Business Name"
+        more: "More info:"
+        more_link:
+          label: "webpage link"
+          path: "#"
+          external: true
+        lists:
+          - icon_list: true
+            divider: false
+            items:
+              - icon: "check-bold"
+                description: "(The sponsor is controlled by [either (a) business name of the legal entity or (b) name and surname of the natural person])"
+              - icon: "check-bold"
+                description: "(The advertisement is linked to [title and date of the election(s)] or [name of the legislative or regulatory initiative])"
+        toggle_label: "expandable button"
+        separator: "-"
+        header_content: ""
+        panel_content: ""
