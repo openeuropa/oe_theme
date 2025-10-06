@@ -5,8 +5,14 @@
  */
 #}
 {% if column > 1 %}
-  {# Do not show zebra style for horizontal view. #}
+  {# Do not show zebra style or divider for horizontal view. #}
   {% set zebra = false %}
+  {% set divider = false %}
+{% endif %}
+
+{# Cannot have a divider with zebra enabled. #}
+{% if zebra == true %}
+  {% set divider = false %}
 {% endif %}
 
 {% set _items = [] %}
@@ -33,4 +39,5 @@
   'centered': centered ?? false,
   'color_mode': color_mode|default(''),
   'extra_classes': extra_classes|default(''),
+  'divider': divider ?? false,
 } only %}
