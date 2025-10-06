@@ -1,6 +1,16 @@
 list_with_illustration:
   label: "List with illustration"
   description: "A list of items with associated illustrations."
+  variants:
+    default:
+      label: "Default"
+      description: "The default component list with illustration."
+    icon_list:
+      label: "Icon list"
+      description: "All the items will have one of the check-bold, arrow-right-bold and close-bold icons and can be displayed either on 1 (default) or 2 columns only."
+    number_list:
+      label: "Number list"
+      description: "An ordered list with a given value for the counter start and can be displayed either on 1 (default) or 2 columns only."
   fields:
     column:
       type: "numeric"
@@ -11,7 +21,7 @@ list_with_illustration:
     zebra:
       type: "boolean"
       label: "Zebra"
-      description: "Use zebra background."
+      description: "Use zebra background. Only used for the default variant."
       preview: true
     square_image:
       type: "boolean"
@@ -55,3 +65,18 @@ list_with_illustration:
           icon: "budget"
           value: "3.2 millions"
           media_size: "m"
+        - title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+          description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eleifend quam leo, at malesuada ex viverra vitae."
+          icon: "arrow-right-bold"
+    counter_start:
+      type: "numeric"
+      label: "Counter start"
+      description: "The offset number. Used only for the number_list variant."
+      preview: 99
+      escape: false
+    divider:
+      type: "boolean"
+      label: "Divider"
+      description: "Define if the items should be separated by a divider. Cannot be used together with the zebra."
+      preview: true
+      escape: false
