@@ -49,7 +49,7 @@ class WebtoolsIconsProvider implements WebtoolsIconsProviderInterface {
   /**
    * {@inheritdoc}
    */
-  public function getAllowedIconValues(array $icons_sets = ['icons']): array {
+  public function getAllowedIconValues(array $icons_sets = ['icons'], array $tags = []): array {
     $icons = $this->getWebtoolsIcons();
     $allowed_values = [];
 
@@ -63,31 +63,11 @@ class WebtoolsIconsProvider implements WebtoolsIconsProviderInterface {
 
       // Special handling for flags to ensure categorised structure.
       if ($icons_set === 'flags') {
-        foreach ($icons[$icons_set]['categories'] as $category => $country_codes) {
-          // Ensure the category name is readable.
-          $category = str_replace('_', ' ', strtoupper($category));
-
-          foreach ($country_codes as $country_code) {
-            $country_name = $icons[$icons_set]['all'][$country_code]['default']['title'] ?? strtoupper($country_code);
-            if ($country_name) {
-              $allowed_values[$category][$country_code] = $country_name;
-            }
-          }
-        }
-
+        $this->getAllowedFlags($icons, $allowed_values, $tags);
         continue;
       }
 
-      foreach ($icons[$icons_set]['name'] as $icon_name) {
-        $title = $icons[$icons_set]['all'][$icon_name]['default']['title'] ?? ucfirst($icon_name);
-
-        if ($single_set) {
-          $allowed_values[$icon_name] = $title;
-        }
-        else {
-          $allowed_values[strtoupper($icons_set)][$icon_name] = $title;
-        }
-      }
+      $this->getAllowedIconsFromSet($icons, $icons_set, $allowed_values, $single_set, $tags);
     }
 
     return $allowed_values;
@@ -212,6 +192,92 @@ class WebtoolsIconsProvider implements WebtoolsIconsProviderInterface {
     }
 
     return $icons;
+  }
+
+  /**
+   * Get the allowed flags.
+   *
+   * @param array $icons
+   *   The flags icons set.
+   * @param array $allowed_values
+   *   The allowed values array to be updated.
+   * @param array $tags
+   *   The tags to filter the icons by, if needed.
+   */
+  protected function getAllowedFlags(array $icons, array &$allowed_values, array $tags = []): void {
+    if (!empty($tags)) {
+      foreach ($tags as $tag) {
+        foreach ($icons['flags']['categories'] as $category => $country_codes) {
+          foreach ($country_codes as $country_code) {
+            if (!isset($icons['flags']['all'][$country_code]['default']['tags']) || !in_array($tag, $icons['flags']['all'][$country_code]['default']['tags'])) {
+              continue;
+            }
+            // Ensure the category name is readable.
+            $category = str_replace('_', ' ', strtoupper($category));
+            $country_name = $icons['flags']['all'][$country_code]['default']['title'] ?? strtoupper($country_code);
+            if ($country_name) {
+              $allowed_values[$category][$country_code] = $country_name;
+            }
+          }
+        }
+      }
+      return;
+    }
+    foreach ($icons['flags']['categories'] as $category => $country_codes) {
+      foreach ($country_codes as $country_code) {
+        // Ensure the category name is readable.
+        $category = str_replace('_', ' ', strtoupper($category));
+        $country_name = $icons['flags']['all'][$country_code]['default']['title'] ?? strtoupper($country_code);
+        if ($country_name) {
+          $allowed_values[$category][$country_code] = $country_name;
+        }
+      }
+    }
+  }
+
+  /**
+   * Get the allowed flags.
+   *
+   * @param array $icons
+   *   The icons array.
+   * @param string $icons_set
+   *   The icons set.
+   * @param array $allowed_values
+   *   The allowed values array to be updated.
+   * @param bool $single_set
+   *   Whether a flat array is needed or not.
+   * @param array $tags
+   *   The tags to filter the icons by, if needed.
+   */
+  protected function getAllowedIconsFromSet(array $icons, string $icons_set, array &$allowed_values, bool $single_set = FALSE, array $tags = []): void {
+    if (!empty($tags)) {
+      foreach ($tags as $tag) {
+        foreach ($icons[$icons_set]['all'] as $icon => $info) {
+          if (!isset($info['default']['tags']) || !in_array($tag, $info['default']['tags'])) {
+            continue;
+          }
+          $title = $icons[$icons_set]['all'][$icon]['default']['title'] ?? ucfirst($icon);
+
+          if ($single_set) {
+            $allowed_values[$icon] = $title;
+          }
+          else {
+            $allowed_values[strtoupper($icons_set)][$icon] = $title;
+          }
+        }
+      }
+      return;
+    }
+    foreach ($icons[$icons_set]['name'] as $icon_name) {
+      $title = $icons[$icons_set]['all'][$icon_name]['default']['title'] ?? ucfirst($icon_name);
+
+      if ($single_set) {
+        $allowed_values[$icon_name] = $title;
+      }
+      else {
+        $allowed_values[strtoupper($icons_set)][$icon_name] = $title;
+      }
+    }
   }
 
 }
