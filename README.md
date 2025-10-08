@@ -413,23 +413,7 @@ in your projects.
 
 Developing the theme requires a local copy of ECL assets, including Twig templates, SASS and JavaScript source files.
 
-In order to fetch the required code you'll need to have [Node.js (>= 8)](https://nodejs.org/en) installed locally.
-
-To install required Node.js dependencies run:
-
-```bash
-npm install
-```
-
-To build the final artifacts run:
-
-```bash
-npm run build
-```
-
-This will compile all SASS and JavaScript files into self-contained assets that are exposed as [Drupal libraries][11].
-
-In order to download all required PHP code run:
+In order to download all required PHP and ECL dependencies run:
 
 ```bash
 composer install
@@ -437,6 +421,8 @@ composer install
 
 This will build a fully functional Drupal site in the `./build` directory that can be used to develop and showcase the
 theme.
+
+The final artifacts are automatically built in the first step drupal:site-setup which is invoked from composer install.
 
 Before setting up and installing the site make sure to customize default configuration values by copying [runner.yml.dist](runner.yml.dist)
 to `./runner.yml` and override relevant properties.
@@ -518,8 +504,6 @@ docker-compose up -d
 Then:
 
 ```bash
-docker-compose exec -u node node npm install
-docker-compose exec -u node node npm run build
 docker-compose exec web composer install
 docker-compose exec web ./vendor/bin/run drupal:site-install
 ```
@@ -606,7 +590,7 @@ as shown below:
 remember to add it to the `copy` section of [ecl-builder.config.js](ecl-builder.config.js) and run:
 
 ```bash
-npm run build
+docker compose exec web bash ./scripts/build-ecl-pipeline.sh
 ```
 
 #### Update ECL
@@ -614,7 +598,7 @@ npm run build
 To update ECL components change the `@ec-europa/ecl-preset-full` version number in [package.json](package.json) and run:
 
 ```bash
-npm install && npm run build
+docker compose exec web bash ./scripts/build-ecl-pipeline.sh
 ```
 
 This will update assets such as images and fonts and re-compile CSS. Resulting changes are not meant to be committed to
@@ -625,7 +609,7 @@ this repository.
 To watch for Sass and JS file changes - [/sass](/sass) folder - in order to re-compile them to the destination folder:
 
 ```bash
-npm run watch
+docker compose exec web npm run watch
 ```
 
 Resulting changes are not meant to be committed to this repository.
@@ -640,15 +624,7 @@ To patch a component:
 2. Run:
 
 ```bash
-npx patch-package @ecl-twig/[component-name]
-```
-
-Or, when using Docker Compose:
-
-```bash
-docker-compose exec -u node node git config --global user.email "name@example.com"
-docker-compose exec -u node node git config --global user.name "Name"
-docker-compose exec -u node node npx patch-package @ecl/[component-name]
+docker compose exec web npx patch-package @ecl/[component-name]
 ```
 
 Patches will be generated in `./patches` and applied when running `npm install`.
