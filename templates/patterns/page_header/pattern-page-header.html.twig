@@ -80,7 +80,7 @@
   {% endif %}
   {% set expandable = expandable|merge({
     title: header_message.title|default(''),
-    sponsor: header_message.sponsor|default(''),
+    description: header_message.description|default(''),
     more: header_message.more|default(''),
     more_link: _more_link|default([]),
     toggle_label: header_message.toggle_label|default(''),

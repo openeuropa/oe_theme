@@ -30,7 +30,7 @@
           label: "News"
       header_message:
         title: 'Political advertisement'
-        sponsor: 'The sponsor is Business Name'
+        description: 'The sponsor is Business Name'
         more: 'More info:'
         more_link:
           label: 'webpage link'
@@ -78,7 +78,7 @@
       '.ecl-breadcrumb__segment:nth-child(6)[data-ecl-breadcrumb-item="static"] a[href="http://www.example.com/how-commission-organized/"]': "How the Commission is organised"
       '.ecl-breadcrumb__segment:nth-child(7)': "News"
       'div.ecl-page-header-expandable__header div.ecl-page-header-expandable__header-text span.ecl-page-header-expandable__title': "Political advertisement"
-      'div.ecl-page-header-expandable__header div.ecl-page-header-expandable__header-text span.ecl-page-header-expandable__sponsor': "The sponsor is Business Name"
+      'div.ecl-page-header-expandable__header div.ecl-page-header-expandable__header-text span.ecl-page-header-expandable__description': "The sponsor is Business Name"
       'div.ecl-page-header-expandable__header div.ecl-page-header-expandable__header-text span.ecl-page-header-expandable__more': "More info:"
       'div.ecl-page-header-expandable__header div.ecl-page-header-expandable__header-text a[href="#"].ecl-link.ecl-link--icon.ecl-page-header-expandable__more-link[data-ecl-page-header-expandable-header-link] span.ecl-link__label': "webpage link"
       'div.ecl-page-header-expandable__header button.ecl-button--tertiary span.ecl-button__container span.ecl-button__label': "expandable button"
@@ -117,7 +117,7 @@
       background_image_url: 'https://inno-ecl.s3.amazonaws.com/media/examples/example-image8.jpg'
       header_message:
         title: 'Political advertisement'
-        sponsor: 'The sponsor is Business Name'
+        description: 'The sponsor is Business Name'
         more: 'More info:'
         more_link:
           label: 'webpage link'
@@ -166,7 +166,7 @@
       '.ecl-breadcrumb__segment:nth-child(6)[data-ecl-breadcrumb-item="static"] a[href="http://www.example.com/how-commission-organized/"]': "How the Commission is organised"
       '.ecl-breadcrumb__segment:nth-child(7)': "News"
       'div.ecl-page-header-expandable__header div.ecl-page-header-expandable__header-text span.ecl-page-header-expandable__title': "Political advertisement"
-      'div.ecl-page-header-expandable__header div.ecl-page-header-expandable__header-text span.ecl-page-header-expandable__sponsor': "The sponsor is Business Name"
+      'div.ecl-page-header-expandable__header div.ecl-page-header-expandable__header-text span.ecl-page-header-expandable__description': "The sponsor is Business Name"
       'div.ecl-page-header-expandable__header div.ecl-page-header-expandable__header-text span.ecl-page-header-expandable__more': "More info:"
       'div.ecl-page-header-expandable__header div.ecl-page-header-expandable__header-text a[href="#"].ecl-link.ecl-page-header-expandable__more-link[data-ecl-page-header-expandable-header-link]': "webpage link"
       'div.ecl-page-header-expandable__panel ul.ecl-list-illustration li.ecl-list-illustration__item:nth-child(1) .ecl-list-illustration__description': "(The sponsor is controlled by [ either (a) business name of the legal entity or (b) name and surname of the natural person ])"
@@ -238,6 +238,14 @@
         -
           href: "http://www.example.com/news/"
           label: "News"
+      header_message:
+        title: 'Political advertisement'
+        description: 'The sponsor is Business Name'
+        more: 'More info:'
+        more_link:
+          label: 'webpage link'
+          path: '#'
+          external: TRUE
   assertions:
     count:
       '.ecl-page-header': 1
@@ -248,6 +256,11 @@
       '.ecl-page-header__title.ecl-u-sr-only': 0
       '.ecl-page-header__info-list': 0
       '.ecl-page-header__info-item': 0
+      'h1.ecl-page-header__title': 1
+      'div.ecl-page-header-expandable.ecl-page-header-no-toggle': 1
+      'div.ecl-page-header-expandable__header': 1
+      'div.ecl-page-header-expandable__panel': 0
+      'div.ecl-page-header-expandable__header button': 0
     equals:
       'h1.ecl-page-header__title': "Business, Economy, Euro&lt;"
       '.ecl-page-header__description': "EU economy, finance and the euro, and practical information for EU businesses and entrepreneurs on product safety, environmental regulations, trade with non-EU countries and competition rules.&lt;cc&gt;&amp;"
@@ -261,6 +274,10 @@
       '.ecl-breadcrumb__segment:nth-child(5)[data-ecl-breadcrumb-item="expandable"] a[href="http://www.example.com/organisation-structure/"]': "Organisational structure"
       '.ecl-breadcrumb__segment:nth-child(6)[data-ecl-breadcrumb-item="static"] a[href="http://www.example.com/how-commission-organized/"]': "How the Commission is organised"
       '.ecl-breadcrumb__segment:nth-child(7)': "News"
+      'div.ecl-page-header-expandable__header div.ecl-page-header-expandable__header-text span.ecl-page-header-expandable__title': "Political advertisement"
+      'div.ecl-page-header-expandable__header div.ecl-page-header-expandable__header-text span.ecl-page-header-expandable__description': "The sponsor is Business Name"
+      'div.ecl-page-header-expandable__header div.ecl-page-header-expandable__header-text span.ecl-page-header-expandable__more': "More info:"
+      'div.ecl-page-header-expandable__header div.ecl-page-header-expandable__header-text a[href="#"].ecl-link.ecl-link--icon.ecl-page-header-expandable__more-link[data-ecl-page-header-expandable-header-link] span.ecl-link__label': "webpage link"
 - branding: standardised
   pattern:
     '#type': pattern
@@ -293,6 +310,9 @@
           label: "News"
       background_image_url: 'https://inno-ecl.s3.amazonaws.com/media/examples/example-image8.jpg'
       overlay: 'light'
+      header_message:
+        header_content:
+          '#markup': '<p>Duis arcu tortor, suscipit eget, imperdiet nec, imperdiet iaculis, ipsum. Sed cursus turpis vitae tortor.</p>'
   assertions:
     count:
       '.ecl-page-header': 1
@@ -305,6 +325,11 @@
       '.ecl-page-header__info-item': 0
       '.ecl-page-header--overlay-dark': 0
       '.ecl-page-header--overlay-light': 1
+      'h1.ecl-page-header__title': 1
+      'div.ecl-page-header-expandable.ecl-page-header-no-toggle': 1
+      'div.ecl-page-header-expandable__header': 1
+      'div.ecl-page-header-expandable__panel': 0
+      'div.ecl-page-header-expandable__header button': 0
     equals:
       'h1.ecl-page-header__title': "Business, Economy, Euro&lt;"
       '.ecl-page-header__description': "EU economy, finance and the euro, and practical information for EU businesses and entrepreneurs on product safety, environmental regulations, trade with non-EU countries and competition rules.&lt;cc&gt;&amp;"
@@ -318,6 +343,7 @@
       '.ecl-breadcrumb__segment:nth-child(5)[data-ecl-breadcrumb-item="expandable"] a[href="http://www.example.com/organisation-structure/"]': "Organisational structure"
       '.ecl-breadcrumb__segment:nth-child(6)[data-ecl-breadcrumb-item="static"] a[href="http://www.example.com/how-commission-organized/"]': "How the Commission is organised"
       '.ecl-breadcrumb__segment:nth-child(7)': "News"
+      'div.ecl-page-header-expandable__header div.ecl-page-header-expandable__header-text': "<p>Duis arcu tortor, suscipit eget, imperdiet nec, imperdiet iaculis, ipsum. Sed cursus turpis vitae tortor.</p>"
 - branding: standardised
   pattern:
     '#type': pattern
