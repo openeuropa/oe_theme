@@ -12,6 +12,7 @@ runner.yml
 .idea
 .DS_Store
 package-lock.json
+patches.lock.json
 phpunit.xml
 .stylelintrc.json
 docker-compose.*.yml
