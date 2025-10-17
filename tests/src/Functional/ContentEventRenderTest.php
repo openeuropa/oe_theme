@@ -590,7 +590,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     $this->cronRun();
     $this->drupalGet($node->toUrl());
 
-    $this->assertSession()->elementNotExists('css', 'a.ecl-u-mt-2xl.ecl-link.ecl-link--cta', $registration_content);
+    $this->assertSession()->elementNotExists('css', 'a.ecl-u-mt-2xl.ecl-link.ecl-link--primary-highlight', $registration_content);
     $this->assertEquals('Registration period ended on Friday 21 February 2020, 15:00 CET', $registration_info_content->getText());
 
     // Assert "Report text" and "Summary for report" fields when event is
@@ -605,7 +605,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     $this->assertEquals('Livestream', $online_heading->getText());
     $online_description = $this->assertSession()->elementExists('css', 'div > div:nth-of-type(1) > .ecl', $details_content);
     $this->assertEquals('Online event description', $online_description->getText());
-    $online_button = $this->assertSession()->elementExists('css', 'a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-u-mt-l.ecl-u-mb-l.ecl-u-d-inline-block', $details_content);
+    $online_button = $this->assertSession()->elementExists('css', 'a.ecl-link.ecl-link--primary-highlight.ecl-link--icon.ecl-u-mt-l.ecl-u-mb-l.ecl-u-d-inline-block', $details_content);
     $this->assertEquals('Link to online event', $online_button->find('css', 'span.ecl-link__label')->getText());
     $this->assertEquals('http://www.example.com/online_link', $online_button->getAttribute('href'));
     $this->assertSession()->elementExists('css', 'span.ecl-icon.ecl-icon--2xs.ecl-link__icon.wt-icon--external', $online_button);
@@ -1098,13 +1098,13 @@ class ContentEventRenderTest extends ContentRenderTestBase {
    */
   protected function assertRegistrationButtonEnabled(NodeElement $parent_element, string $text, string $link, bool $external): void {
     if ($external) {
-      $rendered_button = $this->assertSession()->elementExists('css', 'span.ecl-u-mt-2xl.ecl-u-d-inline-block a.ecl-link.ecl-link--cta.ecl-link--icon', $parent_element);
+      $rendered_button = $this->assertSession()->elementExists('css', 'span.ecl-u-mt-2xl.ecl-u-d-inline-block a.ecl-link.ecl-link--primary-highlight.ecl-link--icon', $parent_element);
       $this->assertEquals($text, $rendered_button->find('css', 'span.ecl-link__label')->getText());
       $this->assertSession()->elementExists('css', 'span.ecl-icon.ecl-icon--2xs.ecl-link__icon.wt-icon--external', $rendered_button);
     }
     else {
-      $this->assertSession()->elementNotExists('css', 'span.ecl-u-mt-2xl.ecl-u-d-inline-block a.ecl-link.ecl-link--cta.ecl-link--icon', $parent_element);
-      $rendered_button = $this->assertSession()->elementExists('css', 'a.ecl-link.ecl-link--cta', $parent_element);
+      $this->assertSession()->elementNotExists('css', 'span.ecl-u-mt-2xl.ecl-u-d-inline-block a.ecl-link.ecl-link--primary-highlight.ecl-link--icon', $parent_element);
+      $rendered_button = $this->assertSession()->elementExists('css', 'a.ecl-link.ecl-link--primary-highlight', $parent_element);
       $this->assertEquals($text, $rendered_button->getText());
     }
     $this->assertEquals($link, $rendered_button->getAttribute('href'));
@@ -1119,7 +1119,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
    *   Button text.
    */
   protected function assertRegistrationButtonDisabled(NodeElement $element, string $text): void {
-    $rendered_button = $this->assertSession()->elementExists('css', 'button.ecl-button.ecl-button--call.ecl-u-mt-2xl.ecl-link.ecl-link--cta', $element);
+    $rendered_button = $this->assertSession()->elementExists('css', 'button.ecl-button.ecl-button--primary.ecl-button--highlight.ecl-u-mt-2xl.ecl-link.ecl-link--primary-highlight', $element);
     $this->assertEquals($text, $rendered_button->getText());
     $this->assertTrue($rendered_button->hasAttribute('disabled'));
   }

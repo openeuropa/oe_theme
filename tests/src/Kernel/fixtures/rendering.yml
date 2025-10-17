@@ -4738,7 +4738,7 @@
       variant: 'cta'
   assertions:
     equals:
-      'a.ecl-link.ecl-link--cta': 'Link text'
+      'a.ecl-link.ecl-link--primary-highlight': 'Link text'
 - structure:
     '#type': 'pattern'
     '#id': 'facts_figures'
