@@ -14,11 +14,13 @@ interface WebtoolsIconsProviderInterface {
    *
    * @param array $icons_sets
    *   The icons sets to retrieve allowed values for.
+   * @param array $tags
+   *   The tags to filter the icons from the given sets.
    *
    * @return array
    *   An associative array of allowed icon values, where keys are icon names.
    */
-  public function getAllowedIconValues(array $icons_sets = ['icons']): array;
+  public function getAllowedIconValues(array $icons_sets = ['icons'], array $tags = []): array;
 
   /**
    * Get the icon family for a given icon name.
