@@ -5,6 +5,9 @@
  */
 #}
 {{ contextual_links }}
+{% if variant == 'cta' %}
+  {% set variant = 'primary-highlight' %}
+{% endif %}
 {% include '@ecl-twig/link' with {
   link: {
     type: variant|default('standalone'),

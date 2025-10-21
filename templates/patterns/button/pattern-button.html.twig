@@ -20,9 +20,14 @@
     }
   } only %}
 {% else %}
+  {% if variant == 'call' %}
+    {% set variant = 'primary' %}
+    {% set style = 'highlight' %}
+  {% endif %}
   {% include '@ecl-twig/button' with {
     'label': label,
-    'variant': variant|replace({'_':'-'}),
+    'variant': variant,
+    'style': style|default(''),
     'type': type_attribute,
     'icon': {
       'name': external_link ? 'external' : icon,

@@ -11,15 +11,9 @@ button:
     secondary:
       label: "Secondary"
       description: "Used for secondary actions to cancel a form."
-    call:
-      label: "Call to action - Deprecated (to be removed in 5.0.0)"
-      description: "Use these buttons sparingly on the most important actions like “Apply for funding” or “Watch live streaming”."
-    ghost:
-      label: "Ghost - Deprecated (to be removed in 5.0.0)"
-      description: "Ghost button."
-    search:
-      label: "Search - Deprecated (to be removed in 5.0.0)"
-      description: "Search button."
+    tertiary:
+      label: "Tertiary"
+      description: "Used for tertiary actions in a form."
   fields:
     type_attribute:
       type: "text"

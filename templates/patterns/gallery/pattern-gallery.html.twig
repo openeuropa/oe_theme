@@ -29,7 +29,7 @@
   'overlay': {
     'counter_separator': ' / ',
     'close': {
-      'variant': 'ghost',
+      'variant': 'tertiary',
       'label': 'Close'|t,
       'icon': {
         'name': 'close',
@@ -79,14 +79,14 @@
 {% if items|length > 1 %}
   {% set _gallery = _gallery|merge({'overlay': _gallery.overlay|merge({
     'previous': {
-      'variant': 'ghost',
+      'variant': 'tertiary',
       'label': 'Previous'|t,
       'icon': {
         'path': ecl_icon_path,
       },
     },
     'next': {
-      'variant': 'ghost',
+      'variant': 'tertiary',
       'label': 'Next'|t,
       'icon': {
         'path': ecl_icon_path,

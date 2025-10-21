@@ -1205,8 +1205,8 @@
       '.ecl-gallery .ecl-gallery__list .ecl-gallery__item figcaption.ecl-gallery__description span.ecl-gallery__title': 1
       '.ecl-gallery .ecl-gallery__list .ecl-gallery__item figcaption.ecl-gallery__description': 1
       '.ecl-gallery .ecl-gallery__list .ecl-gallery__item .ecl-gallery__meta': 1
-      '.ecl-gallery .ecl-button.ecl-button--ghost.ecl-gallery__slider-previous': 0
-      '.ecl-gallery .ecl-button.ecl-button--ghost.ecl-gallery__slider-next': 0
+      '.ecl-gallery .ecl-button.ecl-button--tertiary.ecl-gallery__slider-previous': 0
+      '.ecl-gallery .ecl-button.ecl-button--tertiary.ecl-gallery__slider-next': 0
       '.ecl-gallery__footer-link': 0
       '.ecl-gallery--grid': 0
       '.ecl-gallery--col-2': 0
@@ -3397,21 +3397,12 @@
 - structure:
     '#type': pattern
     '#id': button
-    '#variant': ghost
+    '#variant': tertiary
     '#fields':
       label: "Button label"
   assertions:
     equals:
-      'button.ecl-button--ghost': "Button label"
-- structure:
-    '#type': pattern
-    '#id': button
-    '#variant': search
-    '#fields':
-      label: "Button label"
-  assertions:
-    equals:
-      'button.ecl-button--search': "Button label"
+      'button.ecl-button--tertiary': "Button label"
 - structure:
     '#type': pattern
     '#id': button
@@ -3420,7 +3411,7 @@
       label: "Button label"
   assertions:
     equals:
-      'button.ecl-button--call': "Button label"
+      'button.ecl-button--primary.ecl-button--highlight': "Button label"
 - structure:
     '#type': pattern
     '#id': social_icon
@@ -4747,7 +4738,7 @@
       variant: 'cta'
   assertions:
     equals:
-      'a.ecl-link.ecl-link--cta': 'Link text'
+      'a.ecl-link.ecl-link--primary-highlight': 'Link text'
 - structure:
     '#type': 'pattern'
     '#id': 'facts_figures'
