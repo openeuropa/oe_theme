@@ -1,4 +1,23 @@
-# Change Log
+# Changelog
+
+## [5.0.0-beta15](https://github.com/openeuropa/oe_theme/tree/5.0.0-beta15) (2025-10-22)
+
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/5.0.0-beta14...5.0.0-beta15)
+
+**Merged pull requests:**
+
+- EWPP-6116: Add Header message expandable parameter to Page header pattern. [\#1649](https://github.com/openeuropa/oe_theme/pull/1649) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-6095: Allow filtering the Webtools icons by tags. [\#1652](https://github.com/openeuropa/oe_theme/pull/1652) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-6094: Add new variants to List with illustration pattern. [\#1650](https://github.com/openeuropa/oe_theme/pull/1650) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-6009: Add Spotlight pattern. [\#1645](https://github.com/openeuropa/oe_theme/pull/1645) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-6085: Remove deprecated button variants and add a new one. [\#1647](https://github.com/openeuropa/oe_theme/pull/1647) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-6115: Update the icons json mock values. [\#1651](https://github.com/openeuropa/oe_theme/pull/1651) ([nagyad](https://github.com/nagyad))
+- EWPP-5971: Do not apply ECL styling to Admin toolbar search input. [\#1637](https://github.com/openeuropa/oe_theme/pull/1637) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-6132: Update to ECL 5.0.0-alpha.19. [\#1648](https://github.com/openeuropa/oe_theme/pull/1648) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-6046: Move CI to Gitlab CI. [\#1646](https://github.com/openeuropa/oe_theme/pull/1646) ([hernani](https://github.com/hernani))
+- EWPP-6057: Update to ECL 5.0.0-alpha16. [\#1643](https://github.com/openeuropa/oe_theme/pull/1643) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-5805: Use composer-dependent-patches and unlock drupal core. [\#1639](https://github.com/openeuropa/oe_theme/pull/1639) ([nagyad](https://github.com/nagyad))
+- EWPP-6001: Fix Event CT ExtraFields and remove the allowed_formats module from paragraphs test. [\#1641](https://github.com/openeuropa/oe_theme/pull/1641) ([22Alexandra](https://github.com/22Alexandra))
 
 ## [5.0.0-beta14](https://github.com/openeuropa/oe_theme/tree/5.0.0-beta14) (2025-09-09)
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/5.0.0-beta13...5.0.0-beta14)
