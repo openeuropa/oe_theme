@@ -56,8 +56,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
   protected function setUp(): void {
     parent::setUp();
 
-    $this->container->get('module_handler')->loadInclude('oe_paragraphs_media_field_storage', 'install');
-    oe_paragraphs_media_field_storage_install(FALSE);
+    $this->installConfig(['oe_paragraphs_media_field_storage']);
     $this->installEntitySchema('media');
 
     $this->installConfig([
