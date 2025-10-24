@@ -53,7 +53,7 @@ class CallForProposalsRenderTest extends ContentRenderTestBase {
     \Drupal::moduleHandler()->loadInclude('oe_content', 'install');
     oe_content_install(FALSE);
 
-    $this->setUpCurrentUser([], [], TRUE);
+    $this->setUpCurrentUser([], ['view published skos concept entities'], TRUE);
   }
 
   /**

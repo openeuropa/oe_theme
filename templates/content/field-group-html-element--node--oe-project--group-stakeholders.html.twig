@@ -9,8 +9,9 @@
 
 <div id="project-stakeholders" class="ecl-u-mt-3xl">
   {% if title %}
+    {% set _title = '@title'|t({'@title': title}) %}
     <h2 class="ecl-u-type-heading-2">
-      {{ title|render|t }}
+      {{ title|render }}
     </h2>
   {% endif %}
 

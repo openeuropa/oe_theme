@@ -23,6 +23,7 @@
         "drupal/address": "~2",
         "drupal/composite_reference": "^2.1",
         "drupal/config_devel": "^1.9",
+        "drupal/contact_storage": "^1.5",
         "drupal/core-composer-scaffold": "^10.3 || ^11",
         "drupal/core-dev": "^10.3 || ^11",
         "drupal/core-utility": "^10.3 || ^11",
@@ -108,8 +109,10 @@
                 "allow-date-only-date-fields": "https://github.com/jhedstrom/DrupalDriver/commit/eaa9238c8c8e34372dc82ebe5367e6d24b5854e7.patch"
             },
             "drupal/contact_storage": {
-                "https://www.drupal.org/project/contact_storage/issues/2708809": "https://www.drupal.org/files/issues/2022-11-07/revisit_permissions-2708809-60.patch",
-                "https://www.drupal.org/project/contact_storage/issues/3535501": "https://git.drupalcode.org/issue/contact_storage-3535501/-/commit/ca6bee9c53d22831227ccec3358eed5df76d0589.diff"
+                "https://www.drupal.org/project/contact_storage/issues/2708809": "https://www.drupal.org/files/issues/2022-11-07/revisit_permissions-2708809-60.patch"
+            },
+            "drupal/rdf_skos": {
+                "https://www.drupal.org/i/3548246": "https://git.drupalcode.org/project/rdf_skos/-/merge_requests/2.patch"
             }
         },
         "drupal-scaffold": {

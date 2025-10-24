@@ -316,8 +316,8 @@ class MediaGalleryFormatterTest extends AbstractKernelTestBase {
     // Test the contents of the first item.
     $image_node = $items->first()->filter('img');
     $this->assertEquals('Alt text for test image.', $image_node->attr('alt'));
-    // Core shipped image styles are converted to webp extension.
-    $image_extension = 'jpeg.webp';
+    // Core shipped image styles are converted to webp or avif extension.
+    $image_extension = version_compare(\Drupal::VERSION, '11.2.0', '>=') ? 'jpeg.avif' : 'jpeg.webp';
     $this->assertStringContainsString("/files/styles/medium/public/example_1.$image_extension?itok=", $image_node->attr('src'));
     $caption = $items->first()->filter('.ecl-gallery__description');
     $this->assertStringContainsString($image_media->label(), $caption->html());
@@ -330,8 +330,8 @@ class MediaGalleryFormatterTest extends AbstractKernelTestBase {
     $image_node = $items->eq(1)->filter('img');
     $this->assertEquals('', $image_node->attr('alt'));
 
-    // Core shipped image styles are converted to webp extension.
-    $expected_thumbnail_name .= '.webp';
+    // Core shipped image styles are converted to webp or avif extension.
+    $expected_thumbnail_name .= version_compare(\Drupal::VERSION, '11.2.0', '>=') ? '.avif' : '.webp';
     $this->assertStringContainsString(
       '/files/styles/medium/public/oembed_thumbnails/' . $expected_thumbnail_name . '?itok=',
       $image_node->attr('src')

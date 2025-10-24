@@ -396,7 +396,7 @@ class ContentPersonRenderTest extends ContentRenderTestBase {
     $this->assertEquals('Alternative text first_media', $first_item->getAttribute('alt'));
     // @todo Remove when support for core 10.2.x is dropped.
     // Core shipped image styles are converted to webp extension.
-    $image_extension = version_compare(\Drupal::VERSION, '10.3', '>') ? 'png.webp' : 'png';
+    $image_extension = version_compare(\Drupal::VERSION, '11.2.0', '>=') ? 'png.avif' : 'png.webp';
     $this->assertStringContainsString("/styles/large/public/placeholder_first_media.$image_extension?itok=", $first_item->getAttribute('src'));
     $caption = $items[0]->find('css', '.ecl-gallery__description');
     $this->assertStringContainsString('Test image first_media', $caption->getOuterHtml());

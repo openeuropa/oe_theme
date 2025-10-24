@@ -175,7 +175,7 @@ class TwigExtension extends AbstractExtension {
    * @return string
    *   The internal language ID, or the given language code if none found.
    */
-  public function toInternalLanguageId($language_code): string {
+  public function toInternalLanguageId(string $language_code): string {
     // Map Norwegian Bokmål and Chinese language codes.
     $map_other_language_codes = [
       'nb' => 'no',
