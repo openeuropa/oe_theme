@@ -179,6 +179,8 @@ class ParagraphsTest extends BrowserTestBase {
         'url' => 'https://www.youtube.com/watch?v=7gngmXxdmyI',
       ],
     ])->toString();
+    // Remove "/build/" from the partial url.
+    $partial_iframe_url = substr($partial_iframe_url, 7);
     $this->assertSession()->elementAttributeContains('css', 'figure.ecl-media-container__figure div.ecl-media-container__media iframe', 'src', $partial_iframe_url);
   }
 
