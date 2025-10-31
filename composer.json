@@ -23,7 +23,6 @@
         "drupal/address": "~2",
         "drupal/composite_reference": "^2.1",
         "drupal/config_devel": "^1.9",
-        "drupal/contact_storage": "^1.5",
         "drupal/core-composer-scaffold": "^10.3 || ^11",
         "drupal/core-dev": "^10.3 || ^11",
         "drupal/core-utility": "^10.3 || ^11",
@@ -47,14 +46,14 @@
         "friends-of-behat/service-container-extension": "^1.0",
         "openeuropa/behat-transformation-context": "^0.3",
         "openeuropa/code-review-drupal": "^1.0.0-alpha1",
-        "openeuropa/oe_contact_forms": "dev-EWPP-6073",
-        "openeuropa/oe_content": "dev-EWPP-6061",
+        "openeuropa/oe_contact_forms": "^1.14",
+        "openeuropa/oe_content": "4.x-dev",
         "openeuropa/oe_corporate_blocks": "^5.0@beta",
         "openeuropa/oe_corporate_countries": "^2.3",
         "openeuropa/oe_corporate_site_info": "^1.2",
         "openeuropa/oe_media": "^1.32",
-        "openeuropa/oe_multilingual": "dev-EWPP-6063",
-        "openeuropa/oe_paragraphs": "dev-EWPP-6075",
+        "openeuropa/oe_multilingual": "^1.18",
+        "openeuropa/oe_paragraphs": "dev-master",
         "openeuropa/oe_search": "2.x-dev",
         "openeuropa/rdf_skos": "^1.0.0"
     },
@@ -107,12 +106,6 @@
             },
             "drupal/drupal-driver": {
                 "allow-date-only-date-fields": "https://github.com/jhedstrom/DrupalDriver/commit/eaa9238c8c8e34372dc82ebe5367e6d24b5854e7.patch"
-            },
-            "drupal/contact_storage": {
-                "https://www.drupal.org/project/contact_storage/issues/2708809": "https://www.drupal.org/files/issues/2022-11-07/revisit_permissions-2708809-60.patch"
-            },
-            "drupal/rdf_skos": {
-                "https://www.drupal.org/i/3548246": "https://git.drupalcode.org/project/rdf_skos/-/merge_requests/2.patch"
             }
         },
         "drupal-scaffold": {

@@ -478,7 +478,8 @@ class ContentPublicationRenderTest extends ContentRenderTestBase {
     $field_list_assert->assertPattern($details_expected_values, $content_items[0]->getHtml());
 
     // Assert the translated collection label.
-    $this->drupalGet('/es/node/' . $node->id(), ['external' => FALSE]);
+    $node = \Drupal::service('entity.repository')->getTranslationFromContext($node, 'es');
+    $this->drupalGet($node->toUrl());
 
     $details_expected_values['items'][1] = [
       'label' => 'Part of collections',
@@ -568,7 +569,8 @@ class ContentPublicationRenderTest extends ContentRenderTestBase {
     $node->save();
 
     foreach ($node->getTranslationLanguages() as $node_langcode => $node_language) {
-      $this->drupalGet("/$node_langcode/node/" . $node->id(), ['external' => FALSE]);
+      $node = \Drupal::service('entity.repository')->getTranslationFromContext($node, $node_langcode);
+      $this->drupalGet($node->toUrl());
       $this->assertSession()->elementExists('css', 'figure[class*="ecl-media-container"] img[class="ecl-media-container__media"][src*="example_1_' . $node_langcode . '.jpeg"][alt="default ' . $node_langcode . ' alt"]');
     }
 

@@ -150,7 +150,8 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     ];
 
     foreach ($node->getTranslationLanguages() as $node_langcode => $node_language) {
-      $this->drupalGet("/$node_langcode/node/" . $node->id(), ['external' => FALSE]);
+      $node = \Drupal::service('entity.repository')->getTranslationFromContext($node, $node_langcode);
+      $this->drupalGet($node->toUrl());
       $this->assertSession()->elementExists('css', 'figure[class="ecl-media-container__figure"] picture[class="ecl-picture ecl-media-container__picture"] img[class="ecl-media-container__media"][src*="' . $file_urls[$node_langcode] . '"][alt="default ' . $node_langcode . ' alt"]');
     }
 
@@ -952,9 +953,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     $this->assertEquals('event role 1', $meta->getText());
     // Assert Person link.
     $link = $this->assertSession()->elementExists('css', '.ecl-link.ecl-link--standalone.ecl-u-type-bold', $speakers_items[0]);
-    // Remove "/build/" from the person url.
-    $person_url = substr($person->toUrl()->toString(), 7);
-    $this->assertStringContainsString($person_url, $link->getAttribute('href'));
+    $this->assertStringContainsString($person->toUrl()->toString(), $link->getAttribute('href'));
     $this->assertEquals($person->label(), $link->getText());
     $person_jobs = $this->assertSession()->elementExists('css', '.ecl-u-type-s.ecl-u-type-color-neutral-dark-900.ecl-u-mt-s', $speakers_items[0]);
     // Assert person jobs.
