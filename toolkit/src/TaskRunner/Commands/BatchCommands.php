@@ -6,6 +6,7 @@ namespace Drupal\oe_theme_commands\TaskRunner\Commands;
 
 use EcEuropa\Toolkit\TaskRunner\AbstractCommands;
 use Robo\Exception\AbortTasksException;
+use PHPUnit\Runner\Version;
 
 /**
  * Defines ec-europa/toolkit commands to run tests.
@@ -31,10 +32,20 @@ class BatchCommands extends AbstractCommands {
     $working_directory = $this->getWorkingDir();
 
     $unassigned_tests_result_file = $working_directory . '/junit-export/phpunit-unassigned-tests.xml';
-    $collection->addTask($this->taskExec($phpunit_bin)
-      ->option('log-junit', $unassigned_tests_result_file)
-      ->option('exclude-group', implode(',', $batches))
-    );
+    $phpunitTask = $this->taskExec($phpunit_bin)
+      ->option('log-junit', $unassigned_tests_result_file);
+
+    // Handle differences in phpunit exclude-group functionality.
+    if (version_compare(Version::id(), '11.0.0', '>=')) {
+      foreach ($batches as $batch) {
+        $phpunitTask->option('exclude-group', $batch);
+      }
+    }
+    else {
+      $phpunitTask->option('exclude-group', implode(',', $batches));
+    }
+
+    $collection->addTask($phpunitTask);
 
     // Check if there are unassigned tests.
     $collection->addCode(function () use ($unassigned_tests_result_file) {

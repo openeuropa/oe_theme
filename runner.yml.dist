@@ -121,6 +121,7 @@ toolkit:
       - ~10.4.0
       - ~10.5.0
       - ~11.1.0
+      - ~11.2.0
     PUBLISH: false
     BEHAT: true
     PHPUNIT: true

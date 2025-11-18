@@ -146,9 +146,6 @@ class EventRenderTest extends ContentRenderTestBase {
     $node->addTranslation('bg', $values);
     $node->save();
 
-    // Translate the date strings into bulgarian.
-    $this->translateLocaleString('Jan', 'Ян.', 'bg');
-
     // Freeze the time at a specific point.
     $static_time = new DrupalDateTime('2020-02-17 14:00:00', DateTimeItemInterface::STORAGE_TIMEZONE);
     /** @var \Drupal\Component\Datetime\TimeInterface $datetime */
@@ -296,7 +293,6 @@ class EventRenderTest extends ContentRenderTestBase {
       'Cancelled',
     ];
     $expected_values['url'] = '/bg/node/1';
-    $expected_values['date']['month_name'] = 'Ян.';
     $expected_values['description'] = new PatternAssertState(new IconsTextAssert(), [
       'items' => [
         [

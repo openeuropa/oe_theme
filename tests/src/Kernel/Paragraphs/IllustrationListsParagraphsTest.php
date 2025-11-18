@@ -50,8 +50,7 @@ class IllustrationListsParagraphsTest extends ParagraphsTestBase {
 
     $this->container->get('module_handler')->loadInclude('media', 'install');
     media_install();
-    $this->container->get('module_handler')->loadInclude('oe_paragraphs_media_field_storage', 'install');
-    oe_paragraphs_media_field_storage_install(FALSE);
+    $this->installConfig(['oe_paragraphs_media_field_storage']);
     $this->installConfig([
       'oe_media',
       'oe_media_avportal',

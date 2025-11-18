@@ -125,7 +125,7 @@ Feature: Theme showcase
   Scenario: Changing the ECL branding will display site header with Core or Standardised style.
     Given I am an anonymous user
     When the theme is configured to use the "Standardised" ECL branding
-    When I am on "<page>"
+    When I am on the homepage
     Then I should see the "Standardised" site header
     And I should see the "navigation menu" element in the "header with menu"
 

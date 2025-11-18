@@ -39,6 +39,8 @@ class ParagraphsTest extends BrowserTestBase {
   protected function setUp(): void {
     parent::setUp();
 
+    $this->rebuildAll();
+
     // Enable and set OpenEuropa Theme as default.
     \Drupal::service('theme_installer')->install(['oe_theme']);
     \Drupal::configFactory()
