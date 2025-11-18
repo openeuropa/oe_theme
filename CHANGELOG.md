@@ -1,5 +1,13 @@
 # Changelog
 
+## [5.0.0-beta15](https://github.com/openeuropa/oe_theme/tree/5.0.0-beta16) (2025-11-18)
+
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/5.0.0-beta15...5.0.0-beta16)
+
+**Merged pull requests:**
+
+- EWPP-6074: Support Drupal Core 11.2. [\#1654](https://github.com/openeuropa/oe_theme/pull/1654) ([hernani](https://github.com/hernani))
+
 ## [5.0.0-beta15](https://github.com/openeuropa/oe_theme/tree/5.0.0-beta15) (2025-10-22)
 
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/5.0.0-beta14...5.0.0-beta15)
