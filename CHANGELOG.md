@@ -1,6 +1,14 @@
 # Changelog
 
-## [5.0.0-beta15](https://github.com/openeuropa/oe_theme/tree/5.0.0-beta16) (2025-11-18)
+## [5.0.0-beta17](https://github.com/openeuropa/oe_theme/tree/5.0.0-beta17) (2025-11-21)
+
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/5.0.0-beta16...5.0.0-beta17)
+
+**Merged pull requests:**
+
+- EWPP-6292: Update ECL version to 5.0.0-alpha.19.1. [\#1662](https://github.com/openeuropa/oe_theme/pull/1662) ([sergepavle](https://github.com/sergepavle))
+
+## [5.0.0-beta16](https://github.com/openeuropa/oe_theme/tree/5.0.0-beta16) (2025-11-18)
 
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/5.0.0-beta15...5.0.0-beta16)
 
