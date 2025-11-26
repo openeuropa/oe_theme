@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Source directory containing *.twig files
-source_dir="./ecl-build/src/implementations/twig/components"
+source_dir="./ecl-build/src/components"
 
 # Destination directory to copy files with "ecl-" prefix
 destination_dir="./components"
@@ -19,7 +19,7 @@ find "$source_dir" -type f -name "*.twig" -print0 | while read -d $'\0' file; do
     last_dir="$(basename "$(dirname "$file")")"
 
     # Create a directory in the destination with the last_dir name
-    target_dir="$destination_dir/twig-component-$last_dir"
+    target_dir="$destination_dir/$last_dir"
     mkdir -p "$target_dir"
 
     # Append "ecl-" to the filename
