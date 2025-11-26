@@ -11,15 +11,14 @@ ecl-dev: .env build-ecl copy-dist copy-twig compile-sass
 ## build-ecl: build ECL.
 .PHONY: build-ecl
 build-ecl:
-	[ ! -d ecl-build ] || rm -rf ecl-build
+	[ ! -d ecl-build ] || rm -rf ecl-build pnpm-lock.yaml node_modules
 	git clone -b $(ECL_BUILD_REF) $(ECL_BUILD_REPO) --depth 1 ecl-build
-	yarn --cwd ./ecl-build install
+	corepack enable && corepack prepare pnpm@10.9.0 --activate
+	cd ./ecl-build && pnpm install --stream
 	# Add ECL dependencies that cannot be required by ECL.
 	# @see https://github.com/ec-europa/europa-component-library#warning-momentjs
-	yarn --cwd ./ecl-build add moment@2.29.1 -W
-	yarn --cwd ./ecl-build add pikaday@1.8.2 -W
-	yarn --cwd ./ecl-build add svg4everybody@2.1.9 -W
-	yarn --cwd ./ecl-build dist:presets
+	cd ./ecl-build && pnpm add moment@2.29.1 pikaday@1.8.2 svg4everybody@2.1.9 @ecl/theme-ec @ecl/theme-eu @ecl/utility-background @ecl/utility-background @ecl/utility-border @ecl/grid @ecl/mixins-color @ecl/twig-templates sass -w
+	cd ./ecl-build && pnpm dist:presets
 
 ## compile-sass: compile SASS.
 .PHONY: compile-sass
@@ -27,7 +26,7 @@ compile-sass:
 	[ ! -d ./ecl-build/oe_theme_sass ] || rm -rf ./ecl-build/oe_theme_sass
 	[ ! -d ./ecl-build/oe_theme_css ] || rm -rf ./ecl-build/oe_theme_css
 	cp -r sass ./ecl-build/oe_theme_sass
-	yarn --cwd ./ecl-build sass -I node_modules/ --style=expanded oe_theme_sass:oe_theme_css
+	cd ./ecl-build && pnpm exec sass -I node_modules/ --style=expanded oe_theme_sass:oe_theme_css
 	[ ! -d ./css ] || rm -rf ./css
 	mv ./ecl-build/oe_theme_css css
 # SASS duplicates the "oe_theme_css" inside the target directory.
