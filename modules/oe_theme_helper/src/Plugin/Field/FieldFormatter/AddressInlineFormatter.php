@@ -143,8 +143,8 @@ class AddressInlineFormatter extends AddressDefaultFormatter {
     // Remove noise caused by empty placeholders.
     $lines = explode("\n", $string);
     foreach ($lines as $index => $line) {
-      // Remove leading punctuation, excess whitespace.
-      $line = trim(preg_replace('/^[-,]+/', '', $line, 1));
+      // Remove leading and trailing punctuation, excess whitespace.
+      $line = trim(preg_replace('/^[-,]+|[-,]+$/', '', $line));
       $line = preg_replace('/\s\s+/', ' ', $line);
       $lines[$index] = $line;
     }
