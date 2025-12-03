@@ -11,6 +11,11 @@
  */
 #}
 {# Populate the site info section. #}
+{% if site_owner and site_owner|length > 1 %}
+  {% set site_owner_description = 'This site is co-managed by:<br />'|t ~ site_owner|join('<br />') %}
+{% else %}
+  {% set site_owner_description = site_owner ? 'This site is managed by:<br />@name'|t({'@name': site_owner|first}) %}
+{% endif %}
 {% set section_site_info = {
   'title': {
     'link': {
@@ -24,7 +29,7 @@
       transform: "flip-horizontal"
     }
   },
-  'description': site_owner ? 'This site is managed by:<br />@name'|t({'@name': site_owner}),
+  'description': site_owner ? site_owner_description,
 } %}
 
 {% if site_specific_footer.social_links is not empty %}
