@@ -125,7 +125,7 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     }
 
     // Update settings, assert footer changed.
-    $this->updateSiteSettings('http://publications.europa.eu/resource/authority/corporate-body/ACP-EU_JA', 'EC Site Name');
+    $this->updateSiteSettings(['http://publications.europa.eu/resource/authority/corporate-body/ACP-EU_JA'], 'EC Site Name');
     $this->drupalGet('<front>');
 
     $actual = $assert->elementExists('css', 'div.ecl-site-footer__description');
@@ -207,7 +207,7 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     $this->assertListLink($extra_link, $expected);
 
     // Update settings, assert footer changed.
-    $this->updateSiteSettings('http://publications.europa.eu/resource/authority/corporate-body/DG11', 'EC Standardised Site Name');
+    $this->updateSiteSettings(['http://publications.europa.eu/resource/authority/corporate-body/DG11'], 'EC Standardised Site Name');
     $this->drupalGet('<front>');
 
     $section = $assert->elementExists('css', 'footer.ecl-site-footer div.ecl-site-footer__row--specific div.ecl-site-footer__section--site-info');
@@ -237,7 +237,7 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     $section = $assert->elementExists('css', 'footer.ecl-site-footer div.ecl-site-footer__column:nth-child(1) div.ecl-site-footer__section:nth-child(1)');
 
     $actual = $assert->elementExists('css', 'div.ecl-site-footer__description');
-    $this->assertEquals('This site is managed by: DG XI – Internal Market', $actual->getText());
+    $this->assertEquals('This site is managed by:DG XI – Internal Market', $actual->getText());
     // Accessibility link should not be displayed on core.
     $this->assertCount(0, $section->findAll('css', 'a.ecl-link.ecl-link--standalone.ecl-site-footer__link'));
 
@@ -296,11 +296,20 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     }
 
     // Update settings, assert footer changed.
-    $this->updateSiteSettings('http://publications.europa.eu/resource/authority/corporate-body/BUDG', 'EU Site Name');
+    $this->updateSiteSettings(['http://publications.europa.eu/resource/authority/corporate-body/BUDG'], 'EU Site Name');
     $this->drupalGet('<front>');
 
     $actual = $assert->elementExists('css', 'div.ecl-site-footer__description');
-    $this->assertEquals('This site is managed by: Directorate-General for Budget', $actual->getText());
+    $this->assertEquals('This site is managed by:Directorate-General for Budget', $actual->getText());
+
+    // Add second site owner, assert both are present.
+    $this->updateSiteSettings([
+      'http://publications.europa.eu/resource/authority/corporate-body/BUDG',
+      'http://publications.europa.eu/resource/authority/corporate-body/ECFIN',
+    ], 'EU Site Name');
+    $this->drupalGet('<front>');
+    $actual = $assert->elementExists('css', 'div.ecl-site-footer__description');
+    $this->assertEquals('This site is co-managed by:Directorate-General for BudgetDirectorate-General for Economic and Financial Affairs', $actual->getText());
 
     // Test European Union footer standardised block rendering.
     $this->branding = 'standardised';
@@ -322,7 +331,7 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     $this->assertEquals('http://web:8080/build/', $actual->getAttribute('href'));
 
     $actual = $assert->elementExists('css', 'div.ecl-site-footer__description');
-    $this->assertEquals('This site is managed by:Directorate-General for Budget', $actual->getText());
+    $this->assertEquals('This site is co-managed by:Directorate-General for BudgetDirectorate-General for Economic and Financial Affairs', $actual->getText());
     $actual = $section->find('css', '.ecl-site-footer__section--site-info a.ecl-link.ecl-link--standalone.ecl-site-footer__link');
     $this->assertEquals('Accessibility', $actual->getText());
     $this->assertEquals('/build/', $actual->getAttribute('href'));
@@ -1005,14 +1014,14 @@ class CorporateFooterRenderTest extends BrowserTestBase {
   /**
    * Update the config needed from the site settings form.
    *
-   * @param string $site_owner
-   *   The site owner.
+   * @param array $site_owners
+   *   The site owners.
    * @param string $site_name
    *   The name of the site.
    */
-  protected function updateSiteSettings(string $site_owner, string $site_name): void {
+  protected function updateSiteSettings(array $site_owners, string $site_name): void {
     $config = $this->configFactory->getEditable('oe_corporate_site_info.settings');
-    $config->set('site_owner', $site_owner);
+    $config->set('site_owners', $site_owners);
     $config->save();
 
     $config = $this->configFactory->getEditable('system.site');
