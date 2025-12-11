@@ -4768,10 +4768,10 @@
       'div.ecl-fact-figures__view-all span.ecl-icon.ecl-icon--2xs.ecl-link__icon.wt-icon--external': 1
       'div.ecl-fact-figures__item.ecl-fact-figures__item--font-m': 2
     equals:
-      'div.ecl-fact-figures__item:nth-child(1) div.ecl-fact-figures__value': '00.0 million'
+      'div.ecl-fact-figures__item:nth-child(1) div.ecl-fact-figures__value': '00.0 million                    <span class="ecl-fact-figures__title">Lorem ipsum</span>'
       'div.ecl-fact-figures__item:nth-child(1) span.ecl-fact-figures__title': 'Lorem ipsum'
       'div.ecl-fact-figures__item:nth-child(1) div.ecl-fact-figures__description': 'Nunc condimentum sapien ut nibh finibus suscipit vitae at justo. Morbi quis odio faucibus, commodo tortor id, elementum libero.'
-      'div.ecl-fact-figures__item:nth-child(2) div.ecl-fact-figures__value': '10.0 millions'
+      'div.ecl-fact-figures__item:nth-child(2) div.ecl-fact-figures__value': '10.0 millions                    <span class="ecl-fact-figures__title">Nam lacinia nisl eget diam mattis</span>'
       'div.ecl-fact-figures__item:nth-child(2) span.ecl-fact-figures__title': 'Nam lacinia nisl eget diam mattis'
       'div.ecl-fact-figures__item:nth-child(2) div.ecl-fact-figures__description': 'Sed efficitur bibendum rutrum. Nunc feugiat congue augue ac consectetur.'
       'div.ecl-fact-figures__view-all a.ecl-link.ecl-link--standalone.ecl-link--icon.ecl-fact-figures__view-all-link[href="https://example.com"] span.ecl-link__label': 'View all metrics'
