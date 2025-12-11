@@ -51,8 +51,8 @@ page_header:
       preview: "page-header-pattern-background-preview.jpeg"
     overlay:
       type: "text"
-      label: "Overlay"
-      description: "Optional overlay on top of background image (can be 'light', 'dark'). Only used on EC sites"
+      label: "Overlay - Deprecated and will be removed in 5.x stable version."
+      description: "Optional overlay on top of background image (can be 'light', 'dark'). Not used in ECL 5.x anymore."
       preview: "dark"
     hide_title:
       type: "boolean"
@@ -64,22 +64,8 @@ page_header:
       label: "Header message"
       description: "A header message displayed at the top of the page header in an expandable banner."
       preview:
-        title: "Political advertisement"
-        description: "The sponsor is Business Name"
-        more: "More info:"
-        more_link:
-          label: "webpage link"
-          path: "#"
-          external: true
-        lists:
-          - icon_list: true
-            divider: false
-            items:
-              - icon: "check-bold"
-                description: "(The sponsor is controlled by [either (a) business name of the legal entity or (b) name and surname of the natural person])"
-              - icon: "check-bold"
-                description: "(The advertisement is linked to [title and date of the election(s)] or [name of the legislative or regulatory initiative])"
         toggle_label: "expandable button"
-        separator: "-"
-        header_content: ""
-        panel_content: ""
+        header_content:
+          '#markup': 'Duis arcu tortor, suscipit eget, imperdiet nec, imperdiet iaculis, ipsum. Sed cursus turpis vitae tortor.'
+        panel_content:
+          '#markup': 'Duis arcu tortor, suscipit eget, imperdiet nec, imperdiet iaculis, ipsum. Sed cursus turpis vitae tortor. <strong>Aliquam eu nunc.</strong> Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos hymenaeos. Fusce egestas elit eget lorem.'
