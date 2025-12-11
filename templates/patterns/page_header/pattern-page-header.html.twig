@@ -79,13 +79,7 @@
     {% endfor %}
   {% endif %}
   {% set expandable = expandable|merge({
-    title: header_message.title|default(''),
-    description: header_message.description|default(''),
-    more: header_message.more|default(''),
-    more_link: _more_link|default([]),
     toggle_label: header_message.toggle_label|default(''),
-    separator: header_message.separator|default(''),
-    lists: _lists|default([]),
     header_content: header_message.header_content|default(''),
     panel_content: header_message.panel_content|default(''),
   }) %}
@@ -100,6 +94,5 @@
   'meta': metas|filter_empty,
   'picture_background': _picture_background|default([]),
   'extra_classes': _extra_classes|join(' '),
-  'overlay': overlay|default(''),
   'hide_title': hide_title|default(false),
 } %}
