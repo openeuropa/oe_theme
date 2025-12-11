@@ -997,8 +997,7 @@ class CorporateFooterRenderTest extends BrowserTestBase {
       $icon_only = ' ecl-link--icon-only';
     }
     $icon_class = $this->library == 'eu' ? ' ecl-site-footer__link' : ' ecl-social-media-follow__link';
-    $icon_link_not_visited = $this->library == 'ec' ? 'ecl-link--no-visited ' : '';
-    $this->assertEquals("ecl-link ecl-link--standalone {$inverted_class}{$icon_link_not_visited}ecl-link--icon{$icon_class}{$icon_only}", $link->getAttribute('class'));
+    $this->assertEquals("ecl-link ecl-link--standalone {$inverted_class}ecl-link--icon{$icon_class}{$icon_only}", $link->getAttribute('class'));
   }
 
   /**
