@@ -117,6 +117,45 @@ class AddressInlineFormatterTest extends FormatterTestBase {
         ],
         'expected' => 'Dhaka, 1100, Bangladesh',
       ],
+      // Brazil uses hyphen format: %locality-%administrativeArea.
+      'Brazil only' => [
+        'address' => [
+          'country_code' => 'BR',
+        ],
+        'expected' => 'Brazil',
+      ],
+      'Brazil with city only' => [
+        'address' => [
+          'country_code' => 'BR',
+          'locality' => 'Brasília',
+        ],
+        'expected' => 'Brasília, Brazil',
+      ],
+      'Brazil with state only' => [
+        'address' => [
+          'country_code' => 'BR',
+          'administrative_area' => 'DF',
+        ],
+        'expected' => 'DF, Brazil',
+      ],
+      'Brazil with city and state' => [
+        'address' => [
+          'country_code' => 'BR',
+          'locality' => 'Brasília',
+          'administrative_area' => 'DF',
+        ],
+        'expected' => 'Brasília-DF, Brazil',
+      ],
+      'Brazil full address' => [
+        'address' => [
+          'country_code' => 'BR',
+          'locality' => 'Brasília',
+          'administrative_area' => 'DF',
+          'postal_code' => '70040-010',
+          'address_line1' => 'Esplanada dos Ministérios',
+        ],
+        'expected' => 'Esplanada dos Ministérios, Brasília-DF, 70040-010, Brazil',
+      ],
     ];
   }
 
