@@ -1,0 +1,26 @@
+diff --git a/node_modules/@ecl/site-footer/site-footer-ec-section.html.twig b/node_modules/@ecl/site-footer/site-footer-ec-section.html.twig
+index 5e9e3e5..fa0922a
+--- a/node_modules/@ecl/site-footer/site-footer-ec-section.html.twig
++++ b/node_modules/@ecl/site-footer/site-footer-ec-section.html.twig
+@@ -78,7 +78,7 @@
+
+   {# Description #}
+   {% if _section.description is not empty %}
+-    <div class="ecl-site-footer__description">{{ _section.description }}</div>
++    <div class="ecl-site-footer__description">{{ _section.description|raw }}</div>
+   {% endif %}
+
+   {# Social media and extra links #}
+diff --git a/node_modules/@ecl/site-footer/site-footer-eu.html.twig b/node_modules/@ecl/site-footer/site-footer-eu.html.twig
+index e08a9f6..d161d5c
+--- a/node_modules/@ecl/site-footer/site-footer-eu.html.twig
++++ b/node_modules/@ecl/site-footer/site-footer-eu.html.twig
+@@ -134,7 +134,7 @@
+           {%- endif -%}
+         {# description #}
+         {% if _sections.description is defined and _sections.description is not empty %}
+-          <div class="ecl-site-footer__description">{{ _sections.description }}</div>
++          <div class="ecl-site-footer__description">{{ _sections.description|raw }}</div>
+         {% endif %}
+         {# list #}
+         {% if _sections.links is defined and _sections.links is not empty and _sections.links is iterable %}

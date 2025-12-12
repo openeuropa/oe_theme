@@ -10,7 +10,11 @@
  * @see ./module/contrib/oe_corporate_blocks/templates/oe-corporate-blocks-eu-footer.html.twig
  */
 #}
-
+{% if site_owner and site_owner|length > 1 %}
+  {% set site_owner_description = 'This site is co-managed by:<br />'|t ~ site_owner|join('<br />') %}
+{% else %}
+  {% set site_owner_description = site_owner ? 'This site is managed by:<br />@name'|t({'@name': site_owner|first}) %}
+{% endif %}
 {% set _row = [
   [
     {
@@ -22,7 +26,7 @@
         'title': 'European Union'|t,
         'alt': 'European Union flag'|t,
       },
-      'description': site_owner ? 'This site is managed by: @name'|t({'@name': site_owner}),
+      'description': site_owner ? site_owner_description,
     },
   ],
   [
