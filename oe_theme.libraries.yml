@@ -52,14 +52,6 @@ external_svg:
     dist/js/svg4everybody.js: { }
     js/external_svg.js: {}
 
-ecl_datepicker:
-  js:
-    dist/js/pikaday.js: {}
-    js/ecl_datepicker.js: {}
-  dependencies:
-    - core/drupal
-    - core/jquery
-
 print:
   css:
     theme:

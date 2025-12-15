@@ -66,7 +66,7 @@ class DatePickerTestForm extends FormBase {
       '#type' => 'date',
       '#title' => $this->t('Test date picker two'),
       '#description' => $this->t('Date field two.'),
-      '#default_value' => DrupalDateTime::createFromFormat('Y-m-d', '2020-05-10'),
+      '#default_value' => DrupalDateTime::createFromFormat('d-m-Y', '10-05-2020')->format('Y-m-d'),
       '#required' => FALSE,
     ];
 

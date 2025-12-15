@@ -343,13 +343,13 @@ function oe_theme_preprocess_input__checkbox(array &$variables): void {
  * Implements template_preprocess_input__date().
  */
 function oe_theme_preprocess_input__date(array &$variables): void {
-  $php_date_format = $variables['element']['#date_date_format'] ?? 'Y-m-d';
+  $php_date_format = $variables['element']['#date_date_format'] ?? 'd-m-Y';
   $format_map = [
     // @todo find a cleverer way of mapping PHP date formats to the expected
     // ECL ones.
-    'Y-m-d' => 'YYYY-MM-DD',
+    'd-m-Y' => 'DD-MM-YYYY',
   ];
-  $ecl_format = $format_map[$php_date_format] ?? 'YYYY-MM-DD';
+  $ecl_format = $format_map[$php_date_format] ?? 'DD-MM-YYYY';
   $variables['#attached']['library'][] = 'oe_theme/ecl_datepicker';
   $variables['#attached']['drupalSettings']['oe_theme']['ecl_datepicker_format'] = $ecl_format;
   $variables['placeholder'] = $ecl_format;
@@ -2563,6 +2563,17 @@ function oe_theme_preprocess_select(&$variables) {
  * Implements hook_page_attachments_alter().
  */
 function oe_theme_page_attachments_alter(array &$attachments) {
+  // Add the CDN file required for ECL datepicker to work.
+  $attachments['#attached']['html_head'][] = [
+    [
+      '#tag' => 'script',
+      '#attributes' => [
+        'type' => 'module',
+        'src' => 'https://cdn.jsdelivr.net/npm/@duetds/date-picker@1.4.0/dist/duet/duet.esm.js',
+      ],
+    ],
+    'duetjs',
+  ];
   // If the theme is configured to not use the theme favicon, bail out.
   if (!theme_get_setting('favicon.use_default')) {
     return;

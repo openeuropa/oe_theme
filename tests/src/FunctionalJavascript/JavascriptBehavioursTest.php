@@ -165,40 +165,41 @@ class JavascriptBehavioursTest extends WebDriverTestBase {
   public function testEclDatePicker(): void {
     $this->drupalGet('/oe_theme_js_test/datepicker');
 
-    // Assert we have two hidden datepicker elements on the page.
-    $datepickers = $this->getSession()->getPage()->findAll('css', 'div.ecl-datepicker-theme');
+    // Assert we have two hidden datepicker dialog elements on the page.
+    $datepickers = $this->getSession()->getPage()->findAll('css', 'div.ecl-datepicker');
+    $datepicker_dialogs = $this->getSession()->getPage()->findAll('css', '.duet-date__dialog');
     $this->assertCount(2, $datepickers);
-    foreach ($datepickers as $datepicker) {
-      $this->assertFalse($datepicker->isVisible());
+    $this->assertCount(2, $datepicker_dialogs);
+    foreach ($datepicker_dialogs as $datepicker_dialog) {
+      $this->assertFalse($datepicker_dialog->isVisible());
     }
 
     // Assert the first date picker.
-    $input = $this->getSession()->getPage()->find('css', 'input[name="test_datepicker_one"]');
-    $this->assertEquals('YYYY-MM-DD', $input->getAttribute('placeholder'));
-    $this->assertNull($input->getAttribute('value'));
-    $this->assertTrue($input->hasAttribute('data-ecl-datepicker-toggle'));
-    $this->assertTrue($input->hasAttribute('required'));
-    $this->assertSession()->elementExists('css', '.form-item-test-datepicker-one .ecl-datepicker .ecl-icon.ecl-icon--calendar');
+    $this->assertEquals('DD-MM-YYYY', $datepickers[0]->getAttribute('data-placeholder'));
+    $this->assertEquals('DD-MM-YYYY', $datepickers[0]->find('css', 'input.duet-date__input')->getAttribute('placeholder'));
+    $this->assertEmpty($datepickers[0]->find('css', '.duet-date__input-wrapper input[name="date"]')->getAttribute('value'));
+    $this->assertCount(1, $datepickers[0]->findAll('css', 'button.duet-date__toggle'));
+    $this->assertTrue($datepickers[0]->find('css', 'duet-date-picker')->hasAttribute('required'));
 
     // Click the input and assert the datepicker is visible. We can only check
     // the first datepicker because the actual element doesn't have any
     // visible attribute tying it to the input element.
-    $input->click();
-    $this->assertTrue($datepickers[0]->isVisible());
-    $this->assertFalse($datepickers[1]->isVisible());
+    $datepickers[0]->find('css', 'button.duet-date__toggle')->press();
+    $this->assertTrue($datepicker_dialogs[0]->isVisible());
+    $this->assertFalse($datepicker_dialogs[1]->isVisible());
 
     $now = new \DateTime('now', new \DateTimeZone('Europe/Brussels'));
 
     // Assert datepicker rendering.
-    $month_select = $datepickers[0]->find('css', 'select.pika-select-month');
+    $month_select = $datepickers[0]->find('css', 'select.duet-date__select--month');
     $current_month = $now->format('n');
     $this->assertEquals($current_month - 1, $month_select->getValue());
-    $year_select = $datepickers[0]->find('css', 'select.pika-select-year');
+    $year_select = $datepickers[0]->find('css', 'select.duet-date__select--year');
     $this->assertEquals($now->format('Y'), $year_select->getValue());
-    $table = $datepickers[0]->find('css', 'table.pika-table');
+    $table = $datepickers[0]->find('css', 'table.duet-date__table');
     $rows = $table->findAll('css', 'tr');
-    // Assert days are present.
-    $headers = $rows['0']->findAll('css', 'th');
+    // Assert days are present - assert only the visually visible strings.
+    $headers = $rows['0']->findAll('css', 'th span:not(.duet-date__vhidden)');
     $expected = [
       'MO',
       'TU',
@@ -214,20 +215,18 @@ class JavascriptBehavioursTest extends WebDriverTestBase {
     }
 
     // Pick a date and assert it was set.
-    $day = $datepickers[0]->find('css', 'button[data-pika-day=1]');
+    $day = $datepickers[0]->find('css', 'button.duet-date__day.is-month');
     $day->click();
-    $this->assertEquals($now->format('Y-m') . '-01', $input->getValue());
+    $this->assertEquals('01-' . $now->format('m-Y'), $datepickers[0]->find('css', 'input.duet-date__input')->getValue());
     // Give the datepicker a chance to hide.
     sleep(1);
-    $this->assertFalse($datepickers[0]->isVisible());
+    $this->assertFalse($datepicker_dialogs[0]->isVisible());
 
     // Assert some small differences on the second date input element.
-    $input = $this->getSession()->getPage()->find('css', 'input[name="test_datepicker_two"]');
-    $this->assertEquals('YYYY-MM-DD', $input->getAttribute('placeholder'));
-    $this->assertStringContainsString('2020-05-10', $input->getAttribute('value'));
-    $this->assertTrue($input->hasAttribute('data-ecl-datepicker-toggle'));
-    $this->assertFalse($input->hasAttribute('required'));
-    $this->assertSession()->elementExists('css', '.form-item-test-datepicker-two .ecl-datepicker .ecl-icon.ecl-icon--calendar');
+    $this->assertEquals('DD-MM-YYYY', $datepickers[1]->find('css', 'input.duet-date__input')->getAttribute('placeholder'));
+    $this->assertStringContainsString('2020-05-10', $datepickers[1]->find('css', '.duet-date__input-wrapper input[name="date"]')->getAttribute('value'));
+    $this->assertCount(1, $datepickers[1]->findAll('css', 'button.duet-date__toggle'));
+    $this->assertFalse($datepickers[1]->find('css', 'duet-date-picker')->hasAttribute('required'));
 
     // Submit the form.
     $this->getSession()->getPage()->pressButton('Submit');
