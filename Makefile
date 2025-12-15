@@ -42,7 +42,6 @@ copy-dist:
 	cp -r ./ecl-build/dist/packages/ec dist/ec
 	cp -r ./ecl-build/dist/packages/eu dist/eu
 	cp ./ecl-build/node_modules/moment/min/moment.min.js ./dist/js
-	cp ./ecl-build/node_modules/pikaday/pikaday.js ./dist/js
 	cp ./ecl-build/node_modules/svg4everybody/dist/svg4everybody.js ./dist/js
 
 ## copy-twig	: copy ECL twigs in the destination directory.

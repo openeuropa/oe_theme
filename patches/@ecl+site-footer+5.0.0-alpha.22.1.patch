@@ -1,0 +1,13 @@
+diff --git a/node_modules/@ecl/site-footer/site-footer-ec-section.html.twig b/node_modules/@ecl/site-footer/site-footer-ec-section.html.twig
+index 108e700..74e0a2f 100644
+--- a/node_modules/@ecl/site-footer/site-footer-ec-section.html.twig
++++ b/node_modules/@ecl/site-footer/site-footer-ec-section.html.twig
+@@ -78,7 +78,7 @@
+ 
+   {# Description #}
+   {% if _section.description is not empty %}
+-    <div class="ecl-site-footer__description">{{ _section.description }}</div>
++    <div class="ecl-site-footer__description">{{ _section.description|raw }}</div>
+   {% endif %}
+ 
+   {# Social media and extra links #}
