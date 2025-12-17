@@ -4890,6 +4890,7 @@
   assertions:
     count:
       ul.ecl-list-illustration: 1
+      ul.ecl-list-illustration.ecl-list-illustration--icon-inline: 0
       ul.ecl-list-illustration.ecl-color-mode--blue-electric.ecl-list-illustration--zebra: 1
       li.ecl-list-illustration__item: 2
       img.ecl-list-illustration__image: 2
@@ -4922,9 +4923,10 @@
           description: "The EU and its institutions, how to visit and work at the EU."
           icon: "budget"
       divider: true
+      icon_inline: true
   assertions:
     count:
-      ul.ecl-list-illustration.ecl-color-mode--green-pine: 1
+      ul.ecl-list-illustration.ecl-color-mode--green-pine.ecl-list-illustration--icon-inline: 1
       ul.ecl-list-illustration.ecl-list-illustration--centered: 0
       ul.ecl-list-illustration.ecl-list-illustration--zebra: 0
       li.ecl-list-illustration__item: 2
@@ -5024,9 +5026,10 @@
         - title: "About the European Union"
           description: "The EU and its institutions, how to visit and work at the EU."
           icon: "budget"
+      icon_inline: true
   assertions:
     count:
-      ul.ecl-list-illustration: 1
+      ul.ecl-list-illustration.ecl-list-illustration--icon-inline: 1
       ul.ecl-list-illustration.ecl-list-illustration--col-2: 1
       li.ecl-list-illustration__item: 2
       img.ecl-list-illustration__image: 0
@@ -5054,9 +5057,11 @@
           icon: "budget"
           value: 'Highlighted item'
       divider: true
+      icon_inline: false
   assertions:
     count:
       ul.ecl-list-illustration: 1
+      ul.ecl-list-illustration.ecl-list-illustration--icon-inline: 0
       ul.ecl-list-illustration.ecl-list-illustration--col-3: 0
       ul.ecl-list-illustration.ecl-color-mode--green-pine.ecl-list-illustration--icon-list: 1
       li.ecl-list-illustration__item: 2
@@ -5088,6 +5093,7 @@
       divider: true
   assertions:
     count:
+      ul.ecl-list-illustration.ecl-list-illustration--icon-inline: 0
       ul.ecl-list-illustration.ecl-list-illustration--col-2.ecl-list-illustration--icon-list: 1
       li.ecl-list-illustration__item: 2
       img.ecl-list-illustration__image: 0
@@ -5121,6 +5127,7 @@
   assertions:
     count:
       ul.ecl-list-illustration: 1
+      ul.ecl-list-illustration.ecl-list-illustration--icon-inline: 0
       ul.ecl-list-illustration.ecl-list-illustration--col-3: 0
       'ul.ecl-list-illustration.ecl-color-mode--red-crayola.ecl-list-illustration--number-list.ecl-list-illustration--number-list-reset[style="--ecl-list-illustration-counter-start: 99;"]': 1
       li.ecl-list-illustration__item: 2
@@ -5149,8 +5156,10 @@
           icon: "arrow-right-bold"
           value: 'Highlighted item'
       divider: true
+      icon_inline: true
   assertions:
     count:
+      ul.ecl-list-illustration.ecl-list-illustration--icon-inline: 0
       'ul.ecl-list-illustration.ecl-list-illustration--col-2.ecl-list-illustration--number-list.ecl-list-illustration--number-list-reset[style="--ecl-list-illustration-counter-start: 0;"]': 1
       li.ecl-list-illustration__item: 2
       img.ecl-list-illustration__image: 0

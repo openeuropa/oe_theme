@@ -80,3 +80,9 @@ list_with_illustration:
       description: "Define if the items should be separated by a divider. Cannot be used together with the zebra."
       preview: true
       escape: false
+    icon_inline:
+      type: "boolean"
+      label: "Inline icon"
+      description: "Define if the icon should be displayed on the left of the item. Doesn't apply for centered content and it should be used only for icons (no flags or images)."
+      preview: false
+      escape: false
