@@ -177,7 +177,7 @@ class JavascriptBehavioursTest extends WebDriverTestBase {
     // Assert the first date picker.
     $this->assertEquals('DD-MM-YYYY', $datepickers[0]->getAttribute('data-placeholder'));
     $this->assertEquals('DD-MM-YYYY', $datepickers[0]->find('css', 'input.duet-date__input')->getAttribute('placeholder'));
-    $this->assertEmpty($datepickers[0]->find('css', '.duet-date__input-wrapper input[name="date"]')->getAttribute('value'));
+    $this->assertEmpty($datepickers[0]->find('css', '.duet-date__input-wrapper input[name="test_datepicker_one"]')->getAttribute('value'));
     $this->assertCount(1, $datepickers[0]->findAll('css', 'button.duet-date__toggle'));
     $this->assertTrue($datepickers[0]->find('css', 'duet-date-picker')->hasAttribute('required'));
 
@@ -224,7 +224,7 @@ class JavascriptBehavioursTest extends WebDriverTestBase {
 
     // Assert some small differences on the second date input element.
     $this->assertEquals('DD-MM-YYYY', $datepickers[1]->find('css', 'input.duet-date__input')->getAttribute('placeholder'));
-    $this->assertStringContainsString('2020-05-10', $datepickers[1]->find('css', '.duet-date__input-wrapper input[name="date"]')->getAttribute('value'));
+    $this->assertStringContainsString('2020-05-10', $datepickers[1]->find('css', '.duet-date__input-wrapper input[name="test_datepicker_two"]')->getAttribute('value'));
     $this->assertCount(1, $datepickers[1]->findAll('css', 'button.duet-date__toggle'));
     $this->assertFalse($datepickers[1]->find('css', 'duet-date-picker')->hasAttribute('required'));
 

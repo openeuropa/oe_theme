@@ -350,7 +350,6 @@ function oe_theme_preprocess_input__date(array &$variables): void {
     'd-m-Y' => 'DD-MM-YYYY',
   ];
   $ecl_format = $format_map[$php_date_format] ?? 'DD-MM-YYYY';
-  $variables['#attached']['library'][] = 'oe_theme/ecl_datepicker';
   $variables['#attached']['drupalSettings']['oe_theme']['ecl_datepicker_format'] = $ecl_format;
   $variables['placeholder'] = $ecl_format;
 }
