@@ -1,6 +1,13 @@
 tabs:
   label: "Tabs"
   description: "The tabs component is used to navigation links in separate tabs."
+  variants:
+    default:
+      label: "Navigational element"
+      description: "Tabs used as navigational elements."
+    tab_behaviour:
+      label: "Tabbed interface"
+      description: "Tabs used as tabbed interface (does not refresh when changing the tabs). The tab item's path has to match the id of the element to be displayed inside."
   fields:
     items:
       type: "array"
