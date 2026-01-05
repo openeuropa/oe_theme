@@ -5955,6 +5955,33 @@
       div.ecl-tabs div.ecl-tabs__controls button.ecl-tabs__prev: 'Custom previous label'
       div.ecl-tabs div.ecl-tabs__controls button.ecl-tabs__next: 'Custom next label'
 - structure:
+    '#type': 'pattern'
+    '#id': 'tabs'
+    '#variant': 'tab_behaviour'
+    '#fields':
+      items:
+        - label: "View"
+          path: "#view-tab"
+        - label: "Edit"
+          path: "#edit-tab"
+          is_current: TRUE
+        - label: "Delete"
+          path: "#delete-tab"
+      more_label: "Custom more label"
+      previous_label: "Custom previous label"
+      next_label: "Custom next label"
+  assertions:
+    count:
+      div.ecl-tabs div.ecl-tabs__container div.ecl-tabs__list div.ecl-tabs__item a.ecl-tabs__link: 3
+      div.ecl-tabs div.ecl-tabs__container div.ecl-tabs__list div.ecl-tabs__item a.ecl-tabs__link.ecl-tabs__link--active: 1
+    contains:
+      div.ecl-tabs div.ecl-tabs__container div.ecl-tabs__list div.ecl-tabs__item a.ecl-tabs__link:nth-child(1): 'View'
+      div.ecl-tabs div.ecl-tabs__container div.ecl-tabs__list div.ecl-tabs__item a.ecl-tabs__link--active: 'Edit'
+      div.ecl-tabs div.ecl-tabs__container div.ecl-tabs__list div.ecl-tabs__item a.ecl-tabs__link:nth-child(3): 'Delete'
+      div.ecl-tabs div.ecl-tabs__container button.ecl-button span.ecl-button__label: 'Custom more label'
+      div.ecl-tabs div.ecl-tabs__controls button.ecl-tabs__prev: 'Custom previous label'
+      div.ecl-tabs div.ecl-tabs__controls button.ecl-tabs__next: 'Custom next label'
+- structure:
     '#type': pattern
     '#id': spotlight
     '#fields':
