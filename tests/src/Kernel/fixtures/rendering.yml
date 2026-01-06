@@ -5917,8 +5917,10 @@
           is_current: TRUE
         - label: "Delete"
           path: "https://example.com/delete"
+      color_mode: "orange"
   assertions:
     count:
+      div.ecl-tabs.ecl-color-mode--orange: 1
       div.ecl-tabs div.ecl-tabs__container div.ecl-tabs__list div.ecl-tabs__item a.ecl-tabs__link: 3
       div.ecl-tabs div.ecl-tabs__container div.ecl-tabs__list div.ecl-tabs__item a.ecl-tabs__link.ecl-tabs__link--active: 1
     contains:
@@ -5943,8 +5945,10 @@
       more_label: "Custom more label"
       previous_label: "Custom previous label"
       next_label: "Custom next label"
+      color_mode: "purple-violet"
   assertions:
     count:
+      div.ecl-tabs.ecl-color-mode--purple-violet: 1
       div.ecl-tabs div.ecl-tabs__container div.ecl-tabs__list div.ecl-tabs__item a.ecl-tabs__link: 3
       div.ecl-tabs div.ecl-tabs__container div.ecl-tabs__list div.ecl-tabs__item a.ecl-tabs__link.ecl-tabs__link--active: 1
     contains:
@@ -5970,8 +5974,10 @@
       more_label: "Custom more label"
       previous_label: "Custom previous label"
       next_label: "Custom next label"
+      color_mode: "green"
   assertions:
     count:
+      div.ecl-tabs.ecl-color-mode--green: 1
       div.ecl-tabs div.ecl-tabs__container div.ecl-tabs__list div.ecl-tabs__item a.ecl-tabs__link: 3
       div.ecl-tabs div.ecl-tabs__container div.ecl-tabs__list div.ecl-tabs__item a.ecl-tabs__link.ecl-tabs__link--active: 1
     contains:
