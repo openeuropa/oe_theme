@@ -8,7 +8,7 @@ body {
   padding: 0;
 }
 
-a {
+a:not(.ecl-tabs__link) {
   text-decoration: none;
   color: var(--cm-on-surface-primary);
   &:hover,
