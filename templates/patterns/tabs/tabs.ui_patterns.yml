@@ -38,6 +38,11 @@ tabs:
       label: "Next label"
       description: "Label for the next button (mobile only); this is for screen readers"
       preview: "Next"
+    color_mode:
+      type: "text"
+      label: "Color mode"
+      description: "Name of the color mode."
+      preview: "purple-violet"
     extra_classes:
       type: 'text'
       label: 'Extra classes string'
