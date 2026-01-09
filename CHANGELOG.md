@@ -1,11 +1,29 @@
 # Changelog
 
+## [5.0.0-beta17](https://github.com/openeuropa/oe_theme/tree/5.0.0-beta17) (2026-01-09)
+
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/5.0.0-beta17...5.0.0-beta17)
+
+**Merged pull requests:**
+
+- EWPP-6339: Update PHP and triplestore image registries. [\#1672](https://github.com/openeuropa/oe_theme/pull/1672) ([nagyad](https://github.com/nagyad))
+- EWPP-6288: Fix tests to use oEmbed mock. [\#1670](https://github.com/openeuropa/oe_theme/pull/1670) ([nagyad](https://github.com/nagyad))
+- EWPP-6279: Co-owned sites. [\#1669](https://github.com/openeuropa/oe_theme/pull/1669) ([sergepavle](https://github.com/sergepavle))
+- EWPP-6203: Fix inline address formatter. [\#1668](https://github.com/openeuropa/oe_theme/pull/1668) ([nagyad](https://github.com/nagyad))
+- EWPP-6294: Add the picture\_zoom parameter to List item paragraph's template. [\#1667](https://github.com/openeuropa/oe_theme/pull/1667) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-6308: Adapt Makefile and related scripts to build ECL 5.x dev branches. [\#1666](https://github.com/openeuropa/oe_theme/pull/1666) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-6267: Remove openeuropa/composer-dependent-patches [\#1665](https://github.com/openeuropa/oe_theme/pull/1665) ([hernani](https://github.com/hernani))
+- EWPP-6261: Bump composer/installers to 2.x. [\#1663](https://github.com/openeuropa/oe_theme/pull/1663) ([nagyad](https://github.com/nagyad))
+- EWPP-6258: Add new icon\_inline control for list\_with\_illustration pattern. [\#1661](https://github.com/openeuropa/oe_theme/pull/1661) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-6280: Update to ECL 5.0.0-alpha.22.2. [\#1659](https://github.com/openeuropa/oe_theme/pull/1659) ([22Alexandra](https://github.com/22Alexandra))
+
 ## [5.0.0-beta17](https://github.com/openeuropa/oe_theme/tree/5.0.0-beta17) (2025-11-21)
 
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/5.0.0-beta16...5.0.0-beta17)
 
 **Merged pull requests:**
 
+- Release 5.0.0-beta17 changelog. [\#1664](https://github.com/openeuropa/oe_theme/pull/1664) ([22Alexandra](https://github.com/22Alexandra))
 - EWPP-6292: Update ECL version to 5.0.0-alpha.19.1. [\#1662](https://github.com/openeuropa/oe_theme/pull/1662) ([sergepavle](https://github.com/sergepavle))
 
 ## [5.0.0-beta16](https://github.com/openeuropa/oe_theme/tree/5.0.0-beta16) (2025-11-18)
@@ -14,6 +32,7 @@
 
 **Merged pull requests:**
 
+- Release 5.0.0-beta16 changelog. [\#1660](https://github.com/openeuropa/oe_theme/pull/1660) ([22Alexandra](https://github.com/22Alexandra))
 - EWPP-6074: Support Drupal Core 11.2. [\#1654](https://github.com/openeuropa/oe_theme/pull/1654) ([hernani](https://github.com/hernani))
 
 ## [5.0.0-beta15](https://github.com/openeuropa/oe_theme/tree/5.0.0-beta15) (2025-10-22)
