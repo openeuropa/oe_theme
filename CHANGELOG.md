@@ -1,8 +1,8 @@
 # Changelog
 
-## [5.0.0-beta17](https://github.com/openeuropa/oe_theme/tree/5.0.0-beta17) (2026-01-09)
+## [5.0.0-beta18](https://github.com/openeuropa/oe_theme/tree/5.0.0-beta18) (2026-01-09)
 
-[Full Changelog](https://github.com/openeuropa/oe_theme/compare/5.0.0-beta17...5.0.0-beta17)
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/5.0.0-beta17...5.0.0-beta18)
 
 **Merged pull requests:**
 
