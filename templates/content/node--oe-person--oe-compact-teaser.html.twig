@@ -10,9 +10,10 @@
     {% if not node.oe_person_jobs.isEmpty() %}
       <div class="ecl-content-item__meta ecl-u-type-s ecl-u-type-color-neutral-dark-900 ecl-u-mb-xs">{{ content.oe_person_jobs }}</div>
     {% endif %}
-    <a href="{{ url }}" class="ecl-link ecl-link--standalone ecl-u-type-bold">{{ label }}</a>
-    {% if not node.oe_teaser.isEmpty() %}
-      <div class="ecl-content-block__description">{{ content.oe_teaser|field_value|render|striptags }}</div>
+    <a href="{{ url }}" class="ecl-link ecl-link--standalone ecl-u-type-bold">{{ overridden_title|default(label) }}</a>
+    {% set teaser = overridden_teaser|default(node.oe_teaser.isEmpty() ? '' : content.oe_teaser|field_value|render|striptags|spaceless) %}
+    {% if teaser is not empty %}
+      <div class="ecl-content-block__description">{{ teaser }}</div>
     {% endif %}
   </div>
 </article>

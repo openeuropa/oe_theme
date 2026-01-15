@@ -7,12 +7,12 @@
 {# Default to "News" if type field is empty. #}
 {# This can happen since the field was introduced at a later stage. #}
 {% set image_url = content.oe_news_featured_media|field_value|render %}
-{% set label = content.extra_field_oe_theme_helper_short_title_with_fallback|field_value %}
+{% set label = overridden_title|default(content.extra_field_oe_theme_helper_short_title_with_fallback|field_value) %}
 {% set meta = [
   content.oe_news_types,
   content.oe_publication_date|field_value,
 ] %}
-{% set detail = content.oe_teaser|field_value %}
+{% set detail = overridden_teaser|default(content.oe_teaser|field_value) %}
 {% set additional_information = [] %}
 {% apply spaceless %}
   {% block content %}
