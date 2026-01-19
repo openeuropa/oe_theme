@@ -1,0 +1,5 @@
+name: Preview
+slots:
+  src: 'https://loremflickr.com/1200/300/arch'
+  alt: 'placeholder image'
+  caption: 'Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit.'

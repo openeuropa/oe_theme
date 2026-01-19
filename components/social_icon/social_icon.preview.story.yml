@@ -1,0 +1,6 @@
+name: Preview
+slots:
+  service: facebook
+  label: Facebook
+  url: 'http://example.com'
+  size: l

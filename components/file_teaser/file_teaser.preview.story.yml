@@ -1,0 +1,94 @@
+name: Preview
+slots:
+  teaser: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer quis lorem tellus. Nullam sollicitudin suscipit diam, ac blandit ipsum tempor consectetur. Duis vitae pulvinar turpis. Donec maximus pharetra ex a ultricies.'
+  button_label: Download
+  file:
+    title: 'Example document'
+    mime: application/pdf
+    url: 'http://example.com/document.pdf'
+    size: '140000'
+    name: document.pdf
+    language_code: en
+  link_attributes:
+    -
+      name: data-attribute-foo
+      value: bar
+  thumbnail:
+    src: 'https://inno-ecl.s3.amazonaws.com/media/examples/example-image.jpg'
+    alt: 'thumbnail alt'
+  resource_type: 'RESOURCE TYPE'
+  publication_date: '2020-31-08'
+  translations:
+    -
+      file:
+        title: 'French translation'
+        mime: application/pdf
+        url: 'http://example.com/document_fr.pdf'
+        size: '150000'
+        name: document.pdf
+        language_code: fr
+      link_attributes:
+        -
+          name: data-attribute-translation-foo
+          value: bar
+    -
+      file:
+        title: 'Italian translation'
+        mime: application/pdf
+        url: 'http://example.com/document_it.pdf'
+        size: '160000'
+        name: document.doc
+        language_code: it
+      link_attributes:
+        -
+          name: data-attribute-translation-foo
+          value: bar
+    -
+      file:
+        title: 'Hungarian translation'
+        mime: application/pdf
+        url: 'http://example.com/document_hu.pdf'
+        size: '170000'
+        name: document.pdf
+        language_code: hu
+      link_attributes:
+        -
+          name: data-attribute-translation-foo
+          value: bar
+  translation_toggle_label: 'Other languages'
+  lists:
+    -
+      term: Keywords
+      definition:
+        -
+          label: Apple
+        -
+          label: Orange
+    -
+      term: Countries
+      definition:
+        -
+          label: Hungary
+        -
+          label: Germany
+    -
+      term: 'External links'
+      definition:
+        -
+          label: 'First external link'
+          path: 'https://example.com/1'
+        -
+          label: 'Second external link'
+          path: 'https://example.com/2'
+        -
+          path: 'https://example.com/3'
+          external_link: true
+  length: 50
+  badges:
+    -
+      label: Highlighted
+      variant: highlight
+  extra_attributes:
+    -
+      name: extra-attr
+      value: 'extra value'

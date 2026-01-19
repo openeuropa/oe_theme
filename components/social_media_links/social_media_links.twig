@@ -1,0 +1,32 @@
+{#
+/**
+ * @file
+ * Social media links.
+ */
+#}
+
+{% set _links = [] %}
+{% for link in links %}
+  {% set _link = {
+    link: {
+      path: link.url,
+      label: link.label,
+      icon_position: 'before',
+      hide_label: link.hide_label|default(false),
+    }
+  } %}
+  {% if link.service is not empty %}
+    {% set _link = _link|merge({
+      icon: {
+        name: link.service,
+        size: 'xs',
+      }
+    }) %}
+  {% endif %}
+  {% set _links = _links|merge([_link]) %}
+{% endfor %}
+
+{% include '@ecl-twig/social-media-follow' with {
+  'description': title,
+  'links': _links,
+} %}

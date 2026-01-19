@@ -1,0 +1,98 @@
+{#
+/**
+ * @file
+ * Gallery component.
+ */
+#}
+{# Process value objects into ECL compatible array. #}
+
+{% if footer_link_url is not empty %}
+  {% set footer_link = {
+    'link': {
+      'label': footer_link_label|default('Further media items'|t),
+      'path': footer_link_url,
+      'external': footer_link_external,
+    },
+  } %}
+{% endif %}
+
+{% if grid %}
+  {% if grid_template is defined and grid_template != 0 %}
+    {% set _columns = null %}
+  {% else %}
+    {% set _columns = columns|default(2) %}
+  {% endif %}
+  {% set _ratio = ratio|default('3-2') %}
+{% endif %}
+
+{% set _gallery = {
+  'overlay': {
+    'counter_separator': ' / ',
+    'close': {
+      'variant': 'tertiary',
+      'label': 'Close'|t,
+      'icon': {
+        'name': 'close',
+        'size': 's',
+      },
+    },
+    'picture_zoom': picture_zoom|default(false),
+    'download': {
+      'link': {
+        'label': 'Download'|t,
+        'path': '',
+        'aria_label': '',
+      },
+      'icon': {
+        'name': 'download',
+        'size': 'fluid',
+      },
+    },
+    'share': {
+      'link': {
+        'label': 'Share'|t,
+        'path': '',
+        'aria_label': ''
+      },
+      'icon': {
+        'name': 'share',
+        'size': 'fluid',
+      },
+    },
+  },
+  'view_all_label': "See all"|t,
+  'view_all_expanded_label': "Collapse"|t,
+  'counter_label': "media items"|t,
+  'items': items,
+  'icon_path': ecl_icon_path,
+  'disable_overlay': disable_overlay ?? false,
+  'expandable': expandable ?? true,
+  'visible_items': visible_items|default(8),
+  'footer': footer_link|default([]),
+  'grid': grid|default(false),
+  'grid_template': grid_template|default(0),
+  'column': _columns|default(null),
+  'ratio': _ratio|default(null),
+  'disable_hover': disable_hover|default(false),
+} %}
+
+{% if items|length > 1 %}
+  {% set _gallery = _gallery|merge({'overlay': _gallery.overlay|merge({
+    'previous': {
+      'variant': 'tertiary',
+      'label': 'Previous'|t,
+      'icon': {
+        'path': ecl_icon_path,
+      },
+    },
+    'next': {
+      'variant': 'tertiary',
+      'label': 'Next'|t,
+      'icon': {
+        'path': ecl_icon_path,
+      },
+    },
+  })}) %}
+{% endif %}
+
+{% include '@ecl-twig/gallery' with _gallery %}

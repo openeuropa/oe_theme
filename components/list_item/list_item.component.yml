@@ -1,0 +1,91 @@
+name: 'List item'
+description: 'List item pattern with variants.'
+variants:
+  default:
+    title: 'List item: default'
+    description: 'Default list items, contains metadata information and linked title.'
+  block:
+    title: 'List item: block'
+    description: 'Block list item, contains a linked title and standfirst.'
+  highlight:
+    title: 'List item: highlight'
+    description: 'Highlight list item, contains a primary image and a linked title.'
+  navigation:
+    title: 'List item: navigation'
+    description: 'Navigation list item, contains a linked title and stand first.'
+  thumbnail_primary:
+    title: 'List item: thumbnail '
+    description: 'Thumbnail list item, contains a primary image, metadata information and a linked title.'
+  thumbnail_secondary:
+    title: 'List item: thumbnail with secondary image'
+    description: 'Thumbnail list item, contains a secondary image, metadata information and a linked title.'
+  date:
+    title: 'List item: event'
+    description: 'Default list item elements and date.'
+  date_ongoing:
+    title: 'List item: ongoing event'
+    description: 'Default list item elements and date.'
+  date_past:
+    title: 'List item: past event'
+    description: 'Default list item elements and date.'
+  date_cancelled:
+    title: 'List item: cancelled event'
+    description: 'Default list item elements and date.'
+slots:
+  contextual_links:
+    title: 'Contextual links'
+    description: 'Render array of contextual links'
+  url:
+    title: URL
+    description: 'List item link URL (A Drupal Url object)'
+  title:
+    title: Title
+    description: 'List item title'
+  detail:
+    title: Detail
+    description: 'Description text accompanying the link item.'
+  length:
+    title: 'Max length'
+    description: "Used to trim the length of the 'Detail' field (optional)."
+  meta:
+    title: Metadata
+    description: 'Meta information items list'
+  secondary_meta:
+    title: 'Secondary metadata'
+    description: 'Secondary metadata items list with optional icon.'
+  date:
+    title: Date
+    description: 'A date value object.'
+  image:
+    title: 'Primary image'
+    description: 'Attributes of the image to render'
+  image_position:
+    title: 'Image position'
+    description: 'The image position: left (default), right, top.'
+  picture_zoom:
+    title: 'Picture zoom'
+    description: 'Whether the picture should be animated or not (default: false).'
+  badges:
+    title: Badges
+    description: 'Adds different badges to the item.'
+  external_link:
+    title: 'External link'
+    description: 'Whether the URL of the item is external or not.'
+  lists:
+    title: 'Additional information'
+    description: "Array of lists compatible with the ECL Description list component. For 'link', 'link-inline' and 'taxonomy' variants of the list, the list_type is mandatory. If an iterable definition has at least one path provided, all the other items need to provide a path as well."
+  divider:
+    title: Divider
+    description: 'Optional divider below the item.'
+  lists_variant:
+    title: 'Lists variant'
+    description: 'An optional parameter for the layout of the lists (vertical or horizontal). It defaults to horizontal.'
+  color_mode:
+    title: 'Color mode'
+    description: 'Name of the color mode (only used in Highlight variant).'
+  extra_classes:
+    title: 'Extra classes string'
+    description: 'Extra classes string'
+  extra_attributes:
+    title: 'Extra attributes'
+    description: 'List of extra attributes'

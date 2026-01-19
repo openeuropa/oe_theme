@@ -1,0 +1,116 @@
+name: Preview
+slots:
+  title: "The European Commission's priorities"
+  introduction:
+    '#markup': '<p>The European Commission focuses on <strong>several key areas:</strong> supporting the EU economy and businesses, and providing guidance on living, working and traveling in the EU. Read more about our priorities.</p>'
+  items:
+    -
+      type: component
+      component: 'oe_theme:link'
+      slots:
+        url: '#'
+        text: 'A simple link 1'
+        external_link: true
+    -
+      type: component
+      component: 'oe_theme:link'
+      slots:
+        url: '#'
+        text: 'A simple link 2'
+    -
+      type: component
+      component: 'oe_theme:link'
+      slots:
+        url: '#'
+        text: 'A simple link 3'
+    -
+      type: component
+      component: 'oe_theme:link'
+      slots:
+        url: '#'
+        text: 'A simple link 4'
+    -
+      type: component
+      component: 'oe_theme:link'
+      slots:
+        url: '#'
+        text: 'A simple link 5'
+        external_link: true
+    -
+      type: component
+      component: 'oe_theme:link'
+      slots:
+        url: '#'
+        text: 'A simple link 6'
+    -
+      type: component
+      component: 'oe_theme:link'
+      slots:
+        url: '#'
+        text: 'A simple link 7'
+    -
+      type: component
+      component: 'oe_theme:link'
+      slots:
+        url: '#'
+        text: 'A simple link 8'
+    -
+      type: component
+      component: 'oe_theme:link'
+      slots:
+        url: '#'
+        text: 'A simple link 9'
+    -
+      type: component
+      component: 'oe_theme:link'
+      slots:
+        url: '#'
+        text: 'A simple link 10'
+        external_link: true
+    -
+      type: component
+      component: 'oe_theme:link'
+      slots:
+        url: '#'
+        text: 'A simple link 11'
+    -
+      type: component
+      component: 'oe_theme:link'
+      slots:
+        url: '#'
+        text: 'A simple link 12'
+    -
+      type: component
+      component: 'oe_theme:link'
+      slots:
+        url: '#'
+        text: 'A simple link 13'
+    -
+      type: component
+      component: 'oe_theme:link'
+      slots:
+        url: '#'
+        text: 'A simple link 14'
+    -
+      type: component
+      component: 'oe_theme:link'
+      slots:
+        url: '#'
+        text: 'A simple link 15'
+    -
+      type: component
+      component: 'oe_theme:link'
+      slots:
+        url: '#'
+        text: 'A simple link 16'
+    -
+      type: component
+      component: 'oe_theme:link'
+      slots:
+        url: '#'
+        text: 'A simple link 17'
+  button_label: 'View all'
+  button_url: '#'
+  button_icon_name: list
+  button_icon_position: after
+  external_link: true

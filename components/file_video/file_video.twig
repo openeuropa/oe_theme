@@ -1,0 +1,25 @@
+{#
+/**
+ * @file
+ * File video component.
+ */
+#}
+{% include '@ecl-twig/media-container' with {
+  'src': src,
+  'description': caption,
+  'sources': [
+    {
+      'src': src,
+      'type': src_type|default('video/mp4'),
+    },
+  ],
+  'tracks': [
+    {
+      'src': tracks.src|default(''),
+      'kind': tracks.kind|default('captions'),
+      'src_lang': tracks.src_lang|default('en'),
+      'label': tracks.label|default('English'|t),
+    },
+  ],
+  'alt': alt,
+} %}

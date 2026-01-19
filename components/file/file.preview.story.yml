@@ -1,0 +1,10 @@
+name: Preview
+slots:
+  button_label: Download
+  file:
+    title: 'Example document'
+    mime: application/pdf
+    url: 'http://example.com/document.pdf'
+    size: '150000'
+    name: document.pdf
+    language_code: fr

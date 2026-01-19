@@ -1,0 +1,58 @@
+name: 'Featured item'
+description: 'The featured item component uses a different visualisation to attract user attention.'
+variants:
+  default:
+    title: Default
+    description: 'A featured item with a title, an image, a description and some meta information.'
+  extended:
+    title: Extended
+    description: 'Like the default variant but with an extra button on it.'
+slots:
+  image:
+    title: Image
+    description: 'Image of the featured item.'
+  picture_zoom:
+    title: 'Picture zoom'
+    description: 'Whether the picture should be animated or not (default: false).'
+  description:
+    title: Description
+    description: 'Description of the featured item.'
+  length:
+    title: 'Max length'
+    description: 'Used to trim the length of the Description field (optional).'
+  metas:
+    title: Metas
+    description: 'A collection of page meta information.'
+  footer_items:
+    title: 'Footer items'
+    description: "A list of 'icon with text' pairs to be displayed on the card footer."
+  title:
+    title: Title
+    description: 'The title of the page.'
+  link:
+    title: Link
+    description: 'Link in the featured item.'
+  badges:
+    title: Badges
+    description: 'Adds different badges to the item.'
+  external_link:
+    title: 'External link'
+    description: "Whether item's link is external or not."
+  contextual_links:
+    title: 'Contextual links'
+    description: 'Render array of contextual links'
+  lists:
+    title: 'Additional information'
+    description: "Array of lists compatible with the ECL Description list component. For 'link', 'link-inline' and 'taxonomy' variants of the list, the list_type is mandatory. If an iterable definition has at least one path provided, all the other items need to provide a path as well."
+  lists_variant:
+    title: 'Lists variant'
+    description: 'An optional parameter for the layout of the lists (vertical or horizontal). It defaults to vertical.'
+  color_mode:
+    title: 'Color mode'
+    description: 'Name of the color mode.'
+  extra_attributes:
+    title: 'Extra attributes'
+    description: 'List of extra attributes'
+  extra_classes:
+    title: 'Extra classes string'
+    description: 'Extra classes string'

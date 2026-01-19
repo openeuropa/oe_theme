@@ -1,0 +1,28 @@
+{#
+/**
+ * @file
+ * List item block: three columns.
+ */
+#}
+{% set _button_icon_position = button_icon_position|default('after') %}
+{% set _button_icon_name = button_icon_name|default('arrow-left') %}
+{% if external_link %}
+  {% set _button_icon_name = 'external' %}
+  {% set _button_icon_position = 'after' %}
+{% endif %}
+{% include '@oe_theme/compositions/ec-component-content-item-block/content-item-block.html.twig' with {
+  type: 3,
+  title: title,
+  introduction: introduction,
+  items: items,
+  icon_path: ecl_icon_path,
+  button: {
+    path: button_url,
+    label: button_label,
+    icon_name: _button_icon_name,
+    icon_position: _button_icon_position,
+    transform: _button_icon_name == 'arrow-left' ? 'rotate-180' : ''
+  },
+  button_separator: button_separator|default(false),
+  vertical: vertical|default(false)
+} only %}

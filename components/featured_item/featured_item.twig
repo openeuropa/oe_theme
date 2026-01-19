@@ -1,0 +1,144 @@
+{#
+/**
+ * @file
+ * Featured item pattern.
+ */
+#}
+{% set _length = length|default(0) %}
+
+{# Prepare the title as a link or simple string. #}
+{% if link.href is not empty %}
+  {% set _title = {
+    link: {
+      type: 'standalone',
+      label: title,
+      path: link.href,
+      external: external_link,
+      icon_path: ecl_icon_path
+    }
+  } %}
+  {#
+  In order to replicate the extended functionality we add a button
+  at the end of the description if the variant is set to "extended".
+  #}
+  {% if variant == 'extended' %}
+    {% set _description %}
+      {% if description %}
+        <p class="ecl-paragraph">
+          {{ description|smart_trim(_length) }}
+        </p>
+      {% endif %}
+      <a href="{{ link.href }}" class="ecl-button ecl-button--call">
+        <span class="ecl-button__container">
+          <span class="ecl-button__label">{{ link.label }}</span>
+          {% include '@ecl-twig/icon' with {
+            icon: {
+              path: ecl_icon_path,
+              name: external_link ? "external" : "corner-arrow",
+              size: "xs",
+              transform: external_link ? "" : "rotate-90"
+            },
+            extra_classes: "ecl-button__icon ecl-button__icon--after"
+          } only %}
+        </span>
+      </a>
+    {% endset %}
+  {% endif %}
+{% else %}
+  {% set _title = title %}
+{% endif %}
+
+{% if ecl_component_library == 'eu' %}
+  {% set icon_size = 'm' %}
+{% else %}
+  {% set icon_size = 'xs' %}
+{% endif %}
+{% set _footer_items = [] %}
+{% for item in footer_items %}
+  {% set _footer_items = _footer_items|merge([{
+    'label': item.text,
+    'icon': to_ecl_icon(item.icon, icon_size),
+  }]) %}
+{% endfor %}
+
+{% set _picture = [] %}
+{% if image.src is not empty %}
+  {% set _picture = {
+    img: {
+      src: image.src|default(''),
+      alt: image.alt|default(''),
+    }
+  } %}
+{% endif %}
+
+{# Prepare the lists array. #}
+{% if lists is not empty %}
+  {% set _lists = [] %}
+  {% for list in lists %}
+    {% set items = [] %}
+    {% for item in list %}
+      {# Item definition can be either an array or a simple string. #}
+      {% if item.definition is iterable %}
+        {% set _definitions = [] %}
+        {% for _definition in item.definition %}
+          {% if _definition.path is defined %}
+            {% set link = {
+              link: {
+                'type': 'standalone',
+                'label': _definition.label|default(_definition.path),
+                'path': _definition.path,
+                'external': _definition.external_link|default(false),
+                'icon_path': ecl_icon_path,
+              }
+            } %}
+            {% if _definition.icon is defined %}
+              {% set link = link|merge({
+                icon: {
+                  name: _definition.icon,
+                  path: ecl_icon_path,
+                  size: "xs",
+                }
+              }) %}
+            {% endif %}
+            {# For arrays we need to consider separatly which parameters have been provided. #}
+            {% set _definitions = _definitions|merge([link]) %}
+          {% elseif _definition.label is defined and _definition.path is not defined %}
+            {% set _definitions = _definitions|merge([_definition.label]) %}
+          {% elseif _definition.label is not defined and _definition.path is not defined %}
+            {% set _definitions = _definitions|merge([_definition]) %}
+          {% endif %}
+        {% endfor %}
+        {% set items = items|merge([{
+          term: item.term,
+          definition: _definitions,
+          type: item.list_type|default(''),
+        }]) %}
+      {% elseif item.definition is not empty %}
+        {% set items = items|merge([{
+          term: item.term,
+          definition: item.definition,
+          type: item.list_type|default(''),
+        }]) %}
+      {% endif %}
+    {% endfor %}
+    {% set _lists = _lists|merge([{
+      variant: lists_variant|default("vertical"),
+      items: items,
+    }]) %}
+  {% endfor %}
+{% endif %}
+
+{{ contextual_links }}
+{% include '@ecl-twig/card' with {
+  'description': _description|default(description|smart_trim(_length)),
+  'primary_meta': metas,
+  'title': _title,
+  'secondary_meta': _footer_items,
+  'picture': _picture,
+  'picture_zoom': picture_zoom|default(false),
+  'labels': badges,
+  'lists': _lists|default([]),
+  'color_mode': color_mode|default(''),
+  'extra_attributes': extra_attributes|default([]),
+  'extra_classes': extra_classes|default(''),
+} %}

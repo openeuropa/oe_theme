@@ -1,0 +1,63 @@
+{#
+/**
+ * @file
+ * Carousel component.
+ */
+#}
+{% set _items = [] %}
+{% for item in items %}
+  {% if item.url is not empty and item.url_text is not empty %}
+    {% set _link = {
+      'link': {
+        'path': item.url,
+        'label': item.url_text,
+        'icon_position': 'after'
+      },
+      'icon': get_link_icon(item.url),
+      'extra_attributes': item.link_extra_attributes
+    } -%}
+  {% endif %}
+  {% set _picture = [] %}
+  {% if item.image is not empty %}
+    {% set _picture = {
+      img: {
+        src: item.image|default(''),
+        alt: item.image_alt|default(''),
+      }
+    } %}
+  {% endif %}
+  {% if item.sources is not empty and item.sources is iterable %}
+    {% set _picture = _picture|merge({
+      'sources': item.sources,
+    }) %}
+  {% endif %}
+  {% set box_background = 'light' %}
+  {% set font_color = 'dark' %}
+  {% if item.variant is not empty and item.variant == 'text-overlay' %}
+    {% set box_background = 'dark' %}
+    {% set font_color = 'light' %}
+  {% elseif item.variant is empty or item.variant == 'plain-background' %}
+    {% set box_background = 'none' %}
+  {% endif %}
+  {% set _items = _items|merge([{
+    title: item.title,
+    description: item.description,
+    link: _link,
+    picture: _picture,
+    box_background: box_background,
+    font_color: font_color,
+    horizontal: item.centered is defined and item.centered == false ? 'left' : 'center',
+    color_mode: item.color_mode|default(''),
+    credit: item.credit|default(''),
+    extra_classes: item.extra_classes|default(''),
+  }]) %}
+  {% set _link = {} %}
+{% endfor %}
+{% include '@ecl-twig/carousel' with {
+  'items': _items,
+  'counter_label': counter_label|default('of'|t),
+  'full_width': full_width|default(false),
+  'icon_path': ecl_icon_path,
+  'size': size|default('m'),
+  'color_mode': color_mode|default(''),
+} %}

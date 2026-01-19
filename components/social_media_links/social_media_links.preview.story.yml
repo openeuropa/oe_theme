@@ -1,0 +1,20 @@
+name: Preview
+slots:
+  title: 'View European Commission on:'
+  links:
+    -
+      service: facebook
+      label: Facebook
+      url: '#'
+    -
+      service: twitter
+      label: Twitter
+      url: '#'
+    -
+      service: instagram
+      label: Instagram
+      url: '#'
+      hide_label: true
+    -
+      label: 'See more'
+      url: '#'

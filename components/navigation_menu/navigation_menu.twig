@@ -1,0 +1,92 @@
+{#
+/**
+ * @file
+ * Default implementation for the navigation menu component.
+ */
+#}
+
+{# Process items as expected by ECL component. #}
+{% set _items = [] %}
+{% for item in items %}
+  {# Process children, if any. #}
+  {% set _children = [] %}
+  {% for child in item.children %}
+    {% set _child = {
+      path: child.href|default(null),
+      label: child.label,
+      extra_attributes: child.extra_attributes,
+    } %}
+    {% if child.is_current is defined and child.is_current == true%}
+      {% set _child = _child|merge({
+        is_current: child.is_current,
+      }) %}
+    {% endif %}
+    {% if child.external is defined and child.external == true %}
+      {% set _child = _child|merge({
+        external: child.external,
+        icon_path: ecl_icon_path
+      }) %}
+    {% endif %}
+    {% set _children = _children|merge([_child]) %}
+  {% endfor %}
+
+  {# Process menu items. #}
+  {% set _item = {
+    path: item.href|default(null),
+    label: item.label,
+    children: _children,
+    trigger_aria_label: "Access item's children"|t,
+    extra_attributes: item.extra_attributes,
+  } %}
+  {% if _children is empty and item.external is defined and item.external == true %}
+    {% set _item = _item|merge({
+      external: item.external,
+      icon_path: ecl_icon_path
+    }) %}
+  {% endif %}
+  {% if item.is_current is defined and item.is_current == true %}
+    {% set _item = _item|merge({
+      is_current: item.is_current,
+    }) %}
+  {% endif %}
+  {% set _items = _items|merge([_item]) %}
+{% endfor %}
+
+{% if _items %}
+  {# Add extra attributes. #}
+  {% set extra_attributes = [
+    {
+      'name': 'aria-label',
+      'value': "Site navigation"|t,
+    }
+  ] %}
+  {% include '@ecl-twig/menu' with {
+    title: label|default('Menu'|t),
+    toggle: {
+      label: label|default('Menu'|t),
+      icon: {
+        path: ecl_icon_path,
+        name: 'hamburger',
+        size: 'm',
+      }
+    },
+    close: {
+      label: close.label|default('Close'|t),
+      icon: {
+        path: ecl_icon_path,
+        name: ecl_component_library == 'ec' ? 'close' : 'close-filled',
+        size: ecl_component_library == 'ec' ? 'm' : 's',
+      },
+      hide_label: ecl_component_library == 'ec',
+    },
+    back_label: back|default('Back'|t),
+    icon_path: ecl_icon_path,
+    items: _items,
+    see_all_label: see_all_label|default('See all'|t),
+    button_previous_label: button_previous_label|default('Previous items'|t),
+    button_next_label: button_next_label|default('Next items'|t),
+    max_lines: max_lines|default(2),
+    extra_attributes: extra_attributes|default([]),
+  } only %}
+{% endif %}
+

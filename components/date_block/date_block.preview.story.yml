@@ -1,0 +1,6 @@
+name: Preview
+slots:
+  date:
+    start: 370173600
+    end: null
+    timezone: Europe/Brussels

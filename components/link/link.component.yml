@@ -1,0 +1,22 @@
+name: Link
+description: 'A simple link.'
+variants:
+  standalone:
+    title: Standalone
+    description: 'A simple standalone link.'
+  cta:
+    title: 'Call to action'
+    description: 'A call to action link.'
+slots:
+  text:
+    title: text
+    description: 'The link text.'
+  url:
+    title: Link
+    description: 'A Drupal URL object. Strings will be passed to Url::fromUserInput().'
+  external_link:
+    title: 'External link'
+    description: 'Whether the URL is external or not.'
+  contextual_links:
+    title: 'Contextual links'
+    description: 'Render array of contextual links'

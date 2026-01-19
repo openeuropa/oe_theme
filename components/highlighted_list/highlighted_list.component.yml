@@ -1,0 +1,31 @@
+name: 'Highlighted list'
+description: 'A list of highlighted content items compatible with the default variant of the list_item pattern structure.'
+variants:
+  default:
+    title: 'Two columns layout'
+    description: 'Default highlighted list variant may contain up to 4 items: one highlighted and 3 secondary ones of which only the first one with image.'
+  four_columns:
+    title: 'Four columns layout'
+    description: 'The four columns layout variant can contain up to 6 items, two of them with image (each one displayed on a different column).'
+slots:
+  title:
+    title: Title
+    description: 'Highlighted list title'
+  introduction:
+    title: Introduction
+    description: 'A brief summary of the content on the list.'
+  highlighted_item:
+    title: 'Highlighted item'
+    description: 'The main item of the highlighted list - used only in the default variant.'
+  items:
+    title: Items
+    description: 'List of items compatible with the ECL Content item component.'
+  see_more_label:
+    title: 'See more label'
+    description: 'The label for the See more link.'
+  see_more_url:
+    title: 'See more URL'
+    description: 'See more link URL (A Drupal Url object)'
+  detail:
+    title: Detail
+    description: "List's additional information displayed below the See more link."

@@ -1,0 +1,21 @@
+name: 'File with translations'
+description: 'File download component with the available translations.'
+slots:
+  button_label:
+    title: Label
+    description: 'Download button label.'
+  file:
+    title: File
+    description: 'A file value object.'
+  link_attributes:
+    title: 'The download link attributes'
+    description: 'Any additional attributes to be added to the file download link.'
+  translations:
+    title: Files
+    description: 'List of FileValueObject objects.'
+  translation_toggle_label:
+    title: 'Translation toggle label'
+    description: 'Toggle label used for collapsing or expanding the available translations.'
+  publication_date:
+    title: 'Publication date'
+    description: 'Document publication date'

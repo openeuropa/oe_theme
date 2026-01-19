@@ -1,0 +1,25 @@
+name: Preview
+slots:
+  name: Categories
+  items:
+    -
+      label: 'First category'
+      url: 'http://first-category.com/'
+    -
+      label: 'Second category'
+      url: 'http://second-category.com'
+    -
+      label: 'Third category'
+      url: ''
+    -
+      label: 'Forth category'
+      url: ''
+    -
+      label: 'Fifth category'
+      url: ''
+    -
+      label: 'Sixth category'
+      url: ''
+    -
+      label: 'Seven category with a very very long name'
+      url: ''

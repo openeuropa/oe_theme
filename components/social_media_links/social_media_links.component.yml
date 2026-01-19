@@ -1,0 +1,16 @@
+name: 'Social media links'
+description: 'Showcases a list of social media links with their respective icons.'
+variants:
+  horizontal:
+    title: Horizontal
+    description: 'Social media links will be arranged horizontally.'
+  vertical:
+    title: Vertical
+    description: 'Social media links will be arranged vertically.'
+slots:
+  title:
+    title: Title
+    description: 'Social media block title.'
+  links:
+    title: 'Social links'
+    description: 'List of social links.'

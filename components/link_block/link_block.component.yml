@@ -1,0 +1,9 @@
+name: 'Link block'
+description: 'List of links with an optional header.'
+slots:
+  title:
+    title: Title
+    description: 'Link block title'
+  links:
+    title: Links
+    description: 'Array of links'

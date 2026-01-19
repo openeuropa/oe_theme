@@ -1,0 +1,130 @@
+name: Preview
+slots:
+  items:
+    -
+      thumbnail:
+        src: 'https://inno-ecl.s3.amazonaws.com/media/examples/example-external-video.jpg'
+        alt: 'Example alt text'
+      title: Bio-defence
+      caption: 'Bio-defence preparedness programme'
+      meta: 'Copyright © 2021, Author and Licence'
+      source: 'https://inno-ecl.s3.amazonaws.com/media/videos/big_buck_bunny.mp4'
+      media_type: video
+    -
+      thumbnail:
+        src: 'https://loremflickr.com/800/600/cat'
+        alt: 'Example alt text'
+      source: 'https://loremflickr.com/800/600/cat'
+      title: Cat
+      caption: 'A picture of a cat'
+      meta: 'Copyright © 2021, Author and Licence'
+      media_type: image
+    -
+      thumbnail:
+        src: 'https://loremflickr.com/800/600/lisbon'
+        alt: 'Example alt text'
+      title: Lisbon
+      caption: 'Meanwhile in Lisbon, the capital of Portugal'
+      meta: 'Copyright © 2021, Author and Licence'
+      source: 'https://loremflickr.com/800/600/lisbon'
+      media_type: image
+    -
+      thumbnail:
+        src: 'https://loremflickr.com/800/600/kiev'
+        alt: 'Example alt text'
+      title: Kiev
+      caption: 'Meanwhile in Kiev, the capital of Ukraine'
+      meta: 'Copyright © 2021, Author and Licence'
+      source: 'https://loremflickr.com/800/600/kiev'
+      media_type: image
+    -
+      thumbnail:
+        src: 'https://loremflickr.com/800/600/paris'
+        alt: 'Example alt text'
+      caption: 'Meanwhile in Paris, the capital of France'
+      meta: 'Copyright © 2021, Author and Licence'
+      source: 'https://loremflickr.com/800/600/paris'
+      media_type: image
+    -
+      thumbnail:
+        src: 'https://loremflickr.com/800/600/rome'
+        alt: 'Example alt text'
+      caption: 'Meanwhile in Rome, the capital of Italy'
+      meta: 'Copyright © 2021, Author and Licence'
+      source: 'https://loremflickr.com/800/600/rome'
+      media_type: image
+    -
+      thumbnail:
+        src: 'https://loremflickr.com/800/600/madrid'
+        alt: 'Example alt text'
+      caption: 'Meanwhile in Madrid, the capital of Spain'
+      meta: 'Copyright © 2021, Author and Licence'
+      source: 'https://loremflickr.com/800/600/madrid'
+      media_type: image
+    -
+      thumbnail:
+        src: 'https://loremflickr.com/800/600/brussels'
+        alt: 'Example alt text'
+      caption: 'Meanwhile in Brussels, the capital of Belgium'
+      meta: 'Copyright © 2021, Author and Licence'
+      source: 'https://loremflickr.com/800/600/brussels'
+      media_type: image
+    -
+      thumbnail:
+        src: 'https://loremflickr.com/800/600/budapest'
+        alt: 'Example alt text'
+      caption: 'Meanwhile in Budapest, the capital of Hungary'
+      meta: 'Copyright © 2021, Author and Licence'
+      source: 'https://loremflickr.com/800/600/budapest'
+      media_type: image
+    -
+      thumbnail:
+        src: 'https://loremflickr.com/800/600/bucarest'
+        alt: 'Example alt text'
+      caption: 'Meanwhile in Bucarest, the capital of Romania'
+      meta: 'Copyright © 2021, Author and Licence'
+      source: 'https://loremflickr.com/800/600/bucarest'
+      media_type: image
+    -
+      thumbnail:
+        src: 'https://loremflickr.com/800/600/stockholm'
+        alt: 'Example alt text'
+      caption: 'Meanwhile in Stockholm, the capital of Sweden'
+      meta: 'Copyright © 2021, Author and Licence'
+      source: 'https://loremflickr.com/800/600/stockholm'
+      media_type: image
+    -
+      thumbnail:
+        src: 'https://loremflickr.com/800/600/helsinki'
+        alt: 'Example alt text'
+      caption: 'Meanwhile in Helsinki, the capital of Finland'
+      meta: 'Copyright © 2021, Author and Licence'
+      source: 'https://loremflickr.com/800/600/helsinki'
+      media_type: image
+    -
+      thumbnail:
+        src: 'https://loremflickr.com/800/600/tallinn'
+        alt: 'Example alt text'
+      caption: 'Meanwhile in Tallinn, the capital of Estonia'
+      meta: 'Copyright © 2021, Author and Licence'
+      source: 'https://loremflickr.com/800/600/tallinn'
+      media_type: image
+    -
+      thumbnail:
+        src: 'https://loremflickr.com/800/600/vilnius'
+        alt: 'Example alt text'
+      caption: 'Meanwhile in Vilnius, the capital of Lithuania'
+      meta: 'Copyright © 2021, Author and Licence'
+      source: 'https://loremflickr.com/800/600/vilnius'
+      media_type: image
+  disable_overlay: true
+  picture_zoom: true
+  expandable: true
+  footer_link_url: 'http://example.com'
+  footer_link_label: 'Further media items'
+  footer_link_external: true
+  visible_items: 3
+  grid: true
+  columns: 2
+  grid_template: 3
+  ratio: 3-2

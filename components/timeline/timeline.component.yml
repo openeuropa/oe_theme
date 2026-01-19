@@ -1,0 +1,33 @@
+name: Timeline
+description: 'A timeline is a way of displaying a list of events in chronological order.'
+slots:
+  title:
+    title: Title
+    description: 'Timeline title.'
+  introduction:
+    title: Introduction
+    description: 'Optional Timeline introduction text.'
+  limit:
+    title: 'Timeline index for starting hiding'
+    description: 'Item index after which to start hiding timeline items. Default is null.'
+  limit_to:
+    title: 'Timeline index for starting displaying'
+    description: 'Item index after which to resume displaying timeline items. Default is null.'
+  button_label:
+    title: 'Button label'
+    description: 'Show timeline button label.'
+  button_label_hidden:
+    title: 'Button label hidden'
+    description: 'Hidden timeline button label.'
+  color_mode:
+    title: 'Color mode'
+    description: 'Name of the color mode.'
+  extra_classes:
+    title: 'Extra classes string'
+    description: 'Extra classes string'
+  headline:
+    title: 'Timeline headline'
+    description: 'The timeline headline will be displayed as the first item of the timeline and it has the same structure as a regular timeline item.'
+  items:
+    title: 'Timeline items'
+    description: 'List of timeline items.'

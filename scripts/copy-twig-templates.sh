@@ -4,7 +4,7 @@
 source_dir="./ecl-build/src/components"
 
 # Destination directory to copy files with "ecl-" prefix
-destination_dir="./components"
+destination_dir="./ecl_components"
 
 # Ensure an empty destination directory exists
 [ ! -d $destination_dir ] || rm -rf $destination_dir

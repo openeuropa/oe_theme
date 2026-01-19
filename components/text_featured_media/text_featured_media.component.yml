@@ -1,0 +1,55 @@
+name: 'Text with Featured media'
+description: 'Shows a rich text with a title and a featured media on the right, if any.'
+variants:
+  left_simple:
+    title: 'Left simple'
+    description: 'Text on the left, simple call to action. This is the default behaviour.'
+  right_simple:
+    title: 'Right simple'
+    description: 'Text on the right, simple call to action.'
+  left_featured:
+    title: 'Left featured'
+    description: 'Text on the left, featured call to action'
+  right_featured:
+    title: 'Right featured'
+    description: 'Text on the right, featured call to action'
+slots:
+  color_mode:
+    title: 'Color mode'
+    description: 'Name of the color mode.'
+  extra_classes:
+    title: 'Extra classes string'
+    description: 'Extra classes string'
+  title:
+    title: Heading
+    description: 'The heading, displayed on the top.'
+  text_title:
+    title: Title
+    description: 'The title, displayed above text and media.'
+  image:
+    title: Image
+    description: 'Featured image. Either this or the video need to be provided. If both are provided the image will take preference.'
+  video:
+    title: Video
+    description: "Embedded video as a renderable iframe (for example by using the 'html_tag' render element). Either this or the image need to be provided. If both are provided the image will take preference."
+  animation:
+    title: Animation
+    description: 'Animation: uses the media container parameters as defined by the ECL to render a video.'
+  caption:
+    title: Caption
+    description: 'Description of the featured media.'
+  text:
+    title: 'Full text'
+    description: 'The full rich text.'
+  video_ratio:
+    title: 'Video aspect ratio'
+    description: 'Aspect ratio used to display videos in media container. Allowed values: 16:9, 4:3, 3:2, 1:1. Defaults to 16:9 if in invalid value is passed. This will not have any effects when used with images.'
+  link:
+    title: Link
+    description: 'Call to action link with icon'
+  highlighted:
+    title: Highlighted
+    description: 'Whether the item is highlighted or not.'
+  expandable:
+    title: Expandable
+    description: 'Optional expandable text block with extra information about the media item. The block cannot be rendered without actual text and the id must be unique on the page.'

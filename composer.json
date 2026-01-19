@@ -12,7 +12,7 @@
         "drupal/smart_trim": "^2",
         "drupal/stable": "^2.0",
         "drupal/twig_field_value": "^2.0",
-        "drupal/ui_patterns": "^1.11",
+        "drupal/ui_patterns": "^2.0",
         "openeuropa/ecl-twig-loader": "^4.0",
         "openeuropa/oe_time_caching": "^1.5",
         "openeuropa/oe_webtools": "^1.35"

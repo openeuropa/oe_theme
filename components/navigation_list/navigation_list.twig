@@ -1,0 +1,75 @@
+{#
+/**
+ * @file
+ * Navigation list.
+ */
+#}
+
+{% if title_url %}
+  {% set title = {
+    link: {
+      type: 'standalone',
+      label: title,
+      path: title_url,
+      external: external_link|default(false),
+      icon_path: ecl_icon_path
+    },
+    extra_attributes: title_extra_attributes|default([])
+  } %}
+{% endif %}
+
+{% set _links = [] %}
+{% if links %}
+  {% set _primary_links = [] %}
+  {% for link in links %}
+    {% set _link = {
+      link: {
+        label : link.label,
+        path : link.url,
+        icon_path: ecl_icon_path,
+        external: link.is_external|default(false)
+      },
+      extra_attributes: link.extra_attributes|default([])
+    } %}
+    {% set _primary_links = _primary_links|merge([_link]) %}
+  {% endfor %}
+  {% set _links = _links|merge([_primary_links]) %}
+{% endif %}
+
+{% if secondary_links %}
+  {% set _secondary_links = [] %}
+  {% for secondary_link in secondary_links %}
+    {% set _secondary_link = {
+      link: {
+        label : secondary_link.label,
+        path : secondary_link.url,
+        icon_path: ecl_icon_path,
+        external: secondary_link.is_external|default(false)
+      },
+      extra_attributes: secondary_link.extra_attributes|default([])
+    } %}
+    {% set _secondary_links = _secondary_links|merge([_secondary_link]) %}
+  {% endfor %}
+  {% set _links = _links|merge([_secondary_links]) %}
+{% endif %}
+{% if image %}
+  {% set _image = {
+    'img': {
+      'src': image.src,
+      'alt': image.alt
+    }
+  } %}
+{% endif %}
+
+{% set _variant = (variant == 'illustration') ? 'illustration' : '' %}
+{% set _variant = variant|replace({'_':'-'})|default('') %}
+{% include '@ecl-twig/navigation-list/navigation-list-item.html.twig' with {
+  'variant': _variant,
+  'title': title|default({}),
+  'description': description|default(''),
+  'links': _links,
+  'border': border|default(false),
+  'picture': _image,
+  'color_mode': color_mode|default(''),
+  'extra_classes': extra_classes|default(''),
+} only %}

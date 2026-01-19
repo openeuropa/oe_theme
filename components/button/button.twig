@@ -1,0 +1,39 @@
+{#
+/**
+ * @file
+ * Button.
+ */
+#}
+{% if variant == 'default' %}
+  {% include '@ecl-twig/link' with {
+    'link': {
+      'type': 'standalone',
+      'label': label,
+      'path': href,
+      'icon_position': icon_position|default('after'),
+      'external': external_link,
+      'icon_path': ecl_icon_path
+    },
+    'icon': {
+      'name': icon,
+      'size': 's'
+    }
+  } only %}
+{% else %}
+  {% if variant == 'call' %}
+    {% set variant = 'primary' %}
+    {% set style = 'highlight' %}
+  {% endif %}
+  {% include '@ecl-twig/button' with {
+    'label': label,
+    'variant': variant,
+    'style': style|default(''),
+    'type': type_attribute,
+    'icon': {
+      'name': external_link ? 'external' : icon,
+      'size': 's'
+    },
+    'icon_position': icon_position|default('after'),
+    'disabled': disabled
+  } only %}
+{% endif %}

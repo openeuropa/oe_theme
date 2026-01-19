@@ -1,0 +1,18 @@
+{#
+/**
+ * @file
+ * Field.
+ */
+#}
+
+{% set _items = [] %}
+{% set _items = _items|merge([{
+  term: label,
+  definition: body
+}]) %}
+
+{% include '@ecl-twig/description-list' with {
+  'variant': variant,
+  'items': _items,
+} %}
+

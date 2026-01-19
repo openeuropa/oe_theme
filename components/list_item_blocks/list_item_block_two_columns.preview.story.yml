@@ -1,0 +1,35 @@
+name: Preview
+slots:
+  title: "The European Commission's priorities"
+  introduction:
+    '#markup': '<p>The European Commission focuses on <strong>several key areas:</strong> supporting the EU economy and businesses, and providing guidance on living, working and traveling in the EU. Read more about our priorities.</p>'
+  items:
+    -
+      type: component
+      component: 'oe_theme:list_item'
+      slots:
+        title: 'Business, Economy, Euro'
+        detail: 'EU economy, the euro, and practical information for EU businesses and entrepreneurs.'
+    -
+      type: component
+      component: 'oe_theme:list_item'
+      slots:
+        title: 'About the European Union'
+        detail: 'The EU and its institutions, how to visit and work at the EU.'
+    -
+      type: component
+      component: 'oe_theme:list_item'
+      slots:
+        title: 'Live, Work, Travel in EU'
+        detail: 'Advice on living, working or travelling in the EU, on visas and immigration for non-EU citizens, European culture.'
+    -
+      type: component
+      component: 'oe_theme:list_item'
+      slots:
+        title: 'Funding, Tenders'
+        detail: 'EU funding, grants, tenders, and how to apply.'
+  button_label: 'View all'
+  button_url: '#'
+  button_icon_name: list
+  button_icon_position: after
+  vertical: true

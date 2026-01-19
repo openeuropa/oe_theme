@@ -1,0 +1,39 @@
+{#
+/**
+ * @file
+ * Dropdown component.
+ */
+#}
+{% set _links = {} %}
+{% for link in links %}
+  {% set _link = {
+    label: link(link.label, link.url)
+  } %}
+  {% set _links = _links|merge([_link]) %}
+{% endfor %}
+
+{% set content %}
+  <ul class="ecl-unordered-list ecl-unordered-list--no-marker">
+    {% for item in _links %}
+      <li class="ecl-unordered-list__item">
+        {{- item.label -}}
+      </li>
+    {% endfor %}
+  </ul>
+{% endset %}
+
+{% include '@ecl-twig/expandable' with {
+  'id': id,
+  'label_expanded': button_label,
+  'label_collapsed': button_label,
+  'button': {
+    'label': button_label,
+    'variant': 'secondary',
+    'icon': {
+      'name': 'corner-arrow',
+      'transform': 'rotate-180',
+      'size': 'fluid',
+    },
+  },
+  'content': content|default([]),
+} %}

@@ -1,0 +1,13 @@
+name: Preview
+slots:
+  button_label: Dropdown
+  links:
+    -
+      label: 'European Commission'
+      url: 'http://example.com'
+    -
+      label: Priorities
+      url: 'http://example.com'
+    -
+      label: 'Jobs, Growth and Investment'
+      url: 'http://example.com'

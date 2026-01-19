@@ -1,0 +1,21 @@
+{#
+/**
+ * @file
+ * Social icon.
+ */
+#}
+{% include '@ecl-twig/link' with {
+  'link': {
+    'label': label,
+    'type': 'standalone',
+    'path': url,
+    'icon_position': 'before'
+  },
+  'icon': {
+    'name': service,
+    'size': size|default('xs'),
+    'extra_classes': 'ecl-social-media-follow__icon',
+    'family': 'networks',
+  },
+  'extra_classes': 'ecl-social-media-follow__link'
+} only %}

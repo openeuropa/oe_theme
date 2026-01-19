@@ -1,0 +1,36 @@
+name: Spotlight
+description: 'The Spotlight consists of a header, title, an image and an optional link.'
+slots:
+  header:
+    title: Header
+    description: 'Header of the spotlight.'
+  title:
+    title: Title
+    description: 'Title of the spotlight.'
+  font_size:
+    title: 'Font size'
+    description: "Size of the title (can be 'm', 'l') Defaults to 'l'."
+  path:
+    title: Path
+    description: 'Spotlight link url.'
+  picture:
+    title: Picture
+    description: 'Image for the spotlight, following ECL Picture structure.'
+  full_width:
+    title: 'Full width'
+    description: 'Full width spotlight (extend outside the grid).'
+  credit:
+    title: Credit
+    description: 'Credit for the picture.'
+  color_mode:
+    title: 'Color mode'
+    description: 'Name of the color mode.'
+  has_anchor:
+    title: Anchor
+    description: "Whether the spotlight has an anchor or not. Default to 'true'."
+  extra_classes:
+    title: 'Extra classes'
+    description: 'Extra classes string.'
+  extra_attributes:
+    title: 'Extra attributes'
+    description: 'List of extra attributes.'

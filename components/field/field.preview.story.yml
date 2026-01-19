@@ -1,0 +1,4 @@
+name: Preview
+slots:
+  label: 'Lorem ipsum'
+  body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.'

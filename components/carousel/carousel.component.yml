@@ -1,0 +1,18 @@
+name: Carousel
+description: 'The Carousel component renders multiple banner slides.'
+slots:
+  color_mode:
+    title: 'Color mode'
+    description: 'Name of the color mode.'
+  items:
+    title: 'Carousel items'
+    description: 'List of items compatible with the ECL Banner component structure.'
+  counter_label:
+    title: 'Counter label'
+    description: "The counter label. Defaults to 'of'."
+  full_width:
+    title: 'Full width'
+    description: 'Whether the Carousel should be extended to full width.'
+  size:
+    title: Size
+    description: "Size of the carousel (can be 's', 'm', 'l')."
