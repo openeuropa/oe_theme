@@ -1,0 +1,71 @@
+{% include 'oe_theme:banner' with {
+  title: 'Headline sed elit lorem. Donec dictum.',
+  description: 'Pellentesque tempor tincidunt quam, finibus vulputate eros iaculis pharetra orci arcu, dictum maximus arcu pellentesque eget. Cras massa nunc.',
+  font_size: 'l',
+  font_color: 'light',
+  box_background: 'dark',
+  url: 'http://example.com',
+  link_extra_attributes: [
+    {
+      name: extra-attr,
+      value: 'extra value',
+    },
+  ],
+  label: 'Subscribe',
+  image: {
+    src: 'https://inno-ecl.s3.amazonaws.com/media/examples/example-image.jpg',
+    alt: 'alternative text',
+  },
+  sources: [
+    {
+      src: 'https://inno-ecl.s3.amazonaws.com/media/examples/example-image.jpg',
+      media: '(min-width: 1368px)',
+    },
+    {
+      src: 'https://loremflickr.com/1368/456/snow',
+      media: '(min-width: 1140px)',
+    },
+    {
+      src: 'https://loremflickr.com/1140/380/brazil',
+      media: '(min-width: 996px)',
+    },
+    {
+      src: 'https://loremflickr.com/996/332/paris',
+      media: '(min-width: 768px)',
+    },
+    {
+      src: 'https://loremflickr.com/768/256/dog',
+      media: '(min-width: 480px)',
+    },
+    {
+      src: 'https://loremflickr.com/480/160/arch',
+      media: '',
+    },
+  ],
+  size: 'l',
+  horizontal: 'left',
+  vertical: 'top',
+  full_width: false,
+  external_link: true,
+  credit: '© Copyright or credit',
+  video: {
+    poster: 'https://inno-ecl.s3.amazonaws.com/media/examples/example-image.jpg',
+    sources: [
+      {
+        src: 'https://inno-ecl.s3.amazonaws.com/media/videos/big_buck_bunny.mp4',
+        src_type: 'video/mp4',
+      },
+    ],
+    tracks: [
+      {
+        src: 'captions/bunny-en.vtt',
+        kind: 'captions',
+        src_lang: 'en',
+        label: 'English',
+      },
+    ],
+  },
+  sr_play: 'Play',
+  sr_pause: 'Pause',
+  color_mode: 'orange',
+} only %}

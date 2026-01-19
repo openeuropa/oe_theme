@@ -6,4 +6,4 @@ slots:
     description: 'Dropdown button label.'
   links:
     title: Links
-    description: 'Array of links, ''url'' values must be a string or object of type \Drupal\Core\Url.'
+    description: 'Array of links, "url" values must be a string or object of type \Drupal\Core\Url.'

@@ -15,6 +15,6 @@ slots:
     description: 'Label of the "see more items" button'
 libraryOverrides:
   js:
-    js/contextual_navigation.js: {  }
+    context_nav.js: {  }
   dependencies:
     - core/drupal

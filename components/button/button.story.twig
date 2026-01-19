@@ -1,0 +1,13 @@
+{% for _variant in ['default', 'primary', 'secondary', 'tertiary'] %}
+  <h2 class="ecl-u-type-heading-2">
+    Variant: {{ _variant|render }}
+  </h2>
+  {% include 'oe_theme:button' with {
+    variant: _variant,
+    type_attribute: 'submit',
+    href: 'http://www.example.com',
+    icon: 'check',
+    icon_position: 'after',
+    label: 'Button',
+  } only %}
+{% endfor %}

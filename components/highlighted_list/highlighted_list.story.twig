@@ -1,0 +1,162 @@
+{% for _variant in ['default', 'four_columns'] %}
+  <h2 class="ecl-u-type-heading-2">
+    Variant: {{ _variant|render }}
+  </h2>
+  {% include 'oe_theme:highlighted_list' with {
+    variant: _variant,
+    title: 'Highlighted News',
+    introduction: {
+      '#markup': '<p>Duis arcu tortor, suscipit eget, imperdiet nec, imperdiet iaculis, ipsum. Sed cursus turpis vitae tortor. <strong>Aliquam eu nunc.</strong> Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos hymenaeos. Fusce egestas elit eget lorem.</p>',
+    },
+    highlighted_item: {
+      title: 'Item 1',
+      url: '#',
+      external_link: true,
+      detail: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus gravida ipsum ut lorem cursus',
+      meta: [
+        'Item 1 primary meta',
+        'DD Month Year',
+      ],
+      secondary_meta: [
+        {
+          label: '3 minutes read',
+          icon: 'information',
+        },
+        {
+          label: '5 minutes read',
+          icon: 'clock',
+        },
+      ],
+      image: {
+        src: 'https://loremflickr.com/1200/900/arch',
+        alt: 'Alternative text for image',
+      },
+      badges: [
+        {
+          label: 'Highlighted',
+          variant: 'highlight',
+        },
+      ],
+    },
+    items: [
+      {
+        title: 'Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem',
+        detail: 'Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.',
+        meta: [
+          'Item 2 primary meta',
+          'DD Month Year',
+        ],
+        secondary_meta: [
+          {
+            label: '5 minutes read',
+            icon: 'clock',
+          },
+        ],
+        image: {
+          src: 'https://loremflickr.com/1200/900/arch',
+          alt: 'Alternative text for image',
+        },
+        badges: [
+          {
+            label: 'Highlighted',
+            variant: 'highlight',
+          },
+        ],
+        lists: [
+          [
+            {
+              term: 'When',
+              definition: 'Thursday 15 November, 08:00 AM to Friday 16 November',
+            },
+            {
+              term: 'Where',
+              definition: 'The EGG, Rue Barra 175, 1070 Brussels, Belgium',
+            },
+          ],
+        ],
+      },
+      {
+        title: 'In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo',
+        url: 'https://external.com',
+        detail: 'In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam',
+        meta: [
+          'Item 3 primary meta',
+          'DD Month Year',
+        ],
+        secondary_meta: [
+          {
+            label: '2 minutes read',
+            icon: 'clock',
+          },
+        ],
+        image: {
+          src: 'https://loremflickr.com/1200/900/arch',
+          alt: 'Alternative text for image',
+        },
+        image_position: 'top',
+      },
+      {
+        title: 'Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim',
+        url: '#',
+        detail: 'Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam',
+        meta: [
+          'Item 4 primary meta',
+          'DD Month Year',
+        ],
+        image: {
+          src: 'https://loremflickr.com/1200/900/arch',
+          alt: 'Alternative text for image',
+        },
+        secondary_meta: [
+          {
+            label: '3 minutes read',
+            icon: 'clock',
+          },
+          {
+            label: 'Brussels',
+            icon: 'location',
+          },
+        ],
+      },
+      {
+        title: 'Aenean imperdiet. Etiam ultricies nisi vel augue',
+        url: '#',
+        detail: 'Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorpe',
+        meta: [
+          'Item 5 primary meta',
+          'DD Month Year',
+        ],
+        image: {
+          src: 'https://loremflickr.com/1200/900/arch',
+          alt: 'Alternative text for image',
+        },
+      },
+      {
+        title: 'Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero',
+        url: '#',
+        detail: 'Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum.',
+        meta: [
+          'Item 6 primary meta',
+          'DD Month Year',
+        ],
+        image: {
+          src: 'https://loremflickr.com/1200/900/arch',
+          alt: 'Alternative text for image',
+        },
+      },
+      {
+        title: 'Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero',
+        detail: 'Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum.',
+      },
+      {
+        title: 'Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero',
+        detail: 'Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum.',
+      },
+    ],
+    see_more_label: 'Read more news',
+    see_more_url: '#',
+    detail: {
+      '#markup': '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Non enim iam stirpis bonum quaeret, sed animalis. Ego vero volo in virtute vim esse quam maximam; <b>A mene tu?</b> Quid, quod res alia tota est? Duo Reges: constructio interrete.</p>',
+    },
+  } only %}
+{% endfor %}

@@ -1,9 +1,0 @@
-name: Preview
-slots:
-  body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.'
-  author: 'Lorem ipsum'
-  image:
-    src: 'https://loremflickr.com/1000/500/arch'
-    alt: 'Alternative text for featured item image'
-  language_code: pt-pt
-  color_mode: blue-electric

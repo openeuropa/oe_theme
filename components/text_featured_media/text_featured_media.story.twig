@@ -1,0 +1,45 @@
+{% include 'oe_theme:text_featured_media' with {
+  color_mode: 'blue-navy',
+  title: 'Text with Featured media',
+  text_title: 'Lorem ipsum',
+  image: {
+    src: 'https://picsum.photos/1000/500',
+    alt: 'Alternative text for featured item image',
+  },
+  animation: {
+    poster: 'https://inno-ecl.s3.amazonaws.com/media/examples/example-image.jpg',
+    sources: [
+      {
+        src: 'https://inno-ecl.s3.amazonaws.com/media/videos/big_buck_bunny.mp4',
+        src_type: 'video/mp4',
+      },
+    ],
+    tracks: [
+      {
+        src: 'captions/bunny-en.vtt',
+        kind: 'captions',
+        src_lang: 'en',
+        label: 'English',
+      },
+    ],
+  },
+  caption: 'Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit.',
+  text: {
+    '#markup': '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Non enim iam stirpis bonum quaeret, sed animalis. Ego vero volo in virtute vim esse quam maximam; <b>A mene tu?</b> Quid, quod res alia tota est? Duo Reges: constructio interrete.</p>',
+  },
+  video_ratio: '16:9',
+  link: {
+    label: 'View all',
+    path: '#',
+  },
+  highlighted: true,
+  expandable: {
+    id: '',
+    hidden: true,
+    label_expanded: 'Expanded',
+    label_collapsed: 'Collapsed',
+    content: {
+      '#markup': '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Non enim iam stirpis bonum quaeret, sed animalis. Ego vero volo in virtute vim esse quam maximam; <b>A mene tu?</b> Quid, quod res alia tota est? Duo Reges: constructio interrete.</p>',
+    },
+  },
+} only %}

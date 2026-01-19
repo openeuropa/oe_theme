@@ -1,0 +1,35 @@
+{% set items = [
+  {
+    label: 'First category',
+    url: 'http://first-category.com/',
+  },
+  {
+    label: 'Second category',
+    url: 'http://second-category.com',
+  },
+  {
+    label: 'Third category',
+    url: '',
+  },
+  {
+    label: 'Forth category',
+    url: '',
+  },
+  {
+    label: 'Fifth category',
+    url: '',
+  },
+  {
+    label: 'Sixth category',
+    url: '',
+  },
+  {
+    label: 'Seven category with a very very long name',
+    url: '',
+  },
+] %}
+
+{% include 'oe_theme:active_search_filters' with {
+  name: 'Categories',
+  items: items,
+} only %}

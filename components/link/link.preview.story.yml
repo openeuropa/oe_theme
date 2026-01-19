@@ -1,5 +1,0 @@
-name: Preview
-slots:
-  text: 'A simple link'
-  url: '#'
-  external_link: true
