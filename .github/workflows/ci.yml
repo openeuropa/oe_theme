@@ -10,7 +10,7 @@ jobs:
     strategy:
       matrix:
         php_version: ["8.3"]
-        core_version: ["10.4.0"]
+        core_version: ["~10.6.0"]
     env:
       PHP_VERSION: ${{ matrix.php_version }}
     steps:
@@ -26,6 +26,9 @@ jobs:
 
       - name: Start services with Docker Compose
         run: docker compose up -d
+
+      - name: Add yarn latest key
+        run: wget -qO - https://raw.githubusercontent.com/yarnpkg/releases/gh-pages/debian/pubkey.gpg | sudo apt-key add -
 
       - name: Install zip
         run: |
