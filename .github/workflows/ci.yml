@@ -10,7 +10,7 @@ jobs:
     strategy:
       matrix:
         php_version: ["8.3"]
-        core_version: ["10.4.0"]
+        core_version: ["~10.6.0"]
     env:
       PHP_VERSION: ${{ matrix.php_version }}
     steps:
