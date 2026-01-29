@@ -10,7 +10,7 @@ jobs:
     strategy:
       matrix:
         php_version: ["8.3"]
-        core_version: ["10.4.0"]
+        core_version: ["~10.6.0"]
     env:
       PHP_VERSION: ${{ matrix.php_version }}
     steps:
@@ -29,6 +29,7 @@ jobs:
 
       - name: Install zip
         run: |
+          docker compose exec -T web rm -f /etc/apt/sources.list.d/yarn.list
           docker compose exec -T web apt-get update -y
           docker compose exec -T web apt-get install zip -y
 
