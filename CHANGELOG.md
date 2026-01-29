@@ -1,5 +1,13 @@
 # Changelog
 
+## [5.0.0-beta20](https://github.com/openeuropa/oe_theme/tree/5.0.0-beta20) (2026-01-29)
+
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/5.0.0-beta19...5.0.0-beta20)
+
+**Merged pull requests:**
+
+- EWPP-6497: Fix tests related to AV Portal Videos params. [\#1683](https://github.com/openeuropa/oe_theme/pull/1683) ([22Alexandra](https://github.com/22Alexandra))
+
 ## [5.0.0-beta19](https://github.com/openeuropa/oe_theme/tree/5.0.0-beta19) (2026-01-21)
 
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/5.0.0-beta18...5.0.0-beta19)
