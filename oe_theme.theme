@@ -913,6 +913,7 @@ function oe_theme_preprocess_paragraph__oe_list_item(array &$variables): void {
 function oe_theme_preprocess_paragraph__oe_list_item_block(array &$variables): void {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
   $paragraph = $variables['paragraph'];
+  $variables['title'] = !$paragraph->get('field_oe_title')->isEmpty() ? $paragraph->get('field_oe_title')->value : '';
 
   // Set up the correct variant name.
   $variables['variant'] = 'list_item_block_' . $paragraph->get('field_oe_list_item_block_layout')->first()->value;
