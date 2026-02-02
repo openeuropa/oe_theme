@@ -31,6 +31,10 @@ class TextFeaturedMediaAssert extends BasePatternAssert {
         [$this, 'assertImage'],
         'article.ecl-featured-item figure.ecl-media-container__figure picture.ecl-picture.ecl-media-container__picture img.ecl-media-container__media',
       ],
+      'sources' => [
+        [$this, 'assertSources'],
+        'article.ecl-featured-item figure.ecl-media-container__figure picture.ecl-picture.ecl-media-container__picture source',
+      ],
       'video' => [
         [$this, 'assertElementHtml'],
         'article.ecl-featured-item figure.ecl-media-container__figure .ecl-media-container__media',
@@ -203,6 +207,37 @@ class TextFeaturedMediaAssert extends BasePatternAssert {
     }
 
     $this->assertElementExists("article.ecl-color-mode--$color_mode", $crawler);
+  }
+
+  /**
+   * Asserts the picture sources of the pattern.
+   *
+   * @param array $expected_sources
+   *   The array of expected sources.
+   * @param string $selector
+   *   The CSS selector to find the element.
+   * @param \Symfony\Component\DomCrawler\Crawler $crawler
+   *   The DomCrawler where to check the element.
+   */
+  protected function assertSources(array $expected_sources, string $selector, Crawler $crawler): void {
+    if (!$expected_sources) {
+      $this->assertElementNotExists($selector, $crawler);
+      return;
+    }
+
+    $sources = $crawler->filter($selector);
+    if ($sources->count() !== count($expected_sources)) {
+      throw new Exception('The number of expected sources (' . count($expected_sources) . ') does not match the actual number of sources (' . $sources->count() . ').');
+    }
+
+    foreach ($expected_sources as $key => $expected_source) {
+      if (isset($expected_source['srcset'])) {
+        self::assertStringContainsString($expected_source['srcset'], $sources->eq($key)->attr('srcset'));
+      }
+      if (isset($expected_source['media'])) {
+        self::assertEquals($sources->eq($key)->attr('media'), $expected_source['media']);
+      }
+    }
   }
 
   /**
