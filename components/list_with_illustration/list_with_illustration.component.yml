@@ -1,0 +1,43 @@
+name: 'List with illustration'
+description: 'A list of items with associated illustrations.'
+variants:
+  default:
+    title: Default
+    description: 'The default component list with illustration.'
+  icon_list:
+    title: 'Icon list'
+    description: 'All the items will have one of the check-bold, arrow-right-bold and close-bold icons and can be displayed either on 1 (default) or 2 columns only.'
+  number_list:
+    title: 'Number list'
+    description: 'An ordered list with a given value for the counter start and can be displayed either on 1 (default) or 2 columns only.'
+slots:
+  column:
+    title: 'Column number'
+    description: 'Number of columns. Maximum of 4 columns.'
+  zebra:
+    title: Zebra
+    description: 'Use zebra background. Only used for the default variant.'
+  square_image:
+    title: 'Square image'
+    description: 'Whether the rendered image should be rendered in square or landscape mode (only applies to image).'
+  centered:
+    title: Centered
+    description: 'Define if the items should be centered.'
+  color_mode:
+    title: 'Color mode'
+    description: 'Name of the color mode. Applies to icons and zebra background.'
+  extra_classes:
+    title: 'Extra classes string'
+    description: 'Extra classes string'
+  items:
+    title: Items
+    description: 'Array of list items'
+  counter_start:
+    title: 'Counter start'
+    description: 'The offset number. Used only for the number_list variant.'
+  divider:
+    title: Divider
+    description: 'Define if the items should be separated by a divider. Cannot be used together with the zebra.'
+  icon_inline:
+    title: 'Inline icon'
+    description: "Define if the icon should be displayed on the left of the item. Doesn't apply for centered content and it should be used only for icons (no flags or images)."

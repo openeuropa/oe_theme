@@ -1,0 +1,134 @@
+{#
+/**
+ * @file
+ * File teaser pattern.
+ */
+#}
+
+{% set _length = length|default(0) %}
+
+{# Process value objects into ECL compatible array. #}
+{% set _translations = [] %}
+{% for item in translations %}
+  {% set _translation_meta = '(' ~ item.file.extension|upper  ~ ')' %}
+  {% if item.file.size %}
+    {% set _translation_meta = '(' ~ item.file.size|format_size ~ ' - ' ~ item.file.extension|upper  ~ ')' %}
+  {% endif %}
+  {% set _translations = _translations|merge([{
+    'title': item.file.title,
+    'meta': _translation_meta,
+    'lang': item.file.language_code|to_internal_language_id,
+    'download': {
+      'link': {
+        'label': button_label|default('Download'|t),
+        'path': item.file.url,
+      },
+      'icon': {
+        'path': ecl_icon_path,
+      },
+      'extra_attributes': item.link_attributes|default([]),
+    },
+  }]) %}
+{% endfor %}
+{% set _detail_meta = [] %}
+{% if resource_type is not empty %}
+  {% set _detail_meta = _detail_meta|merge([resource_type]) %}
+{% endif %}
+{% if publication_date is not empty %}
+  {% set _detail_meta = _detail_meta|merge([publication_date]) %}
+{% endif %}
+
+{% set _lists = [] %}
+{% if lists is not empty %}
+  {% set _items = [] %}
+  {% for item in lists %}
+
+    {# We can expect 'label' as key for a definition item (backwards compatibility). #}
+    {% set _definitions = [] %}
+    {% if item.definition is iterable %}
+      {% for _definition in item.definition %}
+        {% if _definition.path is defined %}
+          {% set link = {
+            'type': 'standalone',
+            'label': _definition.label|default(_definition.path),
+            'path': _definition.path,
+            'external': _definition.external_link|default(false),
+            'icon_path': ecl_icon_path,
+          } %}
+          {% set _definitions = _definitions|merge([
+            {
+              link: link,
+            }
+          ]) %}
+        {% elseif _definition.label is defined and _definition.path is not defined %}
+          {% set _definitions = _definitions|merge([_definition.label]) %}
+        {% elseif _definition.label is not defined and _definition.path is not defined %}
+          {% set _definitions = _definitions|merge([_definition]) %}
+        {% endif %}
+      {% endfor %}
+    {% endif %}
+
+    {# Taxonomy variant is depracated, taxonomy type has to be set for each item. #}
+    {% set item = item|merge({
+      definition: _definitions,
+      type: 'taxonomy',
+    }) %}
+    {% set _items = _items|merge([item]) %}
+  {% endfor %}
+
+  {% set _lists = _lists|merge([{ 'items': _items }]) %}
+{% endif %}
+
+{% set _meta = '(' ~ file.extension|upper  ~ ')' %}
+{% if file.size %}
+  {% set _meta = '(' ~ file.size|format_size ~ ' - ' ~ file.extension|upper  ~ ')' %}
+{% endif %}
+{% if badges %}
+  {% set _label = badges|first %}
+{% endif %}
+
+{% set _picture = [] %}
+{% if thumbnail.src is not empty %}
+  {% set _picture = {
+    img: {
+      src: thumbnail.src|default(''),
+      alt: thumbnail.alt|default(''),
+    }
+  } %}
+{% endif %}
+
+{{ contextual_links }}
+
+{% include '@ecl-twig/file' with {
+  'title': file.title,
+  'description': teaser|smart_trim(_length),
+  'picture': _picture|default({}),
+  'language': file.language_code|to_language,
+  'meta': _meta,
+  'download': {
+    'link': {
+      'label': button_label|default('Download'|t),
+      'path': file.url,
+    },
+    'icon': {
+      'path': ecl_icon_path,
+    },
+    'extra_attributes': link_attributes|default([]),
+  },
+  'translation': {
+    'toggle': {
+      'label': translation_toggle_label|default("Other languages"|t) ~ " (" ~ translations|length ~ ")",
+      'icon': {
+        'name': 'corner-arrow',
+        'size': 'fluid',
+        'transform': 'rotate-180',
+      },
+    },
+    'items': _translations,
+  },
+  'detail_meta': _detail_meta,
+  'variant': 'thumbnail',
+  'lists': _lists,
+  'label': _label,
+  'extra_attributes': extra_attributes|default([]),
+} only %}

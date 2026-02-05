@@ -1,0 +1,40 @@
+name: 'Navigation menu'
+description: 'Default implementation of the main navigation menu.'
+variants:
+  default:
+    title: Default
+    description: 'Default variant uses the ECL menu component.'
+  mega_menu:
+    title: 'Mega menu'
+    description: 'Mega menu variant uses the ECL Mega menu component.'
+slots:
+  label:
+    title: Label
+    description: 'Label for the menu, only visible on mobile.'
+  close:
+    title: 'Close button'
+    description: 'Close button label and whether only an icon should be displayed.'
+  back:
+    title: 'Back button'
+    description: 'Back button label.'
+  see_all_label:
+    title: 'See all button'
+    description: 'Label for the "see all" link (mobile only for default variant).'
+  button_previous_label:
+    title: 'Previous items button'
+    description: 'Label for the button to display previous items, in case of overflow (for screen readers)'
+  button_next_label:
+    title: 'Next items button'
+    description: 'Label for the button to display next items, in case of overflow (for screen readers)'
+  max_lines:
+    title: 'Lines limit for first level items'
+    description: 'Number of maximum lines for each first level item label. It defaults to 2, set it to zero to remove this behavior.'
+  featured_priority:
+    title: 'Featured priority (only used in mega menu variant)'
+    description: "Determines whether the featured list of the 1st level items or the 2nd level items should be first shown. It can be 'primary' or 'secondary' (default)."
+  extra_classes:
+    title: 'Extra classes'
+    description: 'Extra classes to be added on the wrapper of the ECL component.'
+  items:
+    title: Links
+    description: 'A list of links that make up the navigation menu, including children items.'

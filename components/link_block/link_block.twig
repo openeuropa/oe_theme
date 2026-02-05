@@ -1,0 +1,31 @@
+{#
+/**
+ * @file
+ * Link block.
+ */
+#}
+
+{% set _links = {} %}
+{% for link in links %}
+  {% set _link = {
+    link: {
+      label : link.label,
+      path : link.url,
+      type: 'standalone'
+    }
+  } %}
+  {% if link.is_external %}
+    {% set _link = _link|merge({
+      'icon': {
+        'name': "external",
+        'size': "xs"
+      }
+    }) %}
+  {% endif %}
+  {% set _links = _links|merge([_link]) %}
+{% endfor %}
+
+{% include '@oe_theme/compositions/ec-component-link-block/link-block.html.twig' with {
+  title: title,
+  links: _links,
+} %}

@@ -1,0 +1,25 @@
+{#
+/**
+ * @file
+ * Link block.
+ */
+#}
+{% if image.src is not empty %}
+  {% set _picture = {
+    img: {
+      'src': image.src,
+      'alt': image.alt
+    }
+  } %}
+{% endif %}
+{% if language_code|render is not empty %}
+  {% set _lang = language_code|to_internal_language_id %}
+{% endif %}
+{% include '@ecl-twig/blockquote' with {
+  'author': author,
+  'citation': body,
+  'lang': _lang|default('en'),
+  'picture': _picture|default([]),
+  'color_mode': color_mode|default(''),
+  'extra_classes': extra_classes|default(''),
+} %}

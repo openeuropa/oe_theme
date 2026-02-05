@@ -1,0 +1,21 @@
+{#
+/**
+ * @file
+ * Link pattern.
+ */
+#}
+{{ contextual_links }}
+{% if variant == 'cta' %}
+  {% set variant = 'primary-highlight' %}
+{% endif %}
+{% include '@ecl-twig/link' with {
+  link: {
+    type: variant|default('standalone'),
+    label: text,
+    path: url,
+    external: external_link,
+    icon_path: ecl_icon_path
+  },
+  extra_attributes: extra_attributes,
+  extra_classes: classes
+} only %}

@@ -1,0 +1,45 @@
+name: 'File teaser'
+description: 'File download component with translations, teaser and thumbnail.'
+slots:
+  teaser:
+    title: Teaser
+    description: 'Teaser text displayed in the main file teaser region.'
+  button_label:
+    title: Label
+    description: 'Download button label.'
+  file:
+    title: File
+    description: 'A file value object.'
+  link_attributes:
+    title: 'The download link attributes'
+    description: 'Any additional attributes to be added to the file download link.'
+  thumbnail:
+    title: Thumbnail
+    description: 'Document thumbnail.'
+  resource_type:
+    title: 'Resource type'
+    description: 'Document resource type'
+  publication_date:
+    title: 'Publication date'
+    description: 'Document publication date'
+  translations:
+    title: Files
+    description: "List of items with the following properties: FileValueObject and link attributes, respectively keyed with 'file' and 'link_attributes'."
+  translation_toggle_label:
+    title: 'Translation toggle label'
+    description: 'Toggle label used for collapsing or expanding the available translations.'
+  lists:
+    title: Lists
+    description: 'Array of description lists (list items).'
+  length:
+    title: 'Max length'
+    description: "Used to trim the length of the 'Teaser' fields (optional)."
+  badges:
+    title: Badges
+    description: 'Adds different badges to the file. Warning: Due to ECL constraints, only the first item will be taken into account.'
+  contextual_links:
+    title: 'Contextual links'
+    description: 'Render array of contextual links'
+  extra_attributes:
+    title: 'Extra attributes'
+    description: 'List of extra attributes'

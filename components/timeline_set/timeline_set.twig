@@ -1,0 +1,67 @@
+{#
+/**
+ * @file
+ * Timeline set component.
+ */
+#}
+
+{% set _items = [] %}
+
+{% for _item in items %}
+  {% set _headline = [] %}
+  {% if _item.headline is not empty %}
+    {% set _headline = {
+      label: _item.headline.label|default(''),
+      title: _item.headline.title|default(''),
+      content: _item.headline.body|default(''),
+    } %}
+  {% endif %}
+
+  {% set _timeline_items = [] %}
+  {% if _item.timeline_items is not empty %}
+    {% set total_num = _item.timeline_items|length %}
+    {% set hide_from = _item.limit_to == 0 ? total_num : _item.limit_to %}
+    {% set hidden_num = total_num - (_item.timeline_items|slice(0, _item.limit)|length + _item.timeline_items|slice(hide_from)|length) %}
+
+    {% set _toggle_collapsed = button_label ? button_label|t : 'Show @numb more items'|trans({'@numb': hidden_num}) %}
+    {% set _toggle_expanded = button_label_hidden ? button_label_hidden| t : 'Hide @numb items'|trans({'@numb': hidden_num}) %}
+
+    {% for timeline_item in _item.timeline_items %}
+      {% set _timeline_items = _timeline_items|merge([{
+        label: timeline_item.label,
+        title: timeline_item.title,
+        content: timeline_item.body
+      }]) %}
+    {% endfor %}
+  {% endif %}
+
+  {% set _items = _items|merge([{
+    headline: _headline|default([]),
+    items: _timeline_items|default([]),
+    toggle_collapsed: _toggle_collapsed,
+    toggle_expanded: _toggle_expanded,
+    hide: {
+      'from': _item.limit,
+      'to': _item.limit_to|default(0),
+    },
+  }]) %}
+{% endfor %}
+
+{% if title %}
+  <div class="ecl">
+    <h2 class="ecl-u-type-heading-2">
+      {{ title }}
+    </h2>
+  </div>
+{% endif %}
+{% if introduction %}
+  <div class="ecl ecl-u-mb-m">
+    {{ introduction }}
+  </div>
+{% endif %}
+
+{% include '@ecl-twig/timeline/timeline-set' with {
+  'color_mode': color_mode|default(''),
+  'items': _items,
+  'extra_classes': extra_classes|default(''),
+} only %}

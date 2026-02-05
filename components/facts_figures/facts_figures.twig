@@ -1,0 +1,44 @@
+{#
+/**
+ * @file
+ * Facts and figures pattern template.
+ */
+#}
+{% if view_all is not empty %}
+  {% set _link = {
+    'path': view_all.path,
+    'label': view_all.label,
+    'external': external_link|default(false),
+  } %}
+  {% set view_all_icon = {
+    name: "corner-arrow",
+    transform: "rotate-90",
+  } %}
+{% endif %}
+
+{% set _items = [] %}
+{% for _item in items %}
+  {% set _items = _items|merge([{
+    icon: _item.icon ? to_ecl_icon(_item.icon),
+    value: _item.value,
+    title: _item.title,
+    description: _item.description,
+  }]) %}
+{% endfor %}
+
+{% if _items|length < 3 %}
+  {% set _column = _items|length %}
+{% endif %}
+
+{% include '@ecl-twig/fact-figures' with {
+  'column': _column|default(null),
+  'centered': centered|default(false),
+  'font_size': font_size|default('l'),
+  'items': _items,
+  'view_all':{
+    'link': _link,
+    'icon': view_all_icon,
+  },
+  'color_mode': color_mode|default(''),
+  'extra_classes': extra_classes|default(''),
+} %}

@@ -1,0 +1,12 @@
+name: 'File image'
+description: 'Displays the file image.'
+slots:
+  src:
+    title: Source
+    description: 'Source of the image (A Drupal Url object)'
+  alt:
+    title: Alt
+    description: 'Alternative text for the image.'
+  caption:
+    title: Caption
+    description: 'Description of the image.'

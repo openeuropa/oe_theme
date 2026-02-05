@@ -1,0 +1,33 @@
+name: 'List item block: four columns'
+description: 'Four columns layout, to be used with listing items.'
+slots:
+  title:
+    title: Title
+    description: 'Block title'
+  introduction:
+    title: Introduction
+    description: 'A brief summary of the content on the list.'
+  items:
+    title: 'Layout items'
+    description: 'Array of renderable items'
+  button_label:
+    title: 'Button label'
+    description: 'Call to action label'
+  button_url:
+    title: 'Button URL (A Drupal Url object)'
+    description: 'Call to action URL'
+  button_icon_name:
+    title: 'Icon name'
+    description: 'The name of the icon to place next to the link (default to arrow-left with transform rotate-180).'
+  button_icon_position:
+    title: 'Icon position'
+    description: 'The position of the icon'
+  button_separator:
+    title: 'Button separator'
+    description: 'Whether to add a separator line between the items and the button.'
+  external_link:
+    title: 'External link'
+    description: 'Whether the Button URL is external or not.'
+  vertical:
+    title: 'Vertical order'
+    description: 'Whether the items to be ordered from top to bottom instead of left to right.'

@@ -1,0 +1,15 @@
+name: Accordion
+description: 'List of items that can be clicked to hide or reveal additional content.'
+slots:
+  identifier:
+    title: Name
+    description: 'Unique machine readable name. Optional.'
+  color_mode:
+    title: 'Color mode'
+    description: 'Name of the color mode.'
+  extra_classes:
+    title: 'Extra classes string'
+    description: 'Extra classes string'
+  items:
+    title: 'Accordion items'
+    description: 'List of accordion items'

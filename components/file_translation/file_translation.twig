@@ -1,0 +1,74 @@
+{#
+/**
+ * @file
+ * File translation pattern.
+ */
+#}
+
+{# Process value objects into ECL compatible array. #}
+{% set _translations = [] %}
+
+{% for item in translations %}
+  {% set _translation_meta = '(' ~ item.extension|upper  ~ ')' %}
+  {% if item.size %}
+    {% set _translation_meta = '(' ~ item.size|format_size ~ ' - ' ~ item.extension|upper  ~ ')' %}
+  {% endif %}
+  {% set _translations = _translations|merge([{
+    'title': item.language_code|to_native_language,
+    'meta': _translation_meta,
+    'lang': item.language_code|to_internal_language_id,
+    'download': {
+      'link': {
+        'label': button_label|default('Download'|t),
+        'path': item.url,
+      },
+      'icon': {
+        'path': ecl_icon_path,
+      },
+    },
+  }]) %}
+{% endfor %}
+
+{% set _meta = '(' ~ file.extension|upper  ~ ')' %}
+{% if file.size %}
+  {% set _meta = '(' ~ file.size|format_size ~ ' - ' ~ file.extension|upper  ~ ')' %}
+{% endif %}
+
+{% set _detail_meta = [] %}
+{% if publication_date is not empty %}
+  {% set _detail_meta = _detail_meta|merge([publication_date|upper]) %}
+{% endif %}
+
+{% set file_icon_size = ecl_component_library == 'ec' ? '2xl' : 'm' %}
+
+{% include '@ecl-twig/file' with {
+  'title': file.title,
+  'language': file.language_code|to_language,
+  'meta': _meta,
+  'icon': {
+    'name': file.extension|to_file_icon,
+    'size': file_icon_size,
+  },
+  'download': {
+    'link': {
+      'label': button_label|default('Download'|t),
+      'path': file.url,
+    },
+    'icon': {
+      'path': ecl_icon_path,
+    },
+    'extra_attributes': link_attributes|default([]),
+  },
+  'translation': {
+    'toggle': {
+      'label': translation_toggle_label|default("Other languages"|t) ~ " (" ~ translations|length ~ ")",
+      'icon': {
+        'name': 'corner-arrow',
+        'size': 'fluid',
+        'transform': 'rotate-180',
+      },
+    },
+    'items': _translations,
+  },
+  'detail_meta': _detail_meta
+} only %}

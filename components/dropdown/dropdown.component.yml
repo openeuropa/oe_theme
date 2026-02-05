@@ -1,0 +1,9 @@
+name: Dropdown
+description: 'Dropdown components contain elements that, when clicked, reveal additional content.'
+slots:
+  button_label:
+    title: Label
+    description: 'Dropdown button label.'
+  links:
+    title: Links
+    description: 'Array of links, "url" values must be a string or object of type \Drupal\Core\Url.'

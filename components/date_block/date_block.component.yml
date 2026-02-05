@@ -1,0 +1,19 @@
+name: 'Date block'
+description: 'Date block component'
+variants:
+  default:
+    title: 'Default event'
+    description: 'Default event'
+  ongoing:
+    title: 'Ongoing event'
+    description: 'Ongoing event'
+  cancelled:
+    title: 'Cancelled event'
+    description: 'Cancelled event'
+  past:
+    title: 'Past event'
+    description: 'Past event'
+slots:
+  date:
+    title: Date
+    description: 'A date value object.'

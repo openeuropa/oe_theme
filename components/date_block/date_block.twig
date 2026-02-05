@@ -1,0 +1,15 @@
+{#
+/**
+ * @file
+ * Date block.
+ */
+#}
+{% include '@oe_theme/compositions/ec-component-date-block/date-block.html.twig' with {
+  variant: variant|replace({'_':'-'})|to_date_status,
+  week_day: date.week_day,
+  day: date.day,
+  month_fullname: date.month_fullname,
+  month_name: date.month_name,
+  month: date.month,
+  year: date.year
+} only %}

@@ -1,0 +1,21 @@
+name: Blockquote
+description: 'Quote and author block.'
+slots:
+  body:
+    title: Title
+    description: 'Quote text'
+  author:
+    title: Author
+    description: 'Quote author'
+  image:
+    title: Image
+    description: 'Blockquote image'
+  language_code:
+    title: 'Language code'
+    description: "The language code for the blockquote - it changes the type of quotes. (defaults to 'en')"
+  color_mode:
+    title: 'Color mode'
+    description: 'Name of the color mode.'
+  extra_classes:
+    title: 'Extra classes string'
+    description: 'Extra classes string'

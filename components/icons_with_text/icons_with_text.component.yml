@@ -1,0 +1,9 @@
+name: 'Icons with text'
+description: 'A list of icons with a text.'
+slots:
+  items:
+    title: Items
+    description: "List of items, each having an 'icon' and a 'text' field"
+  compact:
+    title: 'Compact mode'
+    description: "When set to true it will display the list in a more compact fashion. Defaults to 'false'"

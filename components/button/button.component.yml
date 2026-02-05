@@ -1,0 +1,37 @@
+name: Button
+description: 'Buttons indicate actions the users can take.'
+variants:
+  default:
+    title: Default
+    description: 'The default button is used for important links on the page.'
+  primary:
+    title: Primary
+    description: 'Used for primary actions in case of forms, to initiate a search query, to apply a filter.'
+  secondary:
+    title: Secondary
+    description: 'Used for secondary actions to cancel a form.'
+  tertiary:
+    title: Tertiary
+    description: 'Used for tertiary actions in a form.'
+slots:
+  type_attribute:
+    title: 'Type attribute'
+    description: 'The buttons type attribute'
+  href:
+    title: URL
+    description: 'URL to use if button needs to be a link (A Drupal Url object)'
+  icon:
+    title: Icon
+    description: 'An icon to use with the button.'
+  icon_position:
+    title: 'Icon position'
+    description: "Position of link icon (can be 'before' or 'after') if icon is available"
+  label:
+    title: Label
+    description: 'Label of the button.'
+  disabled:
+    title: 'Disabled status'
+    description: 'Define if button should be disabled.'
+  external_link:
+    title: 'External link'
+    description: 'Whether button link is external or not.'

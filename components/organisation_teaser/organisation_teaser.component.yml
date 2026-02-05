@@ -1,0 +1,18 @@
+name: 'Organisation teaser'
+description: 'Teaser implementation of the Organisation entity.'
+slots:
+  logo:
+    title: Logo
+    description: 'Logo (optional).'
+  name:
+    title: Name
+    description: 'Name text.'
+  acronym:
+    title: Acronym
+    description: 'Acronym text (optional).'
+  organisation_details:
+    title: 'Organisation details'
+    description: 'List of fields as specified in the field_list pattern (optional).'
+  contact_page_url:
+    title: 'Contact page URL'
+    description: 'Contact page URL (optional).'

@@ -1,0 +1,9 @@
+name: 'Active search filters'
+description: 'Display a list of active search filters along with the filter name.'
+slots:
+  name:
+    title: 'Filter name'
+    description: 'Name of the filter.'
+  items:
+    title: 'Active filters'
+    description: 'List of active filter links.'

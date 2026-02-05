@@ -1,0 +1,16 @@
+{#
+/**
+ * @file
+ * Tag.
+ */
+#}
+{% if variant == 'default' %}
+  {% include '@ecl-twig/tag' with {
+    'tag': {
+      'type': tag_type,
+      'path': url,
+      'label': label,
+    },
+    'extra_classes': extra_classes
+  } %}
+{% endif %}

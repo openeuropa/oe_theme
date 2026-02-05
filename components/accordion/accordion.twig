@@ -1,0 +1,30 @@
+{#
+/**
+ * @file
+ * Accordion component.
+ */
+#}
+{% set _items = [] %}
+{% for _item in items %}
+  {% set _items = _items|merge([{
+    id: identifier ~ '-' ~ loop.index0,
+    toggle: {
+      label: _item.title
+    },
+    content: _item.body
+  }]) %}
+{% endfor %}
+
+{% include '@ecl-twig/accordion' with {
+  'items': _items,
+  'icon': [
+    {
+      name: 'plus'
+    },
+    {
+      name: 'minus'
+    },
+  ],
+  'color_mode': color_mode|default(''),
+  'extra_classes': extra_classes|default(''),
+} %}

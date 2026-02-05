@@ -1,0 +1,15 @@
+name: 'News ticker'
+description: 'The News ticker pattern allows to display pieces of information.'
+slots:
+  identifier:
+    title: Id
+    description: 'Optional unique machine readable name.'
+  items:
+    title: Items
+    description: 'List of news items containing the information and an optional link.'
+  counter_label:
+    title: 'Counter label'
+    description: "The counter label defaults to 'of'. For e.g. '1 of 6'."
+  extra_attributes:
+    title: 'Extra attributes'
+    description: 'List of extra attributes used in ECL component'

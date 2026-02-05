@@ -1,0 +1,11 @@
+{% for _variant in ['default', 'horizontal'] %}
+  <h2 class="ecl-u-type-heading-2">
+    Variant: {{ _variant|render }}
+  </h2>
+  {% include 'oe_theme:field' with {
+    variant: _variant,
+    label: 'Lorem ipsum',
+    body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.',
+  } only %}
+  <hr class="ecl-separator ecl-u-mt-l">
+{% endfor %}

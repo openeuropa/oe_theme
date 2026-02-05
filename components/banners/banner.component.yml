@@ -1,0 +1,69 @@
+name: Banner
+description: 'The Banner consists of a title, description, and CTA with an optional image.'
+slots:
+  title:
+    title: Title
+    description: 'Title of the banner.'
+  description:
+    title: Description
+    description: 'Description of the banner.'
+  title_description_link:
+    title: 'Use title/description as a link'
+    description: 'Define if the banner should use the title or the description as a link. If both fields are provided, the title will have priority.'
+  font_size:
+    title: 'Font size'
+    description: "The size of the title and description (can be 'm' or 'l'). Defaults to 'm'."
+  font_color:
+    title: 'Font color'
+    description: "The color of the title and description (can be 'dark' or 'light'). Defaults to 'dark'."
+  box_background:
+    title: 'Box background'
+    description: "The color of the box background (can be 'dark', 'light' or 'none'). Defaults to 'light'."
+  url:
+    title: URL
+    description: 'Banner link url.'
+  link_extra_attributes:
+    title: 'Link attributes'
+    description: 'Extra attributes for link'
+  label:
+    title: 'Link text'
+    description: 'Banner link text.'
+  image:
+    title: Image
+    description: 'The image of the banner is required for the variants which include an image.'
+  sources:
+    title: 'Image sources'
+    description: 'Array containing different sized image for each banner size.'
+  size:
+    title: Size
+    description: "Size of the banner (can be 's', 'm', 'l'). Defaults to 'm'."
+  horizontal:
+    title: 'Horizontal alignment'
+    description: "Horizontal box alignment (can be 'left', 'center' or 'right'). Defaults to 'left'."
+  vertical:
+    title: 'Vertical alignment'
+    description: "Vertical box alignment (can be 'top', 'center' or 'bottom'). Defaults to 'center'."
+  full_width:
+    title: 'Full width'
+    description: 'Extends the banner to whole viewport when used inside the grid.'
+  external_link:
+    title: 'External link'
+    description: 'Whether the banner link is external or not.'
+  credit:
+    title: Credit
+    description: 'Credit for the image (only displayed for image variants).'
+  video:
+    title: Video
+    description: 'Banner video: uses the media container parameters as defined by the ECL'
+  sr_play:
+    title: 'Screen reader control: Play'
+    description: 'Screen reader label for the play button.'
+  sr_pause:
+    title: 'Screen reader control: Pause'
+    description: 'Screen reader label for the pause button.'
+  color_mode:
+    title: 'Color mode'
+    description: 'Name of the color mode.'
+  extra_classes:
+    title: 'Extra classes string'
+    description: 'Extra classes string'

@@ -1,0 +1,46 @@
+name: 'Navigation list'
+description: 'Navigation lists allow to structure groups of links together.'
+variants:
+  default:
+    title: Default
+    description: 'Default implementation of the ECL Navigation list item component.'
+  illustration:
+    title: Illustration
+    description: 'Displays the image in the top right corner.'
+  image_as_illustration:
+    title: 'Image as illustration'
+    description: 'Displays the image in the top right corner without a background.'
+slots:
+  title:
+    title: Title
+    description: 'Title of the navigation list.'
+  title_url:
+    title: 'Title URL'
+    description: 'URL to link the title of the navigation list.'
+  external_link:
+    title: 'External link'
+    description: 'Whether the title URL is external or not.'
+  title_extra_attributes:
+    title: 'Link attributes'
+    description: 'Extra attributes for title link'
+  description:
+    title: Description
+    description: 'Short description that accompanies the navigation list'
+  links:
+    title: Links
+    description: 'Array of links that form the navigation list.'
+  secondary_links:
+    title: 'Secondary Links'
+    description: 'Secondary array of links that form the navigation list.'
+  border:
+    title: Border
+    description: 'Whether the border should be used.'
+  image:
+    title: Image
+    description: "Item image - a smaller image or an actual icon should be provided when using the 'illustration' variant."
+  color_mode:
+    title: 'Color mode'
+    description: 'Name of the color mode (only working with the illustration variant).'
+  extra_classes:
+    title: 'Extra classes string'
+    description: 'Extra classes string'

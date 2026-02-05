@@ -8,7 +8,7 @@ module.exports = function(grunt) {
             expand: true,
             cwd: 'node_modules/@ecl',
             src: ['**/*.twig'],
-            dest: 'components/',
+            dest: 'ecl_components/',
             rename: function (dest, src) {
               return dest + path.parse(src).dir + '/ecl-' + path.parse(src).base;
             }

@@ -1,0 +1,38 @@
+{% include 'oe_theme:list_with_illustration' with {
+  column: 2,
+  zebra: true,
+  square_image: true,
+  centered: true,
+  color_mode: 'red-crayola',
+  items: [
+    {
+      title: 'Business, Economy, Euro',
+      description: 'EU economy, the euro, and practical information for EU businesses and entrepreneurs.',
+      image: {
+        src: 'https://loremflickr.com/1000/500/arch',
+        alt: 'Alternative text for featured item image',
+      },
+      icon: 'italy',
+      value: '3.2 millions',
+      media_size: 's',
+    },
+    {
+      title: 'About the European Union',
+      description: 'The EU and its institutions, how to visit and work at the EU.',
+      image: {
+        src: 'https://loremflickr.com/1000/500/arch',
+        alt: 'Alternative text for featured item image',
+      },
+      icon: 'budget',
+      value: '3.2 millions',
+      media_size: 'm',
+    },
+    {
+      title: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
+      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eleifend quam leo, at malesuada ex viverra vitae.',
+      icon: 'arrow-right-bold',
+    },
+  ],
+  counter_start: 99,
+  divider: true,
+} only %}

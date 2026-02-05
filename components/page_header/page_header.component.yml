@@ -1,0 +1,30 @@
+name: 'Page header'
+description: 'Default implementation of the page header, contains the page title, breadcrumbs and additional page details.'
+slots:
+  title:
+    title: Title
+    description: 'The title of the page.'
+  thumbnail:
+    title: Thumbnail
+    description: 'Thumbnail displayed alongside the description.'
+  introduction:
+    title: Introduction
+    description: 'A small introduction of the page content.'
+  metas:
+    title: Metas
+    description: 'A collection of page meta information.'
+  breadcrumb:
+    title: Breadcrumb
+    description: 'A list of links that represent the location of the current page in the website.'
+  background_image_url:
+    title: 'Background image URL'
+    description: "Background image URL, only displayed when the theme ECL branding is set to 'Core'."
+  overlay:
+    title: 'Overlay - Deprecated and will be removed in 5.x stable version.'
+    description: "Optional overlay on top of background image (can be 'light', 'dark'). Not used in ECL 5.x anymore."
+  hide_title:
+    title: 'Hide title'
+    description: "Hide the h1 title, for screen reader only. Defaults to 'false'"
+  header_message:
+    title: 'Header message'
+    description: 'A header message displayed at the top of the page header in an expandable banner.'

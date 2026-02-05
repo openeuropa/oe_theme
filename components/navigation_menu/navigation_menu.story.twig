@@ -1,0 +1,329 @@
+{% include 'oe_theme:navigation_menu' with {
+  label: 'Navigation',
+  close: {
+    label: 'Close',
+  },
+  back: 'Back',
+  see_all_label: 'See all',
+  button_previous_label: 'Previous items',
+  button_next_label: 'Next items',
+  max_lines: 1,
+  featured_priority: 'secondary',
+  items: [
+    {
+      href: '#',
+      label: 'About the eu',
+      children: [
+        {
+          href: '#',
+          label: 'Child 1.1',
+          external: true,
+        },
+        {
+          href: '#',
+          label: 'Child 1.2',
+        },
+        {
+          href: '#',
+          label: 'Child 1.3',
+          featured: {
+            title: 'featured column 1',
+            items: [
+              {
+                href: '#',
+                label: 'Featured link 1.1.1',
+                description: 'Description of the featured link 1.1.1',
+                external: true,
+              },
+              {
+                href: '#',
+                description: 'Description of the picture',
+                picture: {
+                  img: {
+                    src: 'https://loremflickr.com/1000/500/arch',
+                    alt: 'alternative text of the 2nd featured item',
+                  },
+                },
+              },
+            ],
+          },
+        },
+        {
+          href: '#',
+          label: 'Child 1.4',
+        },
+        {
+          href: '#',
+          label: 'Child 1.5',
+          external: true,
+        },
+        {
+          href: '#',
+          label: 'Child 1.6',
+        },
+        {
+          href: '#',
+          label: 'Child 1.7',
+        },
+        {
+          href: '#',
+          label: 'Child 1.8',
+          external: true,
+        },
+      ],
+      featured: {
+        title: 'Featured column belonging to the About the eu item',
+        items: [
+          {
+            href: '#',
+            label: 'Featured link of the main item',
+            description: 'Description text of the featured link of the main item',
+            picture: {
+              img: {
+                src: 'https://inno-ecl.s3.amazonaws.com/media/examples/example-image.jpg',
+                alt: 'alternative text of the featured item',
+              },
+            },
+            external: true,
+          },
+        ],
+      },
+    },
+    {
+      href: '#',
+      label: 'EU law',
+      external: true,
+      is_current: true,
+      extra_attributes: [
+        {
+          name: 'extra-attr1',
+          value: 'extra value1',
+        },
+      ],
+      info: {
+        title: 'About the EU law',
+        content: 'Description text, lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+        link: {
+          label: 'Discover more',
+          href: '#',
+        },
+      },
+      children: [
+        {
+          href: '#',
+          label: 'Eu Treaties',
+          extra_attributes: {
+            name: 'extra-attr2',
+            value: 'extra value2',
+          },
+          is_current: true,
+          see_all_label: 'View all',
+          see_all: true,
+          see_all_attributes: [
+            {
+              name: 'extra-attr3',
+              value: 'extra value3',
+            },
+          ],
+          children: [
+            {
+              href: '#',
+              label: 'Granchild 2.1.1',
+              is_current: true,
+            },
+            {
+              href: '#',
+              label: 'Granchild 2.1.2',
+              external: true,
+            },
+            {
+              href: '#',
+              label: 'Granchild 2.1.3',
+            },
+            {
+              href: '#',
+              label: 'Granchild 2.1.4',
+            },
+            {
+              href: '#',
+              label: 'Granchild 2.1.5',
+              external: true,
+            },
+          ],
+          featured: {
+            title: 'featured column 2',
+            content: {
+              '#markup': "<article class=\"ecl-navigation-list__item\">\n    <picture class=\"ecl-picture ecl-navigation-list__picture\"><img class=\"ecl-navigation-list__image\" src=\"https://inno-ecl.s3.amazonaws.com/media/examples/example-image.jpg\" alt=\"Alt text for the image\" /></picture>\n    <div class=\"ecl-content-block ecl-navigation-list__content-block\" data-ecl-auto-init=\"ContentBlock\" data-ecl-content-block>\n      <div class=\"ecl-content-block__title\" data-ecl-title-link><a href=\"/example#qspea\" class=\"ecl-link ecl-link--standalone\">Title 1</a></div>\n      <div class=\"ecl-content-block__description\">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus gravida ipsum ut lorem cursus</div>\n    </div>\n  </article>",
+            },
+            items: [
+              {
+                href: '#',
+                label: 'Featured link 2.1.1',
+              },
+              {
+                href: '#',
+                label: 'Featured link 2.1.2',
+              },
+              {
+                href: '#',
+                label: 'Featured link 2.1.3',
+              },
+              {
+                href: '#',
+                label: 'Featured link 2.1.4',
+                external: true,
+              },
+            ],
+          },
+        },
+        {
+          href: '#',
+          label: 'Application of EU law',
+        },
+        {
+          href: '#',
+          label: 'Regulations',
+        },
+        {
+          href: '#',
+          label: 'Priorities',
+        },
+        {
+          href: '#',
+          label: 'Funding',
+          external: true,
+        },
+        {
+          href: '#',
+          label: 'HORIZON2020',
+          external: true,
+        },
+      ],
+    },
+    {
+      href: '#',
+      label: 'Principles, countries, history',
+      promotional: true,
+    },
+    {
+      href: '#',
+      label: 'Institutions, law, budget',
+      external: true,
+    },
+    {
+      href: '#',
+      label: 'Priorities and actions',
+      external: true,
+    },
+    {
+      href: '#',
+      label: 'Live, work, study',
+      external: true,
+      info: {
+        title: 'About the Live, work, study page',
+        content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+      },
+      children: [
+        {
+          href: '#',
+          label: 'Child 6.1',
+          see_all_label: 'See all',
+          see_all: true,
+          children: [
+            {
+              href: '#',
+              label: 'Granchild 6.1.1',
+              is_current: true,
+            },
+            {
+              href: '#',
+              label: 'Granchild 6.1.2',
+              external: true,
+            },
+            {
+              href: '#',
+              label: 'Granchild 6.1.3',
+            },
+            {
+              href: '#',
+              label: 'Granchild 6.1.4',
+            },
+            {
+              href: '#',
+              label: 'Granchild 6.1.5',
+              external: true,
+            },
+          ],
+          featured: {
+            title: 'featured column 3',
+            content: {
+              '#markup': '<article class=\"ecl-navigation-list__item\">\n    <picture class=\"ecl-picture ecl-navigation-list__picture\"><img class=\"ecl-navigation-list__image\" src=\"https://inno-ecl.s3.amazonaws.com/media/examples/example-image.jpg\" alt=\"Alt text for the image\" /></picture>\n    <div class=\"ecl-content-block ecl-navigation-list__content-block\" data-ecl-auto-init=\"ContentBlock\" data-ecl-content-block>\n      <div class=\"ecl-content-block__title\" data-ecl-title-link><a href=\"/example#qspea\" class=\"ecl-link ecl-link--standalone\">Title 2</a></div>\n      <div class=\"ecl-content-block__description\">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus gravida ipsum ut lorem cursus</div>\n    </div>\n  </article>',
+            },
+            items: [
+              {
+                href: '#',
+                label: 'Featured link 6.1.1',
+                picture: {
+                  img: {
+                    src: 'https://inno-ecl.s3.amazonaws.com/media/examples/example-image.jpg',
+                    alt: 'alternative text of the 1st featured item',
+                  },
+                },
+              },
+              {
+                href: '#',
+                label: 'Featured link 6.1.2',
+              },
+              {
+                href: '#',
+                label: 'Featured link 6.1.3',
+                picture: {
+                  img: {
+                    src: 'https://loremflickr.com/1000/500/arch',
+                    alt: 'alternative text of the 3rd featured item',
+                  },
+                },
+              },
+              {
+                href: '#',
+                label: 'Featured link 6.1.4',
+                external: true,
+              },
+            ],
+          },
+        },
+        {
+          href: '#',
+          label: 'Child 6.2',
+        },
+        {
+          href: '#',
+          label: 'Child 6.3',
+        },
+        {
+          href: '#',
+          label: 'Child 6.4',
+        },
+        {
+          href: '#',
+          label: 'Child 6.5',
+        },
+      ],
+    },
+    {
+      href: '#',
+      label: 'Visit a European Union institution',
+    },
+    {
+      href: '#',
+      label: 'Jobs & traineeships in EU institutions',
+    },
+    {
+      href: '#',
+      label: 'Participate, interact, vote',
+      container: {
+        '#markup': '<article class=\"ecl-navigation-list__item\">\n    <picture class=\"ecl-picture ecl-navigation-list__picture\"><img class=\"ecl-navigation-list__image\" src=\"https://inno-ecl.s3.amazonaws.com/media/examples/example-image.jpg\" alt=\"Alt text for the image\" /></picture>\n    <div class=\"ecl-content-block ecl-navigation-list__content-block\" data-ecl-auto-init=\"ContentBlock\" data-ecl-content-block>\n      <div class=\"ecl-content-block__title\" data-ecl-title-link><a href=\"/example#qspea\" class=\"ecl-link ecl-link--standalone\">Title 3</a></div>\n      <div class=\"ecl-content-block__description\">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus gravida ipsum ut lorem cursus</div>\n    </div>\n  </article>',
+      },
+    },
+  ],
+} only %}

@@ -1,0 +1,16 @@
+name: 'Field list'
+description: 'A list of field components to display structured information.'
+variants:
+  default:
+    title: Default
+    description: 'The default component modifier is vertical. It will align the field items vertically.'
+  horizontal:
+    title: Horizontal
+    description: 'It will align the field items horizontally.'
+  featured_horizontal:
+    title: 'Featured horizontal'
+    description: 'Like the horizontal variant, only with a more prominent look.'
+slots:
+  items:
+    title: 'Field items'
+    description: "List of field items, each having a 'label' and a 'body'"

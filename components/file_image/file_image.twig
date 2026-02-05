@@ -1,0 +1,15 @@
+{#
+/**
+ * @file
+ * File image component.
+ */
+#}
+{% include '@ecl-twig/media-container' with {
+  'picture': {
+    'img': {
+      'src': src,
+      'alt': alt,
+    },
+  },
+  'description': caption,
+} %}

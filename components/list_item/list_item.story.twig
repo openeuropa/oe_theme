@@ -1,0 +1,116 @@
+{% include 'oe_theme:link_block' with {
+  url: '#',
+  title: 'Citizens\' Dialogue in Kraków with Commissioner Elżbieta Bieńkowska',
+  detail: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ratio quidem vestra sic cogit. Respondeat totidem verbis. Praeclarae mortes sunt imperatoriae; Sed erat aequius Triarium aliquid de dissensione nostra iudicare. Quae similitudo in genere etiam humano apparet.',
+  length: 250,
+  meta: [
+    'Service department',
+    'PMO',
+  ],
+  secondary_meta: [
+    {
+      label: '2018/10/22',
+      icon: 'calendar',
+    },
+    {
+      label: 'Luxembourg',
+      icon: 'location',
+    },
+    '12PM',
+  ],
+  date: {
+    start: '1545732000',
+    end: '1546250400',
+    timezone: 'Europe/Brussels',
+  },
+  image: {
+    src: 'https://loremflickr.com/1200/900/arch',
+    alt: 'Alternative text for image',
+    size: 'large',
+  },
+  image_position: 'left',
+  picture_zoom: true,
+  badges: [
+    {
+      label: 'Highlighted',
+      variant: 'highlight',
+    },
+    {
+      label: 'Status: Open',
+      variant: 'high',
+    },
+  ],
+  external_link: true,
+  lists: [
+    [
+      {
+        term: 'When',
+        definition: 'Thursday 15 November, 08:00 AM to Friday 16 November',
+      },
+      {
+        term: 'Where',
+        definition: [
+          'The EGG, Rue Barra 175, 1070 Brussels, Belgium',
+          'Rue Belliard 28, 1000 Brussels, Belgium',
+        ],
+      },
+      {
+        term: 'Standalone links',
+        list_type: 'link',
+        definition: [
+          {
+            label: 'First link',
+            path: 'https://example.com/1',
+            icon: 'copy',
+          },
+          {
+            path: 'https://example.com/2',
+            icon: 'download',
+          },
+          {
+            label: 'Third link',
+            path: 'https://example.com/3',
+            external_link: true,
+          },
+        ],
+      },
+      {
+        term: 'Inline links',
+        definition: [
+          {
+            label: 'First inline-link',
+            path: 'https://example.com/1',
+            external_link: true,
+          },
+          {
+            label: 'Second inline-link',
+            path: 'https://example.com/2',
+          },
+          {
+            path: 'https://example.com/3',
+          },
+        ],
+        list_type: 'link-inline',
+      },
+      {
+        term: 'Taxonomy list',
+        list_type: 'taxonomy',
+        definition: [
+          'Taxonomy item 1',
+          'Taxonomy item 2',
+          'Taxonomy item 3',
+        ],
+      },
+    ],
+  ],
+  divider: true,
+  lists_variant: 'vertical',
+  color_mode: 'green-dark',
+  extra_attributes: [
+    {
+      name: 'extra-attr',
+      value: 'extra value',
+    },
+  ],
+  variant: 'card',
+} only %}

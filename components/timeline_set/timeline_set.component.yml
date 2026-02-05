@@ -1,0 +1,24 @@
+name: 'Timeline set'
+description: 'The Timeline set is a collection of multiple Timelines displayed as a single one.'
+slots:
+  title:
+    title: Title
+    description: 'Timeline set title.'
+  introduction:
+    title: Introduction
+    description: 'Optional Timeline set introduction text.'
+  color_mode:
+    title: 'Color mode'
+    description: 'Name of the color mode.'
+  button_label:
+    title: 'Button label'
+    description: 'Show timeline button label.'
+  button_label_hidden:
+    title: 'Button label hidden'
+    description: 'Hidden timeline button label.'
+  extra_classes:
+    title: 'Extra classes string'
+    description: 'Extra classes string'
+  items:
+    title: 'Timeline set items'
+    description: 'List of timeline items containing the headline and the items array with the same structure as the Timeline pattern.'

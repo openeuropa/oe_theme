@@ -1,0 +1,32 @@
+{% include 'oe_theme:context_nav' with {
+  label: 'Label for contextual nav',
+  items: [
+    {
+      href: '#',
+      label: 'Item one',
+      is_external: true,
+    },
+    {
+      href: '#',
+      label: 'Item two',
+      is_external: false,
+    },
+    {
+      href: '#',
+      label: 'Item three',
+      is_external: false,
+    },
+    {
+      href: '#',
+      label: 'Item four',
+      is_external: false,
+    },
+    {
+      href: '#',
+      label: 'Item five',
+      is_external: true,
+    },
+  ],
+  limit: 4,
+  more_label: 'See more',
+} only %}

@@ -1,0 +1,98 @@
+{#
+/**
+ * @file
+ * Default implementation for the page header component.
+ */
+#}
+
+{% set _breadcrumb_links = {} %}
+{% for breadcrumb_item in breadcrumb %}
+  {% set _links = {
+    'label' : breadcrumb_item.label,
+    'path' : breadcrumb_item.href,
+  } %}
+  {% set _breadcrumb_links = _breadcrumb_links|merge([_links]) %}
+{% endfor %}
+
+{% if _breadcrumb_links %}
+  {% set _breadcrumb = {
+    'links' : _breadcrumb_links,
+    'navigation_text' : '',
+    'ellipsis_label': '',
+    'icon_path' : ecl_icon_path,
+    'extra_attributes': [
+      {
+        'name': 'aria-label',
+        'value': "You are here:"|t,
+      }
+    ]
+  } %}
+{% endif %}
+
+{% if background_image_url is not empty %}
+  {% set _picture_background = {
+    'img': {
+      'src': background_image_url,
+      'alt': '',
+    }
+  } %}
+{% endif %}
+{% if thumbnail.src is not empty %}
+  {% set _picture_thumbnail = {
+    'img': {
+      'src': thumbnail.src,
+      'alt': thumbnail.alt,
+    }
+  } %}
+{% endif %}
+
+{# Preprocess the header message expandable array. #}
+{% set expandable = [] %}
+{% if header_message is defined and header_message is not empty %}
+  {% if header_message.more_link is defined and header_message.more_link is not empty %}
+    {% set _more_link = {
+      link: {
+        'path': header_message.more_link.path,
+        'label': header_message.more_link.label,
+        'external': header_message.more_link.external ?? false,
+      }
+    } %}
+  {% endif %}
+  {% if header_message.lists is defined and header_message.lists is not empty %}
+    {% set _lists = [] %}
+    {% for list in header_message.lists %}
+      {% set items = [] %}
+      {% for item in list.items %}
+        {% set _item = {
+          icon: {
+            name: item.icon|default(''),
+          },
+          description: item.description,
+        } %}
+        {% set items = items|merge([_item]) %}
+      {% endfor %}
+      {% set _lists = _lists|merge([{
+        icon_list: list.icon_list ?? true,
+        divider: list.divider ?? false,
+        items: items,
+      }]) %}
+    {% endfor %}
+  {% endif %}
+  {% set expandable = expandable|merge({
+    toggle_label: header_message.toggle_label|default(''),
+    header_content: header_message.header_content|default(''),
+    panel_content: header_message.panel_content|default(''),
+  }) %}
+{% endif %}
+
+{% include '@ecl-twig/page-header' with {
+  'title': title,
+  'picture_thumbnail': _picture_thumbnail|default([]),
+  'description': introduction,
+  'expandable': expandable|default([]),
+  'breadcrumb': _breadcrumb,
+  'meta': metas|filter_empty,
+  'picture_background': _picture_background|default([]),
+  'extra_classes': _extra_classes|join(' '),
+  'hide_title': hide_title|default(false),
+} %}

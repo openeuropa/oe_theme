@@ -1,0 +1,50 @@
+{% include 'oe_theme:page_header' with {
+  title: 'Business, Economy, Euro',
+  thumbnail: {
+    src: 'https://loremflickr.com/1000/500/arch',
+    alt: 'Alternative text for thumbnail',
+  },
+  introduction: 'EU economy, finance and the euro, and practical information for EU businesses and entrepreneurs on product safety, environmental regulations, trade with non-EU countries and competition rules.',
+  metas: [
+    'News article',
+    '6 July 2015',
+    'Brussels',
+  ],
+  breadcrumb: [
+    {
+      href: '#',
+      label: 'European Commission',
+    },
+    {
+      href: '#',
+      label: 'Announcements',
+    },
+    {
+      href: '#',
+      label: 'About the European Commission',
+    },
+    {
+      href: '#',
+      label: 'Organisational structure',
+    },
+    {
+      href: '#',
+      label: 'How the Commission is organised',
+    },
+    {
+      href: '#',
+      label: 'News',
+    },
+  ],
+  background_image_url: 'page-header-pattern-background-preview.jpeg',
+  overlay: 'dark',
+  header_message: {
+    toggle_label: 'expandable button',
+    header_content: {
+      '#markup': 'Duis arcu tortor, suscipit eget, imperdiet nec, imperdiet iaculis, ipsum. Sed cursus turpis vitae tortor.',
+    },
+    panel_content: {
+      '#markup': 'Duis arcu tortor, suscipit eget, imperdiet nec, imperdiet iaculis, ipsum. Sed cursus turpis vitae tortor. <strong>Aliquam eu nunc.</strong> Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos hymenaeos. Fusce egestas elit eget lorem.',
+    },
+  },
+} only %}

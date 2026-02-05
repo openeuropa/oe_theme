@@ -1,0 +1,24 @@
+name: 'Facts and figures'
+description: 'The facts and figures component is used to deliver numerical representations of facts that are easier to portray visually through the use of statistics.'
+slots:
+  items:
+    title: Facts
+    description: 'List of facts'
+  font_size:
+    title: 'Font size'
+    description: "The size can be 'm' or 'l'. Defaults to 'l'."
+  view_all:
+    title: 'View all'
+    description: 'View all link'
+  external_link:
+    title: 'External link'
+    description: 'Whether the view all URL is external or not.'
+  centered:
+    title: Centered
+    description: "Whether the items' content should be centered."
+  color_mode:
+    title: 'Color mode'
+    description: 'Name of the color mode.'
+  extra_classes:
+    title: 'Extra classes string'
+    description: 'Extra classes string'

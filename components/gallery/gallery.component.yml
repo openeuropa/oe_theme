@@ -1,0 +1,46 @@
+name: Gallery
+description: 'A gallery with a media browser (it currently only support images, other media types will be added later).'
+variants:
+  default:
+    title: Default
+    description: 'Default gallery displaying a grid of media items.'
+slots:
+  items:
+    title: Items
+    description: 'List of GalleryItemValueObject objects.'
+  disable_overlay:
+    title: 'Disable overlay'
+    description: 'Disables the overlay functionality.'
+  picture_zoom:
+    title: 'Picture zoom'
+    description: 'Whether the thumbnail of the items should be animated or not (default false).'
+  expandable:
+    title: Expandable
+    description: "Whether the 'See all' link is shown or all items are shown."
+  footer_link_url:
+    title: URL
+    description: 'Footer link URL.'
+  footer_link_label:
+    title: 'Link text'
+    description: 'Footer link text.'
+  footer_link_external:
+    title: 'External link'
+    description: 'Whether the footer URL is external or not.'
+  visible_items:
+    title: 'Visible items'
+    description: 'Number of visible items in an expandable gallery.'
+  grid:
+    title: 'Grid display'
+    description: 'Display gallery as a grid. Default is false.'
+  columns:
+    title: 'Columns number'
+    description: 'Number of columns. Default is 2. Only used if the grid display is enabled and no grid template is provided.'
+  grid_template:
+    title: 'Grid template'
+    description: 'The id of the grid template (1, 2, 3 or 4) to be used (defaults to 0). Only used if the grid display is enabled.'
+  ratio:
+    title: 'Aspect ratio'
+    description: 'Image aspect ratio. Default is 3-2. Only used if the grid display is enabled.'
+  disable_hover:
+    title: 'Disable hover'
+    description: "Hides the item's title on hover. Default is false."
