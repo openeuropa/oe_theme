@@ -2,13 +2,14 @@
   <h2 class="ecl-u-type-heading-2">
     Variant: {{ _variant|render }}
   </h2>
+  {% set _date = array_to_date_value_object({
+    start: 370173600,
+    end: null,
+    timezone: 'Europe/Brussels',
+  }) %}
   {% include 'oe_theme:date_block' with {
     variant: _variant,
-    date: {
-      start: '370173600',
-      end: null,
-      timezone: 'Europe/Brussels',
-    },
+    date: _date,
   } only %}
   <hr class="ecl-separator ecl-u-mt-l">
 {% endfor %}

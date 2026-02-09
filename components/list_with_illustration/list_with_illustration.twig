@@ -4,6 +4,8 @@
  * List with illustration.
  */
 #}
+
+{# Prepare common parameters accross variants. #}
 {% if column > 1 %}
   {# Do not show zebra style or divider for horizontal view. #}
   {% set zebra = false %}
@@ -32,7 +34,71 @@
   {% endif %}
   {% set _items = _items|merge([item]) %}
 {% endfor %}
+{% set icon_list = false %}
+{% set number_list = false %}
+
+{% if 'list' in variant %}
+  {# Set specific values for the list variants. #}
+  {% if column > 2 %}
+    {% set column = 1 %}
+  {% endif %}
+  {% if column > 1 %}
+    {# Do not divider for horizontal view. #}
+    {% set divider = false %}
+  {% endif %}
+
+  {# Set specific values for the icon_list variant. #}
+  {% if variant == 'icon_list' %}
+    {% set icon_list = true %}
+    {% set number_list = false %}
+    {% set accepted_icons = [
+      'check-bold',
+      'arrow-right-bold',
+      'close-bold',
+    ] %}
+
+    {% set _items = [] %}
+    {% set icon = '' %}
+    {% set found = false %}
+
+    {% for item in items %}
+      {# Look for the first item that has an accepted icon to be used for
+      all the items. #}
+      {% if item.icon and item.icon in accepted_icons and found == false %}
+        {% set found = true %}
+        {% set icon = item.icon %}
+      {% endif %}
+    {% endfor %}
+
+    {% if found == false and icon is empty %}
+      {% set icon = 'check-bold' %}
+    {% endif %}
+    {% for item in items %}
+      {# Transform icon into ecl array. #}
+      {% set item = item|merge({'icon': to_ecl_icon(icon, '')}) %}
+      {# No item value for this variant. #}
+      {% set item = item|merge({'value': ''}) %}
+      {% set _items = _items|merge([item]) %}
+    {% endfor %}
+  {% endif %}
+
+  {# Set specific values for the number_list variant. #}
+  {% if variant == 'number_list' %}
+    {% set icon_list = false %}
+    {% set number_list = true %}
+    {% set _items = [] %}
+    {% for item in items %}
+      {# No item value or icon for this variant. #}
+      {% set item = item|merge({'value': ''}) %}
+      {% set item = item|merge({'icon': {}}) %}
+      {% set _items = _items|merge([item]) %}
+    {% endfor %}
+  {% endif %}
+{% endif %}
+
 {% include '@ecl-twig/list-illustration' with {
+  'icon_list': icon_list|default(false),
+  'number_list': number_list|default(false),
   'column': column,
   'zebra': zebra,
   'items': _items,
@@ -40,5 +106,6 @@
   'color_mode': color_mode|default(''),
   'extra_classes': extra_classes|default(''),
   'divider': divider ?? false,
+  'counter_start': counter_start|default(0),
   'icon_inline': icon_inline ?? false,
 } only %}

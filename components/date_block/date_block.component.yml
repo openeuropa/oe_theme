@@ -13,7 +13,9 @@ variants:
   past:
     title: 'Past event'
     description: 'Past event'
-slots:
-  date:
-    title: Date
-    description: 'A date value object.'
+props:
+  type: object
+  properties:
+    date:
+      title: 'Date'
+      type: Drupal\oe_theme\ValueObject\DateValueObject

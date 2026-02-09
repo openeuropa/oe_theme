@@ -53,9 +53,6 @@ slots:
   secondary_meta:
     title: 'Secondary metadata'
     description: 'Secondary metadata items list with optional icon.'
-  date:
-    title: Date
-    description: 'A date value object.'
   image:
     title: 'Primary image'
     description: 'Attributes of the image to render'
@@ -89,3 +86,9 @@ slots:
   extra_attributes:
     title: 'Extra attributes'
     description: 'List of extra attributes'
+props:
+  type: object
+  properties:
+    date:
+      title: 'Date'
+      type: Drupal\oe_theme\ValueObject\DateValueObject

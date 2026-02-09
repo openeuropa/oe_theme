@@ -1,0 +1,61 @@
+{% set list_items = [
+  {
+    title: "Business, Economy, Euro",
+    detail: "EU economy, the euro, and practical information for EU businesses and entrepreneurs.",
+  },
+  {
+    title: "About the European Union",
+    detail: "The EU and its institutions, how to visit and work at the EU.",
+  },
+  {
+    title: "Live, Work, Travel in EU",
+    detail: "Advice on living, working or travelling in the EU, on visas and immigration for non-EU citizens, European culture.",
+  },
+  {
+    title: "Funding, Tenders",
+    detail: "EU funding, grants, tenders, and how to apply.",
+  },
+  {
+    title: "Law",
+    detail: "EU law and judgments, how EU law is applied, public consultations, data protection, infringements, fraud, serious crime.",
+  },
+  {
+    title: "Research and innovation",
+    detail: "Research funding, partners, results, and EU action to promote innovation.",
+  },
+  {
+    title: "Business, Economy, Euro",
+    detail: "EU economy, the euro, and practical information for EU businesses and entrepreneurs.",
+  },
+  {
+    title: "About the European Union",
+    detail: "The EU and its institutions, how to visit and work at the EU.",
+  },
+] %}
+
+{% set _items = [] %}
+{% for list_item in list_items %}
+  {% set item %}
+    {{ include('oe_theme:list_item', {
+      title: list_item.title,
+      detail: list_item.detail,
+      divider: true,
+    }) }}
+  {% endset %}
+  {% set _items = _items|merge([item]) %}
+{% endfor %}
+
+{% include 'oe_theme:list_item_block_four_columns' with {
+  title: 'The European Commission\'s priorities',
+  introduction: {
+    '#markup': "<p>The European Commission focuses on <strong>several key areas:</strong> supporting the EU economy and businesses, and providing guidance on living, working and traveling in the EU. Read more about our priorities.</p>",
+  },
+  items: _items,
+  button_label: 'View all',
+  button_url: '#',
+  button_icon_name: 'list',
+  button_icon_position: 'before',
+  button_separator: true,
+  external_link: false,
+  vertical: true,
+} only %}

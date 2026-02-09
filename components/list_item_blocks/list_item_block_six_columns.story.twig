@@ -1,0 +1,99 @@
+{% set list_links = [
+  {
+    url: "#",
+    text: "A simple link 1",
+    external_link: true
+  },
+  {
+    url: "#",
+    text: "A simple link 2",
+  },
+  {
+    url: "#",
+    text: "A simple link 3",
+  },
+  {
+    url: "#",
+    text: "A simple link 4",
+  },
+  {
+    url: "#",
+    text: "A simple link 5",
+    external_link: true
+  },
+  {
+    url: "#",
+    text: "A simple link 6",
+  },
+  {
+    url: "#",
+    text: "A simple link 7",
+  },
+  {
+    url: "#",
+    text: "A simple link 8",
+  },
+  {
+    url: "#",
+    text: "A simple link 9",
+  },
+  {
+    url: "#",
+    text: "A simple link 10",
+    external_link: true
+  },
+  {
+    url: "#",
+    text: "A simple link 11",
+  },
+  {
+    url: "#",
+    text: "A simple link 12",
+  },
+  {
+    url: "#",
+    text: "A simple link 13",
+  },
+  {
+    url: "#",
+    text: "A simple link 14",
+  },
+  {
+    url: "#",
+    text: "A simple link 15",
+  },
+  {
+    url: "#",
+    text: "A simple link 16",
+  },
+  {
+    url: "#",
+    text: "A simple link 17",
+  },
+] %}
+
+{% set _items = [] %}
+{% for link in list_links %}
+  {% set _link %}
+    {{ include('oe_theme:link', {
+      url: link.url,
+      text: link.text,
+    }) }}
+  {% endset %}
+  {% set _items = _items|merge([_link]) %}
+{% endfor %}
+
+{% include 'oe_theme:list_item_block_six_columns' with {
+  title: 'The European Commission\'s priorities',
+  introduction: {
+    '#markup': "<p>The European Commission focuses on <strong>several key areas:</strong> supporting the EU economy and businesses, and providing guidance on living, working and traveling in the EU. Read more about our priorities.</p>",
+  },
+  items: _items,
+  button_label: 'View all',
+  button_url: '#',
+  button_icon_name: 'list',
+  button_icon_position: 'before',
+  button_separator: true,
+  external_link: true,
+  vertical: false,
+} only %}
