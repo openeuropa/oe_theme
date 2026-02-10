@@ -161,7 +161,11 @@ function oe_theme_theme_suggestions_input_alter(array &$suggestions, array $vari
     $suggestions[] = 'input__time';
   }
 
-  if (isset($element['#id']) && $element['#id'] === 'admin-toolbar-search-input') {
+  $admin_toolbar_search_form_ids = [
+    'admin-toolbar-search-input',
+    'admin-toolbar-search-field-input',
+  ];
+  if (isset($element['#id']) && in_array($element['#id'], $admin_toolbar_search_form_ids)) {
     // Don't use the `input--search.html.twig` because it does not work here.
     $suggestions = array_diff($suggestions, ['input__search']);
     // Add the base theme hook as a suggestion.
@@ -432,7 +436,11 @@ function oe_theme_preprocess_fieldset(array &$variables): void {
  */
 function oe_theme_preprocess_form_element(array &$variables): void {
   $variables['margin'] = TRUE;
-  if (isset($variables['element']['#id']) && $variables['element']['#id'] === 'admin-toolbar-search-input') {
+  $admin_toolbar_search_form_ids = [
+    'admin-toolbar-search-input',
+    'admin-toolbar-search-field-input',
+  ];
+  if (isset($variables['element']['#id']) && in_array($variables['element']['#id'], $admin_toolbar_search_form_ids)) {
     $variables['margin'] = FALSE;
   }
   if (in_array($variables['element']['#type'], ['checkbox', 'radio', 'select'])) {
@@ -905,6 +913,7 @@ function oe_theme_preprocess_paragraph__oe_list_item(array &$variables): void {
 function oe_theme_preprocess_paragraph__oe_list_item_block(array &$variables): void {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
   $paragraph = $variables['paragraph'];
+  $variables['title'] = !$paragraph->get('field_oe_title')->isEmpty() ? $paragraph->get('field_oe_title')->value : '';
 
   // Set up the correct variant name.
   $variables['variant'] = 'list_item_block_' . $paragraph->get('field_oe_list_item_block_layout')->first()->value;
