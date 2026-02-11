@@ -2571,13 +2571,14 @@ function oe_theme_preprocess_select(&$variables) {
  * Implements hook_page_attachments_alter().
  */
 function oe_theme_page_attachments_alter(array &$attachments) {
+  $oe_theme_path = \Drupal::service('extension.list.theme')->getPath('oe_theme');
   // Add the CDN file required for ECL datepicker to work.
   $attachments['#attached']['html_head'][] = [
     [
       '#tag' => 'script',
       '#attributes' => [
         'type' => 'module',
-        'src' => 'https://cdn.jsdelivr.net/npm/@duetds/date-picker@1.4.0/dist/duet/duet.esm.js',
+        'src' => base_path() . $oe_theme_path . '/dist/duet/duet/duet.esm.js',
       ],
     ],
     'duetjs',
@@ -2590,7 +2591,6 @@ function oe_theme_page_attachments_alter(array &$attachments) {
   // Use different favicon based on theme component library.
   $active_theme = \Drupal::theme()->getActiveTheme();
   if ($active_theme->getName() === 'oe_theme' || array_key_exists('oe_theme', $active_theme->getBaseThemeExtensions())) {
-    $oe_theme_path = \Drupal::service('extension.list.theme')->getPath('oe_theme');
     $active_theme_path = $active_theme->getPath();
     $component_library = theme_get_setting('component_library') ?? 'ec';
     $favicon = DRUPAL_ROOT . '/' . $active_theme_path . "/images/favicons/$component_library/favicon.ico";
