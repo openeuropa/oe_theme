@@ -1,0 +1,28 @@
+diff --git a/node_modules/@ecl/tabs/tabs.html.twig b/node_modules/@ecl/tabs/tabs.html.twig
+index 2081147..cbc165b
+--- a/node_modules/@ecl/tabs/tabs.html.twig
++++ b/node_modules/@ecl/tabs/tabs.html.twig
+@@ -9,7 +9,12 @@
+         "label": "Home",
+         "path": "/example",
+         "is_current": true,
+-        "extra_classes": 'extra-class'
++        "extra_classes": 'extra-class',
++        "extra_attributes" (array) (default: []): format: [
++          {
++            "name" (string) (default: ''),
++            "value" (optional) (string)
++          }
+       },
+       {
+         "label": "Item 1",
+@@ -81,7 +86,8 @@
+         {% if _item.path is not empty %}
+           <div class="ecl-tabs__item">
+           {% set _item_extra_classes = 'ecl-tabs__link' %}
+-          {% set _item_extra_attributes = [{ name: 'id', value: _id }, { name: 'role', value: 'tab' }] %}
++          {% set _item_extra_attributes = _item.extra_attributes|default([]) %}
++          {% set _item_extra_attributes = _item_extra_attributes|merge([{ name: 'id', value: _id }, { name: 'role', value: 'tab' }]) %}
+           {% if loop.index != 1 %}
+             {% set _item_extra_attributes = _item_extra_attributes|merge([{ name: 'tabindex', value: '-1' }]) %}
+           {% endif %}
