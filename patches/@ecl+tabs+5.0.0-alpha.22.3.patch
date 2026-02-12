@@ -1,0 +1,45 @@
+diff --git a/node_modules/@ecl/tabs/LICENSE b/node_modules/@ecl/tabs/LICENSE
+old mode 100644
+new mode 100755
+diff --git a/node_modules/@ecl/tabs/README.md b/node_modules/@ecl/tabs/README.md
+old mode 100644
+new mode 100755
+diff --git a/node_modules/@ecl/tabs/tabs-print.scss b/node_modules/@ecl/tabs/tabs-print.scss
+old mode 100644
+new mode 100755
+diff --git a/node_modules/@ecl/tabs/tabs.html.twig b/node_modules/@ecl/tabs/tabs.html.twig
+old mode 100644
+new mode 100755
+index 2081147..cbc165b
+--- a/node_modules/@ecl/tabs/tabs.html.twig
++++ b/node_modules/@ecl/tabs/tabs.html.twig
+@@ -9,7 +9,12 @@
+         "label": "Home",
+         "path": "/example",
+         "is_current": true,
+-        "extra_classes": 'extra-class'
++        "extra_classes": 'extra-class',
++        "extra_attributes" (array) (default: []): format: [
++          {
++            "name" (string) (default: ''),
++            "value" (optional) (string)
++          }
+       },
+       {
+         "label": "Item 1",
+@@ -81,7 +86,8 @@
+         {% if _item.path is not empty %}
+           <div class="ecl-tabs__item">
+           {% set _item_extra_classes = 'ecl-tabs__link' %}
+-          {% set _item_extra_attributes = [{ name: 'id', value: _id }, { name: 'role', value: 'tab' }] %}
++          {% set _item_extra_attributes = _item.extra_attributes|default([]) %}
++          {% set _item_extra_attributes = _item_extra_attributes|merge([{ name: 'id', value: _id }, { name: 'role', value: 'tab' }]) %}
+           {% if loop.index != 1 %}
+             {% set _item_extra_attributes = _item_extra_attributes|merge([{ name: 'tabindex', value: '-1' }]) %}
+           {% endif %}
+diff --git a/node_modules/@ecl/tabs/tabs.js b/node_modules/@ecl/tabs/tabs.js
+old mode 100644
+new mode 100755
+diff --git a/node_modules/@ecl/tabs/tabs.scss b/node_modules/@ecl/tabs/tabs.scss
+old mode 100644
+new mode 100755
