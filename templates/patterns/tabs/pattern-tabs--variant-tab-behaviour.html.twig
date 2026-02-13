@@ -1,10 +1,11 @@
 {#
 /**
  * @file
- * Tabs.
+ * Tabs - tab behavior variant.
  */
 #}
 {% include '@ecl-twig/tabs' with {
+  tab_behaviour: true,
   items: items,
   more_label: more_label|default('More'|t),
   previous_label: previous_label,
