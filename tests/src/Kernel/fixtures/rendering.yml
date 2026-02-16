@@ -1838,6 +1838,12 @@
             definition: "Thursday 15 November, 08:00 AM to Friday 16 November"
           - term: "Where"
             definition: "The EGG, Rue Barra 175, 1070 Brussels, Belgium"
+      secondary_meta:
+        - label: "2018/10/22"
+          icon: "calendar"
+        - label: "Luxembourg"
+          icon: "location"
+        - "12PM"
   assertions:
     count:
       'article.ecl-content-item div.ecl-content-item__content-block div.ecl-content-block__title a.ecl-link[href="http://example.com"]': 1
@@ -1848,6 +1854,8 @@
       'div.ecl-content-block__list-container .ecl-description-list__term': 2
       'div.ecl-content-block__list-container .ecl-description-list__definition': 2
       'span.ecl-icon.ecl-icon--s.ecl-link__icon': 0
+      'article.ecl-content-item ul.ecl-content-block__secondary-meta-container': 1
+      'article.ecl-content-item ul.ecl-content-block__secondary-meta-container.ecl-content-block__secondary-meta-container--horizontal': 0
     equals:
       'article.ecl-content-item div.ecl-content-item__content-block div.ecl-content-block__title .ecl-link': "Item title"
       'div.ecl-content-block__list-container dl.ecl-description-list.ecl-description-list--horizontal.ecl-content-block__list .ecl-description-list__term:nth-child(1)': "When"
@@ -1866,12 +1874,20 @@
       meta:
         - "Meta 1"
         - "Meta 2"
+      secondary_meta:
+        - label: "2018/10/22"
+          icon: "calendar"
+        - label: "Luxembourg"
+          icon: "location"
+        - "12PM"
+      secondary_meta_direction: "horizontal"
   assertions:
     count:
       'article.ecl-content-item div.ecl-content-item__content-block div.ecl-content-block__title a.ecl-link[href="http://example.com"]': 1
       'article.ecl-content-item picture.ecl-content-item__picture--large': 0
       'article.ecl-content-item picture.ecl-content-item__picture--left': 0
       'article.ecl-content-item picture.ecl-content-item__picture--right': 0
+      'article.ecl-content-item ul.ecl-content-block__secondary-meta-container.ecl-content-block__secondary-meta-container--horizontal': 1
     equals:
       'article.ecl-content-item div.ecl-content-item__content-block div.ecl-content-block__title .ecl-link': "Item title"
       'article.ecl-content-item ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(1)': "Meta 1"
@@ -2195,6 +2211,7 @@
       secondary_meta:
         - label: "Brussels"
           icon: "location"
+      secondary_meta_direction: "horizontal"
       extra_attributes:
         - name: "extra-attr"
           value: "extra value"
@@ -2212,6 +2229,7 @@
       ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item: 2
       ul.ecl-content-block__secondary-meta-container li.ecl-content-block__secondary-meta-item: 1
       ul.ecl-content-block__secondary-meta-container li.ecl-content-block__secondary-meta-item span.ecl-icon--s.ecl-content-block__secondary-meta-icon.wt-icon--location: 1
+      article.ecl-card ul.ecl-content-block__secondary-meta-container.ecl-content-block__secondary-meta-container--horizontal: 1
     equals:
       article.ecl-card div.ecl-card__body div.ecl-content-block__title .ecl-link: "Item title"
       ul.ecl-content-block__label-container li.ecl-content-block__label-item:nth-child(1) span.ecl-label.ecl-label--highlight: "Highlighted"
@@ -2301,6 +2319,10 @@
           variant: "highlight"
         - label: "Status: Open"
           variant: "medium"
+      secondary_meta:
+        - label: "Brussels"
+          icon: "location"
+      secondary_meta_direction: "horizontal"
       extra_attributes:
         - name: "extra-attr"
           value: "extra value"
@@ -2309,6 +2331,9 @@
       'article.ecl-content-item[extra-attr="extra value"] div.ecl-content-item__content-block a.ecl-link[href="http://example.com"]': 1
       'article.ecl-content-item time.ecl-date-block.ecl-date-block--ongoing.ecl-content-item__date': 1
       'article.ecl-content-item time.ecl-date-block.ecl-date-block--ongoing.ecl-content-item__date abbr.ecl-date-block__month[title="July"]': 1
+      ul.ecl-content-block__secondary-meta-container li.ecl-content-block__secondary-meta-item: 1
+      ul.ecl-content-block__secondary-meta-container li.ecl-content-block__secondary-meta-item span.ecl-icon--s.ecl-content-block__secondary-meta-icon.wt-icon--location: 1
+      article.ecl-content-item ul.ecl-content-block__secondary-meta-container.ecl-content-block__secondary-meta-container--horizontal: 1
     equals:
       'article.ecl-content-item div.ecl-content-block.ecl-content-item__content-block ul.ecl-content-block__label-container li span.ecl-label.ecl-label--highlight': "Highlighted"
       'article.ecl-content-item div.ecl-content-block.ecl-content-item__content-block ul.ecl-content-block__label-container li span.ecl-label.ecl-label--medium': "Status: Open"
@@ -2319,6 +2344,7 @@
       'article.ecl-content-item time.ecl-date-block.ecl-content-item__date span.ecl-date-block__day': '14'
       'article.ecl-content-item time.ecl-date-block.ecl-content-item__date abbr.ecl-date-block__month': 'Jul'
       'article.ecl-content-item time.ecl-date-block.ecl-content-item__date span.ecl-date-block__year': '2021'
+      'ul.ecl-content-block__secondary-meta-container li.ecl-content-block__secondary-meta-item .ecl-content-block__secondary-meta-label': "Brussels"
 - structure:
     '#type': pattern
     '#id': list_item
@@ -2342,6 +2368,9 @@
             definition: "Thursday 15 November, 08:00 AM to Friday 16 November"
           - term: "Where"
             definition: "The EGG, Rue Barra 175, 1070 Brussels, Belgium"
+      secondary_meta:
+        - label: "Brussels"
+          icon: "location"
       extra_attributes:
         - name: "extra-attr"
           value: "extra value"
@@ -2352,6 +2381,10 @@
       'article.ecl-content-item time.ecl-date-block.ecl-date-block--ongoing.ecl-content-item__date abbr.ecl-date-block__month[title="July"]': 1
       'div.ecl-content-block__list-container dl.ecl-u-mb-xl .ecl-description-list__term': 2
       'div.ecl-content-block__list-container dl.ecl-u-mb-xl .ecl-description-list__definition': 2
+      ul.ecl-content-block__secondary-meta-container li.ecl-content-block__secondary-meta-item: 1
+      ul.ecl-content-block__secondary-meta-container li.ecl-content-block__secondary-meta-item span.ecl-icon--s.ecl-content-block__secondary-meta-icon.wt-icon--location: 1
+      article.ecl-content-item ul.ecl-content-block__secondary-meta-container: 1
+      article.ecl-content-item ul.ecl-content-block__secondary-meta-container.ecl-content-block__secondary-meta-container--horizontal: 0
     equals:
       'article.ecl-content-item ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(1)': "News article"
       'article.ecl-content-item ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(2)': "6 July 2015"
@@ -2364,6 +2397,7 @@
       'div.ecl-content-block__list-container dl.ecl-description-list.ecl-description-list--horizontal.ecl-content-block__list .ecl-description-list__definition:nth-child(2)': "Thursday 15 November, 08:00 AM to Friday 16 November"
       'div.ecl-content-block__list-container dl.ecl-description-list.ecl-description-list--horizontal.ecl-content-block__list .ecl-description-list__term:nth-child(3)': "Where"
       'div.ecl-content-block__list-container dl.ecl-description-list.ecl-description-list--horizontal.ecl-content-block__list .ecl-description-list__definition:nth-child(4)': "The EGG, Rue Barra 175, 1070 Brussels, Belgium"
+      'ul.ecl-content-block__secondary-meta-container li.ecl-content-block__secondary-meta-item .ecl-content-block__secondary-meta-label': "Brussels"
 - structure:
     '#type': pattern
     '#id': list_item
