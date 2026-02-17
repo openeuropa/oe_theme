@@ -1079,10 +1079,17 @@ function oe_theme_preprocess_paragraph__oe_text_feature_media(array &$variables)
     return;
   }
 
-  // If its an image media, render it and assign it to the image variable.
+  // If it's an image media, render it and assign it to the image variable.
   if ($source instanceof MediaAvPortalPhotoSource || $source instanceof Image) {
     $thumbnail = $media->get('thumbnail')->first();
     $variables['image'] = ImageValueObject::fromStyledImageItem($thumbnail, 'oe_theme_medium_no_crop');
+    $image_object = ImageValueObject::fromStyledImageItem($thumbnail, 'oe_theme_medium_2x_no_crop');
+    $variables['sources'] = [
+      [
+        'src' => $image_object->getSource(),
+        'media' => '(min-width: 996px)',
+      ],
+    ];
     $cacheability->applyTo($variables);
     return;
   }

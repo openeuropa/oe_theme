@@ -35,7 +35,7 @@
 
   {% set call_to_action_link = {
     link: {
-      type: 'standalone',
+      type: (highlighted == false and 'featured' in variant) ? 'primary-neutral' : 'standalone',
       label: link.label,
       path: link.path,
       icon_position: 'after'
@@ -46,13 +46,23 @@
 
 {% if image or video or animation %}
     {% if image %}
-      {% set _media_container = {
-        'picture': {
-          'img': {
-            'src': image.src,
-            'alt': image.alt,
+      {% set _picture = [] %}
+      {% if image.src is not empty %}
+        {% set _picture = {
+          img: {
+            src: image.src|default(''),
+            alt: image.alt|default(''),
           },
-        },
+          image_anchor: image_anchor|default(''),
+        } %}
+      {% endif %}
+      {% if sources is not empty and sources is iterable %}
+        {% set _picture = _picture|merge({
+          'sources': sources,
+        }) %}
+      {% endif %}
+      {% set _media_container = {
+        'picture': _picture,
         'description': caption,
       } %}
     {% elseif video %}
@@ -130,6 +140,9 @@
   media_container: _media_container|default([]),
   position: _position,
   link_highlighted: link_highlighted|default(false),
+  horizontal_alignment: horizontal_alignment|default('left'),
+  vertical_alignment: vertical_alignment|default('top'),
+  media_behavior: media_behavior|default('static'),
   extra_attributes: extra_attributes|default([]),
   extra_classes: extra_classes|default(''),
 } %}

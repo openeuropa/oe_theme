@@ -174,6 +174,12 @@ class MediaParagraphsTest extends ParagraphsTestBase {
         'src' => 'example_1_en.jpeg',
         'alt' => 'Alt en',
       ],
+      'sources' => [
+        [
+          'srcset' => 'oe_theme_medium_2x_no_crop/public/example_1_en.jpeg',
+          'media' => '(min-width: 996px)',
+        ],
+      ],
     ];
     $html = $this->renderParagraph($paragraph, 'en');
     $assert->assertPattern($expected_values, $html);
