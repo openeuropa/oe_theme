@@ -4,6 +4,9 @@ slots:
   button_label:
     title: Label
     description: 'Download button label.'
-  file:
-    title: File
-    description: 'A file value object.'
+props:
+  type: object
+  properties:
+    file:
+      title: 'File'
+      type: Drupal\oe_theme\ValueObject\FileValueObject
