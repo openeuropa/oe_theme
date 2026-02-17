@@ -1,0 +1,58 @@
+{% set _file = array_to_file_value_object({
+  title: 'Example document',
+  mime: 'application/pdf',
+  url: 'http://example.com/document.pdf',
+  size: '150000',
+  name: 'document.pdf',
+  language_code: 'en',
+}) %}
+
+{% set translation_files = [
+  {
+    mime: 'application/pdf',
+    url: 'http://example.com/document_fr.pdf',
+    size: '150000',
+    name: 'document.pdf',
+    language_code: 'fr',
+  },
+  {
+    mime: 'application/pdf',
+    url: 'http://example.com/document_it.pdf',
+    size: '160000',
+    name: 'document.pdf',
+    language_code: 'it',
+  },
+  {
+    mime: 'application/pdf',
+    url: 'http://example.com/document_hu.pdf',
+    size: '170000',
+    name: 'document.pdf',
+    language_code: 'hu',
+  },
+  {
+    mime: 'application/pdf',
+    url: 'http://example.com/document_pt.pdf',
+    size: '180000',
+    name: 'document.pdf',
+    language_code: 'pt-pt',
+  },
+] %}
+{% set _translations = [] %}
+{% for translation_file in translation_files %}
+  {% set _translation = array_to_file_value_object(translation_file) %}
+  {% set _translations = _translations|merge([_translation]) %}
+{% endfor %}
+
+{% include 'oe_theme:file_translation' with {
+  button_label: 'Download',
+  file: _file,
+  link_attributes: [
+    {
+      name: 'data-attribute-foo',
+      value: 'bar',
+    },
+  ],
+  translations: _translations,
+  translation_toggle_label: 'Other languages',
+  publication_date: '31 August 2020',
+} only %}

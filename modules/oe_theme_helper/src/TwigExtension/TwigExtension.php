@@ -17,6 +17,7 @@ use Drupal\Core\StringTranslation\ByteSizeMarkup;
 use Drupal\Core\Template\Attribute;
 use Drupal\Core\Template\TwigExtension as CoreTwigExtension;
 use Drupal\oe_theme\ValueObject\DateValueObject;
+use Drupal\oe_theme\ValueObject\FileValueObject;
 use Drupal\oe_theme_helper\EuropeanUnionLanguages;
 use Drupal\oe_theme_helper\ExternalLinksInterface;
 use Drupal\oe_theme_helper\WebtoolsIconsProviderInterface;
@@ -113,6 +114,7 @@ class TwigExtension extends AbstractExtension {
       new TwigFunction('ecl_class_border_color', [$this, 'eclBorderColor'], ['needs_context' => TRUE]),
       new TwigFunction('ecl_class_background_color', [$this, 'eclBackgroundColor'], ['needs_context' => TRUE]),
       new TwigFunction('array_to_date_value_object', [$this, 'arrayToDateValueObject'], ['needs_context' => FALSE]),
+      new TwigFunction('array_to_file_value_object', [$this, 'arrayToFileValueObject'], ['needs_context' => FALSE]),
     ];
   }
 
@@ -587,6 +589,19 @@ class TwigExtension extends AbstractExtension {
    */
   public function arrayToDateValueObject(array $date): DateValueObject {
     return DateValueObject::fromArray($date);
+  }
+
+  /**
+   * Creates a FileValueObject from a given date array.
+   *
+   * @param array $file
+   *   The file array.
+   *
+   * @return \Drupal\oe_theme\ValueObject\FileValueObject
+   *   The FileValueObject.
+   */
+  public function arrayToFileValueObject(array $file): FileValueObject {
+    return FileValueObject::fromArray($file);
   }
 
   /**
