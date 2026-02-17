@@ -18,6 +18,7 @@ use Drupal\Core\Template\Attribute;
 use Drupal\Core\Template\TwigExtension as CoreTwigExtension;
 use Drupal\oe_theme\ValueObject\DateValueObject;
 use Drupal\oe_theme\ValueObject\FileValueObject;
+use Drupal\oe_theme\ValueObject\GalleryItemValueObject;
 use Drupal\oe_theme_helper\EuropeanUnionLanguages;
 use Drupal\oe_theme_helper\ExternalLinksInterface;
 use Drupal\oe_theme_helper\WebtoolsIconsProviderInterface;
@@ -115,6 +116,7 @@ class TwigExtension extends AbstractExtension {
       new TwigFunction('ecl_class_background_color', [$this, 'eclBackgroundColor'], ['needs_context' => TRUE]),
       new TwigFunction('array_to_date_value_object', [$this, 'arrayToDateValueObject'], ['needs_context' => FALSE]),
       new TwigFunction('array_to_file_value_object', [$this, 'arrayToFileValueObject'], ['needs_context' => FALSE]),
+      new TwigFunction('array_to_gallery_item_value_object', [$this, 'arrayToGalleryItemValueObject'], ['needs_context' => FALSE]),
     ];
   }
 
@@ -592,7 +594,7 @@ class TwigExtension extends AbstractExtension {
   }
 
   /**
-   * Creates a FileValueObject from a given date array.
+   * Creates a FileValueObject from a given file array.
    *
    * @param array $file
    *   The file array.
@@ -602,6 +604,19 @@ class TwigExtension extends AbstractExtension {
    */
   public function arrayToFileValueObject(array $file): FileValueObject {
     return FileValueObject::fromArray($file);
+  }
+
+  /**
+   * Creates a GalleryItemValueObject from a given gallery item array.
+   *
+   * @param array $gallery_item
+   *   The gallery item array.
+   *
+   * @return \Drupal\oe_theme\ValueObject\GalleryItemValueObject
+   *   The GalleryItemValueObject.
+   */
+  public function arrayToGalleryItemValueObject(array $gallery_item): GalleryItemValueObject {
+    return GalleryItemValueObject::fromArray($gallery_item);
   }
 
   /**
