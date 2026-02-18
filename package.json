@@ -14,6 +14,7 @@
     "prepare": "patch-package"
   },
   "dependencies": {
+    "@duetds/date-picker": "1.4.0",
     "@ecl/builder": "5.0.0-alpha.22.3",
     "@ecl/preset-ec": "5.0.0-alpha.22.3",
     "@ecl/preset-eu": "5.0.0-alpha.22.3",
