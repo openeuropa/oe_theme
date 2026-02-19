@@ -34,9 +34,10 @@
         panel_content:
           '#markup': '<p>Duis arcu tortor, suscipit eget, imperdiet nec, imperdiet iaculis, ipsum. Sed cursus turpis vitae tortor. <strong>Aliquam eu nunc.</strong> Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos hymenaeos. Fusce egestas elit eget lorem.</p>'
         toggle_label: 'expandable button'
+      extra_classes: 'oe-theme-extra-class'
   assertions:
     count:
-      '.ecl-page-header': 1
+      '.ecl-page-header.ecl-page-header--description-top.oe-theme-extra-class': 1
       "nav.ecl-breadcrumb.ecl-page-header__breadcrumb[aria-label=\"You are here:\"][data-ecl-breadcrumb=\"true\"]": 1
       '.ecl-breadcrumb__segment': 7
       '.ecl-page-header__background': 0
@@ -51,6 +52,7 @@
       'div.ecl-page-header-expandable__header': 1
       'div.ecl-page-header-expandable__panel': 1
       'div.ecl-page-header-expandable__header button.ecl-button--tertiary.ecl-button--neutral.ecl-page-header-expandable__toggle.ecl-button--icon-only': 1
+      'div.ecl-page-header--background': 0
     equals:
       'h1.ecl-page-header__title': "Business, Economy, Euro&lt;"
       '.ecl-page-header__description': "EU economy, finance and the euro, and practical information for EU businesses and entrepreneurs on product safety, environmental regulations, trade with non-EU countries and competition rules.&lt;cc&gt;&amp;"
@@ -74,6 +76,7 @@
     '#fields':
       title: "Business, Economy, Euro<"
       introduction: "EU economy, finance and the euro, and practical information for EU businesses and entrepreneurs on product safety, environmental regulations, trade with non-EU countries and competition rules.<cc>&"
+      introduction_position: "top"
       metas:
         - "News article>"
         - "6 July 2015&"
@@ -105,7 +108,7 @@
           '#markup': '<p>Duis arcu tortor, suscipit eget, imperdiet nec, imperdiet iaculis, ipsum. Sed cursus turpis vitae tortor. <strong>Aliquam eu nunc.</strong> Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos hymenaeos. Fusce egestas elit eget lorem.</p>'
   assertions:
     count:
-      '.ecl-page-header': 1
+      '.ecl-page-header.ecl-page-header--description-top': 1
       "nav.ecl-breadcrumb.ecl-page-header__breadcrumb[aria-label=\"You are here:\"][data-ecl-breadcrumb=\"true\"]": 1
       '.ecl-breadcrumb__segment': 7
       '.ecl-page-header__background[src="https://inno-ecl.s3.amazonaws.com/media/examples/example-image8.jpg"]': 1
@@ -123,7 +126,7 @@
       'div.ecl-page-header-expandable__header button.ecl-button--tertiary span.ecl-button__container span.ecl-button__label': 0
     equals:
       'h1.ecl-page-header__title': "Business, Economy, Euro&lt;"
-      '.ecl-page-header__description': "EU economy, finance and the euro, and practical information for EU businesses and entrepreneurs on product safety, environmental regulations, trade with non-EU countries and competition rules.&lt;cc&gt;&amp;"
+      '.ecl-page-header--description-top .ecl-page-header__description': "EU economy, finance and the euro, and practical information for EU businesses and entrepreneurs on product safety, environmental regulations, trade with non-EU countries and competition rules.&lt;cc&gt;&amp;"
       '.ecl-page-header__meta .ecl-page-header__meta-item:nth-child(1)': "News article&gt;"
       '.ecl-page-header__meta .ecl-page-header__meta-item:nth-child(2)': "6 July 2015&amp;"
       '.ecl-page-header__meta .ecl-page-header__meta-item:nth-child(3)': "Brussels&lt;"
@@ -153,9 +156,12 @@
           '#markup': '<p>Duis arcu tortor, suscipit eget, imperdiet nec, imperdiet iaculis, ipsum. Sed cursus turpis vitae tortor.</p>'
         panel_content:
           '#markup': '<p>Duis arcu tortor, suscipit eget, imperdiet nec, imperdiet iaculis, ipsum. Sed cursus turpis vitae tortor. <strong>Aliquam eu nunc.</strong> Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos hymenaeos. Fusce egestas elit eget lorem.</p>'
+      has_background: true
+      background_image_position: "top"
   assertions:
     count:
-      '.ecl-page-header': 1
+      '.ecl-page-header.ecl-page-header--background': 1
+      '.ecl-page-header--picture-top': 0
       '.ecl-page-header__background': 0
       '.ecl-page-header__meta .ecl-page-header__meta-item': 3
       '.ecl-page-header__title.ecl-page-header__title--hidden': 1
@@ -180,6 +186,9 @@
     '#fields':
       title: "Business, Economy, Euro<"
       introduction: "EU economy, finance and the euro, and practical information for EU businesses and entrepreneurs on product safety, environmental regulations, trade with non-EU countries and competition rules.<cc>&"
+      introduction_position: "top"
+      has_background: true
+      color_mode: "green-dark"
       metas:
         - "News article>"
         - "6 July 2015&"
@@ -208,7 +217,7 @@
           '#markup': '<p>Duis arcu tortor, suscipit eget, imperdiet nec, imperdiet iaculis, ipsum. Sed cursus turpis vitae tortor.</p>'
   assertions:
     count:
-      '.ecl-page-header': 1
+      '.ecl-page-header.ecl-color-mode--green-dark.ecl-page-header--background.ecl-page-header--description-top': 1
       "nav.ecl-breadcrumb.ecl-page-header__breadcrumb[aria-label=\"You are here:\"][data-ecl-breadcrumb=\"true\"]": 1
       '.ecl-breadcrumb__segment': 7
       '.ecl-page-header__background': 0
@@ -266,12 +275,13 @@
           href: "http://www.example.com/news/"
           label: "News"
       background_image_url: 'https://inno-ecl.s3.amazonaws.com/media/examples/example-image8.jpg'
+      background_image_position: "top"
       header_message:
         header_content:
           '#markup': '<p>Duis arcu tortor, suscipit eget, imperdiet nec, imperdiet iaculis, ipsum. Sed cursus turpis vitae tortor.</p>'
   assertions:
     count:
-      '.ecl-page-header': 1
+      '.ecl-page-header.ecl-page-header--picture-top': 1
       "nav.ecl-breadcrumb.ecl-page-header__breadcrumb[aria-label=\"You are here:\"][data-ecl-breadcrumb=\"true\"]": 1
       '.ecl-breadcrumb__segment': 7
       '.ecl-page-header__background[src="https://inno-ecl.s3.amazonaws.com/media/examples/example-image8.jpg"]': 1
@@ -337,9 +347,10 @@
         - "6 July 2015&"
         - "Brussels<"
       background_image_url: 'https://inno-ecl.s3.amazonaws.com/media/examples/example-image8.jpg'
+      background_image_position: "beside"
   assertions:
     count:
-      '.ecl-page-header': 1
+      '.ecl-page-header.ecl-page-header--picture-beside': 1
       '.ecl-page-header__background[src="https://inno-ecl.s3.amazonaws.com/media/examples/example-image8.jpg"]': 1
       '.ecl-page-header__meta .ecl-page-header__meta-item': 3
       '.ecl-page-header__info-list': 0
@@ -362,9 +373,10 @@
         - "6 July 2015&"
         - "Brussels<"
       background_image_url: 'https://inno-ecl.s3.amazonaws.com/media/examples/example-image8.jpg'
+      background_image_position: "bottom"
   assertions:
     count:
-      '.ecl-page-header': 1
+      '.ecl-page-header.ecl-page-header--picture-bottom': 1
       '.ecl-page-header__background[src="https://inno-ecl.s3.amazonaws.com/media/examples/example-image8.jpg"]': 1
       '.ecl-page-header__meta .ecl-page-header__meta-item': 3
       '.ecl-page-header__info-list': 0
