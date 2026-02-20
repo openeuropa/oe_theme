@@ -76,6 +76,11 @@ list_item:
         - label: "Luxembourg"
           icon: "location"
         - "12PM"
+    secondary_meta_direction:
+      type: "text"
+      label: "Secondary meta direction"
+      description: "The direction of the secondary meta items list. Can be \"vertical\" (default) or \"horizontal\"."
+      preview: "horizontal"
     date:
       type: "DateValueObject"
       label: "Date"
