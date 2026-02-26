@@ -16,6 +16,7 @@ use Drupal\Core\Render\RendererInterface;
 use Drupal\Core\StringTranslation\ByteSizeMarkup;
 use Drupal\Core\Template\Attribute;
 use Drupal\Core\Template\TwigExtension as CoreTwigExtension;
+use Drupal\oe_theme\ValueObject\DateValueObject;
 use Drupal\oe_theme_helper\EuropeanUnionLanguages;
 use Drupal\oe_theme_helper\ExternalLinksInterface;
 use Drupal\oe_theme_helper\WebtoolsIconsProviderInterface;
@@ -111,6 +112,7 @@ class TwigExtension extends AbstractExtension {
       new TwigFunction('ecl_footer_links', [$this, 'eclFooterLinks'], ['needs_context' => TRUE]),
       new TwigFunction('ecl_class_border_color', [$this, 'eclBorderColor'], ['needs_context' => TRUE]),
       new TwigFunction('ecl_class_background_color', [$this, 'eclBackgroundColor'], ['needs_context' => TRUE]),
+      new TwigFunction('array_to_date_value_object', [$this, 'arrayToDateValueObject'], ['needs_context' => FALSE]),
     ];
   }
 
@@ -572,6 +574,19 @@ class TwigExtension extends AbstractExtension {
    */
   public function eclBackgroundColor(array $context): string {
     return $context['ecl_component_library'] === 'ec' ? 'ecl-u-bg-neutral-light-50' : 'ecl-u-bg-primary-5';
+  }
+
+  /**
+   * Creates a DateValueObject from a given date array.
+   *
+   * @param array $date
+   *   The date array.
+   *
+   * @return \Drupal\oe_theme\ValueObject\DateValueObject
+   *   The DateValueObject.
+   */
+  public function arrayToDateValueObject(array $date): DateValueObject {
+    return DateValueObject::fromArray($date);
   }
 
   /**

@@ -6,10 +6,10 @@
     timezone: Europe/Brussels
   assertions:
     count:
-      time.ecl-date-block.ecl-date-block--default: 1
+      time.ecl-date-block.ecl-date-block--default: 0
       time.ecl-date-block.ecl-date-block--canceled: 0
       time.ecl-date-block.ecl-date-block--past: 0
-      time.ecl-date-block.ecl-date-block--ongoing: 0
+      time.ecl-date-block.ecl-date-block--ongoing: 1
       abbr.ecl-date-block__month[title='September']: 1
     equals:
       span.ecl-date-block__day: 24
@@ -25,8 +25,8 @@
   assertions:
     count:
       time.ecl-date-block.ecl-date-block--default: 0
-      time.ecl-date-block.ecl-date-block--canceled: 1
-      time.ecl-date-block.ecl-date-block--past: 0
+      time.ecl-date-block.ecl-date-block--canceled: 0
+      time.ecl-date-block.ecl-date-block--past: 1
       time.ecl-date-block.ecl-date-block--ongoing: 0
       abbr.ecl-date-block__month[title='September']: 1
     equals:
@@ -78,10 +78,10 @@
     timezone: Europe/Brussels
   assertions:
     count:
-      time.ecl-date-block.ecl-date-block--default: 1
+      time.ecl-date-block.ecl-date-block--default: 0
       time.ecl-date-block.ecl-date-block--canceled: 0
       time.ecl-date-block.ecl-date-block--past: 0
-      time.ecl-date-block.ecl-date-block--ongoing: 0
+      time.ecl-date-block.ecl-date-block--ongoing: 1
       abbr.ecl-date-block__month[title='September']: 1
     equals:
       span.ecl-date-block__day: 24
@@ -96,10 +96,10 @@
     timezone: Europe/Brussels
   assertions:
     count:
-      time.ecl-date-block.ecl-date-block--default: 1
+      time.ecl-date-block.ecl-date-block--default: 0
       time.ecl-date-block.ecl-date-block--canceled: 0
       time.ecl-date-block.ecl-date-block--past: 0
-      time.ecl-date-block.ecl-date-block--ongoing: 0
+      time.ecl-date-block.ecl-date-block--ongoing: 1
       abbr.ecl-date-block__month[title='September']: 1
     equals:
       span.ecl-date-block__day: 24

@@ -4,6 +4,7 @@
  * Highlighted list pattern.
  */
 #}
+{# Prepare the 'default' variant. #}
 {% if variant == 'default' %}
 
   {# Prepare the highlighted item array. #}
@@ -83,7 +84,8 @@
     'see_more': _see_more,
     'detail': detail|default(''),
   } only %}
-  <hr class="ecl-separator ecl-u-mt-l">
+
+{# Prepare the 'four_columns' variant. #}
 {% elseif variant == 'four_columns' %}
   {% set highlighted_item = [] %}
 

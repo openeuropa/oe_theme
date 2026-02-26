@@ -27,6 +27,7 @@
 {% endfor %}
 
 {% include '@ecl-twig/social-media-follow' with {
+  'variant': variant|default('horizontal'),
   'description': title,
   'links': _links,
 } %}
