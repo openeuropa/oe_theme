@@ -54,6 +54,17 @@ page_header:
       label: "Background image URL"
       description: "Background image URL, only displayed when the theme ECL branding is set to 'Core'."
       preview: "page-header-pattern-background-preview.jpeg"
+    sources:
+      type: "array"
+      label: "Image sources"
+      description: "Array containing different sized image for multiple screen sizes."
+      preview:
+        - src: "https://inno-ecl.s3.amazonaws.com/media/examples/example-image.jpg"
+          media: '(min-width: 1368px)'
+        - src: "https://loremflickr.com/768/256/dog"
+          media: '(min-width: 480px)'
+        - src: "https://loremflickr.com/480/160/arch"
+          media: ''
     background_image_position:
       type: "text"
       label: "Background image position"

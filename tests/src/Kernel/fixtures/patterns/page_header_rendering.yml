@@ -101,6 +101,13 @@
           href: "http://www.example.com/news/"
           label: "News"
       background_image_url: 'https://inno-ecl.s3.amazonaws.com/media/examples/example-image8.jpg'
+      sources:
+        - src: "https://inno-ecl.s3.amazonaws.com/media/examples/example-image.jpg"
+          media: '(min-width: 1368px)'
+        - src: "https://loremflickr.com/768/256/dog"
+          media: '(min-width: 480px)'
+        - src: "https://loremflickr.com/480/160/arch"
+          media: ''
       header_message:
         header_content:
           '#markup': '<p>Duis arcu tortor, suscipit eget, imperdiet nec, imperdiet iaculis, ipsum. Sed cursus turpis vitae tortor.</p>'
@@ -111,7 +118,11 @@
       '.ecl-page-header.ecl-page-header--description-top': 1
       "nav.ecl-breadcrumb.ecl-page-header__breadcrumb[aria-label=\"You are here:\"][data-ecl-breadcrumb=\"true\"]": 1
       '.ecl-breadcrumb__segment': 7
+      'picture source': 3
       '.ecl-page-header__background[src="https://inno-ecl.s3.amazonaws.com/media/examples/example-image8.jpg"]': 1
+      'picture source[srcset="https://inno-ecl.s3.amazonaws.com/media/examples/example-image.jpg"][media="(min-width: 1368px)"]': 1
+      'picture source[srcset="https://loremflickr.com/768/256/dog"][media="(min-width: 480px)"]': 1
+      'picture source[srcset="https://loremflickr.com/480/160/arch"]': 1
       '.ecl-page-header__meta .ecl-page-header__meta-item': 3
       '.ecl-page-header__title.ecl-page-header__title--hidden': 0
       '.ecl-page-header__info-list': 0

@@ -37,6 +37,11 @@
     }
   } %}
 {% endif %}
+{% if sources is not empty and sources is iterable %}
+  {% set _picture_background = _picture_background|merge({
+    'sources': sources,
+  }) %}
+{% endif %}
 {% if thumbnail.src is not empty %}
   {% set _picture_thumbnail = {
     'img': {
