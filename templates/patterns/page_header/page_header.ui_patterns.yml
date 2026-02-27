@@ -19,6 +19,11 @@ page_header:
       label: "Introduction"
       description: "A small introduction of the page content."
       preview: "EU economy, finance and the euro, and practical information for EU businesses and entrepreneurs on product safety, environmental regulations, trade with non-EU countries and competition rules."
+    introduction_position:
+      type: "text"
+      label: "Introduction position"
+      description: "The position of the introduction text. Can be \"top\" or \"bottom\" (default: \"top\")."
+      preview: "bottom"
     metas:
       type: "array"
       label: "Metas"
@@ -49,6 +54,11 @@ page_header:
       label: "Background image URL"
       description: "Background image URL, only displayed when the theme ECL branding is set to 'Core'."
       preview: "page-header-pattern-background-preview.jpeg"
+    background_image_position:
+      type: "text"
+      label: "Background image position"
+      description: "The position of the background image. Can be \"top\", \"beside\" or \"bottom\" (default: \"top\")."
+      preview: "beside"
     overlay:
       type: "text"
       label: "Overlay - Deprecated and will be removed in 5.x stable version."
@@ -69,3 +79,19 @@ page_header:
           '#markup': 'Duis arcu tortor, suscipit eget, imperdiet nec, imperdiet iaculis, ipsum. Sed cursus turpis vitae tortor.'
         panel_content:
           '#markup': 'Duis arcu tortor, suscipit eget, imperdiet nec, imperdiet iaculis, ipsum. Sed cursus turpis vitae tortor. <strong>Aliquam eu nunc.</strong> Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos hymenaeos. Fusce egestas elit eget lorem.'
+    color_mode:
+      type: "text"
+      label: "Color mode"
+      description: "Name of the color mode. It's applied only when the page header has a background color."
+      preview: "green-dark"
+    has_background:
+      type: "boolean"
+      label: "Has background"
+      description: "Whether the page header should have a background color or not. Defaults to 'false'"
+      preview: true
+      escape: false
+    extra_classes:
+      type: 'text'
+      label: 'Extra classes string'
+      description: 'Extra classes string'
+      preview: 'oe-theme-extra-class'
