@@ -19,7 +19,7 @@
 {# Add cache info from status field. #}
 {% set bubble_cache = content.extra_field_oe_call_tenders_label_status|render %}
 {% block content %}
-  {{ pattern('list_item', {
+  {% include 'oe_theme:list_item' with {
     'variant': 'default',
     'url': url,
     'title': content.extra_field_oe_theme_helper_short_title_with_fallback|field_value,
@@ -28,5 +28,5 @@
     'badges': badges,
     'external_link': external_link,
     'extra_attributes': extra_attributes|default([]),
-  }) }}
+  } only %}
 {% endblock %}

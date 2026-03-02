@@ -16,7 +16,7 @@
 {% set additional_information = [] %}
 {% apply spaceless %}
   {% block content %}
-    {{ pattern('list_item', {
+    {% include 'oe_theme:list_item' with {
       'variant': 'thumbnail_primary',
       'url': url,
       'title': label,
@@ -28,6 +28,6 @@
       'badges': badges,
       'external_link': external_link,
       'extra_attributes': extra_attributes|default([]),
-    }) }}
+    } only %}
   {% endblock %}
 {% endapply %}

@@ -28,10 +28,10 @@
  */
 #}
 
-{{ pattern('organisation_teaser', {
+{% include 'oe_theme:organisation_teaser' with {
   logo: logo,
   name: name,
   acronym: acronym,
   organisation_details: organisation_details,
   contact_page_url: contact_page_url
-}) }}
+} only %}

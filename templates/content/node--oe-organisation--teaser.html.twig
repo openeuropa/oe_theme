@@ -21,7 +21,7 @@
 {% endif %}
 
 {% block content %}
-  {{ pattern('list_item', {
+  {% include 'oe_theme:list_item' with {
     'variant': 'thumbnail_secondary',
     'url': url,
     'meta': [
@@ -36,5 +36,5 @@
     'badges': badges,
     'external_link': external_link,
     'extra_attributes': extra_attributes|default([]),
-  }) }}
+  } only %}
 {% endblock %}

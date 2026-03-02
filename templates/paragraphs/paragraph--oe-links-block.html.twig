@@ -6,7 +6,7 @@
  * @see ./modules/contrib/paragraphs/templates/paragraph.html.twig
  */
 #}
-{{ pattern('link_block', {
+{% include 'oe_theme:link_block' with {
   'title': content.field_oe_text,
   'links': links,
-}) }}
+} only %}

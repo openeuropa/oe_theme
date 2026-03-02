@@ -6,7 +6,7 @@
  * @see ./modules/contrib/paragraphs/templates/paragraph.html.twig
  */
 #}
-{{ pattern(pattern, {
+{% include 'oe_theme:banner' with {
   'title': title,
   'description': description,
   'url': url,
@@ -21,4 +21,4 @@
   'external_link': external_link|default(false),
   'credit': credit|default(''),
   'extra_classes': extra_classes,
-}) }}
+} only %}

@@ -7,10 +7,10 @@
  */
 #}
 {% if links %}
-  {{ pattern('navigation_menu', {
+  {% include 'oe_theme:navigation_menu' with {
     label: 'Menu'|t,
     close: close,
     items: links,
     variant: variant|default('default'),
-  }) }}
+  } only %}
 {% endif %}
