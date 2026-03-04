@@ -92,9 +92,9 @@ class DetailsExtraField extends EventExtraFieldBase {
   public function viewElements(ContentEntityInterface $entity) {
     // The pattern will take care of not displaying empty items.
     $build = [
-      '#type' => 'pattern',
-      '#id' => 'icons_with_text',
-      '#fields' => [
+      '#type' => 'component',
+      '#component' => 'oe_theme:icons_with_text',
+      '#props' => [
         'items' => [
           [
             'icon' => 'file',
@@ -163,7 +163,7 @@ class DetailsExtraField extends EventExtraFieldBase {
    */
   protected function addRenderableLocation(array &$build, ContentEntityInterface $entity): void {
     if ($entity->get('oe_event_online_only')->value) {
-      $build['#fields']['items'][] = [
+      $build['#props']['items'][] = [
         'icon' => 'location',
         'text' => [
           '#markup' => $this->t('Online only'),
@@ -174,7 +174,7 @@ class DetailsExtraField extends EventExtraFieldBase {
     if (!$entity->get('oe_event_venue')->isEmpty() && $entity->get('oe_event_venue')->entity instanceof VenueInterface) {
       $address = $this->getVenueInlineAddress($entity->get('oe_event_venue')->entity);
       if (!empty($address)) {
-        $build['#fields']['items'][] = [
+        $build['#props']['items'][] = [
           'icon' => 'location',
           'text' => [
             '#markup' => $address,
@@ -230,7 +230,7 @@ class DetailsExtraField extends EventExtraFieldBase {
    */
   protected function addRenderableOnlineType(array &$build, ContentEntityInterface $entity): void {
     if (!$entity->get('oe_event_online_type')->isEmpty()) {
-      $build['#fields']['items'][] = [
+      $build['#props']['items'][] = [
         'icon' => 'livestreaming',
         'text' => $this->t('Live streaming available'),
       ];

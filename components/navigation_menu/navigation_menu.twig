@@ -27,7 +27,6 @@
       {% if featured_item.external is defined and featured_item.external == true %}
         {% set _item_featured_item = _item_featured_item|merge({
           external: featured_item.external,
-          icon_path: ecl_icon_path
         }) %}
       {% endif %}
       {% if featured_item.picture is defined and featured_item.picture is not empty %}
@@ -48,6 +47,7 @@
     {% set _child = {
       path: child.href,
       label: child.label,
+      is_current: child.is_current|default(false),
       see_all: child.see_all|default(false),
       see_all_label: child.see_all_label|default('See all'),
       see_all_attributes: child.see_all_attributes,
@@ -56,7 +56,6 @@
     {% if child.external is defined and child.external == true %}
       {% set _child = _child|merge({
         external: child.external,
-        icon_path: ecl_icon_path
       }) %}
     {% endif %}
 
@@ -71,7 +70,6 @@
       {% if grandchild.external is defined and grandchild.external == true %}
         {% set _grandchild = _grandchild|merge({
           external: grandchild.external,
-          icon_path: ecl_icon_path
         }) %}
       {% endif %}
       {% set _grandchildren = _grandchildren|merge([_grandchild]) %}
@@ -95,7 +93,6 @@
         {% if featured_item.external is defined and featured_item.external == true %}
           {% set _featured_item = _featured_item|merge({
             external: featured_item.external,
-            icon_path: ecl_icon_path
           }) %}
         {% endif %}
         {% if featured_item.picture is defined and featured_item.picture is not empty %}
@@ -133,7 +130,6 @@
           },
           'icon': {
             name: "arrow-left",
-            path: ecl_icon_path,
             transform: "flip-horizontal",
             size: "xs"
           },
@@ -152,14 +148,13 @@
     info: _info|default([]),
     featured: _item_featured|default([]),
     children: _children,
-    link_aria_label: "Access item's children"|t,
+    trigger_aria_label: "Access item's children"|t,
     extra_attributes: item.extra_attributes,
   } %}
   {% if _children is empty %}
     {% if item.external is defined and item.external == true %}
       {% set _item = _item|merge({
         external: item.external,
-        icon_path: ecl_icon_path
       }) %}
     {% endif %}
     {% if item.container is defined and item.container is not empty %}
@@ -186,7 +181,6 @@
         label: label|default('Menu'|t),
         hide_label: true,
         icon: {
-          path: ecl_icon_path,
           name: 'hamburger',
           size: 'm',
         }
@@ -194,14 +188,12 @@
       close: {
         label: close.label|default('Close'|t),
         icon: {
-          path: ecl_icon_path,
-          name: ecl_component_library == 'ec' ? 'close' : 'close-filled',
-          size: ecl_component_library == 'ec' ? 'm' : 's',
+          name: ecl_component_library == 'eu' ? 'close-filled' : 'close',
+          size: ecl_component_library == 'eu' ? 's' : 'm',
         },
-        hide_label: ecl_component_library == 'ec',
+        hide_label: ecl_component_library != 'eu',
       },
       back_label: back|default('Back'|t),
-      icon_path: ecl_icon_path,
       items: _items,
       see_all_label: see_all_label|default('Browse all'|t),
       featured_priority: featured_priority|default('secondary'),
@@ -214,7 +206,6 @@
       toggle: {
         label: label|default('Menu'|t),
         icon: {
-          path: ecl_icon_path,
           name: 'hamburger',
           size: 'm',
         }
@@ -222,14 +213,12 @@
       close: {
         label: close.label|default('Close'|t),
         icon: {
-          path: ecl_icon_path,
-          name: ecl_component_library == 'ec' ? 'close' : 'close-filled',
-          size: ecl_component_library == 'ec' ? 'm' : 's',
+          name: ecl_component_library == 'eu' ? 'close-filled' : 'close',
+          size: ecl_component_library == 'eu' ? 's' : 'm',
         },
-        hide_label: ecl_component_library == 'ec',
+        hide_label: ecl_component_library != 'eu',
       },
       back_label: back|default('Back'|t),
-      icon_path: ecl_icon_path,
       items: _items,
       see_all_label: see_all_label|default('See all'|t),
       button_previous_label: button_previous_label|default('Previous items'|t),

@@ -1,5 +1,14 @@
 name: 'Page header'
 description: 'Default implementation of the page header, contains the page title, breadcrumbs and additional page details.'
+props:
+  type: object
+  properties:
+    metas:
+      type: array
+      title: Metas
+      description: 'A collection of page meta information.'
+      items:
+        type: string
 slots:
   title:
     title: Title
@@ -10,9 +19,6 @@ slots:
   introduction:
     title: Introduction
     description: 'A small introduction of the page content.'
-  metas:
-    title: Metas
-    description: 'A collection of page meta information.'
   breadcrumb:
     title: Breadcrumb
     description: 'A list of links that represent the location of the current page in the website.'

@@ -89,14 +89,14 @@ class DescriptionExtraField extends DateAwareExtraFieldBase implements Container
    */
   public function viewElements(ContentEntityInterface $entity) {
     $build = [
-      '#type' => 'pattern',
-      '#id' => 'text_featured_media',
+      '#type' => 'component',
+      '#component' => 'oe_theme:text_featured_media',
     ];
     // If we have no renderable text and image we don't need a title.
     $text = $this->getRenderableText($entity);
     $title = $this->getRenderableTitle($entity);
     $this->addFeaturedMediaThumbnail($build, $entity);
-    $title = !empty($text[0]['#text']) || isset($build['#fields']['image']) ? $title : '';
+    $title = !empty($text[0]['#text']) || isset($build['#props']['image']) ? $title : '';
 
     // If we don't have a title we do not render anything because there is
     // no text and no image.
@@ -111,12 +111,14 @@ class DescriptionExtraField extends DateAwareExtraFieldBase implements Container
       return $empty_build;
     }
 
-    $build['#fields']['title'] = $title;
-    $build['#fields']['text'] = $text;
+    $build['#slots']['title'] = $title;
+    if (!empty($text)) {
+      $build['#slots']['text'] = $text;
+    }
 
     // If we have a media but no description text, we use the 'right_simple'
     // variant of the pattern to render the media on the left side.
-    if (empty($build['#fields']['text']) && isset($build['#fields']['image'])) {
+    if (empty($build['#slots']['text']) && isset($build['#props']['image'])) {
       $build['#variant'] = 'right_simple';
     }
 
@@ -234,7 +236,7 @@ class DescriptionExtraField extends DateAwareExtraFieldBase implements Container
     }
 
     $cache->addCacheableDependency($thumbnail->entity);
-    $build['#fields']['image'] = ImageValueObject::fromImageItem($thumbnail);
+    $build['#props']['image'] = ImageValueObject::fromImageItem($thumbnail);
 
     // Only display a caption if we have an image to be captioned by and there
     // is a caption set.
@@ -244,7 +246,7 @@ class DescriptionExtraField extends DateAwareExtraFieldBase implements Container
     }
     /** @var \Drupal\Core\Entity\EntityViewBuilderInterface $view_builder */
     $view_builder = $this->entityTypeManager->getViewBuilder('node');
-    $build['#fields']['caption'] = $view_builder->viewField($entity->get('oe_event_featured_media_legend'), [
+    $build['#slots']['caption'] = $view_builder->viewField($entity->get('oe_event_featured_media_legend'), [
       'label' => 'hidden',
     ]);
 

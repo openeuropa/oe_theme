@@ -90,10 +90,10 @@ class SocialMediaLinksFormatter extends SocialMediaBaseLinkFormatter {
     }
 
     $pattern = [
-      '#type' => 'pattern',
-      '#id' => 'social_media_links',
+      '#type' => 'component',
+      '#component' => 'oe_theme:social_media_links',
       '#variant' => $this->getSetting('variant'),
-      '#fields' => [
+      '#props' => [
         'title' => $this->getSetting('title'),
         'links' => [],
       ],
@@ -101,10 +101,10 @@ class SocialMediaLinksFormatter extends SocialMediaBaseLinkFormatter {
 
     $elements = parent::viewElements($items, $langcode);
     foreach ($items as $delta => $item) {
-      $pattern['#fields']['links'][] = [
+      $pattern['#props']['links'][] = [
         'service' => $item->link_type,
         'label' => $elements[$delta]['#title'],
-        'url' => $elements[$delta]['#url'],
+        'url' => $elements[$delta]['#url']->toString(),
       ];
     }
 

@@ -1,15 +1,21 @@
 name: 'Social icon'
 description: 'Social network icon with link of label.'
-slots:
-  service:
-    title: Service
-    description: 'Social network service.'
-  label:
-    title: Label
-    description: 'Label accompanying the social icon.'
-  url:
-    title: URL
-    description: 'URL to link the social icon to. Optional. (A Drupal Url object)'
-  size:
-    title: Size
-    description: "The icon size. Defaults to 'xs'."
+props:
+  type: object
+  properties:
+    service:
+      type: string
+      title: Service
+      description: 'Social network service.'
+    url:
+      type: [string, object]
+      title: URL
+      description: 'URL to link the social icon to. Optional. (A Drupal Url object)'
+    label:
+      type: ['string', 'null']
+      title: Label
+      description: 'Label accompanying the social icon.'
+    size:
+      type: ['string', 'null']
+      title: Size
+      description: "The icon size. Defaults to 'xs'."

@@ -37,11 +37,13 @@ class SocialMediaIconsListFormatter extends SocialMediaBaseLinkFormatter {
     $elements = parent::viewElements($items, $langcode);
     foreach ($items as $delta => $item) {
       $pattern = [
-        '#type' => 'pattern',
-        '#id' => 'social_icon',
-        '#fields' => [
-          'service' => $item->link_type,
+        '#type' => 'component',
+        '#component' => 'oe_theme:social_icon',
+        '#slots' => [
           'label' => $elements[$delta]['#title'],
+        ],
+        '#props' => [
+          'service' => $item->link_type,
           'url' => $elements[$delta]['#url'],
         ],
       ];

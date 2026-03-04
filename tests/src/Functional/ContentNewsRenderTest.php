@@ -117,7 +117,7 @@ class ContentNewsRenderTest extends ContentRenderTestBase {
     $assert->assertPattern($expected_values, $page_header->getOuterHtml());
 
     // Assert news details.
-    $details = $this->assertSession()->elementExists('css', 'div#news-details');
+    $details = $this->assertSession()->elementExists('css', 'div.ecl-u-mb-s');
     $field_list_assert = new FieldListAssert();
     $details_expected_values = [
       'items' => [
@@ -247,10 +247,10 @@ class ContentNewsRenderTest extends ContentRenderTestBase {
       ],
     ])->save();
     $this->drupalGet($node->toUrl());
-    $this->assertEquals('Related links', $this->assertSession()->elementExists('css', 'h2.ecl-u-type-heading-2:nth-child(8)')->getText());
-    $first_related_link = $this->assertSession()->elementExists('css', 'div.ecl-u-border-bottom.ecl-u-border-color-neutral-50.ecl-u-pt-m.ecl-u-pb-m:nth-child(9) a');
+    $this->assertEquals('Related links', $this->assertSession()->elementExists('css', 'h2.ecl-u-type-heading-2:nth-child(9)')->getText());
+    $first_related_link = $this->assertSession()->elementExists('css', 'div.ecl-u-border-bottom.ecl-u-border-color-neutral-50.ecl-u-pt-m.ecl-u-pb-m:nth-child(10) a');
     $this->assertLinkIcon($first_related_link, 'Node listing', '/build/node', FALSE, 'xs');
-    $second_related_link = $this->assertSession()->elementExists('css', 'div.ecl-u-border-bottom.ecl-u-border-color-neutral-50.ecl-u-pt-m.ecl-u-pb-m:nth-child(10) a');
+    $second_related_link = $this->assertSession()->elementExists('css', 'div.ecl-u-border-bottom.ecl-u-border-color-neutral-50.ecl-u-pt-m.ecl-u-pb-m:nth-child(11) a');
     $this->assertLinkIcon($second_related_link, 'External link', 'https://example.com', TRUE, 'xs');
   }
 

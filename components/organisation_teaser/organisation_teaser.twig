@@ -14,7 +14,7 @@
  */
 #}
 
-<article class="ecl-u-mb-l ecl-u-border-bottom ecl-u-border-width-3 {{ ecl_class_border_color() }} ecl-content-item ecl-u-d-flex ecl-u-pb-m">
+<article class="ecl-u-mb-l ecl-u-border-bottom ecl-u-border-width-3 {{ border_color_class }} ecl-content-item ecl-u-d-flex ecl-u-pb-m">
   {% if logo is not empty %}
     <div role="img"
       aria-label="{{ logo.alt }}"
@@ -28,10 +28,11 @@
     </h4>
 
     {% if organisation_details|length > 0 %}
-      {% include '@oe_theme/patterns/field_list/pattern-field-list.html.twig' with {
+      {% include 'oe_theme:field_list' with {
         variant: 'horizontal',
-        items: organisation_details
-      } %}
+        items: organisation_details,
+        extra_classes: border_color_class
+      } only %}
     {% endif %}
 
     {% if contact_page_url is not empty %}

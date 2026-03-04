@@ -1,12 +1,12 @@
 name: File
 description: 'File component is used to show info about the file that can be downloaded or how are displayed multimedia files (image and video).'
-slots:
-  button_label:
-    title: Label
-    description: 'Download button label.'
 props:
   type: object
   properties:
     file:
       title: 'File'
-      type: Drupal\oe_theme\ValueObject\FileValueObject
+      type: ['object', 'null']
+    button_label:
+      type: ['string', 'null']
+      title: Label
+      description: 'Download button label.'

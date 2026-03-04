@@ -11,6 +11,7 @@ use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Plugin\ContextAwarePluginInterface;
+use Drupal\Core\Render\RendererInterface;
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -60,6 +61,13 @@ class PageHeaderBlock extends BlockBase implements ContainerFactoryPluginInterfa
   protected $title = '';
 
   /**
+   * The renderer service.
+   *
+   * @var \Drupal\Core\Render\RendererInterface
+   */
+  protected $renderer;
+
+  /**
    * Constructs a new PageHeaderBlock instance.
    *
    * @param array $configuration
@@ -74,13 +82,16 @@ class PageHeaderBlock extends BlockBase implements ContainerFactoryPluginInterfa
    *   The breadcrumb builder service.
    * @param \Drupal\Core\Routing\RouteMatchInterface $current_route_match
    *   The current route match.
+   * @param \Drupal\Core\Render\RendererInterface $renderer
+   *   The renderer service.
    */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, ConfigFactoryInterface $config_factory, BreadcrumbBuilderInterface $breadcrumb_builder, RouteMatchInterface $current_route_match) {
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, ConfigFactoryInterface $config_factory, BreadcrumbBuilderInterface $breadcrumb_builder, RouteMatchInterface $current_route_match, RendererInterface $renderer) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
 
     $this->breadcrumbBuilder = $breadcrumb_builder;
     $this->configFactory = $config_factory;
     $this->currentRouteMatch = $current_route_match;
+    $this->renderer = $renderer;
   }
 
   /**
@@ -93,7 +104,8 @@ class PageHeaderBlock extends BlockBase implements ContainerFactoryPluginInterfa
       $plugin_definition,
       $container->get('config.factory'),
       $container->get('breadcrumb'),
-      $container->get('current_route_match')
+      $container->get('current_route_match'),
+      $container->get('renderer')
     );
   }
 
@@ -103,12 +115,21 @@ class PageHeaderBlock extends BlockBase implements ContainerFactoryPluginInterfa
   public function build(): array {
     $metadata = $this->getContext('page_header')->getContextData()->getValue();
     $title = $metadata['title'] ?? $this->title;
+    $introduction = $metadata['introduction'] ?? '';
     $build = [
-      '#type' => 'pattern',
-      '#id' => 'page_header',
-      '#title' => $title,
-      '#introduction' => $metadata['introduction'] ?? '',
-      '#metas' => $metadata['metas'] ?? [],
+      '#type' => 'component',
+      '#component' => 'oe_theme:page_header',
+      '#slots' => [
+        'title' => [
+          '#markup' => is_array($title) ? $this->renderer->render($title) : $title,
+        ],
+        'introduction' => [
+          '#markup' => is_array($introduction) ? $this->renderer->render($introduction) : '',
+        ],
+      ],
+      '#props' => [
+        'metas' => $metadata['metas'] ?? [],
+      ],
     ];
 
     return $this->addBreadcrumbSegments($build, $title);

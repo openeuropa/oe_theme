@@ -7,10 +7,14 @@ variants:
   horizontal:
     title: Horizontal
     description: 'It will align the field item horizontally.'
-slots:
-  label:
-    title: Label
-    description: 'Field label'
-  body:
-    title: Body
-    description: 'Field content'
+props:
+  type: object
+  properties:
+    label:
+      type: ['string', 'null']
+      title: Label
+      description: 'Field label'
+    body:
+      type: ['string', 'null']
+      title: Body
+      description: 'Field content'

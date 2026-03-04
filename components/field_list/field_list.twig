@@ -16,14 +16,20 @@
 {% endfor %}
 {% if variant == 'featured_horizontal' %}
   {% set variant = 'horizontal' %}
-  {% set extra_classes = 'ecl-description-list--featured' %}
+  {% set extra_classes = extra_classes ~ 'ecl-description-list--featured' %}
 {% endif %}
 {% if _items %}
   {% block content %}
-  {% include '@ecl-twig/description-list' with {
-    'variant': variant|default('vertical'),
-    'items': _items,
-    'extra_classes': extra_classes,
-  } %}
+    {% if wrapper_classes %}
+      <div class="{{ wrapper_classes }}">
+    {% endif %}
+    {% include '@ecl-twig/description-list' with {
+      'variant': variant|default('vertical'),
+      'items': _items,
+      'extra_classes': extra_classes|default(''),
+    } %}
+    {% if wrapper_classes %}
+      </div>
+    {% endif %}
   {% endblock %}
 {% endif %}

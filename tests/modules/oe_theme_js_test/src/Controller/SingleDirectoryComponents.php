@@ -7,9 +7,9 @@ namespace Drupal\oe_theme_js_test\Controller;
 use Drupal\Core\Controller\ControllerBase;
 
 /**
- * Returns responses for UI Patterns test routes.
+ * Returns responses for SDC test routes.
  */
-class UiPatterns extends ControllerBase {
+class SingleDirectoryComponents extends ControllerBase {
 
   /**
    * Generates a page with test Contextual navigation rendered pattern.
@@ -20,9 +20,9 @@ class UiPatterns extends ControllerBase {
   public function contextNav(): array {
     $build = [];
     $build['context_nav_with_more_button'] = [
-      '#type' => 'pattern',
-      '#id' => 'context_nav',
-      '#fields' => [
+      '#type' => 'component',
+      '#component' => 'oe_theme:context_nav',
+      '#props' => [
         'label' => $this->t('Contextual navigation with more button'),
         'items' => [
           [
@@ -52,9 +52,9 @@ class UiPatterns extends ControllerBase {
     ];
 
     $build['context_nav_without_more_button'] = [
-      '#type' => 'pattern',
-      '#id' => 'context_nav',
-      '#fields' => [
+      '#type' => 'component',
+      '#component' => 'oe_theme:context_nav',
+      '#props' => [
         'label' => $this->t('Navigation title'),
         'items' => [
           [
