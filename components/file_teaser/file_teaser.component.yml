@@ -7,9 +7,6 @@ slots:
   button_label:
     title: Label
     description: 'Download button label.'
-  file:
-    title: File
-    description: 'A file value object.'
   link_attributes:
     title: 'The download link attributes'
     description: 'Any additional attributes to be added to the file download link.'
@@ -43,3 +40,9 @@ slots:
   extra_attributes:
     title: 'Extra attributes'
     description: 'List of extra attributes'
+props:
+  type: object
+  properties:
+    file:
+      title: 'File'
+      type: Drupal\oe_theme\ValueObject\FileValueObject
