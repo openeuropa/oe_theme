@@ -116,19 +116,27 @@ class PageHeaderBlock extends BlockBase implements ContainerFactoryPluginInterfa
     $metadata = $this->getContext('page_header')->getContextData()->getValue();
     $title = $metadata['title'] ?? $this->title;
     $introduction = $metadata['introduction'] ?? '';
+    $slots = [
+      'title' => [
+        '#markup' => is_array($title) ? $this->renderer->render($title) : $title,
+      ],
+    ];
+    if (!empty($introduction)) {
+      $slots['introduction'] = is_array($introduction) ? [
+        '#markup' => $this->renderer->render($introduction),
+      ] : [
+        '#plain_text' => $introduction,
+      ];
+    }
     $build = [
       '#type' => 'component',
       '#component' => 'oe_theme:page_header',
-      '#slots' => [
-        'title' => [
-          '#markup' => is_array($title) ? $this->renderer->render($title) : $title,
-        ],
-        'introduction' => [
-          '#markup' => is_array($introduction) ? $this->renderer->render($introduction) : '',
-        ],
-      ],
+      '#slots' => $slots,
       '#props' => [
         'metas' => $metadata['metas'] ?? [],
+        'background_image_url' => $metadata['background_image_url'] ?? '',
+        'hide_title' => $metadata['hide_title'] ?? FALSE,
+        'header_message' => $metadata['header_message'] ?? [],
       ],
     ];
 
@@ -157,17 +165,17 @@ class PageHeaderBlock extends BlockBase implements ContainerFactoryPluginInterfa
    */
   protected function addBreadcrumbSegments(array $build, $title = ''): array {
     $breadcrumb = $this->breadcrumbBuilder->build($this->currentRouteMatch);
-    // Add segments to the breadcrumb key.
+    // Add segments to the breadcrumb prop.
     /** @var \Drupal\Core\Link $link */
     foreach ($breadcrumb->getLinks() as $link) {
-      $build['#breadcrumb'][] = [
+      $build['#props']['breadcrumb'][] = [
         'href' => $link->getUrl(),
         'label' => $link->getText(),
       ];
     }
     // Add the title to the segments only if it's not empty.
     if (!empty($title)) {
-      $build['#breadcrumb'][] = [
+      $build['#props']['breadcrumb'][] = [
         'label' => $title,
       ];
     }

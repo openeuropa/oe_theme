@@ -50,9 +50,9 @@ class FilePatternRenderingTest extends AbstractKernelTestBase {
     new Settings($settings);
 
     $pattern = [
-      '#type' => 'pattern',
-      '#id' => 'file',
-      '#fields' => [
+      '#type' => 'component',
+      '#component' => 'oe_theme:file',
+      '#props' => [
         'button_label' => 'Download',
         'file' => FileValueObject::fromFileEntity(File::create($file)),
       ],

@@ -203,9 +203,9 @@ class TwigExtensionTest extends AbstractKernelTestBase {
         'variables' => [
           'length' => 25,
           'content' => [
-            '#type' => 'pattern',
-            '#id' => 'blockquote',
-            '#fields' => [
+            '#type' => 'component',
+            '#component' => 'oe_theme:blockquote',
+            '#props' => [
               'body' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.',
               'author' => 'John Doe',
             ],

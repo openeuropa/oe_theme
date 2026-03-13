@@ -2364,8 +2364,8 @@ function oe_theme_preprocess_node__oe_person__teaser(array &$variables): void {
       if ($item['#oe_contact']->bundle() === 'oe_general') {
         $item_build = $builder_oe_contact->build($item);
         field_group_build_entity_groups($item_build);
-        if (!empty($item_build['group_contact_information']['pattern']['#fields']['items'])) {
-          $items = $item_build['group_contact_information']['pattern']['#fields']['items'];
+        if (!empty($item_build['group_contact_information']['pattern']['#props']['items'])) {
+          $items = $item_build['group_contact_information']['pattern']['#props']['items'];
         }
       }
       elseif ($item['#oe_contact']->bundle() === 'oe_organisation_reference') {
@@ -2378,8 +2378,8 @@ function oe_theme_preprocess_node__oe_person__teaser(array &$variables): void {
                 $contact_item = $item_build['oe_organisation_contact'][$contact_index];
                 $contact_item_build = $builder_oe_contact->build($contact_item);
                 field_group_build_entity_groups($contact_item_build);
-                if (!empty($contact_item_build['group_contact_information']['pattern']['#fields']['items'])) {
-                  $items = $contact_item_build['group_contact_information']['pattern']['#fields']['items'];
+                if (!empty($contact_item_build['group_contact_information']['pattern']['#props']['items'])) {
+                  $items = $contact_item_build['group_contact_information']['pattern']['#props']['items'];
                 }
               }
             }

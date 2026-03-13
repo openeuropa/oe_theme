@@ -21,17 +21,30 @@ class LinkPatternRenderingTest extends AbstractKernelTestBase {
    * @throws \Exception
    */
   public function testLinkPatternRendering() {
+    $url = Url::fromUserInput('/node/add', [
+      'attributes' => [
+        'class' => ['foo'],
+        'foo' => 'bar',
+      ],
+    ]);
+    // Extract attributes from the URL object, as the SDC component expects
+    // explicit props (no preprocess hook auto-extracts them anymore).
+    $attributes = (array) $url->getOption('attributes');
+    $extra_classes = implode(' ', $attributes['class'] ?? []);
+    unset($attributes['class']);
+    $extra_attributes = [];
+    foreach ($attributes as $name => $value) {
+      $extra_attributes[] = ['name' => $name, 'value' => $value];
+    }
+
     $pattern = [
-      '#type' => 'pattern',
-      '#id' => 'link',
-      '#fields' => [
+      '#type' => 'component',
+      '#component' => 'oe_theme:link',
+      '#props' => [
         'text' => 'Link text',
-        'url' => Url::fromUserInput('/node/add', [
-          'attributes' => [
-            'class' => ['foo'],
-            'foo' => 'bar',
-          ],
-        ]),
+        'url' => $url,
+        'extra_classes' => $extra_classes,
+        'extra_attributes' => $extra_attributes,
       ],
     ];
 
@@ -44,11 +57,12 @@ class LinkPatternRenderingTest extends AbstractKernelTestBase {
     $this->assertCount(0, $crawler->filter('svg.ecl-icon.ecl-icon--s.ecl-link__icon'));
 
     $pattern = [
-      '#type' => 'pattern',
-      '#id' => 'link',
-      '#fields' => [
+      '#type' => 'component',
+      '#component' => 'oe_theme:link',
+      '#props' => [
         'text' => 'Link text',
         'url' => Url::fromUri('https://example.com'),
+        'external_link' => TRUE,
       ],
     ];
 

@@ -59,6 +59,7 @@ abstract class PatternFormatterBase extends FieldGroupFormatterBase implements C
     return [
       'label' => '',
       'variant' => '',
+      'display_label' => FALSE,
     ];
   }
 
@@ -89,6 +90,12 @@ abstract class PatternFormatterBase extends FieldGroupFormatterBase implements C
       ];
     }
 
+    $form['display_label'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Display field group label'),
+      '#default_value' => (bool) $this->getSetting('display_label'),
+    ];
+
     return $form;
   }
 
@@ -104,6 +111,10 @@ abstract class PatternFormatterBase extends FieldGroupFormatterBase implements C
 
     if ($this->getSetting('variant')) {
       $summary[] = $this->t('Variant: @variant', ['@variant' => $this->getSetting('variant')]);
+    }
+
+    if ($this->getSetting('display_label')) {
+      $summary[] = $this->t('Display field group label');
     }
 
     return $summary;
@@ -139,15 +150,17 @@ abstract class PatternFormatterBase extends FieldGroupFormatterBase implements C
       'pattern' => $pattern,
     ];
 
-    if ($label = $this->label) {
-      $element['label'] = [
-        '#type' => 'html_tag',
-        '#tag' => 'h2',
-        '#value' => $label,
-        '#attributes' => ['class' => ['ecl-u-type-heading-2']],
-        '#weight' => -1,
-      ];
+    if (!$this->getSetting('display_label') || !$this->label) {
+      return;
     }
+
+    $element['label'] = [
+      '#type' => 'html_tag',
+      '#tag' => 'h2',
+      '#value' => $this->label,
+      '#attributes' => ['class' => ['ecl-u-type-heading-2']],
+      '#weight' => -1,
+    ];
   }
 
   /**

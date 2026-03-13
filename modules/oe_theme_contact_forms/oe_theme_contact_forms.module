@@ -135,7 +135,7 @@ function oe_theme_contact_forms_preprocess_status_messages(&$variables) {
       '#type' => 'component',
       '#component' => 'oe_theme:field_list',
       '#variant' => 'horizontal',
-      '#slots' => [
+      '#props' => [
         'items' => $items,
       ],
     ];

@@ -47,6 +47,9 @@ class MinkContext extends DrupalExtensionMinkContext {
    */
   public function assertNonVisibility($element): void {
     $node = $this->getSession()->getPage()->find('css', $element);
+    if ($node === NULL) {
+      throw new \RuntimeException(sprintf('Element "%s" not found on the page.', $element));
+    }
     $this->assertNotVisuallyVisible($node);
   }
 
@@ -57,6 +60,9 @@ class MinkContext extends DrupalExtensionMinkContext {
    */
   public function assertVisibility($element): void {
     $node = $this->getSession()->getPage()->find('css', $element);
+    if ($node === NULL) {
+      throw new \RuntimeException(sprintf('Element "%s" not found on the page.', $element));
+    }
     $this->assertVisuallyVisible($node);
   }
 
