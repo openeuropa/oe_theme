@@ -8,7 +8,7 @@
     '#value': Preview
   assertions:
     contains:
-      - 'Preview'
+      - 'Preview test'
     count:
       'button.ecl-button.ecl-button': 1
 - structure:
