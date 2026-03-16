@@ -60,10 +60,6 @@ abstract class ContentRenderTestBase extends BrowserTestBase {
       ->set('default', 'oe_theme')
       ->save();
 
-    // Rebuild the ui_pattern definitions to collect the ones provided by
-    // oe_theme itself.
-    \Drupal::service('plugin.manager.ui_patterns')->clearCachedDefinitions();
-
     // Give anonymous users permission to view entities.
     Role::load(RoleInterface::ANONYMOUS_ID)
       ->grantPermission('view published skos concept entities')

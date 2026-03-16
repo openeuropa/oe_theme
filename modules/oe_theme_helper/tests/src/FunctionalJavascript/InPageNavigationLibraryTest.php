@@ -47,11 +47,6 @@ class InPageNavigationLibraryTest extends WebDriverTestBase {
     $this->container->get('theme_installer')->install(['oe_theme']);
     $this->config('system.theme')->set('default', 'oe_theme')->save();
     $this->container->set('theme.registry', NULL);
-
-    // Rebuild the ui_pattern definitions to collect the ones provided by
-    // oe_theme itself.
-    // @todo reove next line.
-    \Drupal::service('plugin.manager.ui_patterns')->clearCachedDefinitions();
   }
 
   /**
