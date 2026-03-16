@@ -46,6 +46,7 @@ class PageHeaderBlockTest extends BrowserTestBase {
 
     // Rebuild the ui_pattern definitions to collect the ones provided by
     // oe_theme itself.
+    // @todo reove next line.
     $this->container->get('plugin.manager.ui_patterns')->clearCachedDefinitions();
 
     // Allow anonymous users to view test entities.

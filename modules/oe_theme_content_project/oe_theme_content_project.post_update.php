@@ -101,3 +101,10 @@ function oe_theme_content_project_post_update_30001(): void {
   }
 
 }
+
+/**
+ * Uninstall the ui_patterns_field_group module.
+ */
+function oe_theme_content_project_post_update_60001(): void {
+  \Drupal::service('module_installer')->uninstall(['ui_patterns_field_group']);
+}

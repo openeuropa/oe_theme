@@ -12,7 +12,7 @@ use Drupal\Core\Field\FieldItemListInterface;
  * This formatter assumes that link categories will be compatible with
  * media service names used in the "Social media links: horizontal" pattern.
  *
- * @see templates/patterns/social_icon/social_icon.ui_patterns.yml
+ * @see components/social_icon/social_icon.component.yml
  *
  * @FieldFormatter(
  *   id = "oe_theme_helper_social_media_icons_list_formatter",

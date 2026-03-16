@@ -151,3 +151,10 @@ function oe_theme_content_news_post_update_00009(): void {
   $display = $storage->createFromStorageRecord($display_values);
   $display->save();
 }
+
+/**
+ * Uninstall the ui_patterns_field_group module.
+ */
+function oe_theme_content_news_post_update_00010(): void {
+  \Drupal::service('module_installer')->uninstall(['ui_patterns_field_group']);
+}

@@ -29,3 +29,10 @@ function oe_theme_content_call_proposals_post_update_00001(): void {
   $display = $storage->createFromStorageRecord($display_values);
   $display->save();
 }
+
+/**
+ * Uninstall the ui_patterns_field_group module.
+ */
+function oe_theme_content_call_proposals_post_update_00002(): void {
+  \Drupal::service('module_installer')->uninstall(['ui_patterns_field_group']);
+}
