@@ -28,18 +28,19 @@ services:
       MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
   #    ports:
   #      - 3306:3306
-  # Spawn a Selenium server which also includes a VNC server on localhost:5900 (the password is "secret")
   selenium:
-    image: selenium/standalone-chrome:4.1.3
-    environment:
-      - DISPLAY=:99
-      - SCREEN_WIDTH=1600
-      - SCREEN_HEIGHT=1200
-      - VNC_NO_PASSWORD=1
-    ports:
-      - "5900:5900"
+    image: selenium/standalone-chromium:127.0
     expose:
       - '4444'
+    environment:
+      - SE_SCREEN_WIDTH=1920
+      - SE_SCREEN_HEIGHT=1080
+      - SE_VNC_NO_PASSWORD=1
+      - SE_START_VNC=true
+    ports:
+      - '4444:4444'
+      - '7900:7900'
+      - '5900:5900'
     shm_size: 2g
   sparql:
     image: fpfis/triplestore:1

@@ -22,6 +22,7 @@ class InPageNavigationBlockTest extends WebDriverTestBase {
    */
   protected static $modules = [
     'block',
+    'node_storage_body_field',
     'oe_theme_helper',
     'oe_theme_content_page',
   ];

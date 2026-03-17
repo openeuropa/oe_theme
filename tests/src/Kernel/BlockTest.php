@@ -9,6 +9,8 @@ use Drupal\Tests\block\Traits\BlockCreationTrait;
 use Drupal\Tests\oe_theme\Traits\RenderTrait;
 use Drupal\block_content\Entity\BlockContent;
 use Drupal\block_content\Entity\BlockContentType;
+use Drupal\field\Entity\FieldConfig;
+use Drupal\field\Entity\FieldStorageConfig;
 use Symfony\Component\DomCrawler\Crawler;
 
 /**
@@ -29,6 +31,9 @@ class BlockTest extends EntityKernelTestBase {
     'user',
     'block',
     'block_content',
+    'field',
+    'filter',
+    'text',
     'image',
     'breakpoint',
     'responsive_image',
@@ -71,7 +76,21 @@ class BlockTest extends EntityKernelTestBase {
       'description' => "Provides a test block type",
     ]);
     $block_content_type->save();
-    block_content_add_body_field($block_content_type->id());
+    $field_storage = FieldStorageConfig::loadByName('block_content', 'body');
+    if (!$field_storage) {
+      $field_storage = FieldStorageConfig::create([
+        'field_name' => 'body',
+        'entity_type' => 'block_content',
+        'type' => 'text_with_summary',
+      ]);
+      $field_storage->save();
+    }
+    FieldConfig::create([
+      'field_storage' => $field_storage,
+      'bundle' => 'test_block_type',
+      'label' => 'Body',
+      'settings' => ['display_summary' => FALSE],
+    ])->save();
 
     // And a block content entity.
     $block_content = BlockContent::create([

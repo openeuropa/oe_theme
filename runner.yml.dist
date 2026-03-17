@@ -120,6 +120,7 @@ toolkit:
     DRUPAL:
       - ~10.6.0
       - ~11.2.0
+      - ~11.3.0
     PUBLISH: false
     BEHAT: true
     PHPUNIT: true

@@ -24,6 +24,7 @@ class NodeViewRoutesMetadataTest extends BrowserTestBase {
     'block',
     'content_moderation',
     'node',
+    'node_storage_body_field',
     'oe_theme_helper',
     'page_header_metadata_test',
     'workflows',
