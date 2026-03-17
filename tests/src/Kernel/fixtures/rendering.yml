@@ -3711,7 +3711,7 @@
     count:
       'ul.ecl-content-block__secondary-meta-container': 1
       'article.ecl-card div.ecl-card__body ul.ecl-content-block__label-container': 0
-      'li.ecl-content-block__secondary-meta-item:nth-child(1) span.ecl-icon.ecl-icon--s.ecl-content-block__secondary-meta-icon.wt-icon-ecl--calendar' : 1
+      'li.ecl-content-block__secondary-meta-item:nth-child(1) span.ecl-icon.ecl-icon--s.ecl-content-block__secondary-meta-icon.wt-icon--calendar' : 1
       'li.ecl-content-block__secondary-meta-item:nth-child(2) span.ecl-icon.ecl-icon--s.ecl-content-block__secondary-meta-icon.wt-icon--location' : 1
     equals:
       'li.ecl-content-block__secondary-meta-item:nth-child(1) span.ecl-content-block__secondary-meta-label' : '15-16 November 2019, 08:00 AM'
@@ -5082,7 +5082,7 @@
       'li.ecl-list-illustration__item:nth-child(1) span.ecl-icon.wt-icon--check-bold': 1
       'li.ecl-list-illustration__item:nth-child(2) span.ecl-icon.wt-icon--check-bold': 1
       'li.ecl-list-illustration__item div.ecl-list-illustration__value': 0
-      div.ecl-list-illustration__divider: 2
+      div.ecl-list-illustration__divider: 0
     contains:
       'li.ecl-list-illustration__item:nth-child(1) div.ecl-list-illustration__title': 'Business, Economy, Euro'
       'li.ecl-list-illustration__item:nth-child(1) div.ecl-list-illustration__description': 'EU economy, the euro, and practical information for EU businesses and entrepreneurs.'
@@ -5147,7 +5147,7 @@
       img.ecl-list-illustration__image: 0
       'li.ecl-list-illustration__item span.ecl-icon': 0
       'li.ecl-list-illustration__item div.ecl-list-illustration__value': 0
-      div.ecl-list-illustration__divider: 2
+      div.ecl-list-illustration__divider: 0
     contains:
       'li.ecl-list-illustration__item:nth-child(1) div.ecl-list-illustration__title': 'Business, Economy, Euro'
       'li.ecl-list-illustration__item:nth-child(1) div.ecl-list-illustration__description': 'EU economy, the euro, and practical information for EU businesses and entrepreneurs.'
@@ -5172,7 +5172,7 @@
       icon_inline: true
   assertions:
     count:
-      ul.ecl-list-illustration.ecl-list-illustration--icon-inline: 0
+      ul.ecl-list-illustration.ecl-list-illustration--icon-inline: 1
       'ul.ecl-list-illustration.ecl-list-illustration--col-2.ecl-list-illustration--number-list.ecl-list-illustration--number-list-reset[style="--ecl-list-illustration-counter-start: 0;"]': 1
       li.ecl-list-illustration__item: 2
       img.ecl-list-illustration__image: 0

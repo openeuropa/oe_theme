@@ -2398,7 +2398,7 @@ function oe_theme_preprocess_node__oe_organisation__teaser(array &$variables): v
   if (!empty($variables['content']['extra_field_oe_theme_content_organisation_teaser_details'])) {
     $variables['teaser_details'] = [];
     foreach (Element::children($variables['content']['extra_field_oe_theme_content_organisation_teaser_details']) as $index) {
-      $variables['teaser_details'][] = $variables['content']['extra_field_oe_theme_content_organisation_teaser_details'][$index]['#fields']['items'];
+      $variables['teaser_details'][] = $variables['content']['extra_field_oe_theme_content_organisation_teaser_details'][$index]['#props']['items'];
     }
   }
 }

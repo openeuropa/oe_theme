@@ -134,8 +134,8 @@ function oe_theme_contact_forms_preprocess_status_messages(&$variables) {
     $variables['message_list']['status'][$key] = [
       '#type' => 'component',
       '#component' => 'oe_theme:field_list',
-      '#variant' => 'horizontal',
       '#props' => [
+        'variant' => 'horizontal',
         'items' => $items,
       ],
     ];

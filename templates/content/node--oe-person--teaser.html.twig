@@ -36,7 +36,7 @@
 
 {% if content.extra_field_oe_theme_content_person_job_list %}
   {% set additional_information_items = [] %}
-  {% for item in content.extra_field_oe_theme_content_person_job_list.0['#fields'].items %}
+  {% for item in content.extra_field_oe_theme_content_person_job_list.0['#props'].items %}
     {% set additional_information_items = additional_information_items|merge([{
       'term': item.label,
       'definition': item.body|render,
