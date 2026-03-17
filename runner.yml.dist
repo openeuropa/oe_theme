@@ -84,7 +84,7 @@ release:
     - { task: "copy", from: "images", to: "oe_theme/images" }
     - { task: "copy", from: "js", to: "oe_theme/js" }
     - { task: "copy", from: "templates", to: "oe_theme/templates" }
-    - { task: "copy", from: "components", to: "oe_theme/ecl_components" }
+    - { task: "copy", from: "ecl_components", to: "oe_theme/ecl_components" }
     - task: "append"
       file: "oe_theme/oe_theme.info.yml"
       text: |
@@ -113,6 +113,12 @@ toolkit:
         - batch1
         - batch2
         - batch3
+      commands:
+        before:
+          # Build ECL twig templates if not present. In CI, each batch test job runs in a
+          # separate container and only receives the build/ artifacts, so ecl_components/
+          # (gitignored) must be rebuilt before tests can resolve @ecl-twig/... includes.
+          - { task: "exec", command: "[ -d ecl_components ] || bash ./scripts/build-ecl-pipeline.sh" }
 
   ci:
     PHP:

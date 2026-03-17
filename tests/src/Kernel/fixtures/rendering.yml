@@ -1189,8 +1189,8 @@
 - structure:
     '#type': component
     '#component': 'oe_theme:gallery'
-    '#variant': default
     '#props':
+      variant: default
       items:
         - thumbnail:
             src: 'https://loremflickr.com/320/240/cat'
@@ -1237,8 +1237,8 @@
 - structure:
     '#type': component
     '#component': 'oe_theme:gallery'
-    '#variant': default
     '#props':
+      variant: default
       items:
         - thumbnail:
             src: 'https://loremflickr.com/320/240/cat'
@@ -1309,8 +1309,8 @@
 - structure:
     '#type': component
     '#component': 'oe_theme:gallery'
-    '#variant': default
     '#props':
+      variant: default
       items:
         - thumbnail:
             src: 'https://loremflickr.com/320/240/cat'
@@ -1419,8 +1419,8 @@
 - structure:
     '#type': component
     '#component': 'oe_theme:gallery'
-    '#variant': default
     '#props':
+      variant: default
       items:
         - thumbnail:
             src: 'https://loremflickr.com/320/240/cat'
@@ -1532,8 +1532,8 @@
 - structure:
     '#type': component
     '#component': 'oe_theme:gallery'
-    '#variant': default
     '#props':
+      variant: default
       items:
         - thumbnail:
             src: 'https://loremflickr.com/320/240/cat'
@@ -1629,8 +1629,8 @@
 - structure:
     '#type': component
     '#component': 'oe_theme:gallery'
-    '#variant': default
     '#props':
+      variant: default
       items:
         - thumbnail:
             src: 'https://loremflickr.com/320/240/cat'
@@ -1692,8 +1692,8 @@
 - structure:
     '#type': component
     '#component': 'oe_theme:gallery'
-    '#variant': default
     '#props':
+      variant: default
       items:
         - thumbnail:
             src: 'https://loremflickr.com/320/240/cat'
@@ -2001,8 +2001,8 @@
 - structure:
     '#type': component
     '#component': 'oe_theme:list_item'
-    '#variant': "thumbnail_primary"
     '#props':
+      variant: "thumbnail_primary"
       detail: "This is a very long description. Better to trim it off."
       length: 32
   assertions:
@@ -2011,8 +2011,8 @@
 - structure:
     '#type': component
     '#component': 'oe_theme:list_item'
-    '#variant': "thumbnail_secondary"
     '#props':
+      variant: "thumbnail_secondary"
       detail: "This is a very long description. Better to trim it off."
       length: 32
   assertions:
@@ -2021,8 +2021,8 @@
 - structure:
     '#type': component
     '#component': 'oe_theme:list_item'
-    '#variant': "navigation"
     '#props':
+      variant: "navigation"
       detail: "This is a very long description. Better to trim it off."
       length: 32
   assertions:
@@ -2031,8 +2031,8 @@
 - structure:
     '#type': component
     '#component': 'oe_theme:list_item'
-    '#variant': "thumbnail_primary"
     '#props':
+      variant: "thumbnail_primary"
       title: "Item title"
       url: "http://example.com"
       detail: "Item text"
@@ -2062,8 +2062,8 @@
 - structure:
     '#type': component
     '#component': 'oe_theme:list_item'
-    '#variant': "thumbnail_primary"
     '#props':
+      variant: "thumbnail_primary"
       title: "Item title"
       url: "http://example.com"
       detail: "Item text"
@@ -2094,8 +2094,8 @@
 - structure:
     '#type': component
     '#component': 'oe_theme:list_item'
-    '#variant': "thumbnail_secondary"
     '#props':
+      variant: "thumbnail_secondary"
       title: "Item title"
       url: "http://example.com"
       detail: "Item text"
@@ -2125,8 +2125,8 @@
 - structure:
     '#type': component
     '#component': 'oe_theme:list_item'
-    '#variant': "thumbnail_secondary"
     '#props':
+      variant: "thumbnail_secondary"
       title: "Item title"
       url: "http://example.com"
       detail: "Item text"
@@ -2157,8 +2157,8 @@
 - structure:
     '#type': component
     '#component': 'oe_theme:list_item'
-    '#variant': "thumbnail_secondary"
     '#props':
+      variant: "thumbnail_secondary"
       title: "Item title"
       url: "http://example.com"
       detail: "Item text"
@@ -2189,8 +2189,8 @@
 - structure:
     '#type': component
     '#component': 'oe_theme:list_item'
-    '#variant': "highlight"
     '#props':
+      variant: "highlight"
       title: "Item title"
       url: "http://example.com"
       color_mode: "green-dark"
@@ -2235,8 +2235,8 @@
 - structure:
     '#type': component
     '#component': 'oe_theme:list_item'
-    '#variant': "highlight"
     '#props':
+      variant: "highlight"
       title: "Item title"
       url: "http://example.com"
       color_mode: "blue-electric"
@@ -2267,8 +2267,8 @@
 - structure:
     '#type': component
     '#component': 'oe_theme:list_item'
-    '#variant': "block"
     '#props':
+      variant: "block"
       title: "Item title"
       url: "http://example.com"
       detail: "Item test"
@@ -2295,8 +2295,8 @@
 - structure:
     '#type': component
     '#component': 'oe_theme:list_item'
-    '#variant': "date"
     '#props':
+      variant: "date"
       title: "Item title"
       url: "http://example.com"
       detail: "Item text"
@@ -2335,8 +2335,8 @@
 - structure:
     '#type': component
     '#component': 'oe_theme:list_item'
-    '#variant': "date"
     '#props':
+      variant: "date"
       title: "Item title"
       url: "http://example.com"
       detail: "Item text"
@@ -2380,8 +2380,8 @@
 - structure:
     '#type': component
     '#component': 'oe_theme:list_item'
-    '#variant': "date_cancelled"
     '#props':
+      variant: "date_cancelled"
       date:
         day: '14'
         month_fullname: 'July'
@@ -2394,8 +2394,8 @@
 - structure:
     '#type': component
     '#component': 'oe_theme:list_item'
-    '#variant': "date_ongoing"
     '#props':
+      variant: "date_ongoing"
       date:
         day: '14'
         month_fullname: 'July'
@@ -2408,8 +2408,8 @@
 - structure:
     '#type': component
     '#component': 'oe_theme:list_item'
-    '#variant': "date_past"
     '#props':
+      variant: "date_past"
       date:
         day: '14'
         month_fullname: 'July'
@@ -2422,8 +2422,8 @@
 - structure:
     '#type': component
     '#component': 'oe_theme:list_item'
-    '#variant': "navigation"
     '#props':
+      variant: "navigation"
       title: "Item title"
       url: "http://example.com"
       detail: "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
@@ -3110,8 +3110,8 @@
 - structure:
     '#type': component
     '#component': 'oe_theme:field'
-    '#variant': default
     '#props':
+      variant: default
       label: "Field text"
       body: "Field body"
   assertions:
@@ -3125,8 +3125,8 @@
 - structure:
     '#type': component
     '#component': 'oe_theme:field'
-    '#variant': horizontal
     '#props':
+      variant: horizontal
       label: "Field label"
       body: "Field body"
   assertions:
@@ -3140,8 +3140,8 @@
 - structure:
     '#type': component
     '#component': 'oe_theme:field_list'
-    '#variant': horizontal
     '#props':
+      variant: horizontal
       items:
         - label: "When"
           body: "Thursday 15 November, 08:00 AM to Friday 16 November"
@@ -3163,9 +3163,9 @@
       '.ecl-description-list .ecl-description-list__definition:nth-child(6)': "08:00 CET | 00d:23h:35m"
 - structure:
     '#type': component
-    '#variant': default
     '#component': 'oe_theme:field_list'
     '#props':
+      variant: default
       items:
         - label: "When"
           body: "Thursday 15 November, 08:00 AM to Friday 16 November"
@@ -3309,8 +3309,8 @@
 - structure:
     '#type': component
     '#component': 'oe_theme:button'
-    '#variant': default
     '#props':
+      variant: default
       label: "Button label"
       href: "http://example.com"
       icon: "caret-right"
@@ -3324,8 +3324,8 @@
 - structure:
     '#type': component
     '#component': 'oe_theme:button'
-    '#variant': default
     '#props':
+      variant: default
       label: "Button label"
       href: "http://example.com"
       icon: "caret-right"
@@ -3340,8 +3340,8 @@
 - structure:
     '#type': component
     '#component': 'oe_theme:button'
-    '#variant': default
     '#props':
+      variant: default
       label: "Button label"
       href: "http://example.com"
       type_attribute: "standalone"
@@ -3367,8 +3367,8 @@
 - structure:
     '#type': component
     '#component': 'oe_theme:button'
-    '#variant': secondary
     '#props':
+      variant: secondary
       type_attribute: "submit"
       label: "Button label"
   assertions:
@@ -3380,8 +3380,8 @@
 - structure:
     '#type': component
     '#component': 'oe_theme:button'
-    '#variant': primary
     '#props':
+      variant: primary
       type_attribute: "reset"
       label: "Button label"
   assertions:
@@ -3390,8 +3390,8 @@
 - structure:
     '#type': component
     '#component': 'oe_theme:button'
-    '#variant': primary
     '#props':
+      variant: primary
       type_attribute: "button"
       is_block: true
       label: "Button label"
@@ -3401,8 +3401,8 @@
 - structure:
     '#type': component
     '#component': 'oe_theme:button'
-    '#variant': secondary
     '#props':
+      variant: secondary
       label: "Button label"
   assertions:
     equals:
@@ -3410,8 +3410,8 @@
 - structure:
     '#type': component
     '#component': 'oe_theme:button'
-    '#variant': tertiary
     '#props':
+      variant: tertiary
       label: "Button label"
   assertions:
     equals:
@@ -3419,8 +3419,8 @@
 - structure:
     '#type': component
     '#component': 'oe_theme:button'
-    '#variant': call
     '#props':
+      variant: call
       label: "Button label"
   assertions:
     equals:
@@ -3455,8 +3455,8 @@
 - structure:
     '#type': component
     '#component': 'oe_theme:featured_item'
-    '#variant': "default"
     '#props':
+      variant: "default"
       title: "Example title"
       color_mode: "purple"
   assertions:
@@ -3474,8 +3474,8 @@
 - structure:
     '#type': component
     '#component': 'oe_theme:featured_item'
-    '#variant': "extended"
     '#props':
+      variant: "extended"
       title: "Example title"
   assertions:
     count:
@@ -3492,8 +3492,8 @@
 - structure:
     '#type': component
     '#component': 'oe_theme:featured_item'
-    '#variant': "default"
     '#props':
+      variant: "default"
       title: "Example title"
       description: "Example description"
       image:
@@ -3559,8 +3559,8 @@
 - structure:
     '#type': component
     '#component': 'oe_theme:featured_item'
-    '#variant': "default"
     '#props':
+      variant: "default"
       title: "Example title"
       description: "Example description"
       length: 8
@@ -3592,8 +3592,8 @@
 - structure:
     '#type': component
     '#component': 'oe_theme:featured_item'
-    '#variant': "default"
     '#props':
+      variant: "default"
       title: "Example title"
       description: "Example description"
       length: 8
@@ -3625,8 +3625,8 @@
 - structure:
     '#type': component
     '#component': 'oe_theme:featured_item'
-    '#variant': "default"
     '#props':
+      variant: "default"
       description:
         '#type': component
         '#component': 'oe_theme:blockquote'
@@ -3640,8 +3640,8 @@
 - structure:
     '#type': component
     '#component': 'oe_theme:featured_item'
-    '#variant': "default"
     '#props':
+      variant: "default"
       description:
         '#markup': '<div>Example description</div>'
       length: 8
@@ -3651,8 +3651,8 @@
 - structure:
     '#type': component
     '#component': 'oe_theme:featured_item'
-    '#variant': "extended"
     '#props':
+      variant: "extended"
       title: "Example title"
       description: "Example description"
       link:
@@ -3671,8 +3671,8 @@
 - structure:
     '#type': component
     '#component': 'oe_theme:featured_item'
-    '#variant': "extended"
     '#props':
+      variant: "extended"
       title: "Example title"
       description: "Example description"
       link:
@@ -3698,8 +3698,8 @@
 - structure:
     '#type': component
     '#component': 'oe_theme:featured_item'
-    '#variant': "default"
     '#props':
+      variant: "default"
       title: "Example title"
       description: "Example description"
       footer_items:
@@ -4042,8 +4042,8 @@
 - structure:
     '#type': component
     '#component': 'oe_theme:text_featured_media'
-    '#variant': "left_simple"
     '#props':
+      variant: "left_simple"
       title: "Heading"
       text_title: "Title"
       image:
@@ -4079,8 +4079,8 @@
 - structure:
     '#type': component
     '#component': 'oe_theme:text_featured_media'
-    '#variant': "right_simple"
     '#props':
+      variant: "right_simple"
       text_title: "Title"
       image:
         src: "http://via.placeholder.com/150x150"
@@ -4119,8 +4119,8 @@
 - structure:
     '#type': component
     '#component': 'oe_theme:text_featured_media'
-    '#variant': "right_simple"
     '#props':
+      variant: "right_simple"
       title: "Heading"
       animation:
         poster: "https://inno-ecl.s3.amazonaws.com/media/examples/example-image.jpg"
@@ -4203,8 +4203,8 @@
 - structure:
     '#type': component
     '#component': 'oe_theme:text_featured_media'
-    '#variant': "right_featured"
     '#props':
+      variant: "right_featured"
       title: "Heading"
       text_title: "Title"
       image:
@@ -4255,8 +4255,8 @@
 - structure:
     '#type': component
     '#component': 'oe_theme:text_featured_media'
-    '#variant': "left_featured"
     '#props':
+      variant: "left_featured"
       title: "Heading"
       video:
         '#type': 'html_tag'
@@ -4319,8 +4319,8 @@
 - structure:
     '#type': component
     '#component': 'oe_theme:text_featured_media'
-    '#variant': "left_featured"
     '#props':
+      variant: "left_featured"
       title: "Heading"
       animation:
         poster: "https://inno-ecl.s3.amazonaws.com/media/examples/example-image.jpg"
@@ -4413,8 +4413,8 @@
 - structure:
     '#type': "component"
     '#component': 'oe_theme:tag'
-    '#variant': "default"
     '#props':
+      variant: "default"
       tag_type: "link"
       url: "http://example.com"
       label: "Tag label"
@@ -4426,8 +4426,8 @@
 - structure:
     '#type': "component"
     '#component': 'oe_theme:tag'
-    '#variant': "default"
     '#props':
+      variant: "default"
       tag_type: "removable"
       url: "http://example.com"
       label: "Tag label"
@@ -4439,8 +4439,8 @@
 - structure:
     '#type': "component"
     '#component': 'oe_theme:navigation_menu'
-    '#variant': "default"
     '#props':
+      variant: "default"
       label: "Menu"
       items:
         - href: "#"
@@ -4548,8 +4548,8 @@
 - structure:
     '#type': "component"
     '#component': 'oe_theme:navigation_menu'
-    '#variant': "mega_menu"
     '#props':
+      variant: "mega_menu"
       label: "Menu"
       featured_priority: "primary"
       extra_classes: "custom-class1 custom-class2"
@@ -5056,8 +5056,8 @@
 - structure:
     '#type': 'component'
     '#component': 'oe_theme:list_with_illustration'
-    '#variant': 'icon_list'
     '#props':
+      variant: 'icon_list'
       color_mode: "green-pine"
       column: 3
       items:
@@ -5091,8 +5091,8 @@
 - structure:
     '#type': 'component'
     '#component': 'oe_theme:list_with_illustration'
-    '#variant': 'icon_list'
     '#props':
+      variant: 'icon_list'
       column: 2
       items:
         - title: "Business, Economy, Euro"
@@ -5122,8 +5122,8 @@
 - structure:
     '#type': 'component'
     '#component': 'oe_theme:list_with_illustration'
-    '#variant': 'number_list'
     '#props':
+      variant: 'number_list'
       color_mode: "red-crayola"
       column: 3
       items:
@@ -5156,8 +5156,8 @@
 - structure:
     '#type': 'component'
     '#component': 'oe_theme:list_with_illustration'
-    '#variant': 'number_list'
     '#props':
+      variant: 'number_list'
       column: 2
       items:
         - title: "Business, Economy, Euro"
@@ -5440,8 +5440,8 @@
 - structure:
     '#type': component
     '#component': 'oe_theme:highlighted_list'
-    '#variant': default
     '#props':
+      variant: default
       title: "Highlighted News"
       introduction:
         '#markup': '<p>The Introduction to the list</p>'
@@ -5579,8 +5579,8 @@
 - structure:
     '#type': component
     '#component': 'oe_theme:highlighted_list'
-    '#variant': default
     '#props':
+      variant: default
       highlighted_item:
         title: "Item 1"
         secondary_meta:
@@ -5667,8 +5667,8 @@
 - structure:
     '#type': component
     '#component': 'oe_theme:highlighted_list'
-    '#variant': four_columns
     '#props':
+      variant: four_columns
       title: "Highlighted News"
       introduction:
         '#markup': '<p>The Introduction to the list</p>'
@@ -5826,8 +5826,8 @@
 - structure:
     '#type': component
     '#component': 'oe_theme:highlighted_list'
-    '#variant': four_columns
     '#props':
+      variant: four_columns
       title: "Highlighted News"
       items:
         - title: "Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem"

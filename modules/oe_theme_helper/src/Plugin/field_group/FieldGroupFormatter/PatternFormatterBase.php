@@ -127,11 +127,11 @@ abstract class PatternFormatterBase extends FieldGroupFormatterBase implements C
     parent::preRender($element, $rendering_object);
 
     $props = $this->getFields($element, $rendering_object);
+    $props['variant'] = $this->getSetting('variant');
     $pattern = [
       '#type' => 'component',
       '#component' => 'oe_theme:' . $this->getPatternId(),
       '#props' => $props,
-      '#variant' => $this->getSetting('variant'),
       '#context' => [
         'type' => 'field_group',
         'group_name' => $element['#group_name'],

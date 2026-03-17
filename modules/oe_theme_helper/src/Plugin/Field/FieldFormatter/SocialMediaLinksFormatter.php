@@ -92,10 +92,10 @@ class SocialMediaLinksFormatter extends SocialMediaBaseLinkFormatter {
     $pattern = [
       '#type' => 'component',
       '#component' => 'oe_theme:social_media_links',
-      '#variant' => $this->getSetting('variant'),
       '#props' => [
         'title' => $this->getSetting('title'),
         'links' => [],
+        'variant' => $this->getSetting('variant'),
       ],
     ];
 

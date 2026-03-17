@@ -119,7 +119,7 @@ class DescriptionExtraField extends DateAwareExtraFieldBase implements Container
     // If we have a media but no description text, we use the 'right_simple'
     // variant of the pattern to render the media on the left side.
     if (empty($build['#slots']['text']) && isset($build['#props']['image'])) {
-      $build['#variant'] = 'right_simple';
+      $build['#props']['variant'] = 'right_simple';
     }
 
     return $build;

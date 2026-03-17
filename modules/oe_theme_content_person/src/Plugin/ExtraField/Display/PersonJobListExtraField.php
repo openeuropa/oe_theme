@@ -125,10 +125,10 @@ class PersonJobListExtraField extends ExtraFieldDisplayFormattedBase implements 
       $this->isEmpty = TRUE;
     }
     $pattern = [
-      '#type' => 'pattern',
-      '#id' => 'field_list',
-      '#variant' => 'horizontal',
-      '#fields' => [
+      '#type' => 'component',
+      '#component' => 'oe_theme:field_list',
+      '#props' => [
+        'variant' => 'horizontal',
         'items' => [
           [
             'label' => $this->t('Responsibilities'),
