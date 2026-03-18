@@ -6023,10 +6023,10 @@
       div.ecl-tabs div.ecl-tabs__controls button.ecl-tabs__prev: 'Custom previous label'
       div.ecl-tabs div.ecl-tabs__controls button.ecl-tabs__next: 'Custom next label'
 - structure:
-    '#type': 'pattern'
-    '#id': 'tabs'
-    '#variant': 'tab_behaviour'
-    '#fields':
+    '#type': 'component'
+    '#component': 'oe_theme:tabs'
+    '#props':
+      variant: "tab_behaviour"
       items:
         - label: "View"
           path: "#view-tab"

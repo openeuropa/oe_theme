@@ -97,6 +97,10 @@ props:
       type: ['string', 'null']
       title: 'Lists variant'
       description: 'An optional parameter for the layout of the lists (vertical or horizontal). It defaults to horizontal.'
+    secondary_meta_direction:
+      type: ['string', 'null']
+      title: 'Secondary meta direction'
+      description: 'The direction of the secondary meta items list. Can be "vertical" (default) or "horizontal".'
     color_mode:
       type: ['string', 'null']
       title: 'Color mode'

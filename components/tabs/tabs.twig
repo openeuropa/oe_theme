@@ -5,6 +5,7 @@
  */
 #}
 {% include '@ecl-twig/tabs' with {
+  tab_behaviour: variant is defined and variant == 'tab_behaviour',
   items: items,
   more_label: more_label|default('More'|t),
   previous_label: previous_label,
