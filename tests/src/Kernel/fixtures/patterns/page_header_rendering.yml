@@ -32,12 +32,12 @@
         panel_content:
           '#markup': '<p>Duis arcu tortor, suscipit eget, imperdiet nec, imperdiet iaculis, ipsum. Sed cursus turpis vitae tortor. <strong>Aliquam eu nunc.</strong> Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos hymenaeos. Fusce egestas elit eget lorem.</p>'
         toggle_label: 'expandable button'
+      extra_classes: 'oe-theme-extra-class'
     '#slots':
       title:
         '#plain_text': "Business, Economy, Euro<"
       introduction:
         '#plain_text': "EU economy, finance and the euro, and practical information for EU businesses and entrepreneurs on product safety, environmental regulations, trade with non-EU countries and competition rules.<cc>&"
-      extra_classes: 'oe-theme-extra-class'
   assertions:
     count:
       '.ecl-page-header.ecl-page-header--description-top.oe-theme-extra-class': 1
