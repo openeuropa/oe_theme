@@ -39,10 +39,8 @@ class SocialMediaIconsListFormatter extends SocialMediaBaseLinkFormatter {
       $pattern = [
         '#type' => 'component',
         '#component' => 'oe_theme:social_icon',
-        '#slots' => [
-          'label' => $elements[$delta]['#title'],
-        ],
         '#props' => [
+          'label' => $elements[$delta]['#title'],
           'service' => $item->link_type,
           'url' => $elements[$delta]['#url'],
         ],

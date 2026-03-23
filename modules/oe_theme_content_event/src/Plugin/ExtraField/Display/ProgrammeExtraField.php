@@ -128,10 +128,8 @@ class ProgrammeExtraField extends EventExtraFieldBase {
     $build = [
       '#type' => 'component',
       '#component' => 'oe_theme:timeline',
-      '#slots' => [
-        'title' => ['#markup' => $this->getLabel()],
-      ],
       '#props' => [
+        'title' => (string) $this->getLabel(),
         'limit' => 5,
         'items' => [],
       ],

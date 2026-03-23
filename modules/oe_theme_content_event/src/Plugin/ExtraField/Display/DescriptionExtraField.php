@@ -111,14 +111,14 @@ class DescriptionExtraField extends DateAwareExtraFieldBase implements Container
       return $empty_build;
     }
 
-    $build['#slots']['title'] = $title;
+    $build['#props']['title'] = $title;
     if (!empty($text)) {
-      $build['#slots']['text'] = $text;
+      $build['#props']['text'] = $text;
     }
 
     // If we have a media but no description text, we use the 'right_simple'
     // variant of the pattern to render the media on the left side.
-    if (empty($build['#slots']['text']) && isset($build['#props']['image'])) {
+    if (empty($build['#props']['text']) && isset($build['#props']['image'])) {
       $build['#props']['variant'] = 'right_simple';
     }
 
@@ -246,7 +246,7 @@ class DescriptionExtraField extends DateAwareExtraFieldBase implements Container
     }
     /** @var \Drupal\Core\Entity\EntityViewBuilderInterface $view_builder */
     $view_builder = $this->entityTypeManager->getViewBuilder('node');
-    $build['#slots']['caption'] = $view_builder->viewField($entity->get('oe_event_featured_media_legend'), [
+    $build['#props']['caption'] = $view_builder->viewField($entity->get('oe_event_featured_media_legend'), [
       'label' => 'hidden',
     ]);
 
