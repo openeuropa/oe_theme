@@ -71,7 +71,7 @@ class InPageNavigationLibraryTest extends WebDriverTestBase {
     $inner = $container->find('xpath', '/div[@data-inpage-navigation-source-area="h3"]');
     // Since an element with ID "details" already exists in the page, the
     // counter will start from 1 for this element.
-    $this->assertEquals('details-1', $inner->find('xpath', '/h3[@class="heading"][text()="Details"]')->getAttribute('id'));
+    $this->assertEquals('details-1', $inner->find('xpath', '/h3[contains(@class, "heading")][text()="Details"]')->getAttribute('id'));
     $this->assertEquals('multiple-words-with-spaces', $inner->find('xpath', '/h3[text()="Multiple words with spaces "]')->getAttribute('id'));
     // This line covers two cases:
     // - escaped selectors are applied correctly;
@@ -93,10 +93,10 @@ class InPageNavigationLibraryTest extends WebDriverTestBase {
 
     // Last 4 assertions for the ID generation.
     $this->assertEquals('strip--unwanted-characters', $container->find('css', '.strip')->getAttribute('id'));
-    $this->assertEquals('constructor', $container->find('xpath', '/h3[@class="heading"][text()="Reserved keyword"]')->getAttribute('id'));
-    $this->assertEquals('length', $container->find('xpath', '/h3[@class="heading"][text()="Length"]')->getAttribute('id'));
+    $this->assertEquals('constructor', $container->find('xpath', '/h3[contains(@class, "heading")][text()="Reserved keyword"]')->getAttribute('id'));
+    $this->assertEquals('length', $container->find('xpath', '/h3[contains(@class, "heading")][text()="Length"]')->getAttribute('id'));
     // The heading starting with a non-alpha character gets a ref- prepended.
-    $this->assertEquals('ref-2022-a-new-year', $container->find('xpath', '/h3[@class="heading"][text()="2022, a new year"]')->getAttribute('id'));
+    $this->assertEquals('ref-2022-a-new-year', $container->find('xpath', '/h3[contains(@class, "heading")][text()="2022, a new year"]')->getAttribute('id'));
 
     $navigation = $assert_session->elementExists('css', '.oe-theme-ecl-inpage-navigation.ecl-u-z-dropdown');
 

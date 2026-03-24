@@ -1283,7 +1283,7 @@
       'button.ecl-gallery__view-all[data-ecl-gallery-collapsed-label="See all"][data-ecl-gallery-expanded-label="Collapse"]': 1
       '.ecl-gallery__footer-link': 1
       '.ecl-gallery--no-hover': 0
-      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(2) .ecl-gallery__image-container div.ecl-gallery__item-icon-wrapper span.ecl-icon.wt-icon--play-filled': 1
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(2) .ecl-gallery__image-container div.ecl-gallery__item-icon-wrapper span.ecl-icon.wt-icon--play': 1
       '.ecl-gallery__footer-link a span.ecl-icon.wt-icon--external': 1
     equals:
       '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(2) .ecl-gallery__meta': 'Copyright © 2021 EC'
@@ -1393,7 +1393,7 @@
       '.ecl-gallery--ratio-3-2': 1
       '.ecl-gallery--ratio-3-1': 0
       '.ecl-gallery--no-hover': 0
-      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(2) .ecl-gallery__image-container div.ecl-gallery__item-icon-wrapper span.ecl-icon.wt-icon--play-filled': 1
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(2) .ecl-gallery__image-container div.ecl-gallery__item-icon-wrapper span.ecl-icon.wt-icon--play': 1
       '.ecl-gallery__footer-link a span.ecl-icon.wt-icon--external': 1
     equals:
       '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(2) .ecl-gallery__meta': 'Copyright © 2021 EC'
@@ -1506,7 +1506,7 @@
       '.ecl-gallery--ratio-3-2': 0
       '.ecl-gallery--ratio-3-1': 1
       '.ecl-gallery--no-hover': 1
-      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(2) .ecl-gallery__image-container div.ecl-gallery__item-icon-wrapper span.ecl-icon.wt-icon--play-filled': 1
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(2) .ecl-gallery__image-container div.ecl-gallery__item-icon-wrapper span.ecl-icon.wt-icon--play': 1
       '.ecl-gallery__footer-link a span.ecl-icon.wt-icon--external': 1
     equals:
       '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(2) .ecl-gallery__meta': 'Copyright © 2021 EC'
@@ -1605,7 +1605,7 @@
       '.ecl-gallery--col-2': 0
       '.ecl-gallery--col-3': 0
       '.ecl-gallery--col-4': 0
-      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(2) .ecl-gallery__image-container div.ecl-gallery__item-icon-wrapper span.ecl-icon.wt-icon--play-filled': 1
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(2) .ecl-gallery__image-container div.ecl-gallery__item-icon-wrapper span.ecl-icon.wt-icon--play': 1
     equals:
       '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(2) .ecl-gallery__meta': 'Copyright © 2021 EC'
       '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(3) .ecl-gallery__meta': 'Copyright © 2021, Author and Licence'
@@ -1668,7 +1668,7 @@
       '.ecl-gallery--col-2': 0
       '.ecl-gallery--col-3': 0
       '.ecl-gallery--col-4': 0
-      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(2) .ecl-gallery__image-container div.ecl-gallery__item-icon-wrapper span.ecl-icon.wt-icon--play-filled': 1
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(2) .ecl-gallery__image-container div.ecl-gallery__item-icon-wrapper span.ecl-icon.wt-icon--play': 1
     equals:
       '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(2) .ecl-gallery__meta': 'Copyright © 2021 EC'
       '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(3) .ecl-gallery__meta': 'Copyright © 2021, Author and Licence'
@@ -1733,7 +1733,7 @@
       '.ecl-gallery--grid': 0
       '.ecl-gallery--template-3': 0
       '.ecl-gallery--ratio-3-2': 0
-      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(2) .ecl-gallery__image-container div.ecl-gallery__item-icon-wrapper span.ecl-icon.wt-icon--play-filled': 1
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(2) .ecl-gallery__image-container div.ecl-gallery__item-icon-wrapper span.ecl-icon.wt-icon--play': 1
     equals:
       '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(2) .ecl-gallery__meta': 'Copyright © 2021 EC'
       '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(3) .ecl-gallery__meta': 'Copyright © 2021, Author and Licence'
@@ -1797,7 +1797,7 @@
       'article.ecl-content-item picture.ecl-content-item__picture--right': 0
       'article.ecl-content-item picture.ecl-picture--zoom': 0
     equals:
-      'article.ecl-content-item ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item': "Meta 1"
+      'article.ecl-content-item div.ecl-content-block__primary-meta-container div.ecl-content-block__primary-meta-item': "Meta 1"
       'article.ecl-content-item div.ecl-content-item__content-block div.ecl-content-block__title .ecl-link': "Item title"
       'article.ecl-content-item div.ecl-content-block__description': "Item..."
 - structure:
@@ -1824,7 +1824,7 @@
       'article.ecl-content-item div.ecl-content-block__description': 0
       'article.ecl-content-item div.ecl-content-item__content-block ecl-content-block__list-container': 0
     equals:
-      'article.ecl-content-item ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item': "Meta 1"
+      'article.ecl-content-item div.ecl-content-block__primary-meta-container div.ecl-content-block__primary-meta-item': "Meta 1"
       'article.ecl-content-item div.ecl-content-item__content-block div.ecl-content-block__title .ecl-link': "Item title"
 - structure:
     '#type': pattern
@@ -2227,16 +2227,16 @@
       article.ecl-card div.ecl-card__body ul.ecl-content-block__label-container: 1
       ul.ecl-content-block__label-container li.ecl-content-block__label-item: 2
       ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item: 2
-      ul.ecl-content-block__secondary-meta-container li.ecl-content-block__secondary-meta-item: 1
-      ul.ecl-content-block__secondary-meta-container li.ecl-content-block__secondary-meta-item span.ecl-icon--s.ecl-content-block__secondary-meta-icon.wt-icon--location: 1
-      article.ecl-card ul.ecl-content-block__secondary-meta-container.ecl-content-block__secondary-meta-container--horizontal: 1
+      div.ecl-content-block__secondary-meta-container div.ecl-content-block__secondary-meta-item: 1
+      div.ecl-content-block__secondary-meta-container div.ecl-content-block__secondary-meta-item span.ecl-icon--s.ecl-content-block__secondary-meta-icon.wt-icon--location: 1
+      article.ecl-card div.ecl-content-block__secondary-meta-container.ecl-content-block__secondary-meta-container--horizontal: 1
     equals:
       article.ecl-card div.ecl-card__body div.ecl-content-block__title .ecl-link: "Item title"
       ul.ecl-content-block__label-container li.ecl-content-block__label-item:nth-child(1) span.ecl-label.ecl-label--highlight: "Highlighted"
       ul.ecl-content-block__label-container li.ecl-content-block__label-item:nth-child(2) span.ecl-label.ecl-label--high: "Status: Open"
       ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(1): "Meta 1"
       ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(2): "Meta 2"
-      ul.ecl-content-block__secondary-meta-container li.ecl-content-block__secondary-meta-item .ecl-content-block__secondary-meta-label: "Brussels"
+      div.ecl-content-block__secondary-meta-container div.ecl-content-block__secondary-meta-item .ecl-content-block__secondary-meta-label: "Brussels"
 - structure:
     '#type': pattern
     '#id': list_item
@@ -2331,9 +2331,9 @@
       'article.ecl-content-item[extra-attr="extra value"] div.ecl-content-item__content-block a.ecl-link[href="http://example.com"]': 1
       'article.ecl-content-item time.ecl-date-block.ecl-date-block--ongoing.ecl-content-item__date': 1
       'article.ecl-content-item time.ecl-date-block.ecl-date-block--ongoing.ecl-content-item__date abbr.ecl-date-block__month[title="July"]': 1
-      ul.ecl-content-block__secondary-meta-container li.ecl-content-block__secondary-meta-item: 1
-      ul.ecl-content-block__secondary-meta-container li.ecl-content-block__secondary-meta-item span.ecl-icon--s.ecl-content-block__secondary-meta-icon.wt-icon--location: 1
-      article.ecl-content-item ul.ecl-content-block__secondary-meta-container.ecl-content-block__secondary-meta-container--horizontal: 1
+      div.ecl-content-block__secondary-meta-container div.ecl-content-block__secondary-meta-item: 1
+      div.ecl-content-block__secondary-meta-container div.ecl-content-block__secondary-meta-item span.ecl-icon--s.ecl-content-block__secondary-meta-icon.wt-icon--location: 1
+      article.ecl-content-item div.ecl-content-block__secondary-meta-container.ecl-content-block__secondary-meta-container--horizontal: 1
     equals:
       'article.ecl-content-item div.ecl-content-block.ecl-content-item__content-block ul.ecl-content-block__label-container li span.ecl-label.ecl-label--highlight': "Highlighted"
       'article.ecl-content-item div.ecl-content-block.ecl-content-item__content-block ul.ecl-content-block__label-container li span.ecl-label.ecl-label--medium': "Status: Open"
@@ -2344,7 +2344,7 @@
       'article.ecl-content-item time.ecl-date-block.ecl-content-item__date span.ecl-date-block__day': '14'
       'article.ecl-content-item time.ecl-date-block.ecl-content-item__date abbr.ecl-date-block__month': 'Jul'
       'article.ecl-content-item time.ecl-date-block.ecl-content-item__date span.ecl-date-block__year': '2021'
-      'ul.ecl-content-block__secondary-meta-container li.ecl-content-block__secondary-meta-item .ecl-content-block__secondary-meta-label': "Brussels"
+      'div.ecl-content-block__secondary-meta-container div.ecl-content-block__secondary-meta-item .ecl-content-block__secondary-meta-label': "Brussels"
 - structure:
     '#type': pattern
     '#id': list_item
@@ -2381,10 +2381,10 @@
       'article.ecl-content-item time.ecl-date-block.ecl-date-block--ongoing.ecl-content-item__date abbr.ecl-date-block__month[title="July"]': 1
       'div.ecl-content-block__list-container dl.ecl-u-mb-xl .ecl-description-list__term': 2
       'div.ecl-content-block__list-container dl.ecl-u-mb-xl .ecl-description-list__definition': 2
-      ul.ecl-content-block__secondary-meta-container li.ecl-content-block__secondary-meta-item: 1
-      ul.ecl-content-block__secondary-meta-container li.ecl-content-block__secondary-meta-item span.ecl-icon--s.ecl-content-block__secondary-meta-icon.wt-icon--location: 1
-      article.ecl-content-item ul.ecl-content-block__secondary-meta-container: 1
-      article.ecl-content-item ul.ecl-content-block__secondary-meta-container.ecl-content-block__secondary-meta-container--horizontal: 0
+      div.ecl-content-block__secondary-meta-container div.ecl-content-block__secondary-meta-item: 1
+      div.ecl-content-block__secondary-meta-container div.ecl-content-block__secondary-meta-item span.ecl-icon--s.ecl-content-block__secondary-meta-icon.wt-icon--location: 1
+      article.ecl-content-item div.ecl-content-block__secondary-meta-container: 1
+      article.ecl-content-item div.ecl-content-block__secondary-meta-container.ecl-content-block__secondary-meta-container--horizontal: 0
     equals:
       'article.ecl-content-item ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(1)': "News article"
       'article.ecl-content-item ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(2)': "6 July 2015"
@@ -2397,7 +2397,7 @@
       'div.ecl-content-block__list-container dl.ecl-description-list.ecl-description-list--horizontal.ecl-content-block__list .ecl-description-list__definition:nth-child(2)': "Thursday 15 November, 08:00 AM to Friday 16 November"
       'div.ecl-content-block__list-container dl.ecl-description-list.ecl-description-list--horizontal.ecl-content-block__list .ecl-description-list__term:nth-child(3)': "Where"
       'div.ecl-content-block__list-container dl.ecl-description-list.ecl-description-list--horizontal.ecl-content-block__list .ecl-description-list__definition:nth-child(4)': "The EGG, Rue Barra 175, 1070 Brussels, Belgium"
-      'ul.ecl-content-block__secondary-meta-container li.ecl-content-block__secondary-meta-item .ecl-content-block__secondary-meta-label': "Brussels"
+      'div.ecl-content-block__secondary-meta-container div.ecl-content-block__secondary-meta-item .ecl-content-block__secondary-meta-label': "Brussels"
 - structure:
     '#type': pattern
     '#id': list_item
@@ -3072,16 +3072,16 @@
           body: "Body 2"
   assertions:
     count:
-      '.ecl-accordion__title': 2
-      '.ecl-accordion__title button.ecl-accordion__toggle .ecl-accordion__toggle-icon': 4
-      '.ecl-accordion__title button.ecl-accordion__toggle .ecl-accordion__toggle-title': 2
-      '.ecl-accordion__content#id-0-content': 1
-      '.ecl-accordion__content#id-1-content': 1
+      'details.ecl-accordion__item': 2
+      'summary.ecl-accordion__toggle': 2
+      'summary.ecl-accordion__toggle .ecl-accordion__toggle-icon': 4
+      'div.ecl-accordion__content': 2
     equals:
-      '.ecl-accordion__title button.ecl-accordion__toggle[aria-controls="id-0-content"] .ecl-accordion__toggle-title': "Title 1"
-      '.ecl-accordion__content#id-0-content': "Body 1"
-      '.ecl-accordion__title button.ecl-accordion__toggle[aria-controls="id-1-content"] .ecl-accordion__toggle-title': "Title 2"
-      '.ecl-accordion__content#id-1-content': "Body 2"
+      'details.ecl-accordion__item:nth-child(1) div.ecl-accordion__content': "Body 1"
+      'details.ecl-accordion__item:nth-child(2) div.ecl-accordion__content': "Body 2"
+    contains:
+      'details.ecl-accordion__item:nth-child(1) summary.ecl-accordion__toggle': "Title 1"
+      'details.ecl-accordion__item:nth-child(2) summary.ecl-accordion__toggle': "Title 2"
 - structure:
     '#type': pattern
     '#id': accordion
@@ -3096,16 +3096,16 @@
   assertions:
     count:
       '.ecl-accordion.ecl-color-mode--purple-violet': 1
-      '.ecl-accordion__title': 2
-      '.ecl-accordion__title button.ecl-accordion__toggle .ecl-accordion__toggle-icon': 4
-      '.ecl-accordion__title button.ecl-accordion__toggle .ecl-accordion__toggle-title': 2
-      '.ecl-accordion__content#id-0-content': 1
-      '.ecl-accordion__content#id-1-content': 1
+      'details.ecl-accordion__item': 2
+      'summary.ecl-accordion__toggle': 2
+      'summary.ecl-accordion__toggle .ecl-accordion__toggle-icon': 4
+      'div.ecl-accordion__content': 2
     equals:
-      '.ecl-accordion__title button.ecl-accordion__toggle[aria-controls="id-0-content"] .ecl-accordion__toggle-title': "Title 1"
-      '.ecl-accordion__content#id-0-content': "Body 1"
-      '.ecl-accordion__title button.ecl-accordion__toggle[aria-controls="id-1-content"] .ecl-accordion__toggle-title': "Title 2"
-      '.ecl-accordion__content#id-1-content': "Body 2"
+      'details.ecl-accordion__item:nth-child(1) div.ecl-accordion__content': "Body 1"
+      'details.ecl-accordion__item:nth-child(2) div.ecl-accordion__content': "Body 2"
+    contains:
+      'details.ecl-accordion__item:nth-child(1) summary.ecl-accordion__toggle': "Title 1"
+      'details.ecl-accordion__item:nth-child(2) summary.ecl-accordion__toggle': "Title 2"
 - structure:
     '#type': pattern
     '#id': dropdown
@@ -4813,7 +4813,7 @@
   assertions:
     count:
       'div.ecl-fact-figures.ecl-fact-figures--col-2.ecl-color-mode--purple.ecl-fact-figures--centered div.ecl-fact-figures__items': 1
-      'div.ecl-fact-figures__item:nth-child(1) span.ecl-icon.ecl-icon--l.ecl-fact-figures__icon.wt-icon-networks--instagram': 1
+      'div.ecl-fact-figures__item:nth-child(1) span.ecl-icon.ecl-icon--l.ecl-fact-figures__icon.wt-icon-networks-color--instagram': 1
       'div.ecl-fact-figures__item:nth-child(2) span.ecl-icon.ecl-icon--l.ecl-fact-figures__icon.wt-icon--external': 1
       'div.ecl-fact-figures__view-all': 1
       'div.ecl-fact-figures__view-all span.ecl-icon.ecl-icon--2xs.ecl-link__icon.wt-icon--external': 1
@@ -5177,10 +5177,10 @@
       counter_start: 99
   assertions:
     count:
-      ul.ecl-list-illustration: 1
-      ul.ecl-list-illustration.ecl-list-illustration--icon-inline: 0
-      ul.ecl-list-illustration.ecl-list-illustration--col-3: 0
-      'ul.ecl-list-illustration.ecl-color-mode--red-crayola.ecl-list-illustration--number-list.ecl-list-illustration--number-list-reset[style="--ecl-list-illustration-counter-start: 99;"]': 1
+      ol.ecl-list-illustration: 1
+      ol.ecl-list-illustration.ecl-list-illustration--icon-inline: 0
+      ol.ecl-list-illustration.ecl-list-illustration--col-3: 0
+      'ol.ecl-list-illustration.ecl-color-mode--red-crayola.ecl-list-illustration--number-list.ecl-list-illustration--number-list-reset[style="--ecl-list-illustration-counter-start: 99;"]': 1
       li.ecl-list-illustration__item: 2
       img.ecl-list-illustration__image: 0
       'li.ecl-list-illustration__item span.ecl-icon': 0
@@ -5210,8 +5210,8 @@
       icon_inline: true
   assertions:
     count:
-      ul.ecl-list-illustration.ecl-list-illustration--icon-inline: 0
-      'ul.ecl-list-illustration.ecl-list-illustration--col-2.ecl-list-illustration--number-list.ecl-list-illustration--number-list-reset[style="--ecl-list-illustration-counter-start: 0;"]': 1
+      ol.ecl-list-illustration.ecl-list-illustration--icon-inline: 0
+      'ol.ecl-list-illustration.ecl-list-illustration--col-2.ecl-list-illustration--number-list.ecl-list-illustration--number-list-reset[style="--ecl-list-illustration-counter-start: 0;"]': 1
       li.ecl-list-illustration__item: 2
       img.ecl-list-illustration__image: 0
       'li.ecl-list-illustration__item span.ecl-icon': 0
@@ -5580,15 +5580,15 @@
       'div#highlighted-news-block div.ecl-col-l-4 a': 2
       'ul.ecl-content-block__primary-meta-container': 4
       'div.ecl-content-block__description': 1
-      'ul.ecl-content-block__secondary-meta-container': 4
-      'ul.ecl-content-block__secondary-meta-container li.ecl-content-block__secondary-meta-item span.ecl-content-block__secondary-meta-label': 6
+      'ul.ecl-content-block__secondary-meta-container': 2
+      'ul.ecl-content-block__secondary-meta-container li.ecl-content-block__secondary-meta-item span.ecl-content-block__secondary-meta-label': 4
       'div#highlighted-news-block div.ecl-u-mt-m:not(.ecl)': 1
       'div#highlighted-news-block div.ecl.ecl-u-mt-s': 1
       'div.ecl-col-l-8 .ecl-content-block__title a.ecl-link.ecl-link--standalone[href="#"] span.ecl-icon--2xs.wt-icon--external': 1
       'div.ecl-col-l-8 li.ecl-content-block__secondary-meta-item:nth-child(1) span.ecl-content-block__secondary-meta-icon.wt-icon--information': 1
       'div.ecl-col-l-8 li.ecl-content-block__secondary-meta-item:nth-child(2) span.ecl-content-block__secondary-meta-icon.wt-icon--clock': 1
-      'div.ecl-col-l-4 article:nth-child(1) li.ecl-content-block__secondary-meta-item span.ecl-content-block__secondary-meta-icon.wt-icon--clock': 1
-      'div.ecl-col-l-4 article:nth-child(2) li.ecl-content-block__secondary-meta-item span.ecl-content-block__secondary-meta-icon.wt-icon--clock': 1
+      'div.ecl-col-l-4 article:nth-child(1) div.ecl-content-block__secondary-meta-item span.ecl-content-block__secondary-meta-icon.wt-icon--clock': 1
+      'div.ecl-col-l-4 article:nth-child(2) div.ecl-content-block__secondary-meta-item span.ecl-content-block__secondary-meta-icon.wt-icon--clock': 1
       'div.ecl-col-l-4 article:nth-child(3) li.ecl-content-block__secondary-meta-item:nth-child(1) span.ecl-content-block__secondary-meta-icon.wt-icon--clock': 1
       'div.ecl-col-l-4 article:nth-child(3) li.ecl-content-block__secondary-meta-item:nth-child(2) span.ecl-content-block__secondary-meta-icon.wt-icon--location': 1
       'div#highlighted-news-block > div.ecl-u-mt-m a.ecl-link.ecl-link--standalone.ecl-link--icon[href="https://example.com"] span.ecl-icon--2xs.wt-icon--external': 1
@@ -5604,9 +5604,9 @@
       'div.ecl-col-l-4 article:nth-child(1) ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(1)': 'Item 2 primary meta'
       'div.ecl-col-l-4 article:nth-child(1) ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(2)': 'DD Month Year'
       'div.ecl-col-l-4 article:nth-child(1) .ecl-content-block__title': 'Item 2'
-      'div.ecl-col-l-4 article:nth-child(1) li.ecl-content-block__secondary-meta-item span.ecl-content-block__secondary-meta-label': '5 minutes read'
+      'div.ecl-col-l-4 article:nth-child(1) div.ecl-content-block__secondary-meta-item span.ecl-content-block__secondary-meta-label': '5 minutes read'
       'div.ecl-col-l-4 article:nth-child(2) .ecl-content-block__title a.ecl-link.ecl-link--standalone[href="https://external.com"]': 'Item 3'
-      'div.ecl-col-l-4 article:nth-child(2) li.ecl-content-block__secondary-meta-item span.ecl-content-block__secondary-meta-label': '2 minutes read'
+      'div.ecl-col-l-4 article:nth-child(2) div.ecl-content-block__secondary-meta-item span.ecl-content-block__secondary-meta-label': '2 minutes read'
       'div.ecl-col-l-4 article:nth-child(3) ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(1)': 'Item 4 primary meta'
       'div.ecl-col-l-4 article:nth-child(3) ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(2)': 'DD Month Year'
       'div.ecl-col-l-4 article:nth-child(3) .ecl-content-block__title a.ecl-link.ecl-link--standalone[href="#"]': 'Item 4'
@@ -5685,21 +5685,21 @@
       'div#highlighted-news-block div.ecl-col-l-4 a': 1
       'ul.ecl-content-block__primary-meta-container': 1
       'div.ecl-content-block__description': 0
-      'ul.ecl-content-block__secondary-meta-container': 2
+      'ul.ecl-content-block__secondary-meta-container': 0
       'div#highlighted-news-block div.ecl.ecl-u-mt-s': 0
       'article.ecl-card': 0
       'ul.ecl-content-block__label-container': 0
       'div.ecl-content-block__list-container': 0
-      'div.ecl-col-l-8 li.ecl-content-block__secondary-meta-item span.ecl-content-block__secondary-meta-icon.wt-icon--clock': 1
-      'div.ecl-col-l-4 article.ecl-u-mb-m:nth-child(1) li.ecl-content-block__secondary-meta-item span.ecl-content-block__secondary-meta-icon.wt-icon--clock': 1
+      'div.ecl-col-l-8 div.ecl-content-block__secondary-meta-item span.ecl-content-block__secondary-meta-icon.wt-icon--clock': 1
+      'div.ecl-col-l-4 article.ecl-u-mb-m:nth-child(1) div.ecl-content-block__secondary-meta-item span.ecl-content-block__secondary-meta-icon.wt-icon--clock': 1
       'div#highlighted-news-block > div.ecl-u-mt-m a.ecl-link.ecl-link--standalone.ecl-link--icon[href="#"] span.ecl-icon--xs.ecl-icon--rotate-180.wt-icon--arrow-left': 1
     equals:
       'div.ecl-col-l-8 .ecl-content-block__title': 'Item 1'
-      'div.ecl-col-l-8 li.ecl-content-block__secondary-meta-item span.ecl-content-block__secondary-meta-label': '3 minutes read'
+      'div.ecl-col-l-8 div.ecl-content-block__secondary-meta-item span.ecl-content-block__secondary-meta-label': '3 minutes read'
       'div.ecl-col-l-4 article.ecl-u-mb-m:nth-child(1) ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(1)': 'Item 2 primary meta'
       'div.ecl-col-l-4 article.ecl-u-mb-m:nth-child(1) ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(2)': 'DD Month Year'
       'div.ecl-col-l-4 article.ecl-u-mb-m:nth-child(1) .ecl-content-block__title': 'Item 2'
-      'div.ecl-col-l-4 article.ecl-u-mb-m:nth-child(1) li.ecl-content-block__secondary-meta-item span.ecl-content-block__secondary-meta-label': '5 minutes read'
+      'div.ecl-col-l-4 article.ecl-u-mb-m:nth-child(1) div.ecl-content-block__secondary-meta-item span.ecl-content-block__secondary-meta-label': '5 minutes read'
       'div.ecl-col-l-4 article:nth-child(2) .ecl-content-block__title a.ecl-link.ecl-link--standalone[href="https://external.com"]': 'Item 3'
       'div#highlighted-news-block > div.ecl-u-mt-m a.ecl-link.ecl-link--standalone.ecl-link--icon[href="#"] .ecl-link__label': '#'
 - structure:
@@ -5827,12 +5827,12 @@
       'div.ecl-col-l-3 picture.ecl-content-item__picture--medium img.ecl-content-item__image[src="https://loremflickr.com/1200/900/arch"][alt="Alternative text for 2nd image"]': 1
       'ul.ecl-content-block__primary-meta-container': 5
       'div.ecl-content-block__description': 0
-      'ul.ecl-content-block__secondary-meta-container': 3
-      'ul.ecl-content-block__secondary-meta-container li.ecl-content-block__secondary-meta-item span.ecl-content-block__secondary-meta-label': 4
+      'ul.ecl-content-block__secondary-meta-container': 1
+      'ul.ecl-content-block__secondary-meta-container li.ecl-content-block__secondary-meta-item span.ecl-content-block__secondary-meta-label': 2
       'div#highlighted-news-block div.ecl-u-mt-m:not(.ecl)': 1
       'div#highlighted-news-block div.ecl.ecl-u-mt-s': 1
-      'div.ecl-col-l-3:nth-child(1) li.ecl-content-block__secondary-meta-item:nth-child(1) span.ecl-content-block__secondary-meta-icon.wt-icon--clock': 1
-      'div.ecl-col-l-3:nth-child(2) article:nth-child(1) li.ecl-content-block__secondary-meta-item span.ecl-content-block__secondary-meta-icon.wt-icon--clock': 1
+      'div.ecl-col-l-3:nth-child(1) div.ecl-content-block__secondary-meta-item:nth-child(1) span.ecl-content-block__secondary-meta-icon.wt-icon--clock': 1
+      'div.ecl-col-l-3:nth-child(2) article:nth-child(1) div.ecl-content-block__secondary-meta-item span.ecl-content-block__secondary-meta-icon.wt-icon--clock': 1
       'div.ecl-col-l-3:nth-child(2) article:nth-child(2) li.ecl-content-block__secondary-meta-item:nth-child(1) span.ecl-content-block__secondary-meta-icon.wt-icon--clock': 1
       'div.ecl-col-l-3:nth-child(2) article:nth-child(2) li.ecl-content-block__secondary-meta-item:nth-child(2) span.ecl-content-block__secondary-meta-icon.wt-icon--location': 1
       'div#highlighted-news-block > div.ecl-u-mt-m a.ecl-link.ecl-link--standalone.ecl-link--icon[href="https://example.com"] span.ecl-icon--2xs.wt-icon--external': 1
@@ -5842,11 +5842,11 @@
       'div.ecl-col-l-3:nth-child(1) ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(1)': 'Item 2 primary meta'
       'div.ecl-col-l-3:nth-child(1) ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(2)': 'DD Month Year'
       'div.ecl-col-l-3:nth-child(1) .ecl-content-block__title': 'Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem'
-      'div.ecl-col-l-3:nth-child(1) li.ecl-content-block__secondary-meta-item:nth-child(1) span.ecl-content-block__secondary-meta-label': '5 minutes read'
+      'div.ecl-col-l-3:nth-child(1) div.ecl-content-block__secondary-meta-item:nth-child(1) span.ecl-content-block__secondary-meta-label': '5 minutes read'
       'div.ecl-col-l-3:nth-child(2) article:nth-child(1) ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(1)': 'Item 3 primary meta'
       'div.ecl-col-l-3:nth-child(2) article:nth-child(1) ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(2)': 'DD Month Year'
       'div.ecl-col-l-3:nth-child(2) article:nth-child(1) .ecl-content-block__title a.ecl-link.ecl-link--standalone[href="https://external.com"]': 'In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo'
-      'div.ecl-col-l-3:nth-child(2) article:nth-child(1) li.ecl-content-block__secondary-meta-item span.ecl-content-block__secondary-meta-label': '2 minutes read'
+      'div.ecl-col-l-3:nth-child(2) article:nth-child(1) div.ecl-content-block__secondary-meta-item span.ecl-content-block__secondary-meta-label': '2 minutes read'
       'div.ecl-col-l-3:nth-child(2) article:nth-child(2) .ecl-content-block__title a.ecl-link.ecl-link--standalone[href="#"]': 'Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim'
       'div.ecl-col-l-3:nth-child(2) article:nth-child(2) li.ecl-content-block__secondary-meta-item:nth-child(1) span.ecl-content-block__secondary-meta-label': '3 minutes read'
       'div.ecl-col-l-3:nth-child(2) article:nth-child(2) li.ecl-content-block__secondary-meta-item:nth-child(2) span.ecl-content-block__secondary-meta-label': 'Brussels'
@@ -5933,12 +5933,12 @@
       'div.ecl-col-l-3 picture.ecl-content-item__picture--medium img.ecl-content-item__image[src="https://loremflickr.com/1200/900/arch"][alt="Alternative text for 1st image"]': 1
       'ul.ecl-content-block__primary-meta-container': 3
       'div.ecl-content-block__description': 0
-      'ul.ecl-content-block__secondary-meta-container': 3
-      'ul.ecl-content-block__secondary-meta-container li.ecl-content-block__secondary-meta-item span.ecl-content-block__secondary-meta-label': 4
+      'ul.ecl-content-block__secondary-meta-container': 1
+      'ul.ecl-content-block__secondary-meta-container li.ecl-content-block__secondary-meta-item span.ecl-content-block__secondary-meta-label': 2
       'div#highlighted-news-block div.ecl-u-mt-m:not(.ecl)': 0
       'div#highlighted-news-block div.ecl.ecl-u-mt-m': 0
-      'div.ecl-col-l-3:nth-child(1) li.ecl-content-block__secondary-meta-item:nth-child(1) span.ecl-content-block__secondary-meta-icon.wt-icon--clock': 1
-      'div.ecl-col-l-3:nth-child(2) article:nth-child(1) li.ecl-content-block__secondary-meta-item span.ecl-content-block__secondary-meta-icon.wt-icon--clock': 1
+      'div.ecl-col-l-3:nth-child(1) div.ecl-content-block__secondary-meta-item:nth-child(1) span.ecl-content-block__secondary-meta-icon.wt-icon--clock': 1
+      'div.ecl-col-l-3:nth-child(2) article:nth-child(1) div.ecl-content-block__secondary-meta-item span.ecl-content-block__secondary-meta-icon.wt-icon--clock': 1
       'div.ecl-col-l-3:nth-child(2) article:nth-child(2) li.ecl-content-block__secondary-meta-item:nth-child(1) span.ecl-content-block__secondary-meta-icon.wt-icon--clock': 1
       'div.ecl-col-l-3:nth-child(2) article:nth-child(2) li.ecl-content-block__secondary-meta-item:nth-child(2) span.ecl-content-block__secondary-meta-icon.wt-icon--location': 1
     equals:
@@ -5946,11 +5946,11 @@
       'div.ecl-col-l-3:nth-child(1) ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(1)': 'Item 2 primary meta'
       'div.ecl-col-l-3:nth-child(1) ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(2)': 'DD Month Year'
       'div.ecl-col-l-3:nth-child(1) .ecl-content-block__title': 'Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem'
-      'div.ecl-col-l-3:nth-child(1) li.ecl-content-block__secondary-meta-item:nth-child(1) span.ecl-content-block__secondary-meta-label': '5 minutes read'
+      'div.ecl-col-l-3:nth-child(1) div.ecl-content-block__secondary-meta-item:nth-child(1) span.ecl-content-block__secondary-meta-label': '5 minutes read'
       'div.ecl-col-l-3:nth-child(2) article:nth-child(1) ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(1)': 'Item 3 primary meta'
       'div.ecl-col-l-3:nth-child(2) article:nth-child(1) ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(2)': 'DD Month Year'
       'div.ecl-col-l-3:nth-child(2) article:nth-child(1) .ecl-content-block__title a.ecl-link.ecl-link--standalone[href="https://external.com"]': 'In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo'
-      'div.ecl-col-l-3:nth-child(2) article:nth-child(1) li.ecl-content-block__secondary-meta-item span.ecl-content-block__secondary-meta-label': '2 minutes read'
+      'div.ecl-col-l-3:nth-child(2) article:nth-child(1) div.ecl-content-block__secondary-meta-item span.ecl-content-block__secondary-meta-label': '2 minutes read'
       'div.ecl-col-l-3:nth-child(2) article:nth-child(2) .ecl-content-block__title a.ecl-link.ecl-link--standalone[href="#"]': 'Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim'
       'div.ecl-col-l-3:nth-child(2) article:nth-child(2) li.ecl-content-block__secondary-meta-item:nth-child(1) span.ecl-content-block__secondary-meta-label': '3 minutes read'
       'div.ecl-col-l-3:nth-child(2) article:nth-child(2) li.ecl-content-block__secondary-meta-item:nth-child(2) span.ecl-content-block__secondary-meta-label': 'Brussels'
