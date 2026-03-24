@@ -21,17 +21,18 @@
  * - logo: ImageValueObject.
  * - name: name value.
  * - acronym: acronym value.
- * - organisation_details: list of fields as specified in field_list pattern.
+ * - organisation_details: list of fields as specified in field_list SDC.
  * - contact_page_url: url string.
  *
  * @ingroup themeable
  */
 #}
 
-{{ pattern('organisation_teaser', {
+{% include 'oe_theme:organisation_teaser' with {
   logo: logo,
   name: name,
   acronym: acronym,
   organisation_details: organisation_details,
-  contact_page_url: contact_page_url
-}) }}
+  contact_page_url: contact_page_url,
+  border_color_class: ecl_class_border_color()
+} only %}

@@ -30,10 +30,10 @@ class DateBlockPatternRenderingTest extends AbstractKernelTestBase {
    */
   public function testFromArray(string $variant, array $date, array $assertions) {
     $pattern = [
-      '#type' => 'pattern',
-      '#id' => 'date_block',
-      '#variant' => $variant,
-      '#fields' => [
+      '#type' => 'component',
+      '#component' => 'oe_theme:date_block',
+      '#props' => [
+        'variant' => $variant,
         'date' => DateValueObject::fromArray($date),
       ],
     ];

@@ -8,7 +8,7 @@
 {% set additional_information = [] %}
 {% if content.group_details %}
   {% set additional_information_items = [] %}
-  {% for item in content.group_details.pattern['#fields'].items %}
+  {% for item in content.group_details.pattern['#props'].items %}
     {% set additional_information_items = additional_information_items|merge([{
       'term': item.label,
       'definition': item.body|render,
@@ -18,7 +18,7 @@
 {% endif %}
 
 {% block content %}
-  {{ pattern('list_item', {
+  {% include 'oe_theme:list_item' with {
     'variant': 'thumbnail_secondary',
     'url': url,
     'title': content.extra_field_oe_theme_helper_short_title_with_fallback|field_value,
@@ -29,5 +29,5 @@
     'badges': badges,
     'external_link': external_link,
     'extra_attributes': extra_attributes|default([]),
-  }) }}
+  } only %}
 {% endblock %}

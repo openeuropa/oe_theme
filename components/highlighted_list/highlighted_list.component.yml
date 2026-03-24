@@ -7,25 +7,34 @@ variants:
   four_columns:
     title: 'Four columns layout'
     description: 'The four columns layout variant can contain up to 6 items, two of them with image (each one displayed on a different column).'
-slots:
-  title:
-    title: Title
-    description: 'Highlighted list title'
-  introduction:
-    title: Introduction
-    description: 'A brief summary of the content on the list.'
-  highlighted_item:
-    title: 'Highlighted item'
-    description: 'The main item of the highlighted list - used only in the default variant.'
-  items:
-    title: Items
-    description: 'List of items compatible with the ECL Content item component.'
-  see_more_label:
-    title: 'See more label'
-    description: 'The label for the See more link.'
-  see_more_url:
-    title: 'See more URL'
-    description: 'See more link URL (A Drupal Url object)'
-  detail:
-    title: Detail
-    description: "List's additional information displayed below the See more link."
+props:
+  type: object
+  properties:
+    title:
+      type: ['string', 'null']
+      title: Title
+      description: 'Highlighted list title'
+    introduction:
+      type: ['string', 'null']
+      title: Introduction
+      description: 'A brief summary of the content on the list.'
+    highlighted_item:
+      type: ['object', 'null']
+      title: 'Highlighted item'
+      description: 'The main item of the highlighted list - used only in the default variant.'
+    items:
+      type: ['array', 'null']
+      title: Items
+      description: 'List of items compatible with the ECL Content item component.'
+    see_more_label:
+      type: ['string', 'null']
+      title: 'See more label'
+      description: 'The label for the See more link.'
+    see_more_url:
+      type: ['string', 'object', 'null']
+      title: 'See more URL'
+      description: 'See more link URL (A Drupal Url object)'
+    detail:
+      type: ['string', 'null']
+      title: Detail
+      description: "List's additional information displayed below the See more link."

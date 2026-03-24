@@ -26,9 +26,9 @@ class OrganisationTeaserPatternRenderingTest extends AbstractKernelTestBase {
    */
   public function testOrganisationTeaserPatternRendering(array $fields, array $assertions) {
     $pattern = [
-      '#type' => 'pattern',
-      '#id' => 'organisation_teaser',
-      '#fields' => $fields,
+      '#type' => 'component',
+      '#component' => 'oe_theme:organisation_teaser',
+      '#props' => $fields,
     ];
 
     $html = $this->renderRoot($pattern);

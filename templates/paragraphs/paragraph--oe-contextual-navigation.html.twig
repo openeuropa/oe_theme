@@ -6,9 +6,9 @@
  * @see ./modules/contrib/paragraphs/templates/paragraph.html.twig
  */
 #}
-{{ pattern('context_nav', {
+{% include 'oe_theme:context_nav' with {
   'label': content.field_oe_title,
   'items': items,
   'limit': limit,
   'more_label': more_label,
-}) }}
+} only %}

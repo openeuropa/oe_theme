@@ -16,3 +16,6 @@ slots:
   contact_page_url:
     title: 'Contact page URL'
     description: 'Contact page URL (optional).'
+  border_color_class:
+    title: 'Border color class'
+    description: 'ECL border color utility class. Pass ecl_class_border_color() from a regular Drupal template.'

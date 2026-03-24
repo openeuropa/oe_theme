@@ -7,10 +7,14 @@ variants:
   vertical:
     title: Vertical
     description: 'Social media links will be arranged vertically.'
-slots:
-  title:
-    title: Title
-    description: 'Social media block title.'
-  links:
-    title: 'Social links'
-    description: 'List of social links.'
+props:
+  type: object
+  properties:
+    title:
+      type: ['string', 'null']
+      title: Title
+      description: 'Social media block title.'
+    links:
+      type: array
+      title: 'Social links'
+      description: 'List of social links.'

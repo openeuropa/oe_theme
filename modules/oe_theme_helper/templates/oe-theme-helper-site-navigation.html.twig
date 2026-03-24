@@ -10,7 +10,7 @@
  * @ingroup themeable
  */
 #}
-{{ pattern('navigation_menu', {
+{% include 'oe_theme:navigation_menu' with {
   label: 'Menu'|t,
   close: close,
   items: menu_items,
@@ -23,4 +23,4 @@
   featured_priority: featured_priority|default(''),
   extra_classes: extra_classes|default(''),
   variant: variant|default('default'),
-}) }}
+} only %}

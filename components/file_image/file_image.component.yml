@@ -1,12 +1,17 @@
 name: 'File image'
 description: 'Displays the file image.'
-slots:
-  src:
-    title: Source
-    description: 'Source of the image (A Drupal Url object)'
-  alt:
-    title: Alt
-    description: 'Alternative text for the image.'
-  caption:
-    title: Caption
-    description: 'Description of the image.'
+props:
+  type: object
+  properties:
+    src:
+      type: ['string', 'object', 'null']
+      title: Source
+      description: 'Source of the image (A Drupal Url object or string)'
+    alt:
+      type: ['string', 'null']
+      title: Alt
+      description: 'Alternative text for the image.'
+    caption:
+      type: ['string', 'null']
+      title: Caption
+      description: 'Description of the image.'

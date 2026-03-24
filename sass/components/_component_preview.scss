@@ -1,0 +1,34 @@
+// Widen the preview beyond the Drupal content column with 80px on each side.
+.components-preview {
+  left: 50%;
+  margin-inline: calc(-50vw + 80px);
+  position: relative;
+  width: calc(100vw - 160px);
+}
+
+// Stack sidebar above main so the preview area gets the full page width.
+.components-preview__wrapper {
+  grid-template:
+    "sidebar"
+    "main"
+    "a11y";
+  grid-template-columns: 1fr;
+}
+
+// Reduce sidebar height.
+.components-preview__sidebar {
+  max-block-size: 200px;
+}
+
+// Remove inner preview padding, border-radius, and image cap so full-width
+// components like the banner can fill the entire available width.
+.components-preview__components.active .components-preview__preview {
+  border-radius: 0;
+  max-inline-size: none;
+  padding: 0;
+
+  img {
+    max-inline-size: none;
+  }
+
+}

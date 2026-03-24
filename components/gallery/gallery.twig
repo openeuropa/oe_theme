@@ -4,7 +4,42 @@
  * Gallery component.
  */
 #}
-{# Process value objects into ECL compatible array. #}
+{# Process items from value object input format to ECL compatible array. #}
+{% set _items = [] %}
+{% for item in items %}
+  {# Normalize thumbnail: wrap src/alt in 'img' key if not already done. #}
+  {% set _thumbnail = item.thumbnail %}
+  {% if item.thumbnail.img is not defined %}
+    {% set _thumbnail = { 'img': item.thumbnail } %}
+  {% endif %}
+
+  {% set _description = item.description|default(item.caption|default('')) %}
+  {% set _type = item.type|default(item.media_type|default('image')) %}
+  {% set _icon = item.icon|default(_type == 'video' ? 'video' : 'image') %}
+
+  {% set _item = {
+    'thumbnail': _thumbnail,
+    'description': _description,
+    'meta': item.meta|default(''),
+    'title': item.title|default(''),
+    'icon': _icon,
+  } %}
+
+  {% if item.picture is defined %}
+    {% set _item = _item|merge({'picture': item.picture}) %}
+  {% elseif _type != 'video' %}
+    {% set _picture_img = _thumbnail.img|merge({'src': item.source|default(_thumbnail.img.src|default(''))}) %}
+    {% set _item = _item|merge({'picture': {'img': _picture_img}}) %}
+  {% endif %}
+
+  {% if item.embedded_video is defined %}
+    {% set _item = _item|merge({'embedded_video': item.embedded_video}) %}
+  {% elseif _type == 'video' %}
+    {% set _item = _item|merge({'embedded_video': {'src': item.source|default('')}}) %}
+  {% endif %}
+
+  {% set _items = _items|merge([_item]) %}
+{% endfor %}
 
 {% if footer_link_url is not empty %}
   {% set footer_link = {
@@ -63,8 +98,7 @@
   'view_all_label': "See all"|t,
   'view_all_expanded_label': "Collapse"|t,
   'counter_label': "media items"|t,
-  'items': items,
-  'icon_path': ecl_icon_path,
+  'items': _items,
   'disable_overlay': disable_overlay ?? false,
   'expandable': expandable ?? true,
   'visible_items': visible_items|default(8),
@@ -76,7 +110,7 @@
   'disable_hover': disable_hover|default(false),
 } %}
 
-{% if items|length > 1 %}
+{% if _items|length > 1 %}
   {% set _gallery = _gallery|merge({'overlay': _gallery.overlay|merge({
     'previous': {
       'variant': 'tertiary',

@@ -1,18 +1,24 @@
 name: 'Contextual navigation'
 description: 'A way to navigate and explore the context of the information on the current page.'
-slots:
-  label:
-    title: Label
-    description: 'Label of the navigation'
-  items:
-    title: Items
-    description: 'Items in the contextual navigation'
-  limit:
-    title: Limit
-    description: 'Max number of items to display'
-  more_label:
-    title: 'More label'
-    description: 'Label of the "see more items" button'
+props:
+  type: object
+  properties:
+    label:
+      type: ['string', 'null']
+      title: Label
+      description: 'Label of the navigation'
+    items:
+      type: array
+      title: Items
+      description: 'Items in the contextual navigation'
+    limit:
+      type: ['integer', 'null']
+      title: Limit
+      description: 'Max number of items to display'
+    more_label:
+      type: ['string', 'null']
+      title: 'More label'
+      description: 'Label of the "see more items" button'
 libraryOverrides:
   js:
     context_nav.js: {  }

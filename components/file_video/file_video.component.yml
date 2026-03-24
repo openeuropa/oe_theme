@@ -1,18 +1,25 @@
 name: 'File video'
 description: 'Displays the file video.'
-slots:
-  src:
-    title: Source
-    description: 'Source of the video. (A Drupal Url object)'
-  src_type:
-    title: 'Source type'
-    description: 'Type of the video source.'
-  caption:
-    title: Caption
-    description: 'Description of the video.'
-  alt:
-    title: Alt
-    description: 'Alternative text for the image.'
-  tracks:
-    title: Tracks
-    description: 'The video tracks.'
+props:
+  type: object
+  properties:
+    src:
+      type: ['string', 'object', 'null']
+      title: Source
+      description: 'Source of the video. (A Drupal Url object or string)'
+    src_type:
+      type: ['string', 'null']
+      title: 'Source type'
+      description: 'Type of the video source.'
+    caption:
+      type: ['string', 'null']
+      title: Caption
+      description: 'Description of the video.'
+    alt:
+      type: ['string', 'null']
+      title: Alt
+      description: 'Alternative text for the image.'
+    tracks:
+      type: ['array', 'null']
+      title: Tracks
+      description: 'The video tracks.'

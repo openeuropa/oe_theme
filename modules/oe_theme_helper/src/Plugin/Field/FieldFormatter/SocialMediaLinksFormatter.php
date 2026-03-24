@@ -13,7 +13,7 @@ use Drupal\Core\Form\FormStateInterface;
  * This formatter assumes that link categories will be compatible with
  * media service names used in the "Social media links: horizontal" pattern.
  *
- * @see templates/patterns/social_media_links/social_media_links.ui_patterns.yml
+ * @see components/social_media_links/social_media_links.component.yml
  *
  * @FieldFormatter(
  *   id = "oe_theme_helper_social_media_links_formatter",
@@ -90,21 +90,21 @@ class SocialMediaLinksFormatter extends SocialMediaBaseLinkFormatter {
     }
 
     $pattern = [
-      '#type' => 'pattern',
-      '#id' => 'social_media_links',
-      '#variant' => $this->getSetting('variant'),
-      '#fields' => [
+      '#type' => 'component',
+      '#component' => 'oe_theme:social_media_links',
+      '#props' => [
         'title' => $this->getSetting('title'),
         'links' => [],
+        'variant' => $this->getSetting('variant'),
       ],
     ];
 
     $elements = parent::viewElements($items, $langcode);
     foreach ($items as $delta => $item) {
-      $pattern['#fields']['links'][] = [
+      $pattern['#props']['links'][] = [
         'service' => $item->link_type,
         'label' => $elements[$delta]['#title'],
-        'url' => $elements[$delta]['#url'],
+        'url' => $elements[$delta]['#url']->toString(),
       ];
     }
 

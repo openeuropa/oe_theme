@@ -80,7 +80,6 @@
         {% set item = item|merge({
           icon: {
             name: meta.icon,
-            path: ecl_icon_path,
           }
         }) %}
       {% endif %}
@@ -115,14 +114,12 @@
                   'label': _definition.label|default(_definition.path),
                   'path': _definition.path,
                   'external': _definition.external_link|default(false),
-                  'icon_path': ecl_icon_path,
                 }
               } %}
               {% if _definition.icon is defined %}
                 {% set link = link|merge({
                   icon: {
                     name: _definition.icon,
-                    path: ecl_icon_path,
                     size: "xs",
                   }
                 }) %}
@@ -259,10 +256,12 @@
 {% elseif 'thumbnail' in variant %}
 
   {% set date = [] %}
-  {% if 'primary' in variant %}
-    {% set picture = picture|merge({position: 'left'}) %}
-  {% elseif 'secondary' in variant %}
-    {% set picture = picture|merge({position: 'right'}) %}
+  {% if picture %}
+    {% if 'primary' in variant %}
+      {% set picture = picture|merge({position: 'left'}) %}
+    {% elseif 'secondary' in variant %}
+      {% set picture = picture|merge({position: 'right'}) %}
+    {% endif %}
   {% endif %}
 
   {{ contextual_links }}

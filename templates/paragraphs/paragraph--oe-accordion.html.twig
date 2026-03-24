@@ -6,9 +6,9 @@
  * @see ./modules/contrib/paragraphs/templates/paragraph.html.twig
  */
 #}
-{{ pattern('accordion', {
+{% include 'oe_theme:accordion' with {
   'identifier': identifier,
   'color_mode': color_mode|default(''),
   'items': items,
   'extra_classes': extra_classes|default(''),
-}) }}
+} only %}

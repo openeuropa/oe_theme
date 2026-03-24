@@ -54,10 +54,6 @@ class NodeViewRoutesMetadataTest extends BrowserTestBase {
       ->set('default', 'oe_theme')
       ->save();
 
-    // Rebuild the ui_pattern definitions to collect the ones provided by
-    // oe_theme itself.
-    $this->container->get('plugin.manager.ui_patterns')->clearCachedDefinitions();
-
     $this->drupalCreateContentType(['type' => 'test', 'name' => 'Moderated'])->save();
 
     $workflow = $this->createEditorialWorkflow();

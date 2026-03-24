@@ -6,8 +6,8 @@
  * @see ./modules/contrib/paragraphs/templates/paragraph.html.twig
  */
 #}
-{{ pattern('blockquote', {
+{% include 'oe_theme:blockquote' with {
   'body': content.field_oe_plain_text_long,
   'author': content.field_oe_text,
   'language_code': current_language_id,
-}) }}
+} only %}

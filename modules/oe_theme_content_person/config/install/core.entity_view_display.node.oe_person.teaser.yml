@@ -8,6 +8,7 @@ dependencies:
     - field.field.node.oe_person.oe_person_biography_timeline
     - field.field.node.oe_person.oe_person_contacts
     - field.field.node.oe_person.oe_person_cv
+    - field.field.node.oe_person.oe_person_description
     - field.field.node.oe_person.oe_person_displayed_name
     - field.field.node.oe_person.oe_person_documents
     - field.field.node.oe_person.oe_person_first_name
@@ -40,66 +41,66 @@ third_party_settings:
       children:
         - oe_departments
         - oe_person_organisation
+      label: ''
       parent_name: ''
+      region: content
       weight: 1
       format_type: oe_theme_helper_field_list_pattern
-      region: content
       format_settings:
         variant: horizontal
-        classes: ''
-        id: ''
-      label: ''
+        wrapper_classes: ecl-u-mb-m
+        with_border_color: false
 id: node.oe_person.teaser
 targetEntityType: node
 bundle: oe_person
 mode: teaser
 content:
   extra_field_oe_theme_content_person_job_list:
-    weight: 2
-    region: content
     settings: {  }
     third_party_settings: {  }
+    weight: 2
+    region: content
   oe_departments:
     type: skos_concept_entity_reference_label
-    weight: 27
-    region: content
     label: hidden
     settings:
       link: false
     third_party_settings: {  }
+    weight: 27
+    region: content
   oe_person_contacts:
     type: entity_reference_revisions_entity_view
-    weight: 3
-    region: content
     label: above
     settings:
       view_mode: oe_person
       link: ''
     third_party_settings: {  }
+    weight: 3
+    region: content
   oe_person_jobs:
     type: entity_reference_revisions_label
-    weight: 0
-    region: content
     label: above
     settings:
       link: false
     third_party_settings: {  }
+    weight: 0
+    region: content
   oe_person_organisation:
     type: entity_reference_label
-    weight: 28
-    region: content
     label: hidden
     settings:
       link: false
     third_party_settings: {  }
+    weight: 28
+    region: content
   oe_person_photo:
     type: oe_theme_helper_media_thumbnail_url
-    weight: 4
-    region: content
     label: hidden
     settings:
       image_style: oe_theme_medium_no_crop
     third_party_settings: {  }
+    weight: 4
+    region: content
 hidden:
   extra_field_oe_theme_helper_short_title_with_fallback: true
   langcode: true
@@ -111,6 +112,7 @@ hidden:
   oe_person_biography_intro: true
   oe_person_biography_timeline: true
   oe_person_cv: true
+  oe_person_description: true
   oe_person_displayed_name: true
   oe_person_documents: true
   oe_person_first_name: true
@@ -126,3 +128,4 @@ hidden:
   oe_subject: true
   oe_summary: true
   oe_teaser: true
+  search_api_excerpt: true

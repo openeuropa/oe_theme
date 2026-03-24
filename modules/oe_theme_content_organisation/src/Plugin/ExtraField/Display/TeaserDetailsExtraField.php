@@ -99,10 +99,10 @@ class TeaserDetailsExtraField extends ExtraFieldDisplayFormattedBase implements 
       }
 
       $build[$delta] = [
-        '#type' => 'pattern',
-        '#id' => 'field_list',
-        '#variant' => 'horizontal',
-        '#fields' => [
+        '#type' => 'component',
+        '#component' => 'oe_theme:field_list',
+        '#props' => [
+          'variant' => 'horizontal',
           'items' => [],
         ],
       ];
@@ -120,7 +120,7 @@ class TeaserDetailsExtraField extends ExtraFieldDisplayFormattedBase implements 
           $items[] = $this->getRenderableFieldListItem($contact, $field_name, $display_options);
         }
       }
-      $build[$delta]['#fields']['items'] = $items;
+      $build[$delta]['#props']['items'] = $items;
     }
     $cache->applyTo($build);
 

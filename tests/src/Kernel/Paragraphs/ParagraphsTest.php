@@ -652,7 +652,7 @@ class ParagraphsTest extends ParagraphsTestBase {
 
       $html = $this->renderParagraph($paragraph);
       $crawler = new Crawler($html);
-      $this->assertFactsFigures($crawler, $component_library);
+      $this->assertFactsFigures($crawler);
 
       // Assert paragraph with empty Title and Link fields.
       $paragraph = Paragraph::create([
@@ -673,17 +673,10 @@ class ParagraphsTest extends ParagraphsTestBase {
    *
    * @param \Symfony\Component\DomCrawler\Crawler $crawler
    *   DOM Crawler instance.
-   * @param string $component_library
-   *   Component library.
    */
-  protected function assertFactsFigures(Crawler $crawler, string $component_library): void {
+  protected function assertFactsFigures(Crawler $crawler): void {
     $this->assertCount(1, $crawler->filter('div.ecl-fact-figures.ecl-fact-figures--col-3 div.ecl-fact-figures__items'));
-    if ($component_library === 'eu') {
-      $this->assertCount(1, $crawler->filter("div.ecl-fact-figures__item:nth-child(1) span.ecl-icon.ecl-icon--l.ecl-fact-figures__icon.wt-icon-ecl--infographic"));
-    }
-    else {
-      $this->assertCount(1, $crawler->filter("div.ecl-fact-figures__item:nth-child(1) span.ecl-icon.ecl-icon--l.ecl-fact-figures__icon.wt-icon--infographic"));
-    }
+    $this->assertCount(1, $crawler->filter("div.ecl-fact-figures__item:nth-child(1) span.ecl-icon.ecl-icon--l.ecl-fact-figures__icon.wt-icon--infographic"));
     $this->assertCount(1, $crawler->filter("div.ecl-fact-figures__item:nth-child(2) span.ecl-icon.ecl-icon--l.ecl-fact-figures__icon.wt-icon--spreadsheet"));
     $this->assertCount(1, $crawler->filter("div.ecl-fact-figures__item:nth-child(3) span.ecl-icon.ecl-icon--l.ecl-fact-figures__icon.wt-icon--digital"));
     $this->assertCount(1, $crawler->filter("div.ecl-fact-figures__item:nth-child(4) span.ecl-icon.ecl-icon--l.ecl-fact-figures__icon.wt-icon--log-in"));

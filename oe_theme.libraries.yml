@@ -1,3 +1,10 @@
+component_preview:
+  css:
+    theme:
+      css/component-preview.css: { media: screen }
+  js:
+    js/component_preview.js: {}
+
 component_library_ec:
   css:
     theme:

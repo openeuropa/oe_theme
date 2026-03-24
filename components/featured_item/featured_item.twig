@@ -14,7 +14,6 @@
       label: title,
       path: link.href,
       external: external_link,
-      icon_path: ecl_icon_path
     }
   } %}
   {#
@@ -33,7 +32,6 @@
           <span class="ecl-button__label">{{ link.label }}</span>
           {% include '@ecl-twig/icon' with {
             icon: {
-              path: ecl_icon_path,
               name: external_link ? "external" : "corner-arrow",
               size: "xs",
               transform: external_link ? "" : "rotate-90"
@@ -88,14 +86,12 @@
                 'label': _definition.label|default(_definition.path),
                 'path': _definition.path,
                 'external': _definition.external_link|default(false),
-                'icon_path': ecl_icon_path,
               }
             } %}
             {% if _definition.icon is defined %}
               {% set link = link|merge({
                 icon: {
                   name: _definition.icon,
-                  path: ecl_icon_path,
                   size: "xs",
                 }
               }) %}

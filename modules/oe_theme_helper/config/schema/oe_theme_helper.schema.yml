@@ -44,6 +44,13 @@ field_group.field_group_formatter_plugin.oe_theme_helper_pattern_base:
 field_group.field_group_formatter_plugin.oe_theme_helper_field_list_pattern:
   type: field_group.field_group_formatter_plugin.oe_theme_helper_pattern_base
   label: 'Mapping for the field list pattern formatter settings'
+  mapping:
+    wrapper_classes:
+      type: string
+      label: 'Wrapper classes'
+    with_border_color:
+      type: boolean
+      label: 'Apply border color'
 
 field_group.field_group_formatter_plugin.oe_theme_helper_in_page_navigation:
   type: field_group.field_group_formatter_plugin.base

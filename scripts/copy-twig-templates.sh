@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Remove ECL twig templates from the components directory.
+find "./components" -type f -name "ecl-*.html.twig" -delete
+
 # Source directory containing *.twig files
 source_dir="./ecl-build/src/components"
 

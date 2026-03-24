@@ -1,0 +1,7 @@
+oe_theme_helper.component_preview.dropdown:
+  path: '/components/dropdown'
+  defaults:
+    _title: 'Dropdown component'
+    _controller: '\Drupal\oe_theme_helper\Controller\ComponentPreviewController::dropdown'
+  requirements:
+    _access: 'TRUE'

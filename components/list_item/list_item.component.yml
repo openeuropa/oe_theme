@@ -31,64 +31,81 @@ variants:
   date_cancelled:
     title: 'List item: cancelled event'
     description: 'Default list item elements and date.'
-slots:
-  contextual_links:
-    title: 'Contextual links'
-    description: 'Render array of contextual links'
-  url:
-    title: URL
-    description: 'List item link URL (A Drupal Url object)'
-  title:
-    title: Title
-    description: 'List item title'
-  detail:
-    title: Detail
-    description: 'Description text accompanying the link item.'
-  length:
-    title: 'Max length'
-    description: "Used to trim the length of the 'Detail' field (optional)."
-  meta:
-    title: Metadata
-    description: 'Meta information items list'
-  secondary_meta:
-    title: 'Secondary metadata'
-    description: 'Secondary metadata items list with optional icon.'
-  image:
-    title: 'Primary image'
-    description: 'Attributes of the image to render'
-  image_position:
-    title: 'Image position'
-    description: 'The image position: left (default), right, top.'
-  picture_zoom:
-    title: 'Picture zoom'
-    description: 'Whether the picture should be animated or not (default: false).'
-  badges:
-    title: Badges
-    description: 'Adds different badges to the item.'
-  external_link:
-    title: 'External link'
-    description: 'Whether the URL of the item is external or not.'
-  lists:
-    title: 'Additional information'
-    description: "Array of lists compatible with the ECL Description list component. For 'link', 'link-inline' and 'taxonomy' variants of the list, the list_type is mandatory. If an iterable definition has at least one path provided, all the other items need to provide a path as well."
-  divider:
-    title: Divider
-    description: 'Optional divider below the item.'
-  lists_variant:
-    title: 'Lists variant'
-    description: 'An optional parameter for the layout of the lists (vertical or horizontal). It defaults to horizontal.'
-  color_mode:
-    title: 'Color mode'
-    description: 'Name of the color mode (only used in Highlight variant).'
-  extra_classes:
-    title: 'Extra classes string'
-    description: 'Extra classes string'
-  extra_attributes:
-    title: 'Extra attributes'
-    description: 'List of extra attributes'
 props:
   type: object
   properties:
     date:
       title: 'Date'
-      type: Drupal\oe_theme\ValueObject\DateValueObject
+      type: ['object', 'null']
+    contextual_links:
+      type: ['array', 'null']
+      title: 'Contextual links'
+      description: 'Render array of contextual links'
+    url:
+      type: ['string', 'object', 'null']
+      title: URL
+      description: 'List item link URL (A Drupal Url object or string)'
+    title:
+      type: ['string', 'null']
+      title: Title
+      description: 'List item title'
+    detail:
+      type: ['string', 'null']
+      title: Detail
+      description: 'Description text accompanying the link item.'
+    length:
+      type: ['integer', 'null']
+      title: 'Max length'
+      description: "Used to trim the length of the 'Detail' field (optional)."
+    meta:
+      type: ['array', 'null']
+      title: Metadata
+      description: 'Meta information items list'
+    secondary_meta:
+      type: ['array', 'null']
+      title: 'Secondary metadata'
+      description: 'Secondary metadata items list with optional icon.'
+    image:
+      type: ['string', 'object', 'null']
+      title: 'Primary image'
+      description: 'Attributes of the image to render'
+    image_position:
+      type: ['string', 'null']
+      title: 'Image position'
+      description: 'The image position: left (default), right, top.'
+    picture_zoom:
+      type: ['boolean', 'null']
+      title: 'Picture zoom'
+      description: 'Whether the picture should be animated or not (default: false).'
+    badges:
+      type: ['array', 'null']
+      title: Badges
+      description: 'Adds different badges to the item.'
+    external_link:
+      type: ['boolean', 'null']
+      title: 'External link'
+      description: 'Whether the URL of the item is external or not.'
+    lists:
+      type: ['array', 'null']
+      title: 'Additional information'
+      description: "Array of lists compatible with the ECL Description list component. For 'link', 'link-inline' and 'taxonomy' variants of the list, the list_type is mandatory. If an iterable definition has at least one path provided, all the other items need to provide a path as well."
+    divider:
+      type: ['boolean', 'null']
+      title: Divider
+      description: 'Optional divider below the item.'
+    lists_variant:
+      type: ['string', 'null']
+      title: 'Lists variant'
+      description: 'An optional parameter for the layout of the lists (vertical or horizontal). It defaults to horizontal.'
+    color_mode:
+      type: ['string', 'null']
+      title: 'Color mode'
+      description: 'Name of the color mode (only used in Highlight variant).'
+    extra_classes:
+      type: ['string', 'null']
+      title: 'Extra classes string'
+      description: 'Extra classes string'
+    extra_attributes:
+      type: ['array', 'null']
+      title: 'Extra attributes'
+      description: 'List of extra attributes'

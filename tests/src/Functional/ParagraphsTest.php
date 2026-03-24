@@ -48,10 +48,6 @@ class ParagraphsTest extends BrowserTestBase {
       ->getEditable('system.theme')
       ->set('default', 'oe_theme')
       ->save();
-
-    // Rebuild the ui_pattern definitions to collect the ones provided by
-    // oe_theme itself.
-    \Drupal::service('plugin.manager.ui_patterns')->clearCachedDefinitions();
   }
 
   /**

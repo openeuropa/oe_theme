@@ -117,7 +117,7 @@ class ContentNewsRenderTest extends ContentRenderTestBase {
     $assert->assertPattern($expected_values, $page_header->getOuterHtml());
 
     // Assert news details.
-    $details = $this->assertSession()->elementExists('css', 'div#news-details');
+    $details = $this->assertSession()->elementExists('css', 'div.ecl-u-mb-s');
     $field_list_assert = new FieldListAssert();
     $details_expected_values = [
       'items' => [

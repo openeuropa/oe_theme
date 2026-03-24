@@ -33,7 +33,7 @@ class MediaThumbnailUrlFormatter extends ImageFormatter {
   public static function defaultSettings() {
     return [
       'image_style' => '',
-    ];
+    ] + parent::defaultSettings();
   }
 
   /**

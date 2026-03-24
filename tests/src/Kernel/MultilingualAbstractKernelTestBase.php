@@ -27,8 +27,6 @@ abstract class MultilingualAbstractKernelTestBase extends AbstractKernelTestBase
     'oe_multilingual_demo',
     'system',
     'user',
-    'ui_patterns',
-    'ui_patterns_library',
     'oe_theme_helper',
     'image',
     'breakpoint',
