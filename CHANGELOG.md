@@ -1,11 +1,31 @@
 # Changelog
 
+## [5.0.0-beta21](https://github.com/openeuropa/oe_theme/tree/5.0.0-beta21) (2026-03-02)
+
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/5.0.0-beta20...5.0.0-beta21)
+
+**Merged pull requests:**
+
+- EWPP-6446: Add sources field to page\_header pattern. [\#1698](https://github.com/openeuropa/oe_theme/pull/1698) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-6445: Add new fields to Page header pattern. [\#1697](https://github.com/openeuropa/oe_theme/pull/1697) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-6564: Update to ECL 5.0.0-alpha.22.4. [\#1696](https://github.com/openeuropa/oe_theme/pull/1696) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-6540: Add secondary\_meta\_direction field to list\_item pattern. [\#1693](https://github.com/openeuropa/oe_theme/pull/1693) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-6447: Add patch for tabs component to support extra\_attributes for links. [\#1692](https://github.com/openeuropa/oe_theme/pull/1692) ([sergepavle](https://github.com/sergepavle))
+- EWPP-6543: Use Duet.js locally instead of fetching it from CDN. [\#1691](https://github.com/openeuropa/oe_theme/pull/1691) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-6523: Change the link type of the Site header CTA. [\#1690](https://github.com/openeuropa/oe_theme/pull/1690) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-6406: Add new fields to Text with Featured media and adapt the link type conditionally. [\#1688](https://github.com/openeuropa/oe_theme/pull/1688) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-6449: Fix various oe\_theme reported issues. [\#1687](https://github.com/openeuropa/oe_theme/pull/1687) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-6036: The Event speaker image is decorative, so remove the role="img" attribute. [\#1686](https://github.com/openeuropa/oe_theme/pull/1686) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-6297: A new variant to Tabs pattern. [\#1673](https://github.com/openeuropa/oe_theme/pull/1673) ([22Alexandra](https://github.com/22Alexandra))
+
 ## [5.0.0-beta20](https://github.com/openeuropa/oe_theme/tree/5.0.0-beta20) (2026-01-29)
 
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/5.0.0-beta19...5.0.0-beta20)
 
 **Merged pull requests:**
 
+- Fix github actions release job. [\#1685](https://github.com/openeuropa/oe_theme/pull/1685) ([22Alexandra](https://github.com/22Alexandra))
+- Release 5.0.0-beta20 changelog. [\#1684](https://github.com/openeuropa/oe_theme/pull/1684) ([22Alexandra](https://github.com/22Alexandra))
 - EWPP-6497: Fix tests related to AV Portal Videos params. [\#1683](https://github.com/openeuropa/oe_theme/pull/1683) ([22Alexandra](https://github.com/22Alexandra))
 
 ## [5.0.0-beta19](https://github.com/openeuropa/oe_theme/tree/5.0.0-beta19) (2026-01-21)

@@ -12,6 +12,9 @@
 #}
 {% if ecl_items %}
   {% include '@ecl-twig/pagination' with {
+    'label': label|default(''),
     'items': ecl_items,
+    'extra_classes': extra_classes|default(''),
+    'extra_attributes': extra_attributes|default([]),
   } %}
 {% endif %}

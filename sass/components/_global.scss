@@ -16,6 +16,9 @@ a {
     text-decoration: underline;
   }
 }
+a.ecl-tabs__link {
+  text-decoration: none!important;
+}
 
 .ecl {
   p:first-child {
