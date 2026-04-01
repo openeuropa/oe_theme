@@ -846,6 +846,8 @@ function oe_theme_preprocess_html(array &$variables): void {
       $variables['#attached']['library'][] = 'oe_theme/style_' . $component_library . '_rtl';
     }
   }
+  // Enabled auto init tooltips.
+  $variables['attributes']['data-ecl-auto-init'] = 'Tooltip';
 }
 
 /**

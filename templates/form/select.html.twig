@@ -55,6 +55,17 @@
   {% endif %}
 {% endfor %}
 
+{% set _input_extra_attributes = extra_attributes|default([]) %}
+{% set extra_attributes = [] %}
+
+{% for attribute in extra_attributes %}
+  {% if attribute.name in ['data-ecl-tooltip', 'data-ecl-tooltip-inverted'] %}
+    {% set _input_extra_attributes = _input_extra_attributes|merge([attribute]) %}
+  {% else %}
+    {% set extra_attributes = extra_attributes|merge([attribute]) %}
+  {% endif %}
+{% endfor %}
+
 {% include '@ecl-twig/form-group' with {
   label: label,
   id: attributes.id,
@@ -65,7 +76,7 @@
     id: attributes.id,
     name: attributes.name,
     extra_classes: extra_classes_input|default(''),
-    extra_attributes: extra_attributes_input|default([]),
+    extra_attributes: _input_extra_attributes|default([]),
     width: width|default('m'),
     options: _options|default([]),
     multiple: _multiple|default(false),
