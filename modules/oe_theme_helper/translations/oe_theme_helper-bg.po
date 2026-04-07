@@ -652,7 +652,7 @@ msgid "You are here:"
 msgstr "Вие сте тук:"
 
 msgid "Follow the European Commission"
-msgstr "Sledujte Evropskou komisi"
+msgstr "Следвайте Европейската комисия"
 
 msgid "Plans and reports"
 msgstr "Планове и доклади"
