@@ -109,10 +109,10 @@ class FeaturedItemAssert extends BasePatternAssert {
    */
   protected function assertFooterItems(?array $expected_info_items, Crawler $crawler): void {
     if (is_null($expected_info_items)) {
-      $this->assertElementNotExists('article.ecl-card .ecl-card__body ul.ecl-content-block__secondary-meta-container', $crawler);
+      $this->assertElementNotExists('article.ecl-card .ecl-card__body .ecl-content-block__secondary-meta-container', $crawler);
       return;
     }
-    $info_elements = $crawler->filter('article.ecl-card div.ecl-card__body ul.ecl-content-block__secondary-meta-container li.ecl-content-block__secondary-meta-item');
+    $info_elements = $crawler->filter('article.ecl-card div.ecl-card__body .ecl-content-block__secondary-meta-container .ecl-content-block__secondary-meta-item');
     self::assertCount(count($expected_info_items), $info_elements, 'The expected info items do not match the found info items.');
     foreach ($expected_info_items as $index => $expected_info_item) {
       $info_element = $info_elements->eq($index);
@@ -132,7 +132,7 @@ class FeaturedItemAssert extends BasePatternAssert {
    *   The DomCrawler where to check the element.
    */
   protected function assertBadges(?array $expected_badges, Crawler $crawler): void {
-    $base_selector = 'article.ecl-card div.ecl-card__body ul.ecl-content-block__label-container li.ecl-content-block__label-item';
+    $base_selector = 'article.ecl-card div.ecl-card__body .ecl-content-block__label-container .ecl-content-block__label-item';
     if (is_null($expected_badges)) {
       $this->assertElementNotExists('span.ecl-label', $crawler);
       return;
@@ -156,10 +156,10 @@ class FeaturedItemAssert extends BasePatternAssert {
    */
   protected function assertPrimaryMeta(?array $expected_items, Crawler $crawler): void {
     if (is_null($expected_items)) {
-      $this->assertElementNotExists('article.ecl-card .ecl-card__body ul.ecl-content-block__primary-meta-container', $crawler);
+      $this->assertElementNotExists('article.ecl-card .ecl-card__body .ecl-content-block__primary-meta-container', $crawler);
       return;
     }
-    $primary_meta_items = $crawler->filter('article.ecl-card .ecl-card__body ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item');
+    $primary_meta_items = $crawler->filter('article.ecl-card .ecl-card__body .ecl-content-block__primary-meta-container .ecl-content-block__primary-meta-item');
     self::assertCount(count($expected_items), $primary_meta_items, 'The expected primary meta items do not match the found meta items.');
     foreach ($expected_items as $index => $expected_item) {
       $primary_item = $primary_meta_items->eq($index);

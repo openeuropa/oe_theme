@@ -369,7 +369,7 @@ class ListItemAssert extends BasePatternAssert {
       $this->assertElementNotExists('.ecl-content-block__primary-meta-container', $crawler);
       return;
     }
-    $actual_items = $crawler->filter('li.ecl-content-block__primary-meta-item');
+    $actual_items = $crawler->filter('.ecl-content-block__primary-meta-item');
     self::assertCount(count($expected_items), $actual_items);
     foreach ($expected_items as $index => $expected_item) {
       self::assertEquals($expected_item, trim($actual_items->eq($index)->text()));
@@ -389,7 +389,7 @@ class ListItemAssert extends BasePatternAssert {
       $this->assertElementNotExists('.ecl-content-block__secondary-meta-container', $crawler);
       return;
     }
-    $actual_items = $crawler->filter('div.ecl-content-item__content-block ul.ecl-content-block__secondary-meta-container li.ecl-content-block__secondary-meta-item');
+    $actual_items = $crawler->filter('div.ecl-content-item__content-block .ecl-content-block__secondary-meta-container .ecl-content-block__secondary-meta-item');
     self::assertCount(count($expected_items), $actual_items, 'The expected secondary meta items do not match the found items.');
     foreach ($expected_items as $index => $expected_item) {
       $info_element = $actual_items->eq($index);

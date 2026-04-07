@@ -79,7 +79,7 @@ class ParagraphsTest extends WebDriverTestBase {
 
     // Assert paragraph values are displayed.
     $this->assertSession()->pageTextContains('Accordion item title');
-    $page->pressButton('Accordion item title');
+    $page->find('css', 'summary.ecl-accordion__toggle')->click();
     $this->assertSession()->pageTextContains('Accordion item body');
   }
 
