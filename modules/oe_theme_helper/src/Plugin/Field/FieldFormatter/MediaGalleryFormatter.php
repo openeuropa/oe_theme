@@ -121,7 +121,7 @@ class MediaGalleryFormatter extends MediaThumbnailUrlFormatter {
     return [
       'image_style' => '',
       'bundle_settings' => [],
-    ];
+    ] + parent::defaultSettings();
   }
 
   /**
