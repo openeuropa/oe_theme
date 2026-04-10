@@ -57,6 +57,7 @@
 
 {% include '@ecl-twig/form-group' with {
   label: label,
+  hide_label: hide_label|default(false),
   id: attributes.id,
   name: attributes.name,
   input: {
