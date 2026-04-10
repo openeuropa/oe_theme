@@ -106,21 +106,31 @@ class WebtoolsIconsProvider implements WebtoolsIconsProviderInterface {
       return $cache->data;
     }
 
-    $icons = $this->downloadWebtoolsIcons();
+    $icons = $this->downloadWebtoolsIcons()['data'] ?? [];
+
+    // Return without caching if json structure is corrupted.
+    if (empty($icons)) {
+      return [];
+    }
+
+    // Prepare data for specific icon families sorted by expected order.
+    // In case collision of icon name in different families for determining
+    // family, will be used first found in by following order.
+    $data = [
+      'flags' => $icons['flags'] ?? [],
+      'icons' => $icons['icons'] ?? [],
+      'networks' => $icons['networks'] ?? [],
+      'ecl' => $icons['ecl'] ?? [],
+    ];
 
     $this->cache->set(
       static::CACHE_ID,
-      [
-        'flags' => $icons['flags'] ?? [],
-        'icons' => $icons['icons'] ?? [],
-        'networks' => $icons['networks'] ?? [],
-        'ecl' => $icons['ecl'] ?? [],
-      ],
+      $data,
       CacheBackendInterface::CACHE_PERMANENT,
       $this->getCacheTags()
     );
 
-    return $icons;
+    return $data;
   }
 
   /**

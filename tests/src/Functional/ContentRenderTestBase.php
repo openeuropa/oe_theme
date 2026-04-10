@@ -38,6 +38,7 @@ abstract class ContentRenderTestBase extends BrowserTestBase {
     'path',
     'field_group',
     'oe_theme_helper',
+    'oe_theme_webtools_mock',
   ];
 
   /**

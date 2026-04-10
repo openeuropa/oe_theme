@@ -32,7 +32,6 @@ class IllustrationListsParagraphsTest extends ParagraphsTestBase {
     'oe_paragraphs_media_field_storage',
     'oe_paragraphs_illustrations_lists',
     'oe_time_caching',
-    'oe_theme_webtools_mock',
   ];
 
   /**
