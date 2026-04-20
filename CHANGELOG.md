@@ -1,11 +1,23 @@
 # Changelog
 
+## [5.0.0-rc1](https://github.com/openeuropa/oe_theme/tree/5.0.0-rc1) (2026-04-20)
+
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/5.0.0-beta21...5.0.0-rc1)
+
+**Merged pull requests:**
+
+- EWPP-6739: Update to ECL 5.0.0-RC2. [\#1714](https://github.com/openeuropa/oe_theme/pull/1714) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-6686: Add override of endpoint url for webtools icon provider service. [\#1713](https://github.com/openeuropa/oe_theme/pull/1713) ([sergepavle](https://github.com/sergepavle))
+- EWPP-6689: Update to ECL 5.0.0-RC1. [\#1709](https://github.com/openeuropa/oe_theme/pull/1709) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-6678: Fix footer translation swap between BG and CS. [\#1708](https://github.com/openeuropa/oe_theme/pull/1708) ([22Alexandra](https://github.com/22Alexandra))
+
 ## [5.0.0-beta21](https://github.com/openeuropa/oe_theme/tree/5.0.0-beta21) (2026-03-02)
 
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/5.0.0-beta20...5.0.0-beta21)
 
 **Merged pull requests:**
 
+- Release-5.0.0-beta21: Update changelog. [\#1700](https://github.com/openeuropa/oe_theme/pull/1700) ([nagyad](https://github.com/nagyad))
 - EWPP-6446: Add sources field to page\_header pattern. [\#1698](https://github.com/openeuropa/oe_theme/pull/1698) ([22Alexandra](https://github.com/22Alexandra))
 - EWPP-6445: Add new fields to Page header pattern. [\#1697](https://github.com/openeuropa/oe_theme/pull/1697) ([22Alexandra](https://github.com/22Alexandra))
 - EWPP-6564: Update to ECL 5.0.0-alpha.22.4. [\#1696](https://github.com/openeuropa/oe_theme/pull/1696) ([22Alexandra](https://github.com/22Alexandra))

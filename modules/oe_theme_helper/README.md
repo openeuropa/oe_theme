@@ -26,6 +26,14 @@ settings:
   allowed_values: { ... old values ... }
   allowed_values_function: _custom_function_calling_the_webtools_icons_provider
 ```
+
+To override the default webtools endpoint for retrieving icons data, you can add the:
+```
+$settings['webtools_wshape.url'] = 'https://webtools.europa.eu/rest/wshape';
+```
+in settings.php file. This will make the webtools icons provider use the specified endpoint instead of the default one (`https://webtools.europa.eu/rest/wshape`).
+If you wish to use the default, you don't need to do anything, it works out of the box.
+
 For more information take a look at the [Webtools Icons Provider](modules/oe_theme_helper/src/WebtoolsIconsProviderInterface.php) interface.
 
 ## Additional Twig filters

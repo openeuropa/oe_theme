@@ -8,6 +8,8 @@ use Drupal\Component\Datetime\TimeInterface;
 use Drupal\Core\Cache\CacheBackendInterface;
 use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\Core\Logger\LoggerChannelFactoryInterface;
+use Drupal\Core\Site\Settings;
+use Drupal\Core\Url;
 use Drupal\oe_time_caching\Cache\TimeBasedCacheTagGeneratorInterface;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\ConnectException;
@@ -22,7 +24,7 @@ class WebtoolsIconsProvider implements WebtoolsIconsProviderInterface {
 
   public const CACHE_TAG = 'oe_theme_webtools_icons';
 
-  public const ICONS_URL = 'https://webtools.europa.eu/icons.json';
+  public const ICONS_URL = 'https://webtools.europa.eu/rest/wshape';
 
   /**
    * Constructs a WebtoolsIconsProvider object.
@@ -104,21 +106,31 @@ class WebtoolsIconsProvider implements WebtoolsIconsProviderInterface {
       return $cache->data;
     }
 
-    $icons = $this->downloadWebtoolsIcons();
+    $icons = $this->downloadWebtoolsIcons()['data'] ?? [];
+
+    // Return without caching if json structure is corrupted.
+    if (empty($icons)) {
+      return [];
+    }
+
+    // Prepare data for specific icon families sorted by expected order.
+    // In case collision of icon name in different families for determining
+    // family, will be used first found in by following order.
+    $data = [
+      'flags' => $icons['flags'] ?? [],
+      'icons' => $icons['icons'] ?? [],
+      'networks' => $icons['networks'] ?? [],
+      'ecl' => $icons['ecl'] ?? [],
+    ];
 
     $this->cache->set(
       static::CACHE_ID,
-      [
-        'flags' => $icons['flags'] ?? [],
-        'icons' => $icons['icons'] ?? [],
-        'networks' => $icons['networks'] ?? [],
-        'ecl' => $icons['ecl'] ?? [],
-      ],
+      $data,
       CacheBackendInterface::CACHE_PERMANENT,
       $this->getCacheTags()
     );
 
-    return $icons;
+    return $data;
   }
 
   /**
@@ -164,28 +176,39 @@ class WebtoolsIconsProvider implements WebtoolsIconsProviderInterface {
   /**
    * Downloads the webtools icons from the JSON file.
    *
+   * @param string|null $icons_family
+   *   The icons family.
+   *
    * @return array
    *   The array of icons.
    */
-  protected function downloadWebtoolsIcons(): array {
+  protected function downloadWebtoolsIcons(?string $icons_family = NULL): array {
+    $icons_url = Settings::get('webtools_wshape.url') ?: static::ICONS_URL;
     try {
-      $json_response = $this->httpClient->get(static::ICONS_URL);
+      /** @var \Drupal\Core\Url $url */
+      $url = Url::fromUri($icons_url);
+
+      if (!empty($icons_family)) {
+        $url->setOption('query', ['family' => $icons_family]);
+      }
+
+      $json_response = $this->httpClient->get($url->setAbsolute()->toString());
       $icons = json_decode(
         json: $json_response->getBody()->getContents(),
         associative: TRUE,
         flags: JSON_THROW_ON_ERROR
       );
     }
-    catch (RequestException | ConnectException $e) {
+    catch (RequestException | \InvalidArgumentException | ConnectException $e) {
       $this->loggerFactory->get('oe_theme')->error('HTTP request to @url failed with error: @error.', [
-        '@url' => static::ICONS_URL,
+        '@url' => $icons_url,
         '@error' => $e->getMessage(),
       ]);
       return [];
     }
     catch (\JsonException $e) {
       $this->loggerFactory->get('oe_theme')->error('Failed to decode JSON response from @url with error: @error.', [
-        '@url' => static::ICONS_URL,
+        '@url' => $icons_url,
         '@error' => $e->getMessage(),
       ]);
       return [];

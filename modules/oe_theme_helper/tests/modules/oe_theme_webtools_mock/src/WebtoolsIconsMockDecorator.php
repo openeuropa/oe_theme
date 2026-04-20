@@ -48,7 +48,7 @@ class WebtoolsIconsMockDecorator extends WebtoolsIconsProvider {
   /**
    * {@inheritdoc}
    */
-  protected function downloadWebtoolsIcons(): array {
+  protected function downloadWebtoolsIcons(?string $icons_family = NULL): array {
     $path = $this->extensionPathResolver->getPath('module', 'oe_theme_webtools_mock');
     $json_string = file_get_contents($path . '/assets/icons.json');
     return Json::decode($json_string);

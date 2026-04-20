@@ -92,19 +92,19 @@ class ParagraphsTest extends ParagraphsTestBase {
 
     $crawler = new Crawler($html);
 
-    $actual = $crawler->filter('.ecl-accordion__title button.ecl-accordion__toggle span.ecl-accordion__toggle-title')->eq(0)->text();
+    $actual = $crawler->filter('details.ecl-accordion__item summary.ecl-accordion__toggle')->eq(0)->text();
     $this->assertEquals('Item title 1', trim($actual));
 
     $actual = $crawler->filter('.ecl-accordion__content')->eq(0)->text();
     $this->assertEquals('Item body 1', trim($actual));
 
-    $actual = $crawler->filter('.ecl-accordion__title button.ecl-accordion__toggle span.ecl-accordion__toggle-title')->eq(1)->text();
+    $actual = $crawler->filter('details.ecl-accordion__item summary.ecl-accordion__toggle')->eq(1)->text();
     $this->assertEquals('Item title 2', trim($actual));
 
     $actual = $crawler->filter('.ecl-accordion__content')->eq(1)->text();
     $this->assertEquals('Item body 2', trim($actual));
 
-    $this->assertCount(4, $crawler->filter('.ecl-accordion__title button.ecl-accordion__toggle .ecl-accordion__toggle-icon'));
+    $this->assertCount(4, $crawler->filter('details.ecl-accordion__item summary.ecl-accordion__toggle .ecl-accordion__toggle-icon'));
   }
 
   /**
