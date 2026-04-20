@@ -55,7 +55,8 @@
         "openeuropa/oe_multilingual": "^1.18",
         "openeuropa/oe_paragraphs": "dev-master",
         "openeuropa/oe_search": "2.x-dev",
-        "openeuropa/rdf_skos": "^1.0.0"
+        "openeuropa/rdf_skos": "^1.0.0",
+        "drupal/drupal-driver": "2.4.3"
     },
     "scripts": {
         "post-install-cmd": "./vendor/bin/run drupal:site-setup",
@@ -109,7 +110,8 @@
             "Explicit requirement of lullabot/mink-selenium2-driver v1.6.0 to ensure dragTo() keeps working in tests. Aliased as 1.7.3 because core-dev requires it on that version.",
             "autoload-dev: explicitly mapping EntityReferenceFieldCreationTrait to prevent failures.",
             "Patch for drupal/driver refers to https://github.com/jhedstrom/DrupalDriver/pull/235",
-            "Locking extra_field to 3.0.0-beta1 due to issues, will be fixed in EWPP-6001."
+            "Locking extra_field to 3.0.0-beta1 due to issues, will be fixed in EWPP-6001.",
+            "Locking drupal/driver until the patch gets updated."
         ]
     },
     "config": {
