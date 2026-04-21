@@ -1,8 +1,19 @@
 name: Tabs
 description: 'The tabs component is used to navigation links in separate tabs.'
+variants:
+  default:
+    title: 'Navigational element'
+    description: 'Tabs used as navigational elements.'
+  tab_behaviour:
+    title: 'Tabbed interface'
+    description: 'Tabs used as tabbed interface (does not refresh when changing the tabs). The tab item''s path has to match the id of the element to be displayed inside.'
 props:
   type: object
   properties:
+    variant:
+      type: ['string', 'null']
+      title: Variant
+      description: 'The variant of the tabs component.'
     items:
       type: ['array', 'null']
       title: 'Tabs items'
@@ -19,6 +30,10 @@ props:
       type: ['string', 'null']
       title: 'Next label'
       description: 'Label for the next button (mobile only); this is for screen readers'
+    color_mode:
+      type: ['string', 'null']
+      title: 'Color mode'
+      description: 'Name of the color mode.'
     extra_classes:
       type: ['string', 'null']
       title: 'Extra classes string'

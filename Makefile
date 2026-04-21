@@ -17,7 +17,7 @@ build-ecl:
 	cd ./ecl-build && pnpm install --stream
 	# Add ECL dependencies that cannot be required by ECL.
 	# @see https://github.com/ec-europa/europa-component-library#warning-momentjs
-	cd ./ecl-build && pnpm add moment@2.29.1 pikaday@1.8.2 svg4everybody@2.1.9 @ecl/theme-ec @ecl/theme-eu @ecl/utility-background @ecl/utility-background @ecl/utility-border @ecl/grid @ecl/mixins-color @ecl/twig-templates sass -w
+	cd ./ecl-build && pnpm add moment@2.29.1 @duetds/date-picker@1.4.0 svg4everybody@2.1.9 @ecl/theme-ec @ecl/theme-eu @ecl/utility-background @ecl/utility-background @ecl/utility-border @ecl/grid @ecl/mixins-color @ecl/twig-templates sass -w
 	cd ./ecl-build && pnpm dist:presets
 
 ## compile-sass: compile SASS.
@@ -41,6 +41,7 @@ copy-dist:
 	mkdir dist/js
 	cp -r ./ecl-build/dist/packages/ec dist/ec
 	cp -r ./ecl-build/dist/packages/eu dist/eu
+	cp -r ./ecl-build/node_modules/@duetds/date-picker/dist ./dist/duet
 	cp ./ecl-build/node_modules/moment/min/moment.min.js ./dist/js
 	cp ./ecl-build/node_modules/svg4everybody/dist/svg4everybody.js ./dist/js
 

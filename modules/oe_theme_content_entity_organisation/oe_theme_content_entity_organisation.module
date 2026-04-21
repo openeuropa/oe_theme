@@ -18,6 +18,11 @@ use Drupal\oe_theme\ValueObject\ImageValueObject;
  */
 function oe_theme_content_entity_organisation_preprocess_oe_organisation(&$variables): void {
   $entity = $variables['entity'];
+  // This preprocess applies only for the "Stakeholder" bundle.
+  if ($entity->bundle() !== 'oe_stakeholder') {
+    return;
+  }
+
   $fields_values = ['name' => 'name', 'oe_acronym' => 'acronym'];
   foreach ($fields_values as $entity_field => $pattern_field) {
     if (!$entity->get($entity_field)->isEmpty()) {

@@ -111,7 +111,7 @@ class SiteNavigationBlock extends SystemMenuBlock {
     // Adjust the menu tree parameters based on the block's configuration.
     $level = $this->configuration['level'];
     $parameters->setMinDepth($level);
-    $parameters->setMaxDepth(min($level + 1, $this->menuTree->maxDepth()));
+    $parameters->setMaxDepth(min($level + 2, $this->menuTree->maxDepth()));
 
     $site_info = $this->configFactory->get('system.site');
     $build = [

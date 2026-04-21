@@ -36,6 +36,11 @@
     }
   } %}
 {% endif %}
+{% if sources is not empty and sources is iterable %}
+  {% set _picture_background = _picture_background|merge({
+    'sources': sources,
+  }) %}
+{% endif %}
 {% if thumbnail.src is not empty %}
   {% set _picture_thumbnail = {
     'img': {
@@ -88,10 +93,14 @@
   'title': title,
   'picture_thumbnail': _picture_thumbnail|default([]),
   'description': introduction,
+  'description_position': introduction_position|default('top'),
   'expandable': expandable|default([]),
   'breadcrumb': _breadcrumb,
   'meta': metas|filter_empty,
   'picture_background': _picture_background|default([]),
-  'extra_classes': _extra_classes|join(' '),
+  'picture_position': background_image_position|default('top'),
   'hide_title': hide_title|default(false),
+  'color_mode': color_mode|default(''),
+  'has_background': has_background|default(false),
+  'extra_classes': extra_classes|default(''),
 } %}

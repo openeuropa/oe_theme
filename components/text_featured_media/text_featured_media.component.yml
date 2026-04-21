@@ -68,3 +68,23 @@ props:
       type: ['object', 'null']
       title: Expandable
       description: 'Optional expandable text block with extra information about the media item. The block cannot be rendered without actual text and the id must be unique on the page.'
+    sources:
+      type: ['array', 'null']
+      title: 'Image sources'
+      description: 'Array containing different sized image depending on the screen size.'
+    horizontal_alignment:
+      type: ['string', 'null']
+      title: 'Horizontal alignment'
+      description: 'The horizontal alignment of the text. It can be "left" or "center" and it defaults to "left".'
+    vertical_alignment:
+      type: ['string', 'null']
+      title: 'Vertical alignment'
+      description: 'The vertical alignment of the text. It can be "top" or "center" and it defaults to "top".'
+    media_behavior:
+      type: ['string', 'null']
+      title: 'Media behavior'
+      description: 'The fill behavior of the media. It can be "static" or "dynamic" and it defaults to "static".'
+    image_anchor:
+      type: ['string', 'null']
+      title: 'Image anchor'
+      description: 'The image anchor uses the background-position CSS property, so it accepts the same values as the properties.'

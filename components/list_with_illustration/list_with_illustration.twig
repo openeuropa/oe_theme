@@ -85,6 +85,7 @@
   {# Set specific values for the number_list variant. #}
   {% if variant == 'number_list' %}
     {% set icon_list = false %}
+    {% set icon_inline = false %}
     {% set number_list = true %}
     {% set _items = [] %}
     {% for item in items %}
@@ -107,5 +108,5 @@
   'extra_classes': extra_classes|default(''),
   'divider': divider ?? false,
   'counter_start': counter_start|default(0),
-  'icon_inline': icon_inline ?? false,
+  'icon_inline': icon_inline|default(false),
 } only %}

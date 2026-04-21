@@ -38,6 +38,7 @@ module.exports = {
     },
   ],
   copy: [
+    { from: path.resolve(nodeModules, '@duetds/date-picker/dist'), to: path.resolve(outputFolder, 'dist/duet') },
     { from: path.resolve(nodeModules, '@ecl/ec-preset-editor/dist'), to: path.resolve(outputFolder, 'dist') },
     { from: path.resolve(nodeModules, '@ecl/preset-reset/dist'), to: path.resolve(outputFolder, 'dist/preset-reset') },
     { from: path.resolve(nodeModules, '@ecl/preset-ec/dist'), to: path.resolve(outputFolder, 'dist/ec') },

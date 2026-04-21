@@ -159,7 +159,11 @@ function oe_theme_theme_suggestions_input_alter(array &$suggestions, array $vari
     $suggestions[] = 'input__time';
   }
 
-  if (isset($element['#id']) && $element['#id'] === 'admin-toolbar-search-input') {
+  $admin_toolbar_search_form_ids = [
+    'admin-toolbar-search-input',
+    'admin-toolbar-search-field-input',
+  ];
+  if (isset($element['#id']) && in_array($element['#id'], $admin_toolbar_search_form_ids)) {
     // Don't use the `input--search.html.twig` because it does not work here.
     $suggestions = array_diff($suggestions, ['input__search']);
     // Add the base theme hook as a suggestion.
@@ -430,7 +434,11 @@ function oe_theme_preprocess_fieldset(array &$variables): void {
  */
 function oe_theme_preprocess_form_element(array &$variables): void {
   $variables['margin'] = TRUE;
-  if (isset($variables['element']['#id']) && $variables['element']['#id'] === 'admin-toolbar-search-input') {
+  $admin_toolbar_search_form_ids = [
+    'admin-toolbar-search-input',
+    'admin-toolbar-search-field-input',
+  ];
+  if (isset($variables['element']['#id']) && in_array($variables['element']['#id'], $admin_toolbar_search_form_ids)) {
     $variables['margin'] = FALSE;
   }
   if (in_array($variables['element']['#type'], ['checkbox', 'radio', 'select'])) {
@@ -867,6 +875,7 @@ function oe_theme_preprocess_paragraph__oe_list_item(array &$variables): void {
 function oe_theme_preprocess_paragraph__oe_list_item_block(array &$variables): void {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
   $paragraph = $variables['paragraph'];
+  $variables['title'] = !$paragraph->get('field_oe_title')->isEmpty() ? $paragraph->get('field_oe_title')->value : '';
 
   // Set up the correct variant name.
   $variables['variant'] = 'list_item_block_' . $paragraph->get('field_oe_list_item_block_layout')->first()->value;
@@ -1032,10 +1041,17 @@ function oe_theme_preprocess_paragraph__oe_text_feature_media(array &$variables)
     return;
   }
 
-  // If its an image media, render it and assign it to the image variable.
+  // If it's an image media, render it and assign it to the image variable.
   if ($source instanceof MediaAvPortalPhotoSource || $source instanceof Image) {
     $thumbnail = $media->get('thumbnail')->first();
     $variables['image'] = ImageValueObject::fromStyledImageItem($thumbnail, 'oe_theme_medium_no_crop');
+    $image_object = ImageValueObject::fromStyledImageItem($thumbnail, 'oe_theme_medium_2x_no_crop');
+    $variables['sources'] = [
+      [
+        'src' => $image_object->getSource(),
+        'media' => '(min-width: 996px)',
+      ],
+    ];
     $cacheability->applyTo($variables);
     return;
   }
@@ -2382,13 +2398,14 @@ function oe_theme_preprocess_select(&$variables) {
  * Implements hook_page_attachments_alter().
  */
 function oe_theme_page_attachments_alter(array &$attachments) {
+  $oe_theme_path = \Drupal::service('extension.list.theme')->getPath('oe_theme');
   // Add the CDN file required for ECL datepicker to work.
   $attachments['#attached']['html_head'][] = [
     [
       '#tag' => 'script',
       '#attributes' => [
         'type' => 'module',
-        'src' => 'https://cdn.jsdelivr.net/npm/@duetds/date-picker@1.4.0/dist/duet/duet.esm.js',
+        'src' => base_path() . $oe_theme_path . '/dist/duet/duet/duet.esm.js',
       ],
     ],
     'duetjs',
@@ -2401,7 +2418,6 @@ function oe_theme_page_attachments_alter(array &$attachments) {
   // Use different favicon based on theme component library.
   $active_theme = \Drupal::theme()->getActiveTheme();
   if ($active_theme->getName() === 'oe_theme' || array_key_exists('oe_theme', $active_theme->getBaseThemeExtensions())) {
-    $oe_theme_path = \Drupal::service('extension.list.theme')->getPath('oe_theme');
     $active_theme_path = $active_theme->getPath();
     $component_library = theme_get_setting('component_library') ?? 'ec';
     $favicon = DRUPAL_ROOT . '/' . $active_theme_path . "/images/favicons/$component_library/favicon.ico";
