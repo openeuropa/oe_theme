@@ -109,9 +109,6 @@
         "patches": {
             "drupal/core": {
                 "https://www.drupal.org/project/drupal/issues/3151609": "https://git.drupalcode.org/project/drupal/-/merge_requests/8386.diff"
-            },
-            "drupal/drupal-driver": {
-                "allow-date-only-date-fields": "https://raw.githubusercontent.com/kbrodej/oe_theme/refs/heads/4.5.0/patches/drupal-driver.patch"
             }
         },
         "drupal-scaffold": {
