@@ -19,7 +19,6 @@
         "openeuropa/oe_webtools": "dev-EWPP-6514"
     },
     "require-dev": {
-        "lullabot/mink-selenium2-driver": "1.6.0 as 1.7.3",
         "composer/installers": "^2.3",
         "drupal/address": "~2",
         "drupal/composite_reference": "^2.1",
@@ -109,7 +108,6 @@
             }
         },
         "_readme": [
-            "Explicit requirement of lullabot/mink-selenium2-driver v1.6.0 to ensure dragTo() keeps working in tests. Aliased as 1.7.3 because core-dev requires it on that version.",
             "autoload-dev: explicitly mapping EntityReferenceFieldCreationTrait to prevent failures.",
             "Patch for drupal/driver refers to https://github.com/jhedstrom/DrupalDriver/pull/235",
             "Locking extra_field to 3.0.0-beta1 due to issues, will be fixed in EWPP-6001.",
