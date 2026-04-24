@@ -8,7 +8,8 @@
     "require": {
         "php": ">=8.1",
         "cweagans/composer-patches": "^2.0",
-        "drupal/core": "^10.3 || ^11",
+        "drupal/core": "~11.2.0",
+        "drupal/core-composer-scaffold": "~11.2.0",
         "drupal/smart_trim": "^2",
         "drupal/stable": "^2.0",
         "drupal/twig_field_value": "^2.0",
@@ -23,7 +24,6 @@
         "drupal/address": "~2",
         "drupal/composite_reference": "^2.1",
         "drupal/config_devel": "^1.9",
-        "drupal/core-composer-scaffold": "^10.3 || ^11",
         "drupal/core-dev": "^10.3 || ^11",
         "drupal/core-utility": "^10.3 || ^11",
         "drupal/datetime_range_timezone": "^1.0.0-alpha4",
