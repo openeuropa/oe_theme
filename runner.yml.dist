@@ -125,6 +125,6 @@ toolkit:
     BEHAT: true
     PHPUNIT: true
     SELENIUM: true
-    SELENIUM_VERSION: 4.1.3-20220405
+    SELENIUM_VERSION: 127.0
     SPARQL: true
     SPARQL_VERSION: 1.47.0
