@@ -44,7 +44,7 @@ navigation_menu:
       type: "numeric"
       label: "Lines limit for first level items"
       description: "Number of maximum lines for each first level item label. It defaults to 2, set it to zero to remove this behavior."
-      preview: 1
+      preview: 2
       escape: false
     featured_priority:
       type: "text"
