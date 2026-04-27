@@ -4813,7 +4813,7 @@
   assertions:
     count:
       'div.ecl-fact-figures.ecl-fact-figures--col-2.ecl-color-mode--purple.ecl-fact-figures--centered div.ecl-fact-figures__items': 1
-      'div.ecl-fact-figures__item:nth-child(1) span.ecl-icon.ecl-icon--l.ecl-fact-figures__icon.wt-icon-networks-color--instagram': 1
+      'div.ecl-fact-figures__item:nth-child(1) span.ecl-icon.ecl-icon--l.ecl-fact-figures__icon.wt-icon-networks--instagram': 1
       'div.ecl-fact-figures__item:nth-child(2) span.ecl-icon.ecl-icon--l.ecl-fact-figures__icon.wt-icon--external': 1
       'div.ecl-fact-figures__view-all': 1
       'div.ecl-fact-figures__view-all span.ecl-icon.ecl-icon--2xs.ecl-link__icon.wt-icon--external': 1
