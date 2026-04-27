@@ -16,7 +16,7 @@
         "drupal/ui_patterns": "^1.11",
         "openeuropa/ecl-twig-loader": "^4.0",
         "openeuropa/oe_time_caching": "^1.5",
-        "openeuropa/oe_webtools": "dev-EWPP-6514"
+        "openeuropa/oe_webtools": "^1.35"
     },
     "require-dev": {
         "composer/installers": "^2.3",
