@@ -11,6 +11,7 @@ dependencies:
   - oe_time_caching:oe_time_caching
   - oe_webtools:oe_webtools
   - twig_field_value:twig_field_value
+  - node_storage_body_field:node_storage_body_field
 
 'interface translation project': oe_theme_helper
 # The path to the actual translations is defined in

@@ -8,6 +8,7 @@
 declare(strict_types=1);
 
 use Drupal\Component\Render\FormattableMarkup;
+use Drupal\Component\Utility\DeprecationHelper;
 use Drupal\Component\Utility\Html;
 use Drupal\Component\Utility\UrlHelper;
 use Drupal\Core\Cache\CacheableDependencyInterface;
@@ -55,7 +56,7 @@ function oe_theme_form_system_theme_settings_alter(&$form, FormStateInterface &$
       'ec' => t('European Commission'),
       'eu' => t('European Union'),
     ],
-    '#default_value' => theme_get_setting('component_library'),
+    '#default_value' => _oe_theme_helper_get_theme_setting('component_library'),
     '#description' => t('Choose "European Commission" for websites hosted under the ec.europa.eu domain and "European Union" for websites hosted under the europa.eu domain.'),
   ];
 
@@ -66,7 +67,7 @@ function oe_theme_form_system_theme_settings_alter(&$form, FormStateInterface &$
       'core' => t('Core'),
       'standardised' => t('Standardised'),
     ],
-    '#default_value' => theme_get_setting('branding') ?? 'core',
+    '#default_value' => _oe_theme_helper_get_theme_setting('branding') ?? 'core',
     '#description' => t('Choose the ECL branding for your website. Use "Core" for cross-institutional sites and "Standardised" for DG/Agency specific sites.'),
   ];
 }
@@ -75,8 +76,8 @@ function oe_theme_form_system_theme_settings_alter(&$form, FormStateInterface &$
  * Implements hook_preprocess().
  */
 function oe_theme_preprocess(&$variables) {
-  $variables['ecl_component_library'] = theme_get_setting('component_library');
-  $variables['ecl_branding'] = theme_get_setting('branding') ?? 'core';
+  $variables['ecl_component_library'] = _oe_theme_helper_get_theme_setting('component_library');
+  $variables['ecl_branding'] = _oe_theme_helper_get_theme_setting('branding') ?? 'core';
   $variables['ecl_images_path'] = base_path() . \Drupal::service('extension.list.theme')->getPath('oe_theme') . '/dist/' . $variables['ecl_component_library'] . '/images';
   $variables['ecl_icon_path'] = $variables['ecl_images_path'] . '/icons/sprites/icons.svg';
   $variables['ecl_logo_path'] = $variables['ecl_images_path'] . '/logo';
@@ -842,7 +843,7 @@ function oe_theme_preprocess_html(array &$variables): void {
   if ($variables['html_attributes']['dir']->value() === 'rtl') {
     $active_theme = \Drupal::theme()->getActiveTheme();
     if ($active_theme->getName() === 'oe_theme' || array_key_exists('oe_theme', $active_theme->getBaseThemeExtensions())) {
-      $component_library = theme_get_setting('component_library') ?? 'ec';
+      $component_library = _oe_theme_helper_get_theme_setting('component_library') ?? 'ec';
       $variables['#attached']['library'][] = 'oe_theme/style_' . $component_library . '_rtl';
     }
   }
@@ -1736,7 +1737,13 @@ function _oe_theme_load_from_responsive_image_style_id(string $responsive_image_
   $breakpoints = array_reverse(\Drupal::service('breakpoint.manager')->getBreakpointsByGroup($responsive_image_style->getBreakpointGroup()));
   foreach ($responsive_image_style->getKeyedImageStyleMappings() as $breakpoint_id => $multipliers) {
     if (isset($breakpoints[$breakpoint_id])) {
-      $responsive_image = _responsive_image_build_source_attributes(['uri' => $uri], $breakpoints[$breakpoint_id], $multipliers);
+      $responsive_image = DeprecationHelper::backwardsCompatibleCall(
+        \Drupal::VERSION,
+        '11.3.0',
+        static fn () => \Drupal::service('Drupal\responsive_image\ResponsiveImageBuilder')
+          ->buildSourceAttributes(['uri' => $uri], $breakpoints[$breakpoint_id], $multipliers),
+        static fn () => _responsive_image_build_source_attributes(['uri' => $uri], $breakpoints[$breakpoint_id], $multipliers),
+      );
       $responsive_image_array = $responsive_image->toArray();
       $responsive_image_generator['sources'][] = [
         'src' => $responsive_image_array['srcset'],
@@ -1746,7 +1753,13 @@ function _oe_theme_load_from_responsive_image_style_id(string $responsive_image_
   }
 
   // Add fallback style.
-  $responsive_image_generator['fallback'] = _responsive_image_image_style_url($responsive_image_style->getFallbackImageStyle(), $uri);
+  $responsive_image_generator['fallback'] = DeprecationHelper::backwardsCompatibleCall(
+    \Drupal::VERSION,
+    '11.3.0',
+    static fn () => \Drupal::service('Drupal\responsive_image\ResponsiveImageBuilder')
+      ->getImageStyleUrl($responsive_image_style->getFallbackImageStyle(), $uri),
+    static fn () => _responsive_image_image_style_url($responsive_image_style->getFallbackImageStyle(), $uri),
+  );
 
   return $responsive_image_generator;
 }
@@ -1756,7 +1769,7 @@ function _oe_theme_load_from_responsive_image_style_id(string $responsive_image_
  */
 function oe_theme_theme_suggestions_page_alter(array &$suggestions, array $variables): void {
   // Set branding template in the beginning as more common.
-  $branding = theme_get_setting('branding') ?? 'core';
+  $branding = _oe_theme_helper_get_theme_setting('branding') ?? 'core';
   array_unshift($suggestions, 'page__ecl_branding__' . $branding);
 
   $route = \Drupal::routeMatch();
@@ -1841,7 +1854,7 @@ function oe_theme_theme_suggestions_block_alter(array &$suggestions, array $vari
  * Implements hook_theme_suggestions_HOOK_alter().
  */
 function oe_theme_theme_suggestions_oe_corporate_blocks_ec_footer_alter(array &$suggestions, array $variables) {
-  $branding = theme_get_setting('branding') ?? 'core';
+  $branding = _oe_theme_helper_get_theme_setting('branding') ?? 'core';
   $suggestions[] = 'oe_corporate_blocks_ec_footer__' . $branding;
 }
 
@@ -1849,7 +1862,7 @@ function oe_theme_theme_suggestions_oe_corporate_blocks_ec_footer_alter(array &$
  * Implements hook_theme_suggestions_HOOK_alter().
  */
 function oe_theme_theme_suggestions_oe_corporate_blocks_eu_footer_alter(array &$suggestions, array $variables) {
-  $branding = theme_get_setting('branding') ?? 'core';
+  $branding = _oe_theme_helper_get_theme_setting('branding') ?? 'core';
   $suggestions[] = 'oe_corporate_blocks_eu_footer__' . $branding;
 }
 
@@ -2591,7 +2604,7 @@ function oe_theme_page_attachments_alter(array &$attachments) {
     'duetjs',
   ];
   // If the theme is configured to not use the theme favicon, bail out.
-  if (!theme_get_setting('favicon.use_default')) {
+  if (!_oe_theme_helper_get_theme_setting('favicon.use_default')) {
     return;
   }
 
@@ -2599,7 +2612,7 @@ function oe_theme_page_attachments_alter(array &$attachments) {
   $active_theme = \Drupal::theme()->getActiveTheme();
   if ($active_theme->getName() === 'oe_theme' || array_key_exists('oe_theme', $active_theme->getBaseThemeExtensions())) {
     $active_theme_path = $active_theme->getPath();
-    $component_library = theme_get_setting('component_library') ?? 'ec';
+    $component_library = _oe_theme_helper_get_theme_setting('component_library') ?? 'ec';
     $favicon = DRUPAL_ROOT . '/' . $active_theme_path . "/images/favicons/$component_library/favicon.ico";
     foreach ($attachments['#attached']['html_head_link'] as &$link) {
       if ($link[0]['rel'] !== 'icon') {
@@ -2645,7 +2658,7 @@ function _oe_theme_sanitize_url($url): mixed {
  * Implements hook_library_info_alter().
  */
 function oe_theme_library_info_alter(array &$libraries) {
-  $component_library = theme_get_setting('component_library') ?? 'ec';
+  $component_library = _oe_theme_helper_get_theme_setting('component_library') ?? 'ec';
   if (isset($libraries['inpage_navigation'])) {
     $libraries['inpage_navigation']['dependencies'][] = 'oe_theme/component_library_' . $component_library;
   }

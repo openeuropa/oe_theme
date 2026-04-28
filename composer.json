@@ -8,6 +8,7 @@
     "require": {
         "php": ">=8.1",
         "cweagans/composer-patches": "^2.0",
+        "drupal/backport_node_storage_body_field": "^1 || ^2",
         "drupal/core": "^10.3 || ^11",
         "drupal/smart_trim": "^2",
         "drupal/stable": "^2.0",
@@ -18,7 +19,6 @@
         "openeuropa/oe_webtools": "^1.35"
     },
     "require-dev": {
-        "lullabot/mink-selenium2-driver": "1.6.0 as 1.7.3",
         "composer/installers": "^2.3",
         "drupal/address": "~2",
         "drupal/composite_reference": "^2.1",
@@ -38,6 +38,7 @@
         "drupal/inline_entity_form": "~3",
         "drupal/json_field": "^1.2",
         "drupal/media_avportal": "~2",
+        "drupal/rdf_skos": "^1.4",
         "drupal/renderviz": "^1.0@alpha",
         "drupal/styleguide": "^2.1.1",
         "drupal/typed_link": "^2.0",
@@ -46,13 +47,13 @@
         "friends-of-behat/service-container-extension": "^1.0",
         "openeuropa/behat-transformation-context": "^0.3",
         "openeuropa/code-review-drupal": "^1.0.0-alpha1",
-        "openeuropa/oe_contact_forms": "^1.14",
+        "openeuropa/oe_contact_forms": "^1.24.0",
         "openeuropa/oe_content": "4.x-dev",
         "openeuropa/oe_corporate_blocks": "5.x-dev",
-        "openeuropa/oe_corporate_countries": "^2.3",
+        "openeuropa/oe_corporate_countries": "2.x-dev",
         "openeuropa/oe_corporate_site_info": "1.x-dev",
-        "openeuropa/oe_media": "^1.32",
-        "openeuropa/oe_multilingual": "^1.18",
+        "openeuropa/oe_media": "dev-master as 1.37.0",
+        "openeuropa/oe_multilingual": "dev-master",
         "openeuropa/oe_paragraphs": "dev-master",
         "openeuropa/oe_search": "2.x-dev",
         "openeuropa/rdf_skos": "^1.0.0",
@@ -107,7 +108,6 @@
             }
         },
         "_readme": [
-            "Explicit requirement of lullabot/mink-selenium2-driver v1.6.0 to ensure dragTo() keeps working in tests. Aliased as 1.7.3 because core-dev requires it on that version.",
             "autoload-dev: explicitly mapping EntityReferenceFieldCreationTrait to prevent failures.",
             "Patch for drupal/driver refers to https://github.com/jhedstrom/DrupalDriver/pull/235",
             "Locking extra_field to 3.0.0-beta1 due to issues, will be fixed in EWPP-6001.",
