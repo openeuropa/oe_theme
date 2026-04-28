@@ -1,0 +1,59 @@
+{#
+/**
+ * @file
+ * Reveal Quiz component.
+ */
+#}
+
+{# Prepare the items array for the Reveal variant of the Quiz ECL component. #}
+{% set _items = [] %}
+{% if items is not empty and items is iterable %}
+  {% for item in items %}
+    {% set _item = [] %}
+    {% set _icon = [] %}
+    {% if item.question is not empty and item.answer is not empty %}
+      {# Add the item properties needed for the Reveal variant only. #}
+      {% if item.icon_family is not empty and item.icon_family == 'icons' %}
+        {% set _icon = _icon|merge({
+          icon: {
+            name: item.icon_name|default('sparkle'),
+            size: 'xl',
+          }
+        }) %}
+      {% else %}
+        {% set _icon = _icon|merge({
+          icon: {
+            name: item.icon_name|default('sparkle'),
+            family: item.icon_family|default('phosphor'),
+            size: 'xl',
+          }
+        }) %}
+      {% endif %}
+      {% set _item = _item|merge([{
+        question: item.question,
+        answer: item.answer|default(''),
+        icon: _icon,
+        back_text: 'Go back'|t,
+        flip_text: 'Click to reveal'|t,
+        flip_icon: {
+          icon: {
+            family: 'phosphor',
+            name: 'arrow-clockwise',
+            size: 'm',
+          },
+        },
+      }]) %}
+    {% endif %}
+    {% set _items = _items|merge(_item) %}
+  {% endfor %}
+{% endif %}
+
+{% include '@ecl-twig/quiz' with {
+  variant: 'reveal',
+  title: title|default(''),
+  description: description|default(''),
+  next_label: next_label|default('Next'|t),
+  prev_label: prev_label|default('Previous'|t),
+  with_background: with_background|default(false),
+  items: _items|default([]),
+} only %}
