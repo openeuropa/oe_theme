@@ -391,10 +391,12 @@
         src: "http://via.placeholder.com/150x150"
       horizontal: left
       full_width: true
+      font_weight: "bold"
+      overlay: true
       credit: "© Copyright or credit"
   assertions:
     count:
-      'section.ecl-banner.ecl-banner--font-m.ecl-banner--box-bg-light.ecl-banner--m.ecl-banner--full-width.ecl-banner--h-left.ecl-banner--v-center': 1
+      'section.ecl-banner.ecl-banner--font-m.ecl-banner--box-bg-light.ecl-banner--m.ecl-banner--full-width.ecl-banner--h-left.ecl-banner--v-center.ecl-banner--font-weight-bold.ecl-banner--overlay': 1
       'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--primary-highlight.ecl-link--icon.ecl-banner__link-cta[href="http://example.com"]': 1
       'span.ecl-icon.ecl-icon--xs.ecl-icon--rotate-90.ecl-link__icon': 1
       'picture.ecl-picture.ecl-banner__picture img.ecl-banner__image[src="http://via.placeholder.com/150x150"]': 1
@@ -426,7 +428,7 @@
           value: 'data value'
   assertions:
     count:
-      'section.ecl-banner.ecl-banner--font-l.ecl-banner--box-bg-none.ecl-banner--color-light.ecl-banner--m.ecl-banner--full-width.ecl-banner--h-right.ecl-banner--v-top': 1
+      'section.ecl-banner.ecl-banner--font-l.ecl-banner--box-bg-none.ecl-banner--color-light.ecl-banner--m.ecl-banner--full-width.ecl-banner--h-right.ecl-banner--v-top.ecl-banner--font-weight-light': 1
       'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--primary-highlight.ecl-link--icon.ecl-banner__link-cta[href="http://example.com"]': 1
       'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--primary-highlight.ecl-link--icon.ecl-banner__link-cta[data-name="data value"]': 1
       'span.ecl-icon.ecl-icon--xs.ecl-icon--rotate-90.ecl-link__icon': 1
@@ -5466,12 +5468,17 @@
           url_text: "CTA 3"
           variant: "plain-background"
           centered: false
+          font_weight: 'bold'
+          overlay: true
       counter_label: 'in'
       full_width: true
       size: 'l'
   assertions:
     count:
       section.ecl-carousel.ecl-carousel--full-width: 1
+      section.ecl-banner--font-weight-bold.ecl-banner--overlay: 1
+      section.ecl-banner--font-weight-light: 2
+      section.ecl-banner--font-weight-light.ecl-banner--overlay: 0
       div.ecl-carousel__slide: 3
       div.ecl-carousel__slide section.ecl-banner.ecl-banner--l.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--h-center: 1
       div.ecl-carousel__slide section.ecl-banner.ecl-banner--l.ecl-banner--no-media: 2

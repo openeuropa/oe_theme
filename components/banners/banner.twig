@@ -97,6 +97,8 @@
 
 {% set _font_color = font_color|default('dark') %}
 {% set _font_size = font_size|default('m') %}
+{% set _font_weight = font_weight|default('light') %}
+{% set _overlay = overlay|default(false) %}
 {% set _box_background = box_background|default('light') %}
 {% set _horizontal = horizontal|default('left') %}
 {% set _vertical = vertical|default('center') %}
@@ -107,6 +109,8 @@
     description: _description|default(description),
     font_color: _font_color,
     font_size: _font_size,
+    font_weight: _font_weight,
+    overlay: _overlay,
     box_background: _box_background,
     link: _link,
     picture: _picture,
