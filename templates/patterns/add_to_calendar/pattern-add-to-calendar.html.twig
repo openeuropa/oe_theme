@@ -1,0 +1,19 @@
+{#
+/**
+ * @file
+ * Add to calendar pattern template.
+ */
+#}
+
+{# The button markup is provided by Webtools, render it as raw HTML. #}
+{% set _button_add %}{{ button_add|default('')|raw }}{% endset %}
+
+{% include '@ecl-twig/add-to-calendar' with {
+  title: title|default(''),
+  meta: meta|default([]),
+  color_mode: color_mode|default(''),
+  button_add: _button_add,
+  full_width: full_width ?? false,
+  extra_classes: extra_classes|default(''),
+  extra_attributes: extra_attributes|default([]),
+} only %}
