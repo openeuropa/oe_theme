@@ -1,0 +1,40 @@
+name: Quiz
+description: 'Quiz pattern variants.'
+variants:
+  default:
+    title: 'Quiz: poll'
+    description: 'Poll quiz contains multiple card items with a question and multiple answers of which one is correct.'
+  reveal:
+    title: 'Quiz: reveal'
+    description: 'Reveal quiz contains multiple card items with a question and its answer to be revealed.'
+props:
+  type: object
+  properties:
+    variant:
+      type: ['string', 'null']
+      title: Variant
+      description: 'The variant of the quiz component.'
+    title:
+      type: ['string', 'null']
+      title: Title
+      description: 'Quiz title.'
+    description:
+      type: ['string', 'null']
+      title: Description
+      description: 'Description text accompanying quiz.'
+    next_label:
+      type: ['string', 'null']
+      title: 'Next label'
+      description: 'The label of the button showing the card items to the right.'
+    prev_label:
+      type: ['string', 'null']
+      title: 'Previous label'
+      description: 'The label of the button showing the card items to the left.'
+    with_background:
+      type: ['boolean', 'null']
+      title: 'With background'
+      description: 'Whether the Quiz should have a background color or not (default: false).'
+    items:
+      type: ['array', 'null']
+      title: 'Card items'
+      description: 'The card items of the quiz. Depending on the variant, only a part of the parameters will be used from this array.'

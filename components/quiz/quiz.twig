@@ -1,0 +1,99 @@
+{#
+/**
+ * @file
+ * Quiz component.
+ */
+#}
+
+{% set _variant = variant is defined and variant == 'reveal' ? 'reveal' : 'poll' %}
+
+{# Prepare the items array depending on the selected Quiz variant. #}
+{% set _items = [] %}
+{% if items is not empty and items is iterable %}
+  {% for item in items %}
+    {% set _item = [] %}
+    {% if _variant == 'reveal' %}
+      {% set _icon = [] %}
+      {% if item.question is not empty and item.answer is not empty %}
+        {# Add the item properties needed for the Reveal variant only. #}
+        {% if item.icon_family is not empty and item.icon_family == 'icons' %}
+          {% set _icon = _icon|merge({
+            icon: {
+              name: item.icon_name|default('sparkle'),
+              size: 'xl',
+            }
+          }) %}
+        {% else %}
+          {% set _icon = _icon|merge({
+            icon: {
+              name: item.icon_name|default('sparkle'),
+              family: item.icon_family|default('phosphor'),
+              size: 'xl',
+            }
+          }) %}
+        {% endif %}
+        {% set _item = _item|merge([{
+          question: item.question,
+          answer: item.answer|default(''),
+          icon: _icon,
+          back_text: 'Go back'|t,
+          flip_text: 'Click to reveal'|t,
+          flip_icon: {
+            icon: {
+              family: 'phosphor',
+              name: 'arrow-clockwise',
+              size: 'm',
+            },
+          },
+        }]) %}
+      {% endif %}
+    {% else %}
+      {% if item.question is not empty and item.options is not empty and item.options is iterable %}
+        {# Add the item properties needed for the Poll variant only. #}
+        {% set _item = _item|merge([{
+          category: 'Quiz'|t,
+          success_category: 'Correct'|t,
+          error_category: 'Incorrect'|t,
+          question: item.question,
+          options: item.options,
+          answer_title: item.answer_title|default(''),
+          answer: item.answer|default(''),
+          icon: {
+            icon: {
+              family: 'phosphor',
+              name: 'question',
+              size: '2xl',
+            },
+          },
+          back_icon: {
+            success: {
+              icon: {
+                family: 'phosphor',
+                name: 'check-circle',
+                size: '2xl',
+              },
+            },
+            error: {
+              icon: {
+                family: 'phosphor',
+                name: 'x-circle',
+                size: '2xl',
+              },
+            },
+          },
+        }]) %}
+      {% endif %}
+    {% endif %}
+    {% set _items = _items|merge(_item) %}
+  {% endfor %}
+{% endif %}
+
+{% include '@ecl-twig/quiz' with {
+  variant: _variant,
+  title: title|default(''),
+  description: description|default(''),
+  next_label: next_label|default('Next'|t),
+  prev_label: prev_label|default('Previous'|t),
+  with_background: with_background|default(false),
+  items: _items|default([]),
+} only %}
