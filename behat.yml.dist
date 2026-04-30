@@ -63,12 +63,11 @@ default:
           version: '*'
           extra_capabilities:
             goog:chromeOptions:
-              w3c: false
+              w3c: true
               args:
                 - '--no-sandbox'
-                - '--start-maximized'
+                - '--window-size=1920,1080'
                 - '--disable-gpu'
-                - '--window-size=1600,1200'
                 - '--disable-dev-shm-usage'
                 - '--disable-setuid-sandbox'
                 - '--disable-web-security'

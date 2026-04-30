@@ -9,6 +9,8 @@ use Drupal\FunctionalJavascriptTests\WebDriverTestBase;
 use Drupal\Tests\ckeditor5\Traits\CKEditor5TestTrait;
 use Drupal\ckeditor5\Plugin\Editor\CKEditor5;
 use Drupal\editor\Entity\Editor;
+use Drupal\field\Entity\FieldConfig;
+use Drupal\field\Entity\FieldStorageConfig;
 use Drupal\filter\Entity\FilterFormat;
 use Drupal\node\Entity\NodeType;
 use Drupal\user\Entity\User;
@@ -33,6 +35,7 @@ class Ckeditor5TableTest extends WebDriverTestBase {
     'block',
     'ckeditor5',
     'node',
+    'node_storage_body_field',
     'oe_theme_helper',
   ];
 
@@ -95,7 +98,26 @@ class Ckeditor5TableTest extends WebDriverTestBase {
       'name' => 'Page',
     ]);
     $bundle->save();
-    node_add_body_field($bundle);
+    FieldConfig::create([
+      'field_storage' => FieldStorageConfig::loadByName('node', 'body'),
+      'bundle' => $bundle->id(),
+      'label' => 'Body',
+      'settings' => ['display_summary' => TRUE, 'allowed_formats' => []],
+    ])->save();
+
+    /** @var \Drupal\Core\Entity\EntityDisplayRepositoryInterface $display_repository */
+    $display_repository = \Drupal::service('entity_display.repository');
+    $display_repository->getFormDisplay('node', $bundle->id())
+      ->setComponent('body', [
+        'type' => 'text_textarea_with_summary',
+      ])
+      ->save();
+    $display_repository->getViewDisplay('node', $bundle->id())
+      ->setComponent('body', [
+        'label' => 'hidden',
+        'type' => 'text_default',
+      ])
+      ->save();
 
     $this->user = $this->drupalCreateUser([
       'access content',
@@ -256,10 +278,10 @@ class Ckeditor5TableTest extends WebDriverTestBase {
     );
 
     // The button works on selections of multiple header cells.
-    $header_cells[0]->click();
-    // We use the keyboard to select the adjacent cell: shift + right arrow key.
-    $header_cells[0]->keyDown(39, 'shift');
-    $header_cells[0]->keyUp(39, 'shift');
+    // Select the first two header cells using the CKEditor model API,
+    // as synthetic keyDown/keyUp events are not reliably handled across
+    // different Selenium/ChromeDriver versions.
+    $this->selectTableCells(0, 0, 0, 1);
     // The button is active only when all the selected header cells have the
     // sortable property set.
     $button = $this->assertBalloonButtonOff('Table toolbar', 'Toggle column sort on');
@@ -286,33 +308,22 @@ class Ckeditor5TableTest extends WebDriverTestBase {
     );
 
     // Test that the button is disabled when an element of the selection is not
-    // a header cell. We start selecting a header cell with sortable set.
-    $header_cells[2]->click();
-    // Pressing the "down" arrow, select the below td cell.
-    $header_cells[2]->keyDown(40, 'shift');
-    $header_cells[2]->keyUp(40, 'shift');
+    // a header cell. We start selecting a header cell with sortable set and
+    // extend to the body cell below it.
+    $this->selectTableCells(0, 2, 1, 2);
     $this->assertBalloonButtonDisabled('Table toolbar', 'Toggle column sort on');
 
-    // Test with a non-sortable header cell.
-    $header_cells[1]->click();
-    // Pressing the "down" arrow, select the below td cell.
-    $header_cells[1]->keyDown(40, 'shift');
-    $header_cells[1]->keyUp(40, 'shift');
+    // Test with a non-sortable header cell and the body cell below.
+    $this->selectTableCells(0, 1, 1, 1);
     $this->assertBalloonButtonDisabled('Table toolbar', 'Toggle column sort on');
 
-    // Test with a mix of sortable and not sortable header cells.
-    $header_cells[1]->click();
-    $header_cells[1]->keyDown(39, 'shift');
-    $header_cells[1]->keyUp(39, 'shift');
-    $header_cells[1]->keyDown(40, 'shift');
-    $header_cells[1]->keyUp(40, 'shift');
+    // Test with a mix of sortable and not sortable header cells and a body
+    // cell.
+    $this->selectTableCells(0, 1, 1, 2);
     $this->assertBalloonButtonDisabled('Table toolbar', 'Toggle column sort on');
 
     // Test with a selection of multiple non-header cells.
-    $cell = $editor->find('css', 'td:first-child');
-    $cell->click();
-    $cell->keyDown(39, 'shift');
-    $cell->keyUp(39, 'shift');
+    $this->selectTableCells(1, 0, 1, 1);
     $this->assertBalloonButtonDisabled('Table toolbar', 'Toggle column sort on');
 
     // Test that removing the table row deletes all sortable attributes from
@@ -430,6 +441,47 @@ class Ckeditor5TableTest extends WebDriverTestBase {
     $this->assertTrue($button->hasClass('ck-disabled'));
 
     return $button;
+  }
+
+  /**
+   * Selects a range of table cells using the CKEditor 5 model API.
+   *
+   * This replaces the use of keyDown/keyUp with shift+arrow keys, which is
+   * unreliable across different Selenium/ChromeDriver versions.
+   *
+   * @param int $startRow
+   *   The 0-based row index of the start cell.
+   * @param int $startCol
+   *   The 0-based column index of the start cell.
+   * @param int $endRow
+   *   The 0-based row index of the end cell.
+   * @param int $endCol
+   *   The 0-based column index of the end cell.
+   */
+  protected function selectTableCells(int $startRow, int $startCol, int $endRow, int $endCol): void {
+    $script = <<<JS
+(function() {
+  var editor = Drupal.CKEditor5Instances.get(Drupal.CKEditor5Instances.keys().next().value);
+  var model = editor.model;
+  var root = model.document.getRoot();
+  var table = root.getChild(0);
+
+  function getCell(row, col) {
+    var tableRow = table.getChild(row);
+    return tableRow.getChild(col);
+  }
+
+  model.change(function(writer) {
+    var startCell = getCell($startRow, $startCol);
+    var endCell = getCell($endRow, $endCol);
+    writer.setSelection(writer.createRangeOn(startCell));
+    var ranges = [writer.createRangeOn(startCell), writer.createRangeOn(endCell)];
+    writer.setSelection(ranges);
+  });
+})();
+JS;
+    $this->getSession()->executeScript($script);
+    $this->assertSession()->waitForElement('css', '.ck-balloon-panel_visible');
   }
 
 }

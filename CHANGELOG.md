@@ -1,5 +1,13 @@
 # Changelog
 
+## [5.0.0-rc2](https://github.com/openeuropa/oe_theme/tree/5.0.0-rc2) (2026-04-28)
+
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/5.0.0-rc1...5.0.0-rc2)
+
+**Merged pull requests:**
+
+- EWPP-6514: Support D11.3 core version. [\#1706](https://github.com/openeuropa/oe_theme/pull/1706) ([nagyad](https://github.com/nagyad))
+
 ## [5.0.0-rc1](https://github.com/openeuropa/oe_theme/tree/5.0.0-rc1) (2026-04-20)
 
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/5.0.0-beta21...5.0.0-rc1)
