@@ -5,7 +5,6 @@ package: OpenEuropa
 core_version_requirement: ^10 || ^11
 dependencies:
   - drupal:node
-  - ui_patterns:ui_patterns_library
   - drupal:responsive_image
   - smart_trim:smart_trim
   - oe_time_caching:oe_time_caching
