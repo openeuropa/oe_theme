@@ -121,6 +121,7 @@ class WebtoolsIconsProvider implements WebtoolsIconsProviderInterface {
       'icons' => $icons['icons'] ?? [],
       'networks' => $icons['networks'] ?? [],
       'ecl' => $icons['ecl'] ?? [],
+      'phosphor' => $icons['phosphor'] ?? [],
     ];
 
     $this->cache->set(
