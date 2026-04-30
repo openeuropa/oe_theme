@@ -1,0 +1,33 @@
+name: 'Add to calendar'
+description: 'The Add to calendar component displays event information together with a Webtools-managed button to add it to a calendar.'
+props:
+  type: object
+  properties:
+    title:
+      type: ['string', 'null']
+      title: Title
+      description: 'Event title.'
+    meta:
+      type: ['array', 'null']
+      title: Meta
+      description: "List of meta items, each one having a 'label' and an 'icon' (following ECL Icon structure)."
+    color_mode:
+      type: ['string', 'null']
+      title: 'Color mode'
+      description: 'Name of the color mode.'
+    button_add:
+      type: ['string', 'object', 'null']
+      title: 'Add to calendar button'
+      description: 'Markup of the button to add to calendar (managed by Webtools).'
+    full_width:
+      type: ['boolean', 'null']
+      title: 'Full width'
+      description: 'Full width display (inside the grid).'
+    extra_classes:
+      type: ['string', 'null']
+      title: 'Extra classes'
+      description: 'Extra classes string.'
+    extra_attributes:
+      type: ['array', 'null']
+      title: 'Extra attributes'
+      description: 'List of extra attributes.'

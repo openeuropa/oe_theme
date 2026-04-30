@@ -6638,3 +6638,89 @@
       'div.ecl-animated-number:nth-child(2) .ecl-animated-number__description': "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
       'div.ecl-animated-numbers__sources .ecl-animated-numbers__sources-label': "Custom sources label:"
       "div.ecl-animated-numbers__sources a.ecl-animated-numbers__source[href='/example']": "Eurostat"
+# Test add_to_calendar component with title, multiple meta items and a button.
+- structure:
+    '#type': component
+    '#component': 'oe_theme:add_to_calendar'
+    '#props':
+      title: "Event coming soon!"
+      color_mode: "green"
+      meta:
+        - label: "March 15-17, 2026"
+          icon:
+            name: "calendar"
+        - label: "2:00 PM - 4:00 PM (CET)"
+          icon:
+            name: "clock"
+        - label: "San Francisco, CA"
+          icon:
+            name: "location"
+      button_add: '<button type="button" class="ecl-button ecl-button--primary" data-test="add-to-calendar">Add to calendar</button>'
+      full_width: false
+      extra_classes: "custom-class1 custom-class2"
+      extra_attributes:
+        - name: "data-test"
+          value: "calendar-1"
+  assertions:
+    count:
+      'div.ecl-add-to-calendar.ecl-color-mode--green.custom-class1.custom-class2[data-test="calendar-1"]': 1
+      'div.ecl-add-to-calendar.ecl-add-to-calendar--full-width': 0
+      'div.ecl-add-to-calendar > div.ecl-add-to-calendar__info': 1
+      'div.ecl-add-to-calendar__info.ecl-container': 0
+      'div.ecl-add-to-calendar__info > div.ecl-add-to-calendar__info-content': 1
+      'div.ecl-add-to-calendar__info-content > div.ecl-add-to-calendar__title': 1
+      'div.ecl-add-to-calendar__info-content > ul.ecl-add-to-calendar__meta-list': 1
+      'ul.ecl-add-to-calendar__meta-list > li.ecl-add-to-calendar__meta-item': 3
+      'li.ecl-add-to-calendar__meta-item span.ecl-icon.ecl-icon--s.ecl-add-to-calendar__meta-icon.ecl-icon--calendar': 1
+      'li.ecl-add-to-calendar__meta-item span.ecl-icon.ecl-icon--s.ecl-add-to-calendar__meta-icon.ecl-icon--clock': 1
+      'li.ecl-add-to-calendar__meta-item span.ecl-icon.ecl-icon--s.ecl-add-to-calendar__meta-icon.ecl-icon--location': 1
+      'li.ecl-add-to-calendar__meta-item span.ecl-add-to-calendar__meta-label': 3
+      'div.ecl-add-to-calendar__info-content + div.ecl-add-to-calendar__action': 1
+      'div.ecl-add-to-calendar__action button.ecl-button.ecl-button--primary[data-test="add-to-calendar"]': 1
+    equals:
+      'div.ecl-add-to-calendar__title': "Event coming soon!"
+      'li.ecl-add-to-calendar__meta-item:nth-child(1) span.ecl-add-to-calendar__meta-label': "March 15-17, 2026"
+      'li.ecl-add-to-calendar__meta-item:nth-child(2) span.ecl-add-to-calendar__meta-label': "2:00 PM - 4:00 PM (CET)"
+      'li.ecl-add-to-calendar__meta-item:nth-child(3) span.ecl-add-to-calendar__meta-label': "San Francisco, CA"
+# Test add_to_calendar component with full_width enabled and a single meta item
+# (renders as div + div instead of ul + li).
+- structure:
+    '#type': component
+    '#component': 'oe_theme:add_to_calendar'
+    '#props':
+      title: "Save the date"
+      meta:
+        - label: "1 January 2026"
+          icon:
+            name: "calendar"
+      button_add: '<a href="http://example.com/calendar" class="ecl-button ecl-button--primary">Add to calendar</a>'
+      full_width: true
+  assertions:
+    count:
+      'div.ecl-add-to-calendar.ecl-add-to-calendar--full-width': 1
+      'div.ecl-add-to-calendar.ecl-color-mode--green': 0
+      'div.ecl-add-to-calendar > div.ecl-add-to-calendar__info.ecl-container': 1
+      'div.ecl-add-to-calendar__info-content > div.ecl-add-to-calendar__title': 1
+      'div.ecl-add-to-calendar__info-content > div.ecl-add-to-calendar__meta-list': 1
+      'div.ecl-add-to-calendar__info-content ul.ecl-add-to-calendar__meta-list': 0
+      'div.ecl-add-to-calendar__meta-list > div.ecl-add-to-calendar__meta-item': 1
+      'div.ecl-add-to-calendar__meta-item span.ecl-icon.ecl-icon--s.ecl-add-to-calendar__meta-icon.ecl-icon--calendar': 1
+      'div.ecl-add-to-calendar__action a.ecl-button.ecl-button--primary[href="http://example.com/calendar"]': 1
+    equals:
+      'div.ecl-add-to-calendar__title': "Save the date"
+      'div.ecl-add-to-calendar__meta-item span.ecl-add-to-calendar__meta-label': "1 January 2026"
+# Test add_to_calendar component with no title, no meta and no button: the
+# info-content wrapper must not be rendered.
+- structure:
+    '#type': component
+    '#component': 'oe_theme:add_to_calendar'
+    '#props':
+      color_mode: "blue"
+  assertions:
+    count:
+      'div.ecl-add-to-calendar.ecl-color-mode--blue': 1
+      'div.ecl-add-to-calendar > div.ecl-add-to-calendar__info': 1
+      'div.ecl-add-to-calendar__info-content': 0
+      'div.ecl-add-to-calendar__title': 0
+      'div.ecl-add-to-calendar__meta-list': 0
+      'div.ecl-add-to-calendar__action': 0
