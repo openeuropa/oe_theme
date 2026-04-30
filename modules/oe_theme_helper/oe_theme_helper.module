@@ -7,6 +7,7 @@
 
 declare(strict_types=1);
 
+use Drupal\Component\Utility\DeprecationHelper;
 use Drupal\Component\Utility\Html;
 use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
@@ -19,6 +20,26 @@ use Drupal\media\Plugin\media\Source\OEmbed;
 use Drupal\media_avportal\Plugin\media\Source\MediaAvPortalVideoSource;
 use Drupal\oe_media_iframe\Plugin\media\Source\Iframe;
 use Drupal\oe_theme\ValueObject\ImageValueObject;
+
+/**
+ * Backwards-compatible wrapper for theme_get_setting().
+ *
+ * @param string $name
+ *   The setting name.
+ * @param string|null $theme
+ *   The theme name. Defaults to NULL.
+ *
+ * @return mixed
+ *   The setting value.
+ */
+function _oe_theme_helper_get_theme_setting(string $name, ?string $theme = NULL): mixed {
+  return DeprecationHelper::backwardsCompatibleCall(
+    \Drupal::VERSION,
+    '11.3',
+    static fn () => \Drupal::service('Drupal\Core\Extension\ThemeSettingsProvider')->getSetting($name, $theme),
+    static fn () => theme_get_setting($name, $theme),
+  );
+}
 
 /**
  * Implements hook_page_attachments().
@@ -41,7 +62,7 @@ function oe_theme_helper_page_attachments(array &$page) {
   // Load ECL component library assets for oe_theme and its subthemes.
   $active_theme = \Drupal::theme()->getActiveTheme();
   if ($active_theme->getName() === 'oe_theme' || array_key_exists('oe_theme', $active_theme->getBaseThemeExtensions())) {
-    $component_library = theme_get_setting('component_library') ?? 'ec';
+    $component_library = _oe_theme_helper_get_theme_setting('component_library') ?? 'ec';
     $page['#attached']['library'][] = 'oe_theme/component_library_' . $component_library;
   }
 
