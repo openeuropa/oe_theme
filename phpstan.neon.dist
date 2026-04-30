@@ -11,3 +11,8 @@ parameters:
         - %currentWorkingDirectory%/modules/oe_theme_helper/src/Plugin/CKEditorPlugin/TableSimple.php
         - %currentWorkingDirectory%/modules/oe_theme_helper/src/Plugin/CKEditorPlugin/TableSort.php
         - %currentWorkingDirectory%/modules/oe_theme_helper/src/Plugin/CKEditorPlugin/TableZebraStriping.php
+    ignoreErrors:
+        # Backwards compatibility with Drupal versions below 11.3.
+        - '#Call to deprecated function theme_get_setting\(\)#'
+        - '#Call to deprecated function _responsive_image_build_source_attributes\(\)#'
+        - '#Call to deprecated function _responsive_image_image_style_url\(\)#'
