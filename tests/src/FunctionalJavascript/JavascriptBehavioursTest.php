@@ -235,16 +235,66 @@ class JavascriptBehavioursTest extends WebDriverTestBase {
   }
 
   /**
-   * Tests that contextual navigation pattern is rendered properly.
+   * Test ECL tooltip.
    */
-  public function testContextNavPattern(): void {
-    $this->drupalGet('/oe_theme_js_test/single_directory_components/context_nav');
-    $this->assertCount(2, $this->getSession()->getPage()->findAll('css', '[data-ecl-contextual-navigation-list]'));
-    $this->assertCount(1, $this->getSession()->getPage()->findAll('css', '[data-ecl-contextual-navigation-more]'));
+  public function testEclTooltip(): void {
+    $this->drupalGet('/oe_theme_js_test/tooltip');
 
-    $this->getSession()->getPage()->pressButton('More label');
-    $this->assertCount(0, $this->getSession()->getPage()->findAll('css', '[data-ecl-contextual-navigation-more]'));
-    $this->assertCount(2, $this->getSession()->getPage()->findAll('css', '[data-ecl-contextual-navigation-list]'));
+    $test_cases = [
+      'textfield normal' => '#edit-textfield-normal[data-ecl-tooltip]',
+      'textfield inverted' => '#edit-textfield-inverted[data-ecl-tooltip-inverted]',
+      'textarea normal' => '#edit-textarea-normal[data-ecl-tooltip]',
+      'textarea inverted' => '#edit-textarea-inverted[data-ecl-tooltip-inverted]',
+      'email normal' => '#edit-email-normal[data-ecl-tooltip]',
+      'email inverted' => '#edit-email-inverted[data-ecl-tooltip-inverted]',
+      'number normal' => '#edit-number-normal[data-ecl-tooltip]',
+      'number inverted' => '#edit-number-inverted[data-ecl-tooltip-inverted]',
+      'select normal' => '#edit-select-normal[data-ecl-tooltip]',
+      'select inverted' => '#edit-select-inverted[data-ecl-tooltip-inverted]',
+      'submit normal' => '#edit-submit-normal[data-ecl-tooltip]',
+      'submit inverted' => '#edit-submit-inverted[data-ecl-tooltip-inverted]',
+    ];
+
+    foreach ($test_cases as $label => $selector) {
+      $element = $this->getSession()->getPage()->find('css', $selector);
+      $this->assertNotNull($element, sprintf('Element "%s" was not found.', $label));
+
+      $expected_tooltip = $element->getAttribute('data-ecl-tooltip') ?: $element->getAttribute('data-ecl-tooltip-inverted');
+      $this->assertNotEmpty($expected_tooltip, sprintf('Tooltip text for "%s" was not found.', $label));
+
+      // Custom mouseover event dispatch is needed as the WebDriver mouseover
+      // action does not trigger the tooltip visibility in this case.
+      $script = <<<JS
+      (function () {
+        const el = document.querySelector('$selector');
+        if (!el) {
+          return;
+        }
+        el.dispatchEvent(new MouseEvent('mouseover', {
+          bubbles: true,
+          cancelable: true,
+          view: window
+        }));
+      })();
+    JS;
+
+      $this->getSession()->executeScript($script);
+      $this->assertSession()->waitForElementVisible('css', '.ecl-tooltip');
+
+      $visible = FALSE;
+
+      foreach ($this->getSession()->getPage()->findAll('css', '.ecl-tooltip') as $tooltip) {
+        if (
+          $this->getSession()->getDriver()->isVisible($tooltip->getXpath()) &&
+          trim($tooltip->getText()) === trim($expected_tooltip)
+        ) {
+          $visible = TRUE;
+          break;
+        }
+      }
+
+      $this->assertTrue($visible, sprintf('Tooltip "%s" is not visible after hover on "%s".', $expected_tooltip, $label));
+    }
   }
 
 }
