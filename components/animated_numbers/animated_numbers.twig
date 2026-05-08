@@ -1,0 +1,48 @@
+{#
+/**
+ * @file
+ * Animated numbers component template.
+ */
+#}
+{% set _sources = [] %}
+{% for source in sources %}
+  {% set _sources = _sources|merge([{
+    link: {
+      label: source.label|default(''),
+      path: source.path|default(''),
+      external: source.external|default(false),
+    }
+  }]) %}
+{% endfor %}
+
+{% set _items = [] %}
+{% for item in items %}
+  {% set _icon = [] %}
+  {% if item.icon_family is not empty and item.icon_family == 'icons' %}
+    {% set _icon = _icon|merge({
+      name: item.icon_name|default(''),
+    }) %}
+  {% else %}
+    {% set _icon = _icon|merge({
+      name: item.icon_name|default(''),
+      family: item.icon_family,
+    }) %}
+  {% endif %}
+  {% set _items = _items|merge([{
+    icon: _icon,
+    category: item.category,
+    prefix: item.prefix,
+    value: item.value,
+    suffix: item.suffix,
+    description: item.description,
+  }]) %}
+{% endfor %}
+
+{% include '@ecl-twig/animated-numbers' with {
+  with_background: with_background ?? false,
+  border: border ?? false,
+  counter_color: counter_color ?? true,
+  sources_label: sources_label|default('Sources:'|t),
+  sources: _sources,
+  items: _items,
+} only %}

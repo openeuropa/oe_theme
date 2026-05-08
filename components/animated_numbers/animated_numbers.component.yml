@@ -1,0 +1,29 @@
+name: 'Animated numbers'
+description: 'The Animated numbers component is used to deliver numerical representations that are easier to portray visually through the use of statistics.'
+props:
+  type: object
+  properties:
+    with_background:
+      type: ['boolean', 'null']
+      title: 'With background'
+      description: 'Whether the component should have a dark background color or not (default false).'
+    counter_color:
+      type: ['boolean', 'null']
+      title: 'Counter color'
+      description: 'Whether the counters should colored or not (default true).'
+    border:
+      type: ['boolean', 'null']
+      title: 'Border left'
+      description: 'Whether the items should have a left border or not (default false).'
+    sources_label:
+      type: ['string', 'null']
+      title: 'Sources label'
+      description: "The label of sources. Defaults to 'Sources:'."
+    sources:
+      type: ['array', 'null']
+      title: Sources
+      description: 'List of sources'
+    items:
+      type: ['array', 'null']
+      title: Items
+      description: 'List of items'
