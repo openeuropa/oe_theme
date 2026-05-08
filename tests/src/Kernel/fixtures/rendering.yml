@@ -130,6 +130,34 @@
       'div.ecl-form-group div.ecl-select__container.ecl-select__container--m select.ecl-select optgroup[label="Two"] option[value="2.2"]': 'Two point two'
       'div.ecl-form-group div.ecl-select__container.ecl-select__container--m select.ecl-select option[value="3"]': 'Three'
 - structure:
+    '#type': select
+    '#title': Select invisible label
+    '#title_display': invisible
+    '#options':
+      1: One
+      2: Two
+      3: Three
+  assertions:
+    count:
+      'div.ecl-form-group label.ecl-form-label.ecl-form-label--hidden': 1
+      'div.ecl-form-group label.ecl-form-label:not(.ecl-form-label--hidden)': 0
+    equals:
+      'div.ecl-form-group label.ecl-form-label': 'Select invisible label'
+- structure:
+    '#type': select
+    '#title': Select visible label
+    '#title_display': before
+    '#options':
+      1: One
+      2: Two
+      3: Three
+  assertions:
+    count:
+      'div.ecl-form-group label.ecl-form-label.ecl-form-label--hidden': 0
+      'div.ecl-form-group label.ecl-form-label:not(.ecl-form-label--hidden)': 1
+    equals:
+      'div.ecl-form-group label.ecl-form-label': 'Select visible label'
+- structure:
     '#type': radios
     '#title': Radios
     '#title_display': above
