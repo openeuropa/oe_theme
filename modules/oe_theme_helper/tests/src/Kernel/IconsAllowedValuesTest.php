@@ -74,6 +74,18 @@ class IconsAllowedValuesTest extends AbstractKernelTestBase {
   }
 
   /**
+   * Tests that the allowed values for phosphor icons are returned correctly.
+   */
+  public function testPhosphorIconsAllowedValues(): void {
+    $provider = $this->container->get('oe_theme_helper.webtools_icons_provider');
+    $allowed_values = $provider->getAllowedIconValues(['phosphor']);
+    $this->assertNotEmpty($allowed_values);
+    $this->assertArrayHasKey('acorn', $allowed_values);
+    // Verify the family is correctly resolved for a phosphor icon.
+    $this->assertEquals('phosphor', $provider->getIconFamily('acorn'));
+  }
+
+  /**
    * Tests that cache tags are returned correctly.
    */
   public function testWebtoolsIconsProviderCacheTags(): void {
