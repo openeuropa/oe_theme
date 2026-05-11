@@ -314,11 +314,16 @@ class MediaGalleryFormatterTest extends AbstractKernelTestBase {
     $this->assertCount(3, $items);
 
     // Test the contents of the first item.
-    $image_node = $items->first()->filter('img');
-    $this->assertEquals('Alt text for test image.', $image_node->attr('alt'));
+    // The thumbnail should use the configured image style.
+    $thumbnail_image_node = $items->first()->filter('.ecl-gallery__thumbnail img');
+    $this->assertEquals('Alt text for test image.', $thumbnail_image_node->attr('alt'));
     // Core shipped image styles are converted to webp or avif extension.
     $image_extension = version_compare(\Drupal::VERSION, '11.2.0', '>=') ? 'jpeg.avif' : 'jpeg.webp';
-    $this->assertStringContainsString("/files/styles/medium/public/example_1.$image_extension?itok=", $image_node->attr('src'));
+    $this->assertStringContainsString("/files/styles/medium/public/example_1.$image_extension?itok=", $thumbnail_image_node->attr('src'));
+    // The overlay picture should use the original image, not the image style.
+    $picture_image_node = $items->first()->filter('.ecl-gallery__picture img');
+    $this->assertStringEndsWith('/example_1.jpeg', $picture_image_node->attr('src'));
+    $this->assertStringNotContainsString('/styles/', $picture_image_node->attr('src'));
     $caption = $items->first()->filter('.ecl-gallery__description');
     $this->assertStringContainsString($image_media->label(), $caption->html());
 

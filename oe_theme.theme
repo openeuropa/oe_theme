@@ -2399,6 +2399,11 @@ function oe_theme_preprocess_select(&$variables) {
   // This will work both for select and multiselect form widgets.
   $variables['label'] = $variables['element']['#title'] ?? '';
 
+  // Pass the hide_label flag to the ECL form-group template when the
+  // title display is set to 'invisible'.
+  $title_display = $variables['element']['#title_display'] ?? '';
+  $variables['hide_label'] = $title_display === 'invisible';
+
   foreach ($attributes as $name => $value) {
     $variables['extra_attributes'][] = [
       'name' => $name,
