@@ -6385,3 +6385,124 @@
       'div.ecl-quiz__viewport ol.ecl-quiz__list li.ecl-quiz-card:nth-child(4) .ecl-quiz-card__back .ecl-quiz-card__answer': "Duis id mattis libero. Quisque accumsan nisi"
       'div.ecl-quiz__pager .ecl-quiz__prev .ecl-quiz__prev-label': "Previous card items"
       'div.ecl-quiz__pager .ecl-quiz__next .ecl-quiz__next-label': "Next card items"
+- structure:
+    '#type': pattern
+    '#id': text_media
+    '#fields':
+      color_mode: "red-crayola"
+      title: "Non per curiositatem opinionum"
+      micro_title: "About"
+      description:
+        '#markup': "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Non enim iam stirpis bonum quaeret, sed animalis. Ego vero volo in virtute vim esse quam maximam; <b>A mene tu?</b> Quid, quod res alia tota est? Duo Reges: constructio interrete.</p>"
+      link:
+        label: "View all"
+        path: "#"
+      image:
+        src: "https://inno-ecl.s3.amazonaws.com/media/examples/example-image8.jpg"
+        alt: "alternative text"
+      sources:
+        - src: "https://inno-ecl.s3.amazonaws.com/media/examples/example-image8.jpg"
+          media: '(min-width: 1368px)'
+        - src: "https://loremflickr.com/996/332/paris"
+          media: '(min-width: 768px)'
+        - src: "https://loremflickr.com/480/160/arch"
+          media: ''
+      caption: "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit."
+  assertions:
+    count:
+      'article.ecl-text-media.ecl-color-mode--red-crayola': 1
+      'div.ecl-text-media__content': 1
+      'div.ecl-text-media__media': 1
+      'div.ecl-text-media__micro-title': 1
+      'div.ecl-text-media__title': 1
+      'div.ecl-text-media__description': 1
+      'figure.ecl-media-container__figure picture.ecl-picture.ecl-media-container__picture source[srcset="https://inno-ecl.s3.amazonaws.com/media/examples/example-image8.jpg"][media="(min-width: 1368px)"]': 1
+      'figure.ecl-media-container__figure picture.ecl-picture.ecl-media-container__picture source[srcset="https://loremflickr.com/996/332/paris"][media="(min-width: 768px)"]': 1
+      'figure.ecl-media-container__figure picture.ecl-picture.ecl-media-container__picture source[srcset="https://loremflickr.com/480/160/arch"]': 1
+      'figure.ecl-media-container__figure picture.ecl-picture.ecl-media-container__picture img.ecl-media-container__media[src="https://inno-ecl.s3.amazonaws.com/media/examples/example-image8.jpg"][alt="alternative text"]': 1
+      'figure figcaption.ecl-media-container__caption': 1
+    equals:
+      'div.ecl-text-media__content div.ecl-text-media__micro-title': "About"
+      'div.ecl-text-media__content div.ecl-text-media__title': "Non per curiositatem opinionum"
+      'div.ecl-text-media__content div.ecl-text-media__description': "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Non enim iam stirpis bonum quaeret, sed animalis. Ego vero volo in virtute vim esse quam maximam; <b>A mene tu?</b> Quid, quod res alia tota est? Duo Reges: constructio interrete.</p>"
+      'div.ecl-text-media__content a.ecl-link--secondary-inverted.ecl-link--icon.ecl-text-media__link[href="#"] .ecl-link__label': "View all"
+      'div.ecl-text-media__media .ecl-media-container--caption-over.ecl-text-media__media_container figure .ecl-media-container__caption': "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit."
+- structure:
+    '#type': pattern
+    '#id': text_media
+    '#fields':
+      variant: "primary"
+      media_position: "left"
+      title: "Non per curiositatem opinionum"
+      description:
+        '#markup': "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Non enim iam stirpis bonum quaeret, sed animalis. Ego vero volo in virtute vim esse quam maximam; <b>A mene tu?</b> Quid, quod res alia tota est? Duo Reges: constructio interrete.</p>"
+      image:
+        src: "https://inno-ecl.s3.amazonaws.com/media/examples/example-image8.jpg"
+        alt: "alternative text"
+      image_anchor: "25% 75%"
+      full_width: true
+  assertions:
+    count:
+      'article.ecl-text-media.ecl-text-media--primary.ecl-text-media--full-width.ecl-text-media--position-left': 1
+      'article.ecl-color-mode--red-crayola': 0
+      'div.ecl-text-media__content': 1
+      'div.ecl-text-media__media': 1
+      'div.ecl-text-media__micro-title': 0
+      'div.ecl-text-media__title': 1
+      'div.ecl-text-media__description': 1
+      'div.ecl-text-media__content a': 0
+      'figure.ecl-media-container__figure picture.ecl-picture.ecl-media-container__picture img.ecl-media-container__media[style="--ecl-image-anchor: 25% 75%"][src="https://inno-ecl.s3.amazonaws.com/media/examples/example-image8.jpg"][alt="alternative text"]': 1
+      'figcaption.ecl-media-container__caption': 0
+    equals:
+      'div.ecl-text-media__content div.ecl-text-media__title': "Non per curiositatem opinionum"
+      'div.ecl-text-media__content div.ecl-text-media__description': "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Non enim iam stirpis bonum quaeret, sed animalis. Ego vero volo in virtute vim esse quam maximam; <b>A mene tu?</b> Quid, quod res alia tota est? Duo Reges: constructio interrete.</p>"
+- structure:
+    '#type': pattern
+    '#id': text_media
+    '#fields':
+      description:
+        '#markup': "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Non enim iam stirpis bonum quaeret, sed animalis. Ego vero volo in virtute vim esse quam maximam; <b>A mene tu?</b> Quid, quod res alia tota est? Duo Reges: constructio interrete.</p>"
+      video:
+        title: "Visit the European Commission"
+        poster: "https://vod.prd.commavservices.eu/12/224712/THUMB_I224712EN1W_V_1.jpg"
+        sources:
+          - src: "https://vod.prd.commavservices.eu/01/275521/019813ec-13ce-7136-ac0d-d7e24fec64c0/1080p-qaa.mp4"
+            src_type: "video/mp4"
+        autoplay: true
+      caption: "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit."
+  assertions:
+    count:
+      'article.ecl-text-media': 1
+      'div.ecl-text-media__content': 1
+      'div.ecl-text-media__media .ecl-media-container--caption-hidden': 1
+      'div.ecl-text-media__micro-title': 0
+      'div.ecl-text-media__title': 0
+      'div.ecl-text-media__description': 1
+      'div.ecl-text-media__content a': 0
+      'figure.ecl-media-container__figure .ecl-media-container__video-wrapper video.ecl-video.ecl-media-container__media[poster="https://vod.prd.commavservices.eu/12/224712/THUMB_I224712EN1W_V_1.jpg"][autoplay]': 1
+      'figure.ecl-media-container__figure .ecl-media-container__video-wrapper video source[type="video/mp4"][src="https://vod.prd.commavservices.eu/01/275521/019813ec-13ce-7136-ac0d-d7e24fec64c0/1080p-qaa.mp4"]': 1
+      'figcaption.ecl-media-container__caption': 1
+    equals:
+      'div.ecl-text-media__content div.ecl-text-media__description': "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Non enim iam stirpis bonum quaeret, sed animalis. Ego vero volo in virtute vim esse quam maximam; <b>A mene tu?</b> Quid, quod res alia tota est? Duo Reges: constructio interrete.</p>"
+      'div.ecl-text-media__media .ecl-media-container--caption-hidden figure .ecl-media-container__caption': "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit."
+- structure:
+    '#type': pattern
+    '#id': text_media
+    '#fields':
+      title: "Non per curiositatem opinionum"
+      video:
+        '#type': 'html_tag'
+        '#tag': 'iframe'
+        '#attributes':
+          id: 'videoplayerI-181645'
+          src: '//ec.europa.eu/avservices/play.cfm?ref=I-181645'
+      caption: "Some caption"
+  assertions:
+    count:
+      'article.ecl-text-media': 1
+      'div.ecl-text-media__content': 1
+      'div.ecl-text-media__media .ecl-media-container--caption-hidden': 1
+      'iframe[src="//ec.europa.eu/avservices/play.cfm?ref=I-181645"]': 1
+      'figcaption.ecl-media-container__caption': 1
+    equals:
+      'div.ecl-text-media__media .ecl-media-container--caption-hidden figure .ecl-media-container__caption': "Some caption"

@@ -1,0 +1,94 @@
+text_media:
+  label: "Text and media"
+  description: "Shows a rich text with a title and media split 30/70 between text and media."
+  variants:
+    default:
+      label: 'Default'
+      description: 'This is the default background color of the text.'
+    primary:
+      label: 'Primary'
+      description: 'Primary background color of the text.'
+  fields:
+    color_mode:
+      type: "text"
+      label: "Color mode"
+      description: "Name of the color mode. It applies only to the default variant."
+      preview: "red-crayola"
+    media_position:
+      type: "text"
+      label: "Media position"
+      description: "The position of the media. It can be 'left' or 'right' (default)."
+      preview: "left"
+    title:
+      type: "text"
+      label: "Title"
+      description: "The title."
+      preview: "Non per curiositatem opinionum"
+    micro_title:
+      type: "text"
+      label: "Micro title"
+      description: "The micro title is a small additional title displayed above the title."
+      preview: "About"
+    description:
+      type: "text"
+      label: "Description"
+      description: "The content description."
+      preview:
+        '#markup': "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Non enim iam stirpis bonum quaeret, sed animalis. Ego vero volo in virtute vim esse quam maximam; <b>A mene tu?</b> Quid, quod res alia tota est? Duo Reges: constructio interrete.</p>"
+    link:
+      type: "array"
+      label: "Link"
+      description: "Call to action link with icon"
+      preview:
+        label: "View all"
+        path: "#"
+    image:
+      type: "ImageValueObject"
+      label: "Image"
+      description: "Image - Either this or the video need to be provided. If both are provided the image will take preference."
+      preview:
+        src: "https://inno-ecl.s3.amazonaws.com/media/examples/example-image8.jpg"
+        alt: "Alternative text of image"
+    image_anchor:
+      type: "text"
+      label: "Image anchor"
+      description: "The image anchor uses the background-position CSS property, so it accepts the same values as the properties."
+      preview: "25% 75%"
+    sources:
+      type: "array"
+      label: "Image sources"
+      description: "Array containing different sized image depending on the screen size."
+      preview:
+        - src: "https://inno-ecl.s3.amazonaws.com/media/examples/example-image8.jpg"
+          media: '(min-width: 1368px)'
+        - src: "https://loremflickr.com/996/332/paris"
+          media: '(min-width: 768px)'
+        - src: "https://loremflickr.com/480/160/arch"
+          media: ''
+    video:
+      type: "array"
+      label: "Video"
+      description: "Either a video object with 'sources' to render an HTML video element, or a renderable iframe (for example by using the 'html_tag' render element) to embed the video. Either this or the image need to be provided. If both are provided the image will take preference."
+      preview:
+        title: "Visit the European Commission"
+        poster: "https://vod.prd.commavservices.eu/12/224712/THUMB_I224712EN1W_V_1.jpg"
+        sources:
+          - src: "https://vod.prd.commavservices.eu/01/275521/019813ec-13ce-7136-ac0d-d7e24fec64c0/1080p-qaa.mp4"
+            src_type: "video/mp4"
+        autoplay: true
+    caption:
+      type: "text"
+      label: "Caption"
+      description: "Description of the media."
+      preview: "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit."
+    full_width:
+      type: "boolean"
+      label: "Full width"
+      description: "Whether the component should be full width or not (default false)."
+      preview: true
+      escape: false
+    extra_classes:
+      type: 'text'
+      label: 'Extra classes string'
+      description: 'Extra classes string'
+      preview: ''
