@@ -326,7 +326,7 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     ], 'EU Site Name');
     $this->drupalGet('<front>');
     $actual = $assert->elementExists('css', 'div.ecl-site-footer__description');
-    $this->assertEquals('This site is co-managed by:<br />Directorate-General for Budget<br />Directorate-General for Economic and Financial Affairs', $actual->getText());
+    $this->assertEquals('This site is co-managed by:<br>Directorate-General for Budget<br>Directorate-General for Economic and Financial Affairs', $actual->getHtml());
 
     // Test European Union footer standardised block rendering.
     $this->branding = 'standardised';
@@ -348,7 +348,7 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     $this->assertEquals('http://web:8080/build/', $actual->getAttribute('href'));
 
     $actual = $assert->elementExists('css', 'div.ecl-site-footer__description');
-    $this->assertEquals('This site is co-managed by:<br />Directorate-General for Budget<br />Directorate-General for Economic and Financial Affairs', $actual->getText());
+    $this->assertEquals('This site is co-managed by:<br>Directorate-General for Budget<br>Directorate-General for Economic and Financial Affairs', $actual->getHtml());
     $actual = $section->find('css', '.ecl-site-footer__section--site-info a.ecl-link.ecl-link--standalone.ecl-site-footer__link');
     $this->assertEquals('Accessibility', $actual->getText());
     $this->assertEquals('/build/', $actual->getAttribute('href'));
