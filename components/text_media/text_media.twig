@@ -1,0 +1,88 @@
+{#
+/**
+ * @file
+ * Text and media component.
+ */
+#}
+
+{% set description = description|render %}
+
+{% if link %}
+  {% set _icon = get_link_icon(link.path, 'm') %}
+  {% if _icon['name'] == 'corner-arrow' %}
+    {% set _icon = _icon|merge({
+      'name': 'arrow-left',
+      'transform': 'flip-horizontal',
+    }) %}
+  {% endif %}
+
+  {% set _link = {
+    link: {
+      label: link.label,
+      path: link.path,
+      icon_position: 'after'
+    },
+    icon: _icon,
+  }%}
+{% endif %}
+
+{% if image or video %}
+    {% if image %}
+      {% set _picture = [] %}
+      {% if image.src is not empty %}
+        {% set _picture = {
+          img: {
+            src: image.src|default(''),
+            alt: image.alt|default(''),
+          },
+          image_anchor: image_anchor|default(''),
+        } %}
+      {% endif %}
+      {% if sources is not empty and sources is iterable %}
+        {% set _picture = _picture|merge({
+          'sources': sources,
+        }) %}
+      {% endif %}
+      {% set _media_container = {
+        'picture': _picture,
+        'description': caption,
+      } %}
+    {% elseif video.sources %}
+      {% set _video = video %}
+      {# We need to use src_type instead of type to avoid getting render
+        arrays due to using type. #}
+      {% set _sources = [] %}
+      {% for _source in _video.sources %}
+        {% set _sources = _sources|merge([_source|merge({
+          type: _source.src_type
+        })]) %}
+      {% endfor %}
+      {% set _video = _video|merge({
+        sources: _sources
+      }) %}
+      {% set _media_container = {
+        'video': _video,
+        'autoplay': video.autoplay ?? false,
+        'description': caption,
+      } %}
+    {% elseif video %}
+      {% set _media_container = {
+        'embedded_media': video,
+        'description': caption,
+      } %}
+    {% endif %}
+{% endif %}
+
+{% include '@ecl-twig/text-media' with {
+  variant: variant|default(''),
+  color_mode: color_mode|default(''),
+  title: title|default(''),
+  micro_title: micro_title|default(''),
+  description: description|default(''),
+  link: _link,
+  media_container: _media_container|default([]),
+  media_position: media_position|default('right'),
+  full_width: full_width ?? false,
+  extra_attributes: extra_attributes|default([]),
+  extra_classes: extra_classes|default(''),
+} only %}
