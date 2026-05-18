@@ -656,3 +656,12 @@ msgstr "Seuraa Euroopan komissiota"
 
 msgid "Plans and reports"
 msgstr "Suunnitelmat ja kertomukset"
+
+msgid "Quiz"
+msgstr "Tietovisa"
+
+msgid "Correct"
+msgstr "Oikein"
+
+msgid "Incorrect"
+msgstr "Väärin"

@@ -656,3 +656,12 @@ msgstr "Volg de Europese Commissie"
 
 msgid "Plans and reports"
 msgstr "Plannen en verslagen"
+
+msgid "Quiz"
+msgstr "Quiz"
+
+msgid "Correct"
+msgstr "Juist"
+
+msgid "Incorrect"
+msgstr "Onjuist"

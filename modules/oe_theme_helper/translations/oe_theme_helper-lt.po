@@ -656,3 +656,12 @@ msgstr "Sekite Europos Komisijos naujienas"
 
 msgid "Plans and reports"
 msgstr "Planai ir ataskaitos"
+
+msgid "Quiz"
+msgstr "Viktorina"
+
+msgid "Correct"
+msgstr "Teisingai"
+
+msgid "Incorrect"
+msgstr "Neteisingai"

@@ -656,3 +656,12 @@ msgstr "Следвайте Европейската комисия"
 
 msgid "Plans and reports"
 msgstr "Планове и доклади"
+
+msgid "Quiz"
+msgstr "Викторина"
+
+msgid "Correct"
+msgstr "Вярно"
+
+msgid "Incorrect"
+msgstr "Невярно"

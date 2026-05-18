@@ -656,3 +656,12 @@ msgstr "Ακολουθήστε την Ευρωπαϊκή Επιτροπή"
 
 msgid "Plans and reports"
 msgstr "Σχέδια και εκθέσεις"
+
+msgid "Quiz"
+msgstr "Κουίζ"
+
+msgid "Correct"
+msgstr "Σωστό"
+
+msgid "Incorrect"
+msgstr "Λάθος"

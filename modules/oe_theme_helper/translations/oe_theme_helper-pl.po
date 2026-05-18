@@ -656,3 +656,12 @@ msgstr "Obserwuj Komisję Europejską"
 
 msgid "Plans and reports"
 msgstr "Plany i sprawozdania"
+
+msgid "Quiz"
+msgstr "Kwiz"
+
+msgid "Correct"
+msgstr "Dobrze"
+
+msgid "Incorrect"
+msgstr "Źle"
