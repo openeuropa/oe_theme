@@ -656,3 +656,12 @@ msgstr "Segwi lill-Kummissjoni Ewropea"
 
 msgid "Plans and reports"
 msgstr "Pjanijiet u rapporti"
+
+msgid "Quiz"
+msgstr "Kwiżż"
+
+msgid "Correct"
+msgstr "Tajba"
+
+msgid "Incorrect"
+msgstr "Żbaljata"

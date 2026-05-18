@@ -656,3 +656,12 @@ msgstr "Jälgige Euroopa Komisjoni"
 
 msgid "Plans and reports"
 msgstr "Kavad ja aruanded"
+
+msgid "Quiz"
+msgstr "Viktoriin"
+
+msgid "Correct"
+msgstr "Õige"
+
+msgid "Incorrect"
+msgstr "Vale"
