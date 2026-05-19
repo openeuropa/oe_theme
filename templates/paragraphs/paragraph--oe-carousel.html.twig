@@ -6,7 +6,7 @@
  * @see ./modules/contrib/paragraphs/templates/paragraph.html.twig
  */
 #}
-{{ pattern('carousel', {
+{% include 'oe_theme:carousel' with {
   'items': items,
   'size': size
-}) }}
+} only %}

@@ -1,0 +1,29 @@
+name: Blockquote
+description: 'Quote and author block.'
+props:
+  type: object
+  properties:
+    body:
+      type: ['string', 'null']
+      title: Title
+      description: 'Quote text'
+    author:
+      type: ['string', 'null']
+      title: Author
+      description: 'Quote author'
+    image:
+      type: ['object', 'null']
+      title: Image
+      description: 'Blockquote image'
+    language_code:
+      type: ['string', 'null']
+      title: 'Language code'
+      description: "The language code for the blockquote - it changes the type of quotes. (defaults to 'en')"
+    color_mode:
+      type: ['string', 'null']
+      title: 'Color mode'
+      description: 'Name of the color mode.'
+    extra_classes:
+      type: ['string', 'null']
+      title: 'Extra classes string'
+      description: 'Extra classes string'

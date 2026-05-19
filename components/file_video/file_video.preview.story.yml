@@ -1,0 +1,11 @@
+name: Preview
+slots:
+  src: '//defiris.ec.streamcloud.be/findmedia/11/101631/LR_I101631INT1W.mp4?latest=0004553892'
+  src_type: video/mp4
+  caption: 'Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit.'
+  alt: 'placeholder image'
+  tracks:
+    "src'": /captions/bunny-en.vtt
+    "kind'": captions
+    "src_lang'": en
+    "label'": English

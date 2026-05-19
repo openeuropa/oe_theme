@@ -12,10 +12,10 @@
 <ul class="ecl-unordered-list ecl-unordered-list--divider">
   {% for item in items %}
     <li class="ecl-unordered-list__item ecl-u-pb-none ecl-u-mb-l">
-      {{ pattern('list_item', {
+      {% include 'oe_theme:list_item' with {
         meta: [ uppercase_label ],
         title: item.content
-      }) }}
+      } only %}
     </li>
   {% endfor %}
 </ul>

@@ -32,9 +32,9 @@ class TeaserDetailsExtraField extends DetailsExtraField {
    */
   public function viewElements(ContentEntityInterface $entity) {
     $build = [
-      '#type' => 'pattern',
-      '#id' => 'icons_with_text',
-      '#fields' => [
+      '#type' => 'component',
+      '#component' => 'oe_theme:icons_with_text',
+      '#props' => [
         'items' => [],
         'compact' => TRUE,
       ],
@@ -43,8 +43,8 @@ class TeaserDetailsExtraField extends DetailsExtraField {
     $this->addRenderableLocation($build, $entity);
     $this->addRenderableOnlineType($build, $entity);
     // Override default icon size.
-    foreach ($build['#fields']['items'] as $key => $item) {
-      $build['#fields']['items'][$key]['size'] = 'xs';
+    foreach ($build['#props']['items'] as $key => $item) {
+      $build['#props']['items'][$key]['size'] = 'xs';
     }
 
     return $build;

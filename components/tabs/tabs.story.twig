@@ -1,0 +1,24 @@
+{% include 'oe_theme:tabs' with {
+  items: [
+    {
+      label: 'View',
+      path: 'http://example.com',
+    },
+    {
+      label: 'Edit',
+      path: 'http://example.com',
+      is_current: true,
+    },
+    {
+      label: 'History',
+      path: 'http://example.com',
+    },
+    {
+      label: 'Delete',
+      path: 'http://example.com',
+    },
+  ],
+  more_label: 'More (%d)',
+  previous_label: 'Previous',
+  next_label: 'Next',
+} only %}

@@ -31,8 +31,6 @@ abstract class AbstractKernelTestBase extends TokenKernelTestBase {
     'responsive_image',
     'system',
     'twig_field_value',
-    'ui_patterns',
-    'ui_patterns_library',
     'user',
     'node',
   ];
@@ -65,7 +63,7 @@ abstract class AbstractKernelTestBase extends TokenKernelTestBase {
     // node_modules/@ecl/twig-component-description-list/description-list.html.twig
     // instead of templates/field/description-list.html.twig
     $settings = Settings::getAll();
-    $settings['file_scan_ignore_directories'] = ['node_modules', 'ecl-build'];
+    $settings['file_scan_ignore_directories'] = ['node_modules', 'ecl-build', 'ecl_components'];
     new Settings($settings);
 
     // Call the install hook of the User module which creates the Anonymous user

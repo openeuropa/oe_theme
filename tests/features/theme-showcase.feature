@@ -116,11 +116,12 @@ Feature: Theme showcase
     Then the url should match "/pl"
     And the "language switcher link" element should contain "polski"
 
-  Scenario: Site visitors can access the ECL components overview page
-    When I am on the homepage
-    And I click "Components" in the "navigation" region
-    Then I should be on "the ECL components overview page"
-    And I should see the heading "Components" in the "page header"
+# @todo Restore in EWPP-6494.
+#  Scenario: Site visitors can access the ECL components overview page
+#    When I am on the homepage
+#    And I click "Components" in the "navigation" region
+#    Then I should be on "the ECL components overview page"
+#    And I should see the heading "Components" in the "page header"
 
   Scenario: Changing the ECL branding will display site header with Core or Standardised style.
     Given I am an anonymous user

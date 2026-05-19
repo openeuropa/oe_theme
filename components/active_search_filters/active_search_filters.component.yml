@@ -1,0 +1,13 @@
+name: 'Active search filters'
+description: 'Display a list of active search filters along with the filter name.'
+props:
+  type: object
+  properties:
+    name:
+      type: ['string', 'null']
+      title: 'Filter name'
+      description: 'Name of the filter.'
+    items:
+      type: ['array', 'null']
+      title: 'Active filters'
+      description: 'List of active filter links.'

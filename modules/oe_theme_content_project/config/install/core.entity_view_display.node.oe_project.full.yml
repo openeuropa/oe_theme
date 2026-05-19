@@ -69,6 +69,8 @@ third_party_settings:
       format_type: oe_theme_helper_field_list_pattern
       format_settings:
         variant: featured_horizontal
+        wrapper_classes: ecl-u-mb-s
+        with_border_color: false
     group_budget:
       children:
         - extra_field_oe_theme_content_project_budget
@@ -80,6 +82,8 @@ third_party_settings:
       format_type: oe_theme_helper_field_list_pattern
       format_settings:
         variant: featured_horizontal
+        wrapper_classes: ecl-u-mb-s
+        with_border_color: false
     group_resources:
       children:
         - oe_project_website
@@ -90,9 +94,9 @@ third_party_settings:
       weight: 5
       format_type: oe_theme_helper_field_list_pattern
       format_settings:
-        classes: ''
-        id: ''
         variant: featured_horizontal
+        wrapper_classes: ecl-u-mb-s
+        with_border_color: false
     group_result:
       children:
         - oe_project_results
@@ -233,6 +237,7 @@ content:
     settings:
       timezone_override: ''
       format_type: oe_project_date
+      from_to: both
       separator: '-'
     third_party_settings: {  }
     weight: 1
@@ -312,3 +317,4 @@ hidden:
   oe_subject: true
   oe_summary: true
   oe_teaser: true
+  search_api_excerpt: true

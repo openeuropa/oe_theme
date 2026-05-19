@@ -36,9 +36,11 @@
 {% set _extra_attributes = '' %}
 
 {# Internal logic - Process properties #}
-
-{% if _variant != '' %}
-  {% set _css_class = _css_class ~ ' ecl-date-block--' ~ _variant %}
+{# ECL supports only 2 variants. #}
+{% if _variant == 'canceled' or _variant == 'past' %}
+  {% set _css_class = _css_class ~ ' ecl-date-block--past' %}
+{% else %}
+  {% set _css_class = _css_class ~ ' ecl-date-block--ongoing' %}
 {% endif %}
 
 {% if extra_classes is defined and extra_classes is not empty %}

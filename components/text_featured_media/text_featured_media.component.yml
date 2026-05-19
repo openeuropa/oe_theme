@@ -1,0 +1,90 @@
+name: 'Text with Featured media'
+description: 'Shows a rich text with a title and a featured media on the right, if any.'
+variants:
+  left_simple:
+    title: 'Left simple'
+    description: 'Text on the left, simple call to action. This is the default behaviour.'
+  right_simple:
+    title: 'Right simple'
+    description: 'Text on the right, simple call to action.'
+  left_featured:
+    title: 'Left featured'
+    description: 'Text on the left, featured call to action'
+  right_featured:
+    title: 'Right featured'
+    description: 'Text on the right, featured call to action'
+props:
+  type: object
+  properties:
+    image:
+      type: ['object', 'null']
+      title: Image
+      description: 'Featured image value object with src and alt properties. Either this or the video need to be provided. If both are provided the image will take preference.'
+    color_mode:
+      type: ['string', 'null']
+      title: 'Color mode'
+      description: 'Name of the color mode.'
+    extra_classes:
+      type: ['string', 'null']
+      title: 'Extra classes string'
+      description: 'Extra classes string'
+    title:
+      type: ['string', 'null']
+      title: Heading
+      description: 'The heading, displayed on the top.'
+    text_title:
+      type: ['string', 'null']
+      title: Title
+      description: 'The title, displayed above text and media.'
+    video:
+      type: ['object', 'null']
+      title: Video
+      description: "Embedded video as a renderable iframe (for example by using the 'html_tag' render element). Either this or the image need to be provided. If both are provided the image will take preference."
+    animation:
+      type: ['object', 'null']
+      title: Animation
+      description: 'Animation: uses the media container parameters as defined by the ECL to render a video.'
+    caption:
+      type: ['string', 'null']
+      title: Caption
+      description: 'Description of the featured media.'
+    text:
+      type: ['string', 'object', 'null']
+      title: 'Full text'
+      description: 'The full rich text.'
+    video_ratio:
+      type: ['string', 'null']
+      title: 'Video aspect ratio'
+      description: 'Aspect ratio used to display videos in media container. Allowed values: 16:9, 4:3, 3:2, 1:1. Defaults to 16:9 if in invalid value is passed. This will not have any effects when used with images.'
+    link:
+      type: ['object', 'null']
+      title: Link
+      description: 'Call to action link with icon'
+    highlighted:
+      type: ['boolean', 'null']
+      title: Highlighted
+      description: 'Whether the item is highlighted or not.'
+    expandable:
+      type: ['object', 'null']
+      title: Expandable
+      description: 'Optional expandable text block with extra information about the media item. The block cannot be rendered without actual text and the id must be unique on the page.'
+    sources:
+      type: ['array', 'null']
+      title: 'Image sources'
+      description: 'Array containing different sized image depending on the screen size.'
+    horizontal_alignment:
+      type: ['string', 'null']
+      title: 'Horizontal alignment'
+      description: 'The horizontal alignment of the text. It can be "left" or "center" and it defaults to "left".'
+    vertical_alignment:
+      type: ['string', 'null']
+      title: 'Vertical alignment'
+      description: 'The vertical alignment of the text. It can be "top" or "center" and it defaults to "top".'
+    media_behavior:
+      type: ['string', 'null']
+      title: 'Media behavior'
+      description: 'The fill behavior of the media. It can be "static" or "dynamic" and it defaults to "static".'
+    image_anchor:
+      type: ['string', 'null']
+      title: 'Image anchor'
+      description: 'The image anchor uses the background-position CSS property, so it accepts the same values as the properties.'

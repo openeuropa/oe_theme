@@ -7,10 +7,10 @@
  */
 #}
 {% if file %}
-  {{ pattern('file_translation', {
+  {% include 'oe_theme:file_translation' with {
     'button_label': 'Download'|t,
     'file': file,
     'translations': translations|default([]),
     'publication_date': publication_date,
-  }) }}
+  } only %}
 {% endif %}

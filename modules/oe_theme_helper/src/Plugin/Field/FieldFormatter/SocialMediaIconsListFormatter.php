@@ -12,7 +12,7 @@ use Drupal\Core\Field\FieldItemListInterface;
  * This formatter assumes that link categories will be compatible with
  * media service names used in the "Social media links: horizontal" pattern.
  *
- * @see templates/patterns/social_icon/social_icon.ui_patterns.yml
+ * @see components/social_icon/social_icon.component.yml
  *
  * @FieldFormatter(
  *   id = "oe_theme_helper_social_media_icons_list_formatter",
@@ -37,11 +37,11 @@ class SocialMediaIconsListFormatter extends SocialMediaBaseLinkFormatter {
     $elements = parent::viewElements($items, $langcode);
     foreach ($items as $delta => $item) {
       $pattern = [
-        '#type' => 'pattern',
-        '#id' => 'social_icon',
-        '#fields' => [
-          'service' => $item->link_type,
+        '#type' => 'component',
+        '#component' => 'oe_theme:social_icon',
+        '#props' => [
           'label' => $elements[$delta]['#title'],
+          'service' => $item->link_type,
           'url' => $elements[$delta]['#url'],
         ],
       ];

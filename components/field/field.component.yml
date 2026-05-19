@@ -1,0 +1,20 @@
+name: Field
+description: 'The field component is used to display structured information.'
+variants:
+  default:
+    title: Default
+    description: 'The default component modifier is vertical. It will align the field item vertically.'
+  horizontal:
+    title: Horizontal
+    description: 'It will align the field item horizontally.'
+props:
+  type: object
+  properties:
+    label:
+      type: ['string', 'null']
+      title: Label
+      description: 'Field label'
+    body:
+      type: ['string', 'null']
+      title: Body
+      description: 'Field content'

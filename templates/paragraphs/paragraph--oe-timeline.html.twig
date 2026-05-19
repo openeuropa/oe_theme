@@ -4,11 +4,13 @@
  * Theme override to display the 'timeline' type paragraph.
  */
 #}
-{{ pattern('timeline', {
+{# Adding 0 coerces the string value from the field to an integer, as required
+   by the SDC schema. Falsy values (null, "0", 0) become null. #}
+{% include 'oe_theme:timeline' with {
   'title': heading,
   'introduction': content.field_oe_text_long|field_value|render|default(''),
-  'limit': limit,
-  'limit_to': limit_to,
+  'limit': limit ? limit + 0 : null,
+  'limit_to': limit_to ? limit_to + 0 : null,
   'button_label': show_more,
   'items': items,
-}) }}
+} only %}

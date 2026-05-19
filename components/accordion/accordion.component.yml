@@ -1,0 +1,21 @@
+name: Accordion
+description: 'List of items that can be clicked to hide or reveal additional content.'
+props:
+  type: object
+  properties:
+    identifier:
+      type: ['string', 'null']
+      title: Name
+      description: 'Unique machine readable name. Optional.'
+    color_mode:
+      type: ['string', 'null']
+      title: 'Color mode'
+      description: 'Name of the color mode.'
+    extra_classes:
+      type: ['string', 'null']
+      title: 'Extra classes string'
+      description: 'Extra classes string'
+    items:
+      type: ['array', 'null']
+      title: 'Accordion items'
+      description: 'List of accordion items'

@@ -1,0 +1,13 @@
+name: 'Banner: video'
+description: 'Is a large web banner video, prominently placed on a web page, generally at the top.'
+props:
+  type: object
+  properties:
+    video:
+      type: ['object', 'null']
+      title: Video
+      description: 'Banner video: uses the media container parameters as defined by the ECL'
+    description:
+      type: ['string', 'null']
+      title: Description
+      description: 'Banner description'

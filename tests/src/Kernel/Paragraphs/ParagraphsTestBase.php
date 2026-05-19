@@ -35,6 +35,7 @@ abstract class ParagraphsTestBase extends AbstractKernelTestBase {
     'node',
     'description_list_field',
     'oe_paragraphs_description_list',
+    'oe_theme_webtools_mock',
   ];
 
   /**

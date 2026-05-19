@@ -1,0 +1,29 @@
+name: 'File with translations'
+description: 'File download component with the available translations.'
+props:
+  type: object
+  properties:
+    button_label:
+      type: ['string', 'null']
+      title: Label
+      description: 'Download button label.'
+    file:
+      type: ['object', 'null']
+      title: File
+      description: 'A file value object.'
+    link_attributes:
+      type: ['array', 'null']
+      title: 'The download link attributes'
+      description: 'Any additional attributes to be added to the file download link.'
+    translations:
+      type: ['array', 'null']
+      title: Files
+      description: 'List of FileValueObject objects.'
+    translation_toggle_label:
+      type: ['string', 'null']
+      title: 'Translation toggle label'
+      description: 'Toggle label used for collapsing or expanding the available translations.'
+    publication_date:
+      type: ['string', 'null']
+      title: 'Publication date'
+      description: 'Document publication date'

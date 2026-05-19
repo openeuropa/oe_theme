@@ -6,7 +6,7 @@
  * @see ./modules/contrib/paragraphs/templates/paragraph.html.twig
  */
 #}
-{{ pattern('list_item', {
+{% include 'oe_theme:list_item' with {
   'variant': variant,
   'url': url,
   'title': content.field_oe_title,
@@ -20,4 +20,4 @@
   'external_link': external_link|default(false),
   'extra_classes': extra_classes|default(''),
   'extra_attributes': extra_attributes|default([])
-}) }}
+} only %}

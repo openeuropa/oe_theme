@@ -6,8 +6,8 @@
  * @see ./modules/contrib/paragraphs/templates/paragraph.html.twig
  */
 #}
-{{ pattern('social_media_links', {
+{% include 'oe_theme:social_media_links' with {
   'variant': variant,
   'title': label,
   'links': links,
-}) }}
+} only %}

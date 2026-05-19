@@ -26,10 +26,10 @@ oe_theme_js_test.tooltip_test_form:
     _title: 'Tooltip test form'
   requirements:
     _access: 'TRUE'
-oe_theme_js_test.contextual_navigation_ui_pattern:
-  path: '/oe_theme_js_test/ui_patterns/context_nav'
+oe_theme_js_test.contextual_navigation_sdc:
+  path: '/oe_theme_js_test/single_directory_components/context_nav'
   defaults:
     _title: 'Contextual navigation page'
-    _controller: '\Drupal\oe_theme_js_test\Controller\UiPatterns::contextNav'
+    _controller: '\Drupal\oe_theme_js_test\Controller\SingleDirectoryComponents::contextNav'
   requirements:
     _access: 'TRUE'

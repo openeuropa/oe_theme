@@ -126,11 +126,11 @@ class ProgrammeExtraField extends EventExtraFieldBase {
     $cache = new CacheableMetadata();
 
     $build = [
-      '#type' => 'pattern',
-      '#id' => 'timeline',
-      '#fields' => [
+      '#type' => 'component',
+      '#component' => 'oe_theme:timeline',
+      '#props' => [
+        'title' => (string) $this->getLabel(),
         'limit' => 5,
-        'title' => $this->getLabel(),
         'items' => [],
       ],
     ];
@@ -186,8 +186,8 @@ class ProgrammeExtraField extends EventExtraFieldBase {
       return [];
     }
 
-    $build['#fields']['items'] = $items;
-    $build['#fields']['limit_to'] = count($items) - 1;
+    $build['#props']['items'] = $items;
+    $build['#props']['limit_to'] = count($items) - 1;
     $cache->addCacheContexts(['timezone']);
     $cache->applyTo($build);
 

@@ -1,0 +1,34 @@
+name: 'Field list'
+description: 'A list of field components to display structured information.'
+variants:
+  default:
+    title: Default
+    description: 'The default component modifier is vertical. It will align the field items vertically.'
+  horizontal:
+    title: Horizontal
+    description: 'It will align the field items horizontally.'
+  featured_horizontal:
+    title: 'Featured horizontal'
+    description: 'Like the horizontal variant, only with a more prominent look.'
+props:
+  type: object
+  properties:
+    items:
+      type: array
+      title: 'Field items'
+      description: "List of field items, each having a 'label' and a 'body'"
+      items:
+        type: object
+        properties:
+          label:
+            type: string
+            title: Label
+          body:
+            type: [string, object]
+            title: Body
+    extra_classes:
+      type: ['string', 'null']
+      title: 'Extra classes'
+    wrapper_classes:
+      type: ['string', 'null']
+      title: 'Wrapper classes'

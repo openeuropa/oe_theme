@@ -12,7 +12,7 @@
 {% set additional_information = [] %}
 {% if content.group_organisation %}
   {% set additional_information_items = [] %}
-  {% for item in content.group_organisation.pattern['#fields'].items %}
+  {% for item in content.group_organisation.pattern['#props'].items %}
     {% set additional_information_items = additional_information_items|merge([{
       'term': item.label,
       'definition': item.body|render,
@@ -36,7 +36,7 @@
 
 {% if content.extra_field_oe_theme_content_person_job_list %}
   {% set additional_information_items = [] %}
-  {% for item in content.extra_field_oe_theme_content_person_job_list.0['#fields'].items %}
+  {% for item in content.extra_field_oe_theme_content_person_job_list.0['#props'].items %}
     {% set additional_information_items = additional_information_items|merge([{
       'term': item.label,
       'definition': item.body|render,
@@ -46,7 +46,7 @@
 {% endif %}
 
 {% block content %}
-  {{ pattern('list_item', {
+  {% include 'oe_theme:list_item' with {
     'variant': 'thumbnail_secondary',
     'url': url,
     'meta': meta|default([]),
@@ -58,5 +58,5 @@
     'badges': badges,
     'external_link': external_link,
     'extra_attributes': extra_attributes|default([]),
-  }) }}
+  } only %}
 {% endblock %}

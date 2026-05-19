@@ -1,0 +1,21 @@
+{% include 'oe_theme:organisation_teaser' with {
+  logo: {
+    src: 'https://loremflickr.com/100/100',
+    alt: 'Alternative text for logo',
+  },
+  name: 'Organisation name',
+  acronym: 'Acronym',
+  organisation_details: [
+    {
+      label: 'Address',
+      body: '61 Lorem Ipsum Street, Brussels, Belgium, 1000',
+    },
+    {
+      label: 'Website',
+      body: {
+        '#markup': '<a class="ecl-link ecl-link--standalone" href="http://www.example.com">http://www.example.com</a>',
+      },
+    },
+  ],
+  contact_page_url: 'https://www.example.com/contact',
+} only %}

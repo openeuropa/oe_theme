@@ -1,10 +1,8 @@
 - branding: core
   pattern:
-    '#type': pattern
-    '#id': page_header
-    '#fields':
-      title: "Business, Economy, Euro<"
-      introduction: "EU economy, finance and the euro, and practical information for EU businesses and entrepreneurs on product safety, environmental regulations, trade with non-EU countries and competition rules.<cc>&"
+    '#type': component
+    '#component': 'oe_theme:page_header'
+    '#props':
       metas:
         - "News article>"
         - "6 July 2015&"
@@ -35,6 +33,11 @@
           '#markup': '<p>Duis arcu tortor, suscipit eget, imperdiet nec, imperdiet iaculis, ipsum. Sed cursus turpis vitae tortor. <strong>Aliquam eu nunc.</strong> Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos hymenaeos. Fusce egestas elit eget lorem.</p>'
         toggle_label: 'expandable button'
       extra_classes: 'oe-theme-extra-class'
+    '#slots':
+      title:
+        '#plain_text': "Business, Economy, Euro<"
+      introduction:
+        '#plain_text': "EU economy, finance and the euro, and practical information for EU businesses and entrepreneurs on product safety, environmental regulations, trade with non-EU countries and competition rules.<cc>&"
   assertions:
     count:
       '.ecl-page-header.ecl-page-header--description-top.oe-theme-extra-class': 1
@@ -71,11 +74,9 @@
       'div.ecl-page-header-expandable__header button.ecl-button--tertiary.ecl-button--neutral.ecl-page-header-expandable__toggle span.ecl-button__label': "expandable button"
 - branding: core
   pattern:
-    '#type': pattern
-    '#id': page_header
-    '#fields':
-      title: "Business, Economy, Euro<"
-      introduction: "EU economy, finance and the euro, and practical information for EU businesses and entrepreneurs on product safety, environmental regulations, trade with non-EU countries and competition rules.<cc>&"
+    '#type': component
+    '#component': 'oe_theme:page_header'
+    '#props':
       introduction_position: "top"
       metas:
         - "News article>"
@@ -113,6 +114,11 @@
           '#markup': '<p>Duis arcu tortor, suscipit eget, imperdiet nec, imperdiet iaculis, ipsum. Sed cursus turpis vitae tortor.</p>'
         panel_content:
           '#markup': '<p>Duis arcu tortor, suscipit eget, imperdiet nec, imperdiet iaculis, ipsum. Sed cursus turpis vitae tortor. <strong>Aliquam eu nunc.</strong> Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos hymenaeos. Fusce egestas elit eget lorem.</p>'
+    '#slots':
+      title:
+        '#plain_text': "Business, Economy, Euro<"
+      introduction:
+        '#plain_text': "EU economy, finance and the euro, and practical information for EU businesses and entrepreneurs on product safety, environmental regulations, trade with non-EU countries and competition rules.<cc>&"
   assertions:
     count:
       '.ecl-page-header.ecl-page-header--description-top': 1
@@ -152,11 +158,9 @@
       'div.ecl-page-header-expandable__panel div.ecl-container': "<p>Duis arcu tortor, suscipit eget, imperdiet nec, imperdiet iaculis, ipsum. Sed cursus turpis vitae tortor. <strong>Aliquam eu nunc.</strong> Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos hymenaeos. Fusce egestas elit eget lorem.</p>"
 - branding: core
   pattern:
-    '#type': pattern
-    '#id': page_header
-    '#fields':
-      title: "Business, Economy, Euro<"
-      introduction: "EU economy, finance and the euro, and practical information for EU businesses and entrepreneurs on product safety, environmental regulations, trade with non-EU countries and competition rules.<cc>&"
+    '#type': component
+    '#component': 'oe_theme:page_header'
+    '#props':
       metas:
         - "News article>"
         - "6 July 2015&"
@@ -169,6 +173,11 @@
           '#markup': '<p>Duis arcu tortor, suscipit eget, imperdiet nec, imperdiet iaculis, ipsum. Sed cursus turpis vitae tortor. <strong>Aliquam eu nunc.</strong> Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos hymenaeos. Fusce egestas elit eget lorem.</p>'
       has_background: true
       background_image_position: "top"
+    '#slots':
+      title:
+        '#plain_text': "Business, Economy, Euro<"
+      introduction:
+        '#plain_text': "EU economy, finance and the euro, and practical information for EU businesses and entrepreneurs on product safety, environmental regulations, trade with non-EU countries and competition rules.<cc>&"
   assertions:
     count:
       '.ecl-page-header.ecl-page-header--background': 1
@@ -192,11 +201,9 @@
       'div.ecl-page-header-expandable__panel div.ecl-container': "<p>Duis arcu tortor, suscipit eget, imperdiet nec, imperdiet iaculis, ipsum. Sed cursus turpis vitae tortor. <strong>Aliquam eu nunc.</strong> Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos hymenaeos. Fusce egestas elit eget lorem.</p>"
 - branding: standardised
   pattern:
-    '#type': pattern
-    '#id': page_header
-    '#fields':
-      title: "Business, Economy, Euro<"
-      introduction: "EU economy, finance and the euro, and practical information for EU businesses and entrepreneurs on product safety, environmental regulations, trade with non-EU countries and competition rules.<cc>&"
+    '#type': component
+    '#component': 'oe_theme:page_header'
+    '#props':
       introduction_position: "top"
       has_background: true
       color_mode: "green-dark"
@@ -226,6 +233,11 @@
       header_message:
         header_content:
           '#markup': '<p>Duis arcu tortor, suscipit eget, imperdiet nec, imperdiet iaculis, ipsum. Sed cursus turpis vitae tortor.</p>'
+    '#slots':
+      title:
+        '#plain_text': "Business, Economy, Euro<"
+      introduction:
+        '#plain_text': "EU economy, finance and the euro, and practical information for EU businesses and entrepreneurs on product safety, environmental regulations, trade with non-EU countries and competition rules.<cc>&"
   assertions:
     count:
       '.ecl-page-header.ecl-color-mode--green-dark.ecl-page-header--background.ecl-page-header--description-top': 1
@@ -257,11 +269,9 @@
       'div.ecl-page-header-expandable__header div.ecl-page-header-expandable__header-text': "<p>Duis arcu tortor, suscipit eget, imperdiet nec, imperdiet iaculis, ipsum. Sed cursus turpis vitae tortor.</p>"
 - branding: standardised
   pattern:
-    '#type': pattern
-    '#id': page_header
-    '#fields':
-      title: "Business, Economy, Euro<"
-      introduction: "EU economy, finance and the euro, and practical information for EU businesses and entrepreneurs on product safety, environmental regulations, trade with non-EU countries and competition rules.<cc>&"
+    '#type': component
+    '#component': 'oe_theme:page_header'
+    '#props':
       metas:
         - "News article>"
         - "6 July 2015&"
@@ -290,6 +300,11 @@
       header_message:
         header_content:
           '#markup': '<p>Duis arcu tortor, suscipit eget, imperdiet nec, imperdiet iaculis, ipsum. Sed cursus turpis vitae tortor.</p>'
+    '#slots':
+      title:
+        '#plain_text': "Business, Economy, Euro<"
+      introduction:
+        '#plain_text': "EU economy, finance and the euro, and practical information for EU businesses and entrepreneurs on product safety, environmental regulations, trade with non-EU countries and competition rules.<cc>&"
   assertions:
     count:
       '.ecl-page-header.ecl-page-header--picture-top': 1
@@ -321,16 +336,19 @@
       'div.ecl-page-header-expandable__header div.ecl-page-header-expandable__header-text': "<p>Duis arcu tortor, suscipit eget, imperdiet nec, imperdiet iaculis, ipsum. Sed cursus turpis vitae tortor.</p>"
 - branding: standardised
   pattern:
-    '#type': pattern
-    '#id': page_header
-    '#fields':
-      title: "Business, Economy, Euro<"
-      introduction: "EU economy, finance and the euro, and practical information for EU businesses and entrepreneurs on product safety, environmental regulations, trade with non-EU countries and competition rules.<cc>&"
+    '#type': component
+    '#component': 'oe_theme:page_header'
+    '#props':
       metas:
         - "News article>"
         - "6 July 2015&"
         - "Brussels<"
       hide_title: true
+    '#slots':
+      title:
+        '#plain_text': "Business, Economy, Euro<"
+      introduction:
+        '#plain_text': "EU economy, finance and the euro, and practical information for EU businesses and entrepreneurs on product safety, environmental regulations, trade with non-EU countries and competition rules.<cc>&"
   assertions:
     count:
       '.ecl-page-header': 1
@@ -348,17 +366,20 @@
       '.ecl-page-header__meta .ecl-page-header__meta-item:nth-child(3)': "Brussels&lt;"
 - branding: core
   pattern:
-    '#type': pattern
-    '#id': page_header
-    '#fields':
-      title: "Business, Economy, Euro<"
-      introduction: "EU economy, finance and the euro, and practical information for EU businesses and entrepreneurs on product safety, environmental regulations, trade with non-EU countries and competition rules.<cc>&"
+    '#type': component
+    '#component': 'oe_theme:page_header'
+    '#props':
       metas:
         - "News article>"
         - "6 July 2015&"
         - "Brussels<"
       background_image_url: 'https://inno-ecl.s3.amazonaws.com/media/examples/example-image8.jpg'
       background_image_position: "beside"
+    '#slots':
+      title:
+        '#plain_text': "Business, Economy, Euro<"
+      introduction:
+        '#plain_text': "EU economy, finance and the euro, and practical information for EU businesses and entrepreneurs on product safety, environmental regulations, trade with non-EU countries and competition rules.<cc>&"
   assertions:
     count:
       '.ecl-page-header.ecl-page-header--picture-beside': 1
@@ -374,17 +395,20 @@
       '.ecl-page-header__meta .ecl-page-header__meta-item:nth-child(3)': "Brussels&lt;"
 - branding: core
   pattern:
-    '#type': pattern
-    '#id': page_header
-    '#fields':
-      title: "Business, Economy, Euro<"
-      introduction: "EU economy, finance and the euro, and practical information for EU businesses and entrepreneurs on product safety, environmental regulations, trade with non-EU countries and competition rules.<cc>&"
+    '#type': component
+    '#component': 'oe_theme:page_header'
+    '#props':
       metas:
         - "News article>"
         - "6 July 2015&"
         - "Brussels<"
       background_image_url: 'https://inno-ecl.s3.amazonaws.com/media/examples/example-image8.jpg'
       background_image_position: "bottom"
+    '#slots':
+      title:
+        '#plain_text': "Business, Economy, Euro<"
+      introduction:
+        '#plain_text': "EU economy, finance and the euro, and practical information for EU businesses and entrepreneurs on product safety, environmental regulations, trade with non-EU countries and competition rules.<cc>&"
   assertions:
     count:
       '.ecl-page-header.ecl-page-header--picture-bottom': 1

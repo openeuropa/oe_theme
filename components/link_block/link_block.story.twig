@@ -1,0 +1,19 @@
+{% include 'oe_theme:link_block' with {
+  title: 'More information',
+  links: [
+    {
+      label: 'European Commission',
+      url: 'http://link-1.com',
+      is_external: true,
+    },
+    {
+      label: 'Priorities',
+      url: 'http://link-2.com',
+    },
+    {
+      label: 'Jobs, Growth and Investment',
+      url: 'http://link-3.com',
+      is_external: true,
+    },
+  ],
+} only %}

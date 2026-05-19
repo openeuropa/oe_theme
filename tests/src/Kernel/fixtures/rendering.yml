@@ -239,9 +239,9 @@
       'div.ecl-radio--disabled label.ecl-radio__label': 1
       'div.ecl-radio--disabled input[disabled]': 1
 - structure:
-    '#type': pattern
-    '#id': banner
-    '#fields':
+    '#type': component
+    '#component': 'oe_theme:banner'
+    '#props':
       image:
         src: "http://via.placeholder.com/150x150"
       title: "Banner title"
@@ -267,9 +267,9 @@
       'a.ecl-link.ecl-link--primary-highlight.ecl-link--icon.ecl-banner__link-cta[href="http://example.com"] span.ecl-link__label': Subscribe
       'footer.ecl-banner__credit div.ecl-container': © Copyright or credit
 - structure:
-    '#type': pattern
-    '#id': banner
-    '#fields':
+    '#type': component
+    '#component': 'oe_theme:banner'
+    '#props':
       image:
         src: "http://via.placeholder.com/150x150"
       title: "Banner title"
@@ -299,9 +299,9 @@
       'div.ecl-container div.ecl-banner__container div.ecl-banner__content div.ecl-banner__title span.ecl-banner__title-text a[href="http://example.com"] span.ecl-link__label': Banner title
       'div.ecl-container div.ecl-banner__container div.ecl-banner__content p.ecl-banner__description span.ecl-banner__description-text': Banner description
 - structure:
-    '#type': pattern
-    '#id': banner
-    '#fields':
+    '#type': component
+    '#component': 'oe_theme:banner'
+    '#props':
       description: "Banner description"
       url: "http://example.com"
       label: "Example"
@@ -328,9 +328,9 @@
     equals:
       'div.ecl-container div.ecl-banner__container div.ecl-banner__content p.ecl-banner__description span.ecl-banner__description-text a[href="http://example.com"] span.ecl-link__label': Banner description
 - structure:
-    '#type': pattern
-    '#id': banner
-    '#fields':
+    '#type': component
+    '#component': 'oe_theme:banner'
+    '#props':
       title: "Banner title"
       description: "Banner description"
       url: "http://example.com"
@@ -358,9 +358,9 @@
       'div.ecl-container div.ecl-banner__container div.ecl-banner__content p.ecl-banner__description span.ecl-banner__description-text': Banner description
       'a.ecl-link.ecl-link--primary-highlight.ecl-link--icon.ecl-banner__link-cta[href="http://example.com"] span.ecl-link__label': Example
 - structure:
-    '#type': pattern
-    '#id': banner
-    '#fields':
+    '#type': component
+    '#component': 'oe_theme:banner'
+    '#props':
       title: "Banner title"
       description: "Banner description"
       url: "http://example.com"
@@ -408,9 +408,9 @@
       'a.ecl-link.ecl-link--primary-highlight.ecl-link--icon.ecl-banner__link-cta[href="http://example.com"] span.ecl-link__label': Example
       'footer.ecl-banner__credit div.ecl-container': © Copyright or credit
 - structure:
-    '#type': pattern
-    '#id': banner
-    '#fields':
+    '#type': component
+    '#component': 'oe_theme:banner'
+    '#props':
       title: "Banner title"
       description: "Banner description"
       url: "http://example.com"
@@ -433,9 +433,9 @@
       'div.ecl-container div.ecl-banner__container div.ecl-banner__content p.ecl-banner__description span.ecl-banner__description-text': Banner description
       'a.ecl-link.ecl-link--primary-highlight.ecl-link--icon.ecl-banner__link-cta[href="http://example.com"] span.ecl-link__label': Example
 - structure:
-    '#type': pattern
-    '#id': banner
-    '#fields':
+    '#type': component
+    '#component': 'oe_theme:banner'
+    '#props':
       image:
         src: "http://via.placeholder.com/150x150"
       title: "Banner title"
@@ -466,9 +466,9 @@
       'div.ecl-container div.ecl-banner__container div.ecl-banner__content p.ecl-banner__description span.ecl-banner__description-text': Banner description
       'a.ecl-link.ecl-link--primary-highlight.ecl-link--icon.ecl-banner__link-cta[href="http://example.com"] span.ecl-link__label': Subscribe
 - structure:
-    '#type': pattern
-    '#id': banner
-    '#fields':
+    '#type': component
+    '#component': 'oe_theme:banner'
+    '#props':
       image:
         src: "http://via.placeholder.com/150x150"
       title: "Banner title"
@@ -501,9 +501,9 @@
       'div.ecl-container div.ecl-banner__container div.ecl-banner__content p.ecl-banner__description span.ecl-banner__description-text': Banner description
       'a.ecl-link.ecl-link--primary-highlight.ecl-link--icon.ecl-banner__link-cta[href="http://example.com"] span.ecl-link__label': Subscribe
 - structure:
-    '#type': pattern
-    '#id': banner
-    '#fields':
+    '#type': component
+    '#component': 'oe_theme:banner'
+    '#props':
       title: "Banner title"
       url: "http://example.com"
       label: "Subscribe"
@@ -536,9 +536,9 @@
       'div.ecl-container div.ecl-banner__container div.ecl-banner__content p.ecl-banner__description span.ecl-banner__description-text': Banner description
       'a.ecl-link.ecl-link--primary-highlight.ecl-link--icon.ecl-banner__link-cta[href="http://example.com"] span.ecl-link__label': Subscribe
 - structure:
-    '#type': pattern
-    '#id': banner
-    '#fields':
+    '#type': component
+    '#component': 'oe_theme:banner'
+    '#props':
       title: "Banner video title"
       url: "http://example.com"
       label: "Subscribe"
@@ -592,9 +592,9 @@
       'button.ecl-banner__pause span span.ecl-button__label': Pause video
       'button.ecl-banner__play span span.ecl-button__label': Play video
 - structure:
-    '#type': pattern
-    '#id': banner
-    '#fields':
+    '#type': component
+    '#component': 'oe_theme:banner'
+    '#props':
       title: "Banner video title"
       url: "http://example.com"
       label: "Subscribe"
@@ -648,9 +648,9 @@
       'button.ecl-banner__pause span span.ecl-button__label': Pause video
       'button.ecl-banner__play span span.ecl-button__label': Play video
 - structure:
-    '#type': pattern
-    '#id': banner
-    '#fields':
+    '#type': component
+    '#component': 'oe_theme:banner'
+    '#props':
       title: "Banner video title"
       url: "http://example.com"
       label: "Subscribe"
@@ -700,9 +700,9 @@
       'button.ecl-banner__pause span span.ecl-button__label': Pause
       'button.ecl-banner__play span span.ecl-button__label': Play
 - structure:
-    '#type': pattern
-    '#id': banner
-    '#fields':
+    '#type': component
+    '#component': 'oe_theme:banner'
+    '#props':
       title: "Banner video title"
       url: "http://example.com"
       label: "Subscribe"
@@ -751,9 +751,9 @@
       'button.ecl-banner__pause span span.ecl-button__label': Pause video
       'button.ecl-banner__play span span.ecl-button__label': Play video
 - structure:
-    '#type': pattern
-    '#id': banner
-    '#fields':
+    '#type': component
+    '#component': 'oe_theme:banner'
+    '#props':
       title: "Banner video title"
       url: "http://example.com"
       label: "Subscribe"
@@ -816,9 +816,9 @@
       'button.ecl-banner__pause span span.ecl-button__label': Pause video
       'button.ecl-banner__play span span.ecl-button__label': Play video
 - structure:
-    '#type': pattern
-    '#id': banner_video
-    '#fields':
+    '#type': component
+    '#component': 'oe_theme:banner_video'
+    '#props':
       video:
         description: "Video caption"
         image: "https://inno-ecl.s3.amazonaws.com/media/examples/example-image.jpg"
@@ -836,15 +836,16 @@
       'figcaption.ecl-media-container__caption': 'Video caption'
       'p.ecl-u-type-paragraph': "Banner description"
 - structure:
-    '#type': pattern
-    '#id': file
-    '#fields':
+    '#type': component
+    '#component': 'oe_theme:file'
+    '#props':
       button_label: "Download"
       file:
         title: "File title example"
         name: "document.pdf"
         url: "http://example.com"
         mime: "application/pdf"
+        extension: "pdf"
         size: "10000"
         language_code: "en"
   assertions:
@@ -857,9 +858,9 @@
       'div.ecl-file__meta': "(9.77 KB - PDF)"
       'a.ecl-file__download .ecl-link__label': "Download"
 - structure:
-    '#type': pattern
-    '#id': file_translation
-    '#fields':
+    '#type': component
+    '#component': 'oe_theme:file_translation'
+    '#props':
       button_label: "Download"
       file:
         variant: "translation"
@@ -867,6 +868,7 @@
         name: "document.pdf"
         url: "http://example.com"
         mime: "application/pdf"
+        extension: "pdf"
         size: "10000"
         language_code: "en"
       link_attributes:
@@ -874,21 +876,25 @@
           value: "bar"
       translations:
         - mime: "application/vnd.ms-excel"
+          extension: "xls"
           url: "http://example.com/document_fr.xls"
           size: "150000"
           name: "document.xls"
           language_code: "fr"
         - mime: "application/vnd.ms-powerpoint"
+          extension: "ppt"
           url: "http://example.com/document_it.ppt"
           size: "160000"
           name: "document.ppt"
           language_code: "it"
         - mime: "application/pdf"
+          extension: "pdf"
           url: "http://example.com/document_hu.pdf"
           size: "170000"
           name: "document.pdf"
           language_code: "hu"
         - mime: "application/doc"
+          extension: "doc"
           url: "http://example.com/document_pt.doc"
           size: "180000"
           name: "document.doc"
@@ -927,9 +933,9 @@
       '.ecl-file__translation-item:nth-child(4) div.ecl-file__translation-meta': "(175.78 KB - DOC)"
       '.ecl-file__info ul.ecl-file__detail-meta li.ecl-file__detail-meta-item:nth-child(1)': '31 AUGUST 2020'
 - structure:
-    '#type': pattern
-    '#id': file_translation
-    '#fields':
+    '#type': component
+    '#component': 'oe_theme:file_translation'
+    '#props':
       button_label: "Download"
       file:
         variant: "translation"
@@ -937,10 +943,12 @@
         name: "document.pdf"
         url: "http://example.com"
         mime: "application/pdf"
+        extension: "pdf"
         size: "10000"
         language_code: "en"
       translations:
         - mime: "application/vnd.ms-excel"
+          extension: "xls"
           url: "http://example.com/document_fr.xls"
           size: "150000"
           name: "document.xls"
@@ -963,9 +971,9 @@
       '.ecl-file__translation-item:nth-child(1) div.ecl-file__translation-title[lang="fr"]': "français"
       '.ecl-file__translation-item:nth-child(1) div.ecl-file__translation-meta': "(146.48 KB - XLS)"
 - structure:
-    '#type': pattern
-    '#id': file_teaser
-    '#fields':
+    '#type': component
+    '#component': 'oe_theme:file_teaser'
+    '#props':
       button_label: "Download"
       teaser: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer quis lorem tellus. Nullam sollicitudin suscipit diam, ac blandit ipsum tempor consectetur. Duis vitae pulvinar turpis. Donec maximus pharetra ex a ultricies."
       file:
@@ -973,6 +981,7 @@
         name: "document.pdf"
         url: "http://example.com"
         mime: "application/pdf"
+        extension: "pdf"
         size: "140000"
         language_code: "en"
       link_attributes:
@@ -987,6 +996,7 @@
         - file:
             title: "French translation"
             mime: "application/vnd.ms-excel"
+            extension: "xls"
             url: "http://example.com/document_fr.xls"
             size: "150000"
             name: "document.xls"
@@ -997,6 +1007,7 @@
         - file:
             title: "Italian translation"
             mime: "application/vnd.ms-powerpoint"
+            extension: "ppt"
             url: "http://example.com/document_it.ppt"
             size: "160000"
             name: "document.ppt"
@@ -1007,6 +1018,7 @@
         - file:
             title: "Hungarian translation"
             mime: "application/pdf"
+            extension: "pdf"
             url: "http://example.com/document_hu.pdf"
             size: "170000"
             name: "document.pdf"
@@ -1017,6 +1029,7 @@
         - file:
             title: "Portugies translation"
             mime: "application/doc"
+            extension: "doc"
             url: "http://example.com/document_pt.doc"
             size: "180000"
             name: "document.doc"
@@ -1073,9 +1086,9 @@
       '.ecl-file__translation-item:nth-child(4) .ecl-link__label': "Download"
       'div.ecl-file__label span.ecl-label.ecl-label--highlight': "Highlighted"
 - structure:
-    '#type': pattern
-    '#id': file_teaser
-    '#fields':
+    '#type': component
+    '#component': 'oe_theme:file_teaser'
+    '#props':
       button_label: "Download"
       teaser: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer quis lorem tellus. Nullam sollicitudin suscipit diam, ac blandit ipsum tempor consectetur. Duis vitae pulvinar turpis. Donec maximus pharetra ex a ultricies."
       file:
@@ -1083,6 +1096,7 @@
         name: "document.pdf"
         url: "http://example.com"
         mime: "application/pdf"
+        extension: "pdf"
         size: "140000"
         language_code: "en"
       thumbnail:
@@ -1094,6 +1108,7 @@
         - file:
             title: "French translation"
             mime: "application/vnd.ms-excel"
+            extension: "xls"
             url: "http://example.com/document_fr.xls"
             size: "150000"
             name: "document.xls"
@@ -1164,10 +1179,9 @@
       'dd.ecl-description-list__definition--taxonomy:nth-of-type(3) li.ecl-description-list__definition-item:nth-of-type(2) a[href="https://example.com/2"] .ecl-link__label': 'Second external link'
       'dd.ecl-description-list__definition--taxonomy:nth-of-type(3) li.ecl-description-list__definition-item:nth-of-type(3) a[href="https://example.com/3"] .ecl-link__label': 'https://example.com/3'
 - structure:
-    '#type': pattern
-    '#id': file_image
-    '#fields':
-      variant: "image"
+    '#type': component
+    '#component': 'oe_theme:file_image'
+    '#props':
       src: "https://placehold.it/450x250"
       alt: "placeholder image"
       caption: "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit."
@@ -1178,10 +1192,9 @@
     equals:
       'figcaption.ecl-media-container__caption': "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit."
 - structure:
-    '#type': pattern
-    '#id': file_video
-    '#fields':
-      variant: "video"
+    '#type': component
+    '#component': 'oe_theme:file_video'
+    '#props':
       src: "//defiris.ec.streamcloud.be/findmedia/11/101631/LR_I101631INT1W.mp4?latest=0004553892"
       src_type: "video/mp4"
       caption: "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit."
@@ -1202,10 +1215,10 @@
     equals:
       'figcaption.ecl-media-container__caption': "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit."
 - structure:
-    '#type': pattern
-    '#id': gallery
-    '#variant': default
-    '#fields':
+    '#type': component
+    '#component': 'oe_theme:gallery'
+    '#props':
+      variant: default
       items:
         - thumbnail:
             src: 'https://loremflickr.com/320/240/cat'
@@ -1250,10 +1263,10 @@
     contains:
       - 'A picture of a cat'
 - structure:
-    '#type': pattern
-    '#id': gallery
-    '#variant': default
-    '#fields':
+    '#type': component
+    '#component': 'oe_theme:gallery'
+    '#props':
+      variant: default
       items:
         - thumbnail:
             src: 'https://loremflickr.com/320/240/cat'
@@ -1322,10 +1335,10 @@
       - 'Energy, let&#039;s save it!'
       - 'Meanwhile in Lisbon, the capital of Portugal'
 - structure:
-    '#type': pattern
-    '#id': gallery
-    '#variant': default
-    '#fields':
+    '#type': component
+    '#component': 'oe_theme:gallery'
+    '#props':
+      variant: default
       items:
         - thumbnail:
             src: 'https://loremflickr.com/320/240/cat'
@@ -1432,10 +1445,10 @@
       - 'Energy, let&#039;s save it!'
       - 'Meanwhile in Lisbon, the capital of Portugal'
 - structure:
-    '#type': pattern
-    '#id': gallery
-    '#variant': default
-    '#fields':
+    '#type': component
+    '#component': 'oe_theme:gallery'
+    '#props':
+      variant: default
       items:
         - thumbnail:
             src: 'https://loremflickr.com/320/240/cat'
@@ -1545,10 +1558,10 @@
       - 'Energy, let&#039;s save it!'
       - 'Meanwhile in Lisbon, the capital of Portugal'
 - structure:
-    '#type': pattern
-    '#id': gallery
-    '#variant': default
-    '#fields':
+    '#type': component
+    '#component': 'oe_theme:gallery'
+    '#props':
+      variant: default
       items:
         - thumbnail:
             src: 'https://loremflickr.com/320/240/cat'
@@ -1642,10 +1655,10 @@
       - 'Energy, let&#039;s save it!'
       - 'Meanwhile in Lisbon, the capital of Portugal'
 - structure:
-    '#type': pattern
-    '#id': gallery
-    '#variant': default
-    '#fields':
+    '#type': component
+    '#component': 'oe_theme:gallery'
+    '#props':
+      variant: default
       items:
         - thumbnail:
             src: 'https://loremflickr.com/320/240/cat'
@@ -1705,10 +1718,10 @@
       - 'Energy, let&#039;s save it!'
       - 'Meanwhile in Lisbon, the capital of Portugal'
 - structure:
-    '#type': pattern
-    '#id': gallery
-    '#variant': default
-    '#fields':
+    '#type': component
+    '#component': 'oe_theme:gallery'
+    '#props':
+      variant: default
       items:
         - thumbnail:
             src: 'https://loremflickr.com/320/240/cat'
@@ -1770,9 +1783,9 @@
       - 'Energy, let&#039;s save it!'
       - 'Meanwhile in Lisbon, the capital of Portugal'
 - structure:
-    '#type': pattern
-    '#id': list_item
-    '#fields':
+    '#type': component
+    '#component': 'oe_theme:list_item'
+    '#props':
       url: "http://example.com"
       title: "Item title"
       detail: "Item text"
@@ -1804,9 +1817,9 @@
       'article.ecl-content-item div.ecl-content-item__content-block div.ecl-content-block__title .ecl-link': "Item title"
       'article.ecl-content-item div.ecl-content-block__description': "Item text"
 - structure:
-    '#type': pattern
-    '#id': list_item
-    '#fields':
+    '#type': component
+    '#component': 'oe_theme:list_item'
+    '#props':
       url: "http://example.com"
       title: "Item title"
       detail: "Item text"
@@ -1829,9 +1842,9 @@
       'article.ecl-content-item div.ecl-content-item__content-block div.ecl-content-block__title .ecl-link': "Item title"
       'article.ecl-content-item div.ecl-content-block__description': "Item..."
 - structure:
-    '#type': pattern
-    '#id': list_item
-    '#fields':
+    '#type': component
+    '#component': 'oe_theme:list_item'
+    '#props':
       url: "http://example.com"
       title: "Item title"
       detail: " "
@@ -1855,9 +1868,9 @@
       'article.ecl-content-item div.ecl-content-block__primary-meta-container div.ecl-content-block__primary-meta-item': "Meta 1"
       'article.ecl-content-item div.ecl-content-item__content-block div.ecl-content-block__title .ecl-link': "Item title"
 - structure:
-    '#type': pattern
-    '#id': list_item
-    '#fields':
+    '#type': component
+    '#component': 'oe_theme:list_item'
+    '#props':
       url: "http://example.com"
       title: "Item title"
       lists:
@@ -1891,9 +1904,9 @@
       'div.ecl-content-block__list-container dl.ecl-description-list.ecl-description-list--horizontal.ecl-content-block__list .ecl-description-list__term:nth-child(3)': "Where"
       'div.ecl-content-block__list-container dl.ecl-description-list.ecl-description-list--horizontal.ecl-content-block__list .ecl-description-list__definition:nth-child(4)': "The EGG, Rue Barra 175, 1070 Brussels, Belgium"
 - structure:
-    '#type': pattern
-    '#id': list_item
-    '#fields':
+    '#type': component
+    '#component': 'oe_theme:list_item'
+    '#props':
       url: "http://example.com"
       title: "Item title"
       detail:
@@ -1922,9 +1935,9 @@
       'article.ecl-content-item ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(2)': "Meta 2"
       'article.ecl-content-item div.ecl-content-block__description': "<div>This is the detail. It...</div>"
 - structure:
-    '#type': pattern
-    '#id': list_item
-    '#fields':
+    '#type': component
+    '#component': 'oe_theme:list_item'
+    '#props':
       url: "http://example.com"
       title: "Item title"
       external_link: true
@@ -1947,9 +1960,9 @@
       'article.ecl-content-item div.ecl-content-item__content-block div.ecl-content-block__title .ecl-link span.ecl-link__label': "Item title"
       'article.ecl-content-item div.ecl-content-block__description': '<div>This <a href="https://example.com">is the detail</a> with a link...</div>'
 - structure:
-    '#type': pattern
-    '#id': list_item
-    '#fields':
+    '#type': component
+    '#component': 'oe_theme:list_item'
+    '#props':
       url: "http://example.com"
       title: "Item title"
       detail:
@@ -1970,9 +1983,9 @@
       'article.ecl-content-item div.ecl-content-item__content-block div.ecl-content-block__title .ecl-link': "Item title"
       'article.ecl-content-item div.ecl-content-block__description': '&lt;div&gt;This is the detail...'
 - structure:
-    '#type': pattern
-    '#id': list_item
-    '#fields':
+    '#type': component
+    '#component': 'oe_theme:list_item'
+    '#props':
       url: "http://example.com"
       title: "Item title"
       detail:
@@ -1995,9 +2008,9 @@
       'article.ecl-content-item div.ecl-content-item__content-block div.ecl-content-block__title .ecl-link': "Item title"
       'article.ecl-content-item div.ecl-content-block__description': '<p>&lt;div&gt;This is the detail...</p>'
 - structure:
-    '#type': pattern
-    '#id': list_item
-    '#fields':
+    '#type': component
+    '#component': 'oe_theme:list_item'
+    '#props':
       url: "http://example.com"
       title: "Item title"
       detail:
@@ -2021,49 +2034,49 @@
       'article.ecl-content-item div.ecl-content-item__content-block div.ecl-content-block__title .ecl-link': "Item title"
       'article.ecl-content-item div.ecl-content-block__description': '<p>&lt;div&gt;This is the detail...</p>'
 - structure:
-    '#type': pattern
-    '#id': list_item
-    '#fields':
+    '#type': component
+    '#component': 'oe_theme:list_item'
+    '#props':
       detail: "This is a very long description. Better to trim it off."
       length: 32
   assertions:
     equals:
       'article.ecl-content-item div.ecl-content-block__description': "This is a very long description..."
 - structure:
-    '#type': pattern
-    '#id': list_item
-    '#variant': "thumbnail_primary"
-    '#fields':
+    '#type': component
+    '#component': 'oe_theme:list_item'
+    '#props':
+      variant: "thumbnail_primary"
       detail: "This is a very long description. Better to trim it off."
       length: 32
   assertions:
     equals:
       'article.ecl-content-item div.ecl-content-block__description': "This is a very long description..."
 - structure:
-    '#type': pattern
-    '#id': list_item
-    '#variant': "thumbnail_secondary"
-    '#fields':
+    '#type': component
+    '#component': 'oe_theme:list_item'
+    '#props':
+      variant: "thumbnail_secondary"
       detail: "This is a very long description. Better to trim it off."
       length: 32
   assertions:
     equals:
       'article.ecl-content-item div.ecl-content-block__description': "This is a very long description..."
 - structure:
-    '#type': pattern
-    '#id': list_item
-    '#variant': "navigation"
-    '#fields':
+    '#type': component
+    '#component': 'oe_theme:list_item'
+    '#props':
+      variant: "navigation"
       detail: "This is a very long description. Better to trim it off."
       length: 32
   assertions:
     equals:
       'article.ecl-content-item div.ecl-content-block__description': "This is a very long description..."
 - structure:
-    '#type': pattern
-    '#id': list_item
-    '#variant': "thumbnail_primary"
-    '#fields':
+    '#type': component
+    '#component': 'oe_theme:list_item'
+    '#props':
+      variant: "thumbnail_primary"
       title: "Item title"
       url: "http://example.com"
       detail: "Item text"
@@ -2091,10 +2104,10 @@
       'article.ecl-content-item div.ecl-content-item__content-block div.ecl-content-block__title .ecl-link': "Item title"
       'article.ecl-content-item div.ecl-content-block__description': "Item text"
 - structure:
-    '#type': pattern
-    '#id': list_item
-    '#variant': "thumbnail_primary"
-    '#fields':
+    '#type': component
+    '#component': 'oe_theme:list_item'
+    '#props':
+      variant: "thumbnail_primary"
       title: "Item title"
       url: "http://example.com"
       detail: "Item text"
@@ -2123,10 +2136,10 @@
       'article.ecl-content-item div.ecl-content-item__content-block div.ecl-content-block__title .ecl-link': "Item title"
       'article.ecl-content-item div.ecl-content-block__description': "Item text"
 - structure:
-    '#type': pattern
-    '#id': list_item
-    '#variant': "thumbnail_secondary"
-    '#fields':
+    '#type': component
+    '#component': 'oe_theme:list_item'
+    '#props':
+      variant: "thumbnail_secondary"
       title: "Item title"
       url: "http://example.com"
       detail: "Item text"
@@ -2154,10 +2167,10 @@
       'article.ecl-content-item div.ecl-content-item__content-block div.ecl-content-block__title .ecl-link': "Item title"
       'article.ecl-content-item div.ecl-content-block__description': "Item text"
 - structure:
-    '#type': pattern
-    '#id': list_item
-    '#variant': "thumbnail_secondary"
-    '#fields':
+    '#type': component
+    '#component': 'oe_theme:list_item'
+    '#props':
+      variant: "thumbnail_secondary"
       title: "Item title"
       url: "http://example.com"
       detail: "Item text"
@@ -2186,10 +2199,10 @@
       'article.ecl-content-item div.ecl-content-item__content-block div.ecl-content-block__title .ecl-link': "Item title"
       'article.ecl-content-item div.ecl-content-block__description': "Item text"
 - structure:
-    '#type': pattern
-    '#id': list_item
-    '#variant': "thumbnail_secondary"
-    '#fields':
+    '#type': component
+    '#component': 'oe_theme:list_item'
+    '#props':
+      variant: "thumbnail_secondary"
       title: "Item title"
       url: "http://example.com"
       detail: "Item text"
@@ -2218,10 +2231,10 @@
       'article.ecl-content-item div.ecl-content-item__content-block div.ecl-content-block__title .ecl-link': "Item title"
       'article.ecl-content-item div.ecl-content-block__description': "Item text"
 - structure:
-    '#type': pattern
-    '#id': list_item
-    '#variant': "highlight"
-    '#fields':
+    '#type': component
+    '#component': 'oe_theme:list_item'
+    '#props':
+      variant: "highlight"
       title: "Item title"
       url: "http://example.com"
       color_mode: "green-dark"
@@ -2266,10 +2279,10 @@
       ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(2): "Meta 2"
       div.ecl-content-block__secondary-meta-container div.ecl-content-block__secondary-meta-item .ecl-content-block__secondary-meta-label: "Brussels"
 - structure:
-    '#type': pattern
-    '#id': list_item
-    '#variant': "highlight"
-    '#fields':
+    '#type': component
+    '#component': 'oe_theme:list_item'
+    '#props':
+      variant: "highlight"
       title: "Item title"
       url: "http://example.com"
       color_mode: "blue-electric"
@@ -2298,10 +2311,10 @@
       article.ecl-card div.ecl-card__body div.ecl-content-block__title .ecl-link: "Item title"
       article.ecl-card div.ecl-card__body div.ecl-content-block__description: "This is a very long description..."
 - structure:
-    '#type': pattern
-    '#id': list_item
-    '#variant': "block"
-    '#fields':
+    '#type': component
+    '#component': 'oe_theme:list_item'
+    '#props':
+      variant: "block"
       title: "Item title"
       url: "http://example.com"
       detail: "Item test"
@@ -2326,10 +2339,10 @@
       'ul.ecl-content-block__label-container li.ecl-content-block__label-item:nth-child(1) span.ecl-label.ecl-label--highlight': "Highlighted"
       'ul.ecl-content-block__label-container li.ecl-content-block__label-item:nth-child(2) span.ecl-label.ecl-label--high': "Status: Open"
 - structure:
-    '#type': pattern
-    '#id': list_item
-    '#variant': "date"
-    '#fields':
+    '#type': component
+    '#component': 'oe_theme:list_item'
+    '#props':
+      variant: "date"
       title: "Item title"
       url: "http://example.com"
       detail: "Item text"
@@ -2374,10 +2387,10 @@
       'article.ecl-content-item time.ecl-date-block.ecl-content-item__date span.ecl-date-block__year': '2021'
       'div.ecl-content-block__secondary-meta-container div.ecl-content-block__secondary-meta-item .ecl-content-block__secondary-meta-label': "Brussels"
 - structure:
-    '#type': pattern
-    '#id': list_item
-    '#variant': "date"
-    '#fields':
+    '#type': component
+    '#component': 'oe_theme:list_item'
+    '#props':
+      variant: "date"
       title: "Item title"
       url: "http://example.com"
       detail: "Item text"
@@ -2427,10 +2440,10 @@
       'div.ecl-content-block__list-container dl.ecl-description-list.ecl-description-list--horizontal.ecl-content-block__list .ecl-description-list__definition:nth-child(4)': "The EGG, Rue Barra 175, 1070 Brussels, Belgium"
       'div.ecl-content-block__secondary-meta-container div.ecl-content-block__secondary-meta-item .ecl-content-block__secondary-meta-label': "Brussels"
 - structure:
-    '#type': pattern
-    '#id': list_item
-    '#variant': "date_cancelled"
-    '#fields':
+    '#type': component
+    '#component': 'oe_theme:list_item'
+    '#props':
+      variant: "date_cancelled"
       date:
         day: '14'
         month_fullname: 'July'
@@ -2441,10 +2454,10 @@
     count:
       'time.ecl-date-block.ecl-date-block--past.ecl-content-item__date': 1
 - structure:
-    '#type': pattern
-    '#id': list_item
-    '#variant': "date_ongoing"
-    '#fields':
+    '#type': component
+    '#component': 'oe_theme:list_item'
+    '#props':
+      variant: "date_ongoing"
       date:
         day: '14'
         month_fullname: 'July'
@@ -2455,10 +2468,10 @@
     count:
       'time.ecl-date-block.ecl-date-block--ongoing.ecl-content-item__date': 1
 - structure:
-    '#type': pattern
-    '#id': list_item
-    '#variant': "date_past"
-    '#fields':
+    '#type': component
+    '#component': 'oe_theme:list_item'
+    '#props':
+      variant: "date_past"
       date:
         day: '14'
         month_fullname: 'July'
@@ -2469,10 +2482,10 @@
     count:
       'time.ecl-date-block.ecl-date-block--past.ecl-content-item__date': 1
 - structure:
-    '#type': pattern
-    '#id': list_item
-    '#variant': "navigation"
-    '#fields':
+    '#type': component
+    '#component': 'oe_theme:list_item'
+    '#props':
+      variant: "navigation"
       title: "Item title"
       url: "http://example.com"
       detail: "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
@@ -2486,16 +2499,16 @@
       'article.ecl-content-item div.ecl-content-item__content-block div.ecl-content-block__title .ecl-link': "Item title"
       'article.ecl-content-item div.ecl-content-item__content-block div.ecl-content-block__description': "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
 - structure:
-    '#type': pattern
-    '#id': list_item_block_one_column
-    '#fields':
+    '#type': component
+    '#component': 'oe_theme:list_item_block_one_column'
+    '#props':
       title: "Block title"
       introduction:
         '#markup': '<p>The Introduction to the list</p>'
       items:
-        - '#type': "pattern"
-          '#id': "list_item"
-          '#fields':
+        - '#type': "component"
+          '#component': 'oe_theme:list_item'
+          '#props':
             title: "Business, Economy, Euro"
             detail: "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
       button_label: "Button nolink"
@@ -2522,13 +2535,13 @@
       'div.ecl-content-item-block__item:nth-child(1) article.ecl-content-item div.ecl-content-block__description': "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
       'div.ecl-content-item-block__button .ecl-u-clearfix': "Button nolink"
 - structure:
-    '#type': pattern
-    '#id': list_item_block_one_column
-    '#fields':
+    '#type': component
+    '#component': 'oe_theme:list_item_block_one_column'
+    '#props':
       items:
-        - '#type': "pattern"
-          '#id': "list_item"
-          '#fields':
+        - '#type': "component"
+          '#component': 'oe_theme:list_item'
+          '#props':
             title: "Business, Economy, Euro"
             detail: "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
       button_label: "View all"
@@ -2559,14 +2572,14 @@
       'div.ecl-content-item-block__item:nth-child(1) article.ecl-content-item div.ecl-content-block__description': "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
       'a.ecl-link span.ecl-link__label': "View all"
 - structure:
-    '#type': pattern
-    '#id': list_item_block_one_column
-    '#fields':
+    '#type': component
+    '#component': 'oe_theme:list_item_block_one_column'
+    '#props':
       title: "Block title"
       items:
-        - '#type': "pattern"
-          '#id': "list_item"
-          '#fields':
+        - '#type': "component"
+          '#component': 'oe_theme:list_item'
+          '#props':
             title: "Business, Economy, Euro"
             detail: "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
       button_label: "View all"
@@ -2594,13 +2607,13 @@
       'div.ecl-content-item-block__item:nth-child(1) article.ecl-content-item div.ecl-content-block__description': "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
       'a.ecl-link span.ecl-link__label': "View all"
 - structure:
-    '#type': pattern
-    '#id': list_item_block_one_column
-    '#fields':
+    '#type': component
+    '#component': 'oe_theme:list_item_block_one_column'
+    '#props':
       items:
-        - '#type': "pattern"
-          '#id': "list_item"
-          '#fields':
+        - '#type': "component"
+          '#component': 'oe_theme:list_item'
+          '#props':
             title: "Business, Economy, Euro"
             detail: "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
       button_separator: true
@@ -2623,14 +2636,14 @@
       'div.ecl-content-item-block__item:nth-child(1) article.ecl-content-item div.ecl-content-item__content-block div.ecl-content-block__title': "Business, Economy, Euro"
       'div.ecl-content-item-block__item:nth-child(1) article.ecl-content-item div.ecl-content-block__description': "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
 - structure:
-    '#type': pattern
-    '#id': list_item_block_one_column
-    '#fields':
+    '#type': component
+    '#component': 'oe_theme:list_item_block_one_column'
+    '#props':
       title: "Block title"
       items:
-        - '#type': "pattern"
-          '#id': "list_item"
-          '#fields':
+        - '#type': "component"
+          '#component': 'oe_theme:list_item'
+          '#props':
             title: "Business, Economy, Euro"
             detail: "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
       button_label: "View all"
@@ -2657,14 +2670,14 @@
       'div.ecl-content-item-block__item:nth-child(1) article.ecl-content-item div.ecl-content-block__description': "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
       'a.ecl-link span.ecl-link__label': 'View all'
 - structure:
-    '#type': pattern
-    '#id': list_item_block_one_column
-    '#fields':
+    '#type': component
+    '#component': 'oe_theme:list_item_block_one_column'
+    '#props':
       title: "Block title"
       items:
-        - '#type': "pattern"
-          '#id': "list_item"
-          '#fields':
+        - '#type': "component"
+          '#component': 'oe_theme:list_item'
+          '#props':
             title: "Business, Economy, Euro"
             detail: "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
       button_label: "View all"
@@ -2692,18 +2705,18 @@
       'div.ecl-content-item-block__item:nth-child(1) article.ecl-content-item div.ecl-content-block__description': "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
       'a.ecl-link span.ecl-link__label': 'View all'
 - structure:
-    '#type': pattern
-    '#id': list_item_block_two_columns
-    '#fields':
+    '#type': component
+    '#component': 'oe_theme:list_item_block_two_columns'
+    '#props':
       items:
-        - '#type': "pattern"
-          '#id': "list_item"
-          '#fields':
+        - '#type': "component"
+          '#component': 'oe_theme:list_item'
+          '#props':
             title: "List item 1"
             detail: "Description for list item 1."
-        - '#type': "pattern"
-          '#id': "list_item"
-          '#fields':
+        - '#type': "component"
+          '#component': 'oe_theme:list_item'
+          '#props':
             title: "List item 2"
             detail: "Description for list item 2."
       button_separator: true
@@ -2726,20 +2739,20 @@
       'div.ecl-content-item-block__item:nth-child(2) article.ecl-content-item div.ecl-content-item__content-block div.ecl-content-block__title': "List item 2"
       'div.ecl-content-item-block__item:nth-child(2) article.ecl-content-item div.ecl-content-block__description': "Description for list item 2."
 - structure:
-    '#type': pattern
-    '#id': list_item_block_two_columns
-    '#fields':
+    '#type': component
+    '#component': 'oe_theme:list_item_block_two_columns'
+    '#props':
       introduction:
         '#markup': '<p>The Introduction to the list</p>'
       items:
-        - '#type': "pattern"
-          '#id': "list_item"
-          '#fields':
+        - '#type': "component"
+          '#component': 'oe_theme:list_item'
+          '#props':
             title: "List item 1"
             detail: "Description for list item 1."
-        - '#type': "pattern"
-          '#id': "list_item"
-          '#fields':
+        - '#type': "component"
+          '#component': 'oe_theme:list_item'
+          '#props':
             title: "List item 2"
             detail: "Description for list item 2."
       button_label: "View all"
@@ -2768,33 +2781,33 @@
       'div.ecl-content-item-block__item:nth-child(2) article.ecl-content-item div.ecl-content-block__description': "Description for list item 2."
       'a.ecl-link span.ecl-link__label': 'View all'
 - structure:
-    '#type': pattern
-    '#id': list_item_block_three_columns
-    '#fields':
+    '#type': component
+    '#component': 'oe_theme:list_item_block_three_columns'
+    '#props':
       items:
-        - '#type': "pattern"
-          '#id': "list_item"
-          '#fields':
+        - '#type': "component"
+          '#component': 'oe_theme:list_item'
+          '#props':
             title: "List item 1"
             detail: "Description for list item 1."
-        - '#type': "pattern"
-          '#id': "list_item"
-          '#fields':
+        - '#type': "component"
+          '#component': 'oe_theme:list_item'
+          '#props':
             title: "List item 2"
             detail: "Description for list item 2."
-        - '#type': "pattern"
-          '#id': "list_item"
-          '#fields':
+        - '#type': "component"
+          '#component': 'oe_theme:list_item'
+          '#props':
             title: "List item 3"
             detail: "Description for list item 3."
-        - '#type': "pattern"
-          '#id': "list_item"
-          '#fields':
+        - '#type': "component"
+          '#component': 'oe_theme:list_item'
+          '#props':
             title: "List item 4"
             detail: "Description for list item 4."
-        - '#type': "pattern"
-          '#id': "list_item"
-          '#fields':
+        - '#type': "component"
+          '#component': 'oe_theme:list_item'
+          '#props':
             title: "List item 5"
             detail: "Description for list item 5."
       vertical: true
@@ -2825,35 +2838,35 @@
       'div.ecl-content-item-block__item.ecl-col-12.ecl-col-l-4:nth-child(3) div.ecl-content-item-block__item.ecl-u-mb-l:nth-child(1) article div.ecl-content-block__title': "List item 5"
       'div.ecl-content-item-block__item.ecl-col-12.ecl-col-l-4:nth-child(3) div.ecl-content-item-block__item.ecl-u-mb-l:nth-child(1) article div.ecl-content-block__description': "Description for list item 5."
 - structure:
-    '#type': pattern
-    '#id': list_item_block_three_columns
-    '#fields':
+    '#type': component
+    '#component': 'oe_theme:list_item_block_three_columns'
+    '#props':
       introduction:
         '#markup': '<p>The Introduction to the list</p>'
       items:
-        - '#type': "pattern"
-          '#id': "list_item"
-          '#fields':
+        - '#type': "component"
+          '#component': 'oe_theme:list_item'
+          '#props':
             title: "List item 1"
             detail: "Description for list item 1."
-        - '#type': "pattern"
-          '#id': "list_item"
-          '#fields':
+        - '#type': "component"
+          '#component': 'oe_theme:list_item'
+          '#props':
             title: "List item 2"
             detail: "Description for list item 2."
-        - '#type': "pattern"
-          '#id': "list_item"
-          '#fields':
+        - '#type': "component"
+          '#component': 'oe_theme:list_item'
+          '#props':
             title: "List item 3"
             detail: "Description for list item 3."
-        - '#type': "pattern"
-          '#id': "list_item"
-          '#fields':
+        - '#type': "component"
+          '#component': 'oe_theme:list_item'
+          '#props':
             title: "List item 4"
             detail: "Description for list item 4."
-        - '#type': "pattern"
-          '#id': "list_item"
-          '#fields':
+        - '#type': "component"
+          '#component': 'oe_theme:list_item'
+          '#props':
             title: "List item 5"
             detail: "Description for list item 5."
       button_label: "View all"
@@ -2888,16 +2901,16 @@
       'div.ecl-content-item-block__item:nth-child(5) article.ecl-content-item div.ecl-content-block__description': "Description for list item 5."
       'a.ecl-link span.ecl-link__label': 'View all'
 - structure:
-    '#type': pattern
-    '#id': list_item_block_four_columns
-    '#fields':
+    '#type': component
+    '#component': 'oe_theme:list_item_block_four_columns'
+    '#props':
       introduction:
         '#markup': '<p>The Introduction to the list</p>'
       items:
-        - { '#type': 'pattern', '#id': 'link', '#fields': { url: '#', text: 'A simple link 1' } }
-        - { '#type': 'pattern', '#id': 'link', '#fields': { url: '#', text: 'A simple link 2' } }
-        - { '#type': 'pattern', '#id': 'link', '#fields': { url: '#', text: 'A simple link 3' } }
-        - { '#type': 'pattern', '#id': 'link', '#fields': { url: '#', text: 'A simple link 4' } }
+        - { '#type': 'component', '#component': 'oe_theme:link', '#props': { url: '#', text: 'A simple link 1' } }
+        - { '#type': 'component', '#component': 'oe_theme:link', '#props': { url: '#', text: 'A simple link 2' } }
+        - { '#type': 'component', '#component': 'oe_theme:link', '#props': { url: '#', text: 'A simple link 3' } }
+        - { '#type': 'component', '#component': 'oe_theme:link', '#props': { url: '#', text: 'A simple link 4' } }
       button_label: "View all"
       button_url: "http://example.com"
       button_icon_name: "list"
@@ -2915,18 +2928,18 @@
       'div.ecl-content-item-block__item.ecl-col-l-3:nth-child(4) a.ecl-link': 'A simple link 4'
       'a.ecl-link--icon span.ecl-link__label': 'View all'
 - structure:
-    '#type': pattern
-    '#id': list_item_block_six_columns
-    '#fields':
+    '#type': component
+    '#component': 'oe_theme:list_item_block_six_columns'
+    '#props':
       introduction:
         '#markup': '<p>The Introduction to the list</p>'
       items:
-        - { '#type': 'pattern', '#id': 'link', '#fields': { url: '#', text: 'A simple link 1' } }
-        - { '#type': 'pattern', '#id': 'link', '#fields': { url: '#', text: 'A simple link 2' } }
-        - { '#type': 'pattern', '#id': 'link', '#fields': { url: '#', text: 'A simple link 3' } }
-        - { '#type': 'pattern', '#id': 'link', '#fields': { url: '#', text: 'A simple link 4' } }
-        - { '#type': 'pattern', '#id': 'link', '#fields': { url: '#', text: 'A simple link 5' } }
-        - { '#type': 'pattern', '#id': 'link', '#fields': { url: '#', text: 'A simple link 6' } }
+        - { '#type': 'component', '#component': 'oe_theme:link', '#props': { url: '#', text: 'A simple link 1' } }
+        - { '#type': 'component', '#component': 'oe_theme:link', '#props': { url: '#', text: 'A simple link 2' } }
+        - { '#type': 'component', '#component': 'oe_theme:link', '#props': { url: '#', text: 'A simple link 3' } }
+        - { '#type': 'component', '#component': 'oe_theme:link', '#props': { url: '#', text: 'A simple link 4' } }
+        - { '#type': 'component', '#component': 'oe_theme:link', '#props': { url: '#', text: 'A simple link 5' } }
+        - { '#type': 'component', '#component': 'oe_theme:link', '#props': { url: '#', text: 'A simple link 6' } }
       button_label: "View all"
       button_url: "http://example.com"
       button_icon_name: "list"
@@ -2946,9 +2959,9 @@
       'div.ecl-content-item-block__item.ecl-col-l-2:nth-child(6) a.ecl-link': 'A simple link 6'
       'a.ecl-link--icon span.ecl-link__label': 'View all'
 - structure:
-    '#type': pattern
-    '#id': navigation_list
-    '#fields':
+    '#type': component
+    '#component': 'oe_theme:navigation_list'
+    '#props':
       title: 'Navigation list title'
       title_url: 'http://example.com'
       title_extra_attributes:
@@ -3004,9 +3017,9 @@
       '.ecl-content-block__link-list:nth-child(2) li.ecl-content-block__link-item:nth-child(1) a.ecl-link[extra-attr2="extra value2"]': 1
       'div.ecl-content-block__title a.ecl-link[extra-attr="extra value"]': 1
 - structure:
-    '#type': pattern
-    '#id': navigation_list
-    '#fields':
+    '#type': component
+    '#component': 'oe_theme:navigation_list'
+    '#props':
       title: 'Navigation list title'
       title_url: 'http://example.com'
       description: 'Navigation list description'
@@ -3021,9 +3034,9 @@
       li.ecl-content-block__link-item: 0
       div.ecl-navigation-list__image: 0
 - structure:
-    '#type': pattern
-    '#id': navigation_list
-    '#fields':
+    '#type': component
+    '#component': 'oe_theme:navigation_list'
+    '#props':
       title: 'Navigation list title'
       links:
         - label: 'Child 1'
@@ -3045,9 +3058,9 @@
       div.ecl-content-block__description: 0
       div.ecl-navigation-list__image: 0
 - structure:
-    '#type': pattern
-    '#id': navigation_list
-    '#fields':
+    '#type': component
+    '#component': 'oe_theme:navigation_list'
+    '#props':
       variant: 'illustration'
       title: 'Navigation list title'
       title_url: 'http://example.com'
@@ -3067,9 +3080,9 @@
       'div.ecl-content-block__title a.ecl-link--standalone.ecl-link[href="http://example.com"]': 'Navigation list title'
       'div.ecl-content-block__description': 'Navigation list description'
 - structure:
-    '#type': pattern
-    '#id': navigation_list
-    '#fields':
+    '#type': component
+    '#component': 'oe_theme:navigation_list'
+    '#props':
       variant: 'image_as_illustration'
       title: 'Navigation list title'
       title_url: 'http://example.com'
@@ -3089,9 +3102,9 @@
       'div.ecl-content-block__title a.ecl-link--standalone.ecl-link[href="http://example.com"]': 'Navigation list title'
       'div.ecl-content-block__description': 'Navigation list description'
 - structure:
-    '#type': pattern
-    '#id': accordion
-    '#fields':
+    '#type': component
+    '#component': 'oe_theme:accordion'
+    '#props':
       identifier: "id"
       items:
         - title: "Title 1"
@@ -3111,9 +3124,9 @@
       'details.ecl-accordion__item:nth-child(1) summary.ecl-accordion__toggle': "Title 1"
       'details.ecl-accordion__item:nth-child(2) summary.ecl-accordion__toggle': "Title 2"
 - structure:
-    '#type': pattern
-    '#id': accordion
-    '#fields':
+    '#type': component
+    '#component': 'oe_theme:accordion'
+    '#props':
       identifier: "id"
       color_mode: "purple-violet"
       items:
@@ -3135,9 +3148,9 @@
       'details.ecl-accordion__item:nth-child(1) summary.ecl-accordion__toggle': "Title 1"
       'details.ecl-accordion__item:nth-child(2) summary.ecl-accordion__toggle': "Title 2"
 - structure:
-    '#type': pattern
-    '#id': dropdown
-    '#fields':
+    '#type': component
+    '#component': 'oe_theme:dropdown'
+    '#props':
       button_label: "Dropdown"
       links:
         - label: 'Link 1'
@@ -3157,10 +3170,10 @@
       '.ecl-expandable__content .ecl-unordered-list .ecl-unordered-list__item:nth-child(2) a': "Link 2"
       '.ecl-expandable__content .ecl-unordered-list .ecl-unordered-list__item:nth-child(3) a': "Link 3"
 - structure:
-    '#type': pattern
-    '#id': field
-    '#variant': default
-    '#fields':
+    '#type': component
+    '#component': 'oe_theme:field'
+    '#props':
+      variant: default
       label: "Field text"
       body: "Field body"
   assertions:
@@ -3172,10 +3185,10 @@
       '.ecl-description-list__term': "Field text"
       '.ecl-description-list__definition': "Field body"
 - structure:
-    '#type': pattern
-    '#id': field
-    '#variant': horizontal
-    '#fields':
+    '#type': component
+    '#component': 'oe_theme:field'
+    '#props':
+      variant: horizontal
       label: "Field label"
       body: "Field body"
   assertions:
@@ -3187,10 +3200,10 @@
       '.ecl-description-list__term': "Field label"
       '.ecl-description-list__definition': "Field body"
 - structure:
-    '#type': pattern
-    '#id': field_list
-    '#variant': horizontal
-    '#fields':
+    '#type': component
+    '#component': 'oe_theme:field_list'
+    '#props':
+      variant: horizontal
       items:
         - label: "When"
           body: "Thursday 15 November, 08:00 AM to Friday 16 November"
@@ -3211,10 +3224,10 @@
       '.ecl-description-list .ecl-description-list__term:nth-child(5)': "Live streaming"
       '.ecl-description-list .ecl-description-list__definition:nth-child(6)': "08:00 CET | 00d:23h:35m"
 - structure:
-    '#type': pattern
-    '#variant': default
-    '#id': field_list
-    '#fields':
+    '#type': component
+    '#component': 'oe_theme:field_list'
+    '#props':
+      variant: default
       items:
         - label: "When"
           body: "Thursday 15 November, 08:00 AM to Friday 16 November"
@@ -3235,9 +3248,9 @@
       '.ecl-description-list .ecl-description-list__term:nth-child(5)': "Live streaming"
       '.ecl-description-list .ecl-description-list__definition:nth-child(6)': "08:00 CET | 00d:23h:35m"
 - structure:
-    '#type': pattern
-    '#id': link_block
-    '#fields':
+    '#type': component
+    '#component': 'oe_theme:link_block'
+    '#props':
       title: "Link block title"
       links:
         - label: 'Link 1'
@@ -3264,9 +3277,9 @@
       '.ecl-link-block__list .ecl-link-block__item:nth-child(2) .ecl-link .ecl-link__label': "Link 2"
       '.ecl-link-block__list .ecl-link-block__item:nth-child(3) .ecl-link': "Link 3"
 - structure:
-    '#type': pattern
-    '#id': link_block
-    '#fields':
+    '#type': component
+    '#component': 'oe_theme:link_block'
+    '#props':
       links:
         - label: 'Link 1'
           url: 'http://link-1.com'
@@ -3286,9 +3299,9 @@
       '.ecl-link-block__list .ecl-link-block__item:nth-child(2) .ecl-link': "Link 2"
       '.ecl-link-block__list .ecl-link-block__item:nth-child(3) .ecl-link': "Link 3"
 - structure:
-    '#type': pattern
-    '#id': blockquote
-    '#fields':
+    '#type': component
+    '#component': 'oe_theme:blockquote'
+    '#props':
       body: "Quote text"
       author: "Quote author"
       language_code: "bg"
@@ -3301,9 +3314,9 @@
       '.ecl-blockquote__author': "Quote author"
       '.ecl-blockquote__citation[lang="bg"]': "Quote text"
 - structure:
-    '#type': pattern
-    '#id': blockquote
-    '#fields':
+    '#type': component
+    '#component': 'oe_theme:blockquote'
+    '#props':
       body: "Quote text"
       author: "Quote author"
       color_mode: "purple"
@@ -3319,9 +3332,9 @@
       '.ecl-blockquote__author': "Quote author"
       '.ecl-blockquote__citation[lang="en"]': "Quote text"
 - structure:
-    '#type': pattern
-    '#id': context_nav
-    '#fields':
+    '#type': component
+    '#component': 'oe_theme:context_nav'
+    '#props':
       label: "Navigation title"
       items:
         - href: "http://link-1.com"
@@ -3356,10 +3369,10 @@
       'div#nav-label.ecl-contextual-navigation__label': "Navigation title"
       'button.ecl-contextual-navigation__more .ecl-button__label': "More label"
 - structure:
-    '#type': pattern
-    '#id': button
-    '#variant': default
-    '#fields':
+    '#type': component
+    '#component': 'oe_theme:button'
+    '#props':
+      variant: default
       label: "Button label"
       href: "http://example.com"
       icon: "caret-right"
@@ -3371,10 +3384,10 @@
     equals:
       'a.ecl-link--standalone[href="http://example.com"] .ecl-link__label': "Button label"
 - structure:
-    '#type': pattern
-    '#id': button
-    '#variant': default
-    '#fields':
+    '#type': component
+    '#component': 'oe_theme:button'
+    '#props':
+      variant: default
       label: "Button label"
       href: "http://example.com"
       icon: "caret-right"
@@ -3387,10 +3400,10 @@
     equals:
       'a.ecl-link--standalone[href="http://example.com"] .ecl-link__label': "Button label"
 - structure:
-    '#type': pattern
-    '#id': button
-    '#variant': default
-    '#fields':
+    '#type': component
+    '#component': 'oe_theme:button'
+    '#props':
+      variant: default
       label: "Button label"
       href: "http://example.com"
       type_attribute: "standalone"
@@ -3402,9 +3415,9 @@
     equals:
       'a.ecl-link--standalone[href="http://example.com"] .ecl-link__label': "Button label"
 - structure:
-    '#type': pattern
-    '#id': button
-    '#fields':
+    '#type': component
+    '#component': 'oe_theme:button'
+    '#props':
       type_attribute: "submit"
       label: "Button label"
   assertions:
@@ -3414,10 +3427,10 @@
     equals:
       'button.ecl-button--primary': "Button label"
 - structure:
-    '#type': pattern
-    '#id': button
-    '#variant': secondary
-    '#fields':
+    '#type': component
+    '#component': 'oe_theme:button'
+    '#props':
+      variant: secondary
       type_attribute: "submit"
       label: "Button label"
   assertions:
@@ -3427,20 +3440,20 @@
     equals:
       'button.ecl-button--secondary': "Button label"
 - structure:
-    '#type': pattern
-    '#id': button
-    '#variant': primary
-    '#fields':
+    '#type': component
+    '#component': 'oe_theme:button'
+    '#props':
+      variant: primary
       type_attribute: "reset"
       label: "Button label"
   assertions:
     count:
       'button.ecl-button[type="reset"]': 1
 - structure:
-    '#type': pattern
-    '#id': button
-    '#variant': primary
-    '#fields':
+    '#type': component
+    '#component': 'oe_theme:button'
+    '#props':
+      variant: primary
       type_attribute: "button"
       is_block: true
       label: "Button label"
@@ -3448,36 +3461,36 @@
     count:
       'button.ecl-button[type="button"]': 1
 - structure:
-    '#type': pattern
-    '#id': button
-    '#variant': secondary
-    '#fields':
+    '#type': component
+    '#component': 'oe_theme:button'
+    '#props':
+      variant: secondary
       label: "Button label"
   assertions:
     equals:
       'button.ecl-button--secondary': "Button label"
 - structure:
-    '#type': pattern
-    '#id': button
-    '#variant': tertiary
-    '#fields':
+    '#type': component
+    '#component': 'oe_theme:button'
+    '#props':
+      variant: tertiary
       label: "Button label"
   assertions:
     equals:
       'button.ecl-button--tertiary': "Button label"
 - structure:
-    '#type': pattern
-    '#id': button
-    '#variant': call
-    '#fields':
+    '#type': component
+    '#component': 'oe_theme:button'
+    '#props':
+      variant: call
       label: "Button label"
   assertions:
     equals:
       'button.ecl-button--primary.ecl-button--highlight': "Button label"
 - structure:
-    '#type': pattern
-    '#id': social_icon
-    '#fields':
+    '#type': component
+    '#component': 'oe_theme:social_icon'
+    '#props':
       service: "facebook"
       label: "Facebook"
       url: "http://facebook.com"
@@ -3488,9 +3501,9 @@
     equals:
       'a.ecl-link.ecl-link--standalone.ecl-link--icon span.ecl-link__label': "Facebook"
 - structure:
-    '#type': pattern
-    '#id': social_icon
-    '#fields':
+    '#type': component
+    '#component': 'oe_theme:social_icon'
+    '#props':
       service: "facebook"
       label: "Facebook"
       url: "http://facebook.com"
@@ -3502,10 +3515,10 @@
     equals:
       'a.ecl-link.ecl-link--standalone.ecl-link--icon span.ecl-link__label': "Facebook"
 - structure:
-    '#type': pattern
-    '#id': featured_item
-    '#variant': "default"
-    '#fields':
+    '#type': component
+    '#component': 'oe_theme:featured_item'
+    '#props':
+      variant: "default"
       title: "Example title"
       color_mode: "purple"
   assertions:
@@ -3521,10 +3534,10 @@
     equals:
       'div.ecl-content-block__title': "Example title"
 - structure:
-    '#type': pattern
-    '#id': featured_item
-    '#variant': "extended"
-    '#fields':
+    '#type': component
+    '#component': 'oe_theme:featured_item'
+    '#props':
+      variant: "extended"
       title: "Example title"
   assertions:
     count:
@@ -3539,10 +3552,10 @@
     equals:
       'div.ecl-content-block__title': "Example title"
 - structure:
-    '#type': pattern
-    '#id': featured_item
-    '#variant': "default"
-    '#fields':
+    '#type': component
+    '#component': 'oe_theme:featured_item'
+    '#props':
+      variant: "default"
       title: "Example title"
       description: "Example description"
       image:
@@ -3606,10 +3619,10 @@
       'div.ecl-content-block__list-container dd.ecl-description-list__definition.ecl-description-list__definition--taxonomy li.ecl-description-list__definition-item:nth-child(2)': "Taxonomy item 2"
       'div.ecl-content-block__list-container dd.ecl-description-list__definition.ecl-description-list__definition--taxonomy li.ecl-description-list__definition-item:nth-child(3)': "Taxonomy item 3"
 - structure:
-    '#type': pattern
-    '#id': featured_item
-    '#variant': "default"
-    '#fields':
+    '#type': component
+    '#component': 'oe_theme:featured_item'
+    '#props':
+      variant: "default"
       title: "Example title"
       description: "Example description"
       length: 8
@@ -3639,10 +3652,10 @@
       'div.ecl-content-block__title a': "Example title"
       'div.ecl-content-block__description': "Example..."
 - structure:
-    '#type': pattern
-    '#id': featured_item
-    '#variant': "default"
-    '#fields':
+    '#type': component
+    '#component': 'oe_theme:featured_item'
+    '#props':
+      variant: "default"
       title: "Example title"
       description: "Example description"
       length: 8
@@ -3672,14 +3685,14 @@
       'div.ecl-content-block__title a': "Example title"
       'div.ecl-content-block__description': "Example..."
 - structure:
-    '#type': pattern
-    '#id': featured_item
-    '#variant': "default"
-    '#fields':
+    '#type': component
+    '#component': 'oe_theme:featured_item'
+    '#props':
+      variant: "default"
       description:
-        '#type': pattern
-        '#id': blockquote
-        '#fields':
+        '#type': component
+        '#component': 'oe_theme:blockquote'
+        '#props':
           body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.'
           author: 'John Doe'
       length: 25
@@ -3687,10 +3700,10 @@
     equals:
       'div.ecl-content-block__description': '<figure class="ecl-blockquote"><div class="ecl-blockquote__body"><blockquote class="ecl-blockquote__quote"><p class="ecl-blockquote__citation" lang="en">Lorem ipsum dolor sit...</p></blockquote></div></figure>'
 - structure:
-    '#type': pattern
-    '#id': featured_item
-    '#variant': "default"
-    '#fields':
+    '#type': component
+    '#component': 'oe_theme:featured_item'
+    '#props':
+      variant: "default"
       description:
         '#markup': '<div>Example description</div>'
       length: 8
@@ -3698,10 +3711,10 @@
     equals:
       'div.ecl-content-block__description': '<div>Example...</div>'
 - structure:
-    '#type': pattern
-    '#id': featured_item
-    '#variant': "extended"
-    '#fields':
+    '#type': component
+    '#component': 'oe_theme:featured_item'
+    '#props':
+      variant: "extended"
       title: "Example title"
       description: "Example description"
       link:
@@ -3718,10 +3731,10 @@
       'div.ecl-content-block__description .ecl-paragraph': "Example description"
       'a.ecl-button .ecl-button__label': "Link title"
 - structure:
-    '#type': pattern
-    '#id': featured_item
-    '#variant': "extended"
-    '#fields':
+    '#type': component
+    '#component': 'oe_theme:featured_item'
+    '#props':
+      variant: "extended"
       title: "Example title"
       description: "Example description"
       link:
@@ -3745,10 +3758,10 @@
       'div.ecl-content-block__description .ecl-paragraph': "Example description"
       'a.ecl-button .ecl-button__label': "Link title"
 - structure:
-    '#type': pattern
-    '#id': featured_item
-    '#variant': "default"
-    '#fields':
+    '#type': component
+    '#component': 'oe_theme:featured_item'
+    '#props':
+      variant: "default"
       title: "Example title"
       description: "Example description"
       footer_items:
@@ -3766,9 +3779,9 @@
       'li.ecl-content-block__secondary-meta-item:nth-child(1) span.ecl-content-block__secondary-meta-label' : '15-16 November 2019, 08:00 AM'
       'li.ecl-content-block__secondary-meta-item:nth-child(2) span.ecl-content-block__secondary-meta-label' : 'Brussels, Belgium'
 - structure:
-    '#type': pattern
-    '#id': timeline
-    '#fields':
+    '#type': component
+    '#component': 'oe_theme:timeline'
+    '#props':
       limit: 2
       limit_to: 4
       color_mode: "green-dark"
@@ -3820,9 +3833,9 @@
       '.ecl-timeline__item:nth-child(6) .ecl-timeline__content': 'Lorem Ipsum 5'
       '.ecl-timeline__item:nth-child(7) .ecl-timeline__content': 'Lorem Ipsum 6'
 - structure:
-    '#type': pattern
-    '#id': timeline
-    '#fields':
+    '#type': component
+    '#component': 'oe_theme:timeline'
+    '#props':
       color_mode: "orange"
       headline:
         label: "2025"
@@ -3874,9 +3887,9 @@
       '.ecl-timeline__item:nth-child(6) .ecl-timeline__content': 'Lorem Ipsum 5'
       '.ecl-timeline__item:nth-child(7) .ecl-timeline__content': 'Lorem Ipsum 6'
 - structure:
-    '#type': pattern
-    '#id': timeline
-    '#fields':
+    '#type': component
+    '#component': 'oe_theme:timeline'
+    '#props':
       limit: 2
       button_label: 'Show all timelines'
       items:
@@ -3927,9 +3940,9 @@
       '.ecl-timeline__item:nth-child(5) .ecl-timeline__content': 'Lorem Ipsum 5'
       '.ecl-timeline__item:nth-child(6) .ecl-timeline__content': 'Lorem Ipsum 6'
 - structure:
-    '#type': pattern
-    '#id': timeline
-    '#fields':
+    '#type': component
+    '#component': 'oe_theme:timeline'
+    '#props':
       title: "Timeline heading"
       introduction: "Timeline introduction"
       limit: 2
@@ -3983,9 +3996,9 @@
       '.ecl-timeline__item:nth-child(5) .ecl-timeline__content': 'Lorem Ipsum 5'
       '.ecl-timeline__item:nth-child(6) .ecl-timeline__content': 'Lorem Ipsum 6'
 - structure:
-    '#type': pattern
-    '#id': timeline_set
-    '#fields':
+    '#type': component
+    '#component': 'oe_theme:timeline_set'
+    '#props':
       title: "Timeline heading"
       introduction: "Timeline introduction"
       color_mode: "green-dark"
@@ -4089,10 +4102,10 @@
       'ol.ecl-timeline:nth-child(2) .ecl-timeline__item:nth-child(6) .ecl-timeline__content': 'Lorem Ipsum 5'
       'ol.ecl-timeline:nth-child(2) .ecl-timeline__item:nth-child(8) .ecl-timeline__content': 'Lorem Ipsum 6'
 - structure:
-    '#type': pattern
-    '#id': text_featured_media
-    '#variant': "left_simple"
-    '#fields':
+    '#type': component
+    '#component': 'oe_theme:text_featured_media'
+    '#props':
+      variant: "left_simple"
       title: "Heading"
       text_title: "Title"
       image:
@@ -4141,10 +4154,10 @@
       'div.ecl-featured-item__item div.ecl-featured-item__description': "Some more text"
       'a.ecl-link span.ecl-link__label': "Call to action"
 - structure:
-    '#type': pattern
-    '#id': text_featured_media
-    '#variant': "right_simple"
-    '#fields':
+    '#type': component
+    '#component': 'oe_theme:text_featured_media'
+    '#props':
+      variant: "right_simple"
       text_title: "Title"
       image:
         src: "http://via.placeholder.com/150x150"
@@ -4183,10 +4196,10 @@
       'a.ecl-link span.ecl-link__label': "Call to action"
       'div.ecl-expandable__content': "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Non enim iam stirpis bonum quaeret, sed animalis;<b>A mene tu?</b></p>"
 - structure:
-    '#type': pattern
-    '#id': text_featured_media
-    '#variant': "right_simple"
-    '#fields':
+    '#type': component
+    '#component': 'oe_theme:text_featured_media'
+    '#props':
+      variant: "right_simple"
       title: "Heading"
       animation:
         poster: "https://inno-ecl.s3.amazonaws.com/media/examples/example-image.jpg"
@@ -4234,9 +4247,9 @@
       'a.ecl-link span.ecl-link__label': "Call to action"
       'div.ecl-expandable__content': "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
 - structure:
-    '#type': pattern
-    '#id': text_featured_media
-    '#fields':
+    '#type': component
+    '#component': 'oe_theme:text_featured_media'
+    '#props':
       title: "Heading"
       text_title: "Title"
       caption: "Some caption text for the image"
@@ -4267,10 +4280,10 @@
       'div.ecl-featured-item__item div.ecl-featured-item__description': "Some more text"
       'div#text-featured-media-1.text-featured-media-hidden-content': "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
 - structure:
-    '#type': pattern
-    '#id': text_featured_media
-    '#variant': "right_featured"
-    '#fields':
+    '#type': component
+    '#component': 'oe_theme:text_featured_media'
+    '#props':
+      variant: "right_featured"
       title: "Heading"
       text_title: "Title"
       image:
@@ -4298,9 +4311,9 @@
       'div.ecl-featured-item__item div.ecl-featured-item__description': "Some more text"
       'a.ecl-link span.ecl-link__label': "Call to action"
 - structure:
-    '#type': pattern
-    '#id': text_featured_media
-    '#fields':
+    '#type': component
+    '#component': 'oe_theme:text_featured_media'
+    '#props':
       title: "Heading"
       caption: "Some caption"
   assertions:
@@ -4319,10 +4332,10 @@
     equals:
       'h2.ecl-u-type-heading-2': "Heading"
 - structure:
-    '#type': pattern
-    '#id': text_featured_media
-    '#variant': "left_featured"
-    '#fields':
+    '#type': component
+    '#component': 'oe_theme:text_featured_media'
+    '#props':
+      variant: "left_featured"
       title: "Heading"
       video:
         '#type': 'html_tag'
@@ -4349,9 +4362,9 @@
       'div.ecl-featured-item__item div.ecl-featured-item__description': "Some more text"
       'a.ecl-link span.ecl-link__label': "Call to action"
 - structure:
-    '#type': pattern
-    '#id': text_featured_media
-    '#fields':
+    '#type': component
+    '#component': 'oe_theme:text_featured_media'
+    '#props':
       video:
         '#type': 'html_tag'
         '#tag': 'iframe'
@@ -4364,9 +4377,9 @@
       'iframe[src="//ec.europa.eu/avservices/play.cfm?ref=I-181645"]': 1
       'div.ecl-expandable.ecl-media-container__expandable': 0
 - structure:
-    '#type': pattern
-    '#id': text_featured_media
-    '#fields':
+    '#type': component
+    '#component': 'oe_theme:text_featured_media'
+    '#props':
       video:
         '#type': 'html_tag'
         '#tag': 'iframe'
@@ -4383,10 +4396,10 @@
       'a.ecl-link.ecl-link--standalone[href="http://example.com"]': 1
       'div.ecl-expandable.ecl-media-container__expandable': 0
 - structure:
-    '#type': pattern
-    '#id': text_featured_media
-    '#variant': "left_featured"
-    '#fields':
+    '#type': component
+    '#component': 'oe_theme:text_featured_media'
+    '#props':
+      variant: "left_featured"
       title: "Heading"
       animation:
         poster: "https://inno-ecl.s3.amazonaws.com/media/examples/example-image.jpg"
@@ -4420,9 +4433,9 @@
       'div.ecl-featured-item__item div.ecl-featured-item__description': "Some more text"
       'a.ecl-link span.ecl-link__label': "Call to action"
 - structure:
-    '#type': pattern
-    '#id': icons_with_text
-    '#fields':
+    '#type': component
+    '#component': 'oe_theme:icons_with_text'
+    '#props':
       items:
         -
           icon: "file"
@@ -4448,15 +4461,15 @@
       'ul li.ecl-unordered-list__item:nth-child(3) span.ecl-icon.ecl-icon--m.ecl-u-mr-s.ecl-u-flex-shrink-0.wt-icon--location': 1
       'ul li.ecl-unordered-list__item:nth-child(4) span.ecl-icon.ecl-icon--xs.ecl-u-mr-s.ecl-u-flex-shrink-0.wt-icon--livestreaming': 1
 - structure:
-    '#type': pattern
-    '#id': icons_with_text
+    '#type': component
+    '#component': 'oe_theme:icons_with_text'
   assertions:
     count:
       'ul.ecl-unordered-list--no-marker.ecl-u-mh-none.ecl-u-ph-none': 0
 - structure:
-    '#type': pattern
-    '#id': icons_with_text
-    '#fields':
+    '#type': component
+    '#component': 'oe_theme:icons_with_text'
+    '#props':
       items:
         -
           icon: "file"
@@ -4477,10 +4490,10 @@
       'ul li.ecl-unordered-list__item:nth-child(2) span.ecl-icon.ecl-icon--m.ecl-u-mr-s.ecl-u-flex-shrink-0.wt-icon--file': 1
       'ul li.ecl-unordered-list__item:nth-child(3) span.ecl-icon.ecl-icon--m.ecl-u-mr-s.ecl-u-flex-shrink-0.wt-icon--livestreaming': 1
 - structure:
-    '#type': "pattern"
-    '#id': "tag"
-    '#variant': "default"
-    '#fields':
+    '#type': "component"
+    '#component': 'oe_theme:tag'
+    '#props':
+      variant: "default"
       tag_type: "link"
       url: "http://example.com"
       label: "Tag label"
@@ -4490,10 +4503,10 @@
     count:
       'a.ecl-tag[href="http://example.com"]': 1
 - structure:
-    '#type': "pattern"
-    '#id': "tag"
-    '#variant': "default"
-    '#fields':
+    '#type': "component"
+    '#component': 'oe_theme:tag'
+    '#props':
+      variant: "default"
       tag_type: "removable"
       url: "http://example.com"
       label: "Tag label"
@@ -4503,10 +4516,10 @@
     count:
       '.ecl-tag--removable': 1
 - structure:
-    '#type': "pattern"
-    '#id': "navigation_menu"
-    '#variant': "default"
-    '#fields':
+    '#type': "component"
+    '#component': 'oe_theme:navigation_menu'
+    '#props':
+      variant: "default"
       label: "Menu"
       items:
         - href: "#"
@@ -4569,9 +4582,9 @@
       'li.ecl-menu__item:nth-child(1) a.ecl-menu__link[data-name1="data value1"]': "Parent 1"
       'li.ecl-menu__item:nth-child(1) ul.ecl-menu__sublist li.ecl-menu__subitem--current a.ecl-menu__sublink.ecl-link--icon[data-name2="data value2"] .ecl-link__label': 'Child 1.1'
 - structure:
-    '#type': "pattern"
-    '#id': "navigation_menu"
-    '#fields':
+    '#type': "component"
+    '#component': 'oe_theme:navigation_menu'
+    '#props':
       label: "Custom Menu"
       max_lines: 3
       items:
@@ -4612,10 +4625,10 @@
       'li.ecl-menu__item:nth-child(1) ul.ecl-menu__sublist li.ecl-menu__subitem:nth-child(7) a.ecl-menu__sublink': 'Child 1.7'
       'li.ecl-menu__item:nth-child(1) ul.ecl-menu__sublist li.ecl-menu__subitem:nth-child(8) a.ecl-menu__sublink': 'Child 1.8'
 - structure:
-    '#type': "pattern"
-    '#id': "navigation_menu"
-    '#variant': "mega_menu"
-    '#fields':
+    '#type': "component"
+    '#component': 'oe_theme:navigation_menu'
+    '#props':
+      variant: "mega_menu"
       label: "Menu"
       featured_priority: "primary"
       extra_classes: "custom-class1 custom-class2"
@@ -4788,9 +4801,9 @@
       'li.ecl-mega-menu__item.ecl-mega-menu__item--has-container div.ecl-mega-menu__mega-container-scrollable': '<article class="ecl-navigation-list__item"><img class="ecl-navigation-list__image" src="https://inno-ecl.s3.amazonaws.com/media/examples/example-image.jpg" alt="Alt text for the image"><div class="ecl-content-block ecl-navigation-list__content-block" data-ecl-auto-init="ContentBlock" data-ecl-content-block><div class="ecl-content-block__title" data-ecl-title-link><a href="/example#qspea" class="ecl-link ecl-link--standalone">Title 3</a></div><div class="ecl-content-block__description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus gravida ipsum ut lorem cursus</div></div></article>'
       'li.ecl-mega-menu__item.ecl-mega-menu__item--promotional a.ecl-link--standalone.ecl-mega-menu__link': 'Promotional Parent 4 with no dropdown'
 - structure:
-    '#type': 'pattern'
-    '#id': 'link'
-    '#fields':
+    '#type': 'component'
+    '#component': 'oe_theme:link'
+    '#props':
       url: '/'
       text: 'Link text'
   assertions:
@@ -4799,9 +4812,9 @@
     count:
       'a.ecl-link[href="/"]': 1
 - structure:
-    '#type': 'pattern'
-    '#id': 'link'
-    '#fields':
+    '#type': 'component'
+    '#component': 'oe_theme:link'
+    '#props':
       url: '/'
       text: 'Link text'
       variant: 'standalone'
@@ -4809,9 +4822,9 @@
     equals:
       'a.ecl-link.ecl-link--standalone': 'Link text'
 - structure:
-    '#type': 'pattern'
-    '#id': 'link'
-    '#fields':
+    '#type': 'component'
+    '#component': 'oe_theme:link'
+    '#props':
       url: '/'
       text: 'Link text'
       variant: 'cta'
@@ -4819,9 +4832,9 @@
     equals:
       'a.ecl-link.ecl-link--primary-highlight': 'Link text'
 - structure:
-    '#type': 'pattern'
-    '#id': 'facts_figures'
-    '#fields':
+    '#type': 'component'
+    '#component': 'oe_theme:facts_figures'
+    '#props':
       items:
         - icon: 'instagram'
           value: '00.0 million'
@@ -4855,9 +4868,9 @@
       'div.ecl-fact-figures__item:nth-child(2) div.ecl-fact-figures__description': 'Sed efficitur bibendum rutrum. Nunc feugiat congue augue ac consectetur.'
       'div.ecl-fact-figures__view-all a.ecl-link.ecl-link--standalone.ecl-link--icon.ecl-fact-figures__view-all-link[href="https://example.com"] span.ecl-link__label': 'View all metrics'
 - structure:
-    '#type': 'pattern'
-    '#id': 'facts_figures'
-    '#fields':
+    '#type': 'component'
+    '#component': 'oe_theme:facts_figures'
+    '#props':
       items:
         - icon: 'instagram'
           value: '00.0 million'
@@ -4879,9 +4892,9 @@
       'div.ecl-fact-figures__view-all': 0
       '.ecl-fact-figures__item--font-m': 0
 - structure:
-    '#type': 'pattern'
-    '#id': 'active_search_filters'
-    '#fields':
+    '#type': 'component'
+    '#component': 'oe_theme:active_search_filters'
+    '#props':
       name: 'Source'
       items:
         - label: 'DG Trad'
@@ -4904,9 +4917,9 @@
     equals:
       'div.active-search-filters__name span': 'Source'
 - structure:
-    '#type': 'pattern'
-    '#id': 'list_with_illustration'
-    '#fields':
+    '#type': 'component'
+    '#component': 'oe_theme:list_with_illustration'
+    '#props':
       square_image: false
       zebra: true
       column: 1
@@ -4944,9 +4957,9 @@
       'li.ecl-list-illustration__item:nth-child(2) div.ecl-list-illustration__title': 'About the European Union'
       'li.ecl-list-illustration__item:nth-child(2) div.ecl-list-illustration__description': 'The EU and its institutions, how to visit and work at the EU.'
 - structure:
-    '#type': 'pattern'
-    '#id': 'list_with_illustration'
-    '#fields':
+    '#type': 'component'
+    '#component': 'oe_theme:list_with_illustration'
+    '#props':
       square_image: true
       zebra: true
       column: 1
@@ -4987,9 +5000,9 @@
       'li.ecl-list-illustration__item:nth-child(2) div.ecl-list-illustration__title': 'About the European Union'
       'li.ecl-list-illustration__item:nth-child(2) div.ecl-list-illustration__description': 'The EU and its institutions, how to visit and work at the EU.'
 - structure:
-    '#type': 'pattern'
-    '#id': 'list_with_illustration'
-    '#fields':
+    '#type': 'component'
+    '#component': 'oe_theme:list_with_illustration'
+    '#props':
       square_image: false
       zebra: false
       column: 1
@@ -5019,9 +5032,9 @@
       'li.ecl-list-illustration__item:nth-child(2) div.ecl-list-illustration__title': 'About the European Union'
       'li.ecl-list-illustration__item:nth-child(2) div.ecl-list-illustration__description': 'The EU and its institutions, how to visit and work at the EU.'
 - structure:
-    '#type': 'pattern'
-    '#id': 'list_with_illustration'
-    '#fields':
+    '#type': 'component'
+    '#component': 'oe_theme:list_with_illustration'
+    '#props':
       square_image: false
       zebra: true
       column: 2
@@ -5055,9 +5068,9 @@
       'li.ecl-list-illustration__item:nth-child(2) div.ecl-list-illustration__title': 'About the European Union'
       'li.ecl-list-illustration__item:nth-child(2) div.ecl-list-illustration__description': 'The EU and its institutions, how to visit and work at the EU.'
 - structure:
-    '#type': 'pattern'
-    '#id': 'list_with_illustration'
-    '#fields':
+    '#type': 'component'
+    '#component': 'oe_theme:list_with_illustration'
+    '#props':
       square_image: true
       column: 3
       centered: true
@@ -5093,9 +5106,9 @@
       'li.ecl-list-illustration__item:nth-child(2) div.ecl-list-illustration__title': 'About the European Union'
       'li.ecl-list-illustration__item:nth-child(2) div.ecl-list-illustration__description': 'The EU and its institutions, how to visit and work at the EU.'
 - structure:
-    '#type': 'pattern'
-    '#id': 'list_with_illustration'
-    '#fields':
+    '#type': 'component'
+    '#component': 'oe_theme:list_with_illustration'
+    '#props':
       square_image: false
       column: 2
       items:
@@ -5120,10 +5133,10 @@
       'li.ecl-list-illustration__item:nth-child(2) div.ecl-list-illustration__title': 'About the European Union'
       'li.ecl-list-illustration__item:nth-child(2) div.ecl-list-illustration__description': 'The EU and its institutions, how to visit and work at the EU.'
 - structure:
-    '#type': 'pattern'
-    '#id': 'list_with_illustration'
-    '#variant': 'icon_list'
-    '#fields':
+    '#type': 'component'
+    '#component': 'oe_theme:list_with_illustration'
+    '#props':
+      variant: 'icon_list'
       color_mode: "green-pine"
       column: 3
       items:
@@ -5148,17 +5161,17 @@
       'li.ecl-list-illustration__item:nth-child(1) span.ecl-icon.wt-icon--check-bold': 1
       'li.ecl-list-illustration__item:nth-child(2) span.ecl-icon.wt-icon--check-bold': 1
       'li.ecl-list-illustration__item div.ecl-list-illustration__value': 0
-      div.ecl-list-illustration__divider: 2
+      div.ecl-list-illustration__divider: 0
     contains:
       'li.ecl-list-illustration__item:nth-child(1) div.ecl-list-illustration__title': 'Business, Economy, Euro'
       'li.ecl-list-illustration__item:nth-child(1) div.ecl-list-illustration__description': 'EU economy, the euro, and practical information for EU businesses and entrepreneurs.'
       'li.ecl-list-illustration__item:nth-child(2) div.ecl-list-illustration__title': 'About the European Union'
       'li.ecl-list-illustration__item:nth-child(2) div.ecl-list-illustration__description': 'The EU and its institutions, how to visit and work at the EU.'
 - structure:
-    '#type': 'pattern'
-    '#id': 'list_with_illustration'
-    '#variant': 'icon_list'
-    '#fields':
+    '#type': 'component'
+    '#component': 'oe_theme:list_with_illustration'
+    '#props':
+      variant: 'icon_list'
       column: 2
       items:
         - title: "Business, Economy, Euro"
@@ -5186,10 +5199,10 @@
       'li.ecl-list-illustration__item:nth-child(2) div.ecl-list-illustration__title': 'About the European Union'
       'li.ecl-list-illustration__item:nth-child(2) div.ecl-list-illustration__description': 'The EU and its institutions, how to visit and work at the EU.'
 - structure:
-    '#type': 'pattern'
-    '#id': 'list_with_illustration'
-    '#variant': 'number_list'
-    '#fields':
+    '#type': 'component'
+    '#component': 'oe_theme:list_with_illustration'
+    '#props':
+      variant: 'number_list'
       color_mode: "red-crayola"
       column: 3
       items:
@@ -5213,17 +5226,17 @@
       img.ecl-list-illustration__image: 0
       'li.ecl-list-illustration__item span.ecl-icon': 0
       'li.ecl-list-illustration__item div.ecl-list-illustration__value': 0
-      div.ecl-list-illustration__divider: 2
+      div.ecl-list-illustration__divider: 0
     contains:
       'li.ecl-list-illustration__item:nth-child(1) div.ecl-list-illustration__title': 'Business, Economy, Euro'
       'li.ecl-list-illustration__item:nth-child(1) div.ecl-list-illustration__description': 'EU economy, the euro, and practical information for EU businesses and entrepreneurs.'
       'li.ecl-list-illustration__item:nth-child(2) div.ecl-list-illustration__title': 'About the European Union'
       'li.ecl-list-illustration__item:nth-child(2) div.ecl-list-illustration__description': 'The EU and its institutions, how to visit and work at the EU.'
 - structure:
-    '#type': 'pattern'
-    '#id': 'list_with_illustration'
-    '#variant': 'number_list'
-    '#fields':
+    '#type': 'component'
+    '#component': 'oe_theme:list_with_illustration'
+    '#props':
+      variant: 'number_list'
       column: 2
       items:
         - title: "Business, Economy, Euro"
@@ -5251,9 +5264,9 @@
       'li.ecl-list-illustration__item:nth-child(2) div.ecl-list-illustration__title': 'About the European Union'
       'li.ecl-list-illustration__item:nth-child(2) div.ecl-list-illustration__description': 'The EU and its institutions, how to visit and work at the EU.'
 - structure:
-    '#type': 'pattern'
-    '#id': 'news_ticker'
-    '#fields':
+    '#type': 'component'
+    '#component': 'oe_theme:news_ticker'
+    '#props':
       identifier: "news-ticker-example"
       items:
         - content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit"
@@ -5315,9 +5328,9 @@
       button.ecl-news-ticker__pause span.ecl-button__label: 'Pause news ticker'
       button.ecl-news-ticker__play span.ecl-button__label: 'Play news ticker'
 - structure:
-    '#type': 'pattern'
-    '#id': 'news_ticker'
-    '#fields':
+    '#type': 'component'
+    '#component': 'oe_theme:news_ticker'
+    '#props':
       items:
         - content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit"
           link: "http://example.com"
@@ -5344,9 +5357,9 @@
     equals:
       div.ecl-news-ticker__counter span.ecl-news-ticker__counter--max: '3'
 - structure:
-    '#type': 'pattern'
-    '#id': 'carousel'
-    '#fields':
+    '#type': 'component'
+    '#component': 'oe_theme:carousel'
+    '#props':
       color_mode: "green"
       items:
         - title: "Lorem ipsum dolor sit amet"
@@ -5459,9 +5472,9 @@
       button.ecl-carousel__navigation-item:nth-child(5): '5'
       button.ecl-carousel__navigation-item:nth-child(6): '6'
 - structure:
-    '#type': 'pattern'
-    '#id': 'carousel'
-    '#fields':
+    '#type': 'component'
+    '#component': 'oe_theme:carousel'
+    '#props':
       items:
         - title: "Donec maximus pharetra ex a ultricies"
           description: "Integer quis lorem tellus. Nullam sollicitudin suscipit diam, ac blandit ipsum tempor consectetur. Duis vitae pulvinar turpis. Donec maximus pharetra ex a ultricies"
@@ -5504,10 +5517,10 @@
       div.ecl-carousel__slide section.ecl-banner--no-media:nth-child(2).ecl-banner--l div.ecl-banner__content div.ecl-banner__cta a span.ecl-link__label: 'CTA 3'
       div.ecl-carousel__pagination: 'in 3'
 - structure:
-    '#type': pattern
-    '#id': highlighted_list
-    '#variant': default
-    '#fields':
+    '#type': component
+    '#component': 'oe_theme:highlighted_list'
+    '#props':
+      variant: default
       title: "Highlighted News"
       introduction:
         '#markup': '<p>The Introduction to the list</p>'
@@ -5643,10 +5656,10 @@
       'div#highlighted-news-block > div.ecl-u-mt-m a.ecl-link.ecl-link--standalone.ecl-link--icon[href="https://example.com"] .ecl-link__label': 'Read more news'
       'div#highlighted-news-block div.ecl.ecl-u-mt-s': '<div>This <a href="https://example.com">is the detail</a> rich text field which contains a link.</div>'
 - structure:
-    '#type': pattern
-    '#id': highlighted_list
-    '#variant': default
-    '#fields':
+    '#type': component
+    '#component': 'oe_theme:highlighted_list'
+    '#props':
+      variant: default
       highlighted_item:
         title: "Item 1"
         secondary_meta:
@@ -5731,10 +5744,10 @@
       'div.ecl-col-l-4 article:nth-child(2) .ecl-content-block__title a.ecl-link.ecl-link--standalone[href="https://external.com"]': 'Item 3'
       'div#highlighted-news-block > div.ecl-u-mt-m a.ecl-link.ecl-link--standalone.ecl-link--icon[href="#"] .ecl-link__label': '#'
 - structure:
-    '#type': pattern
-    '#id': highlighted_list
-    '#variant': four_columns
-    '#fields':
+    '#type': component
+    '#component': 'oe_theme:highlighted_list'
+    '#props':
+      variant: four_columns
       title: "Highlighted News"
       introduction:
         '#markup': '<p>The Introduction to the list</p>'
@@ -5890,10 +5903,10 @@
       'div#highlighted-news-block > div.ecl-u-mt-m a.ecl-link.ecl-link--standalone.ecl-link--icon[href="https://example.com"] .ecl-link__label': 'Read more news'
       'div#highlighted-news-block div.ecl.ecl-u-mt-s': '<div>This <a href="https://example.com">is the detail</a> rich text field which contains a link.</div>'
 - structure:
-    '#type': pattern
-    '#id': highlighted_list
-    '#variant': four_columns
-    '#fields':
+    '#type': component
+    '#component': 'oe_theme:highlighted_list'
+    '#props':
+      variant: four_columns
       title: "Highlighted News"
       items:
         - title: "Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem"
@@ -5985,9 +5998,9 @@
       'div.ecl-col-l-3:nth-child(2) article:nth-child(2) ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(1)': 'Item 4 primary meta'
       'div.ecl-col-l-3:nth-child(2) article:nth-child(2) ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(2)': 'DD Month Year'
 - structure:
-    '#type': 'pattern'
-    '#id': 'tabs'
-    '#fields':
+    '#type': 'component'
+    '#component': 'oe_theme:tabs'
+    '#props':
       items:
         - label: "View"
           path: "https://example.com/view"
@@ -6010,9 +6023,9 @@
       div.ecl-tabs div.ecl-tabs__controls button.ecl-tabs__prev: 'Previous'
       div.ecl-tabs div.ecl-tabs__controls button.ecl-tabs__Next: 'Next'
 - structure:
-    '#type': 'pattern'
-    '#id': 'tabs'
-    '#fields':
+    '#type': 'component'
+    '#component': 'oe_theme:tabs'
+    '#props':
       items:
         - label: "View"
           path: "https://example.com/view"
@@ -6038,10 +6051,10 @@
       div.ecl-tabs div.ecl-tabs__controls button.ecl-tabs__prev: 'Custom previous label'
       div.ecl-tabs div.ecl-tabs__controls button.ecl-tabs__next: 'Custom next label'
 - structure:
-    '#type': 'pattern'
-    '#id': 'tabs'
-    '#variant': 'tab_behaviour'
-    '#fields':
+    '#type': 'component'
+    '#component': 'oe_theme:tabs'
+    '#props':
+      variant: "tab_behaviour"
       items:
         - label: "View"
           path: "#view-tab"
@@ -6067,9 +6080,9 @@
       div.ecl-tabs div.ecl-tabs__controls button.ecl-tabs__prev: 'Custom previous label'
       div.ecl-tabs div.ecl-tabs__controls button.ecl-tabs__next: 'Custom next label'
 - structure:
-    '#type': pattern
-    '#id': spotlight
-    '#fields':
+    '#type': component
+    '#component': 'oe_theme:spotlight'
+    '#props':
       header: "In focus"
       title: "Proin molestie sapien ut blandit"
       font_size: "m"
@@ -6100,9 +6113,9 @@
       'a .ecl-spotlight__container .ecl-container div.ecl-spotlight__title': "Proin molestie sapien ut blandit"
       'a .ecl-spotlight__container footer.ecl-spotlight__credit': "© Copyright or credit"
 - structure:
-    '#type': pattern
-    '#id': spotlight
-    '#fields':
+    '#type': component
+    '#component': 'oe_theme:spotlight'
+    '#props':
       header: "In focus"
       picture:
         img:

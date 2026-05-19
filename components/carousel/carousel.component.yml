@@ -1,0 +1,25 @@
+name: Carousel
+description: 'The Carousel component renders multiple banner slides.'
+props:
+  type: object
+  properties:
+    color_mode:
+      type: ['string', 'null']
+      title: 'Color mode'
+      description: 'Name of the color mode.'
+    items:
+      type: ['array', 'null']
+      title: 'Carousel items'
+      description: 'List of items compatible with the ECL Banner component structure.'
+    counter_label:
+      type: ['string', 'null']
+      title: 'Counter label'
+      description: "The counter label. Defaults to 'of'."
+    full_width:
+      type: ['boolean', 'null']
+      title: 'Full width'
+      description: 'Whether the Carousel should be extended to full width.'
+    size:
+      type: ['string', 'null']
+      title: Size
+      description: "Size of the carousel (can be 's', 'm', 'l')."

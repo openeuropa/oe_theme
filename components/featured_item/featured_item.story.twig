@@ -1,0 +1,120 @@
+{% for _variant in ['default', 'extended'] %}
+  <h2 class="ecl-u-type-heading-2">
+    Variant: {{ _variant|render }}
+  </h2>
+  {% include 'oe_theme:featured_item' with {
+    variant: _variant,
+    image: {
+      src: 'https://loremflickr.com/1000/500/arch',
+      alt: 'Alternative text for featured item image',
+    },
+    picture_zoom: true,
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quid est igitur, inquit, quod requiras? Sed quod proximum fuit non vidit. Aperiendum est igitur, quid sit voluptas; Contemnit enim disserendi elegantiam, confuse loquitur.',
+    length: 150,
+    title: 'Business, Economy, Euro',
+    link: {
+      href: 'http://example.com',
+      label: 'Read more',
+    },
+    metas: [
+      'News article',
+      '6 July 2015',
+      'Brussels',
+    ],
+    footer_items: [
+      {
+        icon: 'calendar',
+        text: '15-16 November 2019, 08:00 AM',
+      },
+      {
+        icon: 'location',
+        text: 'Brussels, Belgium',
+      },
+      {
+        icon: 'livestreaming',
+        text: 'Live streaming available',
+      },
+    ],
+    badges: [
+      {
+        label: 'Highlighted',
+        variant: 'highlight',
+      },
+      {
+        label: 'Status: Open',
+        variant: 'high',
+      },
+    ],
+    lists: [
+      [
+        {
+          term: 'When',
+          definition: 'Thursday 15 November, 08:00 AM to Friday 16 November',
+        },
+        {
+          term: 'Where',
+          definition: [
+            'The EGG, Rue Barra 175, 1070 Brussels, Belgium',
+            'Rue Belliard 28, 1000 Brussels, Belgium',
+          ],
+        },
+        {
+          term: 'Standalone links',
+          list_type: 'link',
+          definition: [
+            {
+              label: 'First link',
+              path: 'https://example.com/1',
+              icon: 'copy',
+            },
+            {
+              path: 'https://example.com/2',
+              icon: 'download',
+            },
+            {
+              label: 'Third link',
+              path: 'https://example.com/3',
+              external_link: true,
+            },
+          ],
+        },
+        {
+          term: 'Inline links',
+          definition: [
+            {
+              label: 'First inline-link',
+              path: 'https://example.com/1',
+              external_link: true,
+            },
+            {
+              label: 'Second inline-link',
+              path: 'https://example.com/2',
+            },
+            {
+              path: 'https://example.com/3',
+            },
+          ],
+          list_type: 'link-inline',
+        },
+        {
+          term: 'Taxonomy list',
+          list_type: 'taxonomy',
+          definition: [
+            'Taxonomy item 1',
+            'Taxonomy item 2',
+            'Taxonomy item 3',
+          ],
+        },
+      ],
+    ],
+    lists_variant: 'vertical',
+    color_mode: 'orange',
+    extra_attributes: [
+      {
+        name: 'extra-attr',
+        value: 'extra value',
+      },
+    ],
+  } only %}
+  <hr class="ecl-separator ecl-u-mt-l">
+{% endfor %}

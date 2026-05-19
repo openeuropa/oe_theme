@@ -66,17 +66,7 @@ class OnlineDescriptionExtraField extends OnlineDisplayExtraFieldBase {
     /** @var \Drupal\link\Plugin\Field\FieldType\LinkItem $link */
     $link = $entity->get('oe_event_online_link')->first();
     $value = $link->getValue();
-    $url = $link->getUrl();
-    $url->setOptions([
-      'attributes' => [
-        'class' => [
-          'ecl-u-mt-l',
-          'ecl-u-mb-l',
-          'ecl-u-d-inline-block',
-        ],
-      ],
-    ]);
-    $build['#url'] = $url;
+    $build['#url'] = $link->getUrl();
     $build['#label'] = $value['title'];
 
     return $build;

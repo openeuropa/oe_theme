@@ -1,10 +1,13 @@
 #!/bin/bash
 
+# Remove ECL twig templates from the components directory.
+find "./components" -type f -name "ecl-*.html.twig" -delete
+
 # Source directory containing *.twig files
 source_dir="./ecl-build/src/components"
 
 # Destination directory to copy files with "ecl-" prefix
-destination_dir="./components"
+destination_dir="./ecl_components"
 
 # Ensure an empty destination directory exists
 [ ! -d $destination_dir ] || rm -rf $destination_dir

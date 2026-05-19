@@ -10,6 +10,7 @@
         "cweagans/composer-patches": "^2.0",
         "drupal/backport_node_storage_body_field": "^1 || ^2",
         "drupal/core": "^10.3 || ^11",
+        "drupal/sdc_component_library": "^1.0",
         "drupal/smart_trim": "^2",
         "drupal/stable": "^2.0",
         "drupal/twig_field_value": "^2.0",

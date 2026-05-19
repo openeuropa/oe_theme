@@ -1,0 +1,36 @@
+name: Link
+description: 'A simple link.'
+variants:
+  standalone:
+    title: Standalone
+    description: 'A simple standalone link.'
+  cta:
+    title: 'Call to action'
+    description: 'A call to action link.'
+props:
+  type: object
+  properties:
+    extra_attributes:
+      type: array
+      title: 'Extra attributes'
+      description: 'Extra attributes to add to the link element.'
+    extra_classes:
+      type: ['string', 'null']
+      title: 'Extra classes'
+      description: 'Extra classes to add to the link element.'
+    text:
+      type: ['string', 'null']
+      title: text
+      description: 'The link text.'
+    url:
+      type: ['string', 'object', 'null']
+      title: Link
+      description: 'A Drupal URL object. Strings will be passed to Url::fromUserInput().'
+    external_link:
+      type: ['boolean', 'null']
+      title: 'External link'
+      description: 'Whether the URL is external or not.'
+    contextual_links:
+      type: ['object', 'null']
+      title: 'Contextual links'
+      description: 'Render array of contextual links'

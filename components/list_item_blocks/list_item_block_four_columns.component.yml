@@ -1,0 +1,45 @@
+name: 'List item block: four columns'
+description: 'Four columns layout, to be used with listing items.'
+props:
+  type: object
+  properties:
+    title:
+      type: ['string', 'null']
+      title: Title
+      description: 'Block title'
+    introduction:
+      type: ['string', 'null']
+      title: Introduction
+      description: 'A brief summary of the content on the list.'
+    items:
+      type: ['array', 'null']
+      title: 'Layout items'
+      description: 'Array of renderable items'
+    button_label:
+      type: ['string', 'null']
+      title: 'Button label'
+      description: 'Call to action label'
+    button_url:
+      type: ['string', 'object', 'null']
+      title: 'Button URL (A Drupal Url object)'
+      description: 'Call to action URL'
+    button_icon_name:
+      type: ['string', 'null']
+      title: 'Icon name'
+      description: 'The name of the icon to place next to the link (default to arrow-left with transform rotate-180).'
+    button_icon_position:
+      type: ['string', 'null']
+      title: 'Icon position'
+      description: 'The position of the icon'
+    button_separator:
+      type: ['boolean', 'null']
+      title: 'Button separator'
+      description: 'Whether to add a separator line between the items and the button.'
+    external_link:
+      type: ['boolean', 'null']
+      title: 'External link'
+      description: 'Whether the Button URL is external or not.'
+    vertical:
+      type: ['boolean', 'null']
+      title: 'Vertical order'
+      description: 'Whether the items to be ordered from top to bottom instead of left to right.'

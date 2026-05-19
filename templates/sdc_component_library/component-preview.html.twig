@@ -1,0 +1,82 @@
+{{ attach_library('oe_theme/component_preview') }}
+<div class="components-preview">
+  <div class="components-preview__wrapper">
+    <!-- Sidebar for components navigation -->
+    <div class="components-preview__sidebar">
+      <input type="text" class="components-preview__search" placeholder="{{ "Find components"|t }}">
+      <ul class="components-preview__nav">
+        {% set provider = '' %}
+        {% set group = '' %}
+
+        {% for component in components %}
+          {% if component.provider and component.provider != provider %}
+            {% set provider = component.provider %}
+
+            <li class="components-preview__provider">{{ provider|replace({'_' : ' ', '-' : ' '})|title }} {{ 'components'|t }}</li>
+          {% endif %}
+
+          {% if component.group and component.group != group %}
+            {% set group = component.group %}
+
+            <li class="components-preview__group">{{ group }}</li>
+          {% endif %}
+
+          <li class="components-preview__title" data-target="{{ loop.index }}">
+            <button>{{ component.title }}</button>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+
+    <!-- Main content area for components -->
+    <div class="components-preview__main">
+      {% for component in components %}
+        <div class="components-preview__components" id="component-{{ loop.index }}">
+          <div class="components-preview__inner">
+            <!-- Component Header -->
+            <div class="components-preview__header">
+              <h2>{{ component.title }} - {{ component.provider }}</h2>
+              {% if not component.missing_template %}
+                <button class="components-preview__show-code" data-target="code-block-{{ loop.index }}">{{ "Show code"|t }}</button>
+              {% endif %}
+            </div>
+
+            <!-- Component Preview -->
+            <div class="components-preview__preview">
+              {% if component.missing_template %}
+                <p class="missing-file-message">{{ "This component is missing a .story.twig file. Please create one to see the preview here."|t }}</p>
+              {% else %}
+                {% include component.twig_template only %}
+              {% endif %}
+            </div>
+
+            <!-- Code Block for Component -->
+            {% if not component.missing_template %}
+              <div class="components-preview__code" id="code-block-{{ loop.index }}" style="display: none;">
+                {% set props_string = '' %}
+                {% for key, value in component.props %}
+                  {% set props_string = props_string ~ "'" ~ key ~ "': '" ~ (value is empty ? '' : value.examples[0]) ~ "'" %}
+                  {% if not loop.last %}
+                    {% set props_string = props_string ~ ",\n" %}
+                  {% endif %}
+                {% endfor %}
+                <pre><code class="language-twig">{{ "{% include '" ~ active_theme() ~ ":" ~ component.machine_name  ~ "' with {\n" ~ props_string ~ "\n} only %}" }}</code></pre>
+                <button class="copy-btn" data-target="code-block-{{ loop.index }}">{{ "Copy"|t }}</button>
+              </div>
+            {% endif %}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+
+    <!-- Accessibility Results Panel -->
+    <div class="components-preview__a11y" id="a11y-results-panel">
+      <h3>Accessibility Issues</h3>
+      <p class="components-preview__a11y_disclaimer">
+        {{ "This is not an exhaustive check, and WCAG issues may still be present. Please perform additional accessibility tests for full compliance."|t }}
+      </p>
+      <ul id="a11y-results-list"></ul>
+    </div>
+
+  </div>
+</div>

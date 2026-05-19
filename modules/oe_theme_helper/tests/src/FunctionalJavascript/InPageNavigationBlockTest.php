@@ -43,10 +43,6 @@ class InPageNavigationBlockTest extends WebDriverTestBase {
     $this->config('system.theme')->set('default', 'oe_theme')->save();
     $this->container->set('theme.registry', NULL);
 
-    // Rebuild the ui_pattern definitions to collect the ones provided by
-    // oe_theme itself.
-    \Drupal::service('plugin.manager.ui_patterns')->clearCachedDefinitions();
-
     // Enable inpage_navigation block.
     $this->drupalPlaceBlock('oe_theme_helper_inpage_navigation', [
       'region' => 'content',

@@ -1,0 +1,22 @@
+{% include 'oe_theme:spotlight' with {
+  header: 'In focus',
+  title: 'Proin molestie sapien ut blandit',
+  font_size: 'm',
+  path: 'http://example.com',
+  picture: {
+    img: {
+      src: 'https://inno-ecl.s3.amazonaws.com/media/examples/example-image.jpg',
+      alt: 'alternative text',
+    },
+  },
+  full_width: true,
+  credit: '© Copyright or credit',
+  color_mode: 'red-tomato',
+  has_anchor: true,
+  extra_attributes: [
+    {
+      name: 'extra-attr',
+      value: 'extra value',
+    },
+  ],
+} only %}

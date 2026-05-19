@@ -1,0 +1,17 @@
+name: Dropdown
+description: 'Dropdown components contain elements that, when clicked, reveal additional content.'
+props:
+  type: object
+  properties:
+    id:
+      type: ['string', 'null']
+      title: ID
+      description: 'Unique ID for the expandable element.'
+    button_label:
+      type: string
+      title: Label
+      description: 'Dropdown button label.'
+    links:
+      type: array
+      title: Links
+      description: 'Array of links, each with a "label" string and a "url" string or \Drupal\Core\Url object.'

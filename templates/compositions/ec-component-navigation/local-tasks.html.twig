@@ -55,8 +55,8 @@
   {% set _items = _items|merge([_item]) %}
 {% endfor %}
 
-{{ pattern('tabs', {
+{% include 'oe_theme:tabs' with {
   'items': _items,
   'extra_classes': _extra_classes,
   'extra_attributes': _extra_attributes,
-}) }}
+} only %}

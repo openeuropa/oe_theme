@@ -44,14 +44,14 @@ class AjaxDropdownsTestForm implements FormInterface {
       $form['dropdowns'][$i] = [
         '#type' => 'container',
         '#attributes' => [
-          // We need to space between the patterns and the submit button.
+          // We need to space between the components and the submit button.
           'class' => ['ecl-u-pb-4xl'],
         ],
       ];
-      $form['dropdowns'][$i]['pattern'] = [
-        '#type' => 'pattern',
-        '#id' => 'dropdown',
-        '#fields' => [
+      $form['dropdowns'][$i]['component'] = [
+        '#type' => 'component',
+        '#component' => 'oe_theme:dropdown',
+        '#props' => [
           'button_label' => $this->t('Dropdown @count', ['@count' => $i]),
           'links' => [
             [

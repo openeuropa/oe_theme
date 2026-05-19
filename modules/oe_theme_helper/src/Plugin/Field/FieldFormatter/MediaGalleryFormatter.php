@@ -128,7 +128,14 @@ class MediaGalleryFormatter extends MediaThumbnailUrlFormatter {
    * {@inheritdoc}
    */
   public function settingsForm(array $form, FormStateInterface $form_state) {
+    // ImageFormatter::settingsForm() uses $this->getSetting('image_loading')
+    // which can be null when image_loading is not stored in config. Ensure it
+    // has a value before calling parent to prevent "array offset on null"
+    // warning.
+    $this->settings['image_loading'] ??= ['attribute' => 'lazy'];
     $element = parent::settingsForm($form, $form_state);
+    // Gallery does not use image_loading; remove the irrelevant form element.
+    unset($element['image_loading']);
     $element['image_style']['#title'] = $this->t('Thumbnail image style');
 
     $handler_settings = $this->getFieldSetting('handler_settings') ?? [];
@@ -184,7 +191,20 @@ class MediaGalleryFormatter extends MediaThumbnailUrlFormatter {
    * {@inheritdoc}
    */
   public function settingsSummary() {
-    $summary = parent::settingsSummary();
+    // Build image style summary manually instead of calling
+    // ImageFormatter::settingsSummary() which relies on image_loading setting
+    // that may not be stored in config and would cause a null warning.
+    $summary = [];
+
+    $image_styles = image_style_options(FALSE);
+    unset($image_styles['']);
+    $image_style_setting = $this->getSetting('image_style');
+    if (isset($image_styles[$image_style_setting])) {
+      $summary[] = $this->t('Thumbnail image style: @style', ['@style' => $image_styles[$image_style_setting]]);
+    }
+    else {
+      $summary[] = $this->t('Original image');
+    }
 
     $bundle_info = $this->entityTypeBundleInfo->getBundleInfo('media');
     foreach ($this->getSetting('bundle_settings') as $bundle_id => $settings) {
@@ -256,9 +276,11 @@ class MediaGalleryFormatter extends MediaThumbnailUrlFormatter {
     }
 
     $elements = [
-      '#type' => 'pattern',
-      '#id' => 'gallery',
-      '#items' => $items,
+      '#type' => 'component',
+      '#component' => 'oe_theme:gallery',
+      '#props' => [
+        'items' => $items,
+      ],
     ];
     $cacheable_metadata->applyTo($elements);
 

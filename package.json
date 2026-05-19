@@ -4,7 +4,7 @@
   "description": "OpenEuropa base theme.",
   "private": true,
   "scripts": {
-    "build:copy-twig": "grunt copy",
+    "build:copy-twig": "grunt build",
     "build:copy": "ecl-builder copy",
     "build:styles": "ecl-builder styles",
     "build": "npm-run-all --parallel build:* -ln",

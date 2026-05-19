@@ -1,0 +1,25 @@
+name: 'Icons with text'
+description: 'A list of icons with a text.'
+props:
+  type: object
+  properties:
+    items:
+      type: array
+      title: Items
+      description: "List of items, each having an 'icon' and a 'text' field with optional 'size'"
+      items:
+        type: object
+        properties:
+          icon:
+            type: string
+            title: Icon
+          text:
+            type: [string, object]
+            title: Text
+          size:
+            type: ['string', 'null']
+            title: Size
+    compact:
+      type: ['boolean', 'null']
+      title: 'Compact mode'
+      description: "When set to true it will display the list in a more compact fashion. Defaults to 'false'"

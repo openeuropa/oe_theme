@@ -810,3 +810,13 @@ function oe_theme_helper_post_update_50004(): void {
     }
   }
 }
+
+/**
+ * Replace the ui_patterns module with sdc_component_library.
+ */
+function oe_theme_helper_post_update_60001(): void {
+  \Drupal::service('module_installer')->uninstall(['ui_patterns_library']);
+  \Drupal::service('module_installer')->uninstall(['ui_patterns']);
+  // Install sdc_component_library.
+  \Drupal::service('module_installer')->install(['sdc_component_library']);
+}

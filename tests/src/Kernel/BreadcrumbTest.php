@@ -31,8 +31,6 @@ class BreadcrumbTest extends EntityKernelTestBase {
   protected static $modules = [
     'system',
     'user',
-    'ui_patterns',
-    'ui_patterns_library',
     'oe_theme_helper',
     'oe_time_caching',
     'image',

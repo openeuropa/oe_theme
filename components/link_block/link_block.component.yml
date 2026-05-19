@@ -1,0 +1,13 @@
+name: 'Link block'
+description: 'List of links with an optional header.'
+props:
+  type: object
+  properties:
+    title:
+      type: ['string', 'null']
+      title: Title
+      description: 'Link block title'
+    links:
+      type: ['array', 'null']
+      title: Links
+      description: 'Array of links'

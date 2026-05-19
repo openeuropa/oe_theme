@@ -1,0 +1,25 @@
+name: Tag
+description: 'The tag component is used to display structured information.'
+variants:
+  default:
+    title: Default
+    description: 'Displays the url and label in a tag.'
+props:
+  type: object
+  properties:
+    tag_type:
+      type: ['string', 'null']
+      title: Type
+      description: 'Type of tag (link or removable)'
+    url:
+      type: ['string', 'object', 'null']
+      title: Url
+      description: 'Tag url'
+    label:
+      type: ['string', 'null']
+      title: Label
+      description: 'Tag label'
+    extra_classes:
+      type: ['string', 'null']
+      title: 'Extra classes string'
+      description: 'Extra classes string'
