@@ -19,6 +19,14 @@ props:
       type: ['string', 'null']
       title: 'Font size'
       description: "The size of the title and description (can be 'm' or 'l'). Defaults to 'm'."
+    font_weight:
+      type: ['string', 'null']
+      title: "Font weight"
+      description: "The weight of the title and description (can be 'light' or 'bold'). Defaults to 'light'."
+    overlay:
+      type: ['boolean', 'null']
+      title: "Overlay"
+      description: "Define if banner should be with overlay on the image. Defaults to FALSE."
     font_color:
       type: ['string', 'null']
       title: 'Font color'
