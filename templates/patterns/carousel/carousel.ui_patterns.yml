@@ -67,6 +67,8 @@ carousel:
           image_alt: "alternative text"
           variant: "text-box"
           centered: true
+          font_weight: "bold"
+          overlay: true
         - title: "Duis vitae pulvinar turpis"
           description: "Integer quis lorem tellus. Nullam sollicitudin suscipit diam, ac blandit ipsum tempor consectetur"
           url: "https://example.com"

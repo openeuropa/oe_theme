@@ -28,6 +28,17 @@ banner:
       label: "Font color"
       description: "The color of the title and description (can be 'dark' or 'light'). Defaults to 'dark'."
       preview: "light"
+    font_weight:
+      type: "text"
+      label: "Font weight"
+      description: "The weight of the title and description (can be 'light' or 'bold'). Defaults to 'light'."
+      preview: "bold"
+    overlay:
+      type: "boolean"
+      label: "Overlay"
+      description: "Define if banner should be with overlay on the image. Defaults to FALSE."
+      preview: true
+      escape: false
     box_background:
       type: "text"
       label: "Box background"
