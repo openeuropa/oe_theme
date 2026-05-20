@@ -656,3 +656,12 @@ msgstr "Nacházíte se zde:"
 
 msgid "Follow the European Commission"
 msgstr "Sledujte Evropskou komisi"
+
+msgid "Quiz"
+msgstr "Kvíz"
+
+msgid "Correct"
+msgstr "Správně"
+
+msgid "Incorrect"
+msgstr "Nesprávná odpověď"

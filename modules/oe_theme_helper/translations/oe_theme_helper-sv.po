@@ -656,3 +656,12 @@ msgstr "Följ kommissionen"
 
 msgid "Plans and reports"
 msgstr "Planer och rapporter"
+
+msgid "Quiz"
+msgstr "Frågesport"
+
+msgid "Correct"
+msgstr "Rätt"
+
+msgid "Incorrect"
+msgstr "Fel"

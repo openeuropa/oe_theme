@@ -656,3 +656,12 @@ msgstr "Kövesse az Európai Bizottságot"
 
 msgid "Plans and reports"
 msgstr "Tervek és jelentések"
+
+msgid "Quiz"
+msgstr "Kvíz"
+
+msgid "Correct"
+msgstr "Helyes"
+
+msgid "Incorrect"
+msgstr "Helytelen"
