@@ -656,3 +656,12 @@ msgstr "Urmăriți Comisia Europeană"
 
 msgid "Plans and reports"
 msgstr "Planuri și rapoarte"
+
+msgid "Quiz"
+msgstr "Quiz"
+
+msgid "Correct"
+msgstr "Corect"
+
+msgid "Incorrect"
+msgstr "Greșit"

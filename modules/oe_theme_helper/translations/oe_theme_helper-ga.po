@@ -656,3 +656,12 @@ msgstr "Lean an Coimisiún Eorpach"
 
 msgid "Plans and reports"
 msgstr "Pleananna agus tuarascálacha"
+
+msgid "Quiz"
+msgstr "Quiz"
+
+msgid "Correct"
+msgstr "Ceart"
+
+msgid "Incorrect"
+msgstr "Mícheart"
