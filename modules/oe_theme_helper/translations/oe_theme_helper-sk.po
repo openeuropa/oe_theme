@@ -656,3 +656,12 @@ msgstr "Sledujte Európsku komisiu"
 
 msgid "Plans and reports"
 msgstr "Plány a správy"
+
+msgid "Quiz"
+msgstr "Kvíz"
+
+msgid "Correct"
+msgstr "Správne"
+
+msgid "Incorrect"
+msgstr "Nesprávne"

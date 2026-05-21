@@ -1,0 +1,60 @@
+{#
+/**
+ * @file
+ * Poll Quiz component.
+ */
+#}
+
+{# Prepare the items array for the Poll variant of the Quiz ECL component. #}
+{% set _items = [] %}
+{% if items is not empty and items is iterable %}
+  {% for item in items %}
+    {% set _item = [] %}
+    {% if item.question is not empty and item.options is not empty and item.options is iterable %}
+      {# Add the item properties needed for the Poll variant only. #}
+      {% set _item = _item|merge([{
+        category: 'Quiz'|t,
+        success_category: 'Correct'|t,
+        error_category: 'Incorrect'|t,
+        question: item.question,
+        options: item.options,
+        answer_title: item.answer_title|default(''),
+        answer: item.answer|default(''),
+        icon: {
+          icon: {
+            family: 'phosphor',
+            name: 'question',
+            size: '2xl',
+          },
+        },
+        back_icon: {
+          success: {
+            icon: {
+              family: 'phosphor',
+              name: 'check-circle',
+              size: '2xl',
+            },
+          },
+          error: {
+            icon: {
+              family: 'phosphor',
+              name: 'x-circle',
+              size: '2xl',
+            },
+          },
+        },
+      }]) %}
+    {% endif %}
+    {% set _items = _items|merge(_item) %}
+  {% endfor %}
+{% endif %}
+
+{% include '@ecl-twig/quiz' with {
+  variant: 'poll',
+  title: title|default(''),
+  description: description|default(''),
+  next_label: next_label|default('Next'|t),
+  prev_label: prev_label|default('Previous'|t),
+  with_background: with_background|default(false),
+  items: _items|default([]),
+} only %}
