@@ -56,8 +56,7 @@
         "openeuropa/oe_multilingual": "dev-master",
         "openeuropa/oe_paragraphs": "dev-master",
         "openeuropa/oe_search": "2.x-dev",
-        "openeuropa/rdf_skos": "^1.0.0",
-        "drupal/drupal-driver": "2.4.3"
+        "openeuropa/rdf_skos": "^1.0.0"
     },
     "scripts": {
         "post-install-cmd": "./vendor/bin/run drupal:site-setup",
@@ -106,9 +105,7 @@
         },
         "_readme": [
             "autoload-dev: explicitly mapping EntityReferenceFieldCreationTrait to prevent failures.",
-            "Patch for drupal/driver refers to https://github.com/jhedstrom/DrupalDriver/pull/235",
-            "Locking extra_field to 3.0.0-beta1 due to issues, will be fixed in EWPP-6001.",
-            "Locking drupal/driver until the patch gets updated."
+            "Locking extra_field to 3.0.0-beta1 due to issues, will be fixed in EWPP-6001."
         ]
     },
     "config": {
