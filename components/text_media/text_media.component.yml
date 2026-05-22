@@ -1,0 +1,68 @@
+name: 'Text and media'
+description: 'Shows a rich text with a title and media split 30/70 between text and media.'
+variants:
+  default:
+    title: 'Default'
+    description: 'This is the default background color of the text.'
+  primary:
+    title: 'Primary'
+    description: 'Primary background color of the text.'
+props:
+  type: object
+  properties:
+    color_mode:
+      type: ['string', 'null']
+      title: 'Color mode'
+      description: 'Name of the color mode. It applies only to the default variant.'
+    media_position:
+      type: ['string', 'null']
+      title: 'Media position'
+      description: "The position of the media. It can be 'left' or 'right' (default)."
+    title:
+      type: ['string', 'null']
+      title: Title
+      description: 'The title.'
+    micro_title:
+      type: ['string', 'null']
+      title: 'Micro title'
+      description: 'The micro title is a small additional title displayed above the title.'
+    description:
+      type: ['string', 'object', 'null']
+      title: Description
+      description: 'The content description.'
+    link:
+      type: ['object', 'null']
+      title: Link
+      description: 'Call to action link with icon.'
+    image:
+      type: ['object', 'null']
+      title: Image
+      description: 'Image - Either this or the video need to be provided. If both are provided the image will take preference.'
+    image_anchor:
+      type: ['string', 'null']
+      title: 'Image anchor'
+      description: 'The image anchor uses the background-position CSS property, so it accepts the same values as the properties.'
+    sources:
+      type: ['array', 'null']
+      title: 'Image sources'
+      description: 'Array containing different sized image depending on the screen size.'
+    video:
+      type: ['object', 'null']
+      title: Video
+      description: "Either a video object with 'sources' to render an HTML video element, or a renderable iframe (for example by using the 'html_tag' render element) to embed the video. Either this or the image need to be provided. If both are provided the image will take preference."
+    caption:
+      type: ['string', 'null']
+      title: Caption
+      description: 'Description of the media.'
+    full_width:
+      type: ['boolean', 'null']
+      title: 'Full width'
+      description: 'Whether the component should be full width or not (default false).'
+    extra_classes:
+      type: ['string', 'null']
+      title: 'Extra classes string'
+      description: 'Extra classes string.'
+    extra_attributes:
+      type: ['array', 'null']
+      title: 'Extra attributes'
+      description: 'List of extra attributes.'
