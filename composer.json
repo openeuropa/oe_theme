@@ -57,8 +57,7 @@
         "openeuropa/oe_multilingual": "dev-master",
         "openeuropa/oe_paragraphs": "dev-master",
         "openeuropa/oe_search": "2.x-dev",
-        "openeuropa/rdf_skos": "^1.0.0",
-        "drupal/drupal-driver": "2.4.3"
+        "openeuropa/rdf_skos": "^1.0.0"
     },
     "scripts": {
         "post-install-cmd": "./vendor/bin/run drupal:site-setup",
@@ -98,9 +97,6 @@
         "patches": {
             "drupal/core": {
                 "https://www.drupal.org/project/drupal/issues/3151609": "https://www.drupal.org/files/issues/2024-06-11/link_internal_as_text_v11-3151609.patch"
-            },
-            "drupal/drupal-driver": {
-                "allow-date-only-date-fields": "https://github.com/jhedstrom/DrupalDriver/commit/eaa9238c8c8e34372dc82ebe5367e6d24b5854e7.patch"
             }
         },
         "drupal-scaffold": {
@@ -110,9 +106,7 @@
         },
         "_readme": [
             "autoload-dev: explicitly mapping EntityReferenceFieldCreationTrait to prevent failures.",
-            "Patch for drupal/driver refers to https://github.com/jhedstrom/DrupalDriver/pull/235",
-            "Locking extra_field to 3.0.0-beta1 due to issues, will be fixed in EWPP-6001.",
-            "Locking drupal/driver until the patch gets updated."
+            "Locking extra_field to 3.0.0-beta1 due to issues, will be fixed in EWPP-6001."
         ]
     },
     "config": {
