@@ -1,0 +1,52 @@
+add_to_calendar:
+  label: "Add to calendar"
+  description: "The Add to calendar component displays event information together with a Webtools-managed button to add it to a calendar."
+  fields:
+    title:
+      type: "text"
+      label: "Title"
+      description: "Event title."
+      preview: "Event coming soon!"
+    meta:
+      type: "array"
+      label: "Meta"
+      description: "List of meta items, each one having a 'label' and an 'icon' (following ECL Icon structure)."
+      preview:
+        - label: "March 15-17, 2026"
+          icon:
+            name: "calendar"
+        - label: "2:00 PM - 4:00 PM (CET)"
+          icon:
+            name: "clock"
+        - label: "San Francisco, CA"
+          icon:
+            name: "location"
+    color_mode:
+      type: "text"
+      label: "Color mode"
+      description: "Name of the color mode."
+      preview: "green"
+    button_add:
+      type: "text"
+      label: "Add to calendar button"
+      description: "Markup of the button to add to calendar (managed by Webtools)."
+      preview: '<button type="button" class="ecl-button ecl-button--primary">Add to calendar</button>'
+      escape: false
+    full_width:
+      type: "boolean"
+      label: "Full width"
+      description: "Full width display (inside the grid)."
+      preview: false
+      escape: false
+    extra_classes:
+      type: "text"
+      label: "Extra classes"
+      description: "Extra classes string."
+      preview: ""
+    extra_attributes:
+      type: "array"
+      label: "Extra attributes"
+      description: "List of extra attributes."
+      preview:
+        - name: "extra-attr"
+          value: "extra value"
