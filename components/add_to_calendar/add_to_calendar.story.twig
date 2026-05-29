@@ -1,0 +1,32 @@
+{% include 'oe_theme:add_to_calendar' with {
+  title: 'Event coming soon!',
+  meta: [
+    {
+      label: 'March 15-17, 2026',
+      icon: {
+        name: 'calendar',
+      },
+    },
+    {
+      label: '2:00 PM - 4:00 PM (CET)',
+      icon: {
+        name: 'clock',
+      },
+    },
+    {
+      label: 'San Francisco, CA',
+      icon: {
+        name: 'location',
+      },
+    },
+  ],
+  color_mode: 'green',
+  button_add: '<button type="button" class="ecl-button ecl-button--primary">Add to calendar</button>',
+  full_width: false,
+  extra_attributes: [
+    {
+      name: 'extra-attr',
+      value: 'extra value',
+    },
+  ],
+} only %}
