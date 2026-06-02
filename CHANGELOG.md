@@ -1,5 +1,33 @@
 # Changelog
 
+## [6.0.0-alpha1](https://github.com/openeuropa/oe_theme/tree/6.0.0-alpha1) (2026-06-02)
+
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/5.0.0-rc3...6.0.0-alpha1)
+
+**Merged pull requests:**
+
+- EWPP-6809: Implement add to calendar component. [\#1731](https://github.com/openeuropa/oe_theme/pull/1731) ([nagyad](https://github.com/nagyad))
+- EWPP-6866: Update to ECL 5.0.0-RC5. [\#1743](https://github.com/openeuropa/oe_theme/pull/1743) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-0000: Unlock drupal driver. [\#1748](https://github.com/openeuropa/oe_theme/pull/1748) ([sergepavle](https://github.com/sergepavle))
+- EWPP-6850: Add Animated numbers component. [\#1735](https://github.com/openeuropa/oe_theme/pull/1735) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-6852: Add Text and media component. [\#1739](https://github.com/openeuropa/oe_theme/pull/1739) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-6747: Add overlay and font\_weight parameters for banner and carousel patterns. [\#1732](https://github.com/openeuropa/oe_theme/pull/1732) ([sergepavle](https://github.com/sergepavle))
+- EWPP-6804: Add Quiz component. [\#1726](https://github.com/openeuropa/oe_theme/pull/1726) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-6492: Ui Patterns migration to SDC. [\#1742](https://github.com/openeuropa/oe_theme/pull/1742) ([22Alexandra](https://github.com/22Alexandra))
+- Update SDC epic branch. [\#1741](https://github.com/openeuropa/oe_theme/pull/1741) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-6829: Update to ECL 5.0.0-RC4. [\#1733](https://github.com/openeuropa/oe_theme/pull/1733) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-6539: Add ECL tooltip. [\#1723](https://github.com/openeuropa/oe_theme/pull/1723) ([gorsky87](https://github.com/gorsky87))
+- Update SDC epic branch. [\#1737](https://github.com/openeuropa/oe_theme/pull/1737) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-6672: Fix reported issues. [\#1715](https://github.com/openeuropa/oe_theme/pull/1715) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-6790: Update to ECL 5.0.0-RC3. [\#1722](https://github.com/openeuropa/oe_theme/pull/1722) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-6707: Add phosphor icon family to WebtoolsIconsProvider. [\#1716](https://github.com/openeuropa/oe_theme/pull/1716) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-6492: Update epic branch. [\#1729](https://github.com/openeuropa/oe_theme/pull/1729) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-6673: Update the epic branch. [\#1707](https://github.com/openeuropa/oe_theme/pull/1707) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-6494: Replace usage of patterns with SDCs in templates. [\#1699](https://github.com/openeuropa/oe_theme/pull/1699) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-6499: Fix file components' stories. [\#1695](https://github.com/openeuropa/oe_theme/pull/1695) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-6493: Adapt components rendering for those having multiple variants. [\#1689](https://github.com/openeuropa/oe_theme/pull/1689) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-6456: Create the SDC for each pattern. [\#1678](https://github.com/openeuropa/oe_theme/pull/1678) ([22Alexandra](https://github.com/22Alexandra))
+
 ## [5.0.0-rc2](https://github.com/openeuropa/oe_theme/tree/5.0.0-rc2) (2026-04-28)
 
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/5.0.0-rc1...5.0.0-rc2)
