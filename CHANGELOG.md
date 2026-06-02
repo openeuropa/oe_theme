@@ -1,11 +1,31 @@
 # Changelog
 
+## [5.0.0-rc3](https://github.com/openeuropa/oe_theme/tree/5.0.0-rc3) (2026-06-02)
+
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/5.0.0-rc2...5.0.0-rc3)
+
+**Merged pull requests:**
+
+- EWPP-0000: Unlock drupal driver. [\#1747](https://github.com/openeuropa/oe_theme/pull/1747) ([sergepavle](https://github.com/sergepavle))
+- EWPP-6866: Update to ECL 5.0.0-RC5. [\#1744](https://github.com/openeuropa/oe_theme/pull/1744) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-6852: Add Text and media pattern. [\#1738](https://github.com/openeuropa/oe_theme/pull/1738) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-6850: Add Animated numbers pattern. [\#1734](https://github.com/openeuropa/oe_theme/pull/1734) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-6829: Update to ECL 5.0.0-RC4. [\#1733](https://github.com/openeuropa/oe_theme/pull/1733) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-6747: Add overlay and font\_weight parameters for banner and carousel patterns. [\#1728](https://github.com/openeuropa/oe_theme/pull/1728) ([sergepavle](https://github.com/sergepavle))
+- EWPP-6809: Implement add to calendar pattern. [\#1727](https://github.com/openeuropa/oe_theme/pull/1727) ([nagyad](https://github.com/nagyad))
+- EWPP-6804: Add Quiz pattern. [\#1725](https://github.com/openeuropa/oe_theme/pull/1725) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-6790: Update to ECL 5.0.0-RC3. [\#1722](https://github.com/openeuropa/oe_theme/pull/1722) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-6707: Add phosphor icon family to WebtoolsIconsProvider. [\#1716](https://github.com/openeuropa/oe_theme/pull/1716) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-6672: Fix reported issues. [\#1715](https://github.com/openeuropa/oe_theme/pull/1715) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-6539: Add ECL tooltip. [\#1712](https://github.com/openeuropa/oe_theme/pull/1712) ([gorsky87](https://github.com/gorsky87))
+
 ## [5.0.0-rc2](https://github.com/openeuropa/oe_theme/tree/5.0.0-rc2) (2026-04-28)
 
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/5.0.0-rc1...5.0.0-rc2)
 
 **Merged pull requests:**
 
+- Release-5.0.0-rc2: Update changelog. [\#1724](https://github.com/openeuropa/oe_theme/pull/1724) ([nagyad](https://github.com/nagyad))
 - EWPP-6514: Support D11.3 core version. [\#1706](https://github.com/openeuropa/oe_theme/pull/1706) ([nagyad](https://github.com/nagyad))
 
 ## [5.0.0-rc1](https://github.com/openeuropa/oe_theme/tree/5.0.0-rc1) (2026-04-20)
