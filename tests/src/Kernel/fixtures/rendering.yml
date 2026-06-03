@@ -346,7 +346,7 @@
     count:
       'section.ecl-banner.ecl-banner--font-m.ecl-banner--box-bg-dark.ecl-banner--color-light.ecl-banner--l.ecl-banner--h-center.ecl-banner--v-center': 0
       'section.ecl-banner.ecl-banner--font-m.ecl-banner--box-bg-dark.ecl-banner--color-light.ecl-banner--l.ecl-banner--h-left.ecl-banner--v-center': 1
-      'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--primary-highlight.ecl-link--icon.ecl-banner__link-cta[href="http://example.com"]': 1
+      'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--primary-highlight-inverted.ecl-link--icon.ecl-banner__link-cta[href="http://example.com"]': 1
       'span.ecl-icon.ecl-icon--xs.ecl-icon--rotate-90.ecl-link__icon': 1
       'picture.ecl-picture.ecl-banner__picture img.ecl-banner__image[src="http://via.placeholder.com/150x150"]': 1
       'picture source': 0
@@ -356,7 +356,7 @@
     equals:
       'div.ecl-container div.ecl-banner__container div.ecl-banner__content div.ecl-banner__title span.ecl-banner__title-text': Banner title
       'div.ecl-container div.ecl-banner__container div.ecl-banner__content p.ecl-banner__description span.ecl-banner__description-text': Banner description
-      'a.ecl-link.ecl-link--primary-highlight.ecl-link--icon.ecl-banner__link-cta[href="http://example.com"] span.ecl-link__label': Example
+      'a.ecl-link.ecl-link--primary-highlight-inverted.ecl-link--icon.ecl-banner__link-cta[href="http://example.com"] span.ecl-link__label': Example
 - structure:
     '#type': component
     '#component': 'oe_theme:banner'
@@ -390,7 +390,7 @@
   assertions:
     count:
       'section.ecl-banner.ecl-banner--font-m.ecl-banner--box-bg-dark.ecl-banner--color-light.ecl-banner--l.ecl-banner--h-center.ecl-banner--v-center.ecl-banner--full-width': 1
-      'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--primary-highlight.ecl-link--icon.ecl-banner__link-cta[href="http://example.com"]': 1
+      'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--primary-highlight-inverted.ecl-link--icon.ecl-banner__link-cta[href="http://example.com"]': 1
       'span.ecl-icon.ecl-icon--xs.ecl-icon--rotate-90.ecl-link__icon': 1
       'picture.ecl-picture.ecl-banner__picture img.ecl-banner__image[src="http://via.placeholder.com/150x150"][alt="alternative text"]': 1
       'picture source': 6
@@ -405,7 +405,7 @@
     equals:
       'div.ecl-container div.ecl-banner__container div.ecl-banner__content div.ecl-banner__title span.ecl-banner__title-text': Banner title
       'div.ecl-container div.ecl-banner__container div.ecl-banner__content p.ecl-banner__description span.ecl-banner__description-text': Banner description
-      'a.ecl-link.ecl-link--primary-highlight.ecl-link--icon.ecl-banner__link-cta[href="http://example.com"] span.ecl-link__label': Example
+      'a.ecl-link.ecl-link--primary-highlight-inverted.ecl-link--icon.ecl-banner__link-cta[href="http://example.com"] span.ecl-link__label': Example
       'footer.ecl-banner__credit div.ecl-container': © Copyright or credit
 - structure:
     '#type': component
@@ -6205,6 +6205,16 @@
       'div.ecl-quiz__viewport ol.ecl-quiz__list li.ecl-quiz-card:nth-child(3) .ecl-quiz-card__front .ecl-quiz-card__option:nth-child(1) .ecl-quiz-card__label': "Duis id mattis libero. Quisque accumsan nisi in nisl ultrices dictum"
       'div.ecl-quiz__viewport ol.ecl-quiz__list li.ecl-quiz-card:nth-child(3) .ecl-quiz-card__front .ecl-quiz-card__option:nth-child(2) .ecl-quiz-card__label': "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
       'div.ecl-quiz__viewport ol.ecl-quiz__list li.ecl-quiz-card:nth-child(3) .ecl-quiz-card__front .ecl-quiz-card__option:nth-child(3) .ecl-quiz-card__label': "ivamus auctor blandit auctor."
+      'div.ecl-quiz__viewport ol.ecl-quiz__list li.ecl-quiz-card:nth-child(1) .ecl-quiz-card__back .ecl-quiz-card__option:nth-child(1)[data-match="true"]': '<span class="ecl-quiz-card__option-assistive-label"></span>European commission'
+      'div.ecl-quiz__viewport ol.ecl-quiz__list li.ecl-quiz-card:nth-child(1) .ecl-quiz-card__back .ecl-quiz-card__option:nth-child(2)[data-match="false"]': '<span class="ecl-quiz-card__option-assistive-label"></span>European parliament'
+      'div.ecl-quiz__viewport ol.ecl-quiz__list li.ecl-quiz-card:nth-child(1) .ecl-quiz-card__back .ecl-quiz-card__option:nth-child(3)[data-match="false"]': '<span class="ecl-quiz-card__option-assistive-label"></span>European Central Bank'
+      'div.ecl-quiz__viewport ol.ecl-quiz__list li.ecl-quiz-card:nth-child(1) .ecl-quiz-card__back .ecl-quiz-card__option:nth-child(4)[data-match="false"]': '<span class="ecl-quiz-card__option-assistive-label"></span>Court of Justice of the European Union'
+      'div.ecl-quiz__viewport ol.ecl-quiz__list li.ecl-quiz-card:nth-child(2) .ecl-quiz-card__back .ecl-quiz-card__option:nth-child(1)[data-match="false"]': '<span class="ecl-quiz-card__option-assistive-label"></span>The pound is the most used currency in the EU'
+      'div.ecl-quiz__viewport ol.ecl-quiz__list li.ecl-quiz-card:nth-child(2) .ecl-quiz-card__back .ecl-quiz-card__option:nth-child(2)[data-match="false"]': '<span class="ecl-quiz-card__option-assistive-label"></span>The Leu is by far the most used currency in the European Union'
+      'div.ecl-quiz__viewport ol.ecl-quiz__list li.ecl-quiz-card:nth-child(2) .ecl-quiz-card__back .ecl-quiz-card__option:nth-child(3)[data-match="true"]': '<span class="ecl-quiz-card__option-assistive-label"></span>The euro (€) is used in many EU member states.'
+      'div.ecl-quiz__viewport ol.ecl-quiz__list li.ecl-quiz-card:nth-child(3) .ecl-quiz-card__back .ecl-quiz-card__option:nth-child(1)[data-match="false"]': '<span class="ecl-quiz-card__option-assistive-label"></span>Duis id mattis libero. Quisque accumsan nisi in nisl ultrices dictum'
+      'div.ecl-quiz__viewport ol.ecl-quiz__list li.ecl-quiz-card:nth-child(3) .ecl-quiz-card__back .ecl-quiz-card__option:nth-child(2)[data-match="true"]': '<span class="ecl-quiz-card__option-assistive-label"></span>Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
+      'div.ecl-quiz__viewport ol.ecl-quiz__list li.ecl-quiz-card:nth-child(3) .ecl-quiz-card__back .ecl-quiz-card__option:nth-child(3)[data-match="false"]': '<span class="ecl-quiz-card__option-assistive-label"></span>ivamus auctor blandit auctor.'
     equals:
       'div.ecl-quiz__header div.ecl-quiz__title': "Ut enim ad minim veniam"
       'div.ecl-quiz__header div.ecl-quiz__description': "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.\n    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. \n    Excepteur sint occaecat cupidatat non proident, sunt."
@@ -6213,26 +6223,16 @@
       'div.ecl-quiz__viewport ol.ecl-quiz__list li.ecl-quiz-card:nth-child(1) .ecl-quiz-card__back .ecl-quiz-card__header .ecl-quiz-card__category.ecl-quiz-card__category--success': "Correct"
       'div.ecl-quiz__viewport ol.ecl-quiz__list li.ecl-quiz-card:nth-child(1) .ecl-quiz-card__back .ecl-quiz-card__header .ecl-quiz-card__category.ecl-quiz-card__category--error': "Incorrect"
       'div.ecl-quiz__viewport ol.ecl-quiz__list li.ecl-quiz-card:nth-child(1) .ecl-quiz-card__back .ecl-quiz-card__answer': '<div class="ecl-quiz-card__answer-title">The correct answer is A.</div>The European Commission has the exclusive right to propose new EU laws'
-      'div.ecl-quiz__viewport ol.ecl-quiz__list li.ecl-quiz-card:nth-child(1) .ecl-quiz-card__back .ecl-quiz-card__option:nth-child(1)[data-match="true"]': "European commission"
-      'div.ecl-quiz__viewport ol.ecl-quiz__list li.ecl-quiz-card:nth-child(1) .ecl-quiz-card__back .ecl-quiz-card__option:nth-child(2)[data-match="false"]': "European parliament"
-      'div.ecl-quiz__viewport ol.ecl-quiz__list li.ecl-quiz-card:nth-child(1) .ecl-quiz-card__back .ecl-quiz-card__option:nth-child(3)[data-match="false"]': "European Central Bank"
-      'div.ecl-quiz__viewport ol.ecl-quiz__list li.ecl-quiz-card:nth-child(1) .ecl-quiz-card__back .ecl-quiz-card__option:nth-child(4)[data-match="false"]': "Court of Justice of the European Union"
       'div.ecl-quiz__viewport ol.ecl-quiz__list li.ecl-quiz-card:nth-child(2) .ecl-quiz-card__front .ecl-quiz-card__header .ecl-quiz-card__category': "Quiz"
       'div.ecl-quiz__viewport ol.ecl-quiz__list li.ecl-quiz-card:nth-child(2) .ecl-quiz-card__front .ecl-quiz-card__question': "What currency is used in many EU countries?"
       'div.ecl-quiz__viewport ol.ecl-quiz__list li.ecl-quiz-card:nth-child(2) .ecl-quiz-card__back .ecl-quiz-card__header .ecl-quiz-card__category.ecl-quiz-card__category--success': "Correct"
       'div.ecl-quiz__viewport ol.ecl-quiz__list li.ecl-quiz-card:nth-child(2) .ecl-quiz-card__back .ecl-quiz-card__header .ecl-quiz-card__category.ecl-quiz-card__category--error': "Incorrect"
       'div.ecl-quiz__viewport ol.ecl-quiz__list li.ecl-quiz-card:nth-child(2) .ecl-quiz-card__back .ecl-quiz-card__answer': '<div class="ecl-quiz-card__answer-title">The correct answer is C.</div>The Euro is the official currency used by many EU conutries'
-      'div.ecl-quiz__viewport ol.ecl-quiz__list li.ecl-quiz-card:nth-child(2) .ecl-quiz-card__back .ecl-quiz-card__option:nth-child(1)[data-match="false"]': "The pound is the most used currency in the EU"
-      'div.ecl-quiz__viewport ol.ecl-quiz__list li.ecl-quiz-card:nth-child(2) .ecl-quiz-card__back .ecl-quiz-card__option:nth-child(2)[data-match="false"]': "The Leu is by far the most used currency in the European Union"
-      'div.ecl-quiz__viewport ol.ecl-quiz__list li.ecl-quiz-card:nth-child(2) .ecl-quiz-card__back .ecl-quiz-card__option:nth-child(3)[data-match="true"]': "The euro (€) is used in many EU member states."
       'div.ecl-quiz__viewport ol.ecl-quiz__list li.ecl-quiz-card:nth-child(3) .ecl-quiz-card__front .ecl-quiz-card__header .ecl-quiz-card__category': "Quiz"
       'div.ecl-quiz__viewport ol.ecl-quiz__list li.ecl-quiz-card:nth-child(3) .ecl-quiz-card__front .ecl-quiz-card__question': "Lorem ipsum dolor sit amet, consectetur adipiscing elit?"
       'div.ecl-quiz__viewport ol.ecl-quiz__list li.ecl-quiz-card:nth-child(3) .ecl-quiz-card__back .ecl-quiz-card__header .ecl-quiz-card__category.ecl-quiz-card__category--success': "Correct"
       'div.ecl-quiz__viewport ol.ecl-quiz__list li.ecl-quiz-card:nth-child(3) .ecl-quiz-card__back .ecl-quiz-card__header .ecl-quiz-card__category.ecl-quiz-card__category--error': "Incorrect"
       'div.ecl-quiz__viewport ol.ecl-quiz__list li.ecl-quiz-card:nth-child(3) .ecl-quiz-card__back .ecl-quiz-card__answer': '<div class="ecl-quiz-card__answer-title">The correct answer is B.</div>Duis id mattis libero. Quisque accumsan nisi'
-      'div.ecl-quiz__viewport ol.ecl-quiz__list li.ecl-quiz-card:nth-child(3) .ecl-quiz-card__back .ecl-quiz-card__option:nth-child(1)[data-match="false"]': "Duis id mattis libero. Quisque accumsan nisi in nisl ultrices dictum"
-      'div.ecl-quiz__viewport ol.ecl-quiz__list li.ecl-quiz-card:nth-child(3) .ecl-quiz-card__back .ecl-quiz-card__option:nth-child(2)[data-match="true"]': "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-      'div.ecl-quiz__viewport ol.ecl-quiz__list li.ecl-quiz-card:nth-child(3) .ecl-quiz-card__back .ecl-quiz-card__option:nth-child(3)[data-match="false"]': "ivamus auctor blandit auctor."
 - structure:
     '#type': 'component'
     '#component': 'oe_theme:quiz'
@@ -6560,37 +6560,37 @@
   assertions:
     count:
       'div.ecl-animated-numbers.ecl-animated-numbers--counter-color': 1
-      'div.ecl-animated-numbers__items': 1
-      'div.ecl-animated-number': 4
-      'div.ecl-animated-numbers__sources': 1
-      'div.ecl-animated-number:nth-child(1) .ecl-animated-number__header .ecl-icon--primary.ecl-animated-number__icon.ecl-icon-phosphor--users': 1
-      'div.ecl-animated-number:nth-child(2) .ecl-animated-number__header .ecl-icon--primary.ecl-animated-number__icon.ecl-icon-phosphor--currency-eur': 1
-      'div.ecl-animated-number:nth-child(3) .ecl-animated-number__header .ecl-icon--primary.ecl-animated-number__icon.ecl-icon-phosphor--trend-up': 1
-      'div.ecl-animated-number:nth-child(4) .ecl-animated-number__header .ecl-icon--primary.ecl-animated-number__icon.ecl-icon-phosphor--pulse': 1
-      "div.ecl-animated-numbers__sources .ecl-animated-numbers__sources-item:nth-child(2) a.ecl-animated-numbers__source[href='/example'] .ecl-icon--external": 1
+      'ul.ecl-animated-numbers__items': 1
+      'li.ecl-animated-number': 4
+      'footer.ecl-animated-numbers__sources': 1
+      'li.ecl-animated-number:nth-child(1) .ecl-animated-number__header .ecl-icon--primary.ecl-animated-number__icon.ecl-icon-phosphor--users': 1
+      'li.ecl-animated-number:nth-child(2) .ecl-animated-number__header .ecl-icon--primary.ecl-animated-number__icon.ecl-icon-phosphor--currency-eur': 1
+      'li.ecl-animated-number:nth-child(3) .ecl-animated-number__header .ecl-icon--primary.ecl-animated-number__icon.ecl-icon-phosphor--trend-up': 1
+      'li.ecl-animated-number:nth-child(4) .ecl-animated-number__header .ecl-icon--primary.ecl-animated-number__icon.ecl-icon-phosphor--pulse': 1
+      "footer.ecl-animated-numbers__sources .ecl-animated-numbers__sources-item:nth-child(2) a.ecl-animated-numbers__source[href='/example'] .ecl-icon--external": 1
     equals:
-      'div.ecl-animated-number:nth-child(1) .ecl-animated-number__header .ecl-animated-number__category': "Revenue"
-      'div.ecl-animated-number:nth-child(1) .ecl-animated-number__content .ecl-animated-number__number .ecl-animated-number__value': "213"
-      'div.ecl-animated-number:nth-child(1) .ecl-animated-number__content .ecl-animated-number__number .ecl-animated-number__suffix': "€"
-      'div.ecl-animated-number:nth-child(1) .ecl-animated-number__description': "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris."
-      'div.ecl-animated-number:nth-child(2) .ecl-animated-number__header .ecl-animated-number__category': "Revenue"
-      'div.ecl-animated-number:nth-child(2) .ecl-animated-number__content .ecl-animated-number__number .ecl-animated-number__prefix': "billion"
-      'div.ecl-animated-number:nth-child(2) .ecl-animated-number__content .ecl-animated-number__number .ecl-animated-number__value': "888.2"
-      'div.ecl-animated-number:nth-child(2) .ecl-animated-number__content .ecl-animated-number__number .ecl-animated-number__suffix': "€"
-      'div.ecl-animated-number:nth-child(2) .ecl-animated-number__description': "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-      'div.ecl-animated-number:nth-child(3) .ecl-animated-number__header .ecl-animated-number__category': "Revenue"
-      'div.ecl-animated-number:nth-child(3) .ecl-animated-number__content .ecl-animated-number__number .ecl-animated-number__prefix': "billion"
-      'div.ecl-animated-number:nth-child(3) .ecl-animated-number__content .ecl-animated-number__number .ecl-animated-number__value': "975"
-      'div.ecl-animated-number:nth-child(3) .ecl-animated-number__description': "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris."
-      'div.ecl-animated-number:nth-child(4) .ecl-animated-number__header .ecl-animated-number__category': "Revenue"
-      'div.ecl-animated-number:nth-child(4) .ecl-animated-number__content .ecl-animated-number__number .ecl-animated-number__prefix': "€"
-      'div.ecl-animated-number:nth-child(4) .ecl-animated-number__content .ecl-animated-number__number .ecl-animated-number__value': "1250"
-      'div.ecl-animated-number:nth-child(4) .ecl-animated-number__content .ecl-animated-number__number .ecl-animated-number__suffix': "billions"
-      'div.ecl-animated-number:nth-child(4) .ecl-animated-number__description': "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit."
-      'div.ecl-animated-numbers__sources .ecl-animated-numbers__sources-label': "Sources:"
-      "div.ecl-animated-numbers__sources .ecl-animated-numbers__sources-item:nth-child(1) a.ecl-animated-numbers__source[href='/example']": "Eurostat"
-      "div.ecl-animated-numbers__sources .ecl-animated-numbers__sources-item:nth-child(2) a.ecl-animated-numbers__source[href='/example'] .ecl-link__label": "DG CNECT"
-      "div.ecl-animated-numbers__sources .ecl-animated-numbers__sources-item:nth-child(3) a.ecl-animated-numbers__source[href='/example']": "European Commission"
+      'li.ecl-animated-number:nth-child(1) .ecl-animated-number__header .ecl-animated-number__category': "Revenue"
+      'li.ecl-animated-number:nth-child(1) .ecl-animated-number__content .ecl-animated-number__number .ecl-animated-number__value': "213"
+      'li.ecl-animated-number:nth-child(1) .ecl-animated-number__content .ecl-animated-number__number .ecl-animated-number__suffix': "€"
+      'li.ecl-animated-number:nth-child(1) .ecl-animated-number__description': "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris."
+      'li.ecl-animated-number:nth-child(2) .ecl-animated-number__header .ecl-animated-number__category': "Revenue"
+      'li.ecl-animated-number:nth-child(2) .ecl-animated-number__content .ecl-animated-number__number .ecl-animated-number__prefix': "billion"
+      'li.ecl-animated-number:nth-child(2) .ecl-animated-number__content .ecl-animated-number__number .ecl-animated-number__value': "888.2"
+      'li.ecl-animated-number:nth-child(2) .ecl-animated-number__content .ecl-animated-number__number .ecl-animated-number__suffix': "€"
+      'li.ecl-animated-number:nth-child(2) .ecl-animated-number__description': "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+      'li.ecl-animated-number:nth-child(3) .ecl-animated-number__header .ecl-animated-number__category': "Revenue"
+      'li.ecl-animated-number:nth-child(3) .ecl-animated-number__content .ecl-animated-number__number .ecl-animated-number__prefix': "billion"
+      'li.ecl-animated-number:nth-child(3) .ecl-animated-number__content .ecl-animated-number__number .ecl-animated-number__value': "975"
+      'li.ecl-animated-number:nth-child(3) .ecl-animated-number__description': "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris."
+      'li.ecl-animated-number:nth-child(4) .ecl-animated-number__header .ecl-animated-number__category': "Revenue"
+      'li.ecl-animated-number:nth-child(4) .ecl-animated-number__content .ecl-animated-number__number .ecl-animated-number__prefix': "€"
+      'li.ecl-animated-number:nth-child(4) .ecl-animated-number__content .ecl-animated-number__number .ecl-animated-number__value': "1250"
+      'li.ecl-animated-number:nth-child(4) .ecl-animated-number__content .ecl-animated-number__number .ecl-animated-number__suffix': "billions"
+      'li.ecl-animated-number:nth-child(4) .ecl-animated-number__description': "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit."
+      'footer.ecl-animated-numbers__sources .ecl-animated-numbers__sources-label': "Sources:"
+      "footer.ecl-animated-numbers__sources .ecl-animated-numbers__sources-item:nth-child(1) a.ecl-animated-numbers__source[href='/example']": "Eurostat"
+      "footer.ecl-animated-numbers__sources .ecl-animated-numbers__sources-item:nth-child(2) a.ecl-animated-numbers__source[href='/example'] .ecl-link__label": "DG CNECT"
+      "footer.ecl-animated-numbers__sources .ecl-animated-numbers__sources-item:nth-child(3) a.ecl-animated-numbers__source[href='/example']": "European Commission"
 - structure:
     '#type': component
     '#component': 'oe_theme:animated_numbers'
@@ -6621,23 +6621,23 @@
     count:
       'div.ecl-animated-numbers.ecl-animated-numbers--border.ecl-animated-numbers--with-background': 1
       'div.ecl-animated-numbers.ecl-animated-numbers--counter-color': 0
-      'div.ecl-animated-numbers__items': 1
-      'div.ecl-animated-number': 2
-      'div.ecl-animated-numbers__sources': 1
-      'div.ecl-animated-number:nth-child(1) .ecl-animated-number__header .ecl-animated-number__icon.ecl-icon-phosphor--users': 1
-      'div.ecl-animated-number:nth-child(2) .ecl-animated-number__header .ecl-animated-number__icon.ecl-icon-phosphor--currency-eur': 1
+      'ul.ecl-animated-numbers__items': 1
+      'li.ecl-animated-number': 2
+      'footer.ecl-animated-numbers__sources': 1
+      'li.ecl-animated-number:nth-child(1) .ecl-animated-number__header .ecl-animated-number__icon.ecl-icon-phosphor--users': 1
+      'li.ecl-animated-number:nth-child(2) .ecl-animated-number__header .ecl-animated-number__icon.ecl-icon-phosphor--currency-eur': 1
     equals:
-      'div.ecl-animated-number:nth-child(1) .ecl-animated-number__header .ecl-animated-number__category': "Revenue"
-      'div.ecl-animated-number:nth-child(1) .ecl-animated-number__content .ecl-animated-number__number .ecl-animated-number__value': "213"
-      'div.ecl-animated-number:nth-child(1) .ecl-animated-number__content .ecl-animated-number__number .ecl-animated-number__suffix': "€"
-      'div.ecl-animated-number:nth-child(1) .ecl-animated-number__description': "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris."
-      'div.ecl-animated-number:nth-child(2) .ecl-animated-number__header .ecl-animated-number__category': "Revenue"
-      'div.ecl-animated-number:nth-child(2) .ecl-animated-number__content .ecl-animated-number__number .ecl-animated-number__prefix': "billion"
-      'div.ecl-animated-number:nth-child(2) .ecl-animated-number__content .ecl-animated-number__number .ecl-animated-number__value': "888.2"
-      'div.ecl-animated-number:nth-child(2) .ecl-animated-number__content .ecl-animated-number__number .ecl-animated-number__suffix': "€"
-      'div.ecl-animated-number:nth-child(2) .ecl-animated-number__description': "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-      'div.ecl-animated-numbers__sources .ecl-animated-numbers__sources-label': "Custom sources label:"
-      "div.ecl-animated-numbers__sources a.ecl-animated-numbers__source[href='/example']": "Eurostat"
+      'li.ecl-animated-number:nth-child(1) .ecl-animated-number__header .ecl-animated-number__category': "Revenue"
+      'li.ecl-animated-number:nth-child(1) .ecl-animated-number__content .ecl-animated-number__number .ecl-animated-number__value': "213"
+      'li.ecl-animated-number:nth-child(1) .ecl-animated-number__content .ecl-animated-number__number .ecl-animated-number__suffix': "€"
+      'li.ecl-animated-number:nth-child(1) .ecl-animated-number__description': "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris."
+      'li.ecl-animated-number:nth-child(2) .ecl-animated-number__header .ecl-animated-number__category': "Revenue"
+      'li.ecl-animated-number:nth-child(2) .ecl-animated-number__content .ecl-animated-number__number .ecl-animated-number__prefix': "billion"
+      'li.ecl-animated-number:nth-child(2) .ecl-animated-number__content .ecl-animated-number__number .ecl-animated-number__value': "888.2"
+      'li.ecl-animated-number:nth-child(2) .ecl-animated-number__content .ecl-animated-number__number .ecl-animated-number__suffix': "€"
+      'li.ecl-animated-number:nth-child(2) .ecl-animated-number__description': "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+      'footer.ecl-animated-numbers__sources .ecl-animated-numbers__sources-label': "Custom sources label:"
+      "footer.ecl-animated-numbers__sources a.ecl-animated-numbers__source[href='/example']": "Eurostat"
 # Test add_to_calendar component with title, multiple meta items and a button.
 - structure:
     '#type': component
