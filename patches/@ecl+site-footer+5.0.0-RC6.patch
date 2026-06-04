@@ -1,5 +1,5 @@
 diff --git a/node_modules/@ecl/site-footer/site-footer-ec-section.html.twig b/node_modules/@ecl/site-footer/site-footer-ec-section.html.twig
-index 108e700..74e0a2f 100644
+index 571dd84..ff64940 100644
 --- a/node_modules/@ecl/site-footer/site-footer-ec-section.html.twig
 +++ b/node_modules/@ecl/site-footer/site-footer-ec-section.html.twig
 @@ -78,7 +78,7 @@
@@ -10,4 +10,4 @@ index 108e700..74e0a2f 100644
 +    <div class="ecl-site-footer__description">{{ _section.description|raw }}</div>
    {% endif %}
  
-   {# Social media and extra links #}
+   {# Action button #}
