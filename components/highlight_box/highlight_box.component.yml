@@ -1,0 +1,33 @@
+name: 'Highlight box'
+description: 'A box used to highlight a piece of content, with an optional icon, title, description and link.'
+props:
+  type: object
+  properties:
+    title:
+      type: ['string', 'null']
+      title: Title
+      description: 'Title of the highlight box.'
+    description:
+      type: ['string', 'object', 'null']
+      title: Description
+      description: 'Description of the highlight box.'
+    icon:
+      type: ['string', 'null']
+      title: Icon
+      description: 'Name of the icon.'
+    link:
+      type: ['object', 'null']
+      title: Link
+      description: "Optional link, having an 'href' and an optional 'label' and 'external' boolean."
+    color_mode:
+      type: ['string', 'null']
+      title: 'Color mode'
+      description: 'Name of the color mode.'
+    extra_classes:
+      type: ['string', 'null']
+      title: 'Extra classes string'
+      description: 'Extra classes string.'
+    extra_attributes:
+      type: ['array', 'null']
+      title: 'Extra attributes'
+      description: 'List of extra attributes.'

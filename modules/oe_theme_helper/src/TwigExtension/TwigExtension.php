@@ -473,8 +473,7 @@ class TwigExtension extends AbstractExtension {
       $icon['name'] = 'external';
     }
     else {
-      $icon['name'] = 'corner-arrow';
-      $icon['transform'] = 'rotate-90';
+      $icon['name'] = 'arrow-right';
     }
 
     return $icon;

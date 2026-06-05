@@ -6690,7 +6690,6 @@
       'li.ecl-animated-number:nth-child(2) .ecl-animated-number__description': "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
       'footer.ecl-animated-numbers__sources .ecl-animated-numbers__sources-label': "Custom sources label:"
       "footer.ecl-animated-numbers__sources a.ecl-animated-numbers__source[href='/example']": "Eurostat"
-# Test add_to_calendar component with title, multiple meta items and a button.
 - structure:
     '#type': component
     '#component': 'oe_theme:add_to_calendar'
@@ -6734,8 +6733,6 @@
       'li.ecl-add-to-calendar__meta-item:nth-child(1) span.ecl-add-to-calendar__meta-label': "March 15-17, 2026"
       'li.ecl-add-to-calendar__meta-item:nth-child(2) span.ecl-add-to-calendar__meta-label': "2:00 PM - 4:00 PM (CET)"
       'li.ecl-add-to-calendar__meta-item:nth-child(3) span.ecl-add-to-calendar__meta-label': "San Francisco, CA"
-# Test add_to_calendar component with full_width enabled and a single meta item
-# (renders as div + div instead of ul + li).
 - structure:
     '#type': component
     '#component': 'oe_theme:add_to_calendar'
@@ -6761,8 +6758,6 @@
     equals:
       'div.ecl-add-to-calendar__title': "Save the date"
       'div.ecl-add-to-calendar__meta-item span.ecl-add-to-calendar__meta-label': "1 January 2026"
-# Test add_to_calendar component with no title, no meta and no button: the
-# info-content wrapper must not be rendered.
 - structure:
     '#type': component
     '#component': 'oe_theme:add_to_calendar'
@@ -6834,3 +6829,68 @@
       li.ecl-slogan-ticker__slide: 1
     equals:
       li.ecl-slogan-ticker__slide: "Single slogan"
+- structure:
+    '#type': component
+    '#component': 'oe_theme:highlight_box'
+    '#props':
+      title: "Highlight box title"
+      description: "Highlight box description"
+      icon: "rocket"
+      link:
+        label: "Read more"
+        href: "<front>"
+      color_mode: "purple"
+      extra_classes: "custom-class"
+      extra_attributes:
+        - name: 'data-test'
+          value: 'highlight-box'
+  assertions:
+    count:
+      'article.ecl-highlight-box.ecl-color-mode--purple.custom-class[data-test="highlight-box"]': 1
+      'article.ecl-highlight-box[aria-labelledby]': 1
+      'article.ecl-highlight-box > header.ecl-highlight-box__header > div.ecl-highlight-box__icon-wrapper span.ecl-icon.ecl-highlight-box__icon': 1
+      'header.ecl-highlight-box__header > div.ecl-highlight-box__title': 1
+      'article.ecl-highlight-box > div.ecl-highlight-box__body > div.ecl-highlight-box__description': 1
+      'div.ecl-highlight-box__body a.ecl-link.ecl-link--secondary-neutral.ecl-link--icon.ecl-highlight-box__link[href="<front>"]': 1
+      'a.ecl-highlight-box__link span.ecl-icon.ecl-link__icon.ecl-icon--arrow-right': 1
+    equals:
+      'div.ecl-highlight-box__title': "Highlight box title"
+      'div.ecl-highlight-box__description': "Highlight box description"
+      'a.ecl-highlight-box__link span.ecl-link__label': "Read more"
+- structure:
+    '#type': component
+    '#component': 'oe_theme:highlight_box'
+    '#props':
+      title: "Highlight box title"
+      description: "Highlight box description"
+  assertions:
+    count:
+      'article.ecl-highlight-box': 1
+      'header.ecl-highlight-box__header': 1
+      'div.ecl-highlight-box__icon-wrapper': 0
+      'div.ecl-highlight-box__title': 1
+      'div.ecl-highlight-box__body': 1
+      'div.ecl-highlight-box__description': 1
+      'a.ecl-highlight-box__link': 0
+    equals:
+      'div.ecl-highlight-box__title': "Highlight box title"
+      'div.ecl-highlight-box__description': "Highlight box description"
+- structure:
+    '#type': component
+    '#component': 'oe_theme:highlight_box'
+    '#props':
+      icon: "data"
+      link:
+        label: "External link"
+        href: "http://example.com"
+  assertions:
+    count:
+      'article.ecl-highlight-box': 1
+      'div.ecl-highlight-box__icon-wrapper span.ecl-icon.ecl-highlight-box__icon': 1
+      'div.ecl-highlight-box__title': 0
+      'div.ecl-highlight-box__body': 1
+      'div.ecl-highlight-box__description': 0
+      'a.ecl-link.ecl-link--secondary-neutral.ecl-link--icon.ecl-highlight-box__link[href="http://example.com"]': 1
+      'a.ecl-highlight-box__link span.ecl-icon.wt-icon--external.ecl-link__icon': 1
+    equals:
+      'a.ecl-highlight-box__link span.ecl-link__label': "External link"
