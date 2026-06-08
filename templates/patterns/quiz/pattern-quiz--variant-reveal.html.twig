@@ -16,14 +16,14 @@
       {% if item.icon_family is not empty and item.icon_family == 'icons' %}
         {% set _icon = _icon|merge({
           icon: {
-            name: item.icon_name|default('sparkle'),
+            name: item.icon_name|default('question'),
             size: 'xl',
           }
         }) %}
       {% else %}
         {% set _icon = _icon|merge({
           icon: {
-            name: item.icon_name|default('sparkle'),
+            name: item.icon_name|default('question'),
             family: item.icon_family|default('phosphor'),
             size: 'xl',
           }
