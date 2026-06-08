@@ -27,7 +27,7 @@
         "drupal/core-dev": "^10.3 || ^11",
         "drupal/core-utility": "^10.3 || ^11",
         "drupal/datetime_range_timezone": "^1.0.0-alpha4",
-        "drupal/datetime_testing": "^1.0",
+        "drupal/datetime_testing": "1.0.0-beta6",
         "drupal/description_list_field": "^1.0",
         "drupal/drupal-extension": "^5.0",
         "drupal/emr": "^1.3",
@@ -105,7 +105,8 @@
         },
         "_readme": [
             "autoload-dev: explicitly mapping EntityReferenceFieldCreationTrait to prevent failures.",
-            "Locking extra_field to 3.0.0-beta1 due to issues, will be fixed in EWPP-6001."
+            "Locking extra_field to 3.0.0-beta1 due to issues, will be fixed in EWPP-6001.",
+            "Locking drupal/datetime_testing to 1.0.0-beta6 since beta7 removed a behat step still required in the project."
         ]
     },
     "config": {
