@@ -1,0 +1,22 @@
+{#
+/**
+ * @file
+ * Slogan ticker component.
+ */
+#}
+{% set _items = [] %}
+{% for _item in items %}
+  {% set _items = _items|merge([{
+    content: _item.content,
+  }]) %}
+{% endfor %}
+
+{% include '@ecl-twig/slogan-ticker' with {
+  'items': _items,
+  'autoplay': autoplay ?? true,
+  'color_mode': color_mode|default(''),
+  'sr_play': 'Play slogan ticker'|t,
+  'sr_pause': 'Pause slogan ticker'|t,
+  'extra_classes': extra_classes|default(''),
+  'extra_attributes': extra_attributes|default([])
+} only %}
