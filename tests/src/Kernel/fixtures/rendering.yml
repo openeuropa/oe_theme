@@ -6325,7 +6325,7 @@
       'div.ecl-quiz__viewport ol.ecl-quiz__list': 1
       'div.ecl-quiz__viewport ol.ecl-quiz__list li.ecl-quiz-card': 4
       'div.ecl-quiz__viewport ol.ecl-quiz__list li.ecl-quiz-card:nth-child(1) .ecl-quiz-card__header .ecl-quiz-card__icon .ecl-icon--xl.ecl-icon-ecl--clock': 2
-      'div.ecl-quiz__viewport ol.ecl-quiz__list li.ecl-quiz-card:nth-child(2) .ecl-quiz-card__header .ecl-quiz-card__icon .ecl-icon--xl.ecl-icon-phosphor--sparkle': 2
+      'div.ecl-quiz__viewport ol.ecl-quiz__list li.ecl-quiz-card:nth-child(2) .ecl-quiz-card__header .ecl-quiz-card__icon .ecl-icon--xl.ecl-icon-phosphor--question': 2
       'div.ecl-quiz__viewport ol.ecl-quiz__list li.ecl-quiz-card:nth-child(3) .ecl-quiz-card__header .ecl-quiz-card__icon .ecl-icon--xl.wt-icon-networks--threads': 2
       'div.ecl-quiz__viewport ol.ecl-quiz__list li.ecl-quiz-card:nth-child(4) .ecl-quiz-card__header .ecl-quiz-card__icon .ecl-icon--xl.wt-icon-phosphor--airplane': 2
       'div.ecl-quiz__viewport ol.ecl-quiz__list li.ecl-quiz-card .ecl-quiz-card__front .ecl-quiz-card__flip': 4
@@ -6369,7 +6369,7 @@
       'div.ecl-quiz__header div.ecl-quiz__description': 1
       'div.ecl-quiz__viewport ol.ecl-quiz__list': 1
       'div.ecl-quiz__viewport ol.ecl-quiz__list li.ecl-quiz-card': 4
-      'div.ecl-quiz__viewport ol.ecl-quiz__list li.ecl-quiz-card .ecl-quiz-card__header .ecl-quiz-card__icon .ecl-icon--xl.ecl-icon-phosphor--sparkle': 8
+      'div.ecl-quiz__viewport ol.ecl-quiz__list li.ecl-quiz-card .ecl-quiz-card__header .ecl-quiz-card__icon .ecl-icon--xl.ecl-icon-phosphor--question': 8
       'div.ecl-quiz__viewport ol.ecl-quiz__list li.ecl-quiz-card .ecl-quiz-card__front .ecl-quiz-card__flip': 4
       'div.ecl-quiz__pager': 1
     equals:
