@@ -1,5 +1,13 @@
 # Changelog
 
+## [6.0.0-alpha2](https://github.com/openeuropa/oe_theme/tree/6.0.0-alpha2) (2026-06-10)
+
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/6.0.0-alpha1...6.0.0-alpha2)
+
+**Merged pull requests:**
+
+- EWPP-6974: Change the default icon for the Quiz reveal variant. [\#1758](https://github.com/openeuropa/oe_theme/pull/1758) ([22Alexandra](https://github.com/22Alexandra))
+
 ## [6.0.0-alpha1](https://github.com/openeuropa/oe_theme/tree/6.0.0-alpha1) (2026-06-02)
 
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/5.0.0-rc3...6.0.0-alpha1)
