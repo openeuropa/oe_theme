@@ -16,6 +16,21 @@
 {% else %}
   {% set site_owner_description = site_owner ? 'This site is managed by:<br />@name'|t({'@name': site_owner|first}) %}
 {% endif %}
+{# Build the "Subscribe for updates" action button, if a link is provided. #}
+{% set _action_button = [] %}
+{% if subscribe_link is not empty %}
+  {% set _action_button = {
+    'link': {
+      'label': 'Subscribe for updates'|t,
+      'path': subscribe_link,
+    },
+    'icon': {
+      'name': 'envelope-simple',
+      'family': 'phosphor',
+      'style': 'inverted',
+    },
+  } %}
+{% endif %}
 {% set section_site_info = {
   'logo': {
     'picture': {
@@ -28,6 +43,7 @@
     'path': path,
   },
   'description': site_owner ? site_owner_description,
+  'action_button': _action_button,
 } %}
 
 {# Populate the core section. #}

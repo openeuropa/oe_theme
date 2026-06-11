@@ -104,6 +104,9 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     // Site owner is not set yet, let's make sure we don't have a description.
     $assert->elementNotExists('css', 'div.ecl-site-footer__description');
 
+    // The subscribe action button is not rendered without a subscribe link.
+    $assert->elementNotExists('css', 'footer.ecl-site-footer a.ecl-site-footer__action-button');
+
     $section = $assert->elementExists('css', 'footer.ecl-site-footer div.ecl-site-footer__row--specific div.ecl-site-footer__section--core');
     foreach (array_values($ec_core_links) as $key => $expected) {
       $index = $key + 1;
@@ -120,12 +123,19 @@ class CorporateFooterRenderTest extends BrowserTestBase {
       $this->assertListLink($actual, $expected);
     }
 
+    // Set a subscribe link in the corporate site information settings.
+    $this->configFactory->getEditable('oe_corporate_site_info.settings')->set('subscribe', 'https://example.com/subscribe')->save();
+
     // Update settings, assert footer changed.
     $this->updateSiteSettings(['http://publications.europa.eu/resource/authority/corporate-body/ACP-EU_JA'], 'EC Site Name');
     $this->drupalGet('<front>');
 
     $actual = $assert->elementExists('css', 'div.ecl-site-footer__description');
     $this->assertEquals('This site is managed by:ACP–EU Joint Assembly', $actual->getText());
+
+    // Assert the subscribe action button in the site info section.
+    $section = $assert->elementExists('css', 'footer.ecl-site-footer div.ecl-site-footer__row--specific div.ecl-site-footer__section--site-info');
+    $this->assertSubscribeActionButton($section, 'secondary-inverted', 'https://example.com/subscribe');
 
     // Test European Commission footer standardised block rendering.
     $this->branding = 'standardised';
@@ -153,6 +163,9 @@ class CorporateFooterRenderTest extends BrowserTestBase {
 
     $actual = $section->find('css', 'div.ecl-site-footer__description');
     $this->assertEquals('This site is managed by:ACP–EU Joint Assembly', $actual->getText());
+
+    // Assert the subscribe action button in the site info section.
+    $this->assertSubscribeActionButton($section, 'secondary-inverted', 'https://example.com/subscribe');
 
     $section = $assert->elementExists('css', 'footer.ecl-site-footer div.ecl-site-footer__row--common');
     // Assert presence of ecl logo in the standardised footer.
@@ -239,6 +252,9 @@ class CorporateFooterRenderTest extends BrowserTestBase {
 
     // Assert presence of ecl logo in the core footer.
     $this->assertEclLogoPresence($section);
+
+    // Assert the subscribe action button in the site info section.
+    $this->assertSubscribeActionButton($section, 'secondary-neutral', 'https://example.com/subscribe');
 
     $column = $assert->elementExists('css', 'footer.ecl-site-footer div.ecl-site-footer__column:nth-child(2)');
     $subsection = $assert->elementExists('css', '.ecl-site-footer__section:nth-child(1)', $column);
@@ -331,6 +347,9 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     $actual = $section->find('css', '.ecl-site-footer__section--site-info a.ecl-link.ecl-link--standalone.ecl-site-footer__link');
     $this->assertEquals('Accessibility', $actual->getText());
     $this->assertEquals('/build/', $actual->getAttribute('href'));
+
+    // Assert the subscribe action button in the site info section.
+    $this->assertSubscribeActionButton($section, 'secondary-neutral', 'https://example.com/subscribe');
 
     $section = $assert->elementExists('css', 'footer.ecl-site-footer div.ecl-site-footer__row:nth-child(2) div.ecl-site-footer__column:nth-child(1) div.ecl-site-footer__section:nth-child(1)');
 
@@ -913,6 +932,26 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     $assert->elementNotExists('css', 'footer.ecl-site-footer div.ecl-site-footer__section--about');
     $assert->elementNotExists('css', 'footer.ecl-site-footer div.ecl-site-footer__section--related');
     $assert->elementNotExists('css', 'footer.ecl-site-footer div.ecl-site-footer__row--specific .ecl-social-media-follow');
+  }
+
+  /**
+   * Asserts the "Subscribe for updates" action button in a site info section.
+   *
+   * @param \Behat\Mink\Element\NodeElement $section
+   *   The footer site info section.
+   * @param string $type
+   *   The expected ECL link type, e.g. 'secondary-inverted'.
+   * @param string $href
+   *   The expected button link.
+   */
+  protected function assertSubscribeActionButton(NodeElement $section, string $type, string $href): void {
+    $button = $this->assertSession()->elementExists('css', 'a.ecl-site-footer__action-button', $section);
+    $this->assertEquals('Subscribe for updates', $button->getText());
+    $this->assertEquals($href, $button->getAttribute('href'));
+    $this->assertEquals("ecl-link ecl-link--{$type} ecl-link--icon ecl-site-footer__action-button ecl-button--m", $button->getAttribute('class'));
+    // Assert the default icon: "envelope-simple" from the "phosphor" family
+    // with the "inverted" style.
+    $this->assertSession()->elementExists('css', 'span.ecl-icon.ecl-icon-phosphor--envelope-simple.wt-icon--inverted.ecl-link__icon', $button);
   }
 
   /**
