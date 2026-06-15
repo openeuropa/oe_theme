@@ -3156,9 +3156,13 @@
       items:
         - title: "Sidebar title"
           body: "The sidebar content"
+      extra_attributes:
+        - name: id
+          value: 'my-sidebar-id'
   assertions:
     count:
       '.ecl-accordion.ecl-accordion--sidebar': 1
+      '.ecl-accordion[id="my-sidebar-id"]': 1
       'details.ecl-accordion__item': 1
       'summary.ecl-accordion__toggle': 1
       'summary.ecl-accordion__toggle .ecl-accordion__toggle-icon': 2

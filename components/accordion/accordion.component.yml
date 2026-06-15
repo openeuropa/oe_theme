@@ -3,18 +3,22 @@ description: 'List of items that can be clicked to hide or reveal additional con
 props:
   type: object
   properties:
-    identifier:
-      type: ['string', 'null']
-      title: Name
-      description: 'Unique machine readable name. Optional.'
     color_mode:
       type: ['string', 'null']
       title: 'Color mode'
       description: 'Name of the color mode.'
+    sidebar:
+      type: [ 'boolean', 'null' ]
+      title: 'Sidebar layout'
+      description: 'Use the sidebar layout. Optional.'
     extra_classes:
       type: ['string', 'null']
       title: 'Extra classes string'
       description: 'Extra classes string'
+    extra_attributes:
+      type: ['array', 'null']
+      title: 'Extra attributes'
+      description: 'List of extra attributes.'
     items:
       type: ['array', 'null']
       title: 'Accordion items'
