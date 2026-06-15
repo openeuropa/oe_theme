@@ -34,6 +34,10 @@ props:
       type: ['boolean', 'null']
       title: 'With background'
       description: 'Whether the Quiz should have a background color or not (default: false).'
+    full_width:
+      type: [ 'boolean', 'null' ]
+      title: 'Full width'
+      description: 'Whether the Quiz should be full width or not (default false).'
     items:
       type: ['array', 'null']
       title: 'Card items'

@@ -94,6 +94,7 @@
   description: description|default(''),
   next_label: next_label|default('Next'|t),
   prev_label: prev_label|default('Previous'|t),
-  with_background: with_background|default(false),
+  with_background: with_background ?? false,
+  full_width: full_width ?? false,
   items: _items|default([]),
 } only %}
