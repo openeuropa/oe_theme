@@ -2,7 +2,7 @@ langcode: en
 status: true
 dependencies: {  }
 name: oe_theme_extra_large_3_1_banner
-label: 'Extra large banner 3:1'
+label: 'Extra large banner 3:1 (Deprecated)'
 effects:
   2c7a5ef6-3d8f-4c1a-b98b-9aba95d755a0:
     uuid: 2c7a5ef6-3d8f-4c1a-b98b-9aba95d755a0

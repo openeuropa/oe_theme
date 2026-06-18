@@ -23,3 +23,7 @@ props:
       type: ['string', 'null']
       title: Size
       description: "Size of the carousel (can be 's', 'm', 'l')."
+    image_anchor:
+      type: [ 'string', 'null' ]
+      title: 'Image anchor'
+      description: 'The image anchor uses the background-position CSS property, so it accepts the same values as the properties.'
