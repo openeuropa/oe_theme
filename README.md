@@ -10,6 +10,7 @@ Drupal theme based on the [Europa Component Library][1] (ECL).
 - [Requirements](#requirements)
 - [Installation](#installation)
   - [Enable the theme](#enable-the-theme)
+  - [Upgrade to 6.0.0](#upgrade-to-6.0.0)
   - [Upgrade to 5.0.0](#upgrade-to-5.0.0)
   - [Upgrade to 4.0.0](#upgrade-to-4.0.0)
   - [Upgrade to 3.0.0](#upgrade-to-3.0.0)
@@ -125,6 +126,68 @@ These plugins are built for **CKEditor 4**, which is **not supported in Drupal 1
 **Drupal 10**, you can continue to use these plugins without issue.
 
 These plugins are considered **deprecated** and will be removed in version 6.x or later of the theme.
+
+### Upgrade to 6.0.0
+
+#### UI Patterns have been migrated to Single Directory Components (SDC)
+
+All the theme patterns previously defined with [UI Patterns][20] (`*.ui_patterns.yml` files under
+`templates/patterns/`) have been rebuilt as [Single Directory Components][21] (SDC) and now live under the
+[`components/`](./components) directory. Each component ships with its own `*.component.yml` definition (props,
+variants and slots) and `*.twig` template.
+
+This is a breaking change for any project that references the theme patterns directly in its own templates or
+sub-theme, or that overrides them. The component names are unchanged, but the way they are invoked is different:
+
+- The `pattern()` Twig function is no longer used. Replace it with a Twig `include` (or `embed`) using the
+  `oe_theme:<component>` SDC identifier.
+- Props are passed exactly as before, through the `with` array. They are now validated against the component's
+  `*.component.yml` schema, so passing an unknown prop or an invalid type will raise an error.
+- The `variant` is still passed as a regular prop.
+
+Before (UI Patterns):
+
+```twig
+{{ pattern('list_item', {
+  'variant': 'default',
+  'url': url,
+  'title': title,
+}) }}
+```
+
+After (SDC):
+
+```twig
+{% include 'oe_theme:list_item' with {
+  'variant': 'default',
+  'url': url,
+  'title': title,
+} only %}
+```
+
+If you were overriding a pattern template (for example `pattern-list-item.html.twig`) you now need to override the
+corresponding component template under `components/<component>/<component>.twig` instead.
+
+A full overview of the available components, their props and variants can be browsed locally on the
+`/components` page once the development project is installed.
+
+#### The `drupal/ui_patterns` dependency has been removed
+
+As a result of the migration, the theme no longer requires the [UI Patterns][20] module: the
+`drupal/ui_patterns` dependency has been removed from `composer.json` and components are now rendered through
+Drupal core's SDC system. If your site still relies on UI Patterns for its own patterns, you now need to require
+`drupal/ui_patterns` explicitly in your project's `composer.json`.
+
+#### New components
+
+The following components have been added in 6.0.0 and can be used in your templates as described above:
+
+- Text and media (`text_media`)
+- Animated numbers (`animated_numbers`)
+- Add to calendar (`add_to_calendar`)
+- Quiz (`quiz`)
+- Highlight box (`highlight_box`)
+- Slogan ticker (`slogan_ticker`)
 
 ### Upgrade to 5.0.0
 
@@ -669,3 +732,5 @@ We use [SemVer](http://semver.org/) for versioning. For the available versions, 
 [17]: https://drone.io
 [18]: https://www.npmjs.com/package/patch-package
 [19]: https://github.com/openeuropa/composer-artifacts
+[20]: https://www.drupal.org/project/ui_patterns
+[21]: https://www.drupal.org/docs/develop/theming-drupal/using-single-directory-components
