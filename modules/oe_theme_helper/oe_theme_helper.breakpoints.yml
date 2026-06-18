@@ -46,3 +46,11 @@ oe_theme.extra_extra_large:
     - 1x
     - 2x
   group: oe_theme
+oe_theme.wide:
+  label: 'Wide'
+  mediaQuery: 'all and (min-width: 1920px)'
+  weight: 5
+  multipliers:
+    - 1x
+    - 2x
+  group: oe_theme

@@ -1,0 +1,14 @@
+langcode: en
+status: true
+dependencies: {  }
+name: oe_theme_full_width_small
+label: 'Full width small (768)'
+effects:
+  85ac5c7a-c802-46fc-b46a-f9fc88cf7739:
+    uuid: 85ac5c7a-c802-46fc-b46a-f9fc88cf7739
+    id: image_scale
+    weight: 1
+    data:
+      width: 768
+      height: 768
+      upscale: false

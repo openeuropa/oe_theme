@@ -1,0 +1,14 @@
+langcode: en
+status: true
+dependencies: {  }
+name: oe_theme_full_width_medium
+label: 'Full width medium (1920)'
+effects:
+  17380a60-e2e8-41af-9b2d-beeb0fc277f8:
+    uuid: 17380a60-e2e8-41af-9b2d-beeb0fc277f8
+    id: image_scale
+    weight: 1
+    data:
+      width: 1920
+      height: 1920
+      upscale: false
