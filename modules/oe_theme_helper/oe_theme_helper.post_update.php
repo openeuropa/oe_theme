@@ -820,3 +820,189 @@ function oe_theme_helper_post_update_60001(): void {
   // Install sdc_component_library.
   \Drupal::service('module_installer')->install(['sdc_component_library']);
 }
+
+/**
+ * Mark deprecated image and responsive styles and create new ones.
+ */
+function oe_theme_helper_post_update_60002(): void {
+
+  // Mark existing responsive image styles as deprecated.
+  $style_ids = [
+    'oe_theme_large_banner',
+    'oe_theme_medium_banner',
+    'oe_theme_small_banner',
+  ];
+
+  $responsive_image_style_storage = \Drupal::entityTypeManager()->getStorage('responsive_image_style');
+
+  foreach ($style_ids as $style_id) {
+    /** @var \Drupal\responsive_image\Entity\ResponsiveImageStyle $responsive_image_style */
+    $responsive_image_style = $responsive_image_style_storage->load($style_id);
+
+    if (!$responsive_image_style) {
+      continue;
+    }
+
+    $label = $responsive_image_style->label();
+    if (!str_contains($label, '(Deprecated)')) {
+      $new_label = trim($label) . ' (Deprecated)';
+      $responsive_image_style->set('label', $new_label);
+      $responsive_image_style->save();
+      \Drupal::logger('oe_theme_helper')->notice('Updated label of responsive image style "@id" to "@label".', [
+        '@id' => $style_id,
+        '@label' => $new_label,
+      ]);
+    }
+  }
+
+  // Mark existing image styles as deprecated.
+  $image_style_ids = [
+    'oe_theme_full_width_banner_3_1',
+    'oe_theme_full_width_banner_4_1',
+    'oe_theme_full_width_banner_5_1',
+    'oe_theme_extra_extra_large_3_1_banner',
+    'oe_theme_extra_extra_large_4_1_banner',
+    'oe_theme_extra_extra_large_5_1_banner',
+    'oe_theme_extra_large_3_1_banner',
+    'oe_theme_extra_large_4_1_banner',
+    'oe_theme_extra_large_5_1_banner',
+    'oe_theme_large_3_1_banner',
+    'oe_theme_large_4_1_banner',
+    'oe_theme_large_5_1_banner',
+    'oe_theme_medium_3_2_banner',
+    'oe_theme_medium_4_1_banner',
+    'oe_theme_medium_5_1_banner',
+    'oe_theme_small_3_1_banner',
+    'oe_theme_small_3_2_banner',
+    'oe_theme_small_4_1_banner',
+    'oe_theme_small_5_1_banner',
+  ];
+
+  $image_style_storage = \Drupal::entityTypeManager()->getStorage('image_style');
+
+  foreach ($image_style_ids as $image_style_id) {
+    /** @var \Drupal\image\Entity\ImageStyle $image_style */
+    $image_style = $image_style_storage->load($image_style_id);
+
+    if (!$image_style) {
+      continue;
+    }
+
+    $label = $image_style->label();
+    if (!str_contains($label, '(Deprecated)')) {
+      $new_label = trim($label) . ' (Deprecated)';
+      $image_style->set('label', $new_label);
+      $image_style->save();
+      \Drupal::logger('oe_theme_helper')->notice('Updated label of image style "@id" to "@label".', [
+        '@id' => $image_style_id,
+        '@label' => $new_label,
+      ]);
+    }
+  }
+
+  // Add new banner styles.
+  $image_styles = [
+    'oe_theme_full_width_medium' => [
+      'label' => 'Full width medium (1920)',
+      'width' => '1920',
+    ],
+    'oe_theme_full_width_small' => [
+      'label' => 'Full width small (768)',
+      'width' => '768',
+    ],
+  ];
+
+  $image_style_storage = \Drupal::entityTypeManager()->getStorage('image_style');
+  foreach ($image_styles as $style_id => $style_data) {
+    $style = $image_style_storage->load($style_id);
+    if ($style) {
+      continue;
+    }
+    // Create image style.
+    $image_style = ImageStyle::create([
+      'name' => $style_id,
+      'label' => $style_data['label'],
+    ]);
+    // Add scale effect to the image style.
+    $effect = [
+      'id' => 'image_scale',
+      'weight' => 1,
+      'data' => [
+        'width' => $style_data['width'],
+        'height' => NULL,
+        'upscale' => FALSE,
+      ],
+    ];
+    $image_style->addImageEffect($effect);
+    $image_style->save();
+    \Drupal::logger('oe_theme_helper')->notice('Created image style "@id" with label "@label".', [
+      '@id' => $style_id,
+      '@label' => $style_data['label'],
+    ]);
+  }
+
+  // Update oe_theme_full_width.
+  // Don't create a square.
+  /** @var Drupal\image\Entity\ImageStyle $style */
+  $style = $image_style_storage->load('oe_theme_full_width');
+  if (!$style) {
+    return;
+  }
+
+  foreach ($style->getEffects() as $effect) {
+    if ($effect->getPluginId() !== 'image_scale') {
+      continue;
+    }
+
+    $configuration = $effect->getConfiguration();
+    $configuration['data']['height'] = NULL;
+    $effect->setConfiguration($configuration);
+    $style->save();
+
+    \Drupal::logger('oe_theme_helper')->notice('Updated image style "@id" with label "@label".', [
+      '@id' => $style->id(),
+      '@label' => $style->get('label'),
+    ]);
+
+    break;
+  }
+
+  // Create responsive image styles for the new banner styles.
+  if (ResponsiveImageStyle::load('oe_theme_banner')) {
+    return;
+  }
+
+  $responsive_image_style_id = 'oe_theme_banner';
+
+  ResponsiveImageStyle::create([
+    'id' => $responsive_image_style_id,
+    'label' => 'Banner',
+    'breakpoint_group' => 'oe_theme',
+    'fallback_image_style' => 'oe_theme_full_width',
+    'image_style_mappings' => [
+      [
+        'image_mapping_type' => 'image_style',
+        'image_mapping' => 'oe_theme_full_width',
+        'breakpoint_id' => 'oe_theme.wide',
+        'multiplier' => '1x',
+      ],
+      [
+        'image_mapping_type' => 'image_style',
+        'image_mapping' => 'oe_theme_full_width_medium',
+        'breakpoint_id' => 'oe_theme.medium',
+        'multiplier' => '1x',
+      ],
+      [
+        'image_mapping_type' => 'image_style',
+        'image_mapping' => 'oe_theme_full_width_small',
+        'breakpoint_id' => 'oe_theme.extra_small',
+        'multiplier' => '1x',
+      ],
+    ],
+  ])->save();
+
+  \Drupal::logger('oe_theme_helper')->notice('Created responsive image style "@id".', [
+    '@id' => $responsive_image_style_id,
+  ]);
+
+}

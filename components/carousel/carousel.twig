@@ -4,6 +4,9 @@
  * Carousel component.
  */
 #}
+
+{% set _image_anchor = image_anchor|default('50% 50%') %}
+
 {% set _items = [] %}
 {% for item in items %}
   {% if item.url is not empty and item.url_text is not empty %}
@@ -23,7 +26,8 @@
       img: {
         src: item.image|default(''),
         alt: item.image_alt|default(''),
-      }
+      },
+      image_anchor: _image_anchor,
     } %}
   {% endif %}
   {% if item.sources is not empty and item.sources is iterable %}

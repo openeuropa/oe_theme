@@ -2,7 +2,7 @@ langcode: en
 status: true
 dependencies: {  }
 name: oe_theme_full_width_banner_4_1
-label: 'Full width banner 4:1'
+label: 'Full width banner 4:1 (Deprecated)'
 effects:
   fcde4aca-d8be-4047-a97b-a58c60750f6f:
     uuid: fcde4aca-d8be-4047-a97b-a58c60750f6f
