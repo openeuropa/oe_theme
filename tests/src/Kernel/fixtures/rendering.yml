@@ -4173,7 +4173,7 @@
       'video': 0
       'picture source': 0
       'figcaption.ecl-media-container__caption': 1
-      'a.ecl-link.ecl-link--standalone[href="https://european-union.europa.eu/index_en"]': 1
+      'a.ecl-link.ecl-featured-item__link[href="https://european-union.europa.eu/index_en"]': 1
       'span.ecl-icon.ecl-icon--m.ecl-icon--primary.ecl-link__icon.wt-icon--arrow-left': 1
       'div.ecl-expandable.ecl-media-container__expandable': 1
       'button[data-ecl-label-expanded="Expanded"][data-ecl-label-collapsed="Collapsed"]': 1
@@ -4225,7 +4225,7 @@
       'video track[kind="captions"][label="English"][src="captions/bunny-en.vtt"][srclang="en"]': 1
       'iframe': 0
       'figcaption.ecl-media-container__caption': 1
-      'a.ecl-link.ecl-link--standalone[href="http://example.com"]': 1
+      'a.ecl-link.ecl-featured-item__link[href="http://example.com"]': 1
       'div.ecl-expandable.ecl-media-container__expandable': 1
       'button[data-ecl-label-expanded="Expand"][data-ecl-label-collapsed="Collapse"]': 1
       'span.ecl-button__container span.ecl-icon.ecl-icon--fluid.ecl-icon--rotate-180.ecl-button__icon.wt-icon--corner-arrow': 1
@@ -4292,7 +4292,7 @@
       'iframe': 0
       'video': 0
       'figcaption.ecl-media-container__caption': 0
-      'a.ecl-link.ecl-link--primary-neutral.ecl-featured-item__link[href="http://example.com"]': 1
+      'a.ecl-link.ecl-link--standalone.ecl-featured-item__link[href="http://example.com"]': 1
       'div.ecl-expandable.ecl-media-container__expandable': 0
     equals:
       'h2.ecl-u-type-heading-2': "Heading"
@@ -4345,7 +4345,7 @@
       'img.ecl-media-container__media[src="http://via.placeholder.com/150x150"]': 0
       'iframe[src="//ec.europa.eu/avservices/play.cfm?ref=I-181645"]': 1
       'figcaption.ecl-media-container__caption': 0
-      'a.ecl-link.ecl-link--primary-neutral.ecl-featured-item__link[href="http://example.com"]': 1
+      'a.ecl-link.ecl-link--standalone.ecl-featured-item__link[href="http://example.com"]': 1
     equals:
       'h2.ecl-u-type-heading-2': "Heading"
       'div.ecl-featured-item__item div.ecl-featured-item__description': "Some more text"
@@ -4382,7 +4382,7 @@
   assertions:
     count:
       'div.ecl-media-container__media--ratio-1-1 iframe[src="//ec.europa.eu/avservices/play.cfm?ref=I-181645"]': 1
-      'a.ecl-link.ecl-link--standalone[href="http://example.com"]': 1
+      'a.ecl-link.ecl-featured-item__link[href="http://example.com"]': 1
       'div.ecl-expandable.ecl-media-container__expandable': 0
 - structure:
     '#type': pattern
@@ -4416,7 +4416,7 @@
       'img.ecl-media-container__media': 0
       'iframe': 0
       'figcaption.ecl-media-container__caption': 0
-      'a.ecl-link.ecl-link--primary-neutral.ecl-featured-item__link[href="http://example.com"]': 1
+      'a.ecl-link.ecl-link--standalone.ecl-featured-item__link[href="http://example.com"]': 1
     equals:
       'h2.ecl-u-type-heading-2': "Heading"
       'div.ecl-featured-item__item div.ecl-featured-item__description': "Some more text"
