@@ -5644,16 +5644,10 @@
           image: "https://picsum.photos/seed/picsum/600/300"
           sources:
             - src: "https://inno-ecl.s3.amazonaws.com/media/examples/example-image.jpg"
-              media: "(min-width: 1368px)"
-            - src: "https://loremflickr.com/1368/456/snow"
-              media: "(min-width: 1140px)"
-            - src: "https://loremflickr.com/1140/380/brazil"
+              media: "(min-width: 1920px)"
+            - src: "https://loremflickr.com/1140/1140/brazil"
               media: "(min-width: 996px)"
-            - src: "https://picsum.photos/seed/picsum/996/996"
-              media: "(min-width: 768px)"
-            - src: "https://picsum.photos/seed/picsum/768/768"
-              media: "(min-width: 480px)"
-            - src: "https://loremflickr.com/480/480/arch"
+            - src: "https://loremflickr.com/996/996/arch"
               size: ""
           variant: "text-box"
           centered: false
@@ -5712,13 +5706,11 @@
       div.ecl-carousel__slide section.ecl-banner.ecl-banner--no-media.ecl-banner--h-center: 1
       div.ecl-carousel__controls: 1
       section.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--m.ecl-banner--h-center picture.ecl-picture.ecl-banner__picture img.ecl-banner__image[src="https://picsum.photos/seed/picsum/600/300"]: 1
-      section.ecl-banner.ecl-color-mode--purple.ecl-banner--font-m.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--m.ecl-banner--h-left picture source: 6
-      'section.ecl-banner.ecl-color-mode--purple.ecl-banner--font-m.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--m.ecl-banner--h-left picture source[srcset="https://loremflickr.com/480/480/arch"]:not([media])': 1
-      'section.ecl-banner.ecl-color-mode--purple.ecl-banner--font-m.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--m.ecl-banner--h-left picture source[srcset="https://picsum.photos/seed/picsum/768/768"][media="(min-width: 480px)"]': 1
-      'section.ecl-banner.ecl-color-mode--purple.ecl-banner--font-m.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--m.ecl-banner--h-left picture source[srcset="https://picsum.photos/seed/picsum/996/996"][media="(min-width: 768px)"]': 1
-      'section.ecl-banner.ecl-color-mode--purple.ecl-banner--font-m.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--m.ecl-banner--h-left picture source[srcset="https://loremflickr.com/1140/380/brazil"][media="(min-width: 996px)"]': 1
-      'section.ecl-banner.ecl-color-mode--purple.ecl-banner--font-m.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--m.ecl-banner--h-left picture source[srcset="https://loremflickr.com/1368/456/snow"][media="(min-width: 1140px)"]': 1
-      'section.ecl-banner.ecl-color-mode--purple.ecl-banner--font-m.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--m.ecl-banner--h-left picture source[srcset="https://inno-ecl.s3.amazonaws.com/media/examples/example-image.jpg"][media="(min-width: 1368px)"]': 1
+      'section.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--m.ecl-banner--h-center picture.ecl-picture.ecl-banner__picture img.ecl-banner__image[src="https://picsum.photos/seed/picsum/600/300"][style="--ecl-image-anchor: 50% 50%"]': 1
+      section.ecl-banner.ecl-color-mode--purple.ecl-banner--font-m.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--m.ecl-banner--h-left picture source: 3
+      'section.ecl-banner.ecl-color-mode--purple.ecl-banner--font-m.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--m.ecl-banner--h-left picture source[srcset="https://loremflickr.com/996/996/arch"]:not([media])': 1
+      'section.ecl-banner.ecl-color-mode--purple.ecl-banner--font-m.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--m.ecl-banner--h-left picture source[srcset="https://loremflickr.com/1140/1140/brazil"][media="(min-width: 996px)"]': 1
+      'section.ecl-banner.ecl-color-mode--purple.ecl-banner--font-m.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--m.ecl-banner--h-left picture source[srcset="https://inno-ecl.s3.amazonaws.com/media/examples/example-image.jpg"][media="(min-width: 1920px)"]': 1
       section.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--m:not(.ecl-banner--h-center) picture.ecl-picture.ecl-banner__picture img.ecl-banner__image[src="https://picsum.photos/seed/picsum/600/300"]: 1
       section.ecl-banner--box-bg-dark.ecl-banner--color-light.ecl-banner--m:not(.ecl-banner--h-center) picture.ecl-picture.ecl-banner__picture img.ecl-banner__image[src="https://picsum.photos/seed/picsum/600/300"]: 1
       section.ecl-banner--box-bg-dark.ecl-banner--color-light.ecl-banner--m.ecl-banner--h-center picture.ecl-picture.ecl-banner__picture img.ecl-banner__image[src="https://picsum.photos/seed/picsum/600/300"]: 1
