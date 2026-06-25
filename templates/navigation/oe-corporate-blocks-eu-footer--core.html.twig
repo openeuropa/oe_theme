@@ -71,6 +71,13 @@
   ],
 ] %}
 
+{% set _rows = [_row] %}
+
+{# section_feedback needs to be rendered in its own row, only add it if needed. #}
+{% if section_feedback %}
+  {% set _rows = [[[section_feedback]]]|merge(_rows) %}
+{% endif %}
+
 {% include '@ecl-twig/site-footer/ecl-site-footer-eu.html.twig' with {
-  'rows': [_row],
+  'rows': _rows,
 } %}
