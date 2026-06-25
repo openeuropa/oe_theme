@@ -123,6 +123,8 @@
       'div.ecl-select__icon': 1
       'select[data-ecl-select-multiple]': 1
       'div.ecl-select__icon span.ecl-icon.ecl-icon--xs.ecl-icon--rotate-180.ecl-button__icon.wt-icon--corner-arrow': 1
+      'div.ecl-form-group select.ecl-select[data-ecl-select-close="Close"]': 1
+      'div.ecl-form-group select.ecl-select[data-ecl-select-submit]': 0
     equals:
       'div.ecl-form-group label.ecl-form-label': 'Select element'
       'div.ecl-form-group div.ecl-select__container.ecl-select__container--m select.ecl-select option[value="1"]': 'One'
@@ -157,6 +159,21 @@
       'div.ecl-form-group label.ecl-form-label:not(.ecl-form-label--hidden)': 1
     equals:
       'div.ecl-form-group label.ecl-form-label': 'Select visible label'
+- structure:
+    '#type': select
+    '#title': Select element
+    '#title_display': before
+    '#multiple': true
+    '#multiple_close_text': 'Select custom submit'
+    '#multiple_submit': true
+    '#options':
+      1: One
+      2: Two
+      3: Three
+  assertions:
+    count:
+      'div.ecl-form-group select.ecl-select[data-ecl-select-close="Select custom submit"]': 1
+      'div.ecl-form-group select.ecl-select[data-ecl-select-submit]': 1
 - structure:
     '#type': radios
     '#title': Radios
