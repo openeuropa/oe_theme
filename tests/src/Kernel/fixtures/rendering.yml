@@ -405,6 +405,7 @@
       'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--primary-highlight-inverted.ecl-link--icon.ecl-banner__link-cta[href="http://example.com"]': 1
       'span.ecl-icon.ecl-icon--xs.ecl-icon--rotate-90.ecl-link__icon': 1
       'picture.ecl-picture.ecl-banner__picture img.ecl-banner__image[src="http://via.placeholder.com/150x150"][alt="alternative text"]': 1
+      'picture.ecl-picture.ecl-banner__picture img.ecl-banner__image[src="http://via.placeholder.com/150x150"][alt="alternative text"][style="--ecl-image-anchor: 35% 50%"]': 1
       'picture source': 3
       '.ecl-banner--l picture source[srcset="https://loremflickr.com/480/480/arch"]:not([media])': 1
       '.ecl-banner--l picture source[srcset="https://picsum.photos/seed/picsum/996/996"][media="(min-width: 768px)"]': 1

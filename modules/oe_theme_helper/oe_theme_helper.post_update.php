@@ -906,17 +906,14 @@ function oe_theme_helper_post_update_60002(): void {
       'label' => 'Full width medium (1920)',
       'width' => '1920',
       'height' => '1920',
-      'upscale' => FALSE,
     ],
     'oe_theme_full_width_small' => [
       'label' => 'Full width small (768)',
       'width' => '768',
       'height' => '768',
-      'upscale' => FALSE,
     ],
   ];
 
-  $image_style_storage = \Drupal::entityTypeManager()->getStorage('image_style');
   foreach ($image_styles as $style_id => $style_data) {
     $style = $image_style_storage->load($style_id);
     if ($style) {
@@ -934,6 +931,7 @@ function oe_theme_helper_post_update_60002(): void {
       'data' => [
         'width' => $style_data['width'],
         'height' => $style_data['height'],
+        'upscale' => FALSE,
       ],
     ];
     $image_style->addImageEffect($effect);
