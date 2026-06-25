@@ -480,8 +480,7 @@ abstract class ContentRenderTestBase extends BrowserTestBase {
     $icon_base_selector = 'span.ecl-icon.ecl-icon--' . $icon_size . '.ecl-icon--primary.ecl-link__icon';
     $icon_type = 'external';
     if (!$is_external) {
-      $icon_base_selector = 'span.ecl-icon.ecl-icon--' . $icon_size . '.ecl-icon--rotate-90.ecl-icon--primary.ecl-link__icon';
-      $icon_type = 'corner-arrow';
+      $icon_type = 'arrow-right';
     }
     $icon_selector = $link[0]->findAll('css', $icon_base_selector . '.wt-icon--' . $icon_type);
     $this->assertCount(1, $icon_selector);

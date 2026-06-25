@@ -49,7 +49,7 @@
     count:
       h4.ecl-u-type-heading-4: 1
       a.ecl-link[href="/internal_link"]: 1
-      a.ecl-link span.ecl-icon.wt-icon--corner-arrow: 1
+      a.ecl-link span.ecl-icon.wt-icon--arrow-right: 1
       dl.ecl-description-list dt.ecl-description-list__term:nth-child(3): 0
       dl.ecl-description-list dd.ecl-description-list__definition:nth-child(4): 0
     equals:
@@ -68,5 +68,5 @@
   assertions:
     count:
       a.ecl-link[href="https://european-union.europa.eu/index_en"]: 1
-      a.ecl-link span.ecl-icon.wt-icon--corner-arrow: 1
+      a.ecl-link span.ecl-icon.wt-icon--arrow-right: 1
     equals:

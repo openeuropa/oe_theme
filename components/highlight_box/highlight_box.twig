@@ -1,0 +1,32 @@
+{#
+/**
+ * @file
+ * Highlight box component.
+ */
+#}
+{% set icon_size = ecl_component_library == 'eu' ? 'm' : 'xs' %}
+
+{% set _icon = icon is not empty ? to_ecl_icon(icon, icon_size) : [] %}
+
+{% set _link = [] %}
+{% if link.href is not empty %}
+  {% set link_icon = get_link_icon(link.href, icon_size) %}
+  {% set link_icon = to_ecl_icon(link_icon.name, icon_size) %}
+  {% set _link = {
+    link: {
+      label: link.label|default(link.href),
+      path: link.href,
+    },
+    icon: link_icon,
+  } %}
+{% endif %}
+
+{% include '@ecl-twig/highlight-box' with {
+  title: title|default(''),
+  description: description|default(''),
+  icon: _icon,
+  link: _link,
+  color_mode: color_mode|default(''),
+  extra_classes: extra_classes|default(''),
+  extra_attributes: extra_attributes|default([]),
+} only %}
