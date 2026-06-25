@@ -6776,3 +6776,61 @@
       'div.ecl-add-to-calendar__title': 0
       'div.ecl-add-to-calendar__meta-list': 0
       'div.ecl-add-to-calendar__action': 0
+- structure:
+    '#type': 'component'
+    '#component': 'oe_theme:slogan_ticker'
+    '#props':
+      items:
+        - content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+        - content: "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris"
+        - content: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore"
+      extra_classes: 'extra-class'
+      extra_attributes:
+        - name: 'extra-attr'
+          value: 'extra-value'
+  assertions:
+    count:
+      div.ecl-slogan-ticker.extra-class: 1
+      div.ecl-slogan-ticker[extra-attr="extra-value"]: 1
+      div.ecl-slogan-ticker__viewport: 1
+      ul.ecl-slogan-ticker__track: 1
+      li.ecl-slogan-ticker__slide: 3
+      div.ecl-slogan-ticker__controls: 1
+    contains:
+      li.ecl-slogan-ticker__slide:nth-child(1): "Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+      li.ecl-slogan-ticker__slide:nth-child(2): "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris"
+      li.ecl-slogan-ticker__slide:nth-child(3): "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore"
+    equals:
+      button.ecl-slogan-ticker__play span.ecl-button__label: 'Play slogan ticker'
+      button.ecl-slogan-ticker__pause span.ecl-button__label: 'Pause slogan ticker'
+- structure:
+    '#type': 'component'
+    '#component': 'oe_theme:slogan_ticker'
+    '#props':
+      items:
+        - content: "Lorem ipsum dolor sit amet"
+        - content: "Consectetur adipiscing elit"
+      color_mode: 'purple'
+  assertions:
+    count:
+      div.ecl-slogan-ticker.ecl-color-mode--purple: 1
+      div.ecl-slogan-ticker[data-ecl-slogan-ticker="true"]: 1
+      div.ecl-slogan-ticker[data-ecl-auto-init="SloganTicker"]: 1
+      div.ecl-slogan-ticker[data-ecl-slogan-ticker-autoplay]: 0
+      li.ecl-slogan-ticker__slide: 2
+      button.ecl-slogan-ticker__play[data-ecl-slogan-ticker-play]: 1
+      button.ecl-slogan-ticker__pause[data-ecl-slogan-ticker-pause]: 1
+- structure:
+    '#type': 'component'
+    '#component': 'oe_theme:slogan_ticker'
+    '#props':
+      items:
+        - content: "Single slogan"
+      autoplay: false
+  assertions:
+    count:
+      div.ecl-slogan-ticker: 1
+      div.ecl-slogan-ticker[data-ecl-slogan-ticker-autoplay="false"]: 1
+      li.ecl-slogan-ticker__slide: 1
+    equals:
+      li.ecl-slogan-ticker__slide: "Single slogan"

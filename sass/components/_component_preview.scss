@@ -12,7 +12,7 @@
     "sidebar"
     "main"
     "a11y";
-  grid-template-columns: 1fr;
+  grid-template-columns: minmax(0, 1fr);
 }
 
 // Reduce sidebar height.
@@ -31,4 +31,10 @@
     max-inline-size: none;
   }
 
+}
+
+// The adapt ECL slogan ticker css so it doesn't overlap the preview container.
+.components-preview .ecl-slogan-ticker {
+  margin-inline: 0;
+  width: 100%;
 }

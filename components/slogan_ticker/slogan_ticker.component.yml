@@ -1,0 +1,25 @@
+name: 'Slogan ticker'
+description: 'The Slogan ticker component allows to display a list of slogans.'
+props:
+  type: object
+  properties:
+    items:
+      type: ['array', 'null']
+      title: Items
+      description: 'List of slogan items, each containing the content to display.'
+    autoplay:
+      type: ['boolean', 'null']
+      title: Autoplay
+      description: 'Whether the ticker plays automatically. Defaults to true.'
+    color_mode:
+      type: ['string', 'null']
+      title: 'Color mode'
+      description: 'Name of the color mode.'
+    extra_classes:
+      type: ['string', 'null']
+      title: 'Extra classes'
+      description: 'Extra CSS classes.'
+    extra_attributes:
+      type: ['array', 'null']
+      title: 'Extra attributes'
+      description: 'List of extra attributes.'
