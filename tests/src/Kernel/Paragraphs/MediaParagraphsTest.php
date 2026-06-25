@@ -1029,28 +1029,19 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $en_file_1 = $this->container->get('file.repository')->writeData(file_get_contents($this->container->get('extension.list.theme')->getPath('oe_theme') . '/tests/fixtures/example_1.jpeg'), 'public://example_1_en.jpeg');
     $en_file_1->setPermanent();
     $en_file_1->save();
-    // Get first english file styled URI.
-    $style = ImageStyle::load('oe_theme_full_width_banner_3_1');
-    $en_file_1_url = $style->buildUrl($en_file_1->getFileUri());
 
     $en_file_2 = $this->container->get('file.repository')->writeData(file_get_contents($this->container->get('extension.list.theme')->getPath('oe_theme') . '/tests/fixtures/example_1.jpeg'), 'public://example_2_en.jpeg');
     $en_file_2->setPermanent();
     $en_file_2->save();
-    // Get second english file styled URL.
-    $en_file_2_url = $style->buildUrl($en_file_2->getFileUri());
 
     // Create Bulgarian files.
     $bg_file_1 = $this->container->get('file.repository')->writeData(file_get_contents($this->container->get('extension.list.theme')->getPath('oe_theme') . '/tests/fixtures/example_1.jpeg'), 'public://example_1_bg.jpeg');
     $bg_file_1->setPermanent();
     $bg_file_1->save();
-    // Get first bulgarian file styled URL.
-    $bg_file_1_url = $style->buildUrl($bg_file_1->getFileUri());
 
     $bg_file_2 = $this->container->get('file.repository')->writeData(file_get_contents($this->container->get('extension.list.theme')->getPath('oe_theme') . '/tests/fixtures/example_1.jpeg'), 'public://example_2_bg.jpeg');
     $bg_file_2->setPermanent();
     $bg_file_2->save();
-    // Get second bulgarian file styled URL.
-    $bg_file_2_url = $style->buildUrl($bg_file_2->getFileUri());
 
     // Create a couple of media items with Bulgarian translation.
     $media_storage = $this->container->get('entity_type.manager')
