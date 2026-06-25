@@ -2425,6 +2425,14 @@ function oe_theme_preprocess_select(&$variables) {
       'value' => $value,
     ];
   }
+
+  // Pass multiple select properties to the template.
+  if (isset($variables['element']['#multiple_close_text'])) {
+    $variables['multiple_close_text'] = $variables['element']['#multiple_close_text'];
+  }
+  if (isset($variables['element']['#multiple_submit'])) {
+    $variables['multiple_submit'] = $variables['element']['#multiple_submit'];
+  }
 }
 
 /**

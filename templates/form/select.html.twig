@@ -17,7 +17,8 @@
   {% set _multiple_all_text = 'Select all'|t %}
   {% set _multiple_search_no_results_text = 'No results'|t %}
   {% set _multiple_clear_all_text = 'Clear all'|t %}
-  {% set _multiple_close_text = 'Close'|t %}
+  {% set _multiple_close_text = multiple_close_text|default('Close'|t) %}
+  {% set _multiple_submit = multiple_submit|default(false) %}
 {% endif %}
 
 {% if disabled %}
@@ -87,6 +88,7 @@
     multiple_all_text: _multiple_all_text|default(''),
     multiple_clear_all_text: _multiple_clear_all_text|default(''),
     multiple_close_text: _multiple_close_text|default(''),
+    multiple_submit: _multiple_submit|default(false),
   },
   extra_group_classes: 'ecl-u-mt-none',
   invalid: _invalid|default(false),
