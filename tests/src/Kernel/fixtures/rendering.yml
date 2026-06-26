@@ -3107,7 +3107,6 @@
     '#type': component
     '#component': 'oe_theme:accordion'
     '#props':
-      identifier: "id"
       items:
         - title: "Title 1"
           body: "Body 1"
@@ -3129,7 +3128,6 @@
     '#type': component
     '#component': 'oe_theme:accordion'
     '#props':
-      identifier: "id"
       color_mode: "purple-violet"
       items:
         - title: "Title 1"
@@ -3139,6 +3137,7 @@
   assertions:
     count:
       '.ecl-accordion.ecl-color-mode--purple-violet': 1
+      '.ecl-accordion.ecl-accordion--sidebar': 0
       'details.ecl-accordion__item': 2
       'summary.ecl-accordion__toggle': 2
       'summary.ecl-accordion__toggle .ecl-accordion__toggle-icon': 4
@@ -3149,6 +3148,29 @@
     contains:
       'details.ecl-accordion__item:nth-child(1) summary.ecl-accordion__toggle': "Title 1"
       'details.ecl-accordion__item:nth-child(2) summary.ecl-accordion__toggle': "Title 2"
+- structure:
+    '#type': component
+    '#component': 'oe_theme:accordion'
+    '#props':
+      sidebar: true
+      items:
+        - title: "Sidebar title"
+          body: "The sidebar content"
+      extra_attributes:
+        - name: id
+          value: 'my-sidebar-id'
+  assertions:
+    count:
+      '.ecl-accordion.ecl-accordion--sidebar': 1
+      '.ecl-accordion[id="my-sidebar-id"]': 1
+      'details.ecl-accordion__item': 1
+      'summary.ecl-accordion__toggle': 1
+      'summary.ecl-accordion__toggle .ecl-accordion__toggle-icon': 2
+      'div.ecl-accordion__content': 1
+    equals:
+      'details.ecl-accordion__item:nth-child(1) div.ecl-accordion__content': "The sidebar content"
+    contains:
+      'details.ecl-accordion__item:nth-child(1) summary.ecl-accordion__toggle': "Sidebar title"
 - structure:
     '#type': component
     '#component': 'oe_theme:dropdown'

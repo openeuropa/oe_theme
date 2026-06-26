@@ -7,24 +7,36 @@
 {% set _items = [] %}
 {% for _item in items %}
   {% set _items = _items|merge([{
-    id: identifier ~ '-' ~ loop.index0,
     toggle: {
       label: _item.title
     },
     content: _item.body
   }]) %}
 {% endfor %}
+{% set _icon = sidebar ? [
+  {
+    name: "sliders-horizontal",
+    family: "phosphor",
+    title: "Expand"
+  },
+  {
+    name: "minus",
+    family: "phosphor",
+    title: "Collapse"
+  }
+] : [
+  {
+    name: 'plus'
+  },
+  {
+    name: 'minus'
+  },
+] %}
 
 {% include '@ecl-twig/accordion' with {
   'items': _items,
-  'icon': [
-    {
-      name: 'plus'
-    },
-    {
-      name: 'minus'
-    },
-  ],
+  'icon': _icon,
   'color_mode': color_mode|default(''),
   'extra_classes': extra_classes|default(''),
+  'extra_attributes': extra_attributes|default([]),
 } %}
