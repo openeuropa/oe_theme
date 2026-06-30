@@ -6,6 +6,7 @@ namespace Drupal\Tests\oe_theme\Functional;
 
 use Behat\Mink\Element\NodeElement;
 use Drupal\Component\Utility\Html;
+use Drupal\Core\Render\RenderContext;
 use Drupal\Tests\BrowserTestBase;
 use Symfony\Component\Yaml\Yaml;
 
@@ -932,6 +933,26 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     $assert->elementNotExists('css', 'footer.ecl-site-footer div.ecl-site-footer__section--about');
     $assert->elementNotExists('css', 'footer.ecl-site-footer div.ecl-site-footer__section--related');
     $assert->elementNotExists('css', 'footer.ecl-site-footer div.ecl-site-footer__row--specific .ecl-social-media-follow');
+
+    // Assert the feedback section.
+    $renderer = $this->container->get('renderer');
+    $block_manager = $this->container->get('plugin.manager.block');
+    foreach (['ec', 'eu'] as $library) {
+      $build = $block_manager->createInstance("oe_corporate_blocks_{$library}_footer")->build();
+      foreach (['core', 'standardised'] as $branding) {
+        $this->configFactory->getEditable('oe_theme.settings')
+          ->set('component_library', $library)
+          ->set('branding', $branding)
+          ->save();
+        $html = $renderer->executeInRenderContext(new RenderContext(), fn () => \Drupal::theme()->render("oe_corporate_blocks_{$library}_footer", [
+          'corporate_footer' => $build['#corporate_footer'],
+          'site_specific_footer' => $build['#site_specific_footer'] ?? [],
+          'section_feedback' => ['description' => 'Help us improve this website'],
+        ]));
+
+        $this->assertStringContainsString('Help us improve this website', (string) $html, "{$library}-{$branding}");
+      }
+    }
   }
 
   /**
