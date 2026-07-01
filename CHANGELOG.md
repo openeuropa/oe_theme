@@ -1,5 +1,16 @@
 # Changelog
 
+## [5.0.0](https://github.com/openeuropa/oe_theme/tree/5.0.0) (2026-07-01)
+
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/5.0.0-rc4...5.0.0)
+
+**Merged pull requests:**
+
+- EWPP-7041: Update to ECL 5.0.1. [\#1773](https://github.com/openeuropa/oe_theme/pull/1773) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-5875: Fix fatal error in oe_theme_preprocess_html() when html_attributes dir is a string. [\#1775](https://github.com/openeuropa/oe_theme/pull/1775) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-7020: Update to ECL 5.0.0. [\#1768](https://github.com/openeuropa/oe_theme/pull/1768) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-6956: Update to ECL 5.0.0-RC6. [\#1755](https://github.com/openeuropa/oe_theme/pull/1755) ([22Alexandra](https://github.com/22Alexandra))
+
 ## [5.0.0-rc4](https://github.com/openeuropa/oe_theme/tree/5.0.0-rc4) (2026-06-10)
 
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/5.0.0-rc3...5.0.0-rc4)
