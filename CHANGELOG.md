@@ -1,5 +1,23 @@
 # Changelog
 
+## [6.0.0-alpha3](https://github.com/openeuropa/oe_theme/tree/6.0.0-alpha3) (2026-07-01)
+
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/6.0.0-alpha2...6.0.0-alpha3)
+
+**Merged pull requests:**
+
+- EWPP-7015: Add section\_feedback to footer templates. [\#1774](https://github.com/openeuropa/oe_theme/pull/1774) ([bircher](https://github.com/bircher))
+- EWPP-7041: Update to ECL 5.0.1. [\#1772](https://github.com/openeuropa/oe_theme/pull/1772) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-5875: Fix fatal error in oe\_theme\_preprocess\_html() when html\_attributes dir is a string. [\#1776](https://github.com/openeuropa/oe_theme/pull/1776) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-6964: Adapt the accordion component for the collapsible sidebar [\#1765](https://github.com/openeuropa/oe_theme/pull/1765) ([bircher](https://github.com/bircher))
+- EWPP-6958: Add Highlight box component. [\#1757](https://github.com/openeuropa/oe_theme/pull/1757) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-6960: Add Slogan ticker component. [\#1760](https://github.com/openeuropa/oe_theme/pull/1760) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-6963: Add the "Subscribe for updates" action button to the site footer. [\#1763](https://github.com/openeuropa/oe_theme/pull/1763) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-7020: Update to ECL 5.0.0. [\#1767](https://github.com/openeuropa/oe_theme/pull/1767) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-6992: Add full\_width prop to Quiz component. [\#1766](https://github.com/openeuropa/oe_theme/pull/1766) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-6973: Remove the UI Patterns dependency and update README with 6.x update info. [\#1764](https://github.com/openeuropa/oe_theme/pull/1764) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-6956: Update to ECL 5.0.0-RC6. [\#1754](https://github.com/openeuropa/oe_theme/pull/1754) ([22Alexandra](https://github.com/22Alexandra))
+
 ## [6.0.0-alpha2](https://github.com/openeuropa/oe_theme/tree/6.0.0-alpha2) (2026-06-10)
 
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/6.0.0-alpha1...6.0.0-alpha2)
