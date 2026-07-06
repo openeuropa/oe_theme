@@ -114,19 +114,6 @@ Each component library can use one of the following ECL brandings:
 
 To learn more about EC/EU families and ECL branding visit the [ECL website](https://ec.europa.eu/component-library).
 
-### CKEditor 4 Table Plugins (Deprecated)
-
-This theme includes a set of **CKEditor 4 plugins** to enhance table functionality within the classic WYSIWYG editor. These plugins are:
-
-* [`TableSimple.php`](./modules/oe_theme_helper/src/Plugin/CKEditorPlugin/TableSimple.php): Adds support for simplified tables.
-* [`TableSort.php`](./modules/oe_theme_helper/src/Plugin/CKEditorPlugin/TableSort.php): Enables sortable table columns.
-* [`TableZebraStriping.php`](./modules/oe_theme_helper/src/Plugin/CKEditorPlugin/TableZebraStriping.php): Adds zebra striping to table rows for improved readability.
-
-These plugins are built for **CKEditor 4**, which is **not supported in Drupal 11**, if you are using this theme with
-**Drupal 10**, you can continue to use these plugins without issue.
-
-These plugins are considered **deprecated** and will be removed in version 6.x or later of the theme.
-
 ### Upgrade to 6.0.0
 
 #### UI Patterns have been migrated to Single Directory Components (SDC)
@@ -177,6 +164,33 @@ As a result of the migration, the theme no longer requires the [UI Patterns][20]
 `drupal/ui_patterns` dependency has been removed from `composer.json` and components are now rendered through
 Drupal core's SDC system. If your site still relies on UI Patterns for its own patterns, you now need to require
 `drupal/ui_patterns` explicitly in your project's `composer.json`.
+
+#### CKEditor 4 table plugins have been removed
+
+The deprecated CKEditor 4 table plugins (`TableSimple`, `TableSort`, `TableZebraStriping`) and their
+JavaScript files have been removed. CKEditor 4 is not part of Drupal core anymore: on Drupal 10, which is
+still supported by this theme, it is only available through the contributed
+[CKEditor 4 module](https://www.drupal.org/project/ckeditor), and CKEditor 4 itself reached its end of life
+in June 2023. If your site still uses these plugins, switch to the CKEditor 5 versions of the plugins,
+shipped by the same module, before updating.
+
+#### Deprecated banner image styles are no longer shipped
+
+The banner image styles and responsive image styles that were marked as deprecated in 5.x are no longer
+shipped with the theme. Sites that already have them in their active configuration keep them on update;
+remove them manually once nothing references them anymore:
+
+- Responsive image styles: `oe_theme_3_1_banner`, `oe_theme_4_1_banner`, `oe_theme_5_1_banner`.
+- Image styles: `oe_theme_small_3_1_banner`, `oe_theme_medium_3_1_banner`, `oe_theme_small_4_1_banner`,
+  `oe_theme_medium_4_1_banner`, `oe_theme_large_4_1_banner`, `oe_theme_extra_large_4_1_banner`,
+  `oe_theme_small_5_1_banner`, `oe_theme_medium_5_1_banner`, `oe_theme_large_5_1_banner`,
+  `oe_theme_extra_large_5_1_banner`.
+
+#### The `overlay` prop of the page header component has been removed
+
+The deprecated `overlay` prop has been removed from the `page_header` component. ECL 5.x no longer renders
+an overlay on top of the page header background image, so the prop had no effect. Remove it from any
+templates that still pass it, as the SDC prop validation will report it as an unknown prop.
 
 #### New components
 
@@ -435,28 +449,15 @@ a content page.
 * Large Banner (`oe_theme_large_banner`)
 * Medium Banner (`oe_theme_medium_banner`)
 * Small Banner (`oe_theme_small_banner`)
-* 3:1 Banner (Deprecated) (`oe_theme_3_1_banner`)
-* 4:1 Banner (Deprecated) (`oe_theme_4_1_banner`)
-* 5:1 Banner (Deprecated) (`oe_theme_5_1_banner`)
 
 ### Banner image styles for different ratios
 * Full width banner 3:1 (`oe_theme_full_width_banner_3_1`)
 * Extra large banner 3:1 (`oe_theme_extra_large_3_1_banner`)
 * Large banner 3:1 (`oe_theme_large_3_1_banner`)
-* Medium banner 3:1 (Deprecated) (`oe_theme_medium_3_1_banner`)
-* Small banner 3:1 (Deprecated) (`oe_theme_small_3_1_banner`)
 * Full width banner 4:1 (`oe_theme_full_width_banner_4_1`)
-* Extra large banner 4:1 (`oe_theme_extra_large_4_1_banner`)
-* Large banner 4:1 (`oe_theme_large_4_1_banner`)
 * Medium banner 3:2 (`oe_theme_medium_3_2_banner`)
-* Medium banner 4:1 (Deprecated) (`oe_theme_medium_4_1_banner`)
-* Small banner 4:1 (Deprecated) (`oe_theme_small_4_1_banner`)
 * Full width banner 5:1 (`oe_theme_full_width_banner_5_1`)
-* Extra large banner 5:1 (Deprecated) (`oe_theme_extra_large_5_1_banner`)
-* Large banner 5:1 (`oe_theme_large_5_1_banner`)
 * Small banner 3:2 (`oe_theme_small_3_2_banner`)
-* Medium banner 5:1 (Deprecated) (`oe_theme_medium_5_1_banner`)
-* Small banner 5:1 (Deprecated) (`oe_theme_small_5_1_banner`)
 
 ## Development
 
