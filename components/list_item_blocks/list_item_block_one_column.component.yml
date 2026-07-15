@@ -1,5 +1,6 @@
 name: 'List item block: one column'
-description: 'One column layout, to be used with listing items.'
+description: 'One column layout, to be used with listing items. Deprecated and will be removed in 7.x, use the "layout_wrapper" component with "columns" set to 1 instead.'
+status: deprecated
 props:
   type: object
   properties:
