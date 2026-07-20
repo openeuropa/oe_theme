@@ -6,6 +6,7 @@ namespace Drupal\Tests\oe_theme\FunctionalJavascript;
 
 use Drupal\FunctionalJavascriptTests\WebDriverTestBase;
 use Drupal\Tests\oe_theme\Traits\FunctionalJavascriptTrait;
+use OpenEuropa\TestingUtilities\Traits\CachedDatabaseInstallTrait;
 use PHPUnit\Framework\Assert;
 
 /**
@@ -15,6 +16,7 @@ use PHPUnit\Framework\Assert;
  */
 class JavascriptBehavioursTest extends WebDriverTestBase {
 
+  use CachedDatabaseInstallTrait;
   use FunctionalJavascriptTrait;
 
   /**
@@ -47,6 +49,7 @@ class JavascriptBehavioursTest extends WebDriverTestBase {
    * {@inheritdoc}
    */
   protected function setUp(): void {
+    $this->cacheDbInstall = TRUE;
     parent::setUp();
 
     // Enable and set OpenEuropa Theme as default.

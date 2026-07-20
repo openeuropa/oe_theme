@@ -8,6 +8,7 @@ use Behat\Mink\Element\NodeElement;
 use Drupal\Component\Utility\Html;
 use Drupal\Core\Render\RenderContext;
 use Drupal\Tests\BrowserTestBase;
+use OpenEuropa\TestingUtilities\Traits\CachedDatabaseInstallTrait;
 use Symfony\Component\Yaml\Yaml;
 
 /**
@@ -16,6 +17,8 @@ use Symfony\Component\Yaml\Yaml;
  * @group batch1
  */
 class CorporateFooterRenderTest extends BrowserTestBase {
+
+  use CachedDatabaseInstallTrait;
 
   /**
    * The branding to use in tests.
@@ -64,6 +67,7 @@ class CorporateFooterRenderTest extends BrowserTestBase {
    * {@inheritdoc}
    */
   protected function setUp(): void {
+    $this->cacheDbInstall = TRUE;
     parent::setUp();
 
     $this->branding = 'core';

@@ -7,6 +7,7 @@ namespace Drupal\Tests\oe_theme_helper\Functional;
 use Drupal\Tests\BrowserTestBase;
 use Drupal\Tests\content_moderation\Traits\ContentModerationTestTrait;
 use Drupal\filter\Entity\FilterFormat;
+use OpenEuropa\TestingUtilities\Traits\CachedDatabaseInstallTrait;
 
 /**
  * Tests the base metadata class for node view routes.
@@ -15,6 +16,7 @@ use Drupal\filter\Entity\FilterFormat;
  */
 class NodeViewRoutesMetadataTest extends BrowserTestBase {
 
+  use CachedDatabaseInstallTrait;
   use ContentModerationTestTrait;
 
   /**
@@ -46,6 +48,7 @@ class NodeViewRoutesMetadataTest extends BrowserTestBase {
    * {@inheritdoc}
    */
   public function setUp(): void {
+    $this->cacheDbInstall = TRUE;
     parent::setUp();
 
     // Enable oe_theme and set it as default.

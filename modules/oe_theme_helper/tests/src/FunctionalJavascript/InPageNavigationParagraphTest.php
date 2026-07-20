@@ -9,6 +9,7 @@ use Drupal\FunctionalJavascriptTests\WebDriverTestBase;
 use Drupal\Tests\oe_theme\PatternAssertions\InPageNavigationAssert;
 use Drupal\filter\Entity\FilterFormat;
 use Drupal\paragraphs\Entity\Paragraph;
+use OpenEuropa\TestingUtilities\Traits\CachedDatabaseInstallTrait;
 
 /**
  * Test Inpage navigation in the content row paragraph.
@@ -16,6 +17,8 @@ use Drupal\paragraphs\Entity\Paragraph;
  * @group batch3
  */
 class InPageNavigationParagraphTest extends WebDriverTestBase {
+
+  use CachedDatabaseInstallTrait;
 
   /**
    * Disabled until FRONT-4076 is fixed.
@@ -44,6 +47,7 @@ class InPageNavigationParagraphTest extends WebDriverTestBase {
    * {@inheritdoc}
    */
   public function setUp(): void {
+    $this->cacheDbInstall = TRUE;
     parent::setUp();
 
     // Enable and set OpenEuropa Theme as default.

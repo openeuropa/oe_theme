@@ -6,6 +6,7 @@ namespace Drupal\Tests\oe_theme_helper\FunctionalJavascript;
 
 use Drupal\FunctionalJavascriptTests\WebDriverTestBase;
 use Drupal\Tests\oe_theme\PatternAssertions\InPageNavigationAssert;
+use OpenEuropa\TestingUtilities\Traits\CachedDatabaseInstallTrait;
 
 /**
  * Test the inpage navigation library.
@@ -15,6 +16,8 @@ use Drupal\Tests\oe_theme\PatternAssertions\InPageNavigationAssert;
  * @group oe_theme_helper
  */
 class InPageNavigationLibraryTest extends WebDriverTestBase {
+
+  use CachedDatabaseInstallTrait;
 
   /**
    * Disabled until FRONT-4076 is fixed.
@@ -41,6 +44,7 @@ class InPageNavigationLibraryTest extends WebDriverTestBase {
    * {@inheritdoc}
    */
   public function setUp(): void {
+    $this->cacheDbInstall = TRUE;
     parent::setUp();
 
     // Enable and set OpenEuropa Theme as default.
