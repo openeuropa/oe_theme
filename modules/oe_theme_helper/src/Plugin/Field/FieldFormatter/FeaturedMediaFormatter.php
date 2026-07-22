@@ -11,6 +11,7 @@ use Drupal\Core\Field\FieldItemInterface;
 use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Core\Field\Plugin\Field\FieldFormatter\EntityReferenceFormatterBase;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\oe_theme_helper\Traits\ImageStyleOptionsTrait;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -26,6 +27,8 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  * )
  */
 class FeaturedMediaFormatter extends EntityReferenceFormatterBase {
+
+  use ImageStyleOptionsTrait;
 
   /**
    * The entity type manager.
@@ -94,7 +97,7 @@ class FeaturedMediaFormatter extends EntityReferenceFormatterBase {
       '#type' => 'select',
       '#default_value' => $this->getSetting('image_style'),
       '#empty_option' => t('None (original image)'),
-      '#options' => image_style_options(FALSE),
+      '#options' => $this->getImageStyleOptions(FALSE),
       '#description' => t('Image style to be used if the Media is an image.'),
     ];
 
@@ -107,7 +110,7 @@ class FeaturedMediaFormatter extends EntityReferenceFormatterBase {
   public function settingsSummary() {
     $summary = [];
 
-    $image_styles = image_style_options(FALSE);
+    $image_styles = $this->getImageStyleOptions(FALSE);
     // Unset possible 'No defined styles' option.
     unset($image_styles['']);
     // Styles could be lost because of enabled/disabled modules that defines

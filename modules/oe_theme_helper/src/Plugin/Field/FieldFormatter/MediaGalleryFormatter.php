@@ -5,17 +5,12 @@ declare(strict_types=1);
 namespace Drupal\oe_theme_helper\Plugin\Field\FieldFormatter;
 
 use Drupal\Core\Cache\CacheableMetadata;
-use Drupal\Core\Entity\EntityFieldManagerInterface;
-use Drupal\Core\Entity\EntityStorageInterface;
-use Drupal\Core\Entity\EntityTypeBundleInfoInterface;
-use Drupal\Core\Field\FieldDefinitionInterface;
 use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\Core\Session\AccountInterface;
 use Drupal\media\MediaInterface;
 use Drupal\oe_theme\ValueObject\GalleryItemValueObject;
 use Drupal\oe_theme\ValueObject\ImageValueObjectInterface;
-use Drupal\oe_theme_helper\MediaDataExtractorPluginManagerInterface;
+use Drupal\oe_theme_helper\Traits\ImageStyleOptionsTrait;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -33,6 +28,8 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  * )
  */
 class MediaGalleryFormatter extends MediaThumbnailUrlFormatter {
+
+  use ImageStyleOptionsTrait;
 
   /**
    * The entity field manager.
@@ -56,62 +53,16 @@ class MediaGalleryFormatter extends MediaThumbnailUrlFormatter {
   protected $mediaDataExtractorManager;
 
   /**
-   * Constructs a MediaGalleryFormatter object.
-   *
-   * @param string $plugin_id
-   *   The plugin_id for the formatter.
-   * @param mixed $plugin_definition
-   *   The plugin implementation definition.
-   * @param \Drupal\Core\Field\FieldDefinitionInterface $field_definition
-   *   The definition of the field to which the formatter is associated.
-   * @param array $settings
-   *   The formatter settings.
-   * @param string $label
-   *   The formatter label display setting.
-   * @param string $view_mode
-   *   The view mode.
-   * @param array $third_party_settings
-   *   Any third party settings settings.
-   * @param \Drupal\Core\Session\AccountInterface $current_user
-   *   The current user.
-   * @param \Drupal\Core\Entity\EntityStorageInterface $image_style_storage
-   *   The image style storage.
-   * @param \Drupal\Core\Entity\EntityFieldManagerInterface $entityFieldManager
-   *   The entity field manager.
-   * @param \Drupal\Core\Entity\EntityTypeBundleInfoInterface $entityTypeBundleInfo
-   *   The entity type bundle info.
-   * @param \Drupal\oe_theme_helper\MediaDataExtractorPluginManagerInterface $mediaDataExtractorManager
-   *   The media data extractor plugin manager.
-   *
-   * @SuppressWarnings(PHPMD.ExcessiveParameterList)
-   */
-  public function __construct($plugin_id, $plugin_definition, FieldDefinitionInterface $field_definition, array $settings, $label, $view_mode, array $third_party_settings, AccountInterface $current_user, EntityStorageInterface $image_style_storage, EntityFieldManagerInterface $entityFieldManager, EntityTypeBundleInfoInterface $entityTypeBundleInfo, MediaDataExtractorPluginManagerInterface $mediaDataExtractorManager) {
-    // @deprecated File url generator should be added to the signature and properly injected, as per \Drupal\image\Plugin\Field\FieldFormatter\ImageFormatter.
-    parent::__construct($plugin_id, $plugin_definition, $field_definition, $settings, $label, $view_mode, $third_party_settings, $current_user, $image_style_storage, \Drupal::service('file_url_generator'));
-
-    $this->entityFieldManager = $entityFieldManager;
-    $this->entityTypeBundleInfo = $entityTypeBundleInfo;
-    $this->mediaDataExtractorManager = $mediaDataExtractorManager;
-  }
-
-  /**
    * {@inheritdoc}
    */
   public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
-    return new static(
-      $plugin_id,
-      $plugin_definition,
-      $configuration['field_definition'],
-      $configuration['settings'],
-      $configuration['label'],
-      $configuration['view_mode'],
-      $configuration['third_party_settings'],
-      $container->get('current_user'),
-      $container->get('entity_type.manager')->getStorage('image_style'),
-      $container->get('entity_field.manager'),
-      $container->get('entity_type.bundle.info'),
-      $container->get('plugin.manager.oe_theme.media_data_extractor')
-    );
+    // Let the parent wire the constructor, whose signature varies across
+    // supported core versions.
+    $instance = parent::create($container, $configuration, $plugin_id, $plugin_definition);
+    $instance->entityFieldManager = $container->get('entity_field.manager');
+    $instance->entityTypeBundleInfo = $container->get('entity_type.bundle.info');
+    $instance->mediaDataExtractorManager = $container->get('plugin.manager.oe_theme.media_data_extractor');
+    return $instance;
   }
 
   /**
@@ -196,7 +147,7 @@ class MediaGalleryFormatter extends MediaThumbnailUrlFormatter {
     // that may not be stored in config and would cause a null warning.
     $summary = [];
 
-    $image_styles = image_style_options(FALSE);
+    $image_styles = $this->getImageStyleOptions(FALSE);
     unset($image_styles['']);
     $image_style_setting = $this->getSetting('image_style');
     if (isset($image_styles[$image_style_setting])) {
