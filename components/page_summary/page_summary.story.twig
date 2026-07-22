@@ -1,0 +1,14 @@
+{% include 'oe_theme:page_summary' with {
+  title: 'Summary',
+  description: {
+    '#markup': '<ul class="ecl-unordered-list"><li class="ecl-unordered-list__item">Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</li><li class="ecl-unordered-list__item">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</li><li class="ecl-unordered-list__item">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.</li></ul>'
+  },
+  icon: 'book-open',
+  color_mode: 'purple-violet',
+  extra_attributes: [
+    {
+      name: 'extra-attr',
+      value: 'extra value',
+    },
+  ],
+} only %}

@@ -1,0 +1,16 @@
+{#
+/**
+ * @file
+ * Page summary component.
+ */
+#}
+{% set _icon = icon is not empty ? to_ecl_icon(icon) : [] %}
+
+{% include '@ecl-twig/page-summary' with {
+  title: title|default(''),
+  description: description|default(''),
+  icon: _icon,
+  color_mode: color_mode|default(''),
+  extra_classes: extra_classes|default(''),
+  extra_attributes: extra_attributes|default([]),
+} only %}

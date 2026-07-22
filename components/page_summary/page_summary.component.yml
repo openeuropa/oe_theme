@@ -1,0 +1,29 @@
+name: 'Page summary'
+description: 'A short summary of the page content, with an optional icon and title.'
+props:
+  type: object
+  properties:
+    title:
+      type: ['string', 'null']
+      title: Title
+      description: 'Title of the page summary.'
+    description:
+      type: ['string', 'object', 'null']
+      title: Description
+      description: 'Description of the page summary.'
+    icon:
+      type: ['string', 'null']
+      title: Icon
+      description: 'Name of the icon shown next to the title.'
+    color_mode:
+      type: ['string', 'null']
+      title: 'Color mode'
+      description: 'Name of the color mode.'
+    extra_classes:
+      type: ['string', 'null']
+      title: 'Extra classes string'
+      description: 'Extra classes string.'
+    extra_attributes:
+      type: ['array', 'null']
+      title: 'Extra attributes'
+      description: 'List of extra attributes.'
