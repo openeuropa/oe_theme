@@ -8,6 +8,7 @@ use Behat\Mink\Element\NodeElement;
 use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Tests\BrowserTestBase;
+use Drupal\Tests\oe_theme\Traits\NodeBodyFieldTypeReconciliationTrait;
 use Drupal\Tests\oe_theme\PatternAssertions\FieldListAssert;
 use Drupal\Tests\oe_theme\PatternAssertions\SocialMediaLinksAssert;
 use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
@@ -28,6 +29,7 @@ use OpenEuropa\TestingUtilities\Traits\CachedDatabaseInstallTrait;
 abstract class ContentRenderTestBase extends BrowserTestBase {
 
   use CachedDatabaseInstallTrait;
+  use NodeBodyFieldTypeReconciliationTrait;
 
   /**
    * {@inheritdoc}
@@ -56,6 +58,7 @@ abstract class ContentRenderTestBase extends BrowserTestBase {
     $this->cacheDbInstall = TRUE;
     parent::setUp();
 
+    $this->reconcileNodeBodyFieldType();
     $this->rebuildAll();
 
     // Enable and set OpenEuropa Theme as default.
