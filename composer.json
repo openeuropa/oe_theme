@@ -120,6 +120,7 @@
             "php-http/discovery": false,
             "phpro/grumphp-shim": true,
             "phpstan/extension-installer": true,
+            "symfony/runtime": true,
             "tbachert/spi": false
         }
     }

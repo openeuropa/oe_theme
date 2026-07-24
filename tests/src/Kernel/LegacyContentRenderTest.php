@@ -162,10 +162,10 @@ class LegacyContentRenderTest extends ContentRenderTestBase {
     $file_title = $file_container->filter('.ecl-file__title');
     $this->assertStringContainsString('test document', $file_title->text());
 
-    $file_info_language = $file_footer->filter('div.ecl-file__language');
+    $file_info_language = $file_footer->filter('span.ecl-file__language');
     $this->assertStringContainsString('English', $file_info_language->text());
 
-    $file_info_properties = $file_footer->filter('div.ecl-file__meta');
+    $file_info_properties = $file_footer->filter('span.ecl-file__meta');
     $this->assertStringContainsString('KB - PDF)', $file_info_properties->text());
 
     $file_download_link = $file_footer->filter('.ecl-file__download');
