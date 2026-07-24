@@ -18,7 +18,7 @@ class FileAssert extends BasePatternAssert {
     return [
       'button_label' => [
         [$this, 'assertElementText'],
-        'div.ecl-file div.ecl-file__footer a.ecl-file__download span.ecl-link__label',
+        'div.ecl-file footer.ecl-file__footer a.ecl-file__download span.ecl-link__label span:first-child',
       ],
       'file' => [
         [$this, 'assertFile'],
@@ -42,18 +42,18 @@ class FileAssert extends BasePatternAssert {
    */
   protected function assertFile(array $expected_file, Crawler $crawler): void {
     // Assert information.
-    $file_container = $crawler->filter('div.ecl-file div.ecl-file__container');
+    $file_container = $crawler->filter('div.ecl-file article.ecl-file__container');
     $this->assertElementText($expected_file['title'], 'div.ecl-file__title', $file_container);
-    $file_footer = $crawler->filter('div.ecl-file div.ecl-file__footer');
+    $file_footer = $crawler->filter('div.ecl-file footer.ecl-file__footer');
 
-    $this->assertElementText($expected_file['language'], 'div.ecl-file__language', $file_footer);
-    $this->assertElementText($expected_file['meta'], 'div.ecl-file__meta', $file_footer);
+    $this->assertElementText($expected_file['language'], 'span.ecl-file__language', $file_footer);
+    $this->assertElementText($expected_file['meta'], 'span.ecl-file__meta', $file_footer);
 
     // Assert download link.
-    $this->assertElementAttribute($expected_file['url'], 'div.ecl-file div.ecl-file__footer a.ecl-file__download', 'href', $crawler);
+    $this->assertElementAttribute($expected_file['url'], 'div.ecl-file footer.ecl-file__footer a.ecl-file__download', 'href', $crawler);
 
     // Assert icon.
-    self:self::assertCount(1, $crawler->filter('div.ecl-file div.ecl-file__container span.ecl-file__icon.wt-icon--' . $expected_file['icon']));
+    self:self::assertCount(1, $crawler->filter('div.ecl-file article.ecl-file__container span.ecl-file__icon.wt-icon--' . $expected_file['icon']));
   }
 
 }
