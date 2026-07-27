@@ -15,6 +15,7 @@ use Drupal\filter\Entity\FilterFormat;
 use Drupal\node\Entity\NodeType;
 use Drupal\user\Entity\User;
 use Drupal\user\RoleInterface;
+use OpenEuropa\TestingUtilities\Traits\CachedDatabaseInstallTrait;
 use Symfony\Component\Validator\ConstraintViolation;
 
 /**
@@ -26,6 +27,7 @@ use Symfony\Component\Validator\ConstraintViolation;
  */
 class Ckeditor5TableTest extends WebDriverTestBase {
 
+  use CachedDatabaseInstallTrait;
   use CKEditor5TestTrait;
 
   /**
@@ -55,6 +57,7 @@ class Ckeditor5TableTest extends WebDriverTestBase {
    * {@inheritdoc}
    */
   public function setUp(): void {
+    $this->cacheDbInstall = TRUE;
     parent::setUp();
 
     FilterFormat::create([

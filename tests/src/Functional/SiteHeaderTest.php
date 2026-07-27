@@ -6,6 +6,7 @@ namespace Drupal\Tests\oe_theme\Functional;
 
 use Drupal\Tests\BrowserTestBase;
 use Drupal\menu_link_content\Entity\MenuLinkContent;
+use OpenEuropa\TestingUtilities\Traits\CachedDatabaseInstallTrait;
 
 /**
  * Test Site header rendering.
@@ -13,6 +14,8 @@ use Drupal\menu_link_content\Entity\MenuLinkContent;
  * @group batch1
  */
 class SiteHeaderTest extends BrowserTestBase {
+
+  use CachedDatabaseInstallTrait;
 
   /**
    * The config factory.
@@ -42,6 +45,7 @@ class SiteHeaderTest extends BrowserTestBase {
    * {@inheritdoc}
    */
   protected function setUp(): void {
+    $this->cacheDbInstall = TRUE;
     parent::setUp();
 
     // Enable and set OpenEuropa Theme as default.

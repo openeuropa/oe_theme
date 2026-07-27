@@ -6,6 +6,7 @@ namespace Drupal\Tests\oe_theme\Functional;
 
 use Drupal\Core\Url;
 use Drupal\Tests\BrowserTestBase;
+use OpenEuropa\TestingUtilities\Traits\CachedDatabaseInstallTrait;
 
 /**
  * Tests paragraphs forms.
@@ -13,6 +14,8 @@ use Drupal\Tests\BrowserTestBase;
  * @group batch1
  */
 class ParagraphsTest extends BrowserTestBase {
+
+  use CachedDatabaseInstallTrait;
 
   /**
    * {@inheritdoc}
@@ -38,6 +41,7 @@ class ParagraphsTest extends BrowserTestBase {
    * {@inheritdoc}
    */
   protected function setUp(): void {
+    $this->cacheDbInstall = TRUE;
     parent::setUp();
 
     $this->rebuildAll();

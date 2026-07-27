@@ -8,6 +8,7 @@ use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\FunctionalJavascriptTests\WebDriverTestBase;
 use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
 use Drupal\filter\Entity\FilterFormat;
+use OpenEuropa\TestingUtilities\Traits\CachedDatabaseInstallTrait;
 
 /**
  * Test information disclosing for time-sensitive fields.
@@ -17,6 +18,8 @@ use Drupal\filter\Entity\FilterFormat;
  * @group oe_theme_content_event
  */
 class InfoDisclosureExtraFieldTest extends WebDriverTestBase {
+
+  use CachedDatabaseInstallTrait;
 
   /**
    * Disabled until FRONT-4076 is fixed.
@@ -47,6 +50,7 @@ class InfoDisclosureExtraFieldTest extends WebDriverTestBase {
    * {@inheritdoc}
    */
   public function setUp(): void {
+    $this->cacheDbInstall = TRUE;
     parent::setUp();
     // Enable and set OpenEuropa Theme as default.
     $this->container->get('theme_installer')->install(['oe_theme']);

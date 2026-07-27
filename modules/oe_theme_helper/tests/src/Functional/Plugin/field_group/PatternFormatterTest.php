@@ -8,6 +8,7 @@ use Drupal\Tests\BrowserTestBase;
 use Drupal\Tests\field_group\Functional\FieldGroupTestTrait;
 use Drupal\field\Entity\FieldConfig;
 use Drupal\field\Entity\FieldStorageConfig;
+use OpenEuropa\TestingUtilities\Traits\CachedDatabaseInstallTrait;
 
 /**
  * Test the pattern field group formatter.
@@ -16,6 +17,7 @@ use Drupal\field\Entity\FieldStorageConfig;
  */
 class PatternFormatterTest extends BrowserTestBase {
 
+  use CachedDatabaseInstallTrait;
   use FieldGroupTestTrait;
 
   /**
@@ -38,6 +40,7 @@ class PatternFormatterTest extends BrowserTestBase {
    * {@inheritdoc}
    */
   public function setUp(): void {
+    $this->cacheDbInstall = TRUE;
     parent::setUp();
 
     // Enable oe_theme and set it as default.

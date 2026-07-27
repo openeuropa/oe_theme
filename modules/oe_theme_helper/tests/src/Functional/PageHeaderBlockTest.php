@@ -8,6 +8,7 @@ use Drupal\Tests\BrowserTestBase;
 use Drupal\entity_test\Entity\EntityTest;
 use Drupal\user\Entity\Role;
 use Drupal\user\RoleInterface;
+use OpenEuropa\TestingUtilities\Traits\CachedDatabaseInstallTrait;
 
 /**
  * Tests the page header block.
@@ -15,6 +16,8 @@ use Drupal\user\RoleInterface;
  * @group batch3
  */
 class PageHeaderBlockTest extends BrowserTestBase {
+
+  use CachedDatabaseInstallTrait;
 
   /**
    * {@inheritdoc}
@@ -35,6 +38,7 @@ class PageHeaderBlockTest extends BrowserTestBase {
    * {@inheritdoc}
    */
   public function setUp(): void {
+    $this->cacheDbInstall = TRUE;
     parent::setUp();
 
     // Enable oe_theme and set it as default.

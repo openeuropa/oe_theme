@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Drupal\Tests\oe_theme\FunctionalJavascript;
 
 use Drupal\FunctionalJavascriptTests\WebDriverTestBase;
+use OpenEuropa\TestingUtilities\Traits\CachedDatabaseInstallTrait;
 
 /**
  * Tests paragraphs forms.
@@ -12,6 +13,8 @@ use Drupal\FunctionalJavascriptTests\WebDriverTestBase;
  * @group batch1
  */
 class ParagraphsTest extends WebDriverTestBase {
+
+  use CachedDatabaseInstallTrait;
 
   /**
    * {@inheritdoc}
@@ -33,6 +36,7 @@ class ParagraphsTest extends WebDriverTestBase {
    * {@inheritdoc}
    */
   protected function setUp(): void {
+    $this->cacheDbInstall = TRUE;
     parent::setUp();
 
     $this->rebuildAll();

@@ -7,6 +7,7 @@ namespace Drupal\Tests\oe_theme_helper\FunctionalJavascript;
 use Drupal\FunctionalJavascriptTests\WebDriverTestBase;
 use Drupal\Tests\oe_theme\PatternAssertions\InPageNavigationAssert;
 use Drupal\filter\Entity\FilterFormat;
+use OpenEuropa\TestingUtilities\Traits\CachedDatabaseInstallTrait;
 
 /**
  * Test Inpage navigation block plugin.
@@ -16,6 +17,8 @@ use Drupal\filter\Entity\FilterFormat;
  * @group oe_theme_helper
  */
 class InPageNavigationBlockTest extends WebDriverTestBase {
+
+  use CachedDatabaseInstallTrait;
 
   /**
    * {@inheritdoc}
@@ -36,6 +39,7 @@ class InPageNavigationBlockTest extends WebDriverTestBase {
    * {@inheritdoc}
    */
   public function setUp(): void {
+    $this->cacheDbInstall = TRUE;
     parent::setUp();
 
     // Enable and set OpenEuropa Theme as default.

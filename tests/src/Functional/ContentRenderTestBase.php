@@ -20,11 +20,14 @@ use Drupal\oe_content_sub_entity\Entity\SubEntityInterface;
 use Drupal\oe_content_sub_entity_document_reference\Entity\DocumentReference;
 use Drupal\user\Entity\Role;
 use Drupal\user\RoleInterface;
+use OpenEuropa\TestingUtilities\Traits\CachedDatabaseInstallTrait;
 
 /**
  * Base class for testing content types.
  */
 abstract class ContentRenderTestBase extends BrowserTestBase {
+
+  use CachedDatabaseInstallTrait;
 
   /**
    * {@inheritdoc}
@@ -50,6 +53,7 @@ abstract class ContentRenderTestBase extends BrowserTestBase {
    * {@inheritdoc}
    */
   protected function setUp(): void {
+    $this->cacheDbInstall = TRUE;
     parent::setUp();
 
     $this->rebuildAll();

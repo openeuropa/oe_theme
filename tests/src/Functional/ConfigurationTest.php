@@ -6,6 +6,7 @@ namespace Drupal\Tests\oe_theme\Functional;
 
 use Drupal\Tests\BrowserTestBase;
 use Drupal\language\Entity\ConfigurableLanguage;
+use OpenEuropa\TestingUtilities\Traits\CachedDatabaseInstallTrait;
 
 /**
  * Tests that theme configuration is correctly applied.
@@ -13,6 +14,8 @@ use Drupal\language\Entity\ConfigurableLanguage;
  * @group batch2
  */
 class ConfigurationTest extends BrowserTestBase {
+
+  use CachedDatabaseInstallTrait;
 
   /**
    * {@inheritdoc}
@@ -33,6 +36,7 @@ class ConfigurationTest extends BrowserTestBase {
    * {@inheritdoc}
    */
   protected function setUp(): void {
+    $this->cacheDbInstall = TRUE;
     parent::setUp();
 
     // Enable and set OpenEuropa Theme as default.
