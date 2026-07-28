@@ -1,57 +1,14 @@
 name: ci
 on:
+  pull_request:
+    types: [opened, synchronize]
   push:
-    tags:
-      - '*'
+    branches:
+      - 6.x
 
 jobs:
-  build-release-assets:
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        php_version: ["8.3"]
-        core_version: ["10.6.0"]
-    env:
-      PHP_VERSION: ${{ matrix.php_version }}
-    steps:
-      - name: Clone repository
-        uses: actions/checkout@v6
-
-      - name: Modify web container version
-        run: |
-          # Set the php version, and replace -dev with -ci.
-          sed -i 's/httpd-php:8\.3-\(dev\|ci\)/httpd-php:${{ matrix.php_version}}-ci/g' docker-compose.yml
-          # Report the difference.
-          git diff
-
-      - name: Start services with Docker Compose
-        run: docker compose up -d
-
-      - name: Install zip
-        run: |
-          docker compose exec -T web rm -f /etc/apt/sources.list.d/yarn.list
-          docker compose exec -T web apt-get update -y
-          docker compose exec -T web apt-get install zip -y
-
-      - name: Update composer
-        run: docker compose exec -T web composer self-update --2
-
-      - name: Build dependencies
-        run: docker compose exec -T web composer require drupal/core:~${{ matrix.core_version }} drupal/core-composer-scaffold:~${{ matrix.core_version }} --update-with-all-dependencies --ansi --no-progress --no-interaction
-
-      - name: Run grumphp
-        run: docker compose exec -T web ./vendor/bin/grumphp run
-
-      - name: Components build
-        run: docker compose exec -T web bash ./scripts/build-ecl-pipeline.sh
-
-      - name: Create release archive
-        run: |
-          echo "Tag name from github.ref_name: ${{  github.ref_name }}"
-          docker compose exec -T web ./vendor/bin/run toolkit:release:create-archive --name=oe_theme --tag=${{ github.ref_name }}
-          docker compose exec -T web ./vendor/bin/run toolkit:release:create-archive --name=oe_theme --tag=${{ github.ref_name }} --zip
-
-      - name: Upload files to release
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: gh release upload --clobber "${{ github.ref_name }}" "oe_theme-${{ github.ref_name }}.tar.gz" "oe_theme-${{ github.ref_name }}.zip"
+  automated-tests:
+    uses: openeuropa/github-ci/.github/workflows/drupal-ci.yml@EWPP-6781
+    with:
+      run_phpunit_batches: true
+      run_behat: true
