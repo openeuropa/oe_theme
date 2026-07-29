@@ -32,10 +32,10 @@ class FileTranslationAssert extends FileAssert {
    */
   protected function assertTranslations($expected_translations, Crawler $crawler): void {
     if (is_null($expected_translations)) {
-      $this->assertElementNotExists('div.ecl-file div.ecl-file__translation-container ul.ecl-file__translation-list li.ecl-file__translation-item', $crawler);
+      $this->assertElementNotExists('div.ecl-file ul.ecl-file__translation-list li.ecl-file__translation-item', $crawler);
       return;
     }
-    $translation_file_elements = $crawler->filter('div.ecl-file div.ecl-file__translation-container ul.ecl-file__translation-list li.ecl-file__translation-item:not([class*="ecl-file__translation-description"])');
+    $translation_file_elements = $crawler->filter('div.ecl-file ul.ecl-file__translation-list li.ecl-file__translation-item:not([class*="ecl-file__translation-description"])');
     self::assertCount(count($expected_translations), $translation_file_elements, \sprintf(
       'The amount of found translations (%s) does not match the amount of expected translations (%s).',
       $translation_file_elements->count(),
