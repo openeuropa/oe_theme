@@ -30,6 +30,20 @@
     },
   }]) %}
 {% endfor %}
+{% if _translations is not empty %}
+  {% set _translation = {
+    'toggle': {
+      'label': translation_toggle_label|default("Other languages"|t) ~ " (" ~ translations|length ~ ")",
+      'icon': {
+        'name': 'corner-arrow',
+        'size': 'fluid',
+        'transform': 'rotate-180',
+      },
+    },
+    'items': _translations,
+  } %}
+{% endif %}
+
 {% set _detail_meta = [] %}
 {% if resource_type is not empty %}
   {% set _detail_meta = _detail_meta|merge([resource_type]) %}
@@ -114,17 +128,7 @@
     },
     'extra_attributes': link_attributes|default([]),
   },
-  'translation': {
-    'toggle': {
-      'label': translation_toggle_label|default("Other languages"|t) ~ " (" ~ translations|length ~ ")",
-      'icon': {
-        'name': 'corner-arrow',
-        'size': 'fluid',
-        'transform': 'rotate-180',
-      },
-    },
-    'items': _translations,
-  },
+  'translation': _translation|default([]),
   'detail_meta': _detail_meta,
   'variant': 'thumbnail',
   'lists': _lists,

@@ -7,7 +7,6 @@
 
 {# Process value objects into ECL compatible array. #}
 {% set _translations = [] %}
-
 {% for item in translations %}
   {% set _translation_meta = '(' ~ item.extension|upper  ~ ')' %}
   {% if item.size %}
@@ -28,6 +27,19 @@
     },
   }]) %}
 {% endfor %}
+{% if _translations is not empty %}
+  {% set _translation = {
+    'toggle': {
+      'label': translation_toggle_label|default("Other languages"|t) ~ " (" ~ translations|length ~ ")",
+      'icon': {
+        'name': 'corner-arrow',
+        'size': 'fluid',
+        'transform': 'rotate-180',
+      },
+    },
+    'items': _translations,
+  } %}
+{% endif %}
 
 {% set _meta = '(' ~ file.extension|upper  ~ ')' %}
 {% if file.size %}
@@ -59,16 +71,6 @@
     },
     'extra_attributes': link_attributes|default([]),
   },
-  'translation': {
-    'toggle': {
-      'label': translation_toggle_label|default("Other languages"|t) ~ " (" ~ translations|length ~ ")",
-      'icon': {
-        'name': 'corner-arrow',
-        'size': 'fluid',
-        'transform': 'rotate-180',
-      },
-    },
-    'items': _translations,
-  },
+  'translation': _translation|default([]),
   'detail_meta': _detail_meta
 } only %}
