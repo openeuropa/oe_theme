@@ -1,0 +1,53 @@
+name: 'Layout wrapper'
+description: 'A grid layout displaying a set of renderable items, with an optional title, description and view all link.'
+props:
+  type: object
+  properties:
+    title:
+      type: ['string', 'null']
+      title: Title
+      description: 'Layout wrapper title'
+    title_level:
+      type: ['integer', 'null']
+      title: 'Title level'
+      description: 'Heading level of the title. Default is 2.'
+    description:
+      type: ['string', 'null']
+      title: Description
+      description: 'A brief summary of the content of the layout wrapper.'
+    items:
+      type: ['array', 'null']
+      title: 'Layout items'
+      description: 'Array of renderable items'
+    columns:
+      type: ['integer', 'null']
+      title: 'Columns number'
+      description: 'Number of item columns: 1, 2, 3 or 4. Default is 3. Capped to 3 when the info position is "side".'
+    forced_columns:
+      type: ['boolean', 'null']
+      title: 'Forced columns'
+      description: 'Whether columns on desktop always keep a fixed number, instead of dynamically adapting to the container. Use with caution.'
+    info_position:
+      type: ['string', 'null']
+      title: 'Info position'
+      description: 'Position of the title and description block: "top" to stack them above the grid, "side" to display them beside the grid on wider screens. Default is "top".'
+    vertical:
+      type: ['boolean', 'null']
+      title: 'Vertical order'
+      description: 'Whether the items to be ordered from top to bottom instead of left to right.'
+    full_height:
+      type: ['boolean', 'null']
+      title: 'Full height'
+      description: 'Whether the items take the full height of their grid cell. Default is true.'
+    view_all_label:
+      type: ['string', 'null']
+      title: 'View all label'
+      description: 'The label for the View all link, displayed below the grid.'
+    view_all_url:
+      type: ['string', 'object', 'null']
+      title: 'View all URL (A Drupal Url object)'
+      description: 'The URL for the View all link, displayed below the grid.'
+    external_link:
+      type: ['boolean', 'null']
+      title: 'External link'
+      description: 'Whether the View all URL is external or not.'

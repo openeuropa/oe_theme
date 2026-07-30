@@ -2962,6 +2962,186 @@
       'a.ecl-link--icon span.ecl-link__label': 'View all'
 - structure:
     '#type': component
+    '#component': 'oe_theme:layout_wrapper'
+    '#props':
+      title: "Block title"
+      title_level: 3
+      description: "The description of the layout wrapper"
+      columns: 2
+      forced_columns: false
+      info_position: 'top'
+      vertical: false
+      full_height: true
+      items:
+        - '#type': "component"
+          '#component': 'oe_theme:list_item'
+          '#props':
+            title: "Business, Economy, Euro"
+            detail: "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
+        - '#type': "component"
+          '#component': 'oe_theme:list_item'
+          '#props':
+            title: "About the European Union"
+            detail: "The EU and its institutions, how to visit and work at the EU."
+      view_all_label: "View all"
+      view_all_url: "http://example.com"
+      external_link: false
+  assertions:
+    count:
+      'div.ecl-layout-wrapper.col-2': 1
+      'div.ecl-layout-wrapper--forced': 0
+      'div.ecl-layout-wrapper--info-side': 0
+      'div.ecl-layout-wrapper--height-auto': 0
+      'div.ecl-layout-wrapper--vertical': 0
+      'div.ecl-layout-wrapper div.ecl-layout-wrapper__grid div.ecl-layout-wrapper__info': 1
+      'div.ecl-layout-wrapper__info h3.ecl-u-type-heading-3.ecl-layout-wrapper__title': 1
+      'div.ecl-layout-wrapper__info div.ecl-layout-wrapper__description': 1
+      'div.ecl-layout-wrapper__grid div.ecl-layout-wrapper__container div.ecl-layout-wrapper__content div.ecl-layout-item': 2
+      'div.ecl-layout-item.ecl-layout-item--1 article.ecl-content-item': 1
+      'div.ecl-layout-item.ecl-layout-item--2 article.ecl-content-item': 1
+      'div.ecl-layout-wrapper__view-all a.ecl-link.ecl-link--standalone.ecl-layout-wrapper__view-all-link[href="http://example.com"]': 1
+      'div.ecl-layout-wrapper__view-all span.ecl-icon.ecl-icon--xs.ecl-icon--flip-horizontal.ecl-link__icon.wt-icon--arrow-left': 1
+    equals:
+      'div.ecl-layout-wrapper__info h3.ecl-layout-wrapper__title': "Block title"
+      'div.ecl-layout-wrapper__info div.ecl-layout-wrapper__description': "The description of the layout wrapper"
+      'div.ecl-layout-item--1 article.ecl-content-item div.ecl-content-item__content-block div.ecl-content-block__title': "Business, Economy, Euro"
+      'div.ecl-layout-item--1 article.ecl-content-item div.ecl-content-block__description': "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
+      'div.ecl-layout-item--2 article.ecl-content-item div.ecl-content-item__content-block div.ecl-content-block__title': "About the European Union"
+      'div.ecl-layout-wrapper__view-all a.ecl-link span.ecl-link__label': "View all"
+- structure:
+    '#type': component
+    '#component': 'oe_theme:layout_wrapper'
+    '#props':
+      items:
+        - { '#type': 'component', '#component': 'oe_theme:link', '#props': { url: '#', text: 'A simple link 1' } }
+        - { '#type': 'component', '#component': 'oe_theme:link', '#props': { url: '#', text: 'A simple link 2' } }
+  assertions:
+    count:
+      'div.ecl-layout-wrapper.col-3': 1
+      'div.ecl-layout-wrapper__info': 0
+      'div.ecl-layout-wrapper__title': 0
+      'div.ecl-layout-wrapper__description': 0
+      'div.ecl-layout-wrapper__view-all': 0
+      'div.ecl-layout-item': 2
+    equals:
+      'div.ecl-layout-item--1 a.ecl-link': 'A simple link 1'
+      'div.ecl-layout-item--2 a.ecl-link': 'A simple link 2'
+- structure:
+    '#type': component
+    '#component': 'oe_theme:layout_wrapper'
+    '#props':
+      title: "Block title"
+      columns: 1
+      items:
+        - { '#type': 'component', '#component': 'oe_theme:link', '#props': { url: '#', text: 'A simple link 1' } }
+  assertions:
+    count:
+      'div.ecl-layout-wrapper.col-1': 1
+      'div.ecl-layout-wrapper__info h2.ecl-u-type-heading-2.ecl-layout-wrapper__title': 1
+      'div.ecl-layout-item': 1
+    equals:
+      'div.ecl-layout-wrapper__info h2.ecl-layout-wrapper__title': "Block title"
+- structure:
+    '#type': component
+    '#component': 'oe_theme:layout_wrapper'
+    '#props':
+      columns: 4
+      description: "The description of the layout wrapper"
+      items:
+        - { '#type': 'component', '#component': 'oe_theme:link', '#props': { url: '#', text: 'A simple link 1' } }
+        - { '#type': 'component', '#component': 'oe_theme:link', '#props': { url: '#', text: 'A simple link 2' } }
+        - { '#type': 'component', '#component': 'oe_theme:link', '#props': { url: '#', text: 'A simple link 3' } }
+        - { '#type': 'component', '#component': 'oe_theme:link', '#props': { url: '#', text: 'A simple link 4' } }
+  assertions:
+    count:
+      'div.ecl-layout-wrapper.col-4': 1
+      'div.ecl-layout-item': 4
+      'div.ecl-layout-wrapper__info': 1
+      'div.ecl-layout-wrapper__info div.ecl-layout-wrapper__description': 1
+      'div.ecl-layout-wrapper__title': 0
+    equals:
+      'div.ecl-layout-item--4 a.ecl-link': 'A simple link 4'
+      'div.ecl-layout-wrapper__info div.ecl-layout-wrapper__description': "The description of the layout wrapper"
+- structure:
+    '#type': component
+    '#component': 'oe_theme:layout_wrapper'
+    '#props':
+      title: "Block title"
+      title_level: 4
+      info_position: 'side'
+      columns: 4
+      items:
+        - { '#type': 'component', '#component': 'oe_theme:link', '#props': { url: '#', text: 'A simple link 1' } }
+  assertions:
+    count:
+      'div.ecl-layout-wrapper.col-3.ecl-layout-wrapper--info-side': 1
+      'div.ecl-layout-wrapper.col-4': 0
+      'div.ecl-layout-wrapper__info': 1
+      'div.ecl-layout-wrapper__info h4.ecl-u-type-heading-4.ecl-layout-wrapper__title': 1
+      'div.ecl-layout-wrapper__info h2': 0
+      'div.ecl-layout-wrapper__info h3': 0
+    equals:
+      'div.ecl-layout-wrapper__info h4.ecl-layout-wrapper__title': "Block title"
+- structure:
+    '#type': component
+    '#component': 'oe_theme:layout_wrapper'
+    '#props':
+      columns: 2
+      forced_columns: true
+      full_height: false
+      items:
+        - { '#type': 'component', '#component': 'oe_theme:link', '#props': { url: '#', text: 'A simple link 1' } }
+  assertions:
+    count:
+      'div.ecl-layout-wrapper.col-2.ecl-layout-wrapper--forced.ecl-layout-wrapper--height-auto': 1
+- structure:
+    '#type': component
+    '#component': 'oe_theme:layout_wrapper'
+    '#props':
+      columns: 3
+      vertical: true
+      items:
+        - { '#type': 'component', '#component': 'oe_theme:link', '#props': { url: '#', text: 'A simple link 1' } }
+        - { '#type': 'component', '#component': 'oe_theme:link', '#props': { url: '#', text: 'A simple link 2' } }
+        - { '#type': 'component', '#component': 'oe_theme:link', '#props': { url: '#', text: 'A simple link 3' } }
+        - { '#type': 'component', '#component': 'oe_theme:link', '#props': { url: '#', text: 'A simple link 4' } }
+        - { '#type': 'component', '#component': 'oe_theme:link', '#props': { url: '#', text: 'A simple link 5' } }
+        - { '#type': 'component', '#component': 'oe_theme:link', '#props': { url: '#', text: 'A simple link 6' } }
+  assertions:
+    contains:
+      - '--ecl-layout-rows-2:3; --ecl-layout-rows-3:2'
+    count:
+      'div.ecl-layout-wrapper.col-3.ecl-layout-wrapper--vertical': 1
+      'div.ecl-layout-item': 6
+- structure:
+    '#type': component
+    '#component': 'oe_theme:layout_wrapper'
+    '#props':
+      items:
+        - { '#type': 'component', '#component': 'oe_theme:link', '#props': { url: '#', text: 'A simple link 1' } }
+      view_all_label: "View all"
+      view_all_url: "http://example.com"
+      external_link: true
+  assertions:
+    count:
+      'div.ecl-layout-wrapper__view-all a.ecl-link.ecl-link--standalone.ecl-layout-wrapper__view-all-link[href="http://example.com"]': 1
+      'div.ecl-layout-wrapper__view-all span.ecl-icon.ecl-icon--2xs.ecl-link__icon.wt-icon--external': 1
+      'div.ecl-layout-wrapper__view-all span.wt-icon--arrow-left': 0
+    equals:
+      'div.ecl-layout-wrapper__view-all a.ecl-link span.ecl-link__label': "View all"
+- structure:
+    '#type': component
+    '#component': 'oe_theme:layout_wrapper'
+    '#props':
+      title: "Block title"
+      description: "The description of the layout wrapper"
+      items: []
+  assertions:
+    count:
+      'div.ecl-layout-wrapper': 0
+      'div.ecl-layout-wrapper__title': 0
+- structure:
+    '#type': component
     '#component': 'oe_theme:navigation_list'
     '#props':
       title: 'Navigation list title'

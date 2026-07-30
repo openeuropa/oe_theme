@@ -1,0 +1,37 @@
+{#
+/**
+ * @file
+ * Layout wrapper component.
+ */
+#}
+{% set _view_all = [] %}
+{% if view_all_url is not empty %}
+  {% set _view_all = {
+    link: {
+      path: view_all_url,
+      label: view_all_label|default(''),
+      external: external_link|default(false),
+    },
+  } %}
+{% endif %}
+
+{% set _items = [] %}
+{% for item in items|default([]) %}
+  {% set _item %}<div class="contextual-region">{{ item }}</div>{% endset %}
+  {% set _items = _items|merge([_item]) %}
+{% endfor %}
+
+{% include '@ecl-twig/layout-wrapper' with {
+  nb_columns: columns|default(3),
+  forced_column: forced_columns|default(false),
+  info_position: info_position|default('top'),
+  title: {
+    level: title_level|default(2),
+    label: title|default(''),
+  },
+  description: description|default(''),
+  items: _items,
+  direction: vertical|default(false) ? 'vertical' : 'horizontal',
+  view_all: _view_all,
+  full_height: full_height ?? true,
+} only %}

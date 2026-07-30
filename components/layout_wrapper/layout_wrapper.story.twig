@@ -1,0 +1,60 @@
+{% set list_items = [
+  {
+    title: "Business, Economy, Euro",
+    detail: "EU economy, the euro, and practical information for EU businesses and entrepreneurs.",
+  },
+  {
+    title: "About the European Union",
+    detail: "The EU and its institutions, how to visit and work at the EU.",
+  },
+  {
+    title: "Live, Work, Travel in EU",
+    detail: "Advice on living, working or travelling in the EU, on visas and immigration for non-EU citizens, European culture.",
+  },
+  {
+    title: "Funding, Tenders",
+    detail: "EU funding, grants, tenders, and how to apply.",
+  },
+  {
+    title: "Law",
+    detail: "EU law and judgments, how EU law is applied, public consultations, data protection, infringements, fraud, serious crime.",
+  },
+  {
+    title: "Research and innovation",
+    detail: "Research funding, partners, results, and EU action to promote innovation.",
+  },
+] %}
+
+{% set _items = [] %}
+{% for list_item in list_items %}
+  {% set item %}
+    {{ include('oe_theme:list_item', {
+      title: list_item.title,
+      detail: list_item.detail,
+    }) }}
+  {% endset %}
+  {% set _items = _items|merge([item]) %}
+{% endfor %}
+
+{# The layout wrapper supports 1, 2, 3 and 4 columns. #}
+{% for columns in [1, 2, 3, 4] %}
+  <div class="ecl-u-mb-4xl ecl-u-ph-xl">
+    <h2 class="ecl-u-type-heading-2 ecl-u-mt-none ecl-u-mb-l">
+      {{ columns }} {{ columns > 1 ? 'columns' : 'column' }}
+    </h2>
+    {% include 'oe_theme:layout_wrapper' with {
+      title: 'The European Commission\'s priorities',
+      title_level: 3,
+      description: 'The European Commission focuses on several key areas: supporting the EU economy and businesses, and providing guidance on living, working and traveling in the EU.',
+      items: _items,
+      columns: columns,
+      forced_columns: false,
+      info_position: 'top',
+      vertical: false,
+      full_height: true,
+      view_all_label: 'View all',
+      view_all_url: '#',
+      external_link: false,
+    } only %}
+  </div>
+{% endfor %}
