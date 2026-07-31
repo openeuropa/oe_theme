@@ -135,13 +135,13 @@ abstract class ContentRenderTestBase extends BrowserTestBase {
   protected function assertMediaDocumentDefaultRender(NodeElement $element, string $name, string $language, string $meta, string $link, string $button_label): void {
     // Assert documents file.
     $file_wrapper = $element->find('css', 'div.ecl-file');
-    $file_container = $file_wrapper->find('css', 'div.ecl-file div.ecl-file__container');
+    $file_container = $file_wrapper->find('css', 'div.ecl-file article.ecl-file__container');
     $file_title = $file_container->find('css', 'div.ecl-file__title');
-    $file_footer = $file_wrapper->find('css', 'div.ecl-file div.ecl-file__footer');
+    $file_footer = $file_wrapper->find('css', 'div.ecl-file footer.ecl-file__footer');
     $this->assertStringContainsString($name, $file_title->getText());
-    $file_footer_language = $file_footer->find('css', 'div.ecl-file__language');
+    $file_footer_language = $file_footer->find('css', 'span.ecl-file__language');
     $this->assertStringContainsString($language, $file_footer_language->getText());
-    $file_footer_properties = $file_footer->find('css', 'div.ecl-file__meta');
+    $file_footer_properties = $file_footer->find('css', 'span.ecl-file__meta');
     $this->assertStringContainsString("($meta)", $file_footer_properties->getText());
     $file_download_link = $file_footer->find('css', 'a.ecl-file__download');
     $this->assertStringContainsString($link, $file_download_link->getAttribute('href'));

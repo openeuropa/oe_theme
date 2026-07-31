@@ -855,9 +855,9 @@
       'a.ecl-file__download[href="http://example.com"]': 1
     equals:
       'div.ecl-file__title': "File title example"
-      'div.ecl-file__language': "English"
-      'div.ecl-file__meta': "(9.77 KB - PDF)"
-      'a.ecl-file__download .ecl-link__label': "Download"
+      'span.ecl-file__language': "English"
+      'span.ecl-file__meta': "(9.77 KB - PDF)"
+      'a.ecl-file__download .ecl-link__label span:first-child': "Download"
 - structure:
     '#type': pattern
     '#id': file_translation
@@ -899,10 +899,11 @@
       publication_date: "31 August 2020"
   assertions:
     count:
+      'button.ecl-file__translation-toggle[aria-label="Other translations (4)"]': 1
       'span.ecl-file__icon': 1
       'a.ecl-file__download[href="http://example.com"]': 1
       'a.ecl-file__download[data-attribute-foo="bar"]': 1
-      'div.ecl-file__translation-container': 1
+      'ul.ecl-file__translation-list': 1
       'li.ecl-file__translation-item a.ecl-file__translation-download': 4
       'a.ecl-file__translation-download[href="http://example.com/document_fr.xls"]': 1
       'a.ecl-file__translation-download[href="http://example.com/document_it.ppt"]': 1
@@ -912,13 +913,12 @@
       'a.ecl-file__translation-download[hreflang="it"]': 1
       'a.ecl-file__translation-download[hreflang="hu"]': 1
       'a.ecl-file__translation-download[hreflang="pt"]': 1
-      '.ecl-file__info ul.ecl-file__detail-meta li.ecl-file__detail-meta-item': 1
+      '.ecl-file__info ul.ecl-file__primary-meta li.ecl-file__primary-meta-item': 1
     equals:
       'div.ecl-file__title': "File title example"
-      'div.ecl-file__language': "English"
-      'div.ecl-file__meta': "(9.77 KB - PDF)"
-      'a.ecl-file__download .ecl-link__label': "Download"
-      'button.ecl-file__translation-toggle .ecl-button__label': "Other translations (4)"
+      'span.ecl-file__language': "English"
+      'span.ecl-file__meta': "(9.77 KB - PDF)"
+      'a.ecl-file__download .ecl-link__label span:first-child': "Download"
       '.ecl-file__translation-item:nth-child(1) div.ecl-file__translation-title[lang="fr"]': "français"
       '.ecl-file__translation-item:nth-child(1) div.ecl-file__translation-meta': "(146.48 KB - XLS)"
       '.ecl-file__translation-item:nth-child(2) div.ecl-file__translation-title[lang="it"]': "italiano"
@@ -927,7 +927,7 @@
       '.ecl-file__translation-item:nth-child(3) div.ecl-file__translation-meta': "(166.02 KB - PDF)"
       '.ecl-file__translation-item:nth-child(4) div.ecl-file__translation-title[lang="pt"]': "português"
       '.ecl-file__translation-item:nth-child(4) div.ecl-file__translation-meta': "(175.78 KB - DOC)"
-      '.ecl-file__info ul.ecl-file__detail-meta li.ecl-file__detail-meta-item:nth-child(1)': '31 AUGUST 2020'
+      '.ecl-file__info ul.ecl-file__primary-meta li.ecl-file__primary-meta-item:nth-child(1)': '31 AUGUST 2020'
 - structure:
     '#type': pattern
     '#id': file_translation
@@ -949,19 +949,19 @@
           language_code: "fr"
   assertions:
     count:
+      'button.ecl-file__translation-toggle[aria-label="Other languages (1)"]': 1
       'span.ecl-file__icon': 1
       'a.ecl-file__download[href="http://example.com"]': 1
       'a.ecl-file__download[data-attribute-foo="bar"]': 0
-      'div.ecl-file__translation-container': 1
+      'ul.ecl-file__translation-list': 1
       'li.ecl-file__translation-item a.ecl-file__translation-download': 1
       'a.ecl-file__translation-download[href="http://example.com/document_fr.xls"]': 1
-      '.ecl-file__info ul.ecl-file__detail-meta li.ecl-file__detail-meta-item': 0
+      '.ecl-file__info ul.ecl-file__primary-meta li.ecl-file__primary-meta-item': 0
     equals:
       'div.ecl-file__title': "File title example"
-      'div.ecl-file__language': "English"
-      'div.ecl-file__meta': "(9.77 KB - PDF)"
-      'a.ecl-file__download .ecl-link__label': "Download"
-      'button.ecl-file__translation-toggle .ecl-button__label': "Other languages (1)"
+      'span.ecl-file__language': "English"
+      'span.ecl-file__meta': "(9.77 KB - PDF)"
+      'a.ecl-file__download .ecl-link__label span:first-child': "Download"
       '.ecl-file__translation-item:nth-child(1) div.ecl-file__translation-title[lang="fr"]': "français"
       '.ecl-file__translation-item:nth-child(1) div.ecl-file__translation-meta': "(146.48 KB - XLS)"
 - structure:
@@ -1035,15 +1035,15 @@
           value: "extra value"
   assertions:
     count:
+      'button.ecl-file__translation-toggle[aria-label="Other translations (4)"]': 1
       'img.ecl-file__image[src="https://inno-ecl.s3.amazonaws.com/media/examples/example-image.jpg"]': 1
       'img.ecl-file__image[alt="thumbnail alt"]': 1
       'a.ecl-file__download[href="http://example.com"]': 1
       'div.ecl-file.ecl-file--thumbnail[extra-attr="extra value"]': 1
       'a.ecl-file__download[data-attribute-foo="bar"]': 1
       'div.ecl-file.ecl-file--thumbnail': 1
-      'div.ecl-file__container div.ecl-file__info ul.ecl-file__detail-meta': 1
-      'div.ecl-file__container div.ecl-file__info': 1
-      'div.ecl-file__translation-container': 1
+      'article.ecl-file__container div.ecl-file__info ul.ecl-file__primary-meta': 1
+      'article.ecl-file__container div.ecl-file__info': 1
       'ul.ecl-file__translation-list': 1
       'li.ecl-file__translation-item a.ecl-file__translation-download': 4
       'a.ecl-file__translation-download[href="http://example.com/document_fr.xls"]': 1
@@ -1055,12 +1055,11 @@
     equals:
       'div.ecl-file__info div.ecl-file__title': "Example document"
       'div.ecl-file__info div.ecl-file__description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer quis lorem tellus. Nullam sollicitudin suscipit diam, ac blandit ipsum tempor consectetur. Duis vitae pulvinar turpis. Donec maximus pharetra ex a ultricies.'
-      'div.ecl-file__info ul.ecl-file__detail-meta li.ecl-file__detail-meta-item:nth-child(1)': 'RESOURCE TYPE'
-      'div.ecl-file__info ul.ecl-file__detail-meta li.ecl-file__detail-meta-item:nth-child(2)': '2020-31-08'
-      'div.ecl-file__footer div.ecl-file__language': "English"
-      'div.ecl-file__footer div.ecl-file__meta': "(136.72 KB - PDF)"
-      'div.ecl-file__footer a.ecl-file__download .ecl-link__label': "Download"
-      'button.ecl-file__translation-toggle .ecl-button__label': "Other translations (4)"
+      'div.ecl-file__info ul.ecl-file__primary-meta li.ecl-file__primary-meta-item:nth-child(1)': 'RESOURCE TYPE'
+      'div.ecl-file__info ul.ecl-file__primary-meta li.ecl-file__primary-meta-item:nth-child(2)': '2020-31-08'
+      'footer.ecl-file__footer span.ecl-file__language': "English"
+      'footer.ecl-file__footer span.ecl-file__meta': "(136.72 KB - PDF)"
+      'footer.ecl-file__footer a.ecl-file__download .ecl-link__label span:first-child': "Download"
       '.ecl-file__translation-item:nth-child(1) div.ecl-file__translation-title[lang="fr"]': "French translation"
       '.ecl-file__translation-item:nth-child(1) div.ecl-file__translation-meta': "(146.48 KB - XLS)"
       '.ecl-file__translation-item:nth-child(1) .ecl-link__label': "Download"
@@ -1121,19 +1120,19 @@
       length: 10
   assertions:
     count:
+      'button.ecl-file__translation-toggle[aria-label="Other languages (1)"]': 1
       'img.ecl-file__image[src="https://inno-ecl.s3.amazonaws.com/media/examples/example-image.jpg"]': 1
       'img.ecl-file__image[alt="thumbnail alt"]': 1
       'a.ecl-file__download[href="http://example.com"]': 1
       'a.ecl-file__download[data-attribute-foo="bar"]': 0
       'div.ecl-file.ecl-file--thumbnail': 1
-      'div.ecl-file__container div.ecl-file__info ul.ecl-file__detail-meta': 1
-      'div.ecl-file__container div.ecl-file__info': 1
-      'div.ecl-file__translation-container': 1
+      'article.ecl-file__container div.ecl-file__info ul.ecl-file__primary-meta': 1
+      'article.ecl-file__container div.ecl-file__info': 1
       'ul.ecl-file__translation-list': 1
       'li.ecl-file__translation-item a.ecl-file__translation-download': 1
       'a.ecl-file__translation-download[href="http://example.com/document_fr.xls"]': 1
       'a.ecl-file__translation-download[data-attribute-translation-foo="bar"]': 0
-      'div.ecl-file__taxonomy': 1
+      'div.ecl-file__lists': 1
       'dl.ecl-description-list': 1
       'dt.ecl-description-list__term': 3
       'dd.ecl-description-list__definition.ecl-description-list__definition--taxonomy': 3
@@ -1146,12 +1145,11 @@
     equals:
       'div.ecl-file__info div.ecl-file__title': "Example document"
       'div.ecl-file__info div.ecl-file__description': 'Lorem...'
-      'div.ecl-file__info ul.ecl-file__detail-meta li.ecl-file__detail-meta-item:nth-child(1)': 'RESOURCE TYPE'
-      'div.ecl-file__info ul.ecl-file__detail-meta li.ecl-file__detail-meta-item:nth-child(2)': '2020-31-08'
-      'div.ecl-file__footer div.ecl-file__language': "English"
-      'div.ecl-file__footer div.ecl-file__meta': "(136.72 KB - PDF)"
-      'div.ecl-file__footer a.ecl-file__download .ecl-link__label': "Download"
-      'button.ecl-file__translation-toggle .ecl-button__label': "Other languages (1)"
+      'div.ecl-file__info ul.ecl-file__primary-meta li.ecl-file__primary-meta-item:nth-child(1)': 'RESOURCE TYPE'
+      'div.ecl-file__info ul.ecl-file__primary-meta li.ecl-file__primary-meta-item:nth-child(2)': '2020-31-08'
+      'footer.ecl-file__footer span.ecl-file__language': "English"
+      'footer.ecl-file__footer span.ecl-file__meta': "(136.72 KB - PDF)"
+      'footer.ecl-file__footer a.ecl-file__download .ecl-link__label span:first-child': "Download"
       '.ecl-file__translation-item:nth-child(1) div.ecl-file__translation-title[lang="fr"]': "French translation"
       '.ecl-file__translation-item:nth-child(1) div.ecl-file__translation-meta': "(146.48 KB - XLS)"
       '.ecl-file__translation-item:nth-child(1) .ecl-link__label': "Download"
@@ -1313,7 +1311,7 @@
       'button.ecl-gallery__view-all[data-ecl-gallery-collapsed-label="See all"][data-ecl-gallery-expanded-label="Collapse"]': 1
       '.ecl-gallery__footer-link': 1
       '.ecl-gallery--no-hover': 0
-      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(2) .ecl-gallery__image-container div.ecl-gallery__item-icon-wrapper span.ecl-icon.wt-icon--play': 1
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(2) .ecl-gallery__image-container div.ecl-gallery__item-icon-wrapper span.ecl-icon.wt-icon-phosphor--play-filled': 1
       '.ecl-gallery__footer-link a span.ecl-icon.wt-icon--external': 1
     equals:
       '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(2) .ecl-gallery__meta': 'Copyright © 2021 EC'
@@ -1423,7 +1421,7 @@
       '.ecl-gallery--ratio-3-2': 1
       '.ecl-gallery--ratio-3-1': 0
       '.ecl-gallery--no-hover': 0
-      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(2) .ecl-gallery__image-container div.ecl-gallery__item-icon-wrapper span.ecl-icon.wt-icon--play': 1
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(2) .ecl-gallery__image-container div.ecl-gallery__item-icon-wrapper span.ecl-icon.wt-icon-phosphor--play-filled': 1
       '.ecl-gallery__footer-link a span.ecl-icon.wt-icon--external': 1
     equals:
       '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(2) .ecl-gallery__meta': 'Copyright © 2021 EC'
@@ -1536,7 +1534,7 @@
       '.ecl-gallery--ratio-3-2': 0
       '.ecl-gallery--ratio-3-1': 1
       '.ecl-gallery--no-hover': 1
-      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(2) .ecl-gallery__image-container div.ecl-gallery__item-icon-wrapper span.ecl-icon.wt-icon--play': 1
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(2) .ecl-gallery__image-container div.ecl-gallery__item-icon-wrapper span.ecl-icon.wt-icon-phosphor--play-filled': 1
       '.ecl-gallery__footer-link a span.ecl-icon.wt-icon--external': 1
     equals:
       '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(2) .ecl-gallery__meta': 'Copyright © 2021 EC'
@@ -1635,7 +1633,7 @@
       '.ecl-gallery--col-2': 0
       '.ecl-gallery--col-3': 0
       '.ecl-gallery--col-4': 0
-      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(2) .ecl-gallery__image-container div.ecl-gallery__item-icon-wrapper span.ecl-icon.wt-icon--play': 1
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(2) .ecl-gallery__image-container div.ecl-gallery__item-icon-wrapper span.ecl-icon.wt-icon-phosphor--play-filled': 1
     equals:
       '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(2) .ecl-gallery__meta': 'Copyright © 2021 EC'
       '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(3) .ecl-gallery__meta': 'Copyright © 2021, Author and Licence'
@@ -1698,7 +1696,7 @@
       '.ecl-gallery--col-2': 0
       '.ecl-gallery--col-3': 0
       '.ecl-gallery--col-4': 0
-      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(2) .ecl-gallery__image-container div.ecl-gallery__item-icon-wrapper span.ecl-icon.wt-icon--play': 1
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(2) .ecl-gallery__image-container div.ecl-gallery__item-icon-wrapper span.ecl-icon.wt-icon-phosphor--play-filled': 1
     equals:
       '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(2) .ecl-gallery__meta': 'Copyright © 2021 EC'
       '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(3) .ecl-gallery__meta': 'Copyright © 2021, Author and Licence'
@@ -1763,7 +1761,7 @@
       '.ecl-gallery--grid': 0
       '.ecl-gallery--template-3': 0
       '.ecl-gallery--ratio-3-2': 0
-      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(2) .ecl-gallery__image-container div.ecl-gallery__item-icon-wrapper span.ecl-icon.wt-icon--play': 1
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(2) .ecl-gallery__image-container div.ecl-gallery__item-icon-wrapper span.ecl-icon.wt-icon-phosphor--play-filled': 1
     equals:
       '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(2) .ecl-gallery__meta': 'Copyright © 2021 EC'
       '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(3) .ecl-gallery__meta': 'Copyright © 2021, Author and Licence'
@@ -4849,10 +4847,10 @@
       'div.ecl-fact-figures__view-all span.ecl-icon.ecl-icon--2xs.ecl-link__icon.wt-icon--external': 1
       'div.ecl-fact-figures__item.ecl-fact-figures__item--font-m': 2
     equals:
-      'div.ecl-fact-figures__item:nth-child(1) div.ecl-fact-figures__value': '00.0 million                    <span class="ecl-fact-figures__title">Lorem ipsum</span>'
+      'div.ecl-fact-figures__item:nth-child(1) div.ecl-fact-figures__value': '00.0 million                        <span class="ecl-fact-figures__title">Lorem ipsum</span>'
       'div.ecl-fact-figures__item:nth-child(1) span.ecl-fact-figures__title': 'Lorem ipsum'
       'div.ecl-fact-figures__item:nth-child(1) div.ecl-fact-figures__description': 'Nunc condimentum sapien ut nibh finibus suscipit vitae at justo. Morbi quis odio faucibus, commodo tortor id, elementum libero.'
-      'div.ecl-fact-figures__item:nth-child(2) div.ecl-fact-figures__value': '10.0 millions                    <span class="ecl-fact-figures__title">Nam lacinia nisl eget diam mattis</span>'
+      'div.ecl-fact-figures__item:nth-child(2) div.ecl-fact-figures__value': '10.0 millions                        <span class="ecl-fact-figures__title">Nam lacinia nisl eget diam mattis</span>'
       'div.ecl-fact-figures__item:nth-child(2) span.ecl-fact-figures__title': 'Nam lacinia nisl eget diam mattis'
       'div.ecl-fact-figures__item:nth-child(2) div.ecl-fact-figures__description': 'Sed efficitur bibendum rutrum. Nunc feugiat congue augue ac consectetur.'
       'div.ecl-fact-figures__view-all a.ecl-link.ecl-link--standalone.ecl-link--icon.ecl-fact-figures__view-all-link[href="https://example.com"] span.ecl-link__label': 'View all metrics'
