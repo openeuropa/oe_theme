@@ -11,7 +11,10 @@
  */
 #}
 {% if site_owner and site_owner|length > 1 %}
-  {% set site_owner_description = 'This site is co-managed by:<br />'|t ~ site_owner|join('<br />') %}
+  {% set site_owner_description %}
+    {{- 'This site is co-managed by:<br />'|t }}
+    {{- site_owner|safe_join('<br />') }}
+  {%- endset %}
 {% else %}
   {% set site_owner_description = site_owner ? 'This site is managed by:<br />@name'|t({'@name': site_owner|first}) %}
 {% endif %}
