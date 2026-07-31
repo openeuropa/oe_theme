@@ -27,6 +27,13 @@
       value: '213',
       suffix: '€',
       description: 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.',
+      sources_label: 'Item source:',
+      sources: [
+        {
+          label: 'Eurostat',
+          path: '/example',
+        },
+      ],
     },
     {
       category: 'Revenue',
@@ -36,6 +43,17 @@
       value: '888.2',
       suffix: '€',
       description: 'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+      sources: [
+        {
+          label: 'DG CNECT',
+          path: '/example',
+          external: true,
+        },
+        {
+          label: 'European Commission',
+          path: '/example',
+        },
+      ],
     },
     {
       category: 'Revenue',
