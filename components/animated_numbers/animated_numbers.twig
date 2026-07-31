@@ -17,6 +17,17 @@
 
 {% set _items = [] %}
 {% for item in items %}
+  {% set _item_sources = [] %}
+  {% for source in item.sources %}
+    {% set _item_sources = _item_sources|merge([{
+      link: {
+        label: source.label|default(''),
+        path: source.path|default(''),
+        external: source.external|default(false),
+      }
+    }]) %}
+  {% endfor %}
+
   {% set _icon = [] %}
   {% if item.icon_family is not empty and item.icon_family == 'icons' %}
     {% set _icon = _icon|merge({
@@ -35,6 +46,8 @@
     value: item.value,
     suffix: item.suffix,
     description: item.description,
+    sources_label: item.sources_label|default(''),
+    sources: _item_sources,
   }]) %}
 {% endfor %}
 

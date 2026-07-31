@@ -5126,10 +5126,20 @@
           value: '00.0 million'
           title: 'Lorem ipsum'
           description: 'Nunc condimentum sapien ut nibh finibus suscipit vitae at justo. Morbi quis odio faucibus, commodo tortor id, elementum libero.'
+          sources_label: 'Source:'
+          sources:
+            - label: 'Eurostat'
+              path: '/example'
         - icon: 'external'
           value: '10.0 millions'
           title: 'Nam lacinia nisl eget diam mattis'
           description: 'Sed efficitur bibendum rutrum. Nunc feugiat congue augue ac consectetur.'
+          sources:
+            - label: 'DG CNECT'
+              path: '/cnect'
+              external: true
+            - label: 'European Commission'
+              path: '/commission'
       view_all:
         label: 'View all metrics'
         path: 'https://example.com'
@@ -5145,6 +5155,13 @@
       'div.ecl-fact-figures__view-all': 1
       'div.ecl-fact-figures__view-all span.ecl-icon.ecl-icon--2xs.ecl-link__icon.wt-icon--external': 1
       'div.ecl-fact-figures__item.ecl-fact-figures__item--font-m': 2
+      'div.ecl-fact-figures__item:nth-child(1) div.ecl-fact-figures__sources ul.ecl-fact-figures__sources-list': 0
+      'div.ecl-fact-figures__item:nth-child(1) div.ecl-fact-figures__sources a.ecl-link.ecl-fact-figures__source[href="/example"]': 1
+
+      'div.ecl-fact-figures__item:nth-child(2) div.ecl-fact-figures__sources span.ecl-fact-figures__sources-label': 0
+      'div.ecl-fact-figures__item:nth-child(2) ul.ecl-fact-figures__sources-list li.ecl-fact-figures__sources-item': 2
+      'div.ecl-fact-figures__item:nth-child(2) li.ecl-fact-figures__sources-item:nth-child(1) a.ecl-link.ecl-link--icon.ecl-fact-figures__source[href="/cnect"] span.ecl-icon.ecl-link__icon.wt-icon--external': 1
+      'div.ecl-fact-figures__item:nth-child(2) li.ecl-fact-figures__sources-item:nth-child(2) a.ecl-link.ecl-fact-figures__source[href="/commission"]': 1
     equals:
       'div.ecl-fact-figures__item:nth-child(1) div.ecl-fact-figures__value': '00.0 million                        <span class="ecl-fact-figures__title">Lorem ipsum</span>'
       'div.ecl-fact-figures__item:nth-child(1) span.ecl-fact-figures__title': 'Lorem ipsum'
@@ -5152,6 +5169,10 @@
       'div.ecl-fact-figures__item:nth-child(2) div.ecl-fact-figures__value': '10.0 millions                        <span class="ecl-fact-figures__title">Nam lacinia nisl eget diam mattis</span>'
       'div.ecl-fact-figures__item:nth-child(2) span.ecl-fact-figures__title': 'Nam lacinia nisl eget diam mattis'
       'div.ecl-fact-figures__item:nth-child(2) div.ecl-fact-figures__description': 'Sed efficitur bibendum rutrum. Nunc feugiat congue augue ac consectetur.'
+      'div.ecl-fact-figures__item:nth-child(1) div.ecl-fact-figures__sources span.ecl-fact-figures__sources-label': 'Source:'
+      'div.ecl-fact-figures__item:nth-child(1) div.ecl-fact-figures__sources a.ecl-fact-figures__source': 'Eurostat'
+      'div.ecl-fact-figures__item:nth-child(2) li.ecl-fact-figures__sources-item:nth-child(1) a.ecl-fact-figures__source span.ecl-link__label': 'DG CNECT'
+      'div.ecl-fact-figures__item:nth-child(2) li.ecl-fact-figures__sources-item:nth-child(2) a.ecl-fact-figures__source': 'European Commission'
       'div.ecl-fact-figures__view-all a.ecl-link.ecl-link--standalone.ecl-link--icon.ecl-fact-figures__view-all-link[href="https://example.com"] span.ecl-link__label': 'View all metrics'
 - structure:
     '#type': 'component'
@@ -5177,6 +5198,9 @@
       'div.ecl-fact-figures.ecl-fact-figures--col-3.ecl-fact-figures--centered': 0
       'div.ecl-fact-figures__view-all': 0
       '.ecl-fact-figures__item--font-m': 0
+      # No sources are passed, so no sources markup is rendered.
+      '.ecl-fact-figures__sources': 0
+      '.ecl-fact-figures__sources-label': 0
 - structure:
     '#type': 'component'
     '#component': 'oe_theme:active_search_filters'
@@ -6873,6 +6897,13 @@
           value: "213"
           suffix: "€"
           description: "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris."
+          sources_label: "Item sources:"
+          sources:
+            - label: "OECD"
+              path: "/oecd"
+            - label: "World Bank"
+              path: "/world-bank"
+              external: TRUE
         - category: "Revenue"
           icon_name: "currency-eur"
           icon_family: "phosphor"
@@ -6880,6 +6911,9 @@
           value: "888.2"
           suffix: "€"
           description: "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+          sources:
+            - label: "Eurostat"
+              path: "/eurostat"
         - category: "Revenue"
           icon_name: "trend-up"
           icon_family: "phosphor"
@@ -6904,6 +6938,12 @@
       'li.ecl-animated-number:nth-child(3) .ecl-animated-number__header .ecl-icon--primary.ecl-animated-number__icon.ecl-icon-phosphor--trend-up': 1
       'li.ecl-animated-number:nth-child(4) .ecl-animated-number__header .ecl-icon--primary.ecl-animated-number__icon.ecl-icon-phosphor--pulse': 1
       "footer.ecl-animated-numbers__sources .ecl-animated-numbers__sources-item:nth-child(2) a.ecl-animated-numbers__source[href='/example'] .ecl-icon--external": 1
+      '.ecl-animated-number__content div.ecl-animated-numbers__sources': 2
+      'li.ecl-animated-number:nth-child(3) div.ecl-animated-numbers__sources': 0
+      'li.ecl-animated-number:nth-child(1) .ecl-animated-numbers__sources-list li.ecl-animated-numbers__sources-item': 2
+      "li.ecl-animated-number:nth-child(1) .ecl-animated-numbers__sources-item:nth-child(2) a.ecl-animated-numbers__source[href='/world-bank'] .ecl-icon--external": 1
+      'li.ecl-animated-number:nth-child(2) .ecl-animated-numbers__sources-list': 0
+      "li.ecl-animated-number:nth-child(2) div.ecl-animated-numbers__sources a.ecl-animated-numbers__source[href='/eurostat']": 1
     equals:
       'li.ecl-animated-number:nth-child(1) .ecl-animated-number__header .ecl-animated-number__category': "Revenue"
       'li.ecl-animated-number:nth-child(1) .ecl-animated-number__content .ecl-animated-number__number .ecl-animated-number__value': "213"
@@ -6923,6 +6963,11 @@
       'li.ecl-animated-number:nth-child(4) .ecl-animated-number__content .ecl-animated-number__number .ecl-animated-number__value': "1250"
       'li.ecl-animated-number:nth-child(4) .ecl-animated-number__content .ecl-animated-number__number .ecl-animated-number__suffix': "billions"
       'li.ecl-animated-number:nth-child(4) .ecl-animated-number__description': "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit."
+      'li.ecl-animated-number:nth-child(1) .ecl-animated-numbers__sources-label': "Item sources:"
+      'li.ecl-animated-number:nth-child(2) .ecl-animated-numbers__sources-label': "Sources:"
+      "li.ecl-animated-number:nth-child(1) .ecl-animated-numbers__sources-item:nth-child(1) a.ecl-animated-numbers__source[href='/oecd']": "OECD"
+      "li.ecl-animated-number:nth-child(1) .ecl-animated-numbers__sources-item:nth-child(2) a.ecl-animated-numbers__source[href='/world-bank'] .ecl-link__label": "World Bank"
+      "li.ecl-animated-number:nth-child(2) div.ecl-animated-numbers__sources a.ecl-animated-numbers__source[href='/eurostat']": "Eurostat"
       'footer.ecl-animated-numbers__sources .ecl-animated-numbers__sources-label': "Sources:"
       "footer.ecl-animated-numbers__sources .ecl-animated-numbers__sources-item:nth-child(1) a.ecl-animated-numbers__source[href='/example']": "Eurostat"
       "footer.ecl-animated-numbers__sources .ecl-animated-numbers__sources-item:nth-child(2) a.ecl-animated-numbers__source[href='/example'] .ecl-link__label": "DG CNECT"
@@ -6946,6 +6991,9 @@
           value: "213"
           suffix: "€"
           description: "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris."
+          sources:
+            - label: "OECD"
+              path: "/oecd"
         - category: "Revenue"
           icon_name: "currency-eur"
           icon_family: "phosphor"
@@ -6962,6 +7010,8 @@
       'footer.ecl-animated-numbers__sources': 1
       'li.ecl-animated-number:nth-child(1) .ecl-animated-number__header .ecl-animated-number__icon.ecl-icon-phosphor--users': 1
       'li.ecl-animated-number:nth-child(2) .ecl-animated-number__header .ecl-animated-number__icon.ecl-icon-phosphor--currency-eur': 1
+      "li.ecl-animated-number:nth-child(1) div.ecl-animated-numbers__sources a.ecl-link.ecl-link--inverted.ecl-link--brand.ecl-animated-numbers__source[href='/oecd']": 1
+      'li.ecl-animated-number:nth-child(2) div.ecl-animated-numbers__sources': 0
     equals:
       'li.ecl-animated-number:nth-child(1) .ecl-animated-number__header .ecl-animated-number__category': "Revenue"
       'li.ecl-animated-number:nth-child(1) .ecl-animated-number__content .ecl-animated-number__number .ecl-animated-number__value': "213"
@@ -6972,6 +7022,8 @@
       'li.ecl-animated-number:nth-child(2) .ecl-animated-number__content .ecl-animated-number__number .ecl-animated-number__value': "888.2"
       'li.ecl-animated-number:nth-child(2) .ecl-animated-number__content .ecl-animated-number__number .ecl-animated-number__suffix': "€"
       'li.ecl-animated-number:nth-child(2) .ecl-animated-number__description': "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+      'li.ecl-animated-number:nth-child(1) .ecl-animated-numbers__sources-label': "Custom sources label:"
+      "li.ecl-animated-number:nth-child(1) div.ecl-animated-numbers__sources a.ecl-animated-numbers__source[href='/oecd']": "OECD"
       'footer.ecl-animated-numbers__sources .ecl-animated-numbers__sources-label': "Custom sources label:"
       "footer.ecl-animated-numbers__sources a.ecl-animated-numbers__source[href='/example']": "Eurostat"
 - structure:
