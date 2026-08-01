@@ -7157,3 +7157,81 @@
       'a.ecl-highlight-box__link span.ecl-icon.wt-icon--external.ecl-link__icon': 1
     equals:
       'a.ecl-highlight-box__link span.ecl-link__label': "External link"
+- structure:
+    '#type': component
+    '#component': 'oe_theme:highlighted_search'
+    '#props':
+      title: "Search title"
+      description: "Search description"
+      input_name: "text"
+      placeholder: "Enter a keyword"
+      helper_text: "Helper text"
+      button_label: "Search now"
+      suggestion_label: "Popular searches:"
+      suggestions:
+        - label: "First suggestion"
+          url: "/internal-page"
+        - label: "Suggestion without url"
+        - label: "External suggestion"
+          url: "http://external.com"
+  assertions:
+    count:
+      'div.ecl-highlighted-search div.ecl-highlighted-search__content': 1
+      'div.ecl-highlighted-search__title[id]': 1
+      'div.ecl-highlighted-search__description.ecl-content-color': 1
+      'form.ecl-highlighted-search__form[role="search"][aria-describedby]': 1
+      # Without form attributes the form defaults to a GET on the same page.
+      'form.ecl-highlighted-search__form[method="GET"]': 1
+      'form.ecl-highlighted-search__form[action]': 0
+      'div.ecl-highlighted-search__form-content span.ecl-icon.ecl-icon--m.ecl-highlighted-search__form-icon.ecl-icon-phosphor--magnifying-glass': 1
+      'div.ecl-form-group.ecl-highlighted-search__form-group label.ecl-form-label.ecl-form-label--hidden[for="ecl-highlighted-search-input"]': 1
+      'input#ecl-highlighted-search-input.ecl-text-input.ecl-text-input--l.ecl-highlighted-search__form-input[type="search"][name="text"][placeholder="Enter a keyword"][aria-describedby]': 1
+      'div.ecl-highlighted-search__form-helper[id]': 1
+      'button.ecl-button.ecl-button--primary.ecl-button--m.ecl-button--highlight.ecl-highlighted-search__form-button[type="submit"]': 1
+      'div.ecl-highlighted-search__suggestion span.ecl-highlighted-search__suggestion-label[id]': 1
+      'ul.ecl-tag-set.ecl-highlighted-search__suggestion-list[aria-labelledby] li.ecl-tag-set__item': 3
+      'li.ecl-tag-set__item a.ecl-tag[href="/internal-page"]': 1
+      'li.ecl-tag-set__item a.ecl-tag[href="/internal-page"] span.ecl-icon.wt-icon--external': 0
+      'li.ecl-tag-set__item:nth-child(2) a.ecl-tag[href=""]': 1
+      'li.ecl-tag-set__item:nth-child(2) a.ecl-tag span.ecl-icon.wt-icon--external': 0
+      'li.ecl-tag-set__item a.ecl-tag[href="http://external.com"] span.ecl-icon.wt-icon--external': 1
+    equals:
+      'div.ecl-highlighted-search__title': "Search title"
+      'div.ecl-highlighted-search__description': "Search description"
+      'div.ecl-highlighted-search__form-helper': "Helper text"
+      'span.ecl-highlighted-search__suggestion-label': "Popular searches:"
+      'button.ecl-highlighted-search__form-button': "Search now"
+      'li.ecl-tag-set__item a.ecl-tag[href="/internal-page"]': "First suggestion"
+      'li.ecl-tag-set__item:nth-child(2) a.ecl-tag': "Suggestion without url"
+- structure:
+    '#type': component
+    '#component': 'oe_theme:highlighted_search'
+    '#props':
+      color_mode: "blue-ocean"
+      input_name: "text"
+      extra_classes: "custom-class1"
+      extra_attributes:
+        - name: "data-name"
+          value: "data value"
+      form_extra_attributes:
+        - name: "action"
+          value: "/search-results"
+        - name: "data-form-name"
+  assertions:
+    count:
+      'div.ecl-highlighted-search.ecl-color-mode--blue-ocean.custom-class1[data-name="data value"]': 1
+      'form.ecl-highlighted-search__form[method="GET"][action="/search-results"][data-form-name]': 1
+      'div.ecl-highlighted-search[action]': 0
+      'div.ecl-highlighted-search__title': 0
+      'div.ecl-highlighted-search__description': 0
+      'div.ecl-highlighted-search__form-helper': 0
+      'div.ecl-highlighted-search__suggestion': 0
+      'form.ecl-highlighted-search__form[role="search"]': 1
+      'form.ecl-highlighted-search__form[aria-describedby]': 0
+      'input.ecl-text-input.ecl-highlighted-search__form-input[type="search"][name="text"]': 1
+      'input.ecl-highlighted-search__form-input[placeholder]': 0
+      'label.ecl-form-label.ecl-form-label--hidden[for="ecl-highlighted-search-input"]': 1
+      'input#ecl-highlighted-search-input.ecl-highlighted-search__form-input': 1
+    equals:
+      'label.ecl-form-label.ecl-form-label--hidden': "Search"
+      'button.ecl-highlighted-search__form-button': "Search"
