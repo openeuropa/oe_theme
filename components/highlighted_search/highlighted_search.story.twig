@@ -1,0 +1,27 @@
+{% include 'oe_theme:highlighted_search' with {
+  title: 'Find your next role',
+  description: 'Discover job opportunities in the EU institutions',
+  input_name: 'text',
+  placeholder: 'Enter a keyword',
+  helper_text: 'Enter the job you\'re looking for',
+  button_label: 'Search',
+  suggestion_label: 'Popular searches:',
+  suggestions: [
+    {
+      label: 'Funding and tenders',
+      url: '#',
+    },
+    {
+      label: 'Traineeships',
+      url: '',
+    },
+    {
+      label: 'Erasmus+',
+      url: 'https://erasmus-plus.ec.europa.eu',
+    },
+    {
+      label: 'Statistics',
+      url: '#',
+    },
+  ],
+} only %}
