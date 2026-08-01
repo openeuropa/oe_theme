@@ -1,0 +1,49 @@
+name: 'Highlighted search'
+description: 'A search box highlighted on the page, with an optional description, helper text and suggested searches.'
+props:
+  type: object
+  properties:
+    title:
+      type: ['string', 'null']
+      title: Title
+      description: 'Title of the highlighted search.'
+    description:
+      type: ['string', 'null']
+      title: Description
+      description: 'A brief text displayed below the title.'
+    color_mode:
+      type: ['string', 'null']
+      title: 'Color mode'
+      description: 'Name of the color mode.'
+    input_name:
+      type: ['string', 'null']
+      title: 'Input name'
+      description: 'The name attribute of the search field, used as query parameter when the form is submitted.'
+    placeholder:
+      type: ['string', 'null']
+      title: Placeholder
+      description: 'Placeholder of the search field.'
+    helper_text:
+      type: ['string', 'null']
+      title: 'Helper text'
+      description: 'Additional information about the search, displayed below the search field.'
+    button_label:
+      type: ['string', 'null']
+      title: 'Button label'
+      description: "The label of the submit button. Defaults to 'Search'."
+    suggestion_label:
+      type: ['string', 'null']
+      title: 'Suggestion label'
+      description: 'Label introducing the list of suggested searches.'
+    suggestions:
+      type: ['array', 'null']
+      title: Suggestions
+      description: 'List of suggested searches, rendered as tags. Each item supports a label and an url.'
+    extra_classes:
+      type: ['string', 'null']
+      title: 'Extra classes'
+      description: 'Extra classes to add to the component wrapper.'
+    extra_attributes:
+      type: ['array', 'null']
+      title: 'Extra attributes'
+      description: 'List of extra attributes used in the ECL component.'
