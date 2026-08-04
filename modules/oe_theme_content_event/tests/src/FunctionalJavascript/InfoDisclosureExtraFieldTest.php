@@ -6,6 +6,7 @@ namespace Drupal\Tests\oe_theme_content_event\FunctionalJavascript;
 
 use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\FunctionalJavascriptTests\WebDriverTestBase;
+use Drupal\Tests\oe_theme\Traits\NodeBodyFieldTypeReconciliationTrait;
 use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
 use Drupal\filter\Entity\FilterFormat;
 use OpenEuropa\TestingUtilities\Traits\CachedDatabaseInstallTrait;
@@ -20,6 +21,7 @@ use OpenEuropa\TestingUtilities\Traits\CachedDatabaseInstallTrait;
 class InfoDisclosureExtraFieldTest extends WebDriverTestBase {
 
   use CachedDatabaseInstallTrait;
+  use NodeBodyFieldTypeReconciliationTrait;
 
   /**
    * Disabled until FRONT-4076 is fixed.
@@ -52,6 +54,7 @@ class InfoDisclosureExtraFieldTest extends WebDriverTestBase {
   public function setUp(): void {
     $this->cacheDbInstall = TRUE;
     parent::setUp();
+    $this->reconcileNodeBodyFieldType();
     // Enable and set OpenEuropa Theme as default.
     $this->container->get('theme_installer')->install(['oe_theme']);
     $this->config('system.theme')->set('default', 'oe_theme')->save();

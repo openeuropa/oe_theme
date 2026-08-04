@@ -6,6 +6,7 @@ namespace Drupal\Tests\oe_theme_helper\FunctionalJavascript;
 
 use Drupal\FunctionalJavascriptTests\WebDriverTestBase;
 use Drupal\Tests\oe_theme\PatternAssertions\InPageNavigationAssert;
+use Drupal\Tests\oe_theme\Traits\NodeBodyFieldTypeReconciliationTrait;
 use Drupal\filter\Entity\FilterFormat;
 use OpenEuropa\TestingUtilities\Traits\CachedDatabaseInstallTrait;
 
@@ -19,6 +20,7 @@ use OpenEuropa\TestingUtilities\Traits\CachedDatabaseInstallTrait;
 class InPageNavigationBlockTest extends WebDriverTestBase {
 
   use CachedDatabaseInstallTrait;
+  use NodeBodyFieldTypeReconciliationTrait;
 
   /**
    * {@inheritdoc}
@@ -41,6 +43,8 @@ class InPageNavigationBlockTest extends WebDriverTestBase {
   public function setUp(): void {
     $this->cacheDbInstall = TRUE;
     parent::setUp();
+
+    $this->reconcileNodeBodyFieldType();
 
     // Enable and set OpenEuropa Theme as default.
     $this->container->get('theme_installer')->install(['oe_theme']);
