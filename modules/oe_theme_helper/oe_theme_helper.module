@@ -9,6 +9,7 @@ declare(strict_types=1);
 
 use Drupal\Component\Utility\DeprecationHelper;
 use Drupal\Component\Utility\Html;
+use Drupal\Core\Cache\Cache;
 use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
 use Drupal\Core\Entity\Entity\EntityViewDisplay;
@@ -70,6 +71,69 @@ function oe_theme_helper_page_attachments(array &$page) {
   // OE Webtools becomes a dependency of oe_theme and the webtools smartloader
   // library is required for the icons to be loaded.
   $page['#attached']['library'][] = 'oe_webtools/drupal.webtools-smartloader';
+}
+
+/**
+ * Implements hook_library_info_alter().
+ */
+function oe_theme_helper_library_info_alter(array &$libraries, string $extension): void {
+  if ($extension !== 'oe_webtools' || empty($libraries['drupal.webtools-smartloader']['js'])) {
+    return;
+  }
+
+  $component_library = _oe_theme_helper_get_theme_setting('component_library') ?? 'ec';
+  if (!in_array($component_library, ['ec', 'eu'], TRUE)) {
+    return;
+  }
+
+  // Set the configured theme component library to the Webtools smart loader.
+  // to avoid the EC fallback.
+  $javascript = [];
+  foreach ($libraries['drupal.webtools-smartloader']['js'] as $url => $options) {
+    if (($options['type'] ?? '') === 'external' && str_contains($url, '/load.js') && !str_contains($url, 'theme=')) {
+      $url .= (str_contains($url, '?') ? '&' : '?') . 'theme=' . $component_library;
+    }
+    $javascript[$url] = $options;
+  }
+  $libraries['drupal.webtools-smartloader']['js'] = $javascript;
+}
+
+/**
+ * Implements hook_module_implements_alter().
+ */
+function oe_theme_helper_module_implements_alter(&$implementations, $hook) {
+  if ($hook === 'library_info_alter' && isset($implementations['oe_theme_helper'])) {
+    $group = $implementations['oe_theme_helper'];
+    unset($implementations['oe_theme_helper']);
+    $implementations['oe_theme_helper'] = $group;
+  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function oe_theme_helper_form_system_theme_settings_alter(&$form, FormStateInterface $form_state, $form_id = NULL) {
+  if (!isset($form['component_library'])) {
+    return;
+  }
+
+  $form['#submit'][] = 'oe_theme_helper_component_library_submit';
+}
+
+/**
+ * Form submit handler for the theme settings form.
+ *
+ * @param array $form
+ *   The form.
+ * @param \Drupal\Core\Form\FormStateInterface $form_state
+ *   The form state.
+ */
+function oe_theme_helper_component_library_submit(array &$form, FormStateInterface $form_state): void {
+  if ($form_state->getValue('component_library') === $form['component_library']['#default_value']) {
+    return;
+  }
+
+  Cache::invalidateTags(['library_info']);
 }
 
 /**
