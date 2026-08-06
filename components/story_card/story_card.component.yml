@@ -1,0 +1,36 @@
+name: 'Story card'
+description: 'The Story card component displays a set of stories as a carousel.'
+variants:
+  story:
+    title: Story
+    description: 'A set of stories, each one with an image, a title and a description.'
+  testimonial:
+    title: Testimonial
+    description: 'A set of testimonials with quotation marks and information about the author of the testimonial.'
+props:
+  type: object
+  properties:
+    title:
+      type: ['string', 'null']
+      title: Title
+      description: 'Title of the component.'
+    description:
+      type: ['string', 'null']
+      title: Description
+      description: 'Description of the component.'
+    items:
+      type: ['array', 'null']
+      title: Items
+      description: 'List of story items.'
+    color_mode:
+      type: ['string', 'null']
+      title: 'Color mode'
+      description: 'Name of the color mode.'
+    extra_classes:
+      type: ['string', 'null']
+      title: 'Extra classes'
+      description: 'Extra CSS classes.'
+    extra_attributes:
+      type: ['array', 'null']
+      title: 'Extra attributes'
+      description: 'List of extra attributes.'
