@@ -202,6 +202,7 @@ The following components have been added in 6.0.0 and can be used in your templa
 - Quiz (`quiz`)
 - Highlight box (`highlight_box`)
 - Slogan ticker (`slogan_ticker`)
+- Story card (`story_card`)
 
 ### Upgrade to 5.0.0
 
