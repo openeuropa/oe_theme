@@ -7249,3 +7249,132 @@
     count:
       'section.ecl-page-summary.custom-class': 1
       'section[class*="ecl-color-mode--"]': 0
+- structure:
+    '#type': 'component'
+    '#component': 'oe_theme:story_card'
+    '#props':
+      variant: 'story'
+      title: 'Success stories'
+      description: 'Component description'
+      color_mode: 'blue-navy'
+      items:
+        - teaser_label: 'Teaser one'
+          title: 'Title one'
+          description: 'Description one'
+          image: 'http://placehold.it/600x400'
+          image_alt: 'Alt one'
+          url: 'http://example.com/one'
+          url_text: 'Read more one'
+          sources:
+            - src: 'http://placehold.it/1200x800'
+              media: '(min-width: 996px)'
+          link_extra_attributes:
+            - name: 'link-attr'
+              value: 'link-value'
+        - teaser_label: 'Teaser two'
+          title: 'Title two'
+          description: 'Description two'
+          image: 'http://placehold.it/600x401'
+      extra_classes: 'extra-class'
+      extra_attributes:
+        - name: 'extra-attr'
+          value: 'extra-value'
+  assertions:
+    count:
+      section.ecl-story-card.ecl-color-mode--blue-navy.ecl-story-card--has-description.extra-class: 1
+      section.ecl-story-card[extra-attr="extra-value"]: 1
+      section.ecl-story-card[data-ecl-auto-init="StoryCard"]: 1
+      section.ecl-story-card[id][aria-labelledby]: 1
+      div.ecl-story-card__header div.ecl-story-card__title[id]: 1
+      div.ecl-story-card__header div.ecl-story-card__description: 1
+      li.ecl-story-card__carousel-slide[data-ecl-story-card-slide]: 2
+      article.ecl-story-card__card: 2
+      div.ecl-story-card__image-wrapper picture.ecl-picture.ecl-story-card__picture: 2
+      'div.ecl-story-card__image-wrapper source[srcset="http://placehold.it/1200x800"][media="(min-width: 996px)"]': 1
+      div.ecl-story-card__image-wrapper img[src="http://placehold.it/600x400"][alt="Alt one"]: 1
+      div.ecl-story-card__image-wrapper img[src="http://placehold.it/600x401"][alt=""]: 1
+      a.ecl-story-card__link.ecl-link--standalone[href="http://example.com/one"][link-attr="link-value"]: 2
+      li.ecl-story-card__grid-item: 2
+      li.ecl-story-card__grid-item--expanded: 1
+      button.ecl-story-card__grid-card[id][aria-controls][aria-selected="true"]: 1
+      button.ecl-story-card__grid-card[id][aria-controls][aria-selected="false"]: 1
+      div.ecl-story-card__grid-details[id][aria-labelledby]: 2
+      div.ecl-story-card__grid-details[hidden]: 1
+      div.ecl-story-card__grid-loading-bar: 2
+      button.ecl-story-card__prev[data-ecl-story-card-prev]: 1
+      button.ecl-story-card__next[data-ecl-story-card-next]: 1
+      button.ecl-story-card__grid-play[data-ecl-story-card-grid-play]: 1
+      button.ecl-story-card__grid-pause[data-ecl-story-card-grid-pause]: 1
+      div.ecl-story-card__pager span.extra-class: 0
+      div.ecl-story-card__pager span[extra-attr="extra-value"]: 0
+      div.ecl-story-card__content-icon: 0
+      div.ecl-story-card__testimonial: 0
+    equals:
+      div.ecl-story-card__title: 'Success stories'
+      div.ecl-story-card__description: 'Component description'
+      div.ecl-story-card__grid-title: 'Teaser one'
+      div.ecl-story-card__card-title: 'Title one'
+      div.ecl-story-card__card-description: 'Description one'
+      a.ecl-story-card__link span.ecl-link__label: 'Read more one'
+      span.ecl-story-card__prev-label: 'Previous card'
+      span.ecl-story-card__next-label: 'Next card'
+      button.ecl-story-card__grid-play span.ecl-button__label: 'Play story cards'
+      button.ecl-story-card__grid-pause span.ecl-button__label: 'Pause story cards'
+- structure:
+    '#type': 'component'
+    '#component': 'oe_theme:story_card'
+    '#props':
+      variant: 'testimonial'
+      title: 'Testimonials'
+      items:
+        - teaser_label: 'Teaser one'
+          title: 'Title one'
+          description: 'Description one'
+          author: 'Jane Doe'
+          role: 'Student'
+          source: 'Amsterdam'
+          image: 'http://placehold.it/600x400'
+  assertions:
+    count:
+      section.ecl-story-card.ecl-story-card--testimonial: 1
+      section.ecl-story-card.ecl-story-card--has-description: 0
+      section.ecl-story-card[data-ecl-auto-init="StoryCard"]: 0
+      div.ecl-story-card__pager: 0
+      div.ecl-story-card__grid-controls: 0
+      div.ecl-story-card__grid-loading-bar: 0
+      li.ecl-story-card__carousel-slide: 1
+      li.ecl-story-card__grid-item: 1
+      div.ecl-story-card__content-icon: 2
+      div.ecl-story-card__testimonial: 2
+      span.ecl-story-card__author: 2
+      span.ecl-story-card__role: 2
+      cite.ecl-story-card__source: 2
+      a.ecl-story-card__link: 0
+    equals:
+      span.ecl-story-card__author: 'Jane Doe'
+      span.ecl-story-card__role: 'Student'
+      cite.ecl-story-card__source: 'Amsterdam'
+- structure:
+    '#type': 'component'
+    '#component': 'oe_theme:story_card'
+    '#props':
+      items:
+        - teaser_label: 'Teaser one'
+          title: 'Title one'
+          description: 'Description one'
+        - teaser_label: 'Teaser two'
+          title: 'Title two'
+          description: 'Description two'
+          url: 'http://example.com/two'
+  assertions:
+    count:
+      section.ecl-story-card: 1
+      div.ecl-story-card__header: 0
+      section.ecl-story-card[aria-labelledby]: 0
+      ul.ecl-story-card__grid-container[aria-label]: 0
+      div.ecl-story-card__image-wrapper: 0
+      div.ecl-story-card__grid-image: 0
+      picture.ecl-story-card__picture: 0
+      a.ecl-story-card__link: 0
+      li.ecl-story-card__carousel-slide: 2
+      li.ecl-story-card__grid-item: 2

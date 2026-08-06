@@ -1,0 +1,22 @@
+diff --git a/node_modules/@ecl/story-card/story-card.html.twig b/node_modules/@ecl/story-card/story-card.html.twig
+index f63e9fd..14eee13 100644
+--- a/node_modules/@ecl/story-card/story-card.html.twig
++++ b/node_modules/@ecl/story-card/story-card.html.twig
+@@ -146,7 +146,7 @@
+             size: 's',
+             style: 'monochrome',
+           }
+-        } %}
++        } only %}
+         <span class="ecl-story-card__prev-label">
+           {{ _sr_prev }}
+         </span>
+@@ -166,7 +166,7 @@
+             size: 's',
+             style: 'monochrome',
+           }
+-        } %}
++        } only %}
+       </button>
+       <script
+         type="text/template"
