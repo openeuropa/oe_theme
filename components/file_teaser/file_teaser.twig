@@ -32,24 +32,17 @@
 {% endfor %}
 {% if _translations is not empty %}
   {% set _translation = {
-    'toggle': {
-      'label': translation_toggle_label|default("Other languages"|t) ~ " (" ~ translations|length ~ ")",
-      'icon': {
-        'name': 'corner-arrow',
-        'size': 'fluid',
-        'transform': 'rotate-180',
-      },
-    },
+    'sr_toggle': translation_toggle_label|default("Other languages"|t) ~ " (" ~ translations|length ~ ")",
     'items': _translations,
   } %}
 {% endif %}
 
-{% set _detail_meta = [] %}
+{% set _primary_meta = [] %}
 {% if resource_type is not empty %}
-  {% set _detail_meta = _detail_meta|merge([resource_type]) %}
+  {% set _primary_meta = _primary_meta|merge([resource_type]) %}
 {% endif %}
 {% if publication_date is not empty %}
-  {% set _detail_meta = _detail_meta|merge([publication_date]) %}
+  {% set _primary_meta = _primary_meta|merge([publication_date]) %}
 {% endif %}
 
 {% set _lists = [] %}
@@ -81,10 +74,10 @@
       {% endfor %}
     {% endif %}
 
-    {# Taxonomy variant is depracated, taxonomy type has to be set for each item. #}
+    {# The list variant is deprecated, the type has to be set for each item. #}
     {% set item = item|merge({
       definition: _definitions,
-      type: 'taxonomy',
+      type: 'link-inline',
     }) %}
     {% set _items = _items|merge([item]) %}
   {% endfor %}
@@ -129,8 +122,7 @@
     'extra_attributes': link_attributes|default([]),
   },
   'translation': _translation|default([]),
-  'detail_meta': _detail_meta,
-  'variant': 'thumbnail',
+  'primary_meta': _primary_meta,
   'lists': _lists,
   'label': _label,
   'extra_attributes': extra_attributes|default([]),
