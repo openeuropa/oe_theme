@@ -109,6 +109,10 @@
   'title': file.title,
   'description': teaser|smart_trim(_length),
   'picture': _picture|default({}),
+  'icon': {
+    'name': file.extension|to_file_icon,
+    'family': 'phosphor',
+  },
   'language': file.language_code|to_language,
   'meta': _meta,
   'download': {

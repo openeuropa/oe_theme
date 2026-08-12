@@ -1114,6 +1114,8 @@
       'a.ecl-file__translation-download[href="http://example.com/document_pt.doc"]': 1
       'a.ecl-file__translation-download[data-attribute-translation-foo="bar"]': 4
       'div.ecl-file__label span.ecl-label.ecl-label--highlight': 1
+      'div.ecl-file__icon-box': 0
+      'span.ecl-file__icon': 0
     equals:
       'div.ecl-file__info div.ecl-file__title': "Example document"
       'div.ecl-file__info div.ecl-file__description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer quis lorem tellus. Nullam sollicitudin suscipit diam, ac blandit ipsum tempor consectetur. Duis vitae pulvinar turpis. Donec maximus pharetra ex a ultricies.'
@@ -1260,6 +1262,35 @@
       'div.ecl-file__info div.ecl-file__description': 'Lorem ipsum dolor sit amet.'
       'footer.ecl-file__footer span.ecl-file__language': "English"
       'footer.ecl-file__footer a.ecl-file__download .ecl-link__label span:first-child': "Download"
+- structure:
+    '#type': component
+    '#component': 'oe_theme:file_teaser'
+    '#props':
+      button_label: "Download"
+      teaser: "Lorem ipsum dolor sit amet."
+      file:
+        title: "Example document"
+        name: "document.docx"
+        url: "http://example.com"
+        mime: "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+        extension: "docx"
+        size: "140000"
+        language_code: "en"
+      resource_type: "RESOURCE TYPE"
+      publication_date: "2020-31-08"
+  assertions:
+    count:
+      'div.ecl-file': 1
+      'picture.ecl-file__picture': 0
+      'div.ecl-file__info div.ecl-file__icon-box': 1
+      'div.ecl-file__icon-box span.ecl-file__icon': 1
+      'div.ecl-file__icon-box span.ecl-file__icon.wt-icon-phosphor--file-doc': 1
+      'a.ecl-file__download[href="http://example.com"]': 1
+    equals:
+      'div.ecl-file__info div.ecl-file__title': "Example document"
+      'div.ecl-file__info div.ecl-file__description': 'Lorem ipsum dolor sit amet.'
+      'footer.ecl-file__footer span.ecl-file__language': "English"
+      'footer.ecl-file__footer span.ecl-file__meta': "(136.72 KB - DOCX)"
 - structure:
     '#type': component
     '#component': 'oe_theme:file_image'

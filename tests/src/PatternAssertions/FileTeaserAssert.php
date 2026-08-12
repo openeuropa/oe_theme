@@ -99,6 +99,18 @@ class FileTeaserAssert extends FileTranslationAssert {
     $this->assertElementText($expected_file['language'], 'span.ecl-file__language', $file_footer);
     $this->assertElementText($expected_file['meta'], 'span.ecl-file__meta', $file_footer);
 
+    // Assert icon. It is rendered only when no thumbnail is provided, as the
+    // thumbnail takes its place.
+    if (array_key_exists('icon', $expected_file)) {
+      $icon_selector = 'div.ecl-file article.ecl-file__container span.ecl-file__icon';
+      if (is_null($expected_file['icon'])) {
+        $this->assertElementNotExists($icon_selector, $crawler);
+      }
+      else {
+        self::assertCount(1, $crawler->filter($icon_selector . '.wt-icon-phosphor--' . $expected_file['icon']));
+      }
+    }
+
     // Assert download link.
     $this->assertElementAttribute($expected_file['url'], 'a.ecl-file__download', 'href', $file_footer);
   }
