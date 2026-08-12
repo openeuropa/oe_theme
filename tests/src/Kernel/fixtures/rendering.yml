@@ -4390,6 +4390,7 @@
       variant: "left_simple"
       title: "Heading"
       text_title: "Title"
+      micro_title: "About"
       image:
         src: "http://via.placeholder.com/150x150"
       sources:
@@ -4416,6 +4417,7 @@
       'article.ecl-featured-item.ecl-featured-item--highlight': 0
       'div.ecl-featured-item__container.ecl-featured-item__container--right': 1
       'div.ecl-featured-item__item': 2
+      'div.ecl-featured-item__micro-title': 1
       'div.ecl-featured-item__title': 1
       '.ecl-featured-item__media_container figure.ecl-media-container__figure': 1
       'picture source': 3
@@ -4431,6 +4433,7 @@
       'div.ecl-expandable.ecl-media-container__expandable': 0
     equals:
       'h2.ecl-u-type-heading-2': "Heading"
+      'div.ecl-featured-item__micro-title': "About"
       'div.ecl-featured-item__title': "Title"
       'figcaption.ecl-media-container__caption': "Some caption text for the image"
       'div.ecl-featured-item__item div.ecl-featured-item__description': "Some more text"
@@ -4459,6 +4462,7 @@
       'article.ecl-featured-item--hcenter.ecl-featured-item--vcenter.ecl-featured-item--dynamic': 0
       'h2.ecl-u-type-heading-2': 0
       'div.ecl-featured-item__container': 1
+      'div.ecl-featured-item__micro-title': 0
       'div.ecl-featured-item__title': 1
       '.ecl-featured-item__media_container figure.ecl-media-container__figure': 1
       'img.ecl-media-container__media[src="http://via.placeholder.com/150x150"]': 1
