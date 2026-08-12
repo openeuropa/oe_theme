@@ -11,7 +11,7 @@ use Symfony\Component\DomCrawler\Crawler;
 /**
  * Tests that the main menu is properly displayed.
  *
- * @group batch3
+ * @group batch2
  */
 class MainMenuTest extends AbstractKernelTestBase {
 

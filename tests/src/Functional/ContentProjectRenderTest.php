@@ -17,18 +17,9 @@ use Drupal\user\RoleInterface;
 /**
  * Tests that our Project content type renders correctly.
  *
- * @group batch3
+ * @group batch9
  */
 class ContentProjectRenderTest extends ContentRenderTestBase {
-
-  /**
-   * {@inheritdoc}
-   */
-  protected static $modules = [
-    'oe_theme_content_entity_contact',
-    'oe_theme_content_project',
-    'options',
-  ];
 
   /**
    * {@inheritdoc}

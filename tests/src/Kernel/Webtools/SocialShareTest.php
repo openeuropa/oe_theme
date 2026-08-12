@@ -10,7 +10,7 @@ use Symfony\Component\DomCrawler\Crawler;
 /**
  * Test social share block rendering.
  *
- * @group batch2
+ * @group batch7
  */
 class SocialShareTest extends AbstractKernelTestBase {
 

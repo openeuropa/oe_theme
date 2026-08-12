@@ -16,7 +16,7 @@ use Symfony\Component\DomCrawler\Crawler;
 /**
  * Tests call for tenders rendering.
  *
- * @group batch3
+ * @group batch4
  */
 class CallForTendersRenderTest extends ContentRenderTestBase {
 

@@ -11,7 +11,7 @@ use OpenEuropa\TestingUtilities\Traits\CachedDatabaseInstallTrait;
 /**
  * Tests paragraphs forms.
  *
- * @group batch1
+ * @group batch6
  */
 class ParagraphsTest extends BrowserTestBase {
 

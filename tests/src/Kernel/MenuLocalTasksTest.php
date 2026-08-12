@@ -10,7 +10,7 @@ use Drupal\Tests\oe_theme\PatternAssertions\TabsAssert;
 /**
  * Tests that Drupal local tasks are properly rendered.
  *
- * @group batch3
+ * @group batch5
  */
 class MenuLocalTasksTest extends AbstractKernelTestBase {
 

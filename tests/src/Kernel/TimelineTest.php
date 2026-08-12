@@ -16,7 +16,7 @@ use Symfony\Component\DomCrawler\Crawler;
 /**
  * Tests the timeline field rendering.
  *
- * @group batch2
+ * @group batch3
  */
 class TimelineTest extends AbstractKernelTestBase {
 

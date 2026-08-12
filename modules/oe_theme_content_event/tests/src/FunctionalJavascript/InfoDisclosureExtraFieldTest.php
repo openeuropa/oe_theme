@@ -14,7 +14,7 @@ use OpenEuropa\TestingUtilities\Traits\CachedDatabaseInstallTrait;
 /**
  * Test information disclosing for time-sensitive fields.
  *
- * @group batch3
+ * @group batch10
  *
  * @group oe_theme_content_event
  */
@@ -32,15 +32,45 @@ class InfoDisclosureExtraFieldTest extends WebDriverTestBase {
 
   /**
    * {@inheritdoc}
+   *
+   * This intentionally mirrors the module set of
+   * \Drupal\Tests\oe_theme\Functional\ContentRenderTestBase so this test shares
+   * that suite's cached database install. Keep the two lists in sync; if they
+   * diverge, this test installs its own DB.
    */
   protected static $modules = [
+    'content_translation',
     'config',
+    'datetime_testing',
+    'block',
     'system',
     'path',
-    'block',
-    'datetime_testing',
+    'node',
+    'options',
+    'address',
+    'field_group',
+    'oe_time_caching',
+    'oe_multilingual',
     'oe_theme_helper',
+    'oe_theme_content_call_proposals',
+    'oe_theme_content_call_tenders',
+    'oe_theme_content_consultation',
+    'oe_theme_content_entity_contact',
     'oe_theme_content_event',
+    'oe_theme_content_news',
+    'oe_theme_content_organisation',
+    'oe_theme_content_organisation_reference',
+    'oe_theme_content_page',
+    'oe_theme_content_person',
+    'oe_theme_content_policy',
+    'oe_theme_content_project',
+    'oe_theme_content_publication',
+    'oe_content_event_person_reference',
+    'page_header_metadata_test',
+    'media_avportal_mock',
+    'oe_media_oembed_mock',
+    'oe_theme_webtools_mock',
+    'oe_theme_test',
   ];
 
   /**

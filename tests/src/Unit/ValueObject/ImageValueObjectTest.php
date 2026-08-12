@@ -10,7 +10,7 @@ use Drupal\oe_theme\ValueObject\ImageValueObject;
 /**
  * Test image value object.
  *
- * @group batch1
+ * @group batch3
  */
 class ImageValueObjectTest extends UnitTestCase {
 

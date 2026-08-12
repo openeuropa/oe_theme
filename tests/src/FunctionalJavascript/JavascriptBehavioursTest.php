@@ -12,7 +12,7 @@ use PHPUnit\Framework\Assert;
 /**
  * Tests the Javascript behaviours of the theme.
  *
- * @group batch3
+ * @group batch5
  */
 class JavascriptBehavioursTest extends WebDriverTestBase {
 

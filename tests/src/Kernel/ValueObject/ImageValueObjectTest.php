@@ -15,7 +15,7 @@ use Drupal\oe_theme\ValueObject\ImageValueObject;
 /**
  * Test image value object with image field type.
  *
- * @group batch2
+ * @group batch1
  */
 class ImageValueObjectTest extends TokenKernelTestBase {
 

@@ -10,7 +10,7 @@ use OpenEuropa\TestingUtilities\Traits\CachedDatabaseInstallTrait;
 /**
  * Tests paragraphs forms.
  *
- * @group batch1
+ * @group batch6
  */
 class ParagraphsTest extends WebDriverTestBase {
 
@@ -25,6 +25,10 @@ class ParagraphsTest extends WebDriverTestBase {
     'node',
     'oe_theme_helper',
     'oe_paragraphs_demo',
+    'oe_paragraphs_media',
+    'oe_content_timeline_field',
+    'oe_multilingual',
+    'oe_media_oembed_mock',
   ];
 
   /**

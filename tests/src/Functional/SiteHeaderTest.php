@@ -11,7 +11,7 @@ use OpenEuropa\TestingUtilities\Traits\CachedDatabaseInstallTrait;
 /**
  * Test Site header rendering.
  *
- * @group batch1
+ * @group batch9
  */
 class SiteHeaderTest extends BrowserTestBase {
 

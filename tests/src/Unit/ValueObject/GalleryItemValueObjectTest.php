@@ -12,7 +12,7 @@ use Drupal\oe_theme\ValueObject\ImageValueObject;
 /**
  * Test gallery item value object.
  *
- * @group batch1
+ * @group batch3
  */
 class GalleryItemValueObjectTest extends UnitTestCase {
 

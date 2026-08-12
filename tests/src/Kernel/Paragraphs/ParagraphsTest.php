@@ -12,7 +12,7 @@ use Symfony\Component\DomCrawler\Crawler;
 /**
  * Tests the rendering of paragraphs types.
  *
- * @group batch1
+ * @group batch7
  */
 class ParagraphsTest extends ParagraphsTestBase {
 

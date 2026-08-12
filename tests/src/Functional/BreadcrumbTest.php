@@ -9,22 +9,9 @@ use Drupal\views\Entity\View;
 /**
  * Tests that breadcrumbs are cached correctly.
  *
- * @group batch2
+ * @group batch9
  */
 class BreadcrumbTest extends ContentRenderTestBase {
-
-  /**
-   * {@inheritdoc}
-   */
-  protected static $modules = [
-    'config',
-    'system',
-    'oe_theme_helper',
-    'oe_time_caching',
-    'path',
-    'oe_theme_content_news',
-    'block',
-  ];
 
   /**
    * {@inheritdoc}

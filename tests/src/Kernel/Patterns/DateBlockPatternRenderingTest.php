@@ -10,7 +10,7 @@ use Drupal\oe_theme\ValueObject\DateValueObject;
 /**
  * Test date block pattern rendering.
  *
- * @group batch2
+ * @group batch8
  */
 class DateBlockPatternRenderingTest extends AbstractKernelTestBase {
 

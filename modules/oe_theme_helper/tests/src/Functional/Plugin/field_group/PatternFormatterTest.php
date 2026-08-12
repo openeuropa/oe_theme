@@ -13,7 +13,7 @@ use OpenEuropa\TestingUtilities\Traits\CachedDatabaseInstallTrait;
 /**
  * Test the pattern field group formatter.
  *
- * @group batch3
+ * @group batch5
  */
 class PatternFormatterTest extends BrowserTestBase {
 
@@ -26,6 +26,8 @@ class PatternFormatterTest extends BrowserTestBase {
   protected static $modules = [
     'node',
     'text',
+    'field_test',
+    'extra_field_test',
     'field_ui',
     'field_group',
     'oe_theme_helper',

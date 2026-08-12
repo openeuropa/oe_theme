@@ -12,7 +12,7 @@ use OpenEuropa\TestingUtilities\Traits\CachedDatabaseInstallTrait;
 /**
  * Tests the base metadata class for node view routes.
  *
- * @group batch3
+ * @group batch7
  */
 class NodeViewRoutesMetadataTest extends BrowserTestBase {
 
@@ -25,6 +25,7 @@ class NodeViewRoutesMetadataTest extends BrowserTestBase {
   protected static $modules = [
     'block',
     'content_moderation',
+    'entity_test',
     'node',
     'node_storage_body_field',
     'oe_theme_helper',

@@ -17,7 +17,7 @@ use Symfony\Component\DomCrawler\Crawler;
 /**
  * Tests that the breadcrumb is properly displayed.
  *
- * @group batch3
+ * @group batch4
  */
 class BreadcrumbTest extends EntityKernelTestBase {
 

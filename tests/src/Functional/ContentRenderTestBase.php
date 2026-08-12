@@ -33,17 +33,44 @@ abstract class ContentRenderTestBase extends BrowserTestBase {
 
   /**
    * {@inheritdoc}
+   *
+   * We install all these modules so that child tests don't install the site
+   * but import the exported DB.
    */
   protected static $modules = [
+    // Base modules used by all content render tests.
     'content_translation',
     'config',
     'datetime_testing',
     'block',
     'system',
     'path',
+    'node',
+    'options',
+    'address',
     'field_group',
+    'oe_time_caching',
+    'oe_multilingual',
     'oe_theme_helper',
+    'oe_theme_content_call_proposals',
+    'oe_theme_content_call_tenders',
+    'oe_theme_content_consultation',
+    'oe_theme_content_entity_contact',
+    'oe_theme_content_event',
+    'oe_theme_content_news',
+    'oe_theme_content_organisation',
+    'oe_theme_content_organisation_reference',
+    'oe_theme_content_page',
+    'oe_theme_content_person',
+    'oe_theme_content_policy',
+    'oe_theme_content_project',
+    'oe_theme_content_publication',
+    'oe_content_event_person_reference',
+    'page_header_metadata_test',
+    'media_avportal_mock',
+    'oe_media_oembed_mock',
     'oe_theme_webtools_mock',
+    'oe_theme_test',
   ];
 
   /**

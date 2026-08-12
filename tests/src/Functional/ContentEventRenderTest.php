@@ -24,20 +24,11 @@ use Drupal\user\RoleInterface;
 /**
  * Tests that our Event content type render.
  *
- * @group batch1
+ * @group batch9
  */
 class ContentEventRenderTest extends ContentRenderTestBase {
 
   use CronRunTrait;
-
-  /**
-   * {@inheritdoc}
-   */
-  protected static $modules = [
-    'oe_theme_content_event',
-    'oe_content_event_person_reference',
-    'oe_multilingual',
-  ];
 
   /**
    * {@inheritdoc}

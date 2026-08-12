@@ -12,7 +12,7 @@ use Drupal\Tests\oe_theme\Kernel\AbstractKernelTestBase;
 /**
  * Tests webtools icons allowed values function.
  *
- * @group batch2
+ * @group batch6
  */
 class IconsAllowedValuesTest extends AbstractKernelTestBase {
 

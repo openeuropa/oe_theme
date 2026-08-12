@@ -16,24 +16,11 @@ use Drupal\user\RoleInterface;
 /**
  * Tests that "Call for proposals" content type renders correctly.
  *
- * @group batch1
+ * @group batch9
  */
 class ContentCallForProposalsRenderTest extends ContentRenderTestBase {
 
   use CronRunTrait;
-
-  /**
-   * {@inheritdoc}
-   */
-  protected static $modules = [
-    'config',
-    'datetime_testing',
-    'block',
-    'system',
-    'path',
-    'oe_theme_helper',
-    'oe_theme_content_call_proposals',
-  ];
 
   /**
    * {@inheritdoc}
@@ -293,7 +280,7 @@ class ContentCallForProposalsRenderTest extends ContentRenderTestBase {
     $this->drupalGet($node->toUrl());
 
     $field_list_assert->assertPattern($results_expected_values, $results_field_group->getHtml());
-    $this->assertLinkIcon($results_field_group, 'Grants awarded', '/build/', FALSE);
+    $this->assertLinkIcon($results_field_group, 'Grants awarded', '/build/en', FALSE);
 
     // Assert Funding programme field.
     $node->set('oe_call_proposals_funding', 'http://publications.europa.eu/resource/authority/eu-programme/AFIS2020');

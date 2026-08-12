@@ -14,7 +14,7 @@ use OpenEuropa\TestingUtilities\Traits\CachedDatabaseInstallTrait;
 /**
  * Test In-page navigation field group.
  *
- * @group batch3
+ * @group batch5
  */
 class InPageNavigationTest extends BrowserTestBase {
 
@@ -40,8 +40,10 @@ class InPageNavigationTest extends BrowserTestBase {
    */
   protected static $modules = [
     'node',
-    'extra_field_test',
+    'text',
     'field_test',
+    'extra_field_test',
+    'field_ui',
     'field_group',
     'oe_theme_helper',
   ];

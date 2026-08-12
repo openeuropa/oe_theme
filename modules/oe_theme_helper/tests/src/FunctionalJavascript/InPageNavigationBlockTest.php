@@ -13,7 +13,7 @@ use OpenEuropa\TestingUtilities\Traits\CachedDatabaseInstallTrait;
 /**
  * Test Inpage navigation block plugin.
  *
- * @group batch3
+ * @group batch4
  *
  * @group oe_theme_helper
  */
@@ -28,8 +28,11 @@ class InPageNavigationBlockTest extends WebDriverTestBase {
   protected static $modules = [
     'block',
     'node_storage_body_field',
-    'oe_theme_helper',
+    'oe_paragraphs',
+    'oe_paragraphs_demo',
     'oe_theme_content_page',
+    'oe_theme_helper',
+    'oe_theme_inpage_navigation_test',
   ];
 
   /**

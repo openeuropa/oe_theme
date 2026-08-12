@@ -23,17 +23,9 @@ use Drupal\user\RoleInterface;
 /**
  * Test Person content type rendering.
  *
- * @group batch2
+ * @group batch10
  */
 class ContentPersonRenderTest extends ContentRenderTestBase {
-
-  /**
-   * {@inheritdoc}
-   */
-  protected static $modules = [
-    'oe_theme_content_person',
-    'oe_multilingual',
-  ];
 
   /**
    * {@inheritdoc}

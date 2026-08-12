@@ -14,7 +14,7 @@ use Symfony\Component\DomCrawler\Crawler;
 /**
  * Tests the rendering of the Contact paragraph.
  *
- * @group batch1
+ * @group batch3
  */
 class ContactParagraphTest extends ParagraphsTestBase {
 

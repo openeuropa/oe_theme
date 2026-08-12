@@ -19,7 +19,7 @@ use Drupal\user\Entity\User;
 /**
  * Tests the event rendering.
  *
- * @group batch3
+ * @group batch10
  */
 class EventRenderTest extends ContentRenderTestBase {
 

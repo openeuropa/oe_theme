@@ -10,11 +10,14 @@ use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Render\Element;
 
 /**
- * Tests that rendering of elements follows the theme implementation.
+ * Base class for testing that element rendering follows the theme.
  *
- * @group batch2
+ * The full set of rendering fixtures is large, so it is split across multiple
+ * concrete test classes (each assigned to a different test batch) to keep the
+ * parallel test run balanced. Each subclass provides its own slice of the
+ * fixtures through ::renderingDataProvider().
  */
-class RenderingTest extends AbstractKernelTestBase implements FormInterface {
+abstract class RenderingTestBase extends AbstractKernelTestBase implements FormInterface {
 
   /**
    * {@inheritdoc}
@@ -116,13 +119,32 @@ class RenderingTest extends AbstractKernelTestBase implements FormInterface {
   /**
    * Data provider for rendering tests.
    *
-   * The actual data is read from fixtures stored in a YAML configuration.
+   * Each concrete test class returns its own slice of the fixtures.
    *
    * @return array
    *   A set of dump data for testing.
    */
-  public static function renderingDataProvider(): array {
-    return self::getFixtureContent('rendering.yml');
+  abstract public static function renderingDataProvider(): array;
+
+  /**
+   * Returns a slice of the rendering fixtures.
+   *
+   * The full set of fixtures is split evenly across the concrete test classes
+   * so the parallel test run stays balanced. The actual data is read from
+   * fixtures stored in a YAML configuration.
+   *
+   * @param int $part
+   *   The 1-based slice to return.
+   * @param int $of
+   *   The total number of slices the fixtures are split into.
+   *
+   * @return array
+   *   A set of dump data for testing.
+   */
+  protected static function getRenderingCasesSlice(int $part, int $of): array {
+    $cases = self::getFixtureContent('rendering.yml');
+    $size = (int) ceil(count($cases) / $of);
+    return array_slice($cases, ($part - 1) * $size, $size, TRUE);
   }
 
 }

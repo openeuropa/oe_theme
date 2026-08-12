@@ -24,7 +24,7 @@ use Twig\Error\RuntimeError;
  *
  * @coversDefaultClass \Drupal\oe_theme_helper\TwigExtension\TwigExtension
  *
- * @group batch1
+ * @group batch5
  */
 class TwigExtensionTest extends UnitTestCase {
 

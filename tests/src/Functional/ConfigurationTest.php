@@ -11,7 +11,7 @@ use OpenEuropa\TestingUtilities\Traits\CachedDatabaseInstallTrait;
 /**
  * Tests that theme configuration is correctly applied.
  *
- * @group batch2
+ * @group batch6
  */
 class ConfigurationTest extends BrowserTestBase {
 

@@ -19,18 +19,11 @@ use Drupal\user\RoleInterface;
 /**
  * Test Consultation content type rendering.
  *
- * @group batch1
+ * @group batch10
  */
 class ContentConsultationRenderTest extends ContentRenderTestBase {
 
   use CronRunTrait;
-
-  /**
-   * {@inheritdoc}
-   */
-  protected static $modules = [
-    'oe_theme_content_consultation',
-  ];
 
   /**
    * {@inheritdoc}

@@ -13,7 +13,7 @@ use Drupal\field\Entity\FieldStorageConfig;
 /**
  * Base test class for "Social media links" field formatters.
  *
- * @group batch2
+ * @group batch6
  */
 class SocialMediaLinksFormatterTestBase extends AbstractKernelTestBase {
 

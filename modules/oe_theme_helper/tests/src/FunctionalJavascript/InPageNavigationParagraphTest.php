@@ -14,7 +14,7 @@ use OpenEuropa\TestingUtilities\Traits\CachedDatabaseInstallTrait;
 /**
  * Test Inpage navigation in the content row paragraph.
  *
- * @group batch3
+ * @group batch4
  */
 class InPageNavigationParagraphTest extends WebDriverTestBase {
 
@@ -32,10 +32,12 @@ class InPageNavigationParagraphTest extends WebDriverTestBase {
    */
   protected static $modules = [
     'block',
-    'oe_theme_helper',
-    'oe_theme_content_page',
+    'node_storage_body_field',
     'oe_paragraphs',
     'oe_paragraphs_demo',
+    'oe_theme_content_page',
+    'oe_theme_helper',
+    'oe_theme_inpage_navigation_test',
   ];
 
   /**
