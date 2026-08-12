@@ -7174,3 +7174,78 @@
       'a.ecl-highlight-box__link span.ecl-icon.wt-icon--external.ecl-link__icon': 1
     equals:
       'a.ecl-highlight-box__link span.ecl-link__label': "External link"
+- structure:
+    '#type': component
+    '#component': 'oe_theme:page_summary'
+    '#props':
+      title: "Page summary title"
+      description: "Page summary description"
+      icon: "book-open"
+      color_mode: "purple-violet"
+      extra_classes: "custom-class"
+      extra_attributes:
+        - name: 'data-test'
+          value: 'page-summary'
+  assertions:
+    count:
+      'section.ecl-page-summary.custom-class.ecl-color-mode--purple-violet[data-test="page-summary"]': 1
+      'section.ecl-page-summary[aria-labelledby]': 1
+      'section.ecl-page-summary > div.ecl-page-summary__header > span.ecl-icon.ecl-page-summary__icon': 1
+      'div.ecl-page-summary__header > h2.ecl-page-summary__title': 1
+      'section.ecl-page-summary > div.ecl-page-summary__description': 1
+    equals:
+      'h2.ecl-page-summary__title': "Page summary title"
+      'div.ecl-page-summary__description': "Page summary description"
+- structure:
+    '#type': component
+    '#component': 'oe_theme:page_summary'
+    '#props':
+      title: "Page summary title"
+      description: "Page summary description"
+  assertions:
+    count:
+      'section.ecl-page-summary': 1
+      'div.ecl-page-summary__header': 1
+      'span.ecl-page-summary__icon': 0
+      'h2.ecl-page-summary__title': 1
+      'div.ecl-page-summary__description': 1
+    equals:
+      'h2.ecl-page-summary__title': "Page summary title"
+      'div.ecl-page-summary__description': "Page summary description"
+- structure:
+    '#type': component
+    '#component': 'oe_theme:page_summary'
+    '#props':
+      description: "Page summary description"
+  assertions:
+    count:
+      'section.ecl-page-summary': 1
+      'div.ecl-page-summary__header': 0
+      'h2.ecl-page-summary__title': 0
+      'div.ecl-page-summary__description': 1
+    equals:
+      'div.ecl-page-summary__description': "Page summary description"
+- structure:
+    '#type': component
+    '#component': 'oe_theme:page_summary'
+    '#props':
+      title: "Page summary title"
+      description: "Page summary description"
+      color_mode: "green-dark"
+  assertions:
+    count:
+      'section.ecl-page-summary.ecl-color-mode--green-dark': 1
+    equals:
+      'h2.ecl-page-summary__title': "Page summary title"
+      'div.ecl-page-summary__description': "Page summary description"
+- structure:
+    '#type': component
+    '#component': 'oe_theme:page_summary'
+    '#props':
+      title: "Page summary title"
+      description: "Page summary description"
+      extra_classes: "custom-class"
+  assertions:
+    count:
+      'section.ecl-page-summary.custom-class': 1
+      'section[class*="ecl-color-mode--"]': 0

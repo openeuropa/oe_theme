@@ -48,7 +48,7 @@
         "openeuropa/behat-transformation-context": "^0.3",
         "openeuropa/code-review-drupal": "^1.0.0-alpha1",
         "openeuropa/oe_contact_forms": "^1.24.0",
-        "openeuropa/oe_content": "4.x-dev",
+        "openeuropa/oe_content": "4.14.0",
         "openeuropa/oe_corporate_blocks": "5.x-dev",
         "openeuropa/oe_corporate_countries": "2.x-dev",
         "openeuropa/oe_corporate_site_info": "1.x-dev",
@@ -107,7 +107,8 @@
         "_readme": [
             "autoload-dev: explicitly mapping EntityReferenceFieldCreationTrait to prevent failures.",
             "Locking extra_field to 3.0.0-beta1 due to issues, will be fixed in EWPP-6001.",
-            "Locking drupal/datetime_testing to 1.0.0-beta6 since beta7 removed a behat step still required in the project."
+            "Locking drupal/datetime_testing to 1.0.0-beta6 since beta7 removed a behat step still required in the project.",
+            "Locking openeuropa/oe_content to 4.14.0 since behat got replaced with phpunit in latest."
         ]
     },
     "config": {
