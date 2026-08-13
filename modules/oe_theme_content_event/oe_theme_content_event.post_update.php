@@ -174,3 +174,16 @@ function oe_theme_content_event_post_update_30005(): void {
     $updated_view_display->save();
   }
 }
+
+/**
+ * Add the status to the Event CT teaser view display.
+ */
+function oe_theme_content_event_post_update_30006(): void {
+  $storage = new FileStorage(\Drupal::service('extension.list.module')->getPath('oe_theme_content_event') . '/config/post_updates/30006_event_teaser_status');
+  $view_display_values = $storage->read('core.entity_view_display.node.oe_event.teaser');
+  $view_display = EntityViewDisplay::load($view_display_values['id']);
+  if ($view_display) {
+    $updated_view_display = \Drupal::entityTypeManager()->getStorage($view_display->getEntityTypeId())->updateFromStorageRecord($view_display, $view_display_values);
+    $updated_view_display->save();
+  }
+}

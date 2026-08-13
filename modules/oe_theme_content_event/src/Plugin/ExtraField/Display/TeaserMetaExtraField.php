@@ -87,15 +87,6 @@ class TeaserMetaExtraField extends ExtraFieldDisplayFormattedBase implements Con
         ->applyTo($elements);
     }
 
-    // Add the event status, only if it doesn't go as planned.
-    $status = $entity->get('oe_event_status')->value;
-    if ($status !== 'as_planned') {
-      $provider = $entity->get('oe_event_status')->getFieldDefinition()
-        ->getFieldStorageDefinition()
-        ->getOptionsProvider('value', $entity);
-      $elements[] = ['#markup' => $provider->getPossibleOptions()[$status]];
-    }
-
     return $elements;
   }
 
