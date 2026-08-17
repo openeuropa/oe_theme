@@ -14,7 +14,7 @@ use Symfony\Component\Yaml\Yaml;
 /**
  * Test footer block rendering.
  *
- * @group batch5
+ * @group batch8
  */
 class CorporateFooterRenderTest extends BrowserTestBase {
 
@@ -80,6 +80,7 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     $this->library = 'ec';
     // Enable and set OpenEuropa Theme as default.
     $this->container->get('theme_installer')->install(['oe_theme']);
+    \Drupal::service('plugin.manager.sdc')->clearCachedDefinitions();
     $this->config('system.theme')->set('default', 'oe_theme')->save();
     $this->container->set('theme.registry', NULL);
     $this->configFactory = $this->container->get('config.factory');

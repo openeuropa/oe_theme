@@ -11,7 +11,7 @@ use OpenEuropa\TestingUtilities\Traits\CachedDatabaseInstallTrait;
 /**
  * Tests that corporate blocks are shown throughout the site.
  *
- * @group batch7
+ * @group batch6
  */
 class CorporateBlocksTest extends BrowserTestBase {
 
@@ -54,6 +54,7 @@ class CorporateBlocksTest extends BrowserTestBase {
 
     // Enable and set OpenEuropa Theme as default.
     $this->container->get('theme_installer')->install(['oe_theme']);
+    \Drupal::service('plugin.manager.sdc')->clearCachedDefinitions();
     $this->config('system.theme')->set('default', 'oe_theme')->save();
     $this->container->set('theme.registry', NULL);
     $this->configFactory = $this->container->get('config.factory');

@@ -17,7 +17,7 @@ use Symfony\Component\DomCrawler\Crawler;
 /**
  * Tests that the breadcrumb is properly displayed.
  *
- * @group batch4
+ * @group batch2
  */
 class BreadcrumbTest extends EntityKernelTestBase {
 
@@ -48,6 +48,7 @@ class BreadcrumbTest extends EntityKernelTestBase {
     $this->installConfig(['system', 'image', 'responsive_image']);
 
     $this->container->get('theme_installer')->install(['oe_theme']);
+    \Drupal::service('plugin.manager.sdc')->clearCachedDefinitions();
     $this->config('system.theme')->set('default', 'oe_theme')->save();
     $this->container->set('theme.registry', NULL);
 

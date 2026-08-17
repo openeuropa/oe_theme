@@ -19,7 +19,7 @@ use Drupal\user\RoleInterface;
 /**
  * Test Consultation content type rendering.
  *
- * @group batch10
+ * @group batch11
  */
 class ContentConsultationRenderTest extends ContentRenderTestBase {
 

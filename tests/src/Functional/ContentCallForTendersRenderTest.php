@@ -15,7 +15,7 @@ use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
 /**
  * Tests that "Call for tenders" content type renders correctly.
  *
- * @group batch9
+ * @group batch1
  */
 class ContentCallForTendersRenderTest extends ContentRenderTestBase {
 

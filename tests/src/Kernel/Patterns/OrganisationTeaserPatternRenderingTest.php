@@ -10,7 +10,7 @@ use Drupal\oe_theme\ValueObject\ImageValueObject;
 /**
  * Test Organisation teaser pattern rendering.
  *
- * @group batch4
+ * @group batch10
  */
 class OrganisationTeaserPatternRenderingTest extends AbstractKernelTestBase {
 

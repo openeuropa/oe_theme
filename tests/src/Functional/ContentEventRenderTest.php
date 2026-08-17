@@ -24,7 +24,7 @@ use Drupal\user\RoleInterface;
 /**
  * Tests that our Event content type render.
  *
- * @group batch9
+ * @group batch11
  */
 class ContentEventRenderTest extends ContentRenderTestBase {
 

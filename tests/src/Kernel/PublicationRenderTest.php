@@ -12,7 +12,7 @@ use Drupal\node\NodeInterface;
 /**
  * Tests call for tenders rendering.
  *
- * @group batch8
+ * @group batch9
  */
 class PublicationRenderTest extends ContentRenderTestBase {
 

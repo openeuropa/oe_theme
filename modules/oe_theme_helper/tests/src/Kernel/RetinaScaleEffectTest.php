@@ -12,7 +12,7 @@ use Drupal\Tests\token\Kernel\TokenKernelTestBase;
  *
  * @group image
  *
- * @group batch1
+ * @group batch2
  */
 class RetinaScaleEffectTest extends TokenKernelTestBase {
 

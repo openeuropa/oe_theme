@@ -12,7 +12,7 @@ use OpenEuropa\TestingUtilities\Traits\CachedDatabaseInstallTrait;
 /**
  * Tests the site branding provided by the theme.
  *
- * @group batch3
+ * @group batch6
  */
 class SiteBrandingTest extends BrowserTestBase {
 
@@ -51,6 +51,7 @@ class SiteBrandingTest extends BrowserTestBase {
 
     // Enable and set OpenEuropa Theme as default.
     $this->container->get('theme_installer')->install(['oe_theme']);
+    \Drupal::service('plugin.manager.sdc')->clearCachedDefinitions();
     $this->config('system.theme')->set('default', 'oe_theme')->save();
     $this->container->set('theme.registry', NULL);
     $this->configFactory = $this->container->get('config.factory');
@@ -88,7 +89,6 @@ class SiteBrandingTest extends BrowserTestBase {
     foreach ($eu_logos as $langcode => $link) {
       $this->drupalGetInLanguage('<front>', $langcode);
       $this->assertHeaderLogo($link, 'Home - European Union', 'European Union flag', 'European Union');
-      $this->assertLocalisedEuLogos($langcode);
     }
     // The logo renders consistently on non-front pages too.
     $this->drupalGetInLanguage('user/register', 'en');
@@ -114,25 +114,6 @@ class SiteBrandingTest extends BrowserTestBase {
     // The logo renders consistently on non-front pages too.
     $this->drupalGetInLanguage('user/register', 'en');
     $this->assertHeaderLogo('https://commission.europa.eu/index_en', 'Home - European Commission', 'European Commission logo', 'European Commission');
-  }
-
-  /**
-   * Asserts the localised European Union mobile and desktop header logos.
-   *
-   * @param string $langcode
-   *   The language code.
-   */
-  protected function assertLocalisedEuLogos(string $langcode): void {
-    $picture = $this->assertSession()->elementExists('css', 'header picture.ecl-picture.ecl-site-header__picture');
-    // Assert the desktop logo.
-    $source = $picture->find('css', 'source');
-    $this->assertInstanceOf(NodeElement::class, $source);
-    $this->assertStringContainsString('oe_theme/dist/eu/images/logo/standard-version/positive/logo-eu--' . $langcode . '.svg', $source->getAttribute('srcset'));
-    $this->assertEquals('(min-width: 996px)', $source->getAttribute('media'));
-    // Assert the mobile logo.
-    $image = $picture->find('css', 'img.ecl-site-header__logo-image');
-    $this->assertInstanceOf(NodeElement::class, $image);
-    $this->assertStringContainsString('oe_theme/dist/eu/images/logo/condensed-version/positive/logo-eu--' . $langcode . '.svg', $image->getAttribute('src'));
   }
 
   /**

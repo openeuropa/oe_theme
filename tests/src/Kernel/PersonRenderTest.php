@@ -19,7 +19,7 @@ use Symfony\Component\DomCrawler\Crawler;
 /**
  * Tests person rendering.
  *
- * @group batch5
+ * @group batch8
  */
 class PersonRenderTest extends ContentRenderTestBase {
 

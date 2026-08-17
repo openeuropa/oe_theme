@@ -11,7 +11,7 @@ use Symfony\Component\DomCrawler\Crawler;
 /**
  * Tests the rendering of Timeline paragraph.
  *
- * @group batch5
+ * @group batch10
  */
 class TimelineParagraphTest extends ParagraphsTestBase {
 

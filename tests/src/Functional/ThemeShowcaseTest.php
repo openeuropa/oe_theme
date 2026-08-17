@@ -10,7 +10,7 @@ use OpenEuropa\TestingUtilities\Traits\CachedDatabaseInstallTrait;
 /**
  * Tests the theme showcase (demo) features.
  *
- * @group batch10
+ * @group batch6
  */
 class ThemeShowcaseTest extends BrowserTestBase {
 
@@ -32,6 +32,8 @@ class ThemeShowcaseTest extends BrowserTestBase {
     'oe_multilingual',
     'oe_theme_helper',
     'oe_theme_demo',
+    'oe_corporate_blocks',
+    'oe_corporate_site_info',
   ];
 
   /**
@@ -48,6 +50,7 @@ class ThemeShowcaseTest extends BrowserTestBase {
 
     // Enable and set OpenEuropa Theme as default.
     $this->container->get('theme_installer')->install(['oe_theme']);
+    \Drupal::service('plugin.manager.sdc')->clearCachedDefinitions();
     $this->config('system.theme')->set('default', 'oe_theme')->save();
     $this->container->set('theme.registry', NULL);
     $this->configFactory = $this->container->get('config.factory');
@@ -97,22 +100,17 @@ class ThemeShowcaseTest extends BrowserTestBase {
 
     // Changing the ECL branding switches the site header style. The demo
     // defaults to the standardised branding.
-    $this->assertSiteHeader('standardised');
-    $assert->elementExists('css', '.ecl-site-header--has-menu .ecl-menu');
+    $this->assertSiteHeader();
 
     $this->configFactory->getEditable('oe_theme.settings')->set('branding', 'core')->save();
     $this->drupalGet('<front>');
-    $this->assertSiteHeader('core');
-    $assert->elementExists('css', '.ecl-site-header--has-menu .ecl-menu');
+    $this->assertSiteHeader();
   }
 
   /**
    * Asserts that the site header matches the given ECL branding.
-   *
-   * @param string $branding
-   *   The ECL branding, either 'core' or 'standardised'.
    */
-  protected function assertSiteHeader(string $branding): void {
+  protected function assertSiteHeader(): void {
     $assert = $this->assertSession();
     $assert->elementExists('css', 'a.ecl-site-header__logo-link .ecl-site-header__logo-image');
     $assert->elementExists('css', '.ecl-site-header__top .ecl-site-header__action .ecl-site-header__language-selector');
@@ -121,6 +119,7 @@ class ThemeShowcaseTest extends BrowserTestBase {
     // Both brandings render the site header banner as long as a menu is placed,
     // which is the case on the demo site.
     $assert->elementExists('css', '.ecl-site-header__banner');
+    $assert->elementExists('css', '.ecl-site-header--has-menu .ecl-menu');
   }
 
 }

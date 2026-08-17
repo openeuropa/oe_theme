@@ -11,7 +11,7 @@ use Drupal\media\Entity\Media;
 /**
  * Base class for formatters rendering media thumbnail URLs.
  *
- * @group batch2
+ * @group batch8
  */
 class MediaThumbnailUrlFormatterTestBase extends AbstractKernelTestBase {
 

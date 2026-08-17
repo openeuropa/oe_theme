@@ -21,7 +21,7 @@ use Symfony\Component\Validator\ConstraintViolation;
 /**
  * Test the table plugins for CKEditor 5.
  *
- * @group batch8
+ * @group batch3
  *
  * @group oe_theme_helper
  */

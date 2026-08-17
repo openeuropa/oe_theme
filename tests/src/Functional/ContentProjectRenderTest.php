@@ -17,7 +17,7 @@ use Drupal\user\RoleInterface;
 /**
  * Tests that our Project content type renders correctly.
  *
- * @group batch9
+ * @group batch10
  */
 class ContentProjectRenderTest extends ContentRenderTestBase {
 

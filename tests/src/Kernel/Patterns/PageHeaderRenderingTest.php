@@ -9,7 +9,7 @@ use Drupal\Tests\oe_theme\Kernel\AbstractKernelTestBase;
 /**
  * Test page header pattern rendering.
  *
- * @group batch6
+ * @group batch1
  */
 class PageHeaderRenderingTest extends AbstractKernelTestBase {
 

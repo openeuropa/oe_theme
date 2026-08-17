@@ -10,7 +10,7 @@ use Drupal\entity_test\Entity\EntityTestMul;
 /**
  * Test AddressCountryInlineFormatter plugin.
  *
- * @group batch7
+ * @group batch10
  */
 class AddressCountryInlineFormatterTest extends FormatterTestBase {
 

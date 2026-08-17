@@ -16,7 +16,7 @@ use Drupal\user\RoleInterface;
 /**
  * Tests organisation (oe_organisation) content type render.
  *
- * @group batch10
+ * @group batch11
  */
 class ContentOrganisationRenderTest extends ContentRenderTestBase {
 

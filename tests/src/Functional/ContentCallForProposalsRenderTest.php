@@ -16,7 +16,7 @@ use Drupal\user\RoleInterface;
 /**
  * Tests that "Call for proposals" content type renders correctly.
  *
- * @group batch9
+ * @group batch11
  */
 class ContentCallForProposalsRenderTest extends ContentRenderTestBase {
 

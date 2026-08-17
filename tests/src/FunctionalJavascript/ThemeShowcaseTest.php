@@ -12,7 +12,7 @@ use OpenEuropa\TestingUtilities\Traits\CachedDatabaseInstallTrait;
 /**
  * Tests the Javascript behaviours of the theme showcase (demo).
  *
- * @group batch10
+ * @group batch3
  */
 class ThemeShowcaseTest extends WebDriverTestBase {
 
@@ -60,6 +60,7 @@ class ThemeShowcaseTest extends WebDriverTestBase {
 
     // Enable and set OpenEuropa Theme as default.
     $this->container->get('theme_installer')->install(['oe_theme']);
+    \Drupal::service('plugin.manager.sdc')->clearCachedDefinitions();
     $this->config('system.theme')->set('default', 'oe_theme')->save();
     $this->container->set('theme.registry', NULL);
     $this->configFactory = $this->container->get('config.factory');

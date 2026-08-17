@@ -12,7 +12,7 @@ use Drupal\filter\Entity\FilterFormat;
 /**
  * Tests the conditions for the CKEditor 5 table plugins.
  *
- * @group batch6
+ * @group batch1
  */
 class Ckeditor5TableConditionsTest extends AbstractKernelTestBase {
 

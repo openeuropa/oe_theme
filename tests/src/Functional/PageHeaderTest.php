@@ -10,7 +10,7 @@ use Drupal\views\Entity\View;
 /**
  * Tests the page header block component.
  *
- * @group batch5
+ * @group batch11
  */
 class PageHeaderTest extends ContentRenderTestBase {
 

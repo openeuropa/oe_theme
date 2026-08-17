@@ -11,7 +11,7 @@ use Symfony\Component\DomCrawler\Crawler;
 /**
  * Tests illustration lists paragraphs.
  *
- * @group batch7
+ * @group batch3
  */
 class IllustrationListsParagraphsTest extends ParagraphsTestBase {
 

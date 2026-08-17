@@ -9,7 +9,7 @@ use Symfony\Component\DomCrawler\Crawler;
 /**
  * Tests that the search form is properly displayed.
  *
- * @group batch4
+ * @group batch10
  */
 class SearchFormBlockTest extends AbstractKernelTestBase {
 

@@ -90,6 +90,7 @@ abstract class ContentRenderTestBase extends BrowserTestBase {
 
     // Enable and set OpenEuropa Theme as default.
     \Drupal::service('theme_installer')->install(['oe_theme']);
+    \Drupal::service('plugin.manager.sdc')->clearCachedDefinitions();
     \Drupal::configFactory()
       ->getEditable('system.theme')
       ->set('default', 'oe_theme')

@@ -12,7 +12,7 @@ use Drupal\node\NodeInterface;
 /**
  * Tests the News content type rendering.
  *
- * @group batch4
+ * @group batch7
  */
 class NewsRenderTest extends ContentRenderTestBase {
 

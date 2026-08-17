@@ -13,7 +13,7 @@ use OpenEuropa\TestingUtilities\Traits\CachedDatabaseInstallTrait;
 /**
  * Tests the page header block.
  *
- * @group batch7
+ * @group batch6
  */
 class PageHeaderBlockTest extends BrowserTestBase {
 
@@ -47,6 +47,7 @@ class PageHeaderBlockTest extends BrowserTestBase {
 
     // Enable oe_theme and set it as default.
     $this->assertTrue($this->container->get('theme_installer')->install(['oe_theme']));
+    \Drupal::service('plugin.manager.sdc')->clearCachedDefinitions();
     $this->container->get('config.factory')
       ->getEditable('system.theme')
       ->set('default', 'oe_theme')

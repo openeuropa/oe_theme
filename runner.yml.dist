@@ -117,23 +117,14 @@ toolkit:
         - batch8
         - batch9
         - batch10
+        - batch11
       commands:
         before:
           # Build ECL twig templates if not present. In CI, each batch test job runs in a
           # separate container and only receives the build/ artifacts, so ecl_components/
           # (gitignored) must be rebuilt before tests can resolve @ecl-twig/... includes.
           - { task: "exec", command: "[ -d ecl_components ] || bash ./scripts/build-ecl-pipeline.sh" }
-
-  ci:
-    PHP:
-      - 8.3
-    DRUPAL:
-      - ~10.6.0
-      - ~11.3.0
-      - ~11.4.0
-    PUBLISH: false
-    PHPUNIT: true
-    SELENIUM: true
-    SELENIUM_VERSION: 127.0
-    SPARQL: true
-    SPARQL_VERSION: 1.47.0
+          # Wait until the shared MySQL server is up AND the "drupal" database is
+          # queryable before launching the parallel batches. This is to ensure that Kernel tests have
+          # a database if they are first in the batch.
+          - { task: "exec", command: "for i in $(seq 1 30); do mysql -h mysql -P 3306 -u root -e 'USE drupal; SELECT 1' >/dev/null 2>&1 && break; echo \"waiting for drupal database ($i/30)\"; sleep 2; done; mysql -h mysql -P 3306 -u root -e 'USE drupal; SELECT 1'" }

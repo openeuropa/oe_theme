@@ -12,7 +12,7 @@ use Drupal\oe_theme\ValueObject\DateValueObject;
 /**
  * Test date value object.
  *
- * @group batch3
+ * @group batch1
  */
 class DateValueObjectTest extends AbstractUnitTestBase {
 

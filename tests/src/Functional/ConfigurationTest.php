@@ -11,7 +11,7 @@ use OpenEuropa\TestingUtilities\Traits\CachedDatabaseInstallTrait;
 /**
  * Tests that theme configuration is correctly applied.
  *
- * @group batch6
+ * @group batch4
  */
 class ConfigurationTest extends BrowserTestBase {
 
@@ -44,6 +44,7 @@ class ConfigurationTest extends BrowserTestBase {
       'oe_theme',
       'oe_theme_subtheme_test',
     ]);
+    \Drupal::service('plugin.manager.sdc')->clearCachedDefinitions();
 
     ConfigurableLanguage::createFromLangcode('ar')->save();
     // Rebuild container to make sure that the language path processor is

@@ -11,7 +11,7 @@ use Symfony\Component\DomCrawler\Crawler;
 /**
  * Test link pattern rendering.
  *
- * @group batch9
+ * @group batch1
  */
 class LinkPatternRenderingTest extends AbstractKernelTestBase {
 

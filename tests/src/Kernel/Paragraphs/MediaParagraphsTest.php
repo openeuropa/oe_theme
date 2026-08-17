@@ -14,7 +14,7 @@ use Symfony\Component\DomCrawler\Crawler;
 /**
  * Tests the rendering of paragraph types with media fields.
  *
- * @group batch8
+ * @group batch5
  */
 class MediaParagraphsTest extends ParagraphsTestBase {
 
@@ -82,7 +82,6 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     // Call the installation hook of the Media module.
     \Drupal::moduleHandler()->loadInclude('media', 'install');
     media_install();
-
   }
 
   /**
