@@ -22,19 +22,6 @@ class ContentCallForTendersRenderTest extends ContentRenderTestBase {
   use CronRunTrait;
 
   /**
-   * {@inheritdoc}
-   */
-  protected static $modules = [
-    'config',
-    'block',
-    'system',
-    'path',
-    'oe_theme_helper',
-    'oe_theme_content_call_tenders',
-    'datetime_testing',
-  ];
-
-  /**
    * Tests that the Call for tenders page renders correctly.
    */
   public function testTenderRendering(): void {

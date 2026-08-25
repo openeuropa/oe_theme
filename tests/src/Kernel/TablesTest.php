@@ -7,7 +7,7 @@ namespace Drupal\Tests\oe_theme\Kernel;
 /**
  * Tests the rendering of the table component.
  *
- * @group batch3
+ * @group batch1
  */
 class TablesTest extends AbstractKernelTestBase {
 

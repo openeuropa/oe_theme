@@ -13,7 +13,7 @@ use OpenEuropa\TestingUtilities\Traits\CachedDatabaseInstallTrait;
 /**
  * Test the pattern field group formatter.
  *
- * @group batch3
+ * @group batch7
  */
 class PatternFormatterTest extends BrowserTestBase {
 
@@ -26,6 +26,8 @@ class PatternFormatterTest extends BrowserTestBase {
   protected static $modules = [
     'node',
     'text',
+    'field_test',
+    'extra_field_test',
     'field_ui',
     'field_group',
     'oe_theme_helper',
@@ -45,6 +47,7 @@ class PatternFormatterTest extends BrowserTestBase {
 
     // Enable oe_theme and set it as default.
     $this->assertTrue($this->container->get('theme_installer')->install(['oe_theme']));
+    \Drupal::service('plugin.manager.sdc')->clearCachedDefinitions();
     $this->container->get('config.factory')
       ->getEditable('system.theme')
       ->set('default', 'oe_theme')

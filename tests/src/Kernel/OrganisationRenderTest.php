@@ -16,7 +16,7 @@ use Symfony\Component\DomCrawler\Crawler;
 /**
  * Tests the organisation rendering.
  *
- * @group batch3
+ * @group batch2
  */
 class OrganisationRenderTest extends ContentRenderTestBase {
 

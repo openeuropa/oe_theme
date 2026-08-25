@@ -16,7 +16,7 @@ use Symfony\Component\DomCrawler\Crawler;
 /**
  * Tests the timeline field rendering.
  *
- * @group batch2
+ * @group batch5
  */
 class TimelineTest extends AbstractKernelTestBase {
 
@@ -91,6 +91,7 @@ class TimelineTest extends AbstractKernelTestBase {
     $this->installEntitySchema('skos_concept_scheme');
 
     $this->container->get('theme_installer')->install(['oe_theme']);
+    \Drupal::service('plugin.manager.sdc')->clearCachedDefinitions();
     $this->config('system.theme')->set('default', 'oe_theme')->save();
     $this->container->set('theme.registry', NULL);
 

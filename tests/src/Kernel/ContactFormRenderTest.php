@@ -11,7 +11,7 @@ use Symfony\Component\DomCrawler\Crawler;
 /**
  * Tests that our contact forms renders with ecl markup.
  *
- * @group batch3
+ * @group batch4
  */
 class ContactFormRenderTest extends ContactFormTestBase {
 
@@ -35,6 +35,7 @@ class ContactFormRenderTest extends ContactFormTestBase {
 
     $this->installConfig(['system', 'image', 'responsive_image', 'contact']);
     $this->container->get('theme_installer')->install(['oe_theme']);
+    \Drupal::service('plugin.manager.sdc')->clearCachedDefinitions();
     $this->config('system.theme')->set('default', 'oe_theme')->save();
     $this->container->set('theme.registry', NULL);
   }

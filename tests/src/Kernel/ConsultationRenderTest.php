@@ -15,7 +15,7 @@ use Symfony\Component\DomCrawler\Crawler;
 /**
  * Tests consultation rendering.
  *
- * @group batch3
+ * @group batch9
  */
 class ConsultationRenderTest extends ContentRenderTestBase {
 

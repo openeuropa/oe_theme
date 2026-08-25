@@ -12,7 +12,7 @@ use OpenEuropa\TestingUtilities\Traits\CachedDatabaseInstallTrait;
 /**
  * Tests the base metadata class for node view routes.
  *
- * @group batch3
+ * @group batch6
  */
 class NodeViewRoutesMetadataTest extends BrowserTestBase {
 
@@ -25,6 +25,7 @@ class NodeViewRoutesMetadataTest extends BrowserTestBase {
   protected static $modules = [
     'block',
     'content_moderation',
+    'entity_test',
     'node',
     'node_storage_body_field',
     'oe_theme_helper',
@@ -53,6 +54,7 @@ class NodeViewRoutesMetadataTest extends BrowserTestBase {
 
     // Enable oe_theme and set it as default.
     $this->assertTrue($this->container->get('theme_installer')->install(['oe_theme']));
+    \Drupal::service('plugin.manager.sdc')->clearCachedDefinitions();
     $this->container->get('config.factory')
       ->getEditable('system.theme')
       ->set('default', 'oe_theme')

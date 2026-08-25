@@ -12,7 +12,7 @@ use Drupal\oe_theme\ValueObject\FileValueObject;
 /**
  * Test file pattern rendering.
  *
- * @group batch2
+ * @group batch9
  */
 class FilePatternRenderingTest extends AbstractKernelTestBase {
 

@@ -11,4 +11,3 @@ jobs:
     uses: openeuropa/github-ci/.github/workflows/drupal-ci.yml@main
     with:
       run_phpunit_batches: true
-      run_behat: true

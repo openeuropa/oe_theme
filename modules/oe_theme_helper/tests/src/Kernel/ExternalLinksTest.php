@@ -10,7 +10,7 @@ use Drupal\Tests\oe_theme\Kernel\AbstractKernelTestBase;
 /**
  * Provides test coverage for the ExternalLinks service.
  *
- * @group batch1
+ * @group batch8
  */
 class ExternalLinksTest extends AbstractKernelTestBase {
 

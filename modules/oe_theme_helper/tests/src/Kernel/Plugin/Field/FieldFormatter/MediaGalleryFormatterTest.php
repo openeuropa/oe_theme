@@ -18,7 +18,7 @@ use Symfony\Component\DomCrawler\Crawler;
  *
  * @group oe_theme
  *
- * @group batch2
+ * @group batch8
  */
 class MediaGalleryFormatterTest extends AbstractKernelTestBase {
 

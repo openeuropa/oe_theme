@@ -4,14 +4,16 @@ declare(strict_types=1);
 
 namespace Drupal\Tests\oe_theme\Functional;
 
+use Behat\Mink\Element\NodeElement;
 use Drupal\Tests\BrowserTestBase;
+use Drupal\language\Entity\ConfigurableLanguage;
 use Drupal\menu_link_content\Entity\MenuLinkContent;
 use OpenEuropa\TestingUtilities\Traits\CachedDatabaseInstallTrait;
 
 /**
  * Test Site header rendering.
  *
- * @group batch1
+ * @group batch5
  */
 class SiteHeaderTest extends BrowserTestBase {
 
@@ -50,6 +52,7 @@ class SiteHeaderTest extends BrowserTestBase {
 
     // Enable and set OpenEuropa Theme as default.
     $this->container->get('theme_installer')->install(['oe_theme']);
+    \Drupal::service('plugin.manager.sdc')->clearCachedDefinitions();
     $this->config('system.theme')->set('default', 'oe_theme')->save();
     $this->container->set('theme.registry', NULL);
     $this->configFactory = $this->container->get('config.factory');
@@ -89,6 +92,11 @@ class SiteHeaderTest extends BrowserTestBase {
       ]);
       $child->save();
     }
+
+    // Add a non-EU language.
+    $language = ConfigurableLanguage::createFromLangcode('is');
+    $language->setThirdPartySetting('oe_multilingual', 'category', 'non_eu');
+    $language->save();
   }
 
   /**
@@ -199,10 +207,8 @@ class SiteHeaderTest extends BrowserTestBase {
       $close_button = $assert->elementExists('css', 'div.ecl-site-header__language-header button.ecl-button.ecl-button--tertiary.ecl-site-header__language-close', $language_container);
       $this->assertEquals('submit', $close_button->getAttribute('type'));
       $assert->elementAttributeExists('css', 'button.ecl-site-header__language-close', 'data-ecl-language-list-close');
-      $this->assertEquals('true', $close_button->find('css', 'span.ecl-button__container span.ecl-button__label')
-        ->getAttribute('data-ecl-label'));
-      $this->assertEquals('Close', $close_button->find('css', 'span.ecl-button__container span.ecl-button__label')
-        ->getText());
+      $this->assertEquals('true', $close_button->find('css', 'span.ecl-button__container span.ecl-button__label')->getAttribute('data-ecl-label'));
+      $this->assertEquals('Close', $close_button->find('css', 'span.ecl-button__container span.ecl-button__label')->getText());
       if ($component === 'ec') {
         $this->assertSession()->elementExists('css', "span.ecl-button__container span.ecl-icon.ecl-icon--m.ecl-button__icon.wt-icon--close", $close_button);
       }
@@ -288,6 +294,35 @@ class SiteHeaderTest extends BrowserTestBase {
       $this->assertEquals('Child 3', $second_item->find('css', "div.ecl-menu__mega ul li:nth-child(3) a.ecl-menu__sublink[href='http://child-3.eu']")
         ->getText());
     }
+
+    // The European Union header logo is localised: the desktop and mobile
+    // logos use the current interface language, both for EU and non-EU
+    // languages.
+    $this->configFactory->getEditable('oe_theme.settings')->set('component_library', 'eu')->save();
+    foreach (['en', 'bg', 'fr', 'is'] as $langcode) {
+      $language = ConfigurableLanguage::load($langcode);
+      $this->drupalGet('<front>', ['language' => $language]);
+      $this->assertLocalisedEuLogos($langcode);
+    }
+  }
+
+  /**
+   * Asserts the localised European Union mobile and desktop header logos.
+   *
+   * @param string $langcode
+   *   The language code.
+   */
+  protected function assertLocalisedEuLogos(string $langcode): void {
+    $picture = $this->assertSession()->elementExists('css', 'header picture.ecl-picture.ecl-site-header__picture');
+    // Assert the desktop logo.
+    $source = $picture->find('css', 'source');
+    $this->assertInstanceOf(NodeElement::class, $source);
+    $this->assertStringContainsString('oe_theme/dist/eu/images/logo/standard-version/positive/logo-eu--' . $langcode . '.svg', $source->getAttribute('srcset'));
+    $this->assertEquals('(min-width: 996px)', $source->getAttribute('media'));
+    // Assert the mobile logo.
+    $image = $picture->find('css', 'img.ecl-site-header__logo-image');
+    $this->assertInstanceOf(NodeElement::class, $image);
+    $this->assertStringContainsString('oe_theme/dist/eu/images/logo/condensed-version/positive/logo-eu--' . $langcode . '.svg', $image->getAttribute('src'));
   }
 
 }

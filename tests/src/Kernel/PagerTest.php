@@ -10,7 +10,7 @@ use Symfony\Component\DomCrawler\Crawler;
 /**
  * Tests the rendering of the pager component.
  *
- * @group batch3
+ * @group batch9
  */
 class PagerTest extends AbstractKernelTestBase {
 

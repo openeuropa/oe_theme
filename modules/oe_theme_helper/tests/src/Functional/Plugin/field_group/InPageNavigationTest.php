@@ -14,7 +14,7 @@ use OpenEuropa\TestingUtilities\Traits\CachedDatabaseInstallTrait;
 /**
  * Test In-page navigation field group.
  *
- * @group batch3
+ * @group batch7
  */
 class InPageNavigationTest extends BrowserTestBase {
 
@@ -40,8 +40,10 @@ class InPageNavigationTest extends BrowserTestBase {
    */
   protected static $modules = [
     'node',
-    'extra_field_test',
+    'text',
     'field_test',
+    'extra_field_test',
+    'field_ui',
     'field_group',
     'oe_theme_helper',
   ];
@@ -60,6 +62,7 @@ class InPageNavigationTest extends BrowserTestBase {
 
     // Enable and set OpenEuropa Theme as default.
     \Drupal::service('theme_installer')->install(['oe_theme']);
+    \Drupal::service('plugin.manager.sdc')->clearCachedDefinitions();
     \Drupal::configFactory()->getEditable('system.theme')->set('default', 'oe_theme')->save();
 
     // Create content type.

@@ -15,24 +15,9 @@ use Drupal\user\RoleInterface;
 /**
  * Tests that "Publication" content type renders correctly.
  *
- * @group batch3
+ * @group batch10
  */
 class ContentPublicationRenderTest extends ContentRenderTestBase {
-
-  /**
-   * {@inheritdoc}
-   */
-  protected static $modules = [
-    'config',
-    'block',
-    'system',
-    'path',
-    'oe_theme_helper',
-    'oe_theme_content_publication',
-    'oe_theme_content_organisation',
-    'oe_theme_content_organisation_reference',
-    'oe_multilingual',
-  ];
 
   /**
    * {@inheritdoc}

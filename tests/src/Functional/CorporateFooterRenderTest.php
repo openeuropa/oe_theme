@@ -14,7 +14,7 @@ use Symfony\Component\Yaml\Yaml;
 /**
  * Test footer block rendering.
  *
- * @group batch1
+ * @group batch8
  */
 class CorporateFooterRenderTest extends BrowserTestBase {
 
@@ -50,9 +50,15 @@ class CorporateFooterRenderTest extends BrowserTestBase {
 
   /**
    * {@inheritdoc}
+   *
+   * Kept identical to CorporateBlocksTest and SiteBrandingTest so the three
+   * share the same CachedDatabaseInstallTrait fingerprint and reuse a single
+   * cached database install.
    */
   protected static $modules = [
     'block',
+    'oe_search',
+    'oe_multilingual',
     'oe_theme_helper',
     'oe_corporate_blocks',
     'oe_corporate_site_info',
@@ -74,6 +80,7 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     $this->library = 'ec';
     // Enable and set OpenEuropa Theme as default.
     $this->container->get('theme_installer')->install(['oe_theme']);
+    \Drupal::service('plugin.manager.sdc')->clearCachedDefinitions();
     $this->config('system.theme')->set('default', 'oe_theme')->save();
     $this->container->set('theme.registry', NULL);
     $this->configFactory = $this->container->get('config.factory');
@@ -164,7 +171,7 @@ class CorporateFooterRenderTest extends BrowserTestBase {
 
     $actual = $section->find('css', 'div.ecl-site-footer__title a');
     $this->assertEquals('EC Site Name', $actual->getText());
-    $this->assertEquals('http://web:8080/build/', $actual->getAttribute('href'));
+    $this->assertEquals('http://web:8080/build/en', $actual->getAttribute('href'));
 
     $actual = $section->find('css', 'div.ecl-site-footer__description');
     $this->assertEquals('This site is managed by:ACP–EU Joint Assembly', $actual->getText());
@@ -179,7 +186,7 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     // Assert accessibility's link presence.
     $actual = $section->find('css', 'ul.ecl-site-footer__list--inline:nth-child(3) li:last-of-type a.ecl-link.ecl-link--standalone.ecl-site-footer__link');
     $this->assertEquals('Accessibility', $actual->getText());
-    $this->assertEquals('/build/', $actual->getAttribute('href'));
+    $this->assertEquals('/build/en', $actual->getAttribute('href'));
 
     $items = $data['legal_navigation'];
 
@@ -228,7 +235,7 @@ class CorporateFooterRenderTest extends BrowserTestBase {
 
     $actual = $section->find('css', 'div.ecl-site-footer__title a');
     $this->assertEquals('EC Standardised Site Name', $actual->getText());
-    $this->assertEquals('http://web:8080/build/', $actual->getAttribute('href'));
+    $this->assertEquals('http://web:8080/build/en', $actual->getAttribute('href'));
 
     $actual = $section->find('css', 'div.ecl-site-footer__description');
     $this->assertEquals('This site is managed by:DG XI – Internal Market', $actual->getText());
@@ -345,13 +352,13 @@ class CorporateFooterRenderTest extends BrowserTestBase {
 
     $actual = $section->find('css', 'div.ecl-site-footer__title a');
     $this->assertEquals('EU Site Name', $actual->getText());
-    $this->assertEquals('http://web:8080/build/', $actual->getAttribute('href'));
+    $this->assertEquals('http://web:8080/build/en', $actual->getAttribute('href'));
 
     $actual = $assert->elementExists('css', 'div.ecl-site-footer__description');
     $this->assertEquals('This site is co-managed by:<br>Directorate-General for Budget<br>Directorate-General for Economic and Financial Affairs', $actual->getHtml());
     $actual = $section->find('css', '.ecl-site-footer__section--site-info a.ecl-link.ecl-link--standalone.ecl-site-footer__link');
     $this->assertEquals('Accessibility', $actual->getText());
-    $this->assertEquals('/build/', $actual->getAttribute('href'));
+    $this->assertEquals('/build/en', $actual->getAttribute('href'));
 
     // Assert the subscribe action button in the site info section.
     $this->assertSubscribeActionButton($section, 'secondary-neutral', 'https://example.com/subscribe');
@@ -724,7 +731,7 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     $actual = $subsection->find('css', 'ul li:nth-child(1) > a');
     $expected = [
       'label' => 'Custom link altered',
-      'href' => '/build/',
+      'href' => '/build/en',
     ];
     $this->assertListLink($actual, $expected);
     // We should not have any icon present.
@@ -818,7 +825,7 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     $actual = $subsection->find('css', 'ul li:nth-child(1) > a');
     $expected = [
       'label' => 'Custom link altered',
-      'href' => '/build/',
+      'href' => '/build/en',
     ];
     $this->assertListLink($actual, $expected);
     // We should not have any icon present.

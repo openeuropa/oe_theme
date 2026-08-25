@@ -7,7 +7,6 @@ grumphp.yml
 junit-export
 composer.lock
 yarn.lock
-behat.yml
 runner.yml
 .idea
 .DS_Store

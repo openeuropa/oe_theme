@@ -12,7 +12,7 @@ use Drupal\oe_theme_helper\Plugin\Filter\FilterEclTable;
  *
  * @coversDefaultClass \Drupal\oe_theme_helper\Plugin\Filter\FilterEclTable
  *
- * @group batch1
+ * @group batch8
  */
 class FilterEclTableTest extends UnitTestCase {
 

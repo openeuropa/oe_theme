@@ -16,7 +16,7 @@ use Symfony\Component\DomCrawler\Crawler;
 /**
  * Tests that blocks are properly displayed.
  *
- * @group batch2
+ * @group batch9
  */
 class BlockTest extends EntityKernelTestBase {
 
@@ -58,6 +58,7 @@ class BlockTest extends EntityKernelTestBase {
     ]);
 
     $this->container->get('theme_installer')->install(['oe_theme']);
+    \Drupal::service('plugin.manager.sdc')->clearCachedDefinitions();
     $this->config('system.theme')->set('default', 'oe_theme')->save();
     $this->container->set('theme.registry', NULL);
 

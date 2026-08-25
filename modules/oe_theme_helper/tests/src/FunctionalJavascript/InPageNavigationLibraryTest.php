@@ -11,7 +11,7 @@ use OpenEuropa\TestingUtilities\Traits\CachedDatabaseInstallTrait;
 /**
  * Test the inpage navigation library.
  *
- * @group batch3
+ * @group batch1
  *
  * @group oe_theme_helper
  */
@@ -31,6 +31,10 @@ class InPageNavigationLibraryTest extends WebDriverTestBase {
    */
   protected static $modules = [
     'block',
+    'node_storage_body_field',
+    'oe_paragraphs',
+    'oe_paragraphs_demo',
+    'oe_theme_content_page',
     'oe_theme_helper',
     'oe_theme_inpage_navigation_test',
   ];
@@ -49,6 +53,7 @@ class InPageNavigationLibraryTest extends WebDriverTestBase {
 
     // Enable and set OpenEuropa Theme as default.
     $this->container->get('theme_installer')->install(['oe_theme']);
+    \Drupal::service('plugin.manager.sdc')->clearCachedDefinitions();
     $this->config('system.theme')->set('default', 'oe_theme')->save();
     $this->container->set('theme.registry', NULL);
   }

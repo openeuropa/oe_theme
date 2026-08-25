@@ -15,7 +15,7 @@ use Drupal\node\Entity\NodeType;
 /**
  * Tests the featured media formatter.
  *
- * @group batch2
+ * @group batch3
  */
 class FeaturedMediaFormatterTest extends AbstractKernelTestBase {
 

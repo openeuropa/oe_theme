@@ -14,7 +14,7 @@ use OpenEuropa\TestingUtilities\Traits\CachedDatabaseInstallTrait;
 /**
  * Test Inpage navigation in the content row paragraph.
  *
- * @group batch3
+ * @group batch1
  */
 class InPageNavigationParagraphTest extends WebDriverTestBase {
 
@@ -32,10 +32,12 @@ class InPageNavigationParagraphTest extends WebDriverTestBase {
    */
   protected static $modules = [
     'block',
-    'oe_theme_helper',
-    'oe_theme_content_page',
+    'node_storage_body_field',
     'oe_paragraphs',
     'oe_paragraphs_demo',
+    'oe_theme_content_page',
+    'oe_theme_helper',
+    'oe_theme_inpage_navigation_test',
   ];
 
   /**
@@ -52,6 +54,7 @@ class InPageNavigationParagraphTest extends WebDriverTestBase {
 
     // Enable and set OpenEuropa Theme as default.
     $this->container->get('theme_installer')->install(['oe_theme']);
+    \Drupal::service('plugin.manager.sdc')->clearCachedDefinitions();
     $this->config('system.theme')->set('default', 'oe_theme')->save();
     $this->container->set('theme.registry', NULL);
 

@@ -4,6 +4,9 @@ description: 'OpenEuropa theme test module.'
 package: OpenEuropa
 hidden: true
 core_version_requirement: ^10 || ^11
+dependencies:
+  - drupal:path
+  - drupal:text
 
 config_devel:
   install:

@@ -11,7 +11,7 @@ use Symfony\Component\DomCrawler\Crawler;
  *
  * @todo move the individual content type tests to their own classes.
  *
- * @group batch1
+ * @group batch8
  */
 class LegacyContentRenderTest extends ContentRenderTestBase {
 

@@ -16,26 +16,9 @@ use Drupal\user\RoleInterface;
 /**
  * Tests organisation (oe_organisation) content type render.
  *
- * @group batch1
+ * @group batch11
  */
 class ContentOrganisationRenderTest extends ContentRenderTestBase {
-
-  /**
-   * {@inheritdoc}
-   */
-  protected static $modules = [
-    'block',
-    'system',
-    'path',
-    'node',
-    'address',
-    'oe_theme_helper',
-    'oe_theme_content_entity_contact',
-    'oe_theme_content_organisation',
-    'oe_theme_content_person',
-    'page_header_metadata_test',
-    'media_avportal_mock',
-  ];
 
   /**
    * {@inheritdoc}

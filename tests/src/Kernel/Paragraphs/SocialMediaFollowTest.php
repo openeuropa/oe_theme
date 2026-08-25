@@ -10,7 +10,7 @@ use Symfony\Component\DomCrawler\Crawler;
 /**
  * Tests the "Social media follow" paragraph.
  *
- * @group batch2
+ * @group batch1
  */
 class SocialMediaFollowTest extends ParagraphsTestBase {
 

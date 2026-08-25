@@ -10,7 +10,7 @@ use Symfony\Component\DomCrawler\Crawler;
 /**
  * Tests the "content row" paragraph.
  *
- * @group batch2
+ * @group batch4
  */
 class ContentRowTest extends ParagraphsTestBase {
 

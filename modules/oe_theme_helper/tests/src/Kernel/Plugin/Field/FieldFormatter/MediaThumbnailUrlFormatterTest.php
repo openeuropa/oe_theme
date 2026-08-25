@@ -12,7 +12,7 @@ use Drupal\field\Entity\FieldStorageConfig;
 /**
  * Tests the media thumbnail url field formatter.
  *
- * @group batch2
+ * @group batch8
  */
 class MediaThumbnailUrlFormatterTest extends MediaThumbnailUrlFormatterTestBase {
 

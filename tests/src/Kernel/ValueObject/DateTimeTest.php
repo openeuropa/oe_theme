@@ -16,7 +16,7 @@ use Drupal\oe_theme\ValueObject\DateValueObjectInterface;
 /**
  * Test date value object with datetime field type.
  *
- * @group batch2
+ * @group batch1
  */
 class DateTimeTest extends DateTimeTestBase {
 
