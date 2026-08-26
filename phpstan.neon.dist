@@ -6,11 +6,6 @@ parameters:
     excludePaths:
         # @todo This class should be removed when no longer supporting phpunit 9.
         - %currentWorkingDirectory%/tests/src/EnsurePHPUnitBatchingTestExtension.php
-        # Ignore these as CKEditor 4 is not supported anymore and it will be removed in 6.x.
-        - %currentWorkingDirectory%/modules/oe_theme_helper/src/Plugin/CKEditorPlugin/EclTablePluginBase.php
-        - %currentWorkingDirectory%/modules/oe_theme_helper/src/Plugin/CKEditorPlugin/TableSimple.php
-        - %currentWorkingDirectory%/modules/oe_theme_helper/src/Plugin/CKEditorPlugin/TableSort.php
-        - %currentWorkingDirectory%/modules/oe_theme_helper/src/Plugin/CKEditorPlugin/TableZebraStriping.php
     ignoreErrors:
         # Backwards compatibility with Drupal versions below 11.3.
         - '#Call to deprecated function theme_get_setting\(\)#'

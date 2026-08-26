@@ -21,10 +21,6 @@ props:
       type: string
       title: 'Background image URL'
       description: "Background image URL, only displayed when the theme ECL branding is set to 'Core'."
-    overlay:
-      type: string
-      title: 'Overlay - Deprecated and will be removed in 5.x stable version.'
-      description: "Optional overlay on top of background image (can be 'light', 'dark'). Not used in ECL 5.x anymore."
     hide_title:
       type: boolean
       title: 'Hide title'
