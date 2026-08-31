@@ -8,5 +8,7 @@ if [ "$ECL_BUILD" = "dev" ]; then
 else
   echo "Building from stable release..."
   npm install --unsafe-perm
+  # Apply the ECL patches explicitly.
+  ./node_modules/.bin/patch-package
   NODE_ENV=production npm run build
 fi
