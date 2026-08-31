@@ -15,6 +15,7 @@ use Drupal\node\Entity\Node;
 use Drupal\node\NodeInterface;
 use Drupal\oe_content_entity_venue\Entity\Venue;
 use Drupal\user\Entity\User;
+use Symfony\Component\DomCrawler\Crawler;
 
 /**
  * Tests the event rendering.
@@ -169,7 +170,12 @@ class EventRenderTest extends ContentRenderTestBase {
           ],
         ],
       ]),
-      'badges' => NULL,
+      'badges' => [
+        [
+          'label' => 'Upcoming',
+          'variant' => 'medium',
+        ],
+      ],
       'meta' => ['Competitions and award ceremonies'],
       'image' => NULL,
       'date' => [
@@ -192,6 +198,10 @@ class EventRenderTest extends ContentRenderTestBase {
       [
         'label' => 'Highlighted',
         'variant' => 'highlight',
+      ],
+      [
+        'label' => 'Upcoming',
+        'variant' => 'medium',
       ],
     ];
     $assert->assertPattern($expected_values, $html);
@@ -253,6 +263,10 @@ class EventRenderTest extends ContentRenderTestBase {
     $build = $this->nodeViewBuilder->view($node, 'teaser');
     $html = $this->renderRoot($build);
     $expected_values['meta'] = ['Competitions and award ceremonies'];
+    $expected_values['badges'][1] = [
+      'label' => 'Ongoing',
+      'variant' => 'high',
+    ];
     $assert->assertPattern($expected_values, $html);
     $assert->assertVariant('date_ongoing', $html);
 
@@ -263,35 +277,58 @@ class EventRenderTest extends ContentRenderTestBase {
     $build = $this->nodeViewBuilder->view($node, 'teaser');
     $html = $this->renderRoot($build);
     $expected_values['meta'] = ['Competitions and award ceremonies'];
+    $expected_values['badges'][1] = [
+      'label' => 'Past',
+      'variant' => 'low',
+    ];
     $assert->assertPattern($expected_values, $html);
     $assert->assertVariant('date_past', $html);
 
-    // Set status as cancelled and rebuild the teaser.
-    $node->set('oe_event_status', 'cancelled')->save();
-    $build = $this->nodeViewBuilder->view($node, 'teaser');
-    $html = $this->renderRoot($build);
-    $expected_values['meta'] = [
-      'Competitions and award ceremonies',
-      'Cancelled',
-    ];
-    $assert->assertPattern($expected_values, $html);
+    // Move the current date back so the event is upcoming, then set each of
+    // the statuses that don't go as planned.
+    $static_time = new DrupalDateTime('2020-02-17 14:00:00', DateTimeItemInterface::STORAGE_TIMEZONE);
+    $time->setTime($static_time->getTimestamp());
+    foreach ([
+      'postponed' => 'Postponed',
+      'rescheduled' => 'Rescheduled',
+      'cancelled' => 'Cancelled',
+    ] as $status => $label) {
+      $node->set('oe_event_status', $status)->save();
+      $this->nodeViewBuilder->resetCache();
+      $build = $this->nodeViewBuilder->view($node, 'teaser');
+      $html = $this->renderRoot($build);
+      $expected_values['badges'][1] = [
+        'label' => $label,
+        'variant' => 'low',
+      ];
+      $assert->assertPattern($expected_values, $html);
+      // The status label replaces the one based on the event dates.
+      $crawler = new Crawler($html);
+      $this->assertCount(2, $crawler->filter('.ecl-content-block__label-container span.ecl-label'));
+    }
+    // A cancelled event is rendered as a past one.
     $assert->assertVariant('date_past', $html);
 
     // Unmark event online only.
     $node->set('oe_event_online_only', FALSE)->save();
 
     // Assert bulgarian translation.
+    $this->translateLocaleString('Cancelled', 'Отменено', 'bg');
     $config_factory = \Drupal::configFactory();
     $config_factory->getEditable('system.site')->set('default_langcode', 'bg')->save();
     \Drupal::languageManager()->reset();
+    $this->container->get('string_translation')->setDefaultLangcode('bg');
     $build = $this->nodeViewBuilder->view($node, 'teaser', 'bg');
     $html = $this->renderRoot($build);
     $expected_values['title'] = 'заглавието на моя възел';
-    $expected_values['badges'] = NULL;
-    $expected_values['meta'] = [
-      'Конкурси и церемонии по награждаване',
-      'Cancelled',
+    // The status label is translated.
+    $expected_values['badges'] = [
+      [
+        'label' => 'Отменено',
+        'variant' => 'low',
+      ],
     ];
+    $expected_values['meta'] = ['Конкурси и церемонии по награждаване'];
     $expected_values['url'] = '/bg/node/1';
     $expected_values['description'] = new PatternAssertState(new IconsTextAssert(), [
       'items' => [
@@ -317,6 +354,20 @@ class EventRenderTest extends ContentRenderTestBase {
     $build = $this->nodeViewBuilder->view($node, 'teaser', 'bg');
     $html = $this->renderRoot($build);
     unset($expected_values['meta']);
+    $assert->assertPattern($expected_values, $html);
+
+    // The labels based on the event dates are translated as well.
+    $this->translateLocaleString('Upcoming', 'Предстоящ', 'bg');
+    $node->set('oe_event_status', 'as_planned')->save();
+    $this->nodeViewBuilder->resetCache();
+    $build = $this->nodeViewBuilder->view($node, 'teaser', 'bg');
+    $html = $this->renderRoot($build);
+    $expected_values['badges'] = [
+      [
+        'label' => 'Предстоящ',
+        'variant' => 'medium',
+      ],
+    ];
     $assert->assertPattern($expected_values, $html);
   }
 

@@ -72,6 +72,13 @@ function oe_theme_content_event_theme() {
         'icon' => '',
       ],
     ],
+    'oe_theme_content_event_status' => [
+      'variables' => [
+        'label' => '',
+        'name' => '',
+        'variant' => '',
+      ],
+    ],
   ];
 }
 
@@ -107,9 +114,18 @@ function oe_theme_content_event_node_view_alter(array &$build, EntityInterface $
 /**
  * Implements template_preprocess_node() for the Event node type.
  */
-function oe_theme_content_event_preprocess_node__oe_event__teaser(array &$variables) {
+function oe_theme_content_event_preprocess_node__oe_event__teaser(array &$variables): void {
   /** @var \Drupal\node\NodeInterface $node */
   $node = $variables['node'];
   $dates = $node->get('oe_event_dates')->first();
   $variables['pattern_date'] = DateValueObject::fromDateRangeItem($dates);
+
+  if (!isset($variables['elements']['extra_field_oe_theme_content_event_status'])) {
+    return;
+  }
+  $status = $variables['elements']['extra_field_oe_theme_content_event_status'][0];
+  $variables['badges'][] = [
+    'label' => $status['#label']->render(),
+    'variant' => $status['#variant'],
+  ];
 }

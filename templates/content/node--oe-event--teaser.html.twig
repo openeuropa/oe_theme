@@ -11,6 +11,8 @@
 {% endif %}
 {% set detail = content.extra_field_oe_theme_content_event_teaser_details %}
 {% set additional_information = [] %}
+{% set bubble_cache = content.extra_field_oe_theme_content_event_status|render %}
+
 {% block content %}
   {% include 'oe_theme:list_item' with {
     'variant': variant|default('date'),

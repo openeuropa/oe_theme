@@ -240,6 +240,7 @@ content:
 hidden:
   body: true
   extra_field_oe_theme_content_event_date_aware_status: true
+  extra_field_oe_theme_content_event_status: true
   extra_field_oe_theme_content_event_teaser_details: true
   extra_field_oe_theme_content_event_teaser_meta: true
   extra_field_oe_theme_helper_short_title_with_fallback: true
