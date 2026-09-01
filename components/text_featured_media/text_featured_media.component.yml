@@ -36,6 +36,10 @@ props:
       type: ['string', 'null']
       title: Title
       description: 'The title, displayed above text and media.'
+    micro_title:
+      type: ['string', 'null']
+      title: 'Micro title'
+      description: 'The micro title is a small additional title displayed above the title.'
     video:
       type: ['object', 'null']
       title: Video
