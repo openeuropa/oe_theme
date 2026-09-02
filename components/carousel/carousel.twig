@@ -19,11 +19,13 @@
   {% endif %}
   {% set _picture = [] %}
   {% if item.image is not empty %}
+    {% set _image_anchor = item.image_anchor|default('50% 50%') %}
     {% set _picture = {
       img: {
         src: item.image|default(''),
         alt: item.image_alt|default(''),
-      }
+      },
+      image_anchor: _image_anchor,
     } %}
   {% endif %}
   {% if item.sources is not empty and item.sources is iterable %}
