@@ -861,20 +861,21 @@
       button_label: "Download"
       file:
         title: "File title example"
-        name: "document.pdf"
+        name: "document.xlsx"
         url: "http://example.com"
-        mime: "application/pdf"
-        extension: "pdf"
+        mime: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+        extension: "xlsx"
         size: "10000"
         language_code: "en"
   assertions:
     count:
       'span.ecl-file__icon': 1
+      'span.ecl-file__icon.wt-icon-phosphor--file-xls': 1
       'a.ecl-file__download[href="http://example.com"]': 1
     equals:
       'div.ecl-file__title': "File title example"
       'span.ecl-file__language': "English"
-      'span.ecl-file__meta': "(9.77 KB - PDF)"
+      'span.ecl-file__meta': "(9.77 KB - XLSX)"
       'a.ecl-file__download .ecl-link__label span:first-child': "Download"
 - structure:
     '#type': component
@@ -923,6 +924,7 @@
   assertions:
     count:
       'span.ecl-file__icon': 1
+      'span.ecl-file__icon.wt-icon-phosphor--file-pdf': 1
       'a.ecl-file__download[href="http://example.com"]': 1
       'a.ecl-file__download[data-attribute-foo="bar"]': 1
       'ul.ecl-file__translation-list': 1
@@ -950,7 +952,7 @@
       '.ecl-file__translation-item:nth-child(3) div.ecl-file__translation-meta': "(166.02 KB - PDF)"
       '.ecl-file__translation-item:nth-child(4) div.ecl-file__translation-title[lang="pt"]': "português"
       '.ecl-file__translation-item:nth-child(4) div.ecl-file__translation-meta': "(175.78 KB - DOC)"
-      '.ecl-file__info ul.ecl-file__primary-meta li.ecl-file__primary-meta-item:nth-child(1)': '31 AUGUST 2020'
+      '.ecl-file__info ul.ecl-file__primary-meta li.ecl-file__primary-meta-item:nth-child(1)': '31 August 2020'
 - structure:
     '#type': component
     '#component': 'oe_theme:file_translation'
@@ -1018,7 +1020,7 @@
       'span.ecl-file__language': "English"
       'span.ecl-file__meta': "(9.77 KB - PDF)"
       'a.ecl-file__download .ecl-link__label span:first-child': "Download"
-      '.ecl-file__info ul.ecl-file__primary-meta li.ecl-file__primary-meta-item:nth-child(1)': '31 AUGUST 2020'
+      '.ecl-file__info ul.ecl-file__primary-meta li.ecl-file__primary-meta-item:nth-child(1)': '31 August 2020'
 - structure:
     '#type': component
     '#component': 'oe_theme:file_teaser'
@@ -1098,9 +1100,9 @@
       'img.ecl-file__image[src="https://inno-ecl.s3.amazonaws.com/media/examples/example-image.jpg"]': 1
       'img.ecl-file__image[alt="thumbnail alt"]': 1
       'a.ecl-file__download[href="http://example.com"]': 1
-      'div.ecl-file.ecl-file--thumbnail[extra-attr="extra value"]': 1
+      'div.ecl-file[extra-attr="extra value"]': 1
       'a.ecl-file__download[data-attribute-foo="bar"]': 1
-      'div.ecl-file.ecl-file--thumbnail': 1
+      'div.ecl-file': 1
       'article.ecl-file__container div.ecl-file__info ul.ecl-file__primary-meta': 1
       'article.ecl-file__container div.ecl-file__info': 1
       'ul.ecl-file__translation-list': 1
@@ -1112,6 +1114,8 @@
       'a.ecl-file__translation-download[href="http://example.com/document_pt.doc"]': 1
       'a.ecl-file__translation-download[data-attribute-translation-foo="bar"]': 4
       'div.ecl-file__label span.ecl-label.ecl-label--highlight': 1
+      'div.ecl-file__icon-box': 0
+      'span.ecl-file__icon': 0
     equals:
       'div.ecl-file__info div.ecl-file__title': "Example document"
       'div.ecl-file__info div.ecl-file__description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer quis lorem tellus. Nullam sollicitudin suscipit diam, ac blandit ipsum tempor consectetur. Duis vitae pulvinar turpis. Donec maximus pharetra ex a ultricies.'
@@ -1186,7 +1190,7 @@
       'img.ecl-file__image[alt="thumbnail alt"]': 1
       'a.ecl-file__download[href="http://example.com"]': 1
       'a.ecl-file__download[data-attribute-foo="bar"]': 0
-      'div.ecl-file.ecl-file--thumbnail': 1
+      'div.ecl-file': 1
       'article.ecl-file__container div.ecl-file__info ul.ecl-file__primary-meta': 1
       'article.ecl-file__container div.ecl-file__info': 1
       'ul.ecl-file__translation-list': 1
@@ -1197,13 +1201,13 @@
       'div.ecl-file__lists': 1
       'dl.ecl-description-list': 1
       'dt.ecl-description-list__term': 3
-      'dd.ecl-description-list__definition.ecl-description-list__definition--taxonomy': 3
+      'dd.ecl-description-list__definition.ecl-description-list__definition--inline': 3
       'li.ecl-description-list__definition-item': 7
       'li.ecl-description-list__definition-item a.ecl-link.ecl-link--standalone': 3
       'li.ecl-description-list__definition-item a.ecl-link.ecl-link--standalone.ecl-link--icon': 2
       'div.ecl-file__label span.ecl-label.ecl-label--highlight': 0
-      'dd.ecl-description-list__definition--taxonomy:nth-of-type(3) li.ecl-description-list__definition-item:nth-of-type(2) a span.ecl-link__icon.wt-icon--external': 1
-      'dd.ecl-description-list__definition--taxonomy:nth-of-type(3) li.ecl-description-list__definition-item:nth-of-type(3) a span.ecl-link__icon.wt-icon--external': 1
+      'dd.ecl-description-list__definition--inline:nth-of-type(3) li.ecl-description-list__definition-item:nth-of-type(2) a span.ecl-link__icon.wt-icon--external': 1
+      'dd.ecl-description-list__definition--inline:nth-of-type(3) li.ecl-description-list__definition-item:nth-of-type(3) a span.ecl-link__icon.wt-icon--external': 1
     equals:
       'div.ecl-file__info div.ecl-file__title': "Example document"
       'div.ecl-file__info div.ecl-file__description': 'Lorem...'
@@ -1218,13 +1222,13 @@
       'dt.ecl-description-list__term:nth-of-type(1)': 'Keywords'
       'dt.ecl-description-list__term:nth-of-type(2)': 'Country'
       'dt.ecl-description-list__term:nth-of-type(3)': 'External links'
-      'dd.ecl-description-list__definition--taxonomy:nth-of-type(1) li.ecl-description-list__definition-item:nth-of-type(1)': 'Apple'
-      'dd.ecl-description-list__definition--taxonomy:nth-of-type(1) li.ecl-description-list__definition-item:nth-of-type(2)': 'Orange'
-      'dd.ecl-description-list__definition--taxonomy:nth-of-type(2) li.ecl-description-list__definition-item:nth-of-type(1)': 'Belgium'
-      'dd.ecl-description-list__definition--taxonomy:nth-of-type(2) li.ecl-description-list__definition-item:nth-of-type(2)': 'Hungary'
-      'dd.ecl-description-list__definition--taxonomy:nth-of-type(3) li.ecl-description-list__definition-item:nth-of-type(1) a[href="https://example.com/1"]': 'First external link'
-      'dd.ecl-description-list__definition--taxonomy:nth-of-type(3) li.ecl-description-list__definition-item:nth-of-type(2) a[href="https://example.com/2"] .ecl-link__label': 'Second external link'
-      'dd.ecl-description-list__definition--taxonomy:nth-of-type(3) li.ecl-description-list__definition-item:nth-of-type(3) a[href="https://example.com/3"] .ecl-link__label': 'https://example.com/3'
+      'dd.ecl-description-list__definition--inline:nth-of-type(1) li.ecl-description-list__definition-item:nth-of-type(1)': 'Apple'
+      'dd.ecl-description-list__definition--inline:nth-of-type(1) li.ecl-description-list__definition-item:nth-of-type(2)': 'Orange'
+      'dd.ecl-description-list__definition--inline:nth-of-type(2) li.ecl-description-list__definition-item:nth-of-type(1)': 'Belgium'
+      'dd.ecl-description-list__definition--inline:nth-of-type(2) li.ecl-description-list__definition-item:nth-of-type(2)': 'Hungary'
+      'dd.ecl-description-list__definition--inline:nth-of-type(3) li.ecl-description-list__definition-item:nth-of-type(1) a[href="https://example.com/1"]': 'First external link'
+      'dd.ecl-description-list__definition--inline:nth-of-type(3) li.ecl-description-list__definition-item:nth-of-type(2) a[href="https://example.com/2"] .ecl-link__label': 'Second external link'
+      'dd.ecl-description-list__definition--inline:nth-of-type(3) li.ecl-description-list__definition-item:nth-of-type(3) a[href="https://example.com/3"] .ecl-link__label': 'https://example.com/3'
 - structure:
     '#type': component
     '#component': 'oe_theme:file_teaser'
@@ -1247,7 +1251,7 @@
       translation_toggle_label: "Other translations"
   assertions:
     count:
-      'div.ecl-file.ecl-file--thumbnail': 1
+      'div.ecl-file': 1
       'a.ecl-file__download[href="http://example.com"]': 1
       'button.ecl-file__translation-toggle': 0
       'ul.ecl-file__translation-list': 0
@@ -1258,6 +1262,35 @@
       'div.ecl-file__info div.ecl-file__description': 'Lorem ipsum dolor sit amet.'
       'footer.ecl-file__footer span.ecl-file__language': "English"
       'footer.ecl-file__footer a.ecl-file__download .ecl-link__label span:first-child': "Download"
+- structure:
+    '#type': component
+    '#component': 'oe_theme:file_teaser'
+    '#props':
+      button_label: "Download"
+      teaser: "Lorem ipsum dolor sit amet."
+      file:
+        title: "Example document"
+        name: "document.docx"
+        url: "http://example.com"
+        mime: "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+        extension: "docx"
+        size: "140000"
+        language_code: "en"
+      resource_type: "RESOURCE TYPE"
+      publication_date: "2020-31-08"
+  assertions:
+    count:
+      'div.ecl-file': 1
+      'picture.ecl-file__picture': 0
+      'div.ecl-file__info div.ecl-file__icon-box': 1
+      'div.ecl-file__icon-box span.ecl-file__icon': 1
+      'div.ecl-file__icon-box span.ecl-file__icon.wt-icon-phosphor--file-doc': 1
+      'a.ecl-file__download[href="http://example.com"]': 1
+    equals:
+      'div.ecl-file__info div.ecl-file__title': "Example document"
+      'div.ecl-file__info div.ecl-file__description': 'Lorem ipsum dolor sit amet.'
+      'footer.ecl-file__footer span.ecl-file__language': "English"
+      'footer.ecl-file__footer span.ecl-file__meta': "(136.72 KB - DOCX)"
 - structure:
     '#type': component
     '#component': 'oe_theme:file_image'

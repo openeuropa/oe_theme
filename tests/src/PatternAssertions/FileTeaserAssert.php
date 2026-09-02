@@ -18,11 +18,11 @@ class FileTeaserAssert extends FileTranslationAssert {
     $assertions = parent::getAssertions($variant);
     $assertions['thumbnail'] = [
       [$this, 'assertImage'],
-      'div.ecl-file--thumbnail article.ecl-file__container picture.ecl-file__picture img.ecl-file__image',
+      'div.ecl-file article.ecl-file__container picture.ecl-file__picture img.ecl-file__image',
     ];
     $assertions['teaser'] = [
       [$this, 'assertElementText'],
-      'div.ecl-file--thumbnail article.ecl-file__container div.ecl-file__info div.ecl-file__description',
+      'div.ecl-file article.ecl-file__container div.ecl-file__info div.ecl-file__description',
     ];
     $assertions['meta'] = [
       [$this, 'assertMeta'],
@@ -35,7 +35,7 @@ class FileTeaserAssert extends FileTranslationAssert {
     ];
     $assertions['badge'] = [
       [$this, 'assertBadge'],
-      'div.ecl-file--thumbnail article.ecl-file__container div.ecl-file__info div.ecl-file__label',
+      'div.ecl-file article.ecl-file__container div.ecl-file__info div.ecl-file__label',
     ];
     return $assertions;
   }
@@ -50,13 +50,13 @@ class FileTeaserAssert extends FileTranslationAssert {
    */
   protected function assertMeta($expected_metas, Crawler $crawler): void {
     if (is_null($expected_metas)) {
-      $this->assertElementNotExists('div.ecl-file--thumbnail article.ecl-file__container div.ecl-file__info ul.ecl-file__primary-meta li.ecl-file__primary-meta-item', $crawler);
+      $this->assertElementNotExists('div.ecl-file article.ecl-file__container div.ecl-file__info ul.ecl-file__primary-meta li.ecl-file__primary-meta-item', $crawler);
       return;
     }
     if (!is_array($expected_metas)) {
       $expected_metas = [$expected_metas];
     }
-    $meta_items = $crawler->filter('div.ecl-file--thumbnail article.ecl-file__container div.ecl-file__info ul.ecl-file__primary-meta li.ecl-file__primary-meta-item');
+    $meta_items = $crawler->filter('div.ecl-file article.ecl-file__container div.ecl-file__info ul.ecl-file__primary-meta li.ecl-file__primary-meta-item');
     self::assertCount(count($expected_metas), $meta_items, 'The expected meta item number does not correspond with the found meta item number.');
     foreach ($expected_metas as $index => $expected_meta) {
       self::assertEquals($expected_meta, trim($meta_items->eq($index)->text()), \sprintf('The expected text of the meta number %s does not correspond to the found meta text.', $index));
@@ -73,11 +73,11 @@ class FileTeaserAssert extends FileTranslationAssert {
    */
   protected function assertLists($expected_lists, Crawler $crawler): void {
     if (is_null($expected_lists)) {
-      $this->assertElementNotExists('div.ecl-file--thumbnail article.ecl-file__container div.ecl-file__lists', $crawler);
+      $this->assertElementNotExists('div.ecl-file article.ecl-file__container div.ecl-file__lists', $crawler);
       return;
     }
-    $list_terms = $crawler->filter('div.ecl-file--thumbnail article.ecl-file__container div.ecl-file__lists dl.ecl-description-list dt.ecl-description-list__term');
-    $list_definitions = $crawler->filter('div.ecl-file--thumbnail article.ecl-file__container div.ecl-file__lists dl.ecl-description-list dd.ecl-description-list__definition.ecl-description-list__definition--taxonomy');
+    $list_terms = $crawler->filter('div.ecl-file article.ecl-file__container div.ecl-file__lists dl.ecl-description-list dt.ecl-description-list__term');
+    $list_definitions = $crawler->filter('div.ecl-file article.ecl-file__container div.ecl-file__lists dl.ecl-description-list dd.ecl-description-list__definition.ecl-description-list__definition--inline');
     self::assertCount(count($expected_lists), $list_terms, 'The expected list number does not correspond with the found list number.');
     foreach ($expected_lists as $index => $expected_list) {
       foreach ($expected_list as $term => $definitions) {
@@ -92,12 +92,24 @@ class FileTeaserAssert extends FileTranslationAssert {
    */
   protected function assertFile(array $expected_file, Crawler $crawler): void {
     // Assert title.
-    $this->assertElementText($expected_file['title'], 'div.ecl-file--thumbnail article.ecl-file__container div.ecl-file__title', $crawler);
+    $this->assertElementText($expected_file['title'], 'div.ecl-file article.ecl-file__container div.ecl-file__title', $crawler);
 
     // Assert information.
-    $file_footer = $crawler->filter('div.ecl-file.ecl-file--thumbnail footer.ecl-file__footer');
+    $file_footer = $crawler->filter('div.ecl-file footer.ecl-file__footer');
     $this->assertElementText($expected_file['language'], 'span.ecl-file__language', $file_footer);
     $this->assertElementText($expected_file['meta'], 'span.ecl-file__meta', $file_footer);
+
+    // Assert icon. It is rendered only when no thumbnail is provided, as the
+    // thumbnail takes its place.
+    if (array_key_exists('icon', $expected_file)) {
+      $icon_selector = 'div.ecl-file article.ecl-file__container span.ecl-file__icon';
+      if (is_null($expected_file['icon'])) {
+        $this->assertElementNotExists($icon_selector, $crawler);
+      }
+      else {
+        self::assertCount(1, $crawler->filter($icon_selector . '.wt-icon-phosphor--' . $expected_file['icon']));
+      }
+    }
 
     // Assert download link.
     $this->assertElementAttribute($expected_file['url'], 'a.ecl-file__download', 'href', $file_footer);

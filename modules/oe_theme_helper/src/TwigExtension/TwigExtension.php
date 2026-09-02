@@ -214,49 +214,78 @@ class TwigExtension extends AbstractExtension {
   }
 
   /**
-   * Get file icon class given its extension.
+   * Get file icon name given its extension.
    *
    * @param string $extension
    *   File extension.
    *
    * @return string
-   *   File icon class name.
+   *   File icon name.
    */
   public function toFileIcon(string $extension): string {
     $extension = strtolower($extension);
     $extension_mapping = [
-      'image' => [
-        'jpg',
-        'jpeg',
-        'gif',
-        'png',
-        'webp',
+      'file-pdf' => [
+        'pdf',
       ],
-      'presentation' => [
-        'ppt',
-        'pptx',
-        'pps',
-        'ppsx',
-        'odp',
+      'file-doc' => [
+        'doc',
+        'docm',
+        'docx',
+        'dot',
+        'dotm',
+        'dotx',
+        'odt',
       ],
-      'spreadsheet' => [
-        'xls',
-        'xlsx',
+      'file-xls' => [
         'ods',
+        'xla',
+        'xlam',
+        'xls',
+        'xlsb',
+        'xlsm',
+        'xlsx',
+        'xlt',
+        'xltm',
+        'xltx',
       ],
-      'video' => [
-        'mp4',
-        'mov',
-        'mpeg',
-        'avi',
-        'm4v',
-        'webm',
+      'file-ppt' => [
+        'odp',
+        'ppa',
+        'ppam',
+        'pps',
+        'ppsm',
+        'ppsx',
+        'ppt',
+        'potm',
+        'potx',
+        'pot',
+        'pptm',
+        'pptx',
+      ],
+      'file-txt' => [
+        'text',
+        'txt',
+      ],
+      'file-md' => [
+        'md',
+      ],
+      'file-text' => [
+        'info',
+        'odf',
+        'readme',
+      ],
+      'file-image' => [
+        'eps',
+      ],
+      'file-zip' => [
+        'zip',
       ],
     ];
 
-    foreach ($extension_mapping as $file_type => $extensions) {
+    foreach ($extension_mapping as $icon => $extensions) {
       if (in_array($extension, $extensions)) {
-        return $file_type;
+        return $icon;
       }
     }
 
