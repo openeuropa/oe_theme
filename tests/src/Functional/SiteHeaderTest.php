@@ -233,9 +233,9 @@ class SiteHeaderTest extends BrowserTestBase {
       $this->assertStringContainsString('Search', $search_button->getText());
 
       // Assert the search form.
-      $search_form = $assert->elementExists('css', "form.ecl-search-form.ecl-site-header__search#oe-search-search-form[role='search'][method='post'][accept-charset='UTF-8'][data-ecl-search-form]", $search);
+      $search_form = $assert->elementExists('css', "form.ecl-search-form.ecl-site-header__search#oe-search-search-form[method='post'][accept-charset='UTF-8'][data-ecl-search-form]", $search);
       // Assert its label and input elements.
-      $this->assertEquals('Search', $search_form->find('css', "div.ecl-form-group label[for='edit-keys'].ecl-form-label.ecl-search-form__label")
+      $this->assertEquals('Search', $search_form->find('css', "div.ecl-form-group label[for='edit-keys'] .ecl-form-label")
         ->getText());
       $assert->elementExists('css', "div.ecl-form-group input#edit-keys.ecl-text-input.ecl-text-input--m.ecl-search-form__text-input[name='keys'][type='search']", $search_form);
       // Assert the search form button.

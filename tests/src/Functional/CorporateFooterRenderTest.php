@@ -220,7 +220,7 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     $this->assertSocialLink($social_label, $social_link, $expected);
 
     // Assert the common extra link.
-    $extra_link = $section->find('css', '.ecl-site-footer__extra-links-container ul.ecl-site-footer__list--inline li > a');
+    $extra_link = $section->find('css', '.ecl-site-footer__extra-links-container .ecl-site-footer__list--inline .ecl-site-footer__list-item > a');
     $expected = [
       'label' => 'Contact us',
       'href' => 'https://commission.europa.eu/about/contact_en',
@@ -761,14 +761,13 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     $this->library = 'ec';
     $this->configFactory->getEditable('oe_theme.settings')->set('component_library', $this->library)->save();
     $this->drupalGet('<front>');
-
     $column = $assert->elementExists('css', 'footer.ecl-site-footer div.ecl-site-footer__row--specific div.ecl-site-footer__section--links .ecl-site-footer__row');
     $subsection = $assert->elementExists('css', '.ecl-site-footer__section--contact', $column);
 
     $actual = $assert->elementExists('css', '.ecl-site-footer__title', $subsection);
     $this->assertEquals('Contact us', $actual->getText());
 
-    $actual = $subsection->find('css', 'ul li:nth-child(1) > a');
+    $actual = $subsection->find('css', '.ecl-site-footer__list-item:first-child a');
     $expected = [
       'label' => 'Custom contact 1',
       'href' => 'http://example.com/custom-contact-1',
@@ -782,7 +781,7 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     $actual = $assert->elementExists('css', '.ecl-site-footer__title', $subsection);
     $this->assertEquals('About us', $actual->getText());
 
-    $actual = $subsection->find('css', 'ul li:nth-child(1) > a');
+    $actual = $subsection->find('css', '.ecl-site-footer__list-item:first-child a');
     $expected = [
       'label' => 'Custom about 1',
       'href' => 'http://example.com/custom-about-1',
@@ -822,7 +821,7 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     $actual = $assert->elementExists('css', '.ecl-site-footer__title', $subsection);
     $this->assertEquals('Section altered', $actual->getText());
 
-    $actual = $subsection->find('css', 'ul li:nth-child(1) > a');
+    $actual = $subsection->find('css', '.ecl-site-footer__list-item:first-child a');
     $expected = [
       'label' => 'Custom link altered',
       'href' => '/build/en',
@@ -836,7 +835,7 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     $actual = $assert->elementExists('css', '.ecl-site-footer__title', $subsection);
     $this->assertEquals('Related links', $actual->getText());
 
-    $actual = $subsection->find('css', 'ul li:nth-child(1) > a');
+    $actual = $subsection->find('css', '.ecl-site-footer__list-item:first-child a');
     $expected = [
       'label' => 'Custom related 1',
       'href' => 'http://example.com/custom-related-1',
@@ -855,7 +854,7 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     $actual = $assert->elementExists('css', '.ecl-site-footer__title', $subsection);
     $this->assertEquals('Contact us', $actual->getText());
 
-    $actual = $subsection->find('css', 'ul li:nth-child(1) > a');
+    $actual = $subsection->find('css', '.ecl-site-footer__list-item:first-child a');
     $expected = [
       'label' => 'Custom contact 1',
       'href' => 'http://example.com/custom-contact-1',
@@ -869,7 +868,7 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     $actual = $assert->elementExists('css', '.ecl-site-footer__title', $subsection);
     $this->assertNotEquals('About us', $actual->getText());
     $this->assertEquals('Related links', $actual->getText());
-    $actual = $subsection->find('css', 'ul li:nth-child(1) > a');
+    $actual = $subsection->find('css', '.ecl-site-footer__list-item:first-child a');
     $expected = [
       'label' => 'Custom related 1',
       'href' => 'http://example.com/custom-related-1',
@@ -883,10 +882,9 @@ class CorporateFooterRenderTest extends BrowserTestBase {
       'url' => 'http://ec.europa.eu/info',
     ]);
     $this->drupalGet('<front>');
-
     $column = $assert->elementExists('css', 'footer.ecl-site-footer div.ecl-site-footer__row:nth-child(1) div.ecl-site-footer__row:nth-child(3)');
     $subsection = $assert->elementExists('css', '.ecl-site-footer__section:nth-child(1)', $column);
-    $actual = $subsection->find('css', 'ul li:nth-child(1) > a');
+    $actual = $subsection->find('css', '.ecl-site-footer__list-item:first-child a');
     $expected = [
       'label' => 'Custom link altered',
       'href' => 'http://ec.europa.eu/info',
@@ -1043,7 +1041,7 @@ class CorporateFooterRenderTest extends BrowserTestBase {
   }
 
   /**
-   * Assert link has correct data and ecl classes.
+   * Assert link with Icon has correct data and ecl classes.
    *
    * @param \Behat\Mink\Element\NodeElement $label
    *   The link label element.

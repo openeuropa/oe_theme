@@ -60,7 +60,7 @@
       'select[data-ecl-select-multiple]': 0
       'div.ecl-select__icon span.ecl-icon.ecl-icon--xs.ecl-icon--rotate-180.ecl-button__icon.wt-icon--corner-arrow': 1
     equals:
-      'div.ecl-form-group label.ecl-form-label': 'Select element'
+      'div.ecl-form-group label .ecl-form-label': 'Select element'
       'div.ecl-form-group div.ecl-select__container.ecl-select__container--m select.ecl-select option[value="1"]': 'One'
       'div.ecl-form-group div.ecl-select__container.ecl-select__container--m select.ecl-select option[value="2"]': 'Two'
       'div.ecl-form-group div.ecl-select__container.ecl-select__container--m select.ecl-select option[value="3"]': 'Three'
@@ -80,7 +80,7 @@
       'select[data-ecl-select-multiple]': 1
       'div.ecl-select__icon span.ecl-icon.ecl-icon--xs.ecl-icon--rotate-180.ecl-button__icon.wt-icon--corner-arrow': 1
     equals:
-      'div.ecl-form-group label.ecl-form-label': 'Select element'
+      'div.ecl-form-group label .ecl-form-label': 'Select element'
       'div.ecl-form-group div.ecl-select__container.ecl-select__container--m select.ecl-select option[value="1"]': 'One'
       'div.ecl-form-group div.ecl-select__container.ecl-select__container--m select.ecl-select option[value="2"]': 'Two'
       'div.ecl-form-group div.ecl-select__container.ecl-select__container--m select.ecl-select option[value="3"]': 'Three'
@@ -101,7 +101,7 @@
       'select[data-ecl-select-multiple]': 0
       'div.ecl-select__icon span.ecl-icon.ecl-icon--xs.ecl-icon--rotate-180.ecl-button__icon.wt-icon--corner-arrow': 1
     equals:
-      'div.ecl-form-group label.ecl-form-label': 'Select element'
+      'div.ecl-form-group label .ecl-form-label': 'Select element'
       'div.ecl-form-group div.ecl-select__container.ecl-select__container--m select.ecl-select option[value="1"]': 'One'
       'div.ecl-form-group div.ecl-select__container.ecl-select__container--m select.ecl-select optgroup[label="Two"] option[value="2.1"]': 'Two point one'
       'div.ecl-form-group div.ecl-select__container.ecl-select__container--m select.ecl-select optgroup[label="Two"] option[value="2.2"]': 'Two point two'
@@ -126,7 +126,7 @@
       'div.ecl-form-group select.ecl-select[data-ecl-select-close="Close"]': 1
       'div.ecl-form-group select.ecl-select[data-ecl-select-submit]': 0
     equals:
-      'div.ecl-form-group label.ecl-form-label': 'Select element'
+      'div.ecl-form-group label .ecl-form-label': 'Select element'
       'div.ecl-form-group div.ecl-select__container.ecl-select__container--m select.ecl-select option[value="1"]': 'One'
       'div.ecl-form-group div.ecl-select__container.ecl-select__container--m select.ecl-select optgroup[label="Two"] option[value="2.1"]': 'Two point one'
       'div.ecl-form-group div.ecl-select__container.ecl-select__container--m select.ecl-select optgroup[label="Two"] option[value="2.2"]': 'Two point two'
@@ -141,10 +141,10 @@
       3: Three
   assertions:
     count:
-      'div.ecl-form-group label.ecl-form-label.ecl-form-label--hidden': 1
-      'div.ecl-form-group label.ecl-form-label:not(.ecl-form-label--hidden)': 0
+      'div.ecl-form-group label .ecl-form-label.ecl-form-label--hidden': 1
+      'div.ecl-form-group label .ecl-form-label:not(.ecl-form-label--hidden)': 0
     equals:
-      'div.ecl-form-group label.ecl-form-label': 'Select invisible label'
+      'div.ecl-form-group label .ecl-form-label': 'Select invisible label'
 - structure:
     '#type': select
     '#title': Select visible label
@@ -155,10 +155,10 @@
       3: Three
   assertions:
     count:
-      'div.ecl-form-group label.ecl-form-label.ecl-form-label--hidden': 0
-      'div.ecl-form-group label.ecl-form-label:not(.ecl-form-label--hidden)': 1
+      'div.ecl-form-group label .ecl-form-label.ecl-form-label--hidden': 0
+      'div.ecl-form-group label .ecl-form-label:not(.ecl-form-label--hidden)': 1
     equals:
-      'div.ecl-form-group label.ecl-form-label': 'Select visible label'
+      'div.ecl-form-group label .ecl-form-label': 'Select visible label'
 - structure:
     '#type': select
     '#title': Select element
@@ -929,7 +929,7 @@
       'a.ecl-file__download[data-attribute-foo="bar"]': 1
       'ul.ecl-file__translation-list': 1
       'li.ecl-file__translation-item a.ecl-file__translation-download': 4
-      'button.ecl-file__translation-toggle[aria-label="Other translations (4)"]': 1
+      'button.ecl-file__translation-toggle[aria-label="Other translations (4) - English"]': 1
       'a.ecl-file__translation-download[href="http://example.com/document_fr.xls"]': 1
       'a.ecl-file__translation-download[href="http://example.com/document_it.ppt"]': 1
       'a.ecl-file__translation-download[href="http://example.com/document_hu.pdf"]': 1
@@ -938,7 +938,7 @@
       'a.ecl-file__translation-download[hreflang="it"]': 1
       'a.ecl-file__translation-download[hreflang="hu"]': 1
       'a.ecl-file__translation-download[hreflang="pt"]': 1
-      '.ecl-file__info ul.ecl-file__primary-meta li.ecl-file__primary-meta-item': 1
+      '.ecl-file__info .ecl-file__content .ecl-file__primary-meta .ecl-file__primary-meta-item': 1
     equals:
       'div.ecl-file__title': "File title example"
       'span.ecl-file__language': "English"
@@ -952,7 +952,7 @@
       '.ecl-file__translation-item:nth-child(3) div.ecl-file__translation-meta': "(166.02 KB - PDF)"
       '.ecl-file__translation-item:nth-child(4) div.ecl-file__translation-title[lang="pt"]': "português"
       '.ecl-file__translation-item:nth-child(4) div.ecl-file__translation-meta': "(175.78 KB - DOC)"
-      '.ecl-file__info ul.ecl-file__primary-meta li.ecl-file__primary-meta-item:nth-child(1)': '31 August 2020'
+      '.ecl-file__info .ecl-file__primary-meta .ecl-file__primary-meta-item': '31 August 2020'
 - structure:
     '#type': component
     '#component': 'oe_theme:file_translation'
@@ -981,7 +981,7 @@
       'a.ecl-file__download[data-attribute-foo="bar"]': 0
       'ul.ecl-file__translation-list': 1
       'li.ecl-file__translation-item a.ecl-file__translation-download': 1
-      'button.ecl-file__translation-toggle[aria-label="Other languages (1)"]': 1
+      'button.ecl-file__translation-toggle[aria-label="Other languages (1) - English"]': 1
       'a.ecl-file__translation-download[href="http://example.com/document_fr.xls"]': 1
       '.ecl-file__info ul.ecl-file__primary-meta li.ecl-file__primary-meta-item': 0
     equals:
@@ -1020,7 +1020,7 @@
       'span.ecl-file__language': "English"
       'span.ecl-file__meta': "(9.77 KB - PDF)"
       'a.ecl-file__download .ecl-link__label span:first-child': "Download"
-      '.ecl-file__info ul.ecl-file__primary-meta li.ecl-file__primary-meta-item:nth-child(1)': '31 August 2020'
+      '.ecl-file__info .ecl-file__primary-meta .ecl-file__primary-meta-item': '31 August 2020'
 - structure:
     '#type': component
     '#component': 'oe_theme:file_teaser'
@@ -1107,7 +1107,7 @@
       'article.ecl-file__container div.ecl-file__info': 1
       'ul.ecl-file__translation-list': 1
       'li.ecl-file__translation-item a.ecl-file__translation-download': 4
-      'button.ecl-file__translation-toggle[aria-label="Other translations (4)"]': 1
+      'button.ecl-file__translation-toggle[aria-label="Other translations (4) - English"]': 1
       'a.ecl-file__translation-download[href="http://example.com/document_fr.xls"]': 1
       'a.ecl-file__translation-download[href="http://example.com/document_it.ppt"]': 1
       'a.ecl-file__translation-download[href="http://example.com/document_hu.pdf"]': 1
@@ -1195,7 +1195,7 @@
       'article.ecl-file__container div.ecl-file__info': 1
       'ul.ecl-file__translation-list': 1
       'li.ecl-file__translation-item a.ecl-file__translation-download': 1
-      'button.ecl-file__translation-toggle[aria-label="Other languages (1)"]': 1
+      'button.ecl-file__translation-toggle[aria-label="Other languages (1) - English"]': 1
       'a.ecl-file__translation-download[href="http://example.com/document_fr.xls"]': 1
       'a.ecl-file__translation-download[data-attribute-translation-foo="bar"]': 0
       'div.ecl-file__lists': 1
@@ -6621,8 +6621,8 @@
       'div.ecl-quiz__viewport ol.ecl-quiz__list li.ecl-quiz-card .ecl-quiz-card__back .ecl-quiz-card__icon .ecl-icon--2xl.ecl-icon-phosphor--x-circle': 5
       'div.ecl-quiz__pager': 1
     equals:
-      'div.ecl-quiz__pager .ecl-quiz__prev .ecl-quiz__prev-label': "Previous"
-      'div.ecl-quiz__pager .ecl-quiz__next .ecl-quiz__next-label': "Next"
+      'div.ecl-quiz__pager .ecl-quiz__prev .ecl-button__label': "Previous"
+      'div.ecl-quiz__pager .ecl-quiz__next .ecl-button__label': "Next"
 - structure:
     '#type': 'component'
     '#component': 'oe_theme:quiz'
@@ -6670,8 +6670,8 @@
       'div.ecl-quiz__viewport ol.ecl-quiz__list li.ecl-quiz-card:nth-child(3) .ecl-quiz-card__back .ecl-quiz-card__answer': "The Euro is the official currency used by many EU conutries"
       'div.ecl-quiz__viewport ol.ecl-quiz__list li.ecl-quiz-card:nth-child(4) .ecl-quiz-card__front .ecl-quiz-card__question': "Lorem ipsum dolor sit amet, consectetur adipiscing elit?"
       'div.ecl-quiz__viewport ol.ecl-quiz__list li.ecl-quiz-card:nth-child(4) .ecl-quiz-card__back .ecl-quiz-card__answer': "Duis id mattis libero. Quisque accumsan nisi"
-      'div.ecl-quiz__pager .ecl-quiz__prev .ecl-quiz__prev-label': "Previous"
-      'div.ecl-quiz__pager .ecl-quiz__next .ecl-quiz__next-label': "Next"
+      'div.ecl-quiz__pager .ecl-quiz__prev .ecl-button__label': "Previous"
+      'div.ecl-quiz__pager .ecl-quiz__next .ecl-button__label': "Next"
 - structure:
     '#type': 'component'
     '#component': 'oe_theme:quiz'
@@ -6720,8 +6720,8 @@
       'div.ecl-quiz__viewport ol.ecl-quiz__list li.ecl-quiz-card:nth-child(3) .ecl-quiz-card__back .ecl-quiz-card__answer': "The Euro is the official currency used by many EU conutries"
       'div.ecl-quiz__viewport ol.ecl-quiz__list li.ecl-quiz-card:nth-child(4) .ecl-quiz-card__front .ecl-quiz-card__question': "Lorem ipsum dolor sit amet, consectetur adipiscing elit?"
       'div.ecl-quiz__viewport ol.ecl-quiz__list li.ecl-quiz-card:nth-child(4) .ecl-quiz-card__back .ecl-quiz-card__answer': "Duis id mattis libero. Quisque accumsan nisi"
-      'div.ecl-quiz__pager .ecl-quiz__prev .ecl-quiz__prev-label': "Previous"
-      'div.ecl-quiz__pager .ecl-quiz__next .ecl-quiz__next-label': "Next"
+      'div.ecl-quiz__pager .ecl-quiz__prev .ecl-button__label': "Previous"
+      'div.ecl-quiz__pager .ecl-quiz__next .ecl-button__label': "Next"
 - structure:
     '#type': 'component'
     '#component': 'oe_theme:quiz'
@@ -6763,8 +6763,8 @@
       'div.ecl-quiz__viewport ol.ecl-quiz__list li.ecl-quiz-card:nth-child(3) .ecl-quiz-card__back .ecl-quiz-card__answer': "The Euro is the official currency used by many EU conutries"
       'div.ecl-quiz__viewport ol.ecl-quiz__list li.ecl-quiz-card:nth-child(4) .ecl-quiz-card__front .ecl-quiz-card__question': "Lorem ipsum dolor sit amet, consectetur adipiscing elit?"
       'div.ecl-quiz__viewport ol.ecl-quiz__list li.ecl-quiz-card:nth-child(4) .ecl-quiz-card__back .ecl-quiz-card__answer': "Duis id mattis libero. Quisque accumsan nisi"
-      'div.ecl-quiz__pager .ecl-quiz__prev .ecl-quiz__prev-label': "Previous card items"
-      'div.ecl-quiz__pager .ecl-quiz__next .ecl-quiz__next-label': "Next card items"
+      'div.ecl-quiz__pager .ecl-quiz__prev .ecl-button__label': "Previous card items"
+      'div.ecl-quiz__pager .ecl-quiz__next .ecl-button__label': "Next card items"
 - structure:
     '#type': component
     '#component': 'oe_theme:text_media'
@@ -7312,7 +7312,7 @@
       'form.ecl-highlighted-search__form[method="GET"]': 1
       'form.ecl-highlighted-search__form[action]': 0
       'div.ecl-highlighted-search__form-content span.ecl-icon.ecl-icon--m.ecl-highlighted-search__form-icon.ecl-icon-phosphor--magnifying-glass': 1
-      'div.ecl-form-group.ecl-highlighted-search__form-group label.ecl-form-label.ecl-form-label--hidden[for="ecl-highlighted-search-input"]': 1
+      'div.ecl-form-group.ecl-highlighted-search__form-group label .ecl-form-label.ecl-form-label--hidden': 1
       'input#ecl-highlighted-search-input.ecl-text-input.ecl-text-input--l.ecl-highlighted-search__form-input[type="search"][name="text"][placeholder="Enter a keyword"][aria-describedby]': 1
       'div.ecl-highlighted-search__form-helper[id]': 1
       'button.ecl-button.ecl-button--primary.ecl-button--m.ecl-button--highlight.ecl-highlighted-search__form-button[type="submit"]': 1
@@ -7358,8 +7358,8 @@
       'form.ecl-highlighted-search__form[aria-describedby]': 0
       'input.ecl-text-input.ecl-highlighted-search__form-input[type="search"][name="text"]': 1
       'input.ecl-highlighted-search__form-input[placeholder]': 0
-      'label.ecl-form-label.ecl-form-label--hidden[for="ecl-highlighted-search-input"]': 1
+      'label .ecl-form-label.ecl-form-label--hidden': 1
       'input#ecl-highlighted-search-input.ecl-highlighted-search__form-input': 1
     equals:
-      'label.ecl-form-label.ecl-form-label--hidden': "Search"
+      'label .ecl-form-label.ecl-form-label--hidden': "Search"
       'button.ecl-highlighted-search__form-button': "Search"
