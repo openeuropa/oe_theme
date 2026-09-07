@@ -18,11 +18,24 @@
 
 {% set _items = [] %}
 {% for _item in items %}
+  {% set _item_sources = [] %}
+  {% for _source in _item.sources %}
+    {% set _item_sources = _item_sources|merge([{
+      link: {
+        label: _source.label|default(''),
+        path: _source.path|default(''),
+        external: _source.external|default(false),
+      }
+    }]) %}
+  {% endfor %}
+
   {% set _items = _items|merge([{
     icon: _item.icon ? to_ecl_icon(_item.icon),
     value: _item.value,
     title: _item.title,
     description: _item.description,
+    sources_label: _item.sources_label|default(''),
+    sources: _item_sources,
   }]) %}
 {% endfor %}
 
