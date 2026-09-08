@@ -1,6 +1,7 @@
 /**
  * @file
- * Add a featured modifier to ECL description list style.
+ * Add a featured modifier to ECL description list style and fix the
+ * horizontal variant when the label is missing.
  */
 @use '@ecl/utility-border/border' as *;
 $background-color: var(--ecl-color-neutral-40) !default;
@@ -10,4 +11,11 @@ $border-color: var(--ecl-color-neutral-40) !default;
   border: 1px solid $border-color;
   background-color: $background-color;
   padding: var(--ecl-spacing-s);
+}
+
+// A horizontal description list without the label would place the items in
+// the label column, so we need to allow it to expand on the whole row instead.
+// @todo Remove this when FRONT-5511 is released.
+.ecl-description-list--horizontal > .ecl-description-list__definition:first-child {
+  grid-column: 1 / -1;
 }
