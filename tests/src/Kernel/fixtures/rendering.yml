@@ -3669,20 +3669,18 @@
       more_label: "More label"
   assertions:
     count:
-      "nav.ecl-contextual-navigation[aria-labelledby=\"nav-label\"][data-ecl-contextual-navigation]": 1
-      'li.ecl-contextual-navigation__item.ecl-u-mt-2xs': 6
-      'li.ecl-contextual-navigation__item--collapsed': 1
-      'li.ecl-contextual-navigation__item--more': 1
+      'dl.ecl-description-list.ecl-description-list--horizontal[data-ecl-description-list][data-ecl-auto-init="DescriptionList"][data-ecl-description-list-visible-items="4"][data-ecl-description-list-more-label="More label"]': 1
+      'dd.ecl-description-list__definition.ecl-description-list__definition--inline ul.ecl-description-list__definition-list[data-ecl-description-list-collapsible]': 1
+      'li.ecl-description-list__definition-item': 5
       'span.ecl-link__label': 3
-      'li.ecl-contextual-navigation__item a.ecl-contextual-navigation__link span.ecl-icon.ecl-icon--2xs.ecl-link__icon.wt-icon--external': 3
+      'li.ecl-description-list__definition-item a.ecl-link.ecl-link--standalone span.ecl-icon.ecl-icon--2xs.ecl-link__icon.wt-icon--external': 3
     equals:
-      'li.ecl-contextual-navigation__item.ecl-u-mt-2xs a.ecl-contextual-navigation__link[href="http://link-1.com"] span.ecl-link__label': "Item one"
-      'li.ecl-contextual-navigation__item.ecl-u-mt-2xs a.ecl-contextual-navigation__link[href="http://link-2.com"]': "Item two"
-      'li.ecl-contextual-navigation__item.ecl-u-mt-2xs a.ecl-contextual-navigation__link[href="http://link-3.com"] span.ecl-link__label': "Item three"
-      'li.ecl-contextual-navigation__item.ecl-u-mt-2xs a.ecl-contextual-navigation__link[href="http://link-4.com"]': "Item four"
-      'li.ecl-contextual-navigation__item.ecl-u-mt-2xs a.ecl-contextual-navigation__link[href="http://link-5.com"] span.ecl-link__label': "Item five"
-      'div#nav-label.ecl-contextual-navigation__label': "Navigation title"
-      'button.ecl-contextual-navigation__more .ecl-button__label': "More label"
+      'dt.ecl-description-list__term': "Navigation title"
+      'li.ecl-description-list__definition-item a.ecl-link--standalone[href="http://link-1.com"] span.ecl-link__label': "Item one"
+      'li.ecl-description-list__definition-item a.ecl-link--standalone[href="http://link-2.com"]': "Item two"
+      'li.ecl-description-list__definition-item a.ecl-link--standalone[href="http://link-3.com"] span.ecl-link__label': "Item three"
+      'li.ecl-description-list__definition-item a.ecl-link--standalone[href="http://link-4.com"]': "Item four"
+      'li.ecl-description-list__definition-item a.ecl-link--standalone[href="http://link-5.com"] span.ecl-link__label': "Item five"
 - structure:
     '#type': component
     '#component': 'oe_theme:button'
