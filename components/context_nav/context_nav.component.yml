@@ -19,8 +19,3 @@ props:
       type: ['string', 'null']
       title: 'More label'
       description: 'Label of the "see more items" button'
-libraryOverrides:
-  js:
-    context_nav.js: {  }
-  dependencies:
-    - core/drupal
