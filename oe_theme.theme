@@ -1529,13 +1529,7 @@ function oe_theme_preprocess_paragraph__oe_banner(array &$variables): void {
     return;
   }
 
-  $banner_type = match ($variables['size']) {
-    's' => 'small',
-    'm' => 'medium',
-    'l' => 'large',
-  };
-
-  $responsive_image = _oe_theme_load_from_responsive_image_style_id("oe_theme_{$banner_type}_banner", $uri);
+  $responsive_image = _oe_theme_load_from_responsive_image_style_id("oe_theme_banner", $uri);
   $variables['sources'] = $responsive_image['sources'];
   $values = [
     'src' => $responsive_image['fallback'],
@@ -2128,12 +2122,6 @@ function oe_theme_preprocess_paragraph__oe_carousel(array &$variables): void {
   if ($paragraph->hasField('field_oe_carousel_size') && !$paragraph->get('field_oe_carousel_size')->isEmpty()) {
     $variables['size'] = substr($paragraph->get('field_oe_carousel_size')->value, 0, 1);
   }
-  // Load needed images styles based on carousel size.
-  $banner_type = match ($variables['size']) {
-    's' => 'small',
-    'm' => 'medium',
-    'l' => 'large',
-  };
 
   /** @var \Drupal\paragraphs\Entity\Paragraph $sub_paragraph */
   foreach ($paragraph->get('field_oe_carousel_items')->referencedEntities() as $sub_paragraph) {
@@ -2203,7 +2191,7 @@ function oe_theme_preprocess_paragraph__oe_carousel(array &$variables): void {
       continue;
     }
 
-    $responsive_image = _oe_theme_load_from_responsive_image_style_id("oe_theme_{$banner_type}_banner", $uri);
+    $responsive_image = _oe_theme_load_from_responsive_image_style_id("oe_theme_banner", $uri);
     $item['image'] = $responsive_image['fallback'];
     $item['image_alt'] = $source->getMetadata($media, 'thumbnail_alt_value') ?? '';
     $item['sources'] = $responsive_image['sources'];

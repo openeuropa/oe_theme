@@ -453,7 +453,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
    */
   public function testBanner(): void {
     $breakpoints_by_group = \Drupal::service('breakpoint.manager')->getBreakpointsByGroup('oe_theme');
-    $this->assertCount(6, $breakpoints_by_group);
+    $this->assertCount(7, $breakpoints_by_group);
 
     // Set image media translatable.
     $this->container->get('content_translation.manager')->setEnabled('media', 'image', TRUE);
@@ -484,7 +484,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     ]);
     $media->save();
     // Get english file styled URI.
-    $style = ImageStyle::load('oe_theme_full_width_banner_3_1');
+    $style = ImageStyle::load('oe_theme_full_width');
 
     // Translate the media to Bulgarian.
     $media_bg = $media->addTranslation('bg', [
@@ -530,25 +530,17 @@ class MediaParagraphsTest extends ParagraphsTestBase {
       $this->container->get('file_url_generator')->transformRelative($style->buildUrl($en_file->getFileUri())),
       $image_element->attr('src')
     );
+
     // Assert all the media sources for different breakpoints.
-    $small_media = $crawler->filter('section.ecl-banner.ecl-banner--font-m.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--h-center picture source:not([media])');
-    $this->assertCount(1, $small_media);
-    $this->assertStringContainsString('oe_theme_small_3_2_banner/public/example_1_en.jpeg', $small_media->attr('srcset'));
-    $medium_media = $crawler->filter('section.ecl-banner.ecl-banner--font-m.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--h-center picture source[media="all and (min-width: 480px)"]');
-    $this->assertCount(1, $medium_media);
-    $this->assertStringContainsString('oe_theme_medium_3_2_banner/public/example_1_en.jpeg', $medium_media->attr('srcset'));
-    $large_media = $crawler->filter('section.ecl-banner.ecl-banner--font-m.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--h-center picture source[media="all and (min-width: 768px)"]');
-    $this->assertCount(1, $large_media);
-    $this->assertStringContainsString('oe_theme_large_3_1_banner/public/example_1_en.jpeg', $large_media->attr('srcset'));
-    $extra_large_media = $crawler->filter('section.ecl-banner.ecl-banner--font-m.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--h-center picture source[media="all and (min-width: 996px)"]');
-    $this->assertCount(1, $extra_large_media);
-    $this->assertStringContainsString('oe_theme_extra_large_3_1_banner/public/example_1_en.jpeg', $extra_large_media->attr('srcset'));
-    $extra_extra_large_media = $crawler->filter('section.ecl-banner.ecl-banner--font-m.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--h-center picture source[media="all and (min-width: 1140px)"]');
-    $this->assertCount(1, $extra_extra_large_media);
-    $this->assertStringContainsString('oe_theme_extra_extra_large_3_1_banner/public/example_1_en.jpeg', $extra_extra_large_media->attr('srcset'));
-    $full_width_media = $crawler->filter('section.ecl-banner.ecl-banner--font-m.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--h-center picture source[media="all and (min-width: 1368px)"]');
+    $small_width_media = $crawler->filter('section.ecl-banner.ecl-banner--font-m.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--h-center picture source:not([media])');
+    $this->assertCount(1, $small_width_media);
+    $this->assertStringContainsString('oe_theme_full_width_small/public/example_1_en.jpeg', $small_width_media->attr('srcset'));
+    $medium_width_media = $crawler->filter('section.ecl-banner.ecl-banner--font-m.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--h-center picture source[media="all and (min-width: 768px)"]');
+    $this->assertCount(1, $medium_width_media);
+    $this->assertStringContainsString('oe_theme_full_width_medium/public/example_1_en.jpeg', $medium_width_media->attr('srcset'));
+    $full_width_media = $crawler->filter('section.ecl-banner.ecl-banner--font-m.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--h-center picture source[media="all and (min-width: 1920px)"]');
     $this->assertCount(1, $full_width_media);
-    $this->assertStringContainsString('oe_theme_full_width_banner_3_1/public/example_1_en.jpeg', $full_width_media->attr('srcset'));
+    $this->assertStringContainsString('oe_theme_full_width/public/example_1_en.jpeg', $full_width_media->attr('srcset'));
     $this->assertStringContainsString('Alt en', $image_element->attr('alt'));
     $this->assertEquals('Banner', trim($crawler->filter('div.ecl-banner__content div.ecl-banner__title')->text()));
     $this->assertEquals('Description', trim($crawler->filter('div.ecl-banner__content p.ecl-banner__description')->text()));
@@ -621,7 +613,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $html = $this->renderParagraph($paragraph);
     $crawler = new Crawler($html);
 
-    $style = ImageStyle::load('oe_theme_full_width_banner_4_1');
+    $style = ImageStyle::load('oe_theme_full_width');
     $this->assertCount(1, $crawler->filter('section.ecl-banner.ecl-banner--font-m.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--m.ecl-banner--h-center'));
     $image_element = $crawler->filter('section.ecl-banner.ecl-banner--font-m.ecl-banner--box-bg-light.ecl-banner--color-dark picture.ecl-picture.ecl-banner__picture img.ecl-banner__image');
     $this->assertCount(1, $image_element);
@@ -629,24 +621,16 @@ class MediaParagraphsTest extends ParagraphsTestBase {
       $this->container->get('file_url_generator')->transformRelative($style->buildUrl($en_file->getFileUri())),
       $image_element->attr('src')
     );
-    $small_media = $crawler->filter('section.ecl-banner.ecl-banner--font-m.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--h-center picture source:not([media])');
-    $this->assertCount(1, $small_media);
-    $this->assertStringContainsString('oe_theme_small_3_2_banner/public/example_1_en.jpeg', $small_media->attr('srcset'));
-    $medium_media = $crawler->filter('section.ecl-banner.ecl-banner--font-m.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--h-center picture source[media="all and (min-width: 480px)"]');
-    $this->assertCount(1, $medium_media);
-    $this->assertStringContainsString('oe_theme_medium_3_2_banner/public/example_1_en.jpeg', $medium_media->attr('srcset'));
-    $large_media = $crawler->filter('section.ecl-banner.ecl-banner--font-m.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--h-center picture source[media="all and (min-width: 768px)"]');
-    $this->assertCount(1, $large_media);
-    $this->assertStringContainsString('oe_theme_large_3_1_banner/public/example_1_en.jpeg', $large_media->attr('srcset'));
-    $extra_large_media = $crawler->filter('section.ecl-banner.ecl-banner--font-m.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--h-center picture source[media="all and (min-width: 996px)"]');
-    $this->assertCount(1, $extra_large_media);
-    $this->assertStringContainsString('oe_theme_extra_large_3_1_banner/public/example_1_en.jpeg', $extra_large_media->attr('srcset'));
-    $extra_extra_large_media = $crawler->filter('section.ecl-banner.ecl-banner--font-m.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--h-center picture source[media="all and (min-width: 1140px)"]');
-    $this->assertCount(1, $extra_extra_large_media);
-    $this->assertStringContainsString('oe_theme_extra_extra_large_4_1_banner/public/example_1_en.jpeg', $extra_extra_large_media->attr('srcset'));
-    $full_width_media = $crawler->filter('section.ecl-banner.ecl-banner--font-m.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--h-center picture source[media="all and (min-width: 1368px)"]');
+
+    $small_width_media = $crawler->filter('section.ecl-banner.ecl-banner--m.ecl-banner--font-m.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--h-center picture source:not([media])');
+    $this->assertCount(1, $small_width_media);
+    $this->assertStringContainsString('oe_theme_full_width_small/public/example_1_en.jpeg', $small_width_media->attr('srcset'));
+    $medium_width_media = $crawler->filter('section.ecl-banner.ecl-banner--m.ecl-banner--font-m.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--h-center picture source[media="all and (min-width: 768px)"]');
+    $this->assertCount(1, $medium_width_media);
+    $this->assertStringContainsString('oe_theme_full_width_medium/public/example_1_en.jpeg', $medium_width_media->attr('srcset'));
+    $full_width_media = $crawler->filter('section.ecl-banner.ecl-banner--m.ecl-banner--font-m.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--h-center picture source[media="all and (min-width: 1920px)"]');
     $this->assertCount(1, $full_width_media);
-    $this->assertStringContainsString('oe_theme_full_width_banner_4_1/public/example_1_en.jpeg', $full_width_media->attr('srcset'));
+    $this->assertStringContainsString('oe_theme_full_width/public/example_1_en.jpeg', $full_width_media->attr('srcset'));
     $this->assertEquals('Banner', trim($crawler->filter('div.ecl-banner__content div.ecl-banner__title')->text()));
     $this->assertEquals('Description', trim($crawler->filter('div.ecl-banner__content p.ecl-banner__description')->text()));
     $this->assertCount(1, $crawler->filter('div.ecl-banner__content a.ecl-link.ecl-link--primary-highlight.ecl-link--icon'));
@@ -662,7 +646,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
 
     $this->assertCount(0, $crawler->filter('section.ecl-banner.ecl-banner--font-m.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--l.ecl-banner--h-center.ecl-banner--v-center'));
     $this->assertCount(1, $crawler->filter('section.ecl-banner.ecl-banner--font-m.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--m.ecl-banner--full-width'));
-    $image_element = $crawler->filter('section.ecl-banner.ecl-banner--font-m.ecl-banner--box-bg-light.ecl-banner--color-dark picture.ecl-picture.ecl-banner__picture img.ecl-banner__image');
+    $image_element = $crawler->filter('section.ecl-banner.ecl-banner--m.ecl-banner--font-m.ecl-banner--box-bg-light.ecl-banner--color-dark picture.ecl-picture.ecl-banner__picture img.ecl-banner__image');
     $this->assertCount(1, $image_element);
     $this->assertStringContainsString(
       $this->container->get('file_url_generator')->transformRelative($style->buildUrl($en_file->getFileUri())),
@@ -682,9 +666,9 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $html = $this->renderParagraph($paragraph);
     $crawler = new Crawler($html);
 
-    $style = ImageStyle::load('oe_theme_full_width_banner_3_1');
     $this->assertCount(1, $crawler->filter('section.ecl-banner.ecl-banner--font-m.ecl-banner--box-bg-dark.ecl-banner--color-light.ecl-banner--l.ecl-banner--h-center.ecl-banner--v-center'));
-    $image_element = $crawler->filter('section.ecl-banner.ecl-banner--font-m.ecl-banner--box-bg-dark.ecl-banner--color-light picture.ecl-picture.ecl-banner__picture img.ecl-banner__image');
+    $image_element = $crawler->filter('section.ecl-banner.ecl-banner--l.ecl-banner--font-m.ecl-banner--box-bg-dark.ecl-banner--color-light picture.ecl-picture.ecl-banner__picture img.ecl-banner__image');
+
     $this->assertCount(1, $image_element);
     $this->assertStringContainsString(
       $this->container->get('file_url_generator')->transformRelative($style->buildUrl($en_file->getFileUri())),
@@ -704,7 +688,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
 
     $this->assertCount(0, $crawler->filter('section.ecl-banner.ecl-banner--font-m.ecl-banner--box-bg-dark.ecl-banner--color-light.ecl-banner--l.ecl-banner--h-center'));
     $this->assertCount(1, $crawler->filter('section.ecl-banner.ecl-banner--font-m.ecl-banner--box-bg-dark.ecl-banner--color-light.ecl-banner--l.ecl-banner--full-width'));
-    $image_element = $crawler->filter('section.ecl-banner.ecl-banner--font-m.ecl-banner--box-bg-dark.ecl-banner--color-light picture.ecl-picture.ecl-banner__picture img.ecl-banner__image');
+    $image_element = $crawler->filter('section.ecl-banner.ecl-banner--l.ecl-banner--font-m.ecl-banner--box-bg-dark.ecl-banner--color-light picture.ecl-picture.ecl-banner__picture img.ecl-banner__image');
     $this->assertCount(1, $image_element);
     $this->assertStringContainsString(
       $this->container->get('file_url_generator')->transformRelative($style->buildUrl($en_file->getFileUri())),
@@ -724,12 +708,12 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $html = $this->renderParagraph($paragraph);
     $crawler = new Crawler($html);
 
-    $style = ImageStyle::load('oe_theme_full_width_banner_4_1');
     $this->assertCount(1, $crawler->filter('section.ecl-banner.ecl-banner--font-m.ecl-banner--box-bg-dark.ecl-banner--color-light.ecl-banner--m.ecl-banner--h-center'));
-    $image_element = $crawler->filter('section.ecl-banner.ecl-banner--font-m.ecl-banner--box-bg-dark.ecl-banner--color-light picture.ecl-picture.ecl-banner__picture img.ecl-banner__image');
+    $image_element = $crawler->filter('section.ecl-banner.ecl-banner--m.ecl-banner--font-m.ecl-banner--box-bg-dark.ecl-banner--color-light picture.ecl-picture.ecl-banner__picture img.ecl-banner__image');
     $this->assertCount(1, $image_element);
     $this->assertStringContainsString(
-      $this->container->get('file_url_generator')->transformRelative($style->buildUrl($en_file->getFileUri())),
+      $this->container->get('file_url_generator')
+        ->transformRelative($style->buildUrl($en_file->getFileUri())),
       $image_element->attr('src')
     );
     $this->assertEquals('Banner', trim($crawler->filter('div.ecl-banner__content div.ecl-banner__title')->text()));
@@ -747,7 +731,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
 
     $this->assertCount(0, $crawler->filter('section.ecl-banner.ecl-banner--font-m.ecl-banner--box-bg-dark.ecl-banner--color-light.ecl-banner--m.ecl-banner--h-center'));
     $this->assertCount(1, $crawler->filter('section.ecl-banner.ecl-banner--font-m.ecl-banner--box-bg-dark.ecl-banner--color-light.ecl-banner--m'));
-    $image_element = $crawler->filter('section.ecl-banner.ecl-banner--font-m.ecl-banner--box-bg-dark.ecl-banner--color-light picture.ecl-picture.ecl-banner__picture img.ecl-banner__image');
+    $image_element = $crawler->filter('section.ecl-banner.ecl-banner--m.ecl-banner--font-m.ecl-banner--box-bg-dark.ecl-banner--color-light picture.ecl-picture.ecl-banner__picture img.ecl-banner__image');
     $this->assertCount(1, $image_element);
     $this->assertStringContainsString(
       $this->container->get('file_url_generator')->transformRelative($style->buildUrl($en_file->getFileUri())),
@@ -859,10 +843,9 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $html = $this->renderParagraph($paragraph);
     $crawler = new Crawler($html);
 
-    $style = ImageStyle::load('oe_theme_full_width_banner_3_1');
     $this->assertCount(1, $crawler->filter('section.ecl-banner.ecl-banner--font-m.ecl-banner--box-bg-dark.ecl-banner--color-light.ecl-banner--l.ecl-banner--h-center.ecl-banner--full-width'));
 
-    $image_element = $crawler->filter('section.ecl-banner.ecl-banner--font-m.ecl-banner--box-bg-dark.ecl-banner--color-light picture.ecl-picture.ecl-banner__picture img.ecl-banner__image');
+    $image_element = $crawler->filter('section.ecl-banner.ecl-banner--l.ecl-banner--font-m.ecl-banner--box-bg-dark.ecl-banner--color-light picture.ecl-picture.ecl-banner__picture img.ecl-banner__image');
     $this->assertCount(1, $image_element);
     $this->assertStringContainsString(
       $this->container->get('file_url_generator')->transformRelative($style->buildUrl($en_file->getFileUri())),
@@ -882,12 +865,11 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $paragraph->save();
     $html = $this->renderParagraph($paragraph);
     $crawler = new Crawler($html);
-    $style = ImageStyle::load('oe_theme_full_width_banner_4_1');
 
     $this->assertCount(0, $crawler->filter('section.ecl-banner.ecl-banner--font-m.ecl-banner--box-bg-dark.ecl-banner--color-light.ecl-banner--m.ecl-banner--h-center.ecl-banner--full-width'));
     $this->assertCount(1, $crawler->filter('section.ecl-banner.ecl-banner--font-m.ecl-banner--box-bg-dark.ecl-banner--color-light.ecl-banner--m'));
 
-    $image_element = $crawler->filter('section.ecl-banner.ecl-banner--font-m.ecl-banner--box-bg-dark.ecl-banner--color-light picture.ecl-picture.ecl-banner__picture img.ecl-banner__image');
+    $image_element = $crawler->filter('section.ecl-banner.ecl-banner--m.ecl-banner--font-m.ecl-banner--box-bg-dark.ecl-banner--color-light picture.ecl-picture.ecl-banner__picture img.ecl-banner__image');
     $this->assertCount(1, $image_element);
     $this->assertStringContainsString(
       $this->container->get('file_url_generator')->transformRelative($style->buildUrl($en_file->getFileUri())),
@@ -923,7 +905,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $this->assertCount(0, $crawler->filter('div.ecl-banner__content div.ecl-banner__title'));
     // Link classes should not be rendered if the field is empty.
     $this->assertCount(0, $crawler->filter('div.ecl-banner__content a.ecl-link'));
-    $image_element = $crawler->filter('section.ecl-banner.ecl-banner--font-m.ecl-banner--box-bg-dark.ecl-banner--color-light picture.ecl-picture.ecl-banner__picture img.ecl-banner__image');
+    $image_element = $crawler->filter('section.ecl-banner.ecl-banner--m.ecl-banner--font-m.ecl-banner--box-bg-dark.ecl-banner--color-light picture.ecl-picture.ecl-banner__picture img.ecl-banner__image');
     $this->assertCount(1, $image_element);
     $this->assertStringContainsString(
       $this->container->get('file_url_generator')->transformRelative($style->buildUrl($av_portal_file_url)),
@@ -1047,28 +1029,19 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $en_file_1 = $this->container->get('file.repository')->writeData(file_get_contents($this->container->get('extension.list.theme')->getPath('oe_theme') . '/tests/fixtures/example_1.jpeg'), 'public://example_1_en.jpeg');
     $en_file_1->setPermanent();
     $en_file_1->save();
-    // Get first english file styled URI.
-    $style = ImageStyle::load('oe_theme_full_width_banner_3_1');
-    $en_file_1_url = $style->buildUrl($en_file_1->getFileUri());
 
     $en_file_2 = $this->container->get('file.repository')->writeData(file_get_contents($this->container->get('extension.list.theme')->getPath('oe_theme') . '/tests/fixtures/example_1.jpeg'), 'public://example_2_en.jpeg');
     $en_file_2->setPermanent();
     $en_file_2->save();
-    // Get second english file styled URL.
-    $en_file_2_url = $style->buildUrl($en_file_2->getFileUri());
 
     // Create Bulgarian files.
     $bg_file_1 = $this->container->get('file.repository')->writeData(file_get_contents($this->container->get('extension.list.theme')->getPath('oe_theme') . '/tests/fixtures/example_1.jpeg'), 'public://example_1_bg.jpeg');
     $bg_file_1->setPermanent();
     $bg_file_1->save();
-    // Get first bulgarian file styled URL.
-    $bg_file_1_url = $style->buildUrl($bg_file_1->getFileUri());
 
     $bg_file_2 = $this->container->get('file.repository')->writeData(file_get_contents($this->container->get('extension.list.theme')->getPath('oe_theme') . '/tests/fixtures/example_1.jpeg'), 'public://example_2_bg.jpeg');
     $bg_file_2->setPermanent();
     $bg_file_2->save();
-    // Get second bulgarian file styled URL.
-    $bg_file_2_url = $style->buildUrl($bg_file_2->getFileUri());
 
     // Create a couple of media items with Bulgarian translation.
     $media_storage = $this->container->get('entity_type.manager')
@@ -1152,15 +1125,12 @@ class MediaParagraphsTest extends ParagraphsTestBase {
       'items' => [
         [
           'title' => 'Item 1',
-          'image' => $this->container->get('file_url_generator')->transformRelative($en_file_1_url),
+          'image' => 'oe_theme_full_width/public/example_1_en.jpeg',
           'image_alt' => 'First image alt en',
           'sources' => [
-            'small' => 'oe_theme_small_3_2_banner/public/example_1_en.jpeg',
-            'medium' => 'oe_theme_medium_3_2_banner/public/example_1_en.jpeg',
-            'large' => 'oe_theme_large_3_1_banner/public/example_1_en.jpeg',
-            'extra_large' => 'oe_theme_extra_large_3_1_banner/public/example_1_en.jpeg',
-            'extra_extra_large' => 'oe_theme_extra_extra_large_3_1_banner/public/example_1_en.jpeg',
-            'full_width' => 'oe_theme_full_width_banner_3_1/public/example_1_en.jpeg',
+            'small' => 'oe_theme_full_width_small/public/example_1_en.jpeg',
+            'medium' => 'oe_theme_full_width_medium/public/example_1_en.jpeg',
+            'full_width' => 'oe_theme_full_width/public/example_1_en.jpeg',
           ],
           'variant' => 'text-overlay',
         ],
@@ -1169,28 +1139,22 @@ class MediaParagraphsTest extends ParagraphsTestBase {
           'description' => 'Item description 2',
           'url' => 'http://www.example.com/',
           'url_text' => 'CTA 2',
-          'image' => $this->container->get('file_url_generator')->transformRelative($en_file_2_url),
+          'image' => 'oe_theme_full_width/public/example_2_en.jpeg',
           'sources' => [
-            'small' => 'oe_theme_small_3_2_banner/public/example_2_en.jpeg',
-            'medium' => 'oe_theme_medium_3_2_banner/public/example_2_en.jpeg',
-            'large' => 'oe_theme_large_3_1_banner/public/example_2_en.jpeg',
-            'extra_large' => 'oe_theme_extra_large_3_1_banner/public/example_2_en.jpeg',
-            'extra_extra_large' => 'oe_theme_extra_extra_large_3_1_banner/public/example_2_en.jpeg',
-            'full_width' => 'oe_theme_full_width_banner_3_1/public/example_2_en.jpeg',
+            'small' => 'oe_theme_full_width_small/public/example_2_en.jpeg',
+            'medium' => 'oe_theme_full_width_medium/public/example_2_en.jpeg',
+            'full_width' => 'oe_theme_full_width/public/example_2_en.jpeg',
           ],
           'variant' => 'text-overlay',
         ],
         [
           'title' => 'Item 3',
-          'image' => $this->container->get('file_url_generator')->transformRelative($en_file_1_url),
+          'image' => 'oe_theme_full_width/public/example_1_en.jpeg',
           'image_alt' => 'First image alt en',
           'sources' => [
-            'small' => 'oe_theme_small_3_2_banner/public/example_1_en.jpeg',
-            'medium' => 'oe_theme_medium_3_2_banner/public/example_1_en.jpeg',
-            'large' => 'oe_theme_large_3_1_banner/public/example_1_en.jpeg',
-            'extra_large' => 'oe_theme_extra_large_3_1_banner/public/example_1_en.jpeg',
-            'extra_extra_large' => 'oe_theme_extra_extra_large_3_1_banner/public/example_1_en.jpeg',
-            'full_width' => 'oe_theme_full_width_banner_3_1/public/example_1_en.jpeg',
+            'small' => 'oe_theme_full_width_small/public/example_1_en.jpeg',
+            'medium' => 'oe_theme_full_width_medium/public/example_1_en.jpeg',
+            'full_width' => 'oe_theme_full_width/public/example_1_en.jpeg',
           ],
           'variant' => 'text-overlay',
         ],
@@ -1199,14 +1163,11 @@ class MediaParagraphsTest extends ParagraphsTestBase {
           'description' => 'Item description 4',
           'url' => '/',
           'url_text' => 'CTA 4',
-          'image' => $this->container->get('file_url_generator')->transformRelative($en_file_2_url),
+          'image' => 'oe_theme_full_width/public/example_2_en.jpeg',
           'sources' => [
-            'small' => 'oe_theme_small_3_2_banner/public/example_2_en.jpeg',
-            'medium' => 'oe_theme_medium_3_2_banner/public/example_2_en.jpeg',
-            'large' => 'oe_theme_large_3_1_banner/public/example_2_en.jpeg',
-            'extra_large' => 'oe_theme_extra_large_3_1_banner/public/example_2_en.jpeg',
-            'extra_extra_large' => 'oe_theme_extra_extra_large_3_1_banner/public/example_2_en.jpeg',
-            'full_width' => 'oe_theme_full_width_banner_3_1/public/example_2_en.jpeg',
+            'small' => 'oe_theme_full_width_small/public/example_2_en.jpeg',
+            'medium' => 'oe_theme_full_width_medium/public/example_2_en.jpeg',
+            'full_width' => 'oe_theme_full_width/public/example_2_en.jpeg',
           ],
           'variant' => 'text-overlay',
         ],
@@ -1221,51 +1182,39 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $carousel_size = $crawler->filter('section.ecl-banner--l');
     $this->assertCount(4, $carousel_size);
     $expected_values['items'][0]['title'] = 'BG Item 1';
-    $expected_values['items'][0]['image'] = $this->container->get('file_url_generator')->transformRelative($bg_file_1_url);
+    $expected_values['items'][0]['image'] = 'oe_theme_full_width/public/example_1_bg.jpeg';
     $expected_values['items'][0]['image_alt'] = 'First image alt bg';
     $expected_values['items'][0]['sources'] = [
-      'small' => 'oe_theme_small_3_2_banner/public/example_1_bg.jpeg',
-      'medium' => 'oe_theme_medium_3_2_banner/public/example_1_bg.jpeg',
-      'large' => 'oe_theme_large_3_1_banner/public/example_1_bg.jpeg',
-      'extra_large' => 'oe_theme_extra_large_3_1_banner/public/example_1_bg.jpeg',
-      'extra_extra_large' => 'oe_theme_extra_extra_large_3_1_banner/public/example_1_bg.jpeg',
-      'full_width' => 'oe_theme_full_width_banner_3_1/public/example_1_bg.jpeg',
+      'small' => 'oe_theme_full_width_small/public/example_1_bg.jpeg',
+      'medium' => 'oe_theme_full_width_medium/public/example_1_bg.jpeg',
+      'full_width' => 'oe_theme_full_width/public/example_1_bg.jpeg',
     ];
     $expected_values['items'][1]['title'] = 'BG Item 2';
     $expected_values['items'][1]['description'] = 'BG Item description 2';
     $expected_values['items'][1]['url_text'] = 'BG CTA 2';
-    $expected_values['items'][1]['image'] = $this->container->get('file_url_generator')->transformRelative($bg_file_2_url);
+    $expected_values['items'][1]['image'] = 'oe_theme_full_width/public/example_2_bg.jpeg';
     $expected_values['items'][1]['sources'] = [
-      'small' => 'oe_theme_small_3_2_banner/public/example_2_bg.jpeg',
-      'medium' => 'oe_theme_medium_3_2_banner/public/example_2_bg.jpeg',
-      'large' => 'oe_theme_large_3_1_banner/public/example_2_bg.jpeg',
-      'extra_large' => 'oe_theme_extra_large_3_1_banner/public/example_2_bg.jpeg',
-      'extra_extra_large' => 'oe_theme_extra_extra_large_3_1_banner/public/example_2_bg.jpeg',
-      'full_width' => 'oe_theme_full_width_banner_3_1/public/example_2_bg.jpeg',
+      'small' => 'oe_theme_full_width_small/public/example_2_bg.jpeg',
+      'medium' => 'oe_theme_full_width_medium/public/example_2_bg.jpeg',
+      'full_width' => 'oe_theme_full_width/public/example_2_bg.jpeg',
     ];
     $expected_values['items'][2]['title'] = 'BG Item 3';
-    $expected_values['items'][2]['image'] = $this->container->get('file_url_generator')->transformRelative($bg_file_1_url);
+    $expected_values['items'][2]['image'] = 'oe_theme_full_width/public/example_1_bg.jpeg';
     $expected_values['items'][2]['image_alt'] = 'First image alt bg';
     $expected_values['items'][2]['sources'] = [
-      'small' => 'oe_theme_small_3_2_banner/public/example_1_bg.jpeg',
-      'medium' => 'oe_theme_medium_3_2_banner/public/example_1_bg.jpeg',
-      'large' => 'oe_theme_large_3_1_banner/public/example_1_bg.jpeg',
-      'extra_large' => 'oe_theme_extra_large_3_1_banner/public/example_1_bg.jpeg',
-      'extra_extra_large' => 'oe_theme_extra_extra_large_3_1_banner/public/example_1_bg.jpeg',
-      'full_width' => 'oe_theme_full_width_banner_3_1/public/example_1_bg.jpeg',
+      'small' => 'oe_theme_full_width_small/public/example_1_bg.jpeg',
+      'medium' => 'oe_theme_full_width_medium/public/example_1_bg.jpeg',
+      'full_width' => 'oe_theme_full_width/public/example_1_bg.jpeg',
     ];
     $expected_values['items'][3]['title'] = 'BG Item 4';
     $expected_values['items'][3]['description'] = 'BG Item description 4';
     $expected_values['items'][3]['url'] = 'http://www.example.com/';
     $expected_values['items'][3]['url_text'] = 'BG CTA 4';
-    $expected_values['items'][3]['image'] = $this->container->get('file_url_generator')->transformRelative($bg_file_2_url);
+    $expected_values['items'][3]['image'] = 'oe_theme_full_width/public/example_2_bg.jpeg';
     $expected_values['items'][3]['sources'] = [
-      'small' => 'oe_theme_small_3_2_banner/public/example_2_bg.jpeg',
-      'medium' => 'oe_theme_medium_3_2_banner/public/example_2_bg.jpeg',
-      'large' => 'oe_theme_large_3_1_banner/public/example_2_bg.jpeg',
-      'extra_large' => 'oe_theme_extra_large_3_1_banner/public/example_2_bg.jpeg',
-      'extra_extra_large' => 'oe_theme_extra_extra_large_3_1_banner/public/example_2_bg.jpeg',
-      'full_width' => 'oe_theme_full_width_banner_3_1/public/example_2_bg.jpeg',
+      'small' => 'oe_theme_full_width_small/public/example_2_bg.jpeg',
+      'medium' => 'oe_theme_full_width_medium/public/example_2_bg.jpeg',
+      'full_width' => 'oe_theme_full_width/public/example_2_bg.jpeg',
     ];
     $assert->assertPattern($expected_values, $html);
 

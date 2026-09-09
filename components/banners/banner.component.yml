@@ -59,6 +59,10 @@ props:
       type: ['string', 'null']
       title: Size
       description: "Size of the banner (can be 's', 'm', 'l'). Defaults to 'm'."
+    image_anchor:
+      type: [ 'string', 'null' ]
+      title: 'Image anchor'
+      description: 'The image anchor uses the background-position CSS property, so it accepts the same values as the properties.'
     horizontal:
       type: ['string', 'null']
       title: 'Horizontal alignment'

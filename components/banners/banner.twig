@@ -8,6 +8,7 @@
 {% set _link = [] %}
 {% set _title = [] %}
 {% set _description = [] %}
+{% set _image_anchor = image_anchor|default('50% 50%') %}
 
 {% if url is not empty %}
   {# Build the banner _link if there is a label provided. #}
@@ -72,7 +73,8 @@
     img: {
       src: image.src|default(''),
       alt: image.alt|default(''),
-    }
+    },
+    image_anchor: _image_anchor,
   } %}
 {% endif %}
 {% if sources is not empty and sources is iterable %}
