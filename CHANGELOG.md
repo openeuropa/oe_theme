@@ -1,5 +1,32 @@
 # Changelog
 
+## [6.0.0-beta1](https://github.com/openeuropa/oe_theme/tree/6.0.0-beta1) (2026-09-09)
+
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/6.0.0-alpha3...6.0.0-beta1)
+
+**Merged pull requests:**
+
+- EWPP-7280: Upgrade ECL version to 5.2.2. [\#1801](https://github.com/openeuropa/oe_theme/pull/1801) ([sergepavle](https://github.com/sergepavle))
+- EWPP-7267: Update to ECL 5.2.1. [\#1799](https://github.com/openeuropa/oe_theme/pull/1799) ([fmmribeiro](https://github.com/fmmribeiro))
+- EWPP-7155: Add Story card SDC. [\#1797](https://github.com/openeuropa/oe_theme/pull/1797) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-7134: Add Event status label for Teaser display. [\#1795](https://github.com/openeuropa/oe_theme/pull/1795) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-7197: Removing behat and refactoring tests. [\#1794](https://github.com/openeuropa/oe_theme/pull/1794) ([upchuk](https://github.com/upchuk))
+- EWPP-7150: Add micro_title to Text with Featured media SDC. [\#1793](https://github.com/openeuropa/oe_theme/pull/1793) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-7130: Align File SDCs with the ECL File component. [\#1792](https://github.com/openeuropa/oe_theme/pull/1792) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-7119: Set the configured theme component library to the Webtools smart loader. [\#1790](https://github.com/openeuropa/oe_theme/pull/1790) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-7151: Add Highlighted search SDC. [\#1789](https://github.com/openeuropa/oe_theme/pull/1789) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-7149: Preprocess sources and source_label per item for Animated numbers and Facts and figures SDCs. [\#1788](https://github.com/openeuropa/oe_theme/pull/1788) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-6781: Use github-ci. [\#1786](https://github.com/openeuropa/oe_theme/pull/1786) ([nagyad](https://github.com/nagyad))
+- EWPP-7135: Update to ECL 5.1.0. [\#1785](https://github.com/openeuropa/oe_theme/pull/1785) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-6748: Add Page summary component. [\#1784](https://github.com/openeuropa/oe_theme/pull/1784) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-6988: Test against Drupal 11.4. [\#1783](https://github.com/openeuropa/oe_theme/pull/1783) ([nagyad](https://github.com/nagyad))
+- EWPP-7120: Functional test cached DB. [\#1782](https://github.com/openeuropa/oe_theme/pull/1782) ([upchuk](https://github.com/upchuk))
+- EWPP-7113: Add Layout wrapper SDC. [\#1781](https://github.com/openeuropa/oe_theme/pull/1781) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-7044: Remove deprecated code. [\#1780](https://github.com/openeuropa/oe_theme/pull/1780) ([nagyad](https://github.com/nagyad))
+- EWPP-7033: Additional variables for multiple select submit. [\#1770](https://github.com/openeuropa/oe_theme/pull/1770) ([intelektron](https://github.com/intelektron))
+- EWPP-6952: Better focal point sup in Banners - ECL wrappers and image_anchor [\#1769](https://github.com/openeuropa/oe_theme/pull/1769) ([fmmribeiro](https://github.com/fmmribeiro))
+- OEL-4458: Fix handling of multiple site owners. [\#1740](https://github.com/openeuropa/oe_theme/pull/1740) ([donquixote](https://github.com/donquixote))
+
 ## [6.0.0-alpha3](https://github.com/openeuropa/oe_theme/tree/6.0.0-alpha3) (2026-07-01)
 
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/6.0.0-alpha2...6.0.0-alpha3)
