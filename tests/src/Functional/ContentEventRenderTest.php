@@ -209,10 +209,6 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     $icons_text_expected_values = [
       'items' => [
         [
-          'icon' => 'file',
-          'text' => 'Council of the European Union',
-          'size' => 'm',
-        ], [
           'icon' => 'calendar',
           'text' => '27 February 2020, 15:00 CET',
           'size' => 'm',
@@ -260,10 +256,6 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     $icons_text_expected_values = [
       'items' => [
         [
-          'icon' => 'file',
-          'text' => 'Council of the European Union',
-          'size' => 'm',
-        ], [
           'icon' => 'calendar',
           'text' => "27 February 2020, 15:00 CET - 8 March 2020, 15:00 CET",
           'size' => 'm',
@@ -318,7 +310,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     ];
     $field_list_assert->assertPattern($field_list_expected_values, $practical_list_content->getOuterHtml());
 
-    $icons_text_expected_values['items'][2] = [
+    $icons_text_expected_values['items'][1] = [
       'icon' => 'location',
       'text' => '<Brussels>, Belgium',
       'size' => 'm',
@@ -332,7 +324,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     $field_list_expected_values['items'][0]['body'] = 'event_venue Mexico';
     $field_list_assert->assertPattern($field_list_expected_values, $practical_list_content->getOuterHtml());
 
-    $icons_text_expected_values['items'][2]['text'] = 'Mexico';
+    $icons_text_expected_values['items'][1]['text'] = 'Mexico';
     $icons_text_assert->assertPattern($icons_text_expected_values, $details_list_content->getOuterHtml());
 
     // Assert "Online only" field replaces the "Venue".
@@ -341,7 +333,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     $field_list_expected_values['items'][0]['body'] = 'Online only';
     $field_list_assert->assertPattern($field_list_expected_values, $practical_list_content->getOuterHtml());
 
-    $icons_text_expected_values['items'][2]['text'] = 'Online only';
+    $icons_text_expected_values['items'][1]['text'] = 'Online only';
     $icons_text_assert->assertPattern($icons_text_expected_values, $details_list_content->getOuterHtml());
 
     // Assert "Internal organiser" field.
@@ -410,7 +402,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     ];
     $field_list_assert->assertPattern($field_list_expected_values, $practical_list_content->getOuterHtml());
 
-    $icons_text_expected_values['items'][3] = [
+    $icons_text_expected_values['items'][2] = [
       'icon' => 'livestreaming',
       'text' => 'Live streaming available',
       'size' => 'm',
@@ -719,10 +711,6 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     $icons_text_expected_values = [
       'items' => [
         [
-          'icon' => 'file',
-          'text' => 'Council of the European Union',
-          'size' => 'm',
-        ], [
           'icon' => 'calendar',
           'text' => "27 February 2020, 15:00 CET - 8 March 2020, 15:00 CET",
           'size' => 'm',
