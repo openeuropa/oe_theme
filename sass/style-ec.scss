@@ -21,7 +21,4 @@
 );
 @use "./components/description_list";
 @use "./components/media_iframe";
-@use "./components/contextual_navigation" with (
-  $font-family: map.get(theme.$theme, 'font-family', 'default'),
-);
 @use "./components/navigation_list";
