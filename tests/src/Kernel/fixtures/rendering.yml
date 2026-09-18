@@ -6522,6 +6522,7 @@
       'div.ecl-quiz__viewport ol.ecl-quiz__list li.ecl-quiz-card:nth-child(3) .ecl-quiz-card__front .ecl-quiz-card__header .ecl-quiz-card__icon .ecl-icon--2xl.wt-icon-phosphor--question': 1
       'div.ecl-quiz__viewport ol.ecl-quiz__list li.ecl-quiz-card .ecl-quiz-card__back .ecl-quiz-card__icon .ecl-icon--2xl.ecl-quiz-card__icon--success.ecl-icon-phosphor--check-circle': 3
       'div.ecl-quiz__viewport ol.ecl-quiz__list li.ecl-quiz-card .ecl-quiz-card__back .ecl-quiz-card__icon .ecl-icon--2xl.ecl-icon-phosphor--x-circle': 3
+      'div.ecl-quiz__viewport ol.ecl-quiz__list li.ecl-quiz-card[data-ecl-quiz-chosen-option-correct="Your correct answer"][data-ecl-quiz-chosen-option-incorrect="Your incorrect answer"]': 3
     contains:
       'div.ecl-quiz__viewport ol.ecl-quiz__list li.ecl-quiz-card:nth-child(1) .ecl-quiz-card__front .ecl-quiz-card__option:nth-child(1) .ecl-quiz-card__label': "European commission"
       'div.ecl-quiz__viewport ol.ecl-quiz__list li.ecl-quiz-card:nth-child(1) .ecl-quiz-card__front .ecl-quiz-card__option:nth-child(2) .ecl-quiz-card__label': "European parliament"
@@ -6533,16 +6534,16 @@
       'div.ecl-quiz__viewport ol.ecl-quiz__list li.ecl-quiz-card:nth-child(3) .ecl-quiz-card__front .ecl-quiz-card__option:nth-child(1) .ecl-quiz-card__label': "Duis id mattis libero. Quisque accumsan nisi in nisl ultrices dictum"
       'div.ecl-quiz__viewport ol.ecl-quiz__list li.ecl-quiz-card:nth-child(3) .ecl-quiz-card__front .ecl-quiz-card__option:nth-child(2) .ecl-quiz-card__label': "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
       'div.ecl-quiz__viewport ol.ecl-quiz__list li.ecl-quiz-card:nth-child(3) .ecl-quiz-card__front .ecl-quiz-card__option:nth-child(3) .ecl-quiz-card__label': "ivamus auctor blandit auctor."
-      'div.ecl-quiz__viewport ol.ecl-quiz__list li.ecl-quiz-card:nth-child(1) .ecl-quiz-card__back .ecl-quiz-card__option:nth-child(1)[data-match="true"]': '<span class="ecl-quiz-card__option-assistive-label"></span>European commission'
-      'div.ecl-quiz__viewport ol.ecl-quiz__list li.ecl-quiz-card:nth-child(1) .ecl-quiz-card__back .ecl-quiz-card__option:nth-child(2)[data-match="false"]': '<span class="ecl-quiz-card__option-assistive-label"></span>European parliament'
-      'div.ecl-quiz__viewport ol.ecl-quiz__list li.ecl-quiz-card:nth-child(1) .ecl-quiz-card__back .ecl-quiz-card__option:nth-child(3)[data-match="false"]': '<span class="ecl-quiz-card__option-assistive-label"></span>European Central Bank'
-      'div.ecl-quiz__viewport ol.ecl-quiz__list li.ecl-quiz-card:nth-child(1) .ecl-quiz-card__back .ecl-quiz-card__option:nth-child(4)[data-match="false"]': '<span class="ecl-quiz-card__option-assistive-label"></span>Court of Justice of the European Union'
-      'div.ecl-quiz__viewport ol.ecl-quiz__list li.ecl-quiz-card:nth-child(2) .ecl-quiz-card__back .ecl-quiz-card__option:nth-child(1)[data-match="false"]': '<span class="ecl-quiz-card__option-assistive-label"></span>The pound is the most used currency in the EU'
-      'div.ecl-quiz__viewport ol.ecl-quiz__list li.ecl-quiz-card:nth-child(2) .ecl-quiz-card__back .ecl-quiz-card__option:nth-child(2)[data-match="false"]': '<span class="ecl-quiz-card__option-assistive-label"></span>The Leu is by far the most used currency in the European Union'
-      'div.ecl-quiz__viewport ol.ecl-quiz__list li.ecl-quiz-card:nth-child(2) .ecl-quiz-card__back .ecl-quiz-card__option:nth-child(3)[data-match="true"]': '<span class="ecl-quiz-card__option-assistive-label"></span>The euro (€) is used in many EU member states.'
-      'div.ecl-quiz__viewport ol.ecl-quiz__list li.ecl-quiz-card:nth-child(3) .ecl-quiz-card__back .ecl-quiz-card__option:nth-child(1)[data-match="false"]': '<span class="ecl-quiz-card__option-assistive-label"></span>Duis id mattis libero. Quisque accumsan nisi in nisl ultrices dictum'
-      'div.ecl-quiz__viewport ol.ecl-quiz__list li.ecl-quiz-card:nth-child(3) .ecl-quiz-card__back .ecl-quiz-card__option:nth-child(2)[data-match="true"]': '<span class="ecl-quiz-card__option-assistive-label"></span>Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
-      'div.ecl-quiz__viewport ol.ecl-quiz__list li.ecl-quiz-card:nth-child(3) .ecl-quiz-card__back .ecl-quiz-card__option:nth-child(3)[data-match="false"]': '<span class="ecl-quiz-card__option-assistive-label"></span>ivamus auctor blandit auctor.'
+      'div.ecl-quiz__viewport ol.ecl-quiz__list li.ecl-quiz-card:nth-child(1) .ecl-quiz-card__back .ecl-quiz-card__option:nth-child(1)[data-match="true"]': '<span class="ecl-quiz-card__option-assistive-label">Correct answer</span>European commission'
+      'div.ecl-quiz__viewport ol.ecl-quiz__list li.ecl-quiz-card:nth-child(1) .ecl-quiz-card__back .ecl-quiz-card__option:nth-child(2)[data-match="false"]': '<span class="ecl-quiz-card__option-assistive-label">Incorrect answer</span>European parliament'
+      'div.ecl-quiz__viewport ol.ecl-quiz__list li.ecl-quiz-card:nth-child(1) .ecl-quiz-card__back .ecl-quiz-card__option:nth-child(3)[data-match="false"]': '<span class="ecl-quiz-card__option-assistive-label">Incorrect answer</span>European Central Bank'
+      'div.ecl-quiz__viewport ol.ecl-quiz__list li.ecl-quiz-card:nth-child(1) .ecl-quiz-card__back .ecl-quiz-card__option:nth-child(4)[data-match="false"]': '<span class="ecl-quiz-card__option-assistive-label">Incorrect answer</span>Court of Justice of the European Union'
+      'div.ecl-quiz__viewport ol.ecl-quiz__list li.ecl-quiz-card:nth-child(2) .ecl-quiz-card__back .ecl-quiz-card__option:nth-child(1)[data-match="false"]': '<span class="ecl-quiz-card__option-assistive-label">Incorrect answer</span>The pound is the most used currency in the EU'
+      'div.ecl-quiz__viewport ol.ecl-quiz__list li.ecl-quiz-card:nth-child(2) .ecl-quiz-card__back .ecl-quiz-card__option:nth-child(2)[data-match="false"]': '<span class="ecl-quiz-card__option-assistive-label">Incorrect answer</span>The Leu is by far the most used currency in the European Union'
+      'div.ecl-quiz__viewport ol.ecl-quiz__list li.ecl-quiz-card:nth-child(2) .ecl-quiz-card__back .ecl-quiz-card__option:nth-child(3)[data-match="true"]': '<span class="ecl-quiz-card__option-assistive-label">Correct answer</span>The euro (€) is used in many EU member states.'
+      'div.ecl-quiz__viewport ol.ecl-quiz__list li.ecl-quiz-card:nth-child(3) .ecl-quiz-card__back .ecl-quiz-card__option:nth-child(1)[data-match="false"]': '<span class="ecl-quiz-card__option-assistive-label">Incorrect answer</span>Duis id mattis libero. Quisque accumsan nisi in nisl ultrices dictum'
+      'div.ecl-quiz__viewport ol.ecl-quiz__list li.ecl-quiz-card:nth-child(3) .ecl-quiz-card__back .ecl-quiz-card__option:nth-child(2)[data-match="true"]': '<span class="ecl-quiz-card__option-assistive-label">Correct answer</span>Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
+      'div.ecl-quiz__viewport ol.ecl-quiz__list li.ecl-quiz-card:nth-child(3) .ecl-quiz-card__back .ecl-quiz-card__option:nth-child(3)[data-match="false"]': '<span class="ecl-quiz-card__option-assistive-label">Incorrect answer</span>ivamus auctor blandit auctor.'
     equals:
       'div.ecl-quiz__header div.ecl-quiz__title': "Ut enim ad minim veniam"
       'div.ecl-quiz__header div.ecl-quiz__description': "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.\n    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. \n    Excepteur sint occaecat cupidatat non proident, sunt."
@@ -6621,9 +6622,12 @@
       'div.ecl-quiz__viewport ol.ecl-quiz__list li.ecl-quiz-card .ecl-quiz-card__back .ecl-quiz-card__icon .ecl-icon--2xl.ecl-quiz-card__icon--success.ecl-icon-phosphor--check-circle': 5
       'div.ecl-quiz__viewport ol.ecl-quiz__list li.ecl-quiz-card .ecl-quiz-card__back .ecl-quiz-card__icon .ecl-icon--2xl.ecl-icon-phosphor--x-circle': 5
       'div.ecl-quiz__pager': 1
+      'div.ecl-quiz__viewport ol.ecl-quiz__list li.ecl-quiz-card[data-ecl-quiz-chosen-option-correct="Your correct answer"][data-ecl-quiz-chosen-option-incorrect="Your incorrect answer"]': 5
     equals:
       'div.ecl-quiz__pager .ecl-quiz__prev .ecl-button__label': "Previous"
       'div.ecl-quiz__pager .ecl-quiz__next .ecl-button__label': "Next"
+      'div.ecl-quiz__viewport ol.ecl-quiz__list li.ecl-quiz-card:nth-child(1) .ecl-quiz-card__back .ecl-quiz-card__option:nth-child(1)[data-match="true"] .ecl-quiz-card__option-assistive-label': "Correct answer"
+      'div.ecl-quiz__viewport ol.ecl-quiz__list li.ecl-quiz-card:nth-child(1) .ecl-quiz-card__back .ecl-quiz-card__option:nth-child(2)[data-match="false"] .ecl-quiz-card__option-assistive-label': "Incorrect answer"
 - structure:
     '#type': 'component'
     '#component': 'oe_theme:quiz'

@@ -51,11 +51,12 @@
       {% if item.question is not empty and item.options is not empty and item.options is iterable %}
         {# Add the item properties needed for the Poll variant only. #}
         {% set _item = _item|merge([{
-          category: 'Quiz'|t,
-          success_category: 'Correct'|t,
-          error_category: 'Incorrect'|t,
           question: item.question,
           options: item.options,
+          correct_label: 'Correct answer'|t,
+          incorrect_label: 'Incorrect answer'|t,
+          correct_chosen_label: 'Your correct answer'|t,
+          incorrect_chosen_label: 'Your incorrect answer'|t,
           answer_title: item.answer_title|default(''),
           answer: item.answer|default(''),
           icon: {
