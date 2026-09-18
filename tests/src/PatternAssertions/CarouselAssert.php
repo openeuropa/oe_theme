@@ -48,7 +48,7 @@ class CarouselAssert extends BasePatternAssert {
    * @SuppressWarnings(PHPMD.NPathComplexity)
    */
   protected function assertItems(array $expected_items, Crawler $crawler): void {
-    $items = $crawler->filter('div.ecl-carousel__container div.ecl-carousel__slides div.ecl-carousel__slide');
+    $items = $crawler->filter('div.ecl-carousel__viewport div.ecl-carousel__slides div.ecl-carousel__slide');
     self::assertCount(count($expected_items), $items);
     foreach ($expected_items as $index => $expected_item) {
       $item = $items->eq($index);
