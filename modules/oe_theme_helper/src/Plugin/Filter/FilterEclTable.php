@@ -107,6 +107,7 @@ class FilterEclTable extends FilterBase {
 
             // Add additional attributes to enable sorting for table.
             $table->setAttribute('data-ecl-table', '');
+            $table->setAttribute('data-ecl-table-sort', '');
             $table->setAttribute('data-ecl-auto-init', 'Table');
           }
           $headers[] = $thead_cell->nodeValue;
