@@ -15,14 +15,19 @@
  * @ingroup themeable
  */
 #}
+{% set primary_details %}
+  {{ element.extra_field_oe_theme_content_event_online_description }}
+  {{ element.extra_field_oe_theme_content_event_summary }}
+  {{ element.extra_field_oe_theme_content_event_registration_button }}
+{% endset %}
 <div id="event-details" class="ecl-row">
-  <div class="ecl-col-12 ecl-col-m-6">
-    {% block primary_details %}
-      {{ element.extra_field_oe_theme_content_event_online_description }}
-      {{ element.extra_field_oe_theme_content_event_summary }}
-      {{ element.extra_field_oe_theme_content_event_registration_button }}
-    {% endblock %}
-  </div>
+  {% if primary_details|striptags|trim is not empty %}
+    <div class="ecl-col-12 ecl-col-m-6">
+      {% block primary_details %}
+        {{ primary_details }}
+      {% endblock %}
+    </div>
+  {% endif %}
   <div class="ecl-col-12 ecl-col-m-6 ecl-u-mt-l ecl-u-mt-m-none">
     {% block secondary_details %}
       {{ element.extra_field_oe_theme_content_event_details }}

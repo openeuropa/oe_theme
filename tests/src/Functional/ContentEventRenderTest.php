@@ -204,6 +204,9 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     // Assert details.
     $details_content = $this->assertSession()->elementExists('css', '#event-details');
     $this->assertSession()->elementNotExists('css', '.ecl-body', $details_content);
+    // The primary column (summary, registration button) is not rendered at all.
+    // The details column is moved into the left slot instead of leaving a gap.
+    $this->assertSession()->elementsCount('css', '.ecl-col-m-6', 1, $details_content);
     $details_list_content = $this->assertSession()->elementExists('css', '.ecl-col-12.ecl-col-m-6.ecl-u-mt-l.ecl-u-mt-m-none ul.ecl-unordered-list.ecl-unordered-list--no-marker', $details_content);
     $icons_text_assert = new IconsTextAssert();
     $icons_text_expected_values = [
@@ -462,6 +465,9 @@ class ContentEventRenderTest extends ContentRenderTestBase {
 
     $registration_content = $this->assertSession()->elementExists('css', '#event-registration-block');
     $this->assertRegistrationButtonEnabled($registration_content, 'Register here', 'http://www.example.com/registation', TRUE);
+    // The primary column has content again (the registration button), so
+    // both columns are rendered side by side.
+    $this->assertSession()->elementsCount('css', '.ecl-col-m-6', 2, $details_content);
 
     // Report or media content are not shown when event is still ongoing.
     $node->set('oe_event_report_summary', 'Event report summary');
