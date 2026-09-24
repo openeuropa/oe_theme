@@ -51,7 +51,6 @@
       centered: false,
     },
     {
-      title: 'Donec maximus pharetra ex a ultricies',
       description: 'Integer quis lorem tellus. Nullam sollicitudin suscipit diam, ac blandit ipsum tempor consectetur. Duis vitae pulvinar turpis. Donec maximus pharetra ex a ultricies',
       color_mode: 'green-dark',
       url: 'https://example.com',
@@ -83,3 +82,8 @@
   full_width: false,
   size: 's',
 } only %}
+{# Recalculate the ECL slide heights once the hidden preview becomes visible. #}
+<script>
+  new ResizeObserver(() => window.dispatchEvent(new Event('resize')))
+    .observe(document.currentScript.previousElementSibling);
+</script>
