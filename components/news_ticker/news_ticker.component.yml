@@ -15,6 +15,10 @@ props:
       type: ['string', 'null']
       title: 'Counter label'
       description: "The counter label defaults to 'of'. For e.g. '1 of 6'."
+    color_mode:
+      type: ['string', 'null']
+      title: 'Color mode'
+      description: 'Name of the color mode.'
     extra_attributes:
       type: ['array', 'null']
       title: 'Extra attributes'
