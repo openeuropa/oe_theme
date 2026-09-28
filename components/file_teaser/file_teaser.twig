@@ -15,7 +15,7 @@
     {% set _translation_meta = '(' ~ item.file.size|format_size ~ ' - ' ~ item.file.extension|upper  ~ ')' %}
   {% endif %}
   {% set _translations = _translations|merge([{
-    'title': item.file.title,
+    'title': item.file.language_code|to_native_language,
     'meta': _translation_meta,
     'lang': item.file.language_code|to_internal_language_id,
     'download': {
