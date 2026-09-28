@@ -5768,6 +5768,8 @@
       div.ecl-carousel__slide section.ecl-banner.ecl-banner--no-media: 2
       div.ecl-carousel__slide section.ecl-banner.ecl-banner--no-media.ecl-banner--h-center: 1
       div.ecl-carousel__controls: 1
+      'section.ecl-carousel[aria-roledescription="carousel"]:not([aria-label])': 1
+      'div.ecl-carousel__slide[aria-roledescription="slide"]': 6
       section.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--m.ecl-banner--h-center picture.ecl-picture.ecl-banner__picture img.ecl-banner__image[src="https://picsum.photos/seed/picsum/600/300"]: 1
       'section.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--m.ecl-banner--h-center picture.ecl-picture.ecl-banner__picture img.ecl-banner__image[src="https://picsum.photos/seed/picsum/600/300"][style="--ecl-image-anchor: 50% 50%"]': 1
       section.ecl-banner.ecl-color-mode--purple.ecl-banner--font-m.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--m.ecl-banner--h-left picture source: 3
@@ -5800,6 +5802,10 @@
       button.ecl-carousel__teaser-button:nth-child(4) span.ecl-carousel__teaser-title: 'Donec maximus pharetra'
       button.ecl-carousel__teaser-button:nth-child(5) span.ecl-carousel__teaser-title: 'Lorem ipsum dolor sit amet'
       button.ecl-carousel__teaser-button:nth-child(6) span.ecl-carousel__teaser-title: 'Duis vitae pulvinar turpis'
+      button.ecl-carousel__play span.ecl-button__label: 'Play'
+      button.ecl-carousel__pause span.ecl-button__label: 'Pause'
+      button.ecl-carousel__prev span.ecl-button__label: 'Previous'
+      button.ecl-carousel__next span.ecl-button__label: 'Next'
 - structure:
     '#type': 'component'
     '#component': 'oe_theme:carousel'
@@ -5828,9 +5834,18 @@
       counter_label: 'in'
       full_width: true
       size: 'l'
+      sr_description: 'Carousel description for screen readers'
+      sr_role: 'Carousel custom role'
+      sr_slide_role: 'Carousel slide role'
+      sr_play: 'Start'
+      sr_pause: 'Stop'
+      sr_prev: 'Go to previous'
+      sr_next: 'Go to next'
   assertions:
     count:
       section.ecl-carousel.ecl-carousel--full-width: 1
+      'section.ecl-carousel[aria-roledescription="Carousel custom role"][aria-label="Carousel description for screen readers"]': 1
+      'div.ecl-carousel__slide[aria-roledescription="Carousel slide role"]': 3
       section.ecl-banner--font-weight-bold.ecl-banner--overlay: 1
       section.ecl-banner--font-weight-light: 2
       section.ecl-banner--font-weight-light.ecl-banner--overlay: 0
@@ -5850,6 +5865,11 @@
       div.ecl-carousel__slide section.ecl-banner--no-media:nth-child(2).ecl-banner--l div.ecl-banner__content p.ecl-banner__description: 'Integer quis lorem tellus. Nullam sollicitudin suscipit diam, ac blandit ipsum tempor consectetur'
       div.ecl-carousel__slide section.ecl-banner--no-media:nth-child(2).ecl-banner--l div.ecl-banner__content div.ecl-banner__cta a span.ecl-link__label: 'CTA 3'
       div.ecl-carousel__pagination: 'in 3'
+    equals:
+      button.ecl-carousel__play span.ecl-button__label: 'Start'
+      button.ecl-carousel__pause span.ecl-button__label: 'Stop'
+      button.ecl-carousel__prev span.ecl-button__label: 'Go to previous'
+      button.ecl-carousel__next span.ecl-button__label: 'Go to next'
 - structure:
     '#type': component
     '#component': 'oe_theme:highlighted_list'
