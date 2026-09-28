@@ -7,6 +7,7 @@
 {% set _items = [] %}
 {% for _item in items %}
   {% set _items = _items|merge([{
+    open: _item.open ?? false,
     toggle: {
       label: _item.title
     },
