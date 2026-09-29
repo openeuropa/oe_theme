@@ -38,3 +38,10 @@
   margin-inline: 0;
   width: 100%;
 }
+
+// Adapt the ECL full width quiz css so it doesn't overlap the preview
+// container.
+.components-preview .ecl-quiz--full-width {
+  margin-inline: 0;
+  width: 100%;
+}
