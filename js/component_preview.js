@@ -15,6 +15,7 @@
         if (window.ECL && typeof window.ECL.autoInit === 'function') {
           window.ECL.autoInit();
         }
+        window.dispatchEvent(new Event('resize'));
       }
     });
   });
