@@ -1,20 +1,29 @@
 {#
 /**
  * @file
- * Link block.
+ * Contextual navigation.
  */
 #}
-{% set _items = [] %}
+{% set _label = label|render %}
+{% set _definitions = [] %}
 {% for _item in items %}
-  {% set _items = _items|merge([{
-    label: _item.label,
-    path: _item.href,
-    is_external: _item.is_external|default(false)
+  {% set _definitions = _definitions|merge([{
+    link: {
+      label: _item.label,
+      path: _item.href,
+      external: _item.is_external|default(false),
+    },
   }]) %}
 {% endfor %}
-{% include '@oe_theme/compositions/ec-component-contextual-navigation/contextual-navigation.html.twig' with {
-  label: label,
-  items: _items,
-  items_limit: limit,
-  item_more: { label: more_label|default('More'|t) }
-} %}
+{% if _definitions is not empty %}
+  {% include '@ecl-twig/description-list' with {
+    variant: 'horizontal',
+    items: [{
+      term: _label,
+      definition: _definitions,
+      type: 'link-inline',
+    }],
+    visible_items: limit|default(0),
+    more_label: more_label|default('More'|t),
+  } only %}
+{% endif %}
