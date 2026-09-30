@@ -97,10 +97,6 @@ class DetailsExtraField extends EventExtraFieldBase {
       '#props' => [
         'items' => [
           [
-            'icon' => 'file',
-            'text' => $this->getRenderableSubject($entity),
-          ],
-          [
             'icon' => 'calendar',
             'text' => $this->getRenderableDates($entity),
           ],
@@ -112,24 +108,6 @@ class DetailsExtraField extends EventExtraFieldBase {
     $this->addRenderableOnlineType($build, $entity);
 
     return $build;
-  }
-
-  /**
-   * Get the event subject as a renderable array.
-   *
-   * @param \Drupal\Core\Entity\ContentEntityInterface $entity
-   *   Content entity.
-   *
-   * @return array
-   *   Renderable array.
-   */
-  protected function getRenderableSubject(ContentEntityInterface $entity): array {
-    return $this->entityTypeManager->getViewBuilder('node')->viewField($entity->get('oe_subject'), [
-      'label' => 'hidden',
-      'settings' => [
-        'link' => FALSE,
-      ],
-    ]);
   }
 
   /**
