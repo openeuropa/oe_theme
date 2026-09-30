@@ -14,6 +14,10 @@ props:
       type: ['string', 'null']
       title: Variant
       description: 'The variant of the quiz component.'
+    color_mode:
+      type: ['string', 'null']
+      title: 'Color mode'
+      description: 'Name of the color mode.'
     title:
       type: ['string', 'null']
       title: Title
@@ -38,6 +42,10 @@ props:
       type: [ 'boolean', 'null' ]
       title: 'Full width'
       description: 'Whether the Quiz should be full width or not (default false).'
+    extra_classes:
+      type: ['string', 'null']
+      title: 'Extra classes string'
+      description: 'Extra classes string.'
     items:
       type: ['array', 'null']
       title: 'Card items'
