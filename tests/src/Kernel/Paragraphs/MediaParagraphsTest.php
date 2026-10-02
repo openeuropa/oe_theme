@@ -545,7 +545,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $this->assertEquals('Banner', trim($crawler->filter('div.ecl-banner__content div.ecl-banner__title')->text()));
     $this->assertEquals('Description', trim($crawler->filter('div.ecl-banner__content p.ecl-banner__description')->text()));
     $this->assertCount(1, $crawler->filter('div.ecl-banner__content a.ecl-link.ecl-link--primary-highlight.ecl-link--icon'));
-    $this->assertCount(1, $crawler->filter('span.ecl-icon.ecl-icon--xs.ecl-link__icon.wt-icon--corner-arrow'));
+    $this->assertCount(1, $crawler->filter('span.ecl-icon.ecl-icon--xs.ecl-link__icon.wt-icon--arrow-right'));
     $this->assertStringContainsString('Example', trim($crawler->filter('div.ecl-banner__content a.ecl-link.ecl-link--primary-highlight.ecl-link--icon span.ecl-link__label')->text()));
     $this->assertCount(0, $crawler->filter('.ecl-banner--full-width'));
 
