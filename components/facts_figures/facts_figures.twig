@@ -8,12 +8,9 @@
   {% set _link = {
     'path': view_all.path,
     'label': view_all.label,
-    'external': external_link|default(false),
+    'external': view_all.path|is_external_url,
   } %}
-  {% set view_all_icon = {
-    name: "corner-arrow",
-    transform: "rotate-90",
-  } %}
+  {% set view_all_icon = get_link_icon(view_all.path) %}
 {% endif %}
 
 {% set _items = [] %}

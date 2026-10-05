@@ -14,12 +14,10 @@
       type: 'standalone'
     }
   } %}
-  {% if link.is_external %}
+  {% set _icon = get_link_icon(link.url, 'xs') %}
+  {% if link.is_external or _icon.name == 'external' %}
     {% set _link = _link|merge({
-      'icon': {
-        'name': "external",
-        'size': "xs"
-      }
+      'icon': _icon|merge({'name': 'external'})
     }) %}
   {% endif %}
   {% set _links = _links|merge([_link]) %}

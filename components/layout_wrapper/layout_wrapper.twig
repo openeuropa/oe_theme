@@ -10,7 +10,7 @@
     link: {
       path: view_all_url,
       label: view_all_label|default(''),
-      external: external_link|default(false),
+      external: view_all_url|is_external_url,
     },
   } %}
 {% endif %}

@@ -14,7 +14,6 @@
         'variant': 'default',
         'title': highlighted_item.title,
         'url': highlighted_item.url,
-        'external_link': highlighted_item.external_link,
         'detail': highlighted_item.detail,
         'meta': highlighted_item.meta,
         'secondary_meta': highlighted_item.secondary_meta,
@@ -43,7 +42,6 @@
           'variant': 'default',
           'title': item.title,
           'url': item.url,
-          'external_link': item.external_link,
           'meta': item.meta,
           'secondary_meta': item.secondary_meta,
           'image': {
@@ -72,11 +70,7 @@
         path: see_more_url,
         external: see_more_url|is_external_url,
       },
-      icon: {
-        name: 'arrow-left',
-        size: 'xs',
-        transform: 'rotate-180'
-      }
+      icon: get_link_icon(see_more_url, 'xs'),
     } %}
   {% endif %}
 
@@ -103,7 +97,6 @@
           'variant': 'default',
           'title': item.title,
           'url': item.url,
-          'external_link': item.external_link,
           'meta': item.meta,
           'secondary_meta': item.secondary_meta,
           'image': {
@@ -132,11 +125,7 @@
         path: see_more_url,
         external: see_more_url|is_external_url,
       },
-      icon: {
-        name: 'arrow-left',
-        size: 'xs',
-        transform: 'rotate-180'
-      }
+      icon: get_link_icon(see_more_url, 'xs'),
     } %}
   {% endif %}
 
