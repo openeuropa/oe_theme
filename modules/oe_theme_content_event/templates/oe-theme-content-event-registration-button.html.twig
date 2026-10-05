@@ -12,7 +12,6 @@
           variant: 'cta',
           text: label,
           url: url,
-          external_link: url.toString()|is_external_url,
       } only %}
       </span>
       <button type="submit" class="ecl-button ecl-button--primary ecl-button--highlight ecl-u-mt-2xl ecl-link ecl-link--primary-highlight{% if enabled %} ecl-u-d-none{% endif %}" disabled="" data-registration-upcoming-element="true">{{ label }}</button>
@@ -23,7 +22,6 @@
             variant: 'cta',
             text: label,
             url: url,
-            external_link: url.toString()|is_external_url,
         } only %}
         </span>
       {% else %}

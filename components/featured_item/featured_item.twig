@@ -13,7 +13,7 @@
       type: 'standalone',
       label: title,
       path: link.href,
-      external: external_link,
+      external: link.href|is_external_url,
     }
   } %}
   {#
@@ -31,11 +31,7 @@
         <span class="ecl-button__container">
           <span class="ecl-button__label">{{ link.label }}</span>
           {% include '@ecl-twig/icon' with {
-            icon: {
-              name: external_link ? "external" : "corner-arrow",
-              size: "xs",
-              transform: external_link ? "" : "rotate-90"
-            },
+            icon: get_link_icon(link.href, 'xs')|merge({color: ''}),
             extra_classes: "ecl-button__icon ecl-button__icon--after"
           } only %}
         </span>

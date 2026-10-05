@@ -4,6 +4,7 @@
  * Button.
  */
 #}
+{% set _external = href|is_external_url %}
 {% if variant == 'default' %}
   {% include '@ecl-twig/link' with {
     'link': {
@@ -11,7 +12,7 @@
       'label': label,
       'path': href,
       'icon_position': icon_position|default('after'),
-      'external': external_link,
+      'external': _external,
     },
     'icon': {
       'name': icon,
@@ -29,7 +30,7 @@
     'style': style|default(''),
     'type': type_attribute,
     'icon': {
-      'name': external_link ? 'external' : icon,
+      'name': _external ? 'external' : icon,
       'size': 's'
     },
     'icon_position': icon_position|default('after'),

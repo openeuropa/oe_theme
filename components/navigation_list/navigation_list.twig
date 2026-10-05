@@ -11,7 +11,7 @@
       type: 'standalone',
       label: title,
       path: title_url,
-      external: external_link|default(false),
+      external: title_url|is_external_url,
     },
     extra_attributes: title_extra_attributes|default([])
   } %}
