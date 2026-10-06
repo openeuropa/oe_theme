@@ -15,7 +15,7 @@ use Drupal\field\Entity\FieldStorageConfig;
  *
  * @group batch3
  */
-class SocialMediaLinksFormatterTestBase extends AbstractKernelTestBase {
+abstract class SocialMediaLinksFormatterTestBase extends AbstractKernelTestBase {
 
   /**
    * {@inheritdoc}

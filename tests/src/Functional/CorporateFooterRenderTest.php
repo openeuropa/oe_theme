@@ -5,11 +5,11 @@ declare(strict_types=1);
 namespace Drupal\Tests\oe_theme\Functional;
 
 use Behat\Mink\Element\NodeElement;
+use Drupal\Component\Serialization\Yaml;
 use Drupal\Component\Utility\Html;
 use Drupal\Core\Render\RenderContext;
 use Drupal\Tests\BrowserTestBase;
 use OpenEuropa\TestingUtilities\Traits\CachedDatabaseInstallTrait;
-use Symfony\Component\Yaml\Yaml;
 
 /**
  * Test footer block rendering.
@@ -994,7 +994,7 @@ class CorporateFooterRenderTest extends BrowserTestBase {
    *   A set of test data.
    */
   protected function getFixtureContent(string $filepath): array {
-    return Yaml::parse(file_get_contents(__DIR__ . "/fixtures/{$filepath}"));
+    return Yaml::decode(file_get_contents(__DIR__ . "/fixtures/{$filepath}"));
   }
 
   /**

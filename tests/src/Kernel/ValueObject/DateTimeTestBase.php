@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Drupal\Tests\oe_theme\Kernel\ValueObject;
 
+use Drupal\Component\Serialization\Yaml;
+use Drupal\oe_theme\ValueObject\DateValueObjectInterface;
 use Drupal\Tests\field\Kernel\FieldKernelTestBase;
 use Drupal\Tests\oe_theme\Traits\RenderTrait;
-use Drupal\oe_theme\ValueObject\DateValueObjectInterface;
-use Symfony\Component\Yaml\Yaml;
 
 /**
  * Base class for "date type" field kernel tests.
@@ -68,7 +68,7 @@ abstract class DateTimeTestBase extends FieldKernelTestBase {
    *   Data provider for factory methods test.
    */
   public static function dataProviderForFactory(): array {
-    return Yaml::parse(file_get_contents(__DIR__ . '/../../Unit/fixtures/value_object/date_value_object.yml'));
+    return Yaml::decode(file_get_contents(__DIR__ . '/../../Unit/fixtures/value_object/date_value_object.yml'));
   }
 
   /**

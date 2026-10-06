@@ -13,7 +13,7 @@ use Drupal\media\Entity\Media;
  *
  * @group batch8
  */
-class MediaThumbnailUrlFormatterTestBase extends AbstractKernelTestBase {
+abstract class MediaThumbnailUrlFormatterTestBase extends AbstractKernelTestBase {
 
   use MediaTypeCreationTrait;
 
