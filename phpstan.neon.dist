@@ -3,10 +3,10 @@ includes:
 parameters:
     parallel:
           maximumNumberOfProcesses: 2
-    excludePaths:
-        # @todo This class should be removed when no longer supporting phpunit 9.
-        - %currentWorkingDirectory%/tests/src/EnsurePHPUnitBatchingTestExtension.php
     ignoreErrors:
+        -
+            identifier: drupal.entityStoragePropertyAssignment
+            path: tests/*
         # Backwards compatibility with Drupal versions below 11.3.
         - '#Call to deprecated function theme_get_setting\(\)#'
         - '#Call to deprecated function _responsive_image_build_source_attributes\(\)#'

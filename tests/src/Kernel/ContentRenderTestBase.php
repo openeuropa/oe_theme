@@ -121,7 +121,6 @@ abstract class ContentRenderTestBase extends MultilingualAbstractKernelTestBase 
     // Importing of configs which related to media av_portal output.
     $this->container->get('config.installer')->installDefaultConfig('theme', 'oe_theme');
 
-    $this->container->get('module_handler')->loadInclude('oe_content_documents_field', 'install');
     $this->installConfig(['oe_content_documents_field']);
 
     $this->installConfig([
