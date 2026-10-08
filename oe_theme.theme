@@ -1442,10 +1442,8 @@ function oe_theme_preprocess_paragraph__oe_banner(array &$variables): void {
   if (!$paragraph->get('field_oe_link')->isEmpty()) {
     $link = $paragraph->get('field_oe_link')->first();
     $url = $link->getUrl();
-    $variables['url'] = $url;
+    $variables['url'] = $url->toString();
     $variables['label'] = $link->get('title')->getValue();
-    $variables['external_link'] = \Drupal::service('oe_theme_helper.external_links')
-      ->isExternalLink($url);
   }
 
   $variables['full_width'] = (bool) $paragraph->get('field_oe_banner_full_width')->value;

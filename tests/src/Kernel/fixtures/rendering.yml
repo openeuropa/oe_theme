@@ -273,7 +273,7 @@
       'section.ecl-banner.ecl-banner--font-m.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--l.ecl-banner--h-center.ecl-banner--v-center': 1
       'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--primary-highlight.ecl-link--icon.ecl-banner__link-cta[href="http://example.com"]': 1
       'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--primary-highlight.ecl-link--icon.ecl-banner__link-cta[data-name="data value"]': 0
-      'span.ecl-icon.ecl-icon--xs.ecl-icon--rotate-90.ecl-link__icon': 1
+      'span.ecl-icon.ecl-icon--xs.ecl-icon--primary.ecl-link__icon.wt-icon--external': 1
       'picture.ecl-picture.ecl-banner__picture img.ecl-banner__image[src="http://via.placeholder.com/150x150"]': 1
       '.ecl-banner--full-width': 0
       'footer.ecl-banner__credit div.ecl-container': 1
@@ -308,7 +308,7 @@
       'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--primary-highlight.ecl-link--icon.ecl-banner__link-cta[data-name="data value"]': 0
       'div.ecl-container div.ecl-banner__container div.ecl-banner__content div.ecl-banner__title span.ecl-banner__title-text a.ecl-link.ecl-link--icon.ecl-banner__title-link[href="http://example.com"]': 1
       'div.ecl-container div.ecl-banner__container div.ecl-banner__content div.ecl-banner__title span.ecl-banner__title-text a.ecl-link.ecl-link--icon.ecl-banner__title-link[data-name="data value"]': 1
-      'span.ecl-icon.ecl-icon--xs.ecl-icon--rotate-90.ecl-link__icon': 1
+      'span.ecl-icon.ecl-icon--xs.ecl-icon--primary.ecl-link__icon.wt-icon--external': 1
       'picture.ecl-picture.ecl-banner__picture img.ecl-banner__image[src="http://via.placeholder.com/150x150"]': 1
       'footer.ecl-banner__credit div.ecl-container': 1
       'video': 0
@@ -338,7 +338,7 @@
       'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--primary-highlight.ecl-link--icon.ecl-banner__link-cta[href="http://example.com"]': 0
       'div.ecl-container div.ecl-banner__container div.ecl-banner__content p.ecl-banner__description span.ecl-banner__description-text a.ecl-link.ecl-link--icon.ecl-banner__description-link[href="http://example.com"]': 1
       'div.ecl-container div.ecl-banner__container div.ecl-banner__content p.ecl-banner__description span.ecl-banner__description-text a.ecl-link.ecl-link--icon.ecl-banner__description-link[data-name="data value"]': 1
-      'span.ecl-icon.ecl-icon--xs.ecl-icon--rotate-90.ecl-link__icon': 1
+      'span.ecl-icon.ecl-icon--xs.ecl-icon--primary.ecl-link__icon.wt-icon--external': 1
       'picture.ecl-picture.ecl-banner__picture img.ecl-banner__image[src="http://via.placeholder.com/150x150"]': 1
       '.ecl-banner--full-width': 0
       'footer.ecl-banner__credit div.ecl-container': 0
@@ -364,7 +364,7 @@
       'section.ecl-banner.ecl-banner--font-m.ecl-banner--box-bg-dark.ecl-banner--color-light.ecl-banner--l.ecl-banner--h-center.ecl-banner--v-center': 0
       'section.ecl-banner.ecl-banner--font-m.ecl-banner--box-bg-dark.ecl-banner--color-light.ecl-banner--l.ecl-banner--h-left.ecl-banner--v-center': 1
       'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--primary-highlight-inverted.ecl-link--icon.ecl-banner__link-cta[href="http://example.com"]': 1
-      'span.ecl-icon.ecl-icon--xs.ecl-icon--rotate-90.ecl-link__icon': 1
+      'span.ecl-icon.ecl-icon--xs.ecl-icon--primary.ecl-link__icon.wt-icon--external': 1
       'picture.ecl-picture.ecl-banner__picture img.ecl-banner__image[src="http://via.placeholder.com/150x150"]': 1
       'picture source': 0
       '.ecl-banner--full-width': 0
@@ -403,7 +403,7 @@
     count:
       'section.ecl-banner.ecl-banner--font-m.ecl-banner--box-bg-dark.ecl-banner--color-light.ecl-banner--l.ecl-banner--h-center.ecl-banner--v-center.ecl-banner--full-width': 1
       'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--primary-highlight-inverted.ecl-link--icon.ecl-banner__link-cta[href="http://example.com"]': 1
-      'span.ecl-icon.ecl-icon--xs.ecl-icon--rotate-90.ecl-link__icon': 1
+      'span.ecl-icon.ecl-icon--xs.ecl-icon--primary.ecl-link__icon.wt-icon--external': 1
       'picture.ecl-picture.ecl-banner__picture img.ecl-banner__image[src="http://via.placeholder.com/150x150"][alt="alternative text"]': 1
       'picture.ecl-picture.ecl-banner__picture img.ecl-banner__image[src="http://via.placeholder.com/150x150"][alt="alternative text"][style="--ecl-image-anchor: 35% 50%"]': 1
       'picture source': 3
@@ -436,7 +436,7 @@
     count:
       'section.ecl-banner.ecl-banner--font-m.ecl-banner--box-bg-light.ecl-banner--m.ecl-banner--full-width.ecl-banner--h-left.ecl-banner--v-center.ecl-banner--font-weight-bold.ecl-banner--overlay': 1
       'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--primary-highlight.ecl-link--icon.ecl-banner__link-cta[href="http://example.com"]': 1
-      'span.ecl-icon.ecl-icon--xs.ecl-icon--rotate-90.ecl-link__icon': 1
+      'span.ecl-icon.ecl-icon--xs.ecl-icon--primary.ecl-link__icon.wt-icon--external': 1
       'picture.ecl-picture.ecl-banner__picture img.ecl-banner__image[src="http://via.placeholder.com/150x150"]': 1
       'footer.ecl-banner__credit div.ecl-container': 1
       'video': 0
@@ -469,7 +469,7 @@
       'section.ecl-banner.ecl-banner--font-l.ecl-banner--box-bg-none.ecl-banner--color-light.ecl-banner--m.ecl-banner--full-width.ecl-banner--h-right.ecl-banner--v-top.ecl-banner--font-weight-light': 1
       'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--primary-highlight.ecl-link--icon.ecl-banner__link-cta[href="http://example.com"]': 1
       'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--primary-highlight.ecl-link--icon.ecl-banner__link-cta[data-name="data value"]': 1
-      'span.ecl-icon.ecl-icon--xs.ecl-icon--rotate-90.ecl-link__icon': 1
+      'span.ecl-icon.ecl-icon--xs.ecl-icon--primary.ecl-link__icon.wt-icon--external': 1
       'picture.ecl-picture.ecl-banner__picture img.ecl-banner__image[src="http://via.placeholder.com/150x150"]': 1
       'footer.ecl-banner__credit div.ecl-container': 1
       'video': 0
@@ -504,7 +504,7 @@
       'section.ecl-banner.ecl-banner--font-l.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--l.ecl-banner--h-center.ecl-banner--v-bottom': 1
       'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--primary-highlight.ecl-link--icon.ecl-banner__link-cta[href="http://example.com"]': 1
       'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--primary-highlight.ecl-link--icon.ecl-banner__link-cta[data-name="data value"]': 1
-      'span.ecl-icon.ecl-icon--xs.ecl-icon--rotate-90.ecl-link__icon': 1
+      'span.ecl-icon.ecl-icon--xs.ecl-icon--primary.ecl-link__icon.wt-icon--external': 1
       'picture.ecl-picture.ecl-banner__picture img.ecl-banner__image[src="http://via.placeholder.com/150x150"]': 1
       'footer.ecl-banner__credit div.ecl-container': 1
       'video': 0
@@ -539,7 +539,7 @@
       '.ecl-banner--color-dark': 0
       'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--primary-highlight.ecl-link--icon.ecl-banner__link-cta[href="http://example.com"]': 1
       'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--primary-highlight.ecl-link--icon.ecl-banner__link-cta[data-name="data value"]': 1
-      'span.ecl-icon.ecl-icon--xs.ecl-icon--rotate-90.ecl-link__icon': 1
+      'span.ecl-icon.ecl-icon--xs.ecl-icon--primary.ecl-link__icon.wt-icon--external': 1
       'picture': 0
       'footer.ecl-banner__credit': 0
       'video': 0
@@ -584,7 +584,7 @@
       'section.ecl-banner.ecl-banner--font-l.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--l.ecl-banner--h-center.ecl-banner--v-bottom': 1
       'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--primary-highlight.ecl-link--icon.ecl-banner__link-cta[href="http://example.com"]': 1
       'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--primary-highlight.ecl-link--icon.ecl-banner__link-cta[data-name="data value"]': 1
-      'span.ecl-icon.ecl-icon--xs.ecl-icon--rotate-90.ecl-link__icon': 1
+      'span.ecl-icon.ecl-icon--xs.ecl-icon--primary.ecl-link__icon.wt-icon--external': 1
       'picture.ecl-picture.ecl-banner__picture img.ecl-banner__image[src="http://via.placeholder.com/150x150"]': 0
       'video[poster="https://inno-ecl.s3.amazonaws.com/media/examples/example-image.jpg"]': 1
       'video[autoplay]': 1
@@ -639,7 +639,7 @@
       'section.ecl-banner.ecl-banner--font-l.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--l.ecl-banner--h-center.ecl-banner--v-bottom': 1
       'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--primary-highlight.ecl-link--icon.ecl-banner__link-cta[href="http://example.com"]': 1
       'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--primary-highlight.ecl-link--icon.ecl-banner__link-cta[data-name="data value"]': 1
-      'span.ecl-icon.ecl-icon--xs.ecl-icon--rotate-90.ecl-link__icon': 1
+      'span.ecl-icon.ecl-icon--xs.ecl-icon--primary.ecl-link__icon.wt-icon--external': 1
       'picture.ecl-picture.ecl-banner__picture img.ecl-banner__image[src="http://via.placeholder.com/150x150"]': 0
       'video[poster="https://inno-ecl.s3.amazonaws.com/media/examples/example-image.jpg"]': 0
       'video[poster]': 0
@@ -691,7 +691,7 @@
       'section.ecl-banner.ecl-banner--font-l.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--l.ecl-banner--h-center.ecl-banner--v-bottom': 1
       'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--primary-highlight.ecl-link--icon.ecl-banner__link-cta[href="http://example.com"]': 1
       'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--primary-highlight.ecl-link--icon.ecl-banner__link-cta[data-name="data value"]': 1
-      'span.ecl-icon.ecl-icon--xs.ecl-icon--rotate-90.ecl-link__icon': 1
+      'span.ecl-icon.ecl-icon--xs.ecl-icon--primary.ecl-link__icon.wt-icon--external': 1
       'picture.ecl-picture.ecl-banner__picture img.ecl-banner__image[src="http://via.placeholder.com/150x150"]': 0
       'video[poster="https://inno-ecl.s3.amazonaws.com/media/examples/example-image.jpg"]': 1
       'video[poster]': 1
@@ -743,7 +743,7 @@
       'section.ecl-banner.ecl-banner--font-l.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--l.ecl-banner--h-center.ecl-banner--v-bottom': 1
       'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--primary-highlight.ecl-link--icon.ecl-banner__link-cta[href="http://example.com"]': 1
       'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--primary-highlight.ecl-link--icon.ecl-banner__link-cta[data-name="data value"]': 1
-      'span.ecl-icon.ecl-icon--xs.ecl-icon--rotate-90.ecl-link__icon': 1
+      'span.ecl-icon.ecl-icon--xs.ecl-icon--primary.ecl-link__icon.wt-icon--external': 1
       'picture.ecl-picture.ecl-banner__picture img.ecl-banner__image[src="http://via.placeholder.com/150x150"]': 0
       'video[poster="https://inno-ecl.s3.amazonaws.com/media/examples/example-image.jpg"]': 1
       'video[autoplay]': 1
@@ -805,7 +805,7 @@
       'section.ecl-banner.ecl-banner--font-l.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--l.ecl-banner--h-center.ecl-banner--v-bottom': 1
       'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--primary-highlight.ecl-link--icon.ecl-banner__link-cta[href="http://example.com"]': 1
       'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--primary-highlight.ecl-link--icon.ecl-banner__link-cta[data-name="data value"]': 1
-      'span.ecl-icon.ecl-icon--xs.ecl-icon--rotate-90.ecl-link__icon': 1
+      'span.ecl-icon.ecl-icon--xs.ecl-icon--primary.ecl-link__icon.wt-icon--external': 1
       'picture.ecl-picture.ecl-banner__picture img.ecl-banner__image[src="http://via.placeholder.com/150x150"]': 0
       'video[poster="https://inno-ecl.s3.amazonaws.com/media/examples/example-image.jpg"]': 1
       'video[autoplay]': 1

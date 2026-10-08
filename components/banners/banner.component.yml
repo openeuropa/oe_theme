@@ -75,10 +75,6 @@ props:
       type: ['boolean', 'null']
       title: 'Full width'
       description: 'Extends the banner to whole viewport when used inside the grid.'
-    external_link:
-      type: ['boolean', 'null']
-      title: 'External link'
-      description: 'Whether the banner link is external or not.'
     credit:
       type: ['string', 'null']
       title: Credit
