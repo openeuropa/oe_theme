@@ -11,13 +11,14 @@ body {
 a {
   text-decoration: none;
   color: var(--cm-on-surface-primary);
-  &:hover,
-  &:focus {
-    text-decoration: underline;
+  // Apply ECL styling on hover and focus only if the link doesn't already have
+  // ECL styling.
+  &:not([class*="ecl-"]) {
+    &:hover,
+    &:focus {
+      text-decoration: underline;
+    }
   }
-}
-a.ecl-tabs__link {
-  text-decoration: none!important;
 }
 
 .ecl {
