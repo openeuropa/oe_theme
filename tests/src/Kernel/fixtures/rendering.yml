@@ -3098,7 +3098,7 @@
       'div.ecl-layout-wrapper--height-auto': 0
       'div.ecl-layout-wrapper--vertical': 0
       'div.ecl-layout-wrapper div.ecl-layout-wrapper__grid div.ecl-layout-wrapper__info': 1
-      'div.ecl-layout-wrapper__info h3.ecl-u-type-heading-3.ecl-layout-wrapper__title': 1
+      'div.ecl-layout-wrapper__info h3.ecl-layout-wrapper__title': 1
       'div.ecl-layout-wrapper__info div.ecl-layout-wrapper__description': 1
       'div.ecl-layout-wrapper__grid div.ecl-layout-wrapper__container div.ecl-layout-wrapper__content div.ecl-layout-item': 2
       'div.ecl-layout-item.ecl-layout-item--1 article.ecl-content-item': 1
@@ -3141,7 +3141,7 @@
   assertions:
     count:
       'div.ecl-layout-wrapper.ecl-layout-wrapper--col-1': 1
-      'div.ecl-layout-wrapper__info h2.ecl-u-type-heading-2.ecl-layout-wrapper__title': 1
+      'div.ecl-layout-wrapper__info h2.ecl-layout-wrapper__title': 1
       'div.ecl-layout-item': 1
     equals:
       'div.ecl-layout-wrapper__info h2.ecl-layout-wrapper__title': "Block title"
@@ -3181,7 +3181,7 @@
       'div.ecl-layout-wrapper.ecl-layout-wrapper--col-3.ecl-layout-wrapper--info-side': 1
       'div.ecl-layout-wrapper.ecl-layout-wrapper--col-4': 0
       'div.ecl-layout-wrapper__info': 1
-      'div.ecl-layout-wrapper__info h4.ecl-u-type-heading-4.ecl-layout-wrapper__title': 1
+      'div.ecl-layout-wrapper__info h4.ecl-layout-wrapper__title': 1
       'div.ecl-layout-wrapper__info h2': 0
       'div.ecl-layout-wrapper__info h3': 0
     equals:
