@@ -27,3 +27,31 @@ props:
       type: [ 'string', 'null' ]
       title: 'Image anchor'
       description: 'The image anchor uses the background-position CSS property, so it accepts the same values as the properties.'
+    sr_description:
+      type: ['string', 'null']
+      title: 'Screen reader description'
+      description: 'Screen reader description of the carousel. Defaults to empty.'
+    sr_role:
+      type: ['string', 'null']
+      title: 'Screen reader role'
+      description: "Screen reader localized role for the carousel. Defaults to 'carousel'."
+    sr_slide_role:
+      type: ['string', 'null']
+      title: 'Screen reader slide role'
+      description: "Screen reader localized role for the slides. Defaults to 'slide'."
+    sr_play:
+      type: ['string', 'null']
+      title: 'Screen reader play'
+      description: "Screen reader label for the play button. Defaults to 'Play'."
+    sr_pause:
+      type: ['string', 'null']
+      title: 'Screen reader pause'
+      description: "Screen reader label for the pause button. Defaults to 'Pause'."
+    sr_prev:
+      type: ['string', 'null']
+      title: 'Screen reader previous'
+      description: "Screen reader label for the previous button. Defaults to 'Previous'."
+    sr_next:
+      type: ['string', 'null']
+      title: 'Screen reader next'
+      description: "Screen reader label for the next button. Defaults to 'Next'."
