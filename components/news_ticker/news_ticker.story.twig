@@ -1,16 +1,13 @@
 {% include 'oe_theme:news_ticker' with {
   identifier: 'news-ticker-example',
+  color_mode: 'purple',
   items: [
     {
       content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
       link: 'http://example.com',
       external_link: true,
-      image: {
-        path: 'https://loremflickr.com/800/600/rome',
-        alt: 'Example alt text',
-        title: 'image title',
-      },
       icon: 'clock',
+      icon_family: 'phosphor',
     },
     {
       content: 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat',
