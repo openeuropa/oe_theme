@@ -16,6 +16,7 @@ use Drupal\Core\Render\RendererInterface;
 use Drupal\Core\StringTranslation\ByteSizeMarkup;
 use Drupal\Core\Template\Attribute;
 use Drupal\Core\Template\TwigExtension as CoreTwigExtension;
+use Drupal\Core\Url;
 use Drupal\oe_theme\ValueObject\DateValueObject;
 use Drupal\oe_theme\ValueObject\FileValueObject;
 use Drupal\oe_theme\ValueObject\GalleryItemValueObject;
@@ -484,21 +485,21 @@ class TwigExtension extends AbstractExtension {
    *
    * @param array $context
    *   The twig context.
-   * @param string $path
-   *   The internal path or external URL.
+   * @param \Drupal\Core\Url|\Stringable|string|null $path
+   *   The internal path, external URL or URL object.
    * @param string $size
    *   Size of the icon. Default is "s".
    *
    * @return array
    *   Icon settings to be used in the ecl-twig/link component.
    */
-  public function getLinkIcon(array $context, string $path, string $size = 's'): array {
+  public function getLinkIcon(array $context, Url|\Stringable|string|null $path, string $size = 's'): array {
 
     $icon = [
       'size' => $size,
       'color' => 'primary',
     ];
-    if ($this->externalLinks->isExternalLink($path)) {
+    if ($this->isExternal($path)) {
       $icon['name'] = 'external';
     }
     else {
@@ -572,13 +573,16 @@ class TwigExtension extends AbstractExtension {
   /**
    * Checks if a given path is external or not.
    *
-   * @param string $path
-   *   The path to be checked.
+   * @param \Drupal\Core\Url|\Stringable|string|null $path
+   *   The path or URL object to be checked.
    *
    * @return bool
    *   Whether the path is external.
    */
-  public function isExternal(string $path): bool {
+  public function isExternal(Url|\Stringable|string|null $path): bool {
+    if ($path instanceof \Stringable) {
+      $path = (string) $path;
+    }
     return $this->externalLinks->isExternalLink($path);
   }
 

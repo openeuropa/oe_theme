@@ -78,7 +78,8 @@ props:
     external_link:
       type: ['boolean', 'null']
       title: 'External link'
-      description: 'Whether the banner link is external or not.'
+      description: 'Deprecated and will be removed in 7.x. Whether the link is external is now determined from its url.'
+      deprecated: true
     credit:
       type: ['string', 'null']
       title: Credit

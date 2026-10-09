@@ -5,8 +5,9 @@
  */
 #}
 {% set _button_icon_position = button_icon_position|default('after') %}
-{% set _button_icon_name = button_icon_name|default('arrow-left') %}
-{% if external_link %}
+{% set _link_icon_name = get_link_icon(button_url).name %}
+{% set _button_icon_name = button_icon_name|default(_link_icon_name) %}
+{% if _link_icon_name == 'external' %}
   {% set _button_icon_name = 'external' %}
   {% set _button_icon_position = 'after' %}
 {% endif %}

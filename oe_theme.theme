@@ -829,7 +829,6 @@ function oe_theme_preprocess_paragraph__oe_list_item(array &$variables): void {
       '<button>',
     ])) {
       $variables['url'] = $url;
-      $variables['external_link'] = \Drupal::service('oe_theme_helper.external_links')->isExternalLink($url);
     }
   }
 
@@ -901,7 +900,6 @@ function oe_theme_preprocess_paragraph__oe_list_item_block(array &$variables): v
     '<button>',
   ])) {
     $variables['button_url'] = $url;
-    $variables['external_link'] = \Drupal::service('oe_theme_helper.external_links')->isExternalLink($url);
   }
   $variables['button_label'] = $link_item->get('title')->getValue();
 }
@@ -1392,7 +1390,6 @@ function oe_theme_preprocess_paragraph__oe_facts_figures(array &$variables): voi
     $url = $paragraph->get('field_oe_link')->first()->getUrl();
     $variables['view_all']['path'] = $url;
     $variables['view_all']['label'] = $paragraph->get('field_oe_link')->first()->get('title')->getValue();
-    $variables['external_link'] = \Drupal::service('oe_theme_helper.external_links')->isExternalLink($url);
   }
   $variables['items'] = [];
 
@@ -1444,8 +1441,6 @@ function oe_theme_preprocess_paragraph__oe_banner(array &$variables): void {
     $url = $link->getUrl();
     $variables['url'] = $url;
     $variables['label'] = $link->get('title')->getValue();
-    $variables['external_link'] = \Drupal::service('oe_theme_helper.external_links')
-      ->isExternalLink($url);
   }
 
   $variables['full_width'] = (bool) $paragraph->get('field_oe_banner_full_width')->value;
