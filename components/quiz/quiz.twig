@@ -12,30 +12,33 @@
 {% if items is not empty and items is iterable %}
   {% for item in items %}
     {% set _item = [] %}
+    {# Prepare the icon shown on the front of the card. #}
+    {% set _icon_family = item.icon_family|default('phosphor') %}
+    {% set _icon = {
+      icon: {
+        name: item.icon_name|default('question'),
+        family: _icon_family == 'icons' ? '' : _icon_family,
+        size: _variant == 'reveal' ? 'xl' : '2xl',
+      }
+    } %}
+    {# Prepare the image array. #}
+    {% set _image_display = 'none' %}
+    {% set _picture = {} %}
+    {% if item.picture is not empty and item.picture is iterable and item.image_display in ['reveal', 'always'] %}
+      {# ECL always renders the picture on the back of the card, so only pass
+      it when it should actually be displayed. #}
+      {% set _image_display = item.image_display %}
+      {% set _picture = item.picture %}
+    {% endif %}
     {% if _variant == 'reveal' %}
-      {% set _icon = [] %}
       {% if item.question is not empty and item.answer is not empty %}
         {# Add the item properties needed for the Reveal variant only. #}
-        {% if item.icon_family is not empty and item.icon_family == 'icons' %}
-          {% set _icon = _icon|merge({
-            icon: {
-              name: item.icon_name|default('question'),
-              size: 'xl',
-            }
-          }) %}
-        {% else %}
-          {% set _icon = _icon|merge({
-            icon: {
-              name: item.icon_name|default('question'),
-              family: item.icon_family|default('phosphor'),
-              size: 'xl',
-            }
-          }) %}
-        {% endif %}
         {% set _item = _item|merge([{
           question: item.question,
           answer: item.answer|default(''),
           icon: _icon,
+          picture: _picture,
+          image_display: _image_display,
           back_text: 'Go back'|t,
           flip_text: 'Click to reveal'|t,
           flip_icon: {
@@ -59,13 +62,9 @@
           incorrect_chosen_label: 'Your incorrect answer'|t,
           answer_title: item.answer_title|default(''),
           answer: item.answer|default(''),
-          icon: {
-            icon: {
-              family: 'phosphor',
-              name: 'question',
-              size: '2xl',
-            },
-          },
+          icon: _icon,
+          picture: _picture,
+          image_display: _image_display,
           back_icon: {
             success: {
               icon: {
@@ -91,6 +90,7 @@
 
 {% include '@ecl-twig/quiz' with {
   variant: _variant,
+  color_mode: color_mode|default(''),
   title: title|default(''),
   description: description|default(''),
   next_label: next_label|default('Next'|t),
@@ -98,4 +98,5 @@
   with_background: with_background ?? false,
   full_width: full_width ?? false,
   items: _items|default([]),
+  extra_classes: extra_classes|default(''),
 } only %}
