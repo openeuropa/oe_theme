@@ -8,6 +8,6 @@ on:
 
 jobs:
   automated-tests:
-    uses: openeuropa/github-ci/.github/workflows/drupal-ci.yml@main
+    uses: tibi2303/github-ci/.github/workflows/drupal-ci.yml@OEL-4980
     with:
       run_phpunit_batches: true
