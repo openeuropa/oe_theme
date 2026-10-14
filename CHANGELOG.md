@@ -1,5 +1,25 @@
 # Changelog
 
+## [6.1.0](https://github.com/openeuropa/oe_theme/tree/6.1.0) (2026-10-14)
+
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/6.0.0...6.1.0)
+
+**Merged pull requests:**
+
+- EWPP-7427: Update to ECL 5.3.2. [\#1819](https://github.com/openeuropa/oe_theme/pull/1819) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-0010: Fix phpstan 2 errors. [\#1817](https://github.com/openeuropa/oe_theme/pull/1817) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-7322: Set icons consistently in every SDC. [\#1816](https://github.com/openeuropa/oe_theme/pull/1816) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-7345: Allow images in Quiz SDC. [\#1814](https://github.com/openeuropa/oe_theme/pull/1814) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-7354: Allow only icons in News ticker SDC. [\#1812](https://github.com/openeuropa/oe_theme/pull/1812) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-7341: Add screen reader default values to Carousel SDC. [\#1810](https://github.com/openeuropa/oe_theme/pull/1810) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-7273: Fix the title of file translation in the teaser. [\#1809](https://github.com/openeuropa/oe_theme/pull/1809) ([intelektron](https://github.com/intelektron))
+- EWPP-7304: Avoid having excessive whitespace when event fields are not filled in. [\#1808](https://github.com/openeuropa/oe_theme/pull/1808) ([intelektron](https://github.com/intelektron))
+- EWPP-7323: Update to ECL 5.3.0. [\#1807](https://github.com/openeuropa/oe_theme/pull/1807) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-7066: Apply global css for 'a' tags only if no ECL styling is present. [\#1806](https://github.com/openeuropa/oe_theme/pull/1806) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-7220: Do not render the Subject field values on Event anymore. [\#1805](https://github.com/openeuropa/oe_theme/pull/1805) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-7183: Replace the custom contextual navigation composition with the ECL Description list. [\#1800](https://github.com/openeuropa/oe_theme/pull/1800) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-7157: Pass open control to ECL Accordion from the SDC. [\#1798](https://github.com/openeuropa/oe_theme/pull/1798) ([22Alexandra](https://github.com/22Alexandra))
+
 ## [6.0.0](https://github.com/openeuropa/oe_theme/tree/6.0.0) (2026-09-10)
 
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/6.0.0-alpha3...6.0.0)
