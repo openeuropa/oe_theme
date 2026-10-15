@@ -58,7 +58,7 @@
       'div.ecl-page-header--background': 0
     equals:
       'h1.ecl-page-header__title': "Business, Economy, Euro&lt;"
-      '.ecl-page-header__description': "EU economy, finance and the euro, and practical information for EU businesses and entrepreneurs on product safety, environmental regulations, trade with non-EU countries and competition rules.&lt;cc&gt;&amp;"
+      '.ecl-page-header__description > .ecl': "EU economy, finance and the euro, and practical information for EU businesses and entrepreneurs on product safety, environmental regulations, trade with non-EU countries and competition rules.&lt;cc&gt;&amp;"
       '.ecl-page-header__meta .ecl-page-header__meta-item:nth-child(1)': "News article&gt;"
       '.ecl-page-header__meta .ecl-page-header__meta-item:nth-child(2)': "6 July 2015&amp;"
       '.ecl-page-header__meta .ecl-page-header__meta-item:nth-child(3)': "Brussels&lt;"
@@ -70,7 +70,7 @@
       '.ecl-breadcrumb__segment:nth-child(6)[data-ecl-breadcrumb-item="static"] a[href="http://www.example.com/how-commission-organized/"]': "How the Commission is organised"
       '.ecl-breadcrumb__segment:nth-child(7)': "News"
       'div.ecl-page-header-expandable__header div.ecl-page-header-expandable__header-text': "<p>Duis arcu tortor, suscipit eget, imperdiet nec, imperdiet iaculis, ipsum. Sed cursus turpis vitae tortor.</p>"
-      'div.ecl-page-header-expandable__panel div.ecl-container': "<p>Duis arcu tortor, suscipit eget, imperdiet nec, imperdiet iaculis, ipsum. Sed cursus turpis vitae tortor. <strong>Aliquam eu nunc.</strong> Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos hymenaeos. Fusce egestas elit eget lorem.</p>"
+      'div.ecl-page-header-expandable__panel div.ecl-container > div.ecl': "<p>Duis arcu tortor, suscipit eget, imperdiet nec, imperdiet iaculis, ipsum. Sed cursus turpis vitae tortor. <strong>Aliquam eu nunc.</strong> Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos hymenaeos. Fusce egestas elit eget lorem.</p>"
       'div.ecl-page-header-expandable__header button.ecl-button--tertiary.ecl-button--neutral.ecl-page-header-expandable__toggle span.ecl-button__label': "expandable button"
 - branding: core
   pattern:
@@ -143,7 +143,7 @@
       'div.ecl-page-header-expandable__header button.ecl-button--tertiary span.ecl-button__container span.ecl-button__label': 0
     equals:
       'h1.ecl-page-header__title': "Business, Economy, Euro&lt;"
-      '.ecl-page-header--description-top .ecl-page-header__description': "EU economy, finance and the euro, and practical information for EU businesses and entrepreneurs on product safety, environmental regulations, trade with non-EU countries and competition rules.&lt;cc&gt;&amp;"
+      '.ecl-page-header--description-top .ecl-page-header__description > .ecl': "EU economy, finance and the euro, and practical information for EU businesses and entrepreneurs on product safety, environmental regulations, trade with non-EU countries and competition rules.&lt;cc&gt;&amp;"
       '.ecl-page-header__meta .ecl-page-header__meta-item:nth-child(1)': "News article&gt;"
       '.ecl-page-header__meta .ecl-page-header__meta-item:nth-child(2)': "6 July 2015&amp;"
       '.ecl-page-header__meta .ecl-page-header__meta-item:nth-child(3)': "Brussels&lt;"
@@ -155,7 +155,7 @@
       '.ecl-breadcrumb__segment:nth-child(6)[data-ecl-breadcrumb-item="static"] a[href="http://www.example.com/how-commission-organized/"]': "How the Commission is organised"
       '.ecl-breadcrumb__segment:nth-child(7)': "News"
       'div.ecl-page-header-expandable__header div.ecl-page-header-expandable__header-text': "<p>Duis arcu tortor, suscipit eget, imperdiet nec, imperdiet iaculis, ipsum. Sed cursus turpis vitae tortor.</p>"
-      'div.ecl-page-header-expandable__panel div.ecl-container': "<p>Duis arcu tortor, suscipit eget, imperdiet nec, imperdiet iaculis, ipsum. Sed cursus turpis vitae tortor. <strong>Aliquam eu nunc.</strong> Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos hymenaeos. Fusce egestas elit eget lorem.</p>"
+      'div.ecl-page-header-expandable__panel div.ecl-container > div.ecl': "<p>Duis arcu tortor, suscipit eget, imperdiet nec, imperdiet iaculis, ipsum. Sed cursus turpis vitae tortor. <strong>Aliquam eu nunc.</strong> Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos hymenaeos. Fusce egestas elit eget lorem.</p>"
 - branding: core
   pattern:
     '#type': component
@@ -193,12 +193,12 @@
       'div.ecl-page-header-expandable__panel': 1
     equals:
       'h1.ecl-page-header__title': "Business, Economy, Euro&lt;"
-      '.ecl-page-header__description': "EU economy, finance and the euro, and practical information for EU businesses and entrepreneurs on product safety, environmental regulations, trade with non-EU countries and competition rules.&lt;cc&gt;&amp;"
+      '.ecl-page-header__description > .ecl': "EU economy, finance and the euro, and practical information for EU businesses and entrepreneurs on product safety, environmental regulations, trade with non-EU countries and competition rules.&lt;cc&gt;&amp;"
       '.ecl-page-header__meta .ecl-page-header__meta-item:nth-child(1)': "News article&gt;"
       '.ecl-page-header__meta .ecl-page-header__meta-item:nth-child(2)': "6 July 2015&amp;"
       '.ecl-page-header__meta .ecl-page-header__meta-item:nth-child(3)': "Brussels&lt;"
       'div.ecl-page-header-expandable__header div.ecl-page-header-expandable__header-text': "<p>Duis arcu tortor, suscipit eget, imperdiet nec, imperdiet iaculis, ipsum. Sed cursus turpis vitae tortor.</p>"
-      'div.ecl-page-header-expandable__panel div.ecl-container': "<p>Duis arcu tortor, suscipit eget, imperdiet nec, imperdiet iaculis, ipsum. Sed cursus turpis vitae tortor. <strong>Aliquam eu nunc.</strong> Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos hymenaeos. Fusce egestas elit eget lorem.</p>"
+      'div.ecl-page-header-expandable__panel div.ecl-container > div.ecl': "<p>Duis arcu tortor, suscipit eget, imperdiet nec, imperdiet iaculis, ipsum. Sed cursus turpis vitae tortor. <strong>Aliquam eu nunc.</strong> Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos hymenaeos. Fusce egestas elit eget lorem.</p>"
 - branding: standardised
   pattern:
     '#type': component
@@ -255,7 +255,7 @@
       'div.ecl-page-header-expandable__header button': 0
     equals:
       'h1.ecl-page-header__title': "Business, Economy, Euro&lt;"
-      '.ecl-page-header__description': "EU economy, finance and the euro, and practical information for EU businesses and entrepreneurs on product safety, environmental regulations, trade with non-EU countries and competition rules.&lt;cc&gt;&amp;"
+      '.ecl-page-header__description > .ecl': "EU economy, finance and the euro, and practical information for EU businesses and entrepreneurs on product safety, environmental regulations, trade with non-EU countries and competition rules.&lt;cc&gt;&amp;"
       '.ecl-page-header__meta .ecl-page-header__meta-item:nth-child(1)': "News article&gt;"
       '.ecl-page-header__meta .ecl-page-header__meta-item:nth-child(2)': "6 July 2015&amp;"
       '.ecl-page-header__meta .ecl-page-header__meta-item:nth-child(3)': "Brussels&lt;"
@@ -322,7 +322,7 @@
       'div.ecl-page-header-expandable__header button': 0
     equals:
       'h1.ecl-page-header__title': "Business, Economy, Euro&lt;"
-      '.ecl-page-header__description': "EU economy, finance and the euro, and practical information for EU businesses and entrepreneurs on product safety, environmental regulations, trade with non-EU countries and competition rules.&lt;cc&gt;&amp;"
+      '.ecl-page-header__description > .ecl': "EU economy, finance and the euro, and practical information for EU businesses and entrepreneurs on product safety, environmental regulations, trade with non-EU countries and competition rules.&lt;cc&gt;&amp;"
       '.ecl-page-header__meta .ecl-page-header__meta-item:nth-child(1)': "News article&gt;"
       '.ecl-page-header__meta .ecl-page-header__meta-item:nth-child(2)': "6 July 2015&amp;"
       '.ecl-page-header__meta .ecl-page-header__meta-item:nth-child(3)': "Brussels&lt;"
@@ -360,7 +360,7 @@
       '.ecl-breadcrumb__container': 0
     equals:
       'h1.ecl-page-header__title': "Business, Economy, Euro&lt;"
-      '.ecl-page-header__description': "EU economy, finance and the euro, and practical information for EU businesses and entrepreneurs on product safety, environmental regulations, trade with non-EU countries and competition rules.&lt;cc&gt;&amp;"
+      '.ecl-page-header__description > .ecl': "EU economy, finance and the euro, and practical information for EU businesses and entrepreneurs on product safety, environmental regulations, trade with non-EU countries and competition rules.&lt;cc&gt;&amp;"
       '.ecl-page-header__meta .ecl-page-header__meta-item:nth-child(1)': "News article&gt;"
       '.ecl-page-header__meta .ecl-page-header__meta-item:nth-child(2)': "6 July 2015&amp;"
       '.ecl-page-header__meta .ecl-page-header__meta-item:nth-child(3)': "Brussels&lt;"
@@ -389,7 +389,7 @@
       '.ecl-page-header__info-item': 0
     equals:
       'h1.ecl-page-header__title': "Business, Economy, Euro&lt;"
-      '.ecl-page-header__description': "EU economy, finance and the euro, and practical information for EU businesses and entrepreneurs on product safety, environmental regulations, trade with non-EU countries and competition rules.&lt;cc&gt;&amp;"
+      '.ecl-page-header__description > .ecl': "EU economy, finance and the euro, and practical information for EU businesses and entrepreneurs on product safety, environmental regulations, trade with non-EU countries and competition rules.&lt;cc&gt;&amp;"
       '.ecl-page-header__meta .ecl-page-header__meta-item:nth-child(1)': "News article&gt;"
       '.ecl-page-header__meta .ecl-page-header__meta-item:nth-child(2)': "6 July 2015&amp;"
       '.ecl-page-header__meta .ecl-page-header__meta-item:nth-child(3)': "Brussels&lt;"
@@ -418,7 +418,7 @@
       '.ecl-page-header__info-item': 0
     equals:
       'h1.ecl-page-header__title': "Business, Economy, Euro&lt;"
-      '.ecl-page-header__description': "EU economy, finance and the euro, and practical information for EU businesses and entrepreneurs on product safety, environmental regulations, trade with non-EU countries and competition rules.&lt;cc&gt;&amp;"
+      '.ecl-page-header__description > .ecl': "EU economy, finance and the euro, and practical information for EU businesses and entrepreneurs on product safety, environmental regulations, trade with non-EU countries and competition rules.&lt;cc&gt;&amp;"
       '.ecl-page-header__meta .ecl-page-header__meta-item:nth-child(1)': "News article&gt;"
       '.ecl-page-header__meta .ecl-page-header__meta-item:nth-child(2)': "6 July 2015&amp;"
       '.ecl-page-header__meta .ecl-page-header__meta-item:nth-child(3)': "Brussels&lt;"
