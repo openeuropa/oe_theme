@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Drupal\oe_theme_helper\Plugin\field_group\FieldGroupFormatter;
 
+use Drupal\Core\Form\FormStateInterface;
 use Drupal\field_group\FieldGroupFormatterBase;
 
 /**
@@ -14,7 +15,7 @@ abstract class InPageNavigationBase extends FieldGroupFormatterBase {
   /**
    * {@inheritdoc}
    */
-  public function settingsForm() {
+  public function settingsForm(array $form, FormStateInterface $form_state) {
     $form = parent::settingsForm();
     // Hide classes and id attribute settings.
     $form['id']['#access'] = FALSE;

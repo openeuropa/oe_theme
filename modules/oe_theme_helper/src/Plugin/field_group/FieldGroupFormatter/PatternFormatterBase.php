@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Drupal\oe_theme_helper\Plugin\field_group\FieldGroupFormatter;
 
+use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Render\Element;
 use Drupal\Core\Theme\ComponentPluginManager;
@@ -66,7 +67,7 @@ abstract class PatternFormatterBase extends FieldGroupFormatterBase implements C
   /**
    * {@inheritdoc}
    */
-  public function settingsForm() {
+  public function settingsForm(array $form, FormStateInterface $form_state) {
     $component_id = 'oe_theme:' . $this->getPatternId();
     $definition = $this->componentManager->getDefinition($component_id);
 
