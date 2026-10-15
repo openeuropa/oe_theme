@@ -2494,3 +2494,13 @@ function oe_theme_library_info_alter(array &$libraries) {
     $libraries['inpage_navigation']['dependencies'][] = 'oe_theme/component_library_' . $component_library;
   }
 }
+
+/**
+ * Implements hook_module_implements_alter().
+ */
+function oe_theme_module_implements_alter(&$implementations, $hook) {
+  if ($hook === 'requirements') {
+    // We have our own version.
+    unset($implementations['sparql_entity_storage']);
+  }
+}
