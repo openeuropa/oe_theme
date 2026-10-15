@@ -82,17 +82,30 @@
       }]) %}
     {% endfor %}
   {% endif %}
+  {# Wrap the panel so ECL styles its links like for other text fields. #}
+  {% set _panel_content -%}
+    {% if header_message.panel_content is not empty %}
+      <div class="ecl">{{ header_message.panel_content }}</div>
+    {% endif %}
+  {%- endset %}
   {% set expandable = expandable|merge({
     toggle_label: header_message.toggle_label|default(''),
     header_content: header_message.header_content|default(''),
-    panel_content: header_message.panel_content|default(''),
+    panel_content: _panel_content,
   }) %}
 {% endif %}
+
+{# Wrap the introduction so ECL styles its links like for other text fields. #}
+{% set _introduction -%}
+  {% if introduction is not empty %}
+    <span class="ecl">{{ introduction }}</span>
+  {% endif %}
+{%- endset %}
 
 {% include '@ecl-twig/page-header' with {
   'title': title,
   'picture_thumbnail': _picture_thumbnail|default([]),
-  'description': introduction,
+  'description': _introduction,
   'description_position': introduction_position|default('top'),
   'expandable': expandable|default([]),
   'breadcrumb': _breadcrumb,

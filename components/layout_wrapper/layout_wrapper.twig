@@ -21,6 +21,13 @@
   {% set _items = _items|merge([_item]) %}
 {% endfor %}
 
+{# Wrap the description so ECL styles its links like for other text fields. #}
+{% set _description -%}
+  {% if description is not empty %}
+    <div class="ecl">{{ description }}</div>
+  {% endif %}
+{%- endset %}
+
 {% include '@ecl-twig/layout-wrapper' with {
   nb_columns: columns|default(3),
   forced_column: forced_columns|default(false),
@@ -29,7 +36,7 @@
     level: title_level|default(2),
     label: title|default(''),
   },
-  description: description|default(''),
+  description: _description,
   items: _items,
   direction: vertical|default(false) ? 'vertical' : 'horizontal',
   view_all: _view_all,
