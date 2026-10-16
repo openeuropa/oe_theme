@@ -76,6 +76,8 @@ class StatusMessagesTest extends AbstractKernelTestBase {
       $description = $wrapper->filter('div.ecl-notification__description');
       $this->assertCount(1, $description, sprintf('Wrong number of "%s" messages found.', $type));
       $this->assertEquals(implode($messages), trim($description->text()));
+      // The messages are wrapped so ECL styles their links.
+      $this->assertCount(1, $description->filter('div.ecl'));
     }
 
     // Verify that no message types other than the ones present in the test data
