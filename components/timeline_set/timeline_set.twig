@@ -10,10 +10,16 @@
 {% for _item in items %}
   {% set _headline = [] %}
   {% if _item.headline is not empty %}
+    {# Wrap the rich text so ECL styles its links like for other text fields. #}
+    {% set _headline_content -%}
+      {% if _item.headline.body is not empty %}
+        <div class="ecl">{{ _item.headline.body }}</div>
+      {% endif %}
+    {%- endset %}
     {% set _headline = {
       label: _item.headline.label|default(''),
       title: _item.headline.title|default(''),
-      content: _item.headline.body|default(''),
+      content: _headline_content,
     } %}
   {% endif %}
 
@@ -27,10 +33,15 @@
     {% set _toggle_expanded = button_label_hidden ? button_label_hidden| t : 'Hide @numb items'|trans({'@numb': hidden_num}) %}
 
     {% for timeline_item in _item.timeline_items %}
+      {% set _content -%}
+        {% if timeline_item.body is not empty %}
+          <div class="ecl">{{ timeline_item.body }}</div>
+        {% endif %}
+      {%- endset %}
       {% set _timeline_items = _timeline_items|merge([{
         label: timeline_item.label,
         title: timeline_item.title,
-        content: timeline_item.body
+        content: _content
       }]) %}
     {% endfor %}
   {% endif %}

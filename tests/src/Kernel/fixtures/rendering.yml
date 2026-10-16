@@ -1111,7 +1111,7 @@
       'span.ecl-file__icon': 0
     equals:
       'div.ecl-file__info div.ecl-file__title': "Example document"
-      'div.ecl-file__info div.ecl-file__description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer quis lorem tellus. Nullam sollicitudin suscipit diam, ac blandit ipsum tempor consectetur. Duis vitae pulvinar turpis. Donec maximus pharetra ex a ultricies.'
+      'div.ecl-file__info div.ecl-file__description > div.ecl': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer quis lorem tellus. Nullam sollicitudin suscipit diam, ac blandit ipsum tempor consectetur. Duis vitae pulvinar turpis. Donec maximus pharetra ex a ultricies.'
       'div.ecl-file__info ul.ecl-file__primary-meta li.ecl-file__primary-meta-item:nth-child(1)': 'RESOURCE TYPE'
       'div.ecl-file__info ul.ecl-file__primary-meta li.ecl-file__primary-meta-item:nth-child(2)': '2020-31-08'
       'footer.ecl-file__footer span.ecl-file__language': "English"
@@ -1203,7 +1203,7 @@
       'dd.ecl-description-list__definition--inline:nth-of-type(3) li.ecl-description-list__definition-item:nth-of-type(3) a span.ecl-link__icon.wt-icon--external': 1
     equals:
       'div.ecl-file__info div.ecl-file__title': "Example document"
-      'div.ecl-file__info div.ecl-file__description': 'Lorem...'
+      'div.ecl-file__info div.ecl-file__description > div.ecl': 'Lorem...'
       'div.ecl-file__info ul.ecl-file__primary-meta li.ecl-file__primary-meta-item:nth-child(1)': 'RESOURCE TYPE'
       'div.ecl-file__info ul.ecl-file__primary-meta li.ecl-file__primary-meta-item:nth-child(2)': '2020-31-08'
       'footer.ecl-file__footer span.ecl-file__language': "English"
@@ -1252,7 +1252,7 @@
       'footer.ecl-file__footer span.ecl-file__language.ecl-file__language--no-toggle': 1
     equals:
       'div.ecl-file__info div.ecl-file__title': "Example document"
-      'div.ecl-file__info div.ecl-file__description': 'Lorem ipsum dolor sit amet.'
+      'div.ecl-file__info div.ecl-file__description > div.ecl': 'Lorem ipsum dolor sit amet.'
       'footer.ecl-file__footer span.ecl-file__language': "English"
       'footer.ecl-file__footer a.ecl-file__download .ecl-link__label span:first-child': "Download"
 - structure:
@@ -1281,7 +1281,7 @@
       'a.ecl-file__download[href="http://example.com"]': 1
     equals:
       'div.ecl-file__info div.ecl-file__title': "Example document"
-      'div.ecl-file__info div.ecl-file__description': 'Lorem ipsum dolor sit amet.'
+      'div.ecl-file__info div.ecl-file__description > div.ecl': 'Lorem ipsum dolor sit amet.'
       'footer.ecl-file__footer span.ecl-file__language': "English"
       'footer.ecl-file__footer span.ecl-file__meta': "(136.72 KB - DOCX)"
 - structure:
@@ -3107,7 +3107,7 @@
       'div.ecl-layout-wrapper__view-all span.ecl-icon.ecl-icon--xs.ecl-icon--flip-horizontal.ecl-link__icon.wt-icon--arrow-left': 1
     equals:
       'div.ecl-layout-wrapper__info h3.ecl-layout-wrapper__title': "Block title"
-      'div.ecl-layout-wrapper__info div.ecl-layout-wrapper__description': "The description of the layout wrapper"
+      'div.ecl-layout-wrapper__info div.ecl-layout-wrapper__description > div.ecl': "The description of the layout wrapper"
       'div.ecl-layout-item--1 article.ecl-content-item div.ecl-content-item__content-block div.ecl-content-block__title': "Business, Economy, Euro"
       'div.ecl-layout-item--1 article.ecl-content-item div.ecl-content-block__description': "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
       'div.ecl-layout-item--2 article.ecl-content-item div.ecl-content-item__content-block div.ecl-content-block__title': "About the European Union"
@@ -3165,7 +3165,7 @@
       'div.ecl-layout-wrapper__title': 0
     equals:
       'div.ecl-layout-item--4 a.ecl-link': 'A simple link 4'
-      'div.ecl-layout-wrapper__info div.ecl-layout-wrapper__description': "The description of the layout wrapper"
+      'div.ecl-layout-wrapper__info div.ecl-layout-wrapper__description > div.ecl': "The description of the layout wrapper"
 - structure:
     '#type': component
     '#component': 'oe_theme:layout_wrapper'
@@ -4134,12 +4134,12 @@
       '.ecl-timeline__item:nth-child(5) .ecl-timeline__toggle .ecl-button__label': "Show 2 more items"
       '.ecl-timeline__item:nth-child(7) .ecl-timeline__title': "Item 6"
       '.ecl-timeline__item:nth-child(7) .ecl-timeline__label': "6 February 2018"
-      '.ecl-timeline__item:nth-child(1) .ecl-timeline__content': '<a href="/example" class="ecl-link">Economic and Monetary Union package of proposals</a>'
-      '.ecl-timeline__item:nth-child(2) .ecl-timeline__content': 'Lorem Ipsum 2'
-      '.ecl-timeline__item:nth-child(3) .ecl-timeline__content': 'Lorem Ipsum 3'
-      '.ecl-timeline__item:nth-child(4) .ecl-timeline__content': 'Lorem Ipsum 4'
-      '.ecl-timeline__item:nth-child(6) .ecl-timeline__content': 'Lorem Ipsum 5'
-      '.ecl-timeline__item:nth-child(7) .ecl-timeline__content': 'Lorem Ipsum 6'
+      '.ecl-timeline__item:nth-child(1) .ecl-timeline__content > .ecl': '<a href="/example" class="ecl-link">Economic and Monetary Union package of proposals</a>'
+      '.ecl-timeline__item:nth-child(2) .ecl-timeline__content > .ecl': 'Lorem Ipsum 2'
+      '.ecl-timeline__item:nth-child(3) .ecl-timeline__content > .ecl': 'Lorem Ipsum 3'
+      '.ecl-timeline__item:nth-child(4) .ecl-timeline__content > .ecl': 'Lorem Ipsum 4'
+      '.ecl-timeline__item:nth-child(6) .ecl-timeline__content > .ecl': 'Lorem Ipsum 5'
+      '.ecl-timeline__item:nth-child(7) .ecl-timeline__content > .ecl': 'Lorem Ipsum 6'
 - structure:
     '#type': component
     '#component': 'oe_theme:timeline'
@@ -4181,19 +4181,19 @@
     equals:
       'li.ecl-timeline__item--headline .ecl-timeline__title': "Headline title"
       'li.ecl-timeline__item--headline .ecl-timeline__label': "2025"
-      'li.ecl-timeline__item--headline .ecl-timeline__content': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. <strong>Vivamus eu metus risus.</strong>'
+      'li.ecl-timeline__item--headline .ecl-timeline__content > .ecl': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. <strong>Vivamus eu metus risus.</strong>'
       '.ecl-timeline__item:nth-child(2) .ecl-timeline__title': "Item 1"
       '.ecl-timeline__item:nth-child(3) .ecl-timeline__title': "Item 2"
       '.ecl-timeline__item:nth-child(4) .ecl-timeline__title': "Item 3"
       '.ecl-timeline__item:nth-child(5) .ecl-timeline__title': "Item 4"
       '.ecl-timeline__item:nth-child(6) .ecl-timeline__title': "Item 5"
       '.ecl-timeline__item:nth-child(7) .ecl-timeline__title': "Item 6"
-      '.ecl-timeline__item:nth-child(2) .ecl-timeline__content': 'Lorem Ipsum 1'
-      '.ecl-timeline__item:nth-child(3) .ecl-timeline__content': 'Lorem Ipsum 2'
-      '.ecl-timeline__item:nth-child(4) .ecl-timeline__content': 'Lorem Ipsum 3'
-      '.ecl-timeline__item:nth-child(5) .ecl-timeline__content': 'Lorem Ipsum 4'
-      '.ecl-timeline__item:nth-child(6) .ecl-timeline__content': 'Lorem Ipsum 5'
-      '.ecl-timeline__item:nth-child(7) .ecl-timeline__content': 'Lorem Ipsum 6'
+      '.ecl-timeline__item:nth-child(2) .ecl-timeline__content > .ecl': 'Lorem Ipsum 1'
+      '.ecl-timeline__item:nth-child(3) .ecl-timeline__content > .ecl': 'Lorem Ipsum 2'
+      '.ecl-timeline__item:nth-child(4) .ecl-timeline__content > .ecl': 'Lorem Ipsum 3'
+      '.ecl-timeline__item:nth-child(5) .ecl-timeline__content > .ecl': 'Lorem Ipsum 4'
+      '.ecl-timeline__item:nth-child(6) .ecl-timeline__content > .ecl': 'Lorem Ipsum 5'
+      '.ecl-timeline__item:nth-child(7) .ecl-timeline__content > .ecl': 'Lorem Ipsum 6'
 - structure:
     '#type': component
     '#component': 'oe_theme:timeline'
@@ -4241,12 +4241,12 @@
       '.ecl-timeline__item:nth-child(6) .ecl-timeline__title': "Item 6"
       '.ecl-timeline__item:nth-child(6) .ecl-timeline__label': "6 February 2018"
       '.ecl-timeline__item:nth-child(7) .ecl-timeline__toggle .ecl-button__label': "Show all timelines"
-      '.ecl-timeline__item:nth-child(1) .ecl-timeline__content': '<a href="/example">Economic and Monetary Union package of proposals</a>'
-      '.ecl-timeline__item:nth-child(2) .ecl-timeline__content': 'Lorem Ipsum 2'
-      '.ecl-timeline__item:nth-child(3) .ecl-timeline__content': 'Lorem Ipsum 3'
-      '.ecl-timeline__item:nth-child(4) .ecl-timeline__content': 'Lorem Ipsum 4'
-      '.ecl-timeline__item:nth-child(5) .ecl-timeline__content': 'Lorem Ipsum 5'
-      '.ecl-timeline__item:nth-child(6) .ecl-timeline__content': 'Lorem Ipsum 6'
+      '.ecl-timeline__item:nth-child(1) .ecl-timeline__content > .ecl': '<a href="/example">Economic and Monetary Union package of proposals</a>'
+      '.ecl-timeline__item:nth-child(2) .ecl-timeline__content > .ecl': 'Lorem Ipsum 2'
+      '.ecl-timeline__item:nth-child(3) .ecl-timeline__content > .ecl': 'Lorem Ipsum 3'
+      '.ecl-timeline__item:nth-child(4) .ecl-timeline__content > .ecl': 'Lorem Ipsum 4'
+      '.ecl-timeline__item:nth-child(5) .ecl-timeline__content > .ecl': 'Lorem Ipsum 5'
+      '.ecl-timeline__item:nth-child(6) .ecl-timeline__content > .ecl': 'Lorem Ipsum 6'
 - structure:
     '#type': component
     '#component': 'oe_theme:timeline'
@@ -4274,19 +4274,23 @@
           label: "6 February 2018"
           title: "Item 6"
           body: "Lorem Ipsum 6"
+        -
+          label: "7 March 2018"
+          title: "Item 7"
   assertions:
     count:
       'h2.ecl-u-type-heading-2': 1
       'div.ecl.ecl-u-mb-m': 1
       'ol.ecl-timeline': 1
       'ol.ecl-timeline.ecl-timeline--has-headline': 0
-      'li.ecl-timeline__item': 7
+      'li.ecl-timeline__item': 8
       'li.ecl-timeline__item--headline': 0
       '.ecl-timeline__item.ecl-timeline__item--toggle': 1
-      '.ecl-timeline__item.ecl-timeline__item--collapsed': 4
+      '.ecl-timeline__item.ecl-timeline__item--collapsed': 5
       '.ecl-timeline__item:nth-child(3) .ecl-timeline__title': 0
       '.ecl-timeline__item:nth-child(4) .ecl-timeline__title': 0
       '.ecl-timeline__item:nth-child(5) .ecl-timeline__title': 0
+      '.ecl-timeline__item:nth-child(7) .ecl-timeline__content': 0
     equals:
       'h2.ecl-u-type-heading-2': "Timeline heading"
       'div.ecl.ecl-u-mb-m': "Timeline introduction"
@@ -4296,13 +4300,15 @@
       '.ecl-timeline__item:nth-child(2) .ecl-timeline__label': "28-29 September 2017"
       '.ecl-timeline__item:nth-child(6) .ecl-timeline__title': "Item 6"
       '.ecl-timeline__item:nth-child(6) .ecl-timeline__label': "6 February 2018"
-      '.ecl-timeline__item:nth-child(7) .ecl-timeline__toggle .ecl-button__label': "Show 4 more items"
-      '.ecl-timeline__item:nth-child(1) .ecl-timeline__content': '<a href="/example" class="ecl-link">Economic and Monetary Union package of proposals</a>'
-      '.ecl-timeline__item:nth-child(2) .ecl-timeline__content': 'Lorem Ipsum 2'
-      '.ecl-timeline__item:nth-child(3) .ecl-timeline__content': 'Lorem Ipsum 3'
-      '.ecl-timeline__item:nth-child(4) .ecl-timeline__content': 'Lorem Ipsum 4'
-      '.ecl-timeline__item:nth-child(5) .ecl-timeline__content': 'Lorem Ipsum 5'
-      '.ecl-timeline__item:nth-child(6) .ecl-timeline__content': 'Lorem Ipsum 6'
+      '.ecl-timeline__item:nth-child(7) .ecl-timeline__title': "Item 7"
+      '.ecl-timeline__item:nth-child(7) .ecl-timeline__label': "7 March 2018"
+      '.ecl-timeline__item:nth-child(8) .ecl-timeline__toggle .ecl-button__label': "Show 5 more items"
+      '.ecl-timeline__item:nth-child(1) .ecl-timeline__content > .ecl': '<a href="/example" class="ecl-link">Economic and Monetary Union package of proposals</a>'
+      '.ecl-timeline__item:nth-child(2) .ecl-timeline__content > .ecl': 'Lorem Ipsum 2'
+      '.ecl-timeline__item:nth-child(3) .ecl-timeline__content > .ecl': 'Lorem Ipsum 3'
+      '.ecl-timeline__item:nth-child(4) .ecl-timeline__content > .ecl': 'Lorem Ipsum 4'
+      '.ecl-timeline__item:nth-child(5) .ecl-timeline__content > .ecl': 'Lorem Ipsum 5'
+      '.ecl-timeline__item:nth-child(6) .ecl-timeline__content > .ecl': 'Lorem Ipsum 6'
 - structure:
     '#type': component
     '#component': 'oe_theme:timeline_set'
@@ -4379,7 +4385,7 @@
       'div.ecl.ecl-u-mb-m': "Timeline introduction"
       'ol.ecl-timeline:nth-child(1) .ecl-timeline__item--headline .ecl-timeline__title': "Headline title"
       'ol.ecl-timeline:nth-child(1) .ecl-timeline__item--headline .ecl-timeline__label': "2025"
-      'ol.ecl-timeline:nth-child(1) .ecl-timeline__item--headline .ecl-timeline__content': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. <strong>Vivamus eu metus risus.</strong>'
+      'ol.ecl-timeline:nth-child(1) .ecl-timeline__item--headline .ecl-timeline__content > .ecl': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. <strong>Vivamus eu metus risus.</strong>'
       'ol.ecl-timeline:nth-child(1) .ecl-timeline__item:nth-child(2) .ecl-timeline__title': "Item 1"
       'ol.ecl-timeline:nth-child(1) .ecl-timeline__item:nth-child(2) .ecl-timeline__label': "13 September 2017"
       'ol.ecl-timeline:nth-child(1) .ecl-timeline__item:nth-child(3) .ecl-timeline__title': "Item 2"
@@ -4387,15 +4393,15 @@
       'ol.ecl-timeline:nth-child(1) .ecl-timeline__item:nth-child(6) .ecl-timeline__toggle .ecl-button__label': "Show 2 more items"
       'ol.ecl-timeline:nth-child(1) .ecl-timeline__item:nth-child(8) .ecl-timeline__title': "Item 6"
       'ol.ecl-timeline:nth-child(1) .ecl-timeline__item:nth-child(8) .ecl-timeline__label': "6 February 2018"
-      'ol.ecl-timeline:nth-child(1) .ecl-timeline__item:nth-child(2) .ecl-timeline__content': '<a href="/example" class="ecl-link">Economic and Monetary Union package of proposals</a>'
-      'ol.ecl-timeline:nth-child(1) .ecl-timeline__item:nth-child(3) .ecl-timeline__content': 'Lorem Ipsum 2'
-      'ol.ecl-timeline:nth-child(1) .ecl-timeline__item:nth-child(4) .ecl-timeline__content': 'Lorem Ipsum 3'
-      'ol.ecl-timeline:nth-child(1) .ecl-timeline__item:nth-child(5) .ecl-timeline__content': 'Lorem Ipsum 4'
-      'ol.ecl-timeline:nth-child(1) .ecl-timeline__item:nth-child(7) .ecl-timeline__content': 'Lorem Ipsum 5'
-      'ol.ecl-timeline:nth-child(1) .ecl-timeline__item:nth-child(8) .ecl-timeline__content': 'Lorem Ipsum 6'
+      'ol.ecl-timeline:nth-child(1) .ecl-timeline__item:nth-child(2) .ecl-timeline__content > .ecl': '<a href="/example" class="ecl-link">Economic and Monetary Union package of proposals</a>'
+      'ol.ecl-timeline:nth-child(1) .ecl-timeline__item:nth-child(3) .ecl-timeline__content > .ecl': 'Lorem Ipsum 2'
+      'ol.ecl-timeline:nth-child(1) .ecl-timeline__item:nth-child(4) .ecl-timeline__content > .ecl': 'Lorem Ipsum 3'
+      'ol.ecl-timeline:nth-child(1) .ecl-timeline__item:nth-child(5) .ecl-timeline__content > .ecl': 'Lorem Ipsum 4'
+      'ol.ecl-timeline:nth-child(1) .ecl-timeline__item:nth-child(7) .ecl-timeline__content > .ecl': 'Lorem Ipsum 5'
+      'ol.ecl-timeline:nth-child(1) .ecl-timeline__item:nth-child(8) .ecl-timeline__content > .ecl': 'Lorem Ipsum 6'
       'ol.ecl-timeline:nth-child(2) .ecl-timeline__item--headline .ecl-timeline__title': "Headline title"
       'ol.ecl-timeline:nth-child(2) .ecl-timeline__item--headline .ecl-timeline__label': "2025"
-      'ol.ecl-timeline:nth-child(2) .ecl-timeline__item--headline .ecl-timeline__content': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. <strong>Vivamus eu metus risus.</strong>'
+      'ol.ecl-timeline:nth-child(2) .ecl-timeline__item--headline .ecl-timeline__content > .ecl': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. <strong>Vivamus eu metus risus.</strong>'
       'ol.ecl-timeline:nth-child(2) .ecl-timeline__item:nth-child(2) .ecl-timeline__title': "Item 1"
       'ol.ecl-timeline:nth-child(2) .ecl-timeline__item:nth-child(2) .ecl-timeline__label': "13 September 2017"
       'ol.ecl-timeline:nth-child(2) .ecl-timeline__item:nth-child(7) .ecl-timeline__toggle .ecl-button__label': "Show 4 more items"
@@ -4403,12 +4409,12 @@
       'ol.ecl-timeline:nth-child(2) .ecl-timeline__item:nth-child(3) .ecl-timeline__label': "28-29 September 2017"
       'ol.ecl-timeline:nth-child(2) .ecl-timeline__item:nth-child(8) .ecl-timeline__title': "Item 6"
       'ol.ecl-timeline:nth-child(2) .ecl-timeline__item:nth-child(8) .ecl-timeline__label': "6 February 2018"
-      'ol.ecl-timeline:nth-child(2) .ecl-timeline__item:nth-child(2) .ecl-timeline__content': '<a href="/example" class="ecl-link">Economic and Monetary Union package of proposals</a>'
-      'ol.ecl-timeline:nth-child(2) .ecl-timeline__item:nth-child(3) .ecl-timeline__content': 'Lorem Ipsum 2'
-      'ol.ecl-timeline:nth-child(2) .ecl-timeline__item:nth-child(4) .ecl-timeline__content': 'Lorem Ipsum 3'
-      'ol.ecl-timeline:nth-child(2) .ecl-timeline__item:nth-child(5) .ecl-timeline__content': 'Lorem Ipsum 4'
-      'ol.ecl-timeline:nth-child(2) .ecl-timeline__item:nth-child(6) .ecl-timeline__content': 'Lorem Ipsum 5'
-      'ol.ecl-timeline:nth-child(2) .ecl-timeline__item:nth-child(8) .ecl-timeline__content': 'Lorem Ipsum 6'
+      'ol.ecl-timeline:nth-child(2) .ecl-timeline__item:nth-child(2) .ecl-timeline__content > .ecl': '<a href="/example" class="ecl-link">Economic and Monetary Union package of proposals</a>'
+      'ol.ecl-timeline:nth-child(2) .ecl-timeline__item:nth-child(3) .ecl-timeline__content > .ecl': 'Lorem Ipsum 2'
+      'ol.ecl-timeline:nth-child(2) .ecl-timeline__item:nth-child(4) .ecl-timeline__content > .ecl': 'Lorem Ipsum 3'
+      'ol.ecl-timeline:nth-child(2) .ecl-timeline__item:nth-child(5) .ecl-timeline__content > .ecl': 'Lorem Ipsum 4'
+      'ol.ecl-timeline:nth-child(2) .ecl-timeline__item:nth-child(6) .ecl-timeline__content > .ecl': 'Lorem Ipsum 5'
+      'ol.ecl-timeline:nth-child(2) .ecl-timeline__item:nth-child(8) .ecl-timeline__content > .ecl': 'Lorem Ipsum 6'
 - structure:
     '#type': component
     '#component': 'oe_theme:text_featured_media'
