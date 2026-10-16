@@ -7,9 +7,12 @@
  */
 #}
 {%- macro message_list(messages) %}
-  {% for message in messages %}
-    <span{{ not loop.last ? ' class="ecl-u-mb-xs ecl-u-d-block"' }}>{{ message }}</span>
-  {% endfor %}
+  {# Wrap the messages so ECL styles their links like for other text fields. #}
+  <div class="ecl">
+    {% for message in messages %}
+      <span{{ not loop.last ? ' class="ecl-u-mb-xs ecl-u-d-block"' }}>{{ message }}</span>
+    {% endfor %}
+  </div>
 {%- endmacro %}
 
 {% set extra_attributes = [] %}
