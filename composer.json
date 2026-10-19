@@ -94,6 +94,10 @@
         "patches": {
             "drupal/core": {
                 "https://www.drupal.org/project/drupal/issues/3151609": "https://www.drupal.org/files/issues/2024-06-11/link_internal_as_text_v11-3151609.patch"
+            },
+            "drupal/sparql_entity_storage": {
+                "https://git.drupalcode.org/project/sparql_entity_storage/-/work_items/3603275": "https://git.drupalcode.org/project/sparql_entity_storage/-/merge_requests/41.diff",
+                "https://git.drupalcode.org/project/sparql_entity_storage/-/work_items/3603276": "https://git.drupalcode.org/project/sparql_entity_storage/-/merge_requests/42.diff"
             }
         },
         "drupal-scaffold": {
