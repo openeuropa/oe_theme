@@ -1032,7 +1032,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     $this->assertSession()->elementNotExists('css', 'div.ecl-notification.ecl-notification--info.ecl-u-mb-2xl');
     $status_container = $this->assertSession()->elementExists('css', 'div.ecl-notification.ecl-notification--warning.ecl-u-mb-2xl');
     $this->assertStringContainsString('This event has been postponed.', $status_container->find('css', 'div.ecl-notification__content div.ecl-notification__title')->getText());
-    $this->assertSession()->elementTextContains('css', 'div.ecl-notification__content div.ecl-notification__description', 'Event status message.');
+    $this->assertSession()->elementTextContains('css', 'div.ecl-notification__content div.ecl-notification__description > div.ecl', 'Event status message.');
     $node->set('oe_event_status', 'cancelled')->save();
     $this->drupalGet($node->toUrl());
     $this->assertStringContainsString('This event has been cancelled.', $status_container->find('css', 'div.ecl-notification__content div.ecl-notification__title')->getText());
@@ -1059,6 +1059,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     // Assert that the 'Status description' field is not rendered for the
     // 'As planned' messages.
     $this->assertStringContainsString('This event has started.', $status_container->find('css', 'div.ecl-notification__content div.ecl-notification__description')->getText());
+    $this->assertSession()->elementNotExists('css', 'div.ecl-notification__content div.ecl-notification__description > div.ecl');
     $this->assertSession()->elementNotExists('css', 'div.ecl-notification__content div.ecl-notification__title');
 
     // Set current time after the event ends.
