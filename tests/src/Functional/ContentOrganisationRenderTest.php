@@ -308,10 +308,10 @@ class ContentOrganisationRenderTest extends ContentRenderTestBase {
     $this->assertCount(2, $transparency_links_items);
     $this->assertEquals('http://example.com/1', $transparency_links_items[0]->getAttribute('href'));
     $this->assertEquals('Transparency link 1', $transparency_links_items[0]->getText());
-    $this->assertSession()->elementExists('css', 'a.ecl-link span.ecl-icon.ecl-icon--2xs.ecl-link__icon.wt-icon--external', $transparency_links_items[0]);
+    $this->assertSession()->elementExists('css', 'a.ecl-link span.ecl-icon.ecl-icon--xs.ecl-link__icon.wt-icon-phosphor--arrow-square-out', $transparency_links_items[0]);
     $this->assertEquals('http://example.com/2', $transparency_links_items[1]->getAttribute('href'));
     $this->assertEquals('http://example.com/2', $transparency_links_items[1]->getText());
-    $this->assertSession()->elementExists('css', 'a.ecl-link span.ecl-icon.ecl-icon--2xs.ecl-link__icon.wt-icon--external', $transparency_links_items[1]);
+    $this->assertSession()->elementExists('css', 'a.ecl-link span.ecl-icon.ecl-icon--xs.ecl-link__icon.wt-icon-phosphor--arrow-square-out', $transparency_links_items[1]);
 
     // Set value for Plans and report field and assert rendering is updated.
     $node->set('oe_organisation_plans_reports', 'My Plans and reports text.');

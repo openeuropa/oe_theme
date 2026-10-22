@@ -222,7 +222,7 @@ class ContentProjectRenderTest extends ContentRenderTestBase {
     $field_list_html = $description_lists[2]->getHtml();
     $field_list_assert->assertPattern($third_field_list_expected_values, $field_list_html);
     $field_list_assert->assertVariant('featured_horizontal', $field_list_html);
-    $this->assertSession()->elementExists('css', 'dl.ecl-description-list dd a.ecl-link span.ecl-icon.ecl-icon--2xs.ecl-link__icon.wt-icon--external');
+    $this->assertSession()->elementExists('css', 'dl.ecl-description-list dd a.ecl-link span.ecl-icon.ecl-icon--xs.ecl-link__icon.wt-icon-phosphor--arrow-square-out');
 
     // Assert documents file.
     $file_wrapper = $this->assertSession()->elementExists('css', 'div#project-documents');
@@ -404,7 +404,7 @@ class ContentProjectRenderTest extends ContentRenderTestBase {
     $field_list_assert->assertPattern($first_field_list_expected_values, $field_list_html);
     $field_list_assert->assertVariant('horizontal', $field_list_html);
     // Assert contact website's icon.
-    $this->assertSession()->elementExists('css', 'dl.ecl-description-list dd a.ecl-link span.ecl-icon.ecl-icon--2xs.ecl-link__icon.wt-icon--external');
+    $this->assertSession()->elementExists('css', 'dl.ecl-description-list dd a.ecl-link span.ecl-icon.ecl-icon--xs.ecl-link__icon.wt-icon-phosphor--arrow-square-out');
 
     // Assert contact link.
     $contact_links = $rendered_stakeholder_element->findAll('css', 'div.ecl-u-mt-l.ecl-u-type-bold a.ecl-link.ecl-link--standalone.ecl-link--icon');
@@ -450,7 +450,7 @@ class ContentProjectRenderTest extends ContentRenderTestBase {
     if (!empty($link)) {
       if ($external_link) {
         $link_tag = $rendered_element->find('css', 'a.ecl-link.ecl-link--standalone.ecl-link--icon');
-        $this->assertSession()->elementExists('css', 'span.ecl-icon.ecl-icon--2xs.ecl-link__icon.wt-icon--external', $link_tag);
+        $this->assertSession()->elementExists('css', 'span.ecl-icon.ecl-icon--xs.ecl-link__icon.wt-icon-phosphor--arrow-square-out', $link_tag);
       }
       else {
         $this->assertSession()->elementNotExists('css', 'span.ecl-icon.ecl-icon--s.ecl-link__icon', $rendered_element);
