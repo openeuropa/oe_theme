@@ -1,5 +1,5 @@
 diff --git a/node_modules/@ecl/tabs/tabs.html.twig b/node_modules/@ecl/tabs/tabs.html.twig
-index cd4b095..08f5eeb 100644
+index 1e93079..1846b55 100644
 --- a/node_modules/@ecl/tabs/tabs.html.twig
 +++ b/node_modules/@ecl/tabs/tabs.html.twig
 @@ -9,7 +9,13 @@
@@ -17,7 +17,7 @@ index cd4b095..08f5eeb 100644
        },
        {
          "label": "Item 1",
-@@ -81,7 +87,8 @@
+@@ -80,7 +86,8 @@
          {% if _item.path is not empty %}
            <div class="ecl-tabs__item">
            {% set _item_extra_classes = 'ecl-tabs__link' %}
@@ -25,5 +25,5 @@ index cd4b095..08f5eeb 100644
 +          {% set _item_extra_attributes = _item.extra_attributes|default([]) %}
 +          {% set _item_extra_attributes = _item_extra_attributes|merge([{ name: 'id', value: _id }, { name: 'role', value: 'tab' }]) %}
            {% if _item.is_current is defined and _item.is_current is not empty %}
-             {% set _item_extra_attributes = _item_extra_attributes|merge([{ name: 'tabindex', value: '0' }]) %}
-           {% else %}
+             {% set _item_extra_attributes = _item_extra_attributes|merge([
+               { name: 'tabindex', value: '0' },
