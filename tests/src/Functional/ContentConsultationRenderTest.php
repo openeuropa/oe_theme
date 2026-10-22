@@ -554,7 +554,7 @@ class ContentConsultationRenderTest extends ContentRenderTestBase {
     $this->drupalGet($node->toUrl());
     $respond_button = $content_items[3]->find('css', '.ecl-link.ecl-link--cta');
     $this->assertEquals('Link text', $respond_button->getText());
-    $this->assertSession()->elementExists('css', 'span.ecl-icon.ecl-icon--2xs.ecl-link__icon.wt-icon--external');
+    $this->assertSession()->elementExists('css', 'span.ecl-icon.ecl-icon--xs.ecl-link__icon.wt-icon-phosphor--arrow-square-out');
 
     // Assert status "Closed".
     $static_time = new DrupalDateTime('2020-04-20 14:00:00', DateTimeItemInterface::STORAGE_TIMEZONE);

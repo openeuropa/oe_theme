@@ -98,10 +98,10 @@ class MainMenuTest extends AbstractKernelTestBase {
     $active_link = $crawler->filter('nav.ecl-menu li.ecl-menu__item.ecl-menu__item--current a.ecl-menu__link');
     $this->assertEquals(1, $active_link->count());
     // Assert that the leaf item has the external icon rendered.
-    $this->assertCount(1, $links->eq(0)->filter('a.ecl-menu__link span.ecl-icon.ecl-icon--2xs.wt-icon--external'));
+    $this->assertCount(1, $links->eq(0)->filter('a.ecl-menu__link span.ecl-icon.ecl-icon--xs.wt-icon-phosphor--arrow-square-out'));
     // Assert that the parent item renders the corner arrow icon because it has
     // children, although it's an external link.
-    $this->assertCount(1, $links->eq(1)->filter('button.ecl-button--tertiary.ecl-menu__button-caret span.ecl-icon.ecl-icon--xs.ecl-icon--rotate-180.ecl-button__icon.wt-icon--corner-arrow'));
+    $this->assertCount(1, $links->eq(1)->filter('button.ecl-button--tertiary.ecl-menu__button-caret span.ecl-icon.ecl-icon--xs.ecl-button__icon.wt-icon-phosphor--caret-down'));
 
     // Assert that parent link is correctly rendered.
     // Remove all non-printable characters.
@@ -114,7 +114,7 @@ class MainMenuTest extends AbstractKernelTestBase {
       $link = $crawler->filter('.ecl-menu__mega li.ecl-menu__subitem a.ecl-menu__sublink')->eq($position);
       $this->assertEquals($title, trim($link->text()));
       $this->assertEquals($url, trim($link->extract(['href'])[0]));
-      $this->assertCount(1, $link->filter('span.ecl-icon.ecl-icon--2xs.ecl-link__icon.wt-icon--external'));
+      $this->assertCount(1, $link->filter('span.ecl-icon.ecl-icon--xs.ecl-link__icon.wt-icon-phosphor--arrow-square-out'));
       $position++;
     }
 

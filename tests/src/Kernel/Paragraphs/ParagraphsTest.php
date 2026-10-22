@@ -418,7 +418,7 @@ class ParagraphsTest extends ParagraphsTestBase {
     $crawler = new Crawler($this->renderParagraph($paragraph));
     $this->assertEquals('List block title', trim($crawler->filter('h2.ecl-u-type-heading-2')->text()));
     // Assert that the external icon is rendered for each list item paragraph.
-    $this->assertCount(3, $crawler->filter('span.ecl-icon.ecl-icon--2xs.ecl-link__icon.wt-icon--external'));
+    $this->assertCount(3, $crawler->filter('span.ecl-icon.ecl-icon--xs.ecl-link__icon.wt-icon-phosphor--arrow-square-out'));
 
     // Assert the external icon is rendered for the list item block.
     $this->assertCount(1, $crawler->filter('span.ecl-icon.ecl-icon--xs.ecl-link__icon.wt-icon--external'));
@@ -588,14 +588,14 @@ class ParagraphsTest extends ParagraphsTestBase {
     $this->assertEquals('Link 1', trim($actual));
     $actual = $link1->attr('href');
     $this->assertEquals('http://example.com/page-one', trim($actual));
-    $this->assertCount(1, $link1->filter('span.ecl-icon.ecl-icon--2xs.ecl-link__icon.wt-icon--external'));
+    $this->assertCount(1, $link1->filter('span.ecl-icon.ecl-icon--xs.ecl-link__icon.wt-icon-phosphor--arrow-square-out'));
 
     $link2 = $links->eq(1);
     $actual = $link2->filter('span.ecl-link__label')->text();
     $this->assertEquals('Link 2', trim($actual));
     $actual = $link2->attr('href');
     $this->assertEquals('http://example.com/page-two', trim($actual));
-    $this->assertCount(1, $link2->filter('span.ecl-icon.ecl-icon--2xs.ecl-link__icon.wt-icon--external'));
+    $this->assertCount(1, $link2->filter('span.ecl-icon.ecl-icon--xs.ecl-link__icon.wt-icon-phosphor--arrow-square-out'));
 
     $link3 = $links->eq(2);
     $actual = $link3->text();
@@ -711,7 +711,7 @@ class ParagraphsTest extends ParagraphsTestBase {
     $this->assertEquals('View all metrics', trim($actual));
     $actual = $link->attr('href');
     $this->assertEquals('http://www.example.com/', trim($actual));
-    $this->assertCount(1, $link->filter("span.ecl-icon.ecl-icon--2xs.ecl-link__icon.wt-icon--external"));
+    $this->assertCount(1, $link->filter("span.ecl-icon.ecl-icon--xs.ecl-link__icon.wt-icon-phosphor--arrow-square-out"));
   }
 
   /**

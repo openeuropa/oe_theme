@@ -182,7 +182,7 @@ class SiteHeaderTest extends BrowserTestBase {
         $this->assertEquals('Change language, current language is English - English', $language_switcher_button->getAttribute('aria-label'));
       }
       $this->assertEquals('language-list-overlay', $language_switcher_button->getAttribute('aria-controls'));
-      $this->assertSession()->elementExists('css', "span.ecl-site-header__language-icon span.ecl-icon.ecl-icon--m.ecl-site-header__icon.wt-icon--global", $language_switcher_button);
+      $this->assertSession()->elementExists('css', "span.ecl-site-header__language-icon span.ecl-icon.ecl-icon--m.ecl-site-header__icon.wt-icon-phosphor--globe-simple", $language_switcher_button);
       if ($component === 'ec') {
         $this->assertEquals('en', $language_switcher_button->getText());
       }
@@ -247,7 +247,7 @@ class SiteHeaderTest extends BrowserTestBase {
       }
       $this->assertEquals('Search', $search_form_button->find('css', "span.ecl-button__container span.ecl-button__label[data-ecl-label='true']")
         ->getText());
-      $this->assertSession()->elementExists('css', "span.ecl-button__container span.ecl-icon.ecl-icon--m.ecl-button__icon.wt-icon--search", $search_form_button);
+      $this->assertSession()->elementExists('css', "span.ecl-button__container span.ecl-icon.ecl-icon--m.ecl-button__icon.wt-icon-phosphor--magnifying-glass", $search_form_button);
 
       // Assert the main menu block.
       $main_menu = $assert->elementExists('css', 'div#block-oe-theme-main-navigation', $header);
@@ -282,7 +282,7 @@ class SiteHeaderTest extends BrowserTestBase {
         ->getText());
       // Assert the button.
       $second_item_button = $assert->elementExists('css', "button.ecl-button.ecl-button--tertiary.ecl-menu__button-caret[type='button'][data-ecl-menu-caret]");
-      $this->assertSession()->elementExists('css', "span.ecl-button__container span.ecl-icon.ecl-icon--xs.ecl-icon--rotate-180.ecl-button__icon.wt-icon--corner-arrow", $second_item_button);
+      $this->assertSession()->elementExists('css', "span.ecl-button__container span.ecl-icon.ecl-icon--xs.ecl-button__icon.wt-icon-phosphor--caret-down", $second_item_button);
 
       // Assert the children in the sublist.
       $this->assertCount(1, $second_item->findAll('css', "div.ecl-menu__mega[data-ecl-menu-mega] ul.ecl-menu__sublist"));

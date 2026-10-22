@@ -426,10 +426,10 @@ class ContentPersonRenderTest extends ContentRenderTestBase {
     $this->assertCount(2, $transparency_links_items);
     $this->assertEquals('http://example.com/link_1', $transparency_links_items[0]->getAttribute('href'));
     $this->assertEquals('Person link 1', $transparency_links_items[0]->getText());
-    $this->assertSession()->elementExists('css', 'a.ecl-link span.ecl-icon.ecl-icon--2xs.ecl-link__icon.wt-icon--external', $transparency_links_items[0]);
+    $this->assertSession()->elementExists('css', 'a.ecl-link span.ecl-icon.ecl-icon--xs.ecl-link__icon.wt-icon-phosphor--arrow-square-out', $transparency_links_items[0]);
     $this->assertEquals('http://example.com/link_2', $transparency_links_items[1]->getAttribute('href'));
     $this->assertEquals('http://example.com/link_2', $transparency_links_items[1]->getText());
-    $this->assertSession()->elementExists('css', 'a.ecl-link span.ecl-icon.ecl-icon--2xs.ecl-link__icon.wt-icon--external', $transparency_links_items[1]);
+    $this->assertSession()->elementExists('css', 'a.ecl-link span.ecl-icon.ecl-icon--xs.ecl-link__icon.wt-icon-phosphor--arrow-square-out', $transparency_links_items[1]);
 
     // Assert Biography introduction field.
     $node->set('oe_person_biography_intro', 'Biography introduction text')->save();
