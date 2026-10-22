@@ -59,3 +59,7 @@ props:
       type: ['boolean', 'null']
       title: 'Disable hover'
       description: "Hides the item's title on hover. Default is false."
+    title_always_visible:
+      type: ['boolean', 'null']
+      title: 'Title always visible'
+      description: "Always displays the items' title. Default is false."
