@@ -1363,6 +1363,7 @@
       '.ecl-gallery--ratio-3-2': 0
       '.ecl-gallery--ratio-3-1': 0
       '.ecl-gallery--no-hover': 1
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item figcaption.ecl-gallery__description--visible': 0
     equals:
       '.ecl-gallery .ecl-gallery__list .ecl-gallery__item figcaption.ecl-gallery__description span.ecl-gallery__title span.ecl-gallery__title-text': 'Cat'
       '.ecl-gallery .ecl-gallery__list .ecl-gallery__item .ecl-gallery__meta': 'Copyright © 2021, Author and Licence'
@@ -1619,6 +1620,7 @@
       ratio: '3-1'
       disable_hover: true
       picture_zoom: true
+      title_always_visible: true
   assertions:
     count:
       '.ecl-gallery[data-ecl-gallery-visible-items="1"]': 1
@@ -1653,6 +1655,7 @@
       '.ecl-gallery--ratio-3-2': 0
       '.ecl-gallery--ratio-3-1': 1
       '.ecl-gallery--no-hover': 1
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item figcaption.ecl-gallery__description.ecl-gallery__description--visible': 8
       '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(2) .ecl-gallery__image-container div.ecl-gallery__item-icon-wrapper span.ecl-icon.wt-icon-phosphor--play-filled': 1
       '.ecl-gallery__footer-link a span.ecl-icon.wt-icon--external': 1
     equals:
