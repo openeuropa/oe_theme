@@ -2672,7 +2672,7 @@
       'div.ecl-content-item-block__button a.ecl-link[href="http://example.com"]': 1
       'div.ecl-content-item-block__button a.ecl-link--standalone span.ecl-icon': 1
       'div.ecl-u-border-color-neutral-light-500.ecl-u-border-width-1.ecl-u-border-top': 0
-      'span.ecl-icon.ecl-icon--xs.ecl-link__icon.wt-icon--external': 1
+      'span.ecl-icon.ecl-icon--xs.ecl-link__icon.wt-icon-phosphor--arrow-square-out': 1
     equals:
       'div.ecl-content-item-block__item:nth-child(1) article.ecl-content-item div.ecl-content-item__content-block div.ecl-content-block__title': "Business, Economy, Euro"
       'div.ecl-content-item-block__item:nth-child(1) article.ecl-content-item div.ecl-content-block__description': "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
@@ -3579,8 +3579,8 @@
       'a.ecl-link-block__link[href="http://link-2.com"]': 1
       'a.ecl-link-block__link[href="/link-3"]': 1
       'span.ecl-icon.ecl-icon--xs.ecl-link__icon': 2
-      '.ecl-link-block__list .ecl-link-block__item:nth-child(1) .ecl-link span.ecl-icon.ecl-icon--xs.ecl-link__icon.wt-icon--external': 1
-      '.ecl-link-block__list .ecl-link-block__item:nth-child(2) .ecl-link span.ecl-icon.ecl-icon--xs.ecl-link__icon.wt-icon--external': 1
+      '.ecl-link-block__list .ecl-link-block__item:nth-child(1) .ecl-link span.ecl-icon.ecl-icon--xs.ecl-link__icon.wt-icon-phosphor--arrow-square-out': 1
+      '.ecl-link-block__list .ecl-link-block__item:nth-child(2) .ecl-link span.ecl-icon.ecl-icon--xs.ecl-link__icon.wt-icon-phosphor--arrow-square-out': 1
     equals:
       '.ecl-link-block__title h5': "Link block title"
       '.ecl-link-block__list .ecl-link-block__item:nth-child(1) .ecl-link .ecl-link__label': "Link 1"
@@ -4059,8 +4059,8 @@
       'div.ecl-content-block__title a.ecl-link--standalone.ecl-link--icon[href="https://example.com"]': 1
       'a.ecl-button[href="https://example.com"]': 1
       'div.ecl-content-block__title a span.ecl-icon.ecl-icon--xs.ecl-link__icon': 1
-      'span.ecl-icon.ecl-icon--xs.ecl-button__icon.wt-icon--external': 1
-      '.ecl-content-block__description span.ecl-icon.ecl-icon--xs.ecl-button__icon.wt-icon--external': 1
+      'span.ecl-icon.ecl-icon--xs.ecl-button__icon.wt-icon-phosphor--arrow-square-out': 1
+      '.ecl-content-block__description span.ecl-icon.ecl-icon--xs.ecl-button__icon.wt-icon-phosphor--arrow-square-out': 1
     equals:
       'div.ecl-content-block__title a span.ecl-link__label': "Example title"
       'div.ecl-content-block__description .ecl-paragraph': "Example description"
@@ -4455,7 +4455,7 @@
       'video': 0
       'figcaption.ecl-media-container__caption': 1
       'a.ecl-link.ecl-link--standalone[href="http://example.com"]': 1
-      'span.ecl-icon.ecl-icon--m.ecl-icon--primary.ecl-link__icon.wt-icon--external': 1
+      'span.ecl-icon.ecl-icon--xs.ecl-icon--primary.ecl-link__icon.wt-icon-phosphor--arrow-square-out': 1
       'div.ecl-expandable.ecl-media-container__expandable': 0
     equals:
       'h2.ecl-u-type-heading-2': "Heading"
@@ -7301,7 +7301,7 @@
       'div.ecl-highlight-box__body': 1
       'div.ecl-highlight-box__description': 0
       'a.ecl-link.ecl-link--secondary-neutral.ecl-link--icon.ecl-highlight-box__link[href="http://example.com"]': 1
-      'a.ecl-highlight-box__link span.ecl-icon.wt-icon--external.ecl-link__icon': 1
+      'a.ecl-highlight-box__link span.ecl-icon.wt-icon-phosphor--arrow-square-out.ecl-link__icon': 1
     equals:
       'a.ecl-highlight-box__link span.ecl-link__label': "External link"
 - structure:
