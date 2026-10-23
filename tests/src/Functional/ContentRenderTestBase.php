@@ -383,7 +383,7 @@ abstract class ContentRenderTestBase extends BrowserTestBase {
         ],
       ],
     ];
-    $content = $this->assertSession()->elementExists('css', 'dl.ecl-description-list', $element);
+    $content = $this->assertSession()->elementExists('css', 'div.ecl-description-list', $element);
     $field_list_html = $content->getOuterHtml();
     $field_list_assert->assertPattern($field_list_expected_values, $field_list_html);
     $field_list_assert->assertVariant('horizontal', $field_list_html);

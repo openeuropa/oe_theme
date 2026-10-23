@@ -163,7 +163,7 @@ class ContentOrganisationRenderTest extends ContentRenderTestBase {
     $this->assertContentHeader($content_items[0], 'Overview', 'overview');
 
     // Assert values of the first group.
-    $overview = $content_items[0]->findAll('css', 'dl.ecl-description-list.ecl-description-list--horizontal');
+    $overview = $content_items[0]->findAll('css', 'div.ecl-description-list.ecl-description-list--horizontal dl.ecl-description-list__content');
     $this->assertCount(1, $overview);
     $overview_terms = $overview[0]->findAll('css', 'dt.ecl-description-list__term');
     $this->assertCount(2, $overview_terms);

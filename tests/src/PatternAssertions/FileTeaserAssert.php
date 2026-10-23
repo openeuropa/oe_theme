@@ -76,8 +76,8 @@ class FileTeaserAssert extends FileTranslationAssert {
       $this->assertElementNotExists('div.ecl-file article.ecl-file__container div.ecl-file__lists', $crawler);
       return;
     }
-    $list_terms = $crawler->filter('div.ecl-file article.ecl-file__container div.ecl-file__lists dl.ecl-description-list dt.ecl-description-list__term');
-    $list_definitions = $crawler->filter('div.ecl-file article.ecl-file__container div.ecl-file__lists dl.ecl-description-list dd.ecl-description-list__definition.ecl-description-list__definition--inline');
+    $list_terms = $crawler->filter('div.ecl-file article.ecl-file__container div.ecl-file__lists div.ecl-description-list dl.ecl-description-list__content dt.ecl-description-list__term');
+    $list_definitions = $crawler->filter('div.ecl-file article.ecl-file__container div.ecl-file__lists div.ecl-description-list dl.ecl-description-list__content dd.ecl-description-list__definition.ecl-description-list__definition--inline');
     self::assertCount(count($expected_lists), $list_terms, 'The expected list number does not correspond with the found list number.');
     foreach ($expected_lists as $index => $expected_list) {
       foreach ($expected_list as $term => $definitions) {

@@ -277,11 +277,11 @@ class SiteHeaderTest extends BrowserTestBase {
         ->getText());
 
       // Assert the second menu item that has children.
-      $second_item = $assert->elementExists('css', 'ul.ecl-menu__list li.ecl-menu__item.ecl-menu__item--has-children[data-ecl-menu-item][data-ecl-has-children][aria-haspopup]', $menu_container);
+      $second_item = $assert->elementExists('css', 'ul.ecl-menu__list li.ecl-menu__item.ecl-menu__item--has-children[data-ecl-menu-item][data-ecl-has-children]', $menu_container);
       $this->assertEquals('Parent item', $second_item->find('css', "a.ecl-menu__link[href='http://parent.eu'][data-ecl-menu-link]")
         ->getText());
       // Assert the button.
-      $second_item_button = $assert->elementExists('css', "button.ecl-button.ecl-button--tertiary.ecl-menu__button-caret[type='button'][data-ecl-menu-caret]");
+      $second_item_button = $assert->elementExists('css', "button.ecl-button.ecl-button--tertiary.ecl-menu__button-caret[type='button'][data-ecl-menu-caret][aria-haspopup='true']");
       $this->assertSession()->elementExists('css', "span.ecl-button__container span.ecl-icon.ecl-icon--xs.ecl-button__icon.wt-icon-phosphor--caret-down", $second_item_button);
 
       // Assert the children in the sublist.

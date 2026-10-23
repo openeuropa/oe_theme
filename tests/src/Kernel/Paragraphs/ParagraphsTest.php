@@ -567,7 +567,7 @@ class ParagraphsTest extends ParagraphsTestBase {
     $html = $this->renderParagraph($paragraph);
 
     $crawler = new Crawler($html);
-    $description_list = $crawler->filter('dl.ecl-description-list.ecl-description-list--horizontal');
+    $description_list = $crawler->filter('div.ecl-description-list.ecl-description-list--horizontal');
     $this->assertCount(1, $description_list);
     $this->assertEquals('DescriptionList', $description_list->attr('data-ecl-auto-init'));
     $this->assertEquals('1', $description_list->attr('data-ecl-description-list-visible-items'));
@@ -772,7 +772,7 @@ class ParagraphsTest extends ParagraphsTestBase {
 
     $this->assertCount(1, ($crawler->filter('div.ecl h2.ecl-u-type-heading-2')));
     $this->assertEquals('Overview', trim($crawler->filter('div.ecl h2.ecl-u-type-heading-2')->text()));
-    $this->assertCount(1, $crawler->filter('dl.ecl-description-list.ecl-description-list--horizontal'));
+    $this->assertCount(1, $crawler->filter('div.ecl-description-list.ecl-description-list--horizontal dl.ecl-description-list__content'));
     $this->assertCount(5, $crawler->filter('dt.ecl-description-list__term'));
     $this->assertCount(5, $crawler->filter('dd.ecl-description-list__definition'));
     $this->assertEquals('Term 1', trim($crawler->filter('dt.ecl-description-list__term:nth-child(1)')->html()));

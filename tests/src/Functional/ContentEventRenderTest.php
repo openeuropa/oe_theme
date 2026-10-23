@@ -224,7 +224,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     $practical_content = $this->assertSession()->elementExists('css', '#event-practical-information');
     $this->assertContentHeader($practical_content, 'Practical information');
 
-    $practical_list_content = $this->assertSession()->elementExists('css', 'dl.ecl-description-list', $practical_content);
+    $practical_list_content = $this->assertSession()->elementExists('css', 'div.ecl-description-list', $practical_content);
     $field_list_assert = new FieldListAssert();
     $field_list_expected_values = [
       'items' => [
@@ -428,7 +428,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
       'body' => 'Event website',
     ];
     $field_list_assert->assertPattern($field_list_expected_values, $practical_list_content->getOuterHtml());
-    $this->assertSession()->elementExists('css', 'dl.ecl-description-list dd a.ecl-link span.ecl-icon.ecl-icon--xs.ecl-link__icon.wt-icon-phosphor--arrow-square-out');
+    $this->assertSession()->elementExists('css', 'div.ecl-description-list dl.ecl-description-list__content dd a.ecl-link span.ecl-icon.ecl-icon--xs.ecl-link__icon.wt-icon-phosphor--arrow-square-out');
 
     // Assert "Registration capacity" field.
     $node->set('oe_event_registration_capacity', 'event registration capacity')->save();
