@@ -500,7 +500,9 @@ class TwigExtension extends AbstractExtension {
       'color' => 'primary',
     ];
     if ($this->isExternal($path)) {
-      $icon['name'] = 'external';
+      $icon['name'] = 'arrow-square-out';
+      $icon['family'] = 'phosphor';
+      $icon['size'] = 'xs';
     }
     else {
       $icon['name'] = 'arrow-right';
@@ -545,7 +547,8 @@ class TwigExtension extends AbstractExtension {
       if (!empty($link['external']) && $link['external'] === TRUE) {
         $ecl_link += [
           'icon' => [
-            'name' => 'external',
+            'name' => 'arrow-square-out',
+            'family' => 'phosphor',
             'size' => 'xs',
           ],
         ];

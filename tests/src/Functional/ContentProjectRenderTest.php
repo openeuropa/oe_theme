@@ -411,7 +411,7 @@ class ContentProjectRenderTest extends ContentRenderTestBase {
     $this->assertCount(1, $contact_links);
     $this->assertStringContainsString("http://example.com/contact_$name", $contact_links[0]->getAttribute('href'));
     // Assert contact link's icon.
-    $this->assertSession()->elementExists('css', 'span.ecl-icon.ecl-icon--s.ecl-link__icon.wt-icon--external', $contact_links[0]);
+    $this->assertSession()->elementExists('css', 'span.ecl-icon.ecl-icon--xs.ecl-link__icon.wt-icon-phosphor--arrow-square-out', $contact_links[0]);
     $contact_link_labels = $rendered_stakeholder_element->findAll('css', 'div.ecl-u-mt-l.ecl-u-type-bold span.ecl-link__label');
     $this->assertCount(1, $contact_link_labels);
     $this->assertEquals('Contact organisation', $contact_link_labels[0]->getText());
