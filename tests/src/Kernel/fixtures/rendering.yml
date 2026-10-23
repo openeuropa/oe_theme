@@ -58,7 +58,7 @@
       'select.ecl-select': 1
       'div.ecl-select__icon': 1
       'select[data-ecl-select-multiple]': 0
-      'div.ecl-select__icon span.ecl-icon.ecl-icon--xs.ecl-icon--rotate-180.ecl-button__icon.wt-icon--corner-arrow': 1
+      'div.ecl-select__icon span.ecl-icon.ecl-icon--xs.ecl-button__icon.wt-icon-phosphor--caret-down': 1
     equals:
       'div.ecl-form-group label .ecl-form-label': 'Select element'
       'div.ecl-form-group div.ecl-select__container.ecl-select__container--m select.ecl-select option[value="1"]': 'One'
@@ -78,7 +78,7 @@
       'select.ecl-select': 1
       'div.ecl-select__icon': 1
       'select[data-ecl-select-multiple]': 1
-      'div.ecl-select__icon span.ecl-icon.ecl-icon--xs.ecl-icon--rotate-180.ecl-button__icon.wt-icon--corner-arrow': 1
+      'div.ecl-select__icon span.ecl-icon.ecl-icon--xs.ecl-button__icon.wt-icon-phosphor--caret-down': 1
     equals:
       'div.ecl-form-group label .ecl-form-label': 'Select element'
       'div.ecl-form-group div.ecl-select__container.ecl-select__container--m select.ecl-select option[value="1"]': 'One'
@@ -99,7 +99,7 @@
       'select.ecl-select': 1
       'div.ecl-select__icon': 1
       'select[data-ecl-select-multiple]': 0
-      'div.ecl-select__icon span.ecl-icon.ecl-icon--xs.ecl-icon--rotate-180.ecl-button__icon.wt-icon--corner-arrow': 1
+      'div.ecl-select__icon span.ecl-icon.ecl-icon--xs.ecl-button__icon.wt-icon-phosphor--caret-down': 1
     equals:
       'div.ecl-form-group label .ecl-form-label': 'Select element'
       'div.ecl-form-group div.ecl-select__container.ecl-select__container--m select.ecl-select option[value="1"]': 'One'
@@ -122,7 +122,7 @@
       'select.ecl-select': 1
       'div.ecl-select__icon': 1
       'select[data-ecl-select-multiple]': 1
-      'div.ecl-select__icon span.ecl-icon.ecl-icon--xs.ecl-icon--rotate-180.ecl-button__icon.wt-icon--corner-arrow': 1
+      'div.ecl-select__icon span.ecl-icon.ecl-icon--xs.ecl-button__icon.wt-icon-phosphor--caret-down': 1
       'div.ecl-form-group select.ecl-select[data-ecl-select-close="Close"]': 1
       'div.ecl-form-group select.ecl-select[data-ecl-select-submit]': 0
     equals:
@@ -1192,15 +1192,15 @@
       'a.ecl-file__translation-download[href="http://example.com/document_fr.xls"]': 1
       'a.ecl-file__translation-download[data-attribute-translation-foo="bar"]': 0
       'div.ecl-file__lists': 1
-      'dl.ecl-description-list': 1
+      'div.ecl-description-list dl.ecl-description-list__content': 1
       'dt.ecl-description-list__term': 3
       'dd.ecl-description-list__definition.ecl-description-list__definition--inline': 3
       'li.ecl-description-list__definition-item': 7
       'li.ecl-description-list__definition-item a.ecl-link.ecl-link--standalone': 3
       'li.ecl-description-list__definition-item a.ecl-link.ecl-link--standalone.ecl-link--icon': 2
       'div.ecl-file__label span.ecl-label.ecl-label--highlight': 0
-      'dd.ecl-description-list__definition--inline:nth-of-type(3) li.ecl-description-list__definition-item:nth-of-type(2) a span.ecl-link__icon.wt-icon--external': 1
-      'dd.ecl-description-list__definition--inline:nth-of-type(3) li.ecl-description-list__definition-item:nth-of-type(3) a span.ecl-link__icon.wt-icon--external': 1
+      'dd.ecl-description-list__definition--inline:nth-of-type(3) li.ecl-description-list__definition-item:nth-of-type(2) a span.ecl-link__icon.wt-icon-phosphor--arrow-square-out': 1
+      'dd.ecl-description-list__definition--inline:nth-of-type(3) li.ecl-description-list__definition-item:nth-of-type(3) a span.ecl-link__icon.wt-icon-phosphor--arrow-square-out': 1
     equals:
       'div.ecl-file__info div.ecl-file__title': "Example document"
       'div.ecl-file__info div.ecl-file__description': 'Lorem...'
@@ -1431,7 +1431,7 @@
       '.ecl-gallery__footer-link': 1
       '.ecl-gallery--no-hover': 0
       '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(2) .ecl-gallery__image-container div.ecl-gallery__item-icon-wrapper span.ecl-icon.wt-icon-phosphor--play-filled': 1
-      '.ecl-gallery__footer-link a span.ecl-icon.wt-icon--external': 1
+      '.ecl-gallery__footer-link a span.ecl-icon.wt-icon-phosphor--arrow-square-out': 1
     equals:
       '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(2) .ecl-gallery__meta': 'Copyright © 2021 EC'
       '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(3) .ecl-gallery__meta': 'Copyright © 2021, Author and Licence'
@@ -1541,7 +1541,7 @@
       '.ecl-gallery--ratio-3-1': 0
       '.ecl-gallery--no-hover': 0
       '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(2) .ecl-gallery__image-container div.ecl-gallery__item-icon-wrapper span.ecl-icon.wt-icon-phosphor--play-filled': 1
-      '.ecl-gallery__footer-link a span.ecl-icon.wt-icon--external': 1
+      '.ecl-gallery__footer-link a span.ecl-icon.wt-icon-phosphor--arrow-square-out': 1
     equals:
       '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(2) .ecl-gallery__meta': 'Copyright © 2021 EC'
       '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(3) .ecl-gallery__meta': 'Copyright © 2021, Author and Licence'
@@ -1654,7 +1654,7 @@
       '.ecl-gallery--ratio-3-1': 1
       '.ecl-gallery--no-hover': 1
       '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(2) .ecl-gallery__image-container div.ecl-gallery__item-icon-wrapper span.ecl-icon.wt-icon-phosphor--play-filled': 1
-      '.ecl-gallery__footer-link a span.ecl-icon.wt-icon--external': 1
+      '.ecl-gallery__footer-link a span.ecl-icon.wt-icon-phosphor--arrow-square-out': 1
     equals:
       '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(2) .ecl-gallery__meta': 'Copyright © 2021 EC'
       '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(3) .ecl-gallery__meta': 'Copyright © 2021, Author and Licence'
@@ -1997,7 +1997,7 @@
       'article.ecl-content-item picture.ecl-content-item__picture--large': 0
       'article.ecl-content-item picture.ecl-content-item__picture--left': 0
       'article.ecl-content-item picture.ecl-content-item__picture--right': 0
-      'div.ecl-content-block__list-container dl.ecl-description-list.ecl-description-list--horizontal.ecl-content-block__list.ecl-u-mb-xl': 1
+      'div.ecl-content-block__list-container div.ecl-description-list.ecl-description-list--horizontal.ecl-content-block__list.ecl-u-mb-xl dl.ecl-description-list__content': 1
       'div.ecl-content-block__list-container .ecl-description-list__term': 2
       'div.ecl-content-block__list-container .ecl-description-list__definition': 2
       'span.ecl-icon.ecl-icon--s.ecl-link__icon': 0
@@ -2005,10 +2005,10 @@
       'article.ecl-content-item ul.ecl-content-block__secondary-meta-container.ecl-content-block__secondary-meta-container--horizontal': 0
     equals:
       'article.ecl-content-item div.ecl-content-item__content-block div.ecl-content-block__title .ecl-link': "Item title"
-      'div.ecl-content-block__list-container dl.ecl-description-list.ecl-description-list--horizontal.ecl-content-block__list .ecl-description-list__term:nth-child(1)': "When"
-      'div.ecl-content-block__list-container dl.ecl-description-list.ecl-description-list--horizontal.ecl-content-block__list .ecl-description-list__definition:nth-child(2)': "Thursday 15 November, 08:00 AM to Friday 16 November"
-      'div.ecl-content-block__list-container dl.ecl-description-list.ecl-description-list--horizontal.ecl-content-block__list .ecl-description-list__term:nth-child(3)': "Where"
-      'div.ecl-content-block__list-container dl.ecl-description-list.ecl-description-list--horizontal.ecl-content-block__list .ecl-description-list__definition:nth-child(4)': "The EGG, Rue Barra 175, 1070 Brussels, Belgium"
+      'div.ecl-content-block__list-container div.ecl-description-list.ecl-description-list--horizontal.ecl-content-block__list dl.ecl-description-list__content .ecl-description-list__term:nth-child(1)': "When"
+      'div.ecl-content-block__list-container div.ecl-description-list.ecl-description-list--horizontal.ecl-content-block__list dl.ecl-description-list__content .ecl-description-list__definition:nth-child(2)': "Thursday 15 November, 08:00 AM to Friday 16 November"
+      'div.ecl-content-block__list-container div.ecl-description-list.ecl-description-list--horizontal.ecl-content-block__list dl.ecl-description-list__content .ecl-description-list__term:nth-child(3)': "Where"
+      'div.ecl-content-block__list-container div.ecl-description-list.ecl-description-list--horizontal.ecl-content-block__list dl.ecl-description-list__content .ecl-description-list__definition:nth-child(4)': "The EGG, Rue Barra 175, 1070 Brussels, Belgium"
 - structure:
     '#type': component
     '#component': 'oe_theme:list_item'
@@ -2059,7 +2059,7 @@
       'article.ecl-content-item picture.ecl-content-item__picture--large': 0
       'article.ecl-content-item picture.ecl-content-item__picture--left': 0
       'article.ecl-content-item picture.ecl-content-item__picture--right': 0
-      'a.ecl-link.ecl-link--standalone.ecl-link--icon span.ecl-icon.ecl-icon--2xs.ecl-link__icon.wt-icon--external' : 1
+      'a.ecl-link.ecl-link--standalone.ecl-link--icon span.ecl-icon.ecl-icon--xs.ecl-link__icon.wt-icon-phosphor--arrow-square-out' : 1
     equals:
       'article.ecl-content-item ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(1)': "Meta 1"
       'article.ecl-content-item ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(2)': "Meta 2"
@@ -2526,8 +2526,8 @@
       'article.ecl-content-item[extra-attr="extra value"] div.ecl-content-item__content-block a.ecl-link[href="/example"]': 1
       'article.ecl-content-item time.ecl-date-block.ecl-date-block--ongoing.ecl-content-item__date': 1
       'article.ecl-content-item time.ecl-date-block.ecl-date-block--ongoing.ecl-content-item__date abbr.ecl-date-block__month[title="July"]': 1
-      'div.ecl-content-block__list-container dl.ecl-u-mb-xl .ecl-description-list__term': 2
-      'div.ecl-content-block__list-container dl.ecl-u-mb-xl .ecl-description-list__definition': 2
+      'div.ecl-content-block__list-container div.ecl-u-mb-xl dl.ecl-description-list__content .ecl-description-list__term': 2
+      'div.ecl-content-block__list-container div.ecl-u-mb-xl dl.ecl-description-list__content .ecl-description-list__definition': 2
       div.ecl-content-block__secondary-meta-container div.ecl-content-block__secondary-meta-item: 1
       div.ecl-content-block__secondary-meta-container div.ecl-content-block__secondary-meta-item span.ecl-icon--s.ecl-content-block__secondary-meta-icon.wt-icon--location: 1
       article.ecl-content-item div.ecl-content-block__secondary-meta-container: 1
@@ -2540,10 +2540,10 @@
       'article.ecl-content-item time.ecl-date-block.ecl-content-item__date span.ecl-date-block__day': '14'
       'article.ecl-content-item time.ecl-date-block.ecl-content-item__date abbr.ecl-date-block__month': 'Jul'
       'article.ecl-content-item time.ecl-date-block.ecl-content-item__date span.ecl-date-block__year': '2021'
-      'div.ecl-content-block__list-container dl.ecl-description-list.ecl-description-list--horizontal.ecl-content-block__list .ecl-description-list__term:nth-child(1)': "When"
-      'div.ecl-content-block__list-container dl.ecl-description-list.ecl-description-list--horizontal.ecl-content-block__list .ecl-description-list__definition:nth-child(2)': "Thursday 15 November, 08:00 AM to Friday 16 November"
-      'div.ecl-content-block__list-container dl.ecl-description-list.ecl-description-list--horizontal.ecl-content-block__list .ecl-description-list__term:nth-child(3)': "Where"
-      'div.ecl-content-block__list-container dl.ecl-description-list.ecl-description-list--horizontal.ecl-content-block__list .ecl-description-list__definition:nth-child(4)': "The EGG, Rue Barra 175, 1070 Brussels, Belgium"
+      'div.ecl-content-block__list-container div.ecl-description-list.ecl-description-list--horizontal.ecl-content-block__list dl.ecl-description-list__content .ecl-description-list__term:nth-child(1)': "When"
+      'div.ecl-content-block__list-container div.ecl-description-list.ecl-description-list--horizontal.ecl-content-block__list dl.ecl-description-list__content .ecl-description-list__definition:nth-child(2)': "Thursday 15 November, 08:00 AM to Friday 16 November"
+      'div.ecl-content-block__list-container div.ecl-description-list.ecl-description-list--horizontal.ecl-content-block__list dl.ecl-description-list__content .ecl-description-list__term:nth-child(3)': "Where"
+      'div.ecl-content-block__list-container div.ecl-description-list.ecl-description-list--horizontal.ecl-content-block__list dl.ecl-description-list__content .ecl-description-list__definition:nth-child(4)': "The EGG, Rue Barra 175, 1070 Brussels, Belgium"
       'div.ecl-content-block__secondary-meta-container div.ecl-content-block__secondary-meta-item .ecl-content-block__secondary-meta-label': "Brussels"
 - structure:
     '#type': component
@@ -2672,7 +2672,7 @@
       'div.ecl-content-item-block__button a.ecl-link[href="http://example.com"]': 1
       'div.ecl-content-item-block__button a.ecl-link--standalone span.ecl-icon': 1
       'div.ecl-u-border-color-neutral-light-500.ecl-u-border-width-1.ecl-u-border-top': 0
-      'span.ecl-icon.ecl-icon--xs.ecl-link__icon.wt-icon--external': 1
+      'span.ecl-icon.ecl-icon--xs.ecl-link__icon.wt-icon-phosphor--arrow-square-out': 1
     equals:
       'div.ecl-content-item-block__item:nth-child(1) article.ecl-content-item div.ecl-content-item__content-block div.ecl-content-block__title': "Business, Economy, Euro"
       'div.ecl-content-item-block__item:nth-child(1) article.ecl-content-item div.ecl-content-block__description': "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
@@ -3229,7 +3229,7 @@
   assertions:
     count:
       'div.ecl-layout-wrapper__view-all a.ecl-link.ecl-link--standalone.ecl-layout-wrapper__view-all-link[href="http://example.com"]': 1
-      'div.ecl-layout-wrapper__view-all span.ecl-icon.ecl-icon--2xs.ecl-link__icon.wt-icon--external': 1
+      'div.ecl-layout-wrapper__view-all span.ecl-icon.ecl-icon--xs.ecl-link__icon.wt-icon-phosphor--arrow-square-out': 1
       'div.ecl-layout-wrapper__view-all span.wt-icon--arrow-left': 0
     equals:
       'div.ecl-layout-wrapper__view-all a.ecl-link span.ecl-link__label': "View all"
@@ -3579,8 +3579,8 @@
       'a.ecl-link-block__link[href="http://link-2.com"]': 1
       'a.ecl-link-block__link[href="/link-3"]': 1
       'span.ecl-icon.ecl-icon--xs.ecl-link__icon': 2
-      '.ecl-link-block__list .ecl-link-block__item:nth-child(1) .ecl-link span.ecl-icon.ecl-icon--xs.ecl-link__icon.wt-icon--external': 1
-      '.ecl-link-block__list .ecl-link-block__item:nth-child(2) .ecl-link span.ecl-icon.ecl-icon--xs.ecl-link__icon.wt-icon--external': 1
+      '.ecl-link-block__list .ecl-link-block__item:nth-child(1) .ecl-link span.ecl-icon.ecl-icon--xs.ecl-link__icon.wt-icon-phosphor--arrow-square-out': 1
+      '.ecl-link-block__list .ecl-link-block__item:nth-child(2) .ecl-link span.ecl-icon.ecl-icon--xs.ecl-link__icon.wt-icon-phosphor--arrow-square-out': 1
     equals:
       '.ecl-link-block__title h5': "Link block title"
       '.ecl-link-block__list .ecl-link-block__item:nth-child(1) .ecl-link .ecl-link__label': "Link 1"
@@ -3664,11 +3664,11 @@
       more_label: "More label"
   assertions:
     count:
-      'dl.ecl-description-list.ecl-description-list--horizontal[data-ecl-description-list][data-ecl-auto-init="DescriptionList"][data-ecl-description-list-visible-items="4"][data-ecl-description-list-more-label="More label"]': 1
+      'div.ecl-description-list.ecl-description-list--horizontal[data-ecl-description-list][data-ecl-auto-init="DescriptionList"][data-ecl-description-list-visible-items="4"][data-ecl-description-list-more-label="More label"] dl.ecl-description-list__content': 1
       'dd.ecl-description-list__definition.ecl-description-list__definition--inline ul.ecl-description-list__definition-list[data-ecl-description-list-collapsible]': 1
       'li.ecl-description-list__definition-item': 5
       'span.ecl-link__label': 3
-      'li.ecl-description-list__definition-item a.ecl-link.ecl-link--standalone span.ecl-icon.ecl-icon--2xs.ecl-link__icon.wt-icon--external': 3
+      'li.ecl-description-list__definition-item a.ecl-link.ecl-link--standalone span.ecl-icon.ecl-icon--xs.ecl-link__icon.wt-icon-phosphor--arrow-square-out': 3
     equals:
       'dt.ecl-description-list__term': "Navigation title"
       'li.ecl-description-list__definition-item a.ecl-link--standalone[href="http://link-1.com"] span.ecl-link__label': "Item one"
@@ -3704,7 +3704,7 @@
       external_link: true
   assertions:
     count:
-      'a.ecl-link--standalone.ecl-link--icon span.ecl-icon.ecl-icon--2xs.ecl-link__icon.wt-icon--external': 1
+      'a.ecl-link--standalone.ecl-link--icon span.ecl-icon.ecl-icon--xs.ecl-link__icon.wt-icon-phosphor--arrow-square-out': 1
     equals:
       'a.ecl-link--standalone[href="http://example.com"] .ecl-link__label': "Button label"
 - structure:
@@ -3719,7 +3719,7 @@
   assertions:
     count:
       'a.ecl-link--icon': 1
-      'span.ecl-icon.ecl-icon--2xs.ecl-link__icon.wt-icon--external': 1
+      'span.ecl-icon.ecl-icon--xs.ecl-link__icon.wt-icon-phosphor--arrow-square-out': 1
     equals:
       'a.ecl-link--standalone[href="http://example.com"] .ecl-link__label': "Button label"
 - structure:
@@ -3910,7 +3910,7 @@
       'ul.ecl-content-block__label-container li.ecl-content-block__label-item': 2
       'ul.ecl-content-block__primary-meta-container': 1
       'div.ecl-content-block__list-container': 1
-      'dl.ecl-description-list.ecl-description-list--vertical.ecl-content-block__list': 1
+      'div.ecl-description-list.ecl-description-list--vertical.ecl-content-block__list dl.ecl-description-list__content': 1
     equals:
       'ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(1)': "Breaking news article"
       'ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(2)': "Brussels"
@@ -4058,9 +4058,9 @@
       'article.ecl-card[extra-attr="extra value"]': 1
       'div.ecl-content-block__title a.ecl-link--standalone.ecl-link--icon[href="https://example.com"]': 1
       'a.ecl-button[href="https://example.com"]': 1
-      'div.ecl-content-block__title a span.ecl-icon.ecl-icon--2xs.ecl-link__icon': 1
-      'span.ecl-icon.ecl-icon--xs.ecl-button__icon.wt-icon--external': 1
-      '.ecl-content-block__description span.ecl-icon.ecl-icon--xs.ecl-button__icon.wt-icon--external': 1
+      'div.ecl-content-block__title a span.ecl-icon.ecl-icon--xs.ecl-link__icon': 1
+      'span.ecl-icon.ecl-icon--xs.ecl-button__icon.wt-icon-phosphor--arrow-square-out': 1
+      '.ecl-content-block__description span.ecl-icon.ecl-icon--xs.ecl-button__icon.wt-icon-phosphor--arrow-square-out': 1
     equals:
       'div.ecl-content-block__title a span.ecl-link__label': "Example title"
       'div.ecl-content-block__description .ecl-paragraph': "Example description"
@@ -4455,7 +4455,7 @@
       'video': 0
       'figcaption.ecl-media-container__caption': 1
       'a.ecl-link.ecl-link--standalone[href="http://example.com"]': 1
-      'span.ecl-icon.ecl-icon--m.ecl-icon--primary.ecl-link__icon.wt-icon--external': 1
+      'span.ecl-icon.ecl-icon--xs.ecl-icon--primary.ecl-link__icon.wt-icon-phosphor--arrow-square-out': 1
       'div.ecl-expandable.ecl-media-container__expandable': 0
     equals:
       'h2.ecl-u-type-heading-2': "Heading"
@@ -4500,7 +4500,7 @@
       'span.ecl-icon.ecl-icon--m.ecl-icon--primary.ecl-link__icon.wt-icon--arrow-right': 1
       'div.ecl-expandable.ecl-media-container__expandable': 1
       'button[data-ecl-label-expanded="Expanded"][data-ecl-label-collapsed="Collapsed"]': 1
-      'span.ecl-icon.ecl-icon--fluid.ecl-icon--rotate-180.ecl-button__icon.wt-icon--corner-arrow': 1
+      'span.ecl-icon.ecl-icon--fluid.ecl-button__icon.wt-icon-phosphor--caret-down': 1
     equals:
       'div.ecl-featured-item__title': "Title"
       'figcaption.ecl-media-container__caption': "Some caption text for the image"
@@ -4551,7 +4551,7 @@
       'a.ecl-link.ecl-featured-item__link[href="http://example.com"]': 1
       'div.ecl-expandable.ecl-media-container__expandable': 1
       'button[data-ecl-label-expanded="Expand"][data-ecl-label-collapsed="Collapse"]': 1
-      'span.ecl-button__container span.ecl-icon.ecl-icon--fluid.ecl-icon--rotate-180.ecl-button__icon.wt-icon--corner-arrow': 1
+      'span.ecl-button__container span.ecl-icon.ecl-icon--fluid.ecl-button__icon.wt-icon-phosphor--caret-down': 1
     equals:
       'h2.ecl-u-type-heading-2': "Heading"
       'figcaption.ecl-media-container__caption': "Some caption text for the image"
@@ -4873,9 +4873,9 @@
       "li.ecl-menu__item:nth-child(2) button[aria-label=\"Access item's children\"]": 1
       "div.ecl-container.ecl-menu__container section.ecl-menu__inner[data-ecl-menu-inner]": 1
       "button.ecl-button--tertiary.ecl-menu__open.ecl-button--icon-only": 1
-      'li.ecl-menu__item:nth-child(1) ul.ecl-menu__sublist li.ecl-menu__subitem--current a span.ecl-icon.ecl-icon--2xs.ecl-link__icon.wt-icon--external': 1
-      'li.ecl-menu__item:nth-child(1) ul.ecl-menu__sublist li.ecl-menu__subitem:nth-child(3) a span.ecl-icon.ecl-icon--2xs.ecl-link__icon.wt-icon--external': 1
-      'li.ecl-menu__item:nth-child(2) ul.ecl-menu__sublist li.ecl-menu__subitem:nth-child(3) a span.ecl-icon.ecl-icon--2xs.ecl-link__icon.wt-icon--external': 1
+      'li.ecl-menu__item:nth-child(1) ul.ecl-menu__sublist li.ecl-menu__subitem--current a span.ecl-icon.ecl-icon--xs.ecl-link__icon.wt-icon-phosphor--arrow-square-out': 1
+      'li.ecl-menu__item:nth-child(1) ul.ecl-menu__sublist li.ecl-menu__subitem:nth-child(3) a span.ecl-icon.ecl-icon--xs.ecl-link__icon.wt-icon-phosphor--arrow-square-out': 1
+      'li.ecl-menu__item:nth-child(2) ul.ecl-menu__sublist li.ecl-menu__subitem:nth-child(3) a span.ecl-icon.ecl-icon--xs.ecl-link__icon.wt-icon-phosphor--arrow-square-out': 1
     equals:
       'button.ecl-menu__open.ecl-button--icon-only span.ecl-button__label': 'Menu'
       '.ecl-menu__inner-header button.ecl-menu__close[data-ecl-menu-close] span.ecl-button__label': "Close"
@@ -5065,17 +5065,17 @@
       'li.ecl-mega-menu__item--has-children:nth-child(2) ul.ecl-mega-menu__sublist li.ecl-mega-menu__subitem:nth-child(1) div.ecl-mega-menu__mega--level-2 div.ecl-mega-menu__featured ul.ecl-mega-menu__featured-list li.ecl-mega-menu__featured-list__item:nth-child(3) picture.ecl-mega-menu__featured-picture img.ecl-mega-menu__featured-image[src="https://loremflickr.com/1000/500/arch"][alt="alternative text of the 3rd featured item"]': 1
       'button.ecl-button.ecl-button--tertiary.ecl-mega-menu__open.ecl-button--icon-only .ecl-button__container:nth-child(1) span:nth-child(1).ecl-icon--hamburger': 1
       'button.ecl-button.ecl-button--tertiary.ecl-mega-menu__open.ecl-button--icon-only .ecl-button__container:nth-child(1) span:nth-child(2).ecl-icon--close': 1
-      'li.ecl-mega-menu__item:nth-child(1) ul.ecl-mega-menu__sublist li a span.ecl-icon.ecl-icon--2xs.ecl-link__icon.ecl-icon--external': 2
-      'li.ecl-mega-menu__item:nth-child(1) a.ecl-mega-menu__info-link[href="#"] span.ecl-icon--xs.ecl-icon--flip-horizontal.ecl-icon--arrow-left': 1
-      'li.ecl-mega-menu__item:nth-child(1) ul.ecl-mega-menu__sublist li.ecl-mega-menu__subitem:nth-child(3) a span.ecl-icon.ecl-icon--2xs.ecl-link__icon.ecl-icon--external': 1
-      'li.ecl-mega-menu__item--has-children:nth-child(2) ul.ecl-mega-menu__sublist li.ecl-mega-menu__subitem:nth-child(1) button.ecl-mega-menu__sublink:nth-child(1) span.ecl-icon--2xs.ecl-icon--rotate-90.ecl-icon--corner-arrow': 1
-      'li.ecl-mega-menu__item--has-children:nth-child(2) ul.ecl-mega-menu__sublist li.ecl-mega-menu__subitem:nth-child(1) div.ecl-mega-menu__mega--level-2 ul.ecl-mega-menu__sublist li.ecl-mega-menu__subitem:nth-child(2) a.ecl-mega-menu__sublink span.ecl-icon.ecl-icon--2xs.ecl-link__icon.ecl-icon--external': 1
-      'li.ecl-mega-menu__item--has-children:nth-child(2) ul.ecl-mega-menu__sublist li.ecl-mega-menu__subitem:nth-child(1) div.ecl-mega-menu__mega--level-2 ul.ecl-mega-menu__sublist li.ecl-mega-menu__subitem:nth-child(5) a.ecl-mega-menu__sublink span.ecl-icon.ecl-icon--2xs.ecl-link__icon.ecl-icon--external': 1
-      'li.ecl-mega-menu__subitem.ecl-mega-menu__see-all a[href="#child-2.1"] span.ecl-icon--xs.ecl-icon--rotate-180.ecl-link__icon.ecl-icon--arrow-left': 1
-      'li.ecl-mega-menu__item--has-children:nth-child(2) ul.ecl-mega-menu__sublist li.ecl-mega-menu__subitem:nth-child(1) div.ecl-mega-menu__mega--level-2 div.ecl-mega-menu__featured ul.ecl-mega-menu__featured-list li.ecl-mega-menu__featured-list__item:nth-child(4) a.ecl-link--icon span.ecl-icon--2xs.ecl-link__icon.ecl-icon--external': 1
-      'button.ecl-button--primary.ecl-mega-menu__sublink.ecl-mega-menu__sublink--last span.ecl-icon--2xs.ecl-button__icon.ecl-icon--corner-arrow': 1
-      'li.ecl-mega-menu__item--has-children ul.ecl-mega-menu__sublist li.ecl-mega-menu__subitem div.ecl-mega-menu__mega--level-2 ul.ecl-mega-menu__sublist li.ecl-mega-menu__subitem a.ecl-mega-menu__sublink span.ecl-icon.ecl-icon--2xs.ecl-link__icon.ecl-icon--external': 3
-      'li.ecl-mega-menu__item.ecl-mega-menu__item--has-container button span.ecl-icon--rotate-90.ecl-icon--corner-arrow': 1
+      'li.ecl-mega-menu__item:nth-child(1) ul.ecl-mega-menu__sublist li a span.ecl-icon.ecl-icon--xs.ecl-link__icon.ecl-icon-phosphor--arrow-square-out': 2
+      'li.ecl-mega-menu__item:nth-child(1) a.ecl-mega-menu__info-link[href="#"] span.ecl-icon--xs.ecl-icon-phosphor--arrow-right': 1
+      'li.ecl-mega-menu__item:nth-child(1) ul.ecl-mega-menu__sublist li.ecl-mega-menu__subitem:nth-child(3) a span.ecl-icon.ecl-icon--xs.ecl-link__icon.ecl-icon-phosphor--arrow-square-out': 1
+      'li.ecl-mega-menu__item--has-children:nth-child(2) ul.ecl-mega-menu__sublist li.ecl-mega-menu__subitem:nth-child(1) button.ecl-mega-menu__sublink:nth-child(1) span.ecl-icon--2xs.ecl-icon-phosphor--caret-right': 1
+      'li.ecl-mega-menu__item--has-children:nth-child(2) ul.ecl-mega-menu__sublist li.ecl-mega-menu__subitem:nth-child(1) div.ecl-mega-menu__mega--level-2 ul.ecl-mega-menu__sublist li.ecl-mega-menu__subitem:nth-child(2) a.ecl-mega-menu__sublink span.ecl-icon.ecl-icon--xs.ecl-link__icon.ecl-icon-phosphor--arrow-square-out': 1
+      'li.ecl-mega-menu__item--has-children:nth-child(2) ul.ecl-mega-menu__sublist li.ecl-mega-menu__subitem:nth-child(1) div.ecl-mega-menu__mega--level-2 ul.ecl-mega-menu__sublist li.ecl-mega-menu__subitem:nth-child(5) a.ecl-mega-menu__sublink span.ecl-icon.ecl-icon--xs.ecl-link__icon.ecl-icon-phosphor--arrow-square-out': 1
+      'li.ecl-mega-menu__subitem.ecl-mega-menu__see-all a[href="#child-2.1"] span.ecl-icon--xs.ecl-link__icon.ecl-icon-phosphor--arrow-right': 1
+      'li.ecl-mega-menu__item--has-children:nth-child(2) ul.ecl-mega-menu__sublist li.ecl-mega-menu__subitem:nth-child(1) div.ecl-mega-menu__mega--level-2 div.ecl-mega-menu__featured ul.ecl-mega-menu__featured-list li.ecl-mega-menu__featured-list__item:nth-child(4) a.ecl-link--icon span.ecl-icon--xs.ecl-link__icon.ecl-icon-phosphor--arrow-square-out': 1
+      'button.ecl-button--primary.ecl-mega-menu__sublink.ecl-mega-menu__sublink--last span.ecl-icon--2xs.ecl-button__icon.ecl-icon-phosphor--caret-right': 1
+      'li.ecl-mega-menu__item--has-children ul.ecl-mega-menu__sublist li.ecl-mega-menu__subitem div.ecl-mega-menu__mega--level-2 ul.ecl-mega-menu__sublist li.ecl-mega-menu__subitem a.ecl-mega-menu__sublink span.ecl-icon.ecl-icon--xs.ecl-link__icon.ecl-icon-phosphor--arrow-square-out': 3
+      'li.ecl-mega-menu__item.ecl-mega-menu__item--has-container button span.ecl-mega-menu__link-icon--desktop.ecl-icon-phosphor--caret-down': 1
     equals:
       'button.ecl-button.ecl-button--tertiary.ecl-mega-menu__open.ecl-button--icon-only span.ecl-button__label': 'Menu'
       '.ecl-mega-menu__inner-header button.ecl-mega-menu__back[data-ecl-mega-menu-back] .ecl-button__label': "Back"
@@ -5179,20 +5179,20 @@
       'div.ecl-fact-figures__item:nth-child(1) span.ecl-icon.ecl-icon--l.ecl-fact-figures__icon.wt-icon-networks--instagram': 1
       'div.ecl-fact-figures__item:nth-child(2) span.ecl-icon.ecl-icon--l.ecl-fact-figures__icon.wt-icon--external': 1
       'div.ecl-fact-figures__view-all': 1
-      'div.ecl-fact-figures__view-all span.ecl-icon.ecl-icon--2xs.ecl-link__icon.wt-icon--external': 1
+      'div.ecl-fact-figures__view-all span.ecl-icon.ecl-icon--xs.ecl-link__icon.wt-icon-phosphor--arrow-square-out': 1
       'div.ecl-fact-figures__item.ecl-fact-figures__item--font-m': 2
       'div.ecl-fact-figures__item:nth-child(1) div.ecl-fact-figures__sources ul.ecl-fact-figures__sources-list': 0
       'div.ecl-fact-figures__item:nth-child(1) div.ecl-fact-figures__sources a.ecl-link.ecl-fact-figures__source[href="/example"]': 1
 
       'div.ecl-fact-figures__item:nth-child(2) div.ecl-fact-figures__sources span.ecl-fact-figures__sources-label': 0
       'div.ecl-fact-figures__item:nth-child(2) ul.ecl-fact-figures__sources-list li.ecl-fact-figures__sources-item': 2
-      'div.ecl-fact-figures__item:nth-child(2) li.ecl-fact-figures__sources-item:nth-child(1) a.ecl-link.ecl-link--icon.ecl-fact-figures__source[href="/cnect"] span.ecl-icon.ecl-link__icon.wt-icon--external': 1
+      'div.ecl-fact-figures__item:nth-child(2) li.ecl-fact-figures__sources-item:nth-child(1) a.ecl-link.ecl-link--icon.ecl-fact-figures__source[href="/cnect"] span.ecl-icon.ecl-link__icon.wt-icon-phosphor--arrow-square-out': 1
       'div.ecl-fact-figures__item:nth-child(2) li.ecl-fact-figures__sources-item:nth-child(2) a.ecl-link.ecl-fact-figures__source[href="/commission"]': 1
     equals:
-      'div.ecl-fact-figures__item:nth-child(1) div.ecl-fact-figures__value': '00.0 million                        <span class="ecl-fact-figures__title">Lorem ipsum</span>'
+      'div.ecl-fact-figures__item:nth-child(1) div.ecl-fact-figures__value': '00.0 million                            <span class="ecl-fact-figures__title">Lorem ipsum</span>'
       'div.ecl-fact-figures__item:nth-child(1) span.ecl-fact-figures__title': 'Lorem ipsum'
       'div.ecl-fact-figures__item:nth-child(1) div.ecl-fact-figures__description': 'Nunc condimentum sapien ut nibh finibus suscipit vitae at justo. Morbi quis odio faucibus, commodo tortor id, elementum libero.'
-      'div.ecl-fact-figures__item:nth-child(2) div.ecl-fact-figures__value': '10.0 millions                        <span class="ecl-fact-figures__title">Nam lacinia nisl eget diam mattis</span>'
+      'div.ecl-fact-figures__item:nth-child(2) div.ecl-fact-figures__value': '10.0 millions                            <span class="ecl-fact-figures__title">Nam lacinia nisl eget diam mattis</span>'
       'div.ecl-fact-figures__item:nth-child(2) span.ecl-fact-figures__title': 'Nam lacinia nisl eget diam mattis'
       'div.ecl-fact-figures__item:nth-child(2) div.ecl-fact-figures__description': 'Sed efficitur bibendum rutrum. Nunc feugiat congue augue ac consectetur.'
       'div.ecl-fact-figures__item:nth-child(1) div.ecl-fact-figures__sources span.ecl-fact-figures__sources-label': 'Source:'
@@ -5632,6 +5632,8 @@
       img.ecl-news-ticker__icon: 0
       span.ecl-news-ticker__icon: 6
       div.ecl-news-ticker[data-name="data value"]: 1
+      div.ecl-news-ticker[data-ecl-news-ticker-counter-label="of"]: 1
+      div.ecl-news-ticker__wrapper: 1
       div.ecl-news-ticker__container: 1
       div.ecl-news-ticker__content: 1
       ul#news-ticker-example-content.ecl-news-ticker__slides: 1
@@ -5639,8 +5641,8 @@
       a.ecl-link.ecl-news-ticker__slide-text: 4
       div.ecl-news-ticker__counter: 1
       div.ecl-news-ticker__controls: 1
-      li.ecl-news-ticker__slide:nth-child(1) a span.ecl-link__icon.wt-icon--external: 1
-      li.ecl-news-ticker__slide:nth-child(5) a span.ecl-link__icon.wt-icon--external: 1
+      li.ecl-news-ticker__slide:nth-child(1) a span.ecl-link__icon.wt-icon-phosphor--arrow-square-out: 1
+      li.ecl-news-ticker__slide:nth-child(5) a span.ecl-link__icon.wt-icon-phosphor--arrow-square-out: 1
       li.ecl-news-ticker__slide:nth-child(1) span.ecl-icon.ecl-icon--l.ecl-news-ticker__icon.wt-icon-phosphor--clock: 1
       li.ecl-news-ticker__slide:nth-child(2) span.ecl-icon.ecl-icon--l.ecl-news-ticker__icon.wt-icon--clock: 1
       li.ecl-news-ticker__slide:nth-child(3) span.ecl-icon.ecl-icon--l.ecl-news-ticker__icon.wt-icon-networks--instagram: 1
@@ -5655,8 +5657,6 @@
       li.ecl-news-ticker__slide:nth-child(5) a.ecl-link.ecl-news-ticker__slide-text span.ecl-link__label: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium"
       li.ecl-news-ticker__slide:nth-child(6) a.ecl-link.ecl-news-ticker__slide-text: "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit sed quia consequuntur magni dolores"
     equals:
-      div.ecl-news-ticker__counter span.ecl-news-ticker__counter--current: '1'
-      div.ecl-news-ticker__counter span.ecl-news-ticker__counter--max: '6'
       button.ecl-news-ticker__prev span.ecl-button__label: 'Previous news item'
       button.ecl-news-ticker__next span.ecl-button__label: 'Next news item'
       button.ecl-news-ticker__pause span.ecl-button__label: 'Pause news ticker'
@@ -5676,21 +5676,19 @@
   assertions:
     count:
       div.ecl-news-ticker.ecl-color-mode--blue-electric: 1
+      div.ecl-news-ticker[data-ecl-news-ticker-counter-label="in"]: 1
       div.ecl-news-ticker__container: 1
       div.ecl-news-ticker__content: 1
       ul.ecl-news-ticker__slides: 1
       li.ecl-news-ticker__slide: 3
       a.ecl-link.ecl-news-ticker__slide-text: 2
-      div.ecl-news-ticker__counter span.ecl-news-ticker__counter--current: 1
+      div.ecl-news-ticker__counter: 1
       div.ecl-news-ticker__controls: 1
       span.ecl-icon.ecl-icon--l.ecl-news-ticker__icon.wt-icon-phosphor--newspaper: 3
     contains:
       li.ecl-news-ticker__slide:nth-child(1) a.ecl-link.ecl-news-ticker__slide-text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit"
       li.ecl-news-ticker__slide:nth-child(2): "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat"
       li.ecl-news-ticker__slide:nth-child(3) a.ecl-link.ecl-news-ticker__slide-text: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur"
-      div.ecl-news-ticker__counter: '<span class="ecl-news-ticker__counter--current">1</span> in'
-    equals:
-      div.ecl-news-ticker__counter span.ecl-news-ticker__counter--max: '3'
 - structure:
     '#type': 'component'
     '#component': 'oe_theme:carousel'
@@ -5978,14 +5976,14 @@
       'ul.ecl-content-block__secondary-meta-container li.ecl-content-block__secondary-meta-item span.ecl-content-block__secondary-meta-label': 4
       'div#highlighted-news-block div.ecl-u-mt-m:not(.ecl)': 1
       'div#highlighted-news-block div.ecl.ecl-u-mt-s': 1
-      'div.ecl-col-l-8 .ecl-content-block__title a.ecl-link.ecl-link--standalone[href="https://example.com/item-1"] span.ecl-icon--2xs.wt-icon--external': 1
+      'div.ecl-col-l-8 .ecl-content-block__title a.ecl-link.ecl-link--standalone[href="https://example.com/item-1"] span.ecl-icon--xs.wt-icon-phosphor--arrow-square-out': 1
       'div.ecl-col-l-8 li.ecl-content-block__secondary-meta-item:nth-child(1) span.ecl-content-block__secondary-meta-icon.wt-icon--information': 1
       'div.ecl-col-l-8 li.ecl-content-block__secondary-meta-item:nth-child(2) span.ecl-content-block__secondary-meta-icon.wt-icon--clock': 1
       'div.ecl-col-l-4 article:nth-child(1) div.ecl-content-block__secondary-meta-item span.ecl-content-block__secondary-meta-icon.wt-icon--clock': 1
       'div.ecl-col-l-4 article:nth-child(2) div.ecl-content-block__secondary-meta-item span.ecl-content-block__secondary-meta-icon.wt-icon--clock': 1
       'div.ecl-col-l-4 article:nth-child(3) li.ecl-content-block__secondary-meta-item:nth-child(1) span.ecl-content-block__secondary-meta-icon.wt-icon--clock': 1
       'div.ecl-col-l-4 article:nth-child(3) li.ecl-content-block__secondary-meta-item:nth-child(2) span.ecl-content-block__secondary-meta-icon.wt-icon--location': 1
-      'div#highlighted-news-block > div.ecl-u-mt-m a.ecl-link.ecl-link--standalone.ecl-link--icon[href="https://example.com"] span.ecl-icon--2xs.wt-icon--external': 1
+      'div#highlighted-news-block > div.ecl-u-mt-m a.ecl-link.ecl-link--standalone.ecl-link--icon[href="https://example.com"] span.ecl-icon--xs.wt-icon-phosphor--arrow-square-out': 1
     equals:
       'div#highlighted-news-block h2.ecl-u-type-heading-2': 'Highlighted News'
       'div#highlighted-news-block div.ecl-content-item-block__introduction': '<p>The Introduction to the list</p>'
@@ -6229,7 +6227,7 @@
       'div.ecl-col-l-3:nth-child(2) article:nth-child(1) div.ecl-content-block__secondary-meta-item span.ecl-content-block__secondary-meta-icon.wt-icon--clock': 1
       'div.ecl-col-l-3:nth-child(2) article:nth-child(2) li.ecl-content-block__secondary-meta-item:nth-child(1) span.ecl-content-block__secondary-meta-icon.wt-icon--clock': 1
       'div.ecl-col-l-3:nth-child(2) article:nth-child(2) li.ecl-content-block__secondary-meta-item:nth-child(2) span.ecl-content-block__secondary-meta-icon.wt-icon--location': 1
-      'div#highlighted-news-block > div.ecl-u-mt-m a.ecl-link.ecl-link--standalone.ecl-link--icon[href="https://example.com"] span.ecl-icon--2xs.wt-icon--external': 1
+      'div#highlighted-news-block > div.ecl-u-mt-m a.ecl-link.ecl-link--standalone.ecl-link--icon[href="https://example.com"] span.ecl-icon--xs.wt-icon-phosphor--arrow-square-out': 1
     equals:
       'div#highlighted-news-block h2.ecl-u-type-heading-2': 'Highlighted News'
       'div#highlighted-news-block div.ecl-content-item-block__introduction': '<p>The Introduction to the list</p>'
@@ -7013,11 +7011,11 @@
       'li.ecl-animated-number:nth-child(2) .ecl-animated-number__header .ecl-icon--primary.ecl-animated-number__icon.ecl-icon-phosphor--currency-eur': 1
       'li.ecl-animated-number:nth-child(3) .ecl-animated-number__header .ecl-icon--primary.ecl-animated-number__icon.ecl-icon-phosphor--trend-up': 1
       'li.ecl-animated-number:nth-child(4) .ecl-animated-number__header .ecl-icon--primary.ecl-animated-number__icon.ecl-icon-phosphor--pulse': 1
-      "footer.ecl-animated-numbers__sources .ecl-animated-numbers__sources-item:nth-child(2) a.ecl-animated-numbers__source[href='/example'] .ecl-icon--external": 1
+      "footer.ecl-animated-numbers__sources .ecl-animated-numbers__sources-item:nth-child(2) a.ecl-animated-numbers__source[href='/example'] .ecl-icon-phosphor--arrow-square-out": 1
       '.ecl-animated-number__content div.ecl-animated-numbers__sources': 2
       'li.ecl-animated-number:nth-child(3) div.ecl-animated-numbers__sources': 0
       'li.ecl-animated-number:nth-child(1) .ecl-animated-numbers__sources-list li.ecl-animated-numbers__sources-item': 2
-      "li.ecl-animated-number:nth-child(1) .ecl-animated-numbers__sources-item:nth-child(2) a.ecl-animated-numbers__source[href='/world-bank'] .ecl-icon--external": 1
+      "li.ecl-animated-number:nth-child(1) .ecl-animated-numbers__sources-item:nth-child(2) a.ecl-animated-numbers__source[href='/world-bank'] .ecl-icon-phosphor--arrow-square-out": 1
       'li.ecl-animated-number:nth-child(2) .ecl-animated-numbers__sources-list': 0
       "li.ecl-animated-number:nth-child(2) div.ecl-animated-numbers__sources a.ecl-animated-numbers__source[href='/eurostat']": 1
     equals:
@@ -7303,7 +7301,7 @@
       'div.ecl-highlight-box__body': 1
       'div.ecl-highlight-box__description': 0
       'a.ecl-link.ecl-link--secondary-neutral.ecl-link--icon.ecl-highlight-box__link[href="http://example.com"]': 1
-      'a.ecl-highlight-box__link span.ecl-icon.wt-icon--external.ecl-link__icon': 1
+      'a.ecl-highlight-box__link span.ecl-icon.wt-icon-phosphor--arrow-square-out.ecl-link__icon': 1
     equals:
       'a.ecl-highlight-box__link span.ecl-link__label': "External link"
 - structure:
@@ -7414,10 +7412,10 @@
       'div.ecl-highlighted-search__suggestion span.ecl-highlighted-search__suggestion-label[id]': 1
       'ul.ecl-tag-set.ecl-highlighted-search__suggestion-list[aria-labelledby] li.ecl-tag-set__item': 3
       'li.ecl-tag-set__item a.ecl-tag[href="/internal-page"]': 1
-      'li.ecl-tag-set__item a.ecl-tag[href="/internal-page"] span.ecl-icon.wt-icon--external': 0
+      'li.ecl-tag-set__item a.ecl-tag[href="/internal-page"] span.ecl-icon.wt-icon-phosphor--arrow-square-out': 0
       'li.ecl-tag-set__item:nth-child(2) a.ecl-tag[href=""]': 1
-      'li.ecl-tag-set__item:nth-child(2) a.ecl-tag span.ecl-icon.wt-icon--external': 0
-      'li.ecl-tag-set__item a.ecl-tag[href="http://external.com"] span.ecl-icon.wt-icon--external': 1
+      'li.ecl-tag-set__item:nth-child(2) a.ecl-tag span.ecl-icon.wt-icon-phosphor--arrow-square-out': 0
+      'li.ecl-tag-set__item a.ecl-tag[href="http://external.com"] span.ecl-icon.wt-icon-phosphor--arrow-square-out': 1
     equals:
       'div.ecl-highlighted-search__title': "Search title"
       'div.ecl-highlighted-search__description': "Search description"
@@ -7517,7 +7515,7 @@
       div.ecl-story-card__pager span.extra-class: 0
       div.ecl-story-card__pager span[extra-attr="extra-value"]: 0
       div.ecl-story-card__content-icon: 0
-      div.ecl-story-card__testimonial: 0
+      figcaption.ecl-story-card__testimonial: 0
     equals:
       div.ecl-story-card__title: 'Success stories'
       div.ecl-story-card__description: 'Component description'
@@ -7554,7 +7552,9 @@
       li.ecl-story-card__carousel-slide: 1
       li.ecl-story-card__grid-item: 1
       div.ecl-story-card__content-icon: 2
-      div.ecl-story-card__testimonial: 2
+      figure.ecl-story-card__testimonial-container: 2
+      figure.ecl-story-card__testimonial-container blockquote.ecl-story-card__card-title: 2
+      figcaption.ecl-story-card__testimonial: 2
       span.ecl-story-card__author: 2
       span.ecl-story-card__role: 2
       cite.ecl-story-card__source: 2

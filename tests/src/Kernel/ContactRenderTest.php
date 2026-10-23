@@ -325,7 +325,7 @@ class ContactRenderTest extends ContentRenderTestBase {
     $this->assertCount(1, $link_label);
     $this->assertEquals($title, trim($link_label->text()));
 
-    $link_icon = $element->filter('.ecl-icon.ecl-icon--s.ecl-icon--primary.ecl-link__icon');
+    $link_icon = $element->filter('.ecl-icon.ecl-icon--xs.ecl-icon--primary.ecl-link__icon.wt-icon-phosphor--arrow-square-out');
     $this->assertCount(1, $link_icon);
   }
 

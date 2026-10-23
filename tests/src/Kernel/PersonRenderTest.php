@@ -239,7 +239,7 @@ class PersonRenderTest extends ContentRenderTestBase {
         ],
       ],
     ];
-    $second_contact_render = $crawler->filter('article .ecl-content-block.ecl-content-item__content-block .ecl-content-block__list-container dl:nth-child(3)');
+    $second_contact_render = $crawler->filter('article .ecl-content-block.ecl-content-item__content-block .ecl-content-block__list-container div.ecl-description-list:nth-child(3)');
     $field_assert->assertPattern($second_contact_expected_values, $second_contact_render->outerHtml());
     // Assert Jobs field and highlighted label.
     $job_1 = $this->createPersonJobEntity('job_1', [
@@ -345,7 +345,7 @@ class PersonRenderTest extends ContentRenderTestBase {
     $html = $this->getRenderedNode($node);
     $assert->assertPattern($expected_values, $html);
     $crawler = new Crawler($html);
-    $jobs_render = $crawler->filter('article .ecl-content-block.ecl-content-item__content-block .ecl-content-block__list-container dl:nth-child(3)');
+    $jobs_render = $crawler->filter('article .ecl-content-block.ecl-content-item__content-block .ecl-content-block__list-container div.ecl-description-list:nth-child(3)');
     $this->assertCount(1, $jobs_render);
   }
 
