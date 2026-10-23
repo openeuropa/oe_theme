@@ -18,10 +18,10 @@
       a.ecl-link span.ecl-icon.wt-icon--external: 1
     equals:
       h4.ecl-u-type-heading-4: "Organisation name (Acronym)"
-      dl.ecl-description-list dt.ecl-description-list__term:nth-child(1): "Address"
-      dl.ecl-description-list dd.ecl-description-list__definition:nth-child(2): "61 Lorem Ipsum Street, Brussels, Belgium, 1000"
-      dl.ecl-description-list dt.ecl-description-list__term:nth-child(3): "Website"
-      dl.ecl-description-list dd.ecl-description-list__definition:nth-child(4): '<a class="ecl-link ecl-link--standalone" href="http://www.example.com">http://www.example.com</a>'
+      div.ecl-description-list dl.ecl-description-list__content dt.ecl-description-list__term:nth-child(1): "Address"
+      div.ecl-description-list dl.ecl-description-list__content dd.ecl-description-list__definition:nth-child(2): "61 Lorem Ipsum Street, Brussels, Belgium, 1000"
+      div.ecl-description-list dl.ecl-description-list__content dt.ecl-description-list__term:nth-child(3): "Website"
+      div.ecl-description-list dl.ecl-description-list__content dd.ecl-description-list__definition:nth-child(4): '<a class="ecl-link ecl-link--standalone" href="http://www.example.com">http://www.example.com</a>'
       a.ecl-link .ecl-link__label: "Contact organisation"
 - fields:
     organisation_details:
@@ -29,14 +29,14 @@
         body: "<b>61 Lorem Ipsum Street, Brussels, Belgium, 1000</b>"
   assertions:
     equals:
-      dl.ecl-description-list dt.ecl-description-list__term:nth-child(1): "Address"
-      dl.ecl-description-list dd.ecl-description-list__definition:nth-child(2): "&lt;b&gt;61 Lorem Ipsum Street, Brussels, Belgium, 1000&lt;/b&gt;"
+      div.ecl-description-list dl.ecl-description-list__content dt.ecl-description-list__term:nth-child(1): "Address"
+      div.ecl-description-list dl.ecl-description-list__content dd.ecl-description-list__definition:nth-child(2): "&lt;b&gt;61 Lorem Ipsum Street, Brussels, Belgium, 1000&lt;/b&gt;"
 - fields:
     name: "Organisation name"
   assertions:
     count:
       div[role="img"].ecl-u-d-l-block: 0
-      dl.ecl-description-list: 0
+      div.ecl-description-list: 0
       a.ecl-link: 0
     equals:
       h4.ecl-u-type-heading-4: "Organisation name"
@@ -50,11 +50,11 @@
       h4.ecl-u-type-heading-4: 1
       a.ecl-link[href="/internal_link"]: 1
       a.ecl-link span.ecl-icon.wt-icon--arrow-right: 1
-      dl.ecl-description-list dt.ecl-description-list__term:nth-child(3): 0
-      dl.ecl-description-list dd.ecl-description-list__definition:nth-child(4): 0
+      div.ecl-description-list dl.ecl-description-list__content dt.ecl-description-list__term:nth-child(3): 0
+      div.ecl-description-list dl.ecl-description-list__content dd.ecl-description-list__definition:nth-child(4): 0
     equals:
-      dl.ecl-description-list dt.ecl-description-list__term:nth-child(1): "Address"
-      dl.ecl-description-list dd.ecl-description-list__definition:nth-child(2): "61 Lorem Ipsum Street, Brussels, Belgium, 1000"
+      div.ecl-description-list dl.ecl-description-list__content dt.ecl-description-list__term:nth-child(1): "Address"
+      div.ecl-description-list dl.ecl-description-list__content dd.ecl-description-list__definition:nth-child(2): "61 Lorem Ipsum Street, Brussels, Belgium, 1000"
       a.ecl-link .ecl-link__label: "Contact organisation"
 - fields:
     contact_page_url: "mailto:me@example.com"

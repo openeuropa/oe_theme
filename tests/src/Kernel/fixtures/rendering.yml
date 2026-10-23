@@ -1192,7 +1192,7 @@
       'a.ecl-file__translation-download[href="http://example.com/document_fr.xls"]': 1
       'a.ecl-file__translation-download[data-attribute-translation-foo="bar"]': 0
       'div.ecl-file__lists': 1
-      'dl.ecl-description-list': 1
+      'div.ecl-description-list dl.ecl-description-list__content': 1
       'dt.ecl-description-list__term': 3
       'dd.ecl-description-list__definition.ecl-description-list__definition--inline': 3
       'li.ecl-description-list__definition-item': 7
@@ -1997,7 +1997,7 @@
       'article.ecl-content-item picture.ecl-content-item__picture--large': 0
       'article.ecl-content-item picture.ecl-content-item__picture--left': 0
       'article.ecl-content-item picture.ecl-content-item__picture--right': 0
-      'div.ecl-content-block__list-container dl.ecl-description-list.ecl-description-list--horizontal.ecl-content-block__list.ecl-u-mb-xl': 1
+      'div.ecl-content-block__list-container div.ecl-description-list.ecl-description-list--horizontal.ecl-content-block__list.ecl-u-mb-xl dl.ecl-description-list__content': 1
       'div.ecl-content-block__list-container .ecl-description-list__term': 2
       'div.ecl-content-block__list-container .ecl-description-list__definition': 2
       'span.ecl-icon.ecl-icon--s.ecl-link__icon': 0
@@ -2005,10 +2005,10 @@
       'article.ecl-content-item ul.ecl-content-block__secondary-meta-container.ecl-content-block__secondary-meta-container--horizontal': 0
     equals:
       'article.ecl-content-item div.ecl-content-item__content-block div.ecl-content-block__title .ecl-link': "Item title"
-      'div.ecl-content-block__list-container dl.ecl-description-list.ecl-description-list--horizontal.ecl-content-block__list .ecl-description-list__term:nth-child(1)': "When"
-      'div.ecl-content-block__list-container dl.ecl-description-list.ecl-description-list--horizontal.ecl-content-block__list .ecl-description-list__definition:nth-child(2)': "Thursday 15 November, 08:00 AM to Friday 16 November"
-      'div.ecl-content-block__list-container dl.ecl-description-list.ecl-description-list--horizontal.ecl-content-block__list .ecl-description-list__term:nth-child(3)': "Where"
-      'div.ecl-content-block__list-container dl.ecl-description-list.ecl-description-list--horizontal.ecl-content-block__list .ecl-description-list__definition:nth-child(4)': "The EGG, Rue Barra 175, 1070 Brussels, Belgium"
+      'div.ecl-content-block__list-container div.ecl-description-list.ecl-description-list--horizontal.ecl-content-block__list dl.ecl-description-list__content .ecl-description-list__term:nth-child(1)': "When"
+      'div.ecl-content-block__list-container div.ecl-description-list.ecl-description-list--horizontal.ecl-content-block__list dl.ecl-description-list__content .ecl-description-list__definition:nth-child(2)': "Thursday 15 November, 08:00 AM to Friday 16 November"
+      'div.ecl-content-block__list-container div.ecl-description-list.ecl-description-list--horizontal.ecl-content-block__list dl.ecl-description-list__content .ecl-description-list__term:nth-child(3)': "Where"
+      'div.ecl-content-block__list-container div.ecl-description-list.ecl-description-list--horizontal.ecl-content-block__list dl.ecl-description-list__content .ecl-description-list__definition:nth-child(4)': "The EGG, Rue Barra 175, 1070 Brussels, Belgium"
 - structure:
     '#type': component
     '#component': 'oe_theme:list_item'
@@ -2526,8 +2526,8 @@
       'article.ecl-content-item[extra-attr="extra value"] div.ecl-content-item__content-block a.ecl-link[href="/example"]': 1
       'article.ecl-content-item time.ecl-date-block.ecl-date-block--ongoing.ecl-content-item__date': 1
       'article.ecl-content-item time.ecl-date-block.ecl-date-block--ongoing.ecl-content-item__date abbr.ecl-date-block__month[title="July"]': 1
-      'div.ecl-content-block__list-container dl.ecl-u-mb-xl .ecl-description-list__term': 2
-      'div.ecl-content-block__list-container dl.ecl-u-mb-xl .ecl-description-list__definition': 2
+      'div.ecl-content-block__list-container div.ecl-u-mb-xl dl.ecl-description-list__content .ecl-description-list__term': 2
+      'div.ecl-content-block__list-container div.ecl-u-mb-xl dl.ecl-description-list__content .ecl-description-list__definition': 2
       div.ecl-content-block__secondary-meta-container div.ecl-content-block__secondary-meta-item: 1
       div.ecl-content-block__secondary-meta-container div.ecl-content-block__secondary-meta-item span.ecl-icon--s.ecl-content-block__secondary-meta-icon.wt-icon--location: 1
       article.ecl-content-item div.ecl-content-block__secondary-meta-container: 1
@@ -2540,10 +2540,10 @@
       'article.ecl-content-item time.ecl-date-block.ecl-content-item__date span.ecl-date-block__day': '14'
       'article.ecl-content-item time.ecl-date-block.ecl-content-item__date abbr.ecl-date-block__month': 'Jul'
       'article.ecl-content-item time.ecl-date-block.ecl-content-item__date span.ecl-date-block__year': '2021'
-      'div.ecl-content-block__list-container dl.ecl-description-list.ecl-description-list--horizontal.ecl-content-block__list .ecl-description-list__term:nth-child(1)': "When"
-      'div.ecl-content-block__list-container dl.ecl-description-list.ecl-description-list--horizontal.ecl-content-block__list .ecl-description-list__definition:nth-child(2)': "Thursday 15 November, 08:00 AM to Friday 16 November"
-      'div.ecl-content-block__list-container dl.ecl-description-list.ecl-description-list--horizontal.ecl-content-block__list .ecl-description-list__term:nth-child(3)': "Where"
-      'div.ecl-content-block__list-container dl.ecl-description-list.ecl-description-list--horizontal.ecl-content-block__list .ecl-description-list__definition:nth-child(4)': "The EGG, Rue Barra 175, 1070 Brussels, Belgium"
+      'div.ecl-content-block__list-container div.ecl-description-list.ecl-description-list--horizontal.ecl-content-block__list dl.ecl-description-list__content .ecl-description-list__term:nth-child(1)': "When"
+      'div.ecl-content-block__list-container div.ecl-description-list.ecl-description-list--horizontal.ecl-content-block__list dl.ecl-description-list__content .ecl-description-list__definition:nth-child(2)': "Thursday 15 November, 08:00 AM to Friday 16 November"
+      'div.ecl-content-block__list-container div.ecl-description-list.ecl-description-list--horizontal.ecl-content-block__list dl.ecl-description-list__content .ecl-description-list__term:nth-child(3)': "Where"
+      'div.ecl-content-block__list-container div.ecl-description-list.ecl-description-list--horizontal.ecl-content-block__list dl.ecl-description-list__content .ecl-description-list__definition:nth-child(4)': "The EGG, Rue Barra 175, 1070 Brussels, Belgium"
       'div.ecl-content-block__secondary-meta-container div.ecl-content-block__secondary-meta-item .ecl-content-block__secondary-meta-label': "Brussels"
 - structure:
     '#type': component
@@ -3664,7 +3664,7 @@
       more_label: "More label"
   assertions:
     count:
-      'dl.ecl-description-list.ecl-description-list--horizontal[data-ecl-description-list][data-ecl-auto-init="DescriptionList"][data-ecl-description-list-visible-items="4"][data-ecl-description-list-more-label="More label"]': 1
+      'div.ecl-description-list.ecl-description-list--horizontal[data-ecl-description-list][data-ecl-auto-init="DescriptionList"][data-ecl-description-list-visible-items="4"][data-ecl-description-list-more-label="More label"] dl.ecl-description-list__content': 1
       'dd.ecl-description-list__definition.ecl-description-list__definition--inline ul.ecl-description-list__definition-list[data-ecl-description-list-collapsible]': 1
       'li.ecl-description-list__definition-item': 5
       'span.ecl-link__label': 3
@@ -3910,7 +3910,7 @@
       'ul.ecl-content-block__label-container li.ecl-content-block__label-item': 2
       'ul.ecl-content-block__primary-meta-container': 1
       'div.ecl-content-block__list-container': 1
-      'dl.ecl-description-list.ecl-description-list--vertical.ecl-content-block__list': 1
+      'div.ecl-description-list.ecl-description-list--vertical.ecl-content-block__list dl.ecl-description-list__content': 1
     equals:
       'ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(1)': "Breaking news article"
       'ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(2)': "Brussels"
@@ -5189,10 +5189,10 @@
       'div.ecl-fact-figures__item:nth-child(2) li.ecl-fact-figures__sources-item:nth-child(1) a.ecl-link.ecl-link--icon.ecl-fact-figures__source[href="/cnect"] span.ecl-icon.ecl-link__icon.wt-icon-phosphor--arrow-square-out': 1
       'div.ecl-fact-figures__item:nth-child(2) li.ecl-fact-figures__sources-item:nth-child(2) a.ecl-link.ecl-fact-figures__source[href="/commission"]': 1
     equals:
-      'div.ecl-fact-figures__item:nth-child(1) div.ecl-fact-figures__value': '00.0 million                        <span class="ecl-fact-figures__title">Lorem ipsum</span>'
+      'div.ecl-fact-figures__item:nth-child(1) div.ecl-fact-figures__value': '00.0 million                            <span class="ecl-fact-figures__title">Lorem ipsum</span>'
       'div.ecl-fact-figures__item:nth-child(1) span.ecl-fact-figures__title': 'Lorem ipsum'
       'div.ecl-fact-figures__item:nth-child(1) div.ecl-fact-figures__description': 'Nunc condimentum sapien ut nibh finibus suscipit vitae at justo. Morbi quis odio faucibus, commodo tortor id, elementum libero.'
-      'div.ecl-fact-figures__item:nth-child(2) div.ecl-fact-figures__value': '10.0 millions                        <span class="ecl-fact-figures__title">Nam lacinia nisl eget diam mattis</span>'
+      'div.ecl-fact-figures__item:nth-child(2) div.ecl-fact-figures__value': '10.0 millions                            <span class="ecl-fact-figures__title">Nam lacinia nisl eget diam mattis</span>'
       'div.ecl-fact-figures__item:nth-child(2) span.ecl-fact-figures__title': 'Nam lacinia nisl eget diam mattis'
       'div.ecl-fact-figures__item:nth-child(2) div.ecl-fact-figures__description': 'Sed efficitur bibendum rutrum. Nunc feugiat congue augue ac consectetur.'
       'div.ecl-fact-figures__item:nth-child(1) div.ecl-fact-figures__sources span.ecl-fact-figures__sources-label': 'Source:'
@@ -5632,6 +5632,8 @@
       img.ecl-news-ticker__icon: 0
       span.ecl-news-ticker__icon: 6
       div.ecl-news-ticker[data-name="data value"]: 1
+      div.ecl-news-ticker[data-ecl-news-ticker-counter-label="of"]: 1
+      div.ecl-news-ticker__wrapper: 1
       div.ecl-news-ticker__container: 1
       div.ecl-news-ticker__content: 1
       ul#news-ticker-example-content.ecl-news-ticker__slides: 1
@@ -5655,8 +5657,6 @@
       li.ecl-news-ticker__slide:nth-child(5) a.ecl-link.ecl-news-ticker__slide-text span.ecl-link__label: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium"
       li.ecl-news-ticker__slide:nth-child(6) a.ecl-link.ecl-news-ticker__slide-text: "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit sed quia consequuntur magni dolores"
     equals:
-      div.ecl-news-ticker__counter span.ecl-news-ticker__counter--current: '1'
-      div.ecl-news-ticker__counter span.ecl-news-ticker__counter--max: '6'
       button.ecl-news-ticker__prev span.ecl-button__label: 'Previous news item'
       button.ecl-news-ticker__next span.ecl-button__label: 'Next news item'
       button.ecl-news-ticker__pause span.ecl-button__label: 'Pause news ticker'
@@ -5676,21 +5676,19 @@
   assertions:
     count:
       div.ecl-news-ticker.ecl-color-mode--blue-electric: 1
+      div.ecl-news-ticker[data-ecl-news-ticker-counter-label="in"]: 1
       div.ecl-news-ticker__container: 1
       div.ecl-news-ticker__content: 1
       ul.ecl-news-ticker__slides: 1
       li.ecl-news-ticker__slide: 3
       a.ecl-link.ecl-news-ticker__slide-text: 2
-      div.ecl-news-ticker__counter span.ecl-news-ticker__counter--current: 1
+      div.ecl-news-ticker__counter: 1
       div.ecl-news-ticker__controls: 1
       span.ecl-icon.ecl-icon--l.ecl-news-ticker__icon.wt-icon-phosphor--newspaper: 3
     contains:
       li.ecl-news-ticker__slide:nth-child(1) a.ecl-link.ecl-news-ticker__slide-text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit"
       li.ecl-news-ticker__slide:nth-child(2): "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat"
       li.ecl-news-ticker__slide:nth-child(3) a.ecl-link.ecl-news-ticker__slide-text: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur"
-      div.ecl-news-ticker__counter: '<span class="ecl-news-ticker__counter--current">1</span> in'
-    equals:
-      div.ecl-news-ticker__counter span.ecl-news-ticker__counter--max: '3'
 - structure:
     '#type': 'component'
     '#component': 'oe_theme:carousel'
@@ -7517,7 +7515,7 @@
       div.ecl-story-card__pager span.extra-class: 0
       div.ecl-story-card__pager span[extra-attr="extra-value"]: 0
       div.ecl-story-card__content-icon: 0
-      div.ecl-story-card__testimonial: 0
+      figcaption.ecl-story-card__testimonial: 0
     equals:
       div.ecl-story-card__title: 'Success stories'
       div.ecl-story-card__description: 'Component description'
@@ -7554,7 +7552,9 @@
       li.ecl-story-card__carousel-slide: 1
       li.ecl-story-card__grid-item: 1
       div.ecl-story-card__content-icon: 2
-      div.ecl-story-card__testimonial: 2
+      figure.ecl-story-card__testimonial-container: 2
+      figure.ecl-story-card__testimonial-container blockquote.ecl-story-card__card-title: 2
+      figcaption.ecl-story-card__testimonial: 2
       span.ecl-story-card__author: 2
       span.ecl-story-card__role: 2
       cite.ecl-story-card__source: 2
