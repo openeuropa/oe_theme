@@ -389,7 +389,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $expected_values['link'] = [
       'label' => 'Read more',
       'path' => 'http://www.example.com/',
-      'icon' => 'external',
+      'icon' => 'arrow-square-out',
     ];
     $assert->assertPattern($expected_values, $html);
     $assert->assertVariant('left_featured', $html);
@@ -579,7 +579,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $html = $this->renderParagraph($paragraph);
     $crawler = new Crawler($html);
     $this->assertCount(0, $crawler->filter('section.ecl-banner.ecl-banner--font-m.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--l picture.ecl-picture.ecl-banner__picture img.ecl-banner__image'));
-    $this->assertCount(1, $crawler->filter('span.ecl-icon.ecl-icon--xs.ecl-link__icon.wt-icon--external'));
+    $this->assertCount(1, $crawler->filter('span.ecl-icon.ecl-icon--xs.ecl-link__icon.wt-icon-phosphor--arrow-square-out'));
 
     // Publish the media.
     $media->set('status', 1);

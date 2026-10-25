@@ -29,7 +29,7 @@ services:
   #    ports:
   #      - 3306:3306
   selenium:
-    image: selenium/standalone-chromium:127.0
+    image: selenium/standalone-chromium:130.0
     expose:
       - '4444'
     environment:
