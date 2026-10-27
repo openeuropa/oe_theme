@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Drupal\oe_theme_helper\Plugin\field_group\FieldGroupFormatter;
 
+use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Render\Element;
 
 /**
@@ -23,8 +24,8 @@ class InPageNavigation extends InPageNavigationBase {
   /**
    * {@inheritdoc}
    */
-  public function settingsForm() {
-    $form = parent::settingsForm();
+  public function settingsForm(array $form, FormStateInterface $form_state) {
+    $form = parent::settingsForm($form, $form_state);
     $form['label']['#required'] = TRUE;
     return $form;
   }
