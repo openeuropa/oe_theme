@@ -585,3 +585,70 @@ function _oe_theme_helper_prepare_status_variant(string $status): string {
   }
   return '';
 }
+
+/**
+ * Uninstalls the given modules if the site does not use them anymore.
+ *
+ * A module is kept when another installed module requires it, when some
+ * configuration depends on it, or when an entity display uses one of its
+ * field group formatters.
+ *
+ * @param string[] $modules
+ *   The modules to uninstall, in order.
+ *
+ * @return string[]
+ *   The modules that were kept.
+ */
+function _oe_theme_helper_uninstall_unused_modules(array $modules): array {
+  $module_data = \Drupal::service('extension.list.module')->getList();
+  $kept = [];
+
+  foreach ($modules as $module) {
+    $installed = \Drupal::moduleHandler()->getModuleList();
+    if (!isset($installed[$module])) {
+      continue;
+    }
+    $dependents = array_intersect_key($module_data[$module]->required_by, $installed);
+    if ($dependents || \Drupal::service('config.manager')->findConfigEntityDependencies('module', [$module]) || _oe_theme_helper_module_has_field_groups($module)) {
+      $kept[] = $module;
+      continue;
+    }
+    \Drupal::service('module_installer')->uninstall([$module], FALSE);
+  }
+
+  return $kept;
+}
+
+/**
+ * Checks if an entity display uses a field group formatter of a module.
+ *
+ * Displays do not declare a dependency on the module of their field group
+ * formatters, so the config dependencies are not enough.
+ *
+ * @param string $module
+ *   The module name.
+ *
+ * @return bool
+ *   TRUE if a field group of an entity display uses a formatter of the module.
+ */
+function _oe_theme_helper_module_has_field_groups(string $module): bool {
+  if (!\Drupal::hasService('plugin.manager.field_group.formatters')) {
+    return FALSE;
+  }
+  $definitions = \Drupal::service('plugin.manager.field_group.formatters')->getDefinitions();
+  $format_types = array_keys(array_filter($definitions, static fn (array $definition): bool => $definition['provider'] === $module));
+  if (!$format_types) {
+    return FALSE;
+  }
+
+  $config_factory = \Drupal::configFactory();
+  $names = array_merge($config_factory->listAll('core.entity_view_display.'), $config_factory->listAll('core.entity_form_display.'));
+  foreach ($config_factory->loadMultiple($names) as $config) {
+    $groups = $config->get('third_party_settings.field_group') ?? [];
+    if (array_intersect(array_column($groups, 'format_type'), $format_types)) {
+      return TRUE;
+    }
+  }
+
+  return FALSE;
+}

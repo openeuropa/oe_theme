@@ -812,13 +812,15 @@ function oe_theme_helper_post_update_50004(): void {
 }
 
 /**
- * Replace the ui_patterns module with sdc_component_library.
+ * Replace the ui_patterns module with sdc_component_library if it is not used.
  */
-function oe_theme_helper_post_update_60001(): void {
-  \Drupal::service('module_installer')->uninstall(['ui_patterns_library']);
-  \Drupal::service('module_installer')->uninstall(['ui_patterns']);
+function oe_theme_helper_post_update_60001(): string {
+  // Sites can still use UI Patterns for their own components.
+  $kept = _oe_theme_helper_uninstall_unused_modules(['ui_patterns_library', 'ui_patterns']);
   // Install sdc_component_library.
   \Drupal::service('module_installer')->install(['sdc_component_library']);
+
+  return $kept ? sprintf('Modules kept because they are still in use: %s.', implode(', ', $kept)) : 'UI Patterns modules uninstalled.';
 }
 
 /**
