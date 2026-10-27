@@ -25,7 +25,7 @@ class InPageNavigation extends InPageNavigationBase {
    * {@inheritdoc}
    */
   public function settingsForm(array $form, FormStateInterface $form_state) {
-    $form = parent::settingsForm();
+    $form = parent::settingsForm($form, $form_state);
     $form['label']['#required'] = TRUE;
     return $form;
   }

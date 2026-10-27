@@ -16,7 +16,7 @@ abstract class InPageNavigationBase extends FieldGroupFormatterBase {
    * {@inheritdoc}
    */
   public function settingsForm(array $form, FormStateInterface $form_state) {
-    $form = parent::settingsForm();
+    $form = parent::settingsForm($form, $form_state);
     // Hide classes and id attribute settings.
     $form['id']['#access'] = FALSE;
     $form['classes']['#access'] = FALSE;

@@ -36,7 +36,7 @@ class FieldListPattern extends PatternFormatterBase {
    * {@inheritdoc}
    */
   public function settingsForm(array $form, FormStateInterface $form_state) {
-    $form = parent::settingsForm();
+    $form = parent::settingsForm($form, $form_state);
 
     $form['wrapper_classes'] = [
       '#type' => 'textfield',
