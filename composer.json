@@ -53,7 +53,6 @@
         "openeuropa/oe_multilingual": "dev-master",
         "openeuropa/oe_paragraphs": "dev-master",
         "openeuropa/oe_search": "2.x-dev",
-        "openeuropa/rdf_skos": "^1.0.0",
         "openeuropa/oe_testing_utils": "dev-main"
     },
     "scripts": {
