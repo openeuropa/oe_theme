@@ -1,0 +1,25 @@
+name: 'Category filter'
+description: 'A list of categories with collapsible sub-categories, used to filter content.'
+props:
+  type: object
+  properties:
+    label:
+      type: ['string', 'null']
+      title: Label
+      description: "Aria label of the navigation element. Defaults to 'Category filter'."
+    color_mode:
+      type: ['string', 'null']
+      title: 'Color mode'
+      description: 'Name of the color mode.'
+    items:
+      type: ['array', 'null']
+      title: Items
+      description: "List of items with the structure: 'label' (string), 'path' (string), 'current' (boolean), 'extra_attributes' and a list of 'children' items with the same structure, nested at any depth."
+    extra_classes:
+      type: ['string', 'null']
+      title: 'Extra classes'
+      description: 'Extra classes string.'
+    extra_attributes:
+      type: ['array', 'null']
+      title: 'Extra attributes'
+      description: 'List of extra attributes.'

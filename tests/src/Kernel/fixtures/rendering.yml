@@ -7587,3 +7587,139 @@
       a.ecl-story-card__link: 0
       li.ecl-story-card__carousel-slide: 2
       li.ecl-story-card__grid-item: 2
+- structure:
+    '#type': component
+    '#component': 'oe_theme:category_filter'
+    '#props':
+      label: "Filter by category"
+      items:
+        - label: "First item"
+          path: "/first-item"
+          current: true
+        - label: "Second item"
+          path: "/second-item"
+          children:
+            - label: "Child 2.1"
+              path: "/child-2-1"
+            - label: "Child 2.2"
+              children:
+                - label: "Grandchild 2.2.1"
+                  path: "/grandchild-2-2-1"
+                  current: true
+                  extra_attributes:
+                    - name: "data-grandchild"
+                      value: "grandchild value"
+                - label: "Grandchild 2.2.2"
+                  children:
+                    - label: "Great-grandchild 2.2.2.1"
+                      path: "/great-grandchild-2-2-2-1"
+                      children:
+                        - label: "Fifth level item"
+                          path: "/fifth-level-item"
+                          children:
+                            - label: "Sixth level item"
+                              path: "/sixth-level-item"
+                              current: true
+        - label: "Third item"
+          path: "/third-item"
+          extra_attributes:
+            - name: "data-third"
+              value: "third value"
+  assertions:
+    count:
+      'nav.ecl-category-filter[data-ecl-category-filter][data-ecl-auto-init="CategoryFilter"][aria-label="Filter by category"]': 1
+      'nav.ecl-category-filter[class*="ecl-color-mode--"]': 0
+      'nav.ecl-category-filter > ul.ecl-category-filter__list > li.ecl-category-filter__list-item': 3
+      'li.ecl-category-filter__list-item': 10
+      'a.ecl-category-filter__item.ecl-category-filter__item--level-1': 2
+      'a.ecl-category-filter__item--level-1[href="/first-item"][aria-current="true"]': 1
+      'a.ecl-category-filter__item--level-1[href="/third-item"][data-third="third value"]': 1
+      'a.ecl-category-filter__item--level-1[href="/third-item"][aria-current]': 0
+      'button.ecl-category-filter__item.ecl-category-filter__item--level-1.ecl-category-filter__item--has-children[aria-expanded="false"][aria-controls]': 1
+      'button.ecl-category-filter__item--level-1 span.ecl-icon.ecl-icon--xs.ecl-category-filter__item-icon': 1
+      'nav > ul.ecl-category-filter__list > li.ecl-category-filter__list-item:nth-child(2) > ul.ecl-category-filter__list[id] > li.ecl-category-filter__list-item': 2
+      'a.ecl-category-filter__item.ecl-category-filter__item--level-2[href="/child-2-1"]': 1
+      'button.ecl-category-filter__item.ecl-category-filter__item--level-2.ecl-category-filter__item--has-children[aria-controls]': 1
+      'button.ecl-category-filter__item--level-2 span.ecl-icon.ecl-icon--xs.ecl-category-filter__item-icon': 1
+      'a.ecl-category-filter__item span.ecl-icon': 0
+      'nav > ul.ecl-category-filter__list > li.ecl-category-filter__list-item:nth-child(2) > ul.ecl-category-filter__list > li.ecl-category-filter__list-item:nth-child(2) > ul.ecl-category-filter__list[id] > li.ecl-category-filter__list-item': 2
+      'a.ecl-category-filter__item--level-3[href="/grandchild-2-2-1"][aria-current="true"][data-grandchild="grandchild value"]': 1
+      'button.ecl-category-filter__item--level-3.ecl-category-filter__item--has-children[aria-controls]': 1
+      'button.ecl-category-filter__item--level-4.ecl-category-filter__item--has-children[aria-controls]': 1
+      'a.ecl-category-filter__item--level-4': 0
+      'button.ecl-category-filter__item--level-5.ecl-category-filter__item--has-children[aria-controls]': 1
+      'a.ecl-category-filter__item--level-5': 0
+      'a.ecl-category-filter__item--level-6[href="/sixth-level-item"][aria-current="true"]': 1
+      '.ecl-category-filter__item--level-7': 0
+      'ul.ecl-category-filter__list[id]': 5
+      'button.ecl-category-filter__item[aria-controls]': 5
+      '[aria-current]': 3
+    contains:
+      button.ecl-category-filter__item--level-1: "Second item"
+      button.ecl-category-filter__item--level-2: "Child 2.2"
+      button.ecl-category-filter__item--level-3: "Grandchild 2.2.2"
+      button.ecl-category-filter__item--level-4: "Great-grandchild 2.2.2.1"
+      button.ecl-category-filter__item--level-5: "Fifth level item"
+    equals:
+      'a.ecl-category-filter__item--level-1[href="/first-item"]': "First item"
+      'a.ecl-category-filter__item--level-1[href="/third-item"]': "Third item"
+      'a.ecl-category-filter__item--level-2[href="/child-2-1"]': "Child 2.1"
+      'a.ecl-category-filter__item--level-3[href="/grandchild-2-2-1"]': "Grandchild 2.2.1"
+      'a.ecl-category-filter__item--level-6': "Sixth level item"
+- structure:
+    '#type': component
+    '#component': 'oe_theme:category_filter'
+    '#props':
+      color_mode: "blue-ocean"
+      extra_classes: "custom-class"
+      extra_attributes:
+        - name: "data-name"
+          value: "data value"
+      items:
+        - label: "Item 1"
+          children:
+            - label: "Child 1.1"
+              path: "/child-1-1"
+              current: true
+            - label: "Child 1.2"
+              children:
+                - label: "Grandchild 1.2.1"
+                  path: "/grandchild-1-2-1"
+        - label: "Item 2"
+          path: "/item-2"
+        - label: "Item 3"
+          children:
+            - label: "Child 3.1"
+              path: "/child-3-1"
+              extra_attributes:
+                - name: "data-child"
+                  value: "child value"
+        - label: "Item without url"
+  assertions:
+    count:
+      'nav.ecl-category-filter.ecl-color-mode--blue-ocean.custom-class[data-name="data value"][aria-label="Category filter"]': 1
+      'nav > ul.ecl-category-filter__list > li.ecl-category-filter__list-item': 4
+      'li.ecl-category-filter__list-item': 8
+      'button.ecl-category-filter__item.ecl-category-filter__item--level-1.ecl-category-filter__item--has-children[aria-expanded="false"][aria-controls]': 2
+      'a.ecl-category-filter__item.ecl-category-filter__item--level-1': 1
+      'a.ecl-category-filter__item--level-1[href="/item-2"]': 1
+      'span.ecl-category-filter__item.ecl-category-filter__item--level-1': 1
+      'a[href=""]': 0
+      'nav > ul.ecl-category-filter__list > li.ecl-category-filter__list-item:nth-child(1) > ul.ecl-category-filter__list[id] > li.ecl-category-filter__list-item': 2
+      'a.ecl-category-filter__item--level-2[href="/child-1-1"][aria-current="true"]': 1
+      'button.ecl-category-filter__item.ecl-category-filter__item--level-2.ecl-category-filter__item--has-children[aria-controls]': 1
+      'a.ecl-category-filter__item--level-3[href="/grandchild-1-2-1"]': 1
+      'nav > ul.ecl-category-filter__list > li.ecl-category-filter__list-item:nth-child(3) > ul.ecl-category-filter__list[id] > li.ecl-category-filter__list-item': 1
+      'a.ecl-category-filter__item--level-2[href="/child-3-1"][data-child="child value"]': 1
+      'ul.ecl-category-filter__list[id]': 3
+      '[aria-current]': 1
+    contains:
+      'nav > ul.ecl-category-filter__list > li.ecl-category-filter__list-item:nth-child(1) > button.ecl-category-filter__item--level-1': "Item 1"
+      'nav > ul.ecl-category-filter__list > li.ecl-category-filter__list-item:nth-child(3) > button.ecl-category-filter__item--level-1': "Item 3"
+      button.ecl-category-filter__item--level-2: "Child 1.2"
+    equals:
+      'a.ecl-category-filter__item--level-1[href="/item-2"]': "Item 2"
+      'span.ecl-category-filter__item--level-1': "Item without url"
+      'a.ecl-category-filter__item--level-2[href="/child-1-1"]': "Child 1.1"
+      'a.ecl-category-filter__item--level-2[href="/child-3-1"]': "Child 3.1"
+      'a.ecl-category-filter__item--level-3': "Grandchild 1.2.1"
