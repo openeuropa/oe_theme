@@ -194,7 +194,7 @@ templates that still pass it, as the SDC prop validation will report it as an un
 
 #### New components
 
-The following components have been added in 6.0.0 and can be used in your templates as described above:
+The following components have been added in 6.x and can be used in your templates as described above:
 
 - Text and media (`text_media`)
 - Animated numbers (`animated_numbers`)
@@ -203,6 +203,7 @@ The following components have been added in 6.0.0 and can be used in your templa
 - Highlight box (`highlight_box`)
 - Slogan ticker (`slogan_ticker`)
 - Story card (`story_card`)
+- Category filter (`category_filter`)
 
 ### Upgrade to 5.0.0
 
