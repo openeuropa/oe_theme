@@ -1,0 +1,56 @@
+{% include 'oe_theme:category_filter' with {
+  label: 'Filter by category',
+  items: [
+    {
+      label: 'First item',
+      path: '#',
+      current: true,
+    },
+    {
+      label: 'Second item',
+      children: [
+        {
+          label: 'Child 2.1',
+          path: '#',
+        },
+        {
+          label: 'Child 2.2',
+          children: [
+            {
+              label: 'Grandchild 2.2.1',
+              path: '#',
+              extra_attributes: [
+                {
+                  name: 'data-grandchild',
+                  value: 'grandchild value',
+                },
+              ],
+            },
+            {
+              label: 'Grandchild 2.2.2',
+              children: [
+                {
+                  label: 'Great-grandchild 2.2.2.1',
+                  path: '#',
+                },
+                {
+                  label: 'Great-grandchild 2.2.2.2',
+                  path: '#',
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+    {
+      label: 'Third item',
+      extra_attributes: [
+        {
+          name: 'data-third',
+          value: 'third value',
+        },
+      ],
+    },
+  ],
+} only %}

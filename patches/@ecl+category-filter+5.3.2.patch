@@ -1,0 +1,27 @@
+diff --git a/node_modules/@ecl/category-filter/category-filter-items.html.twig b/node_modules/@ecl/category-filter/category-filter-items.html.twig
+index 6e332a6..c591ad9 100644
+--- a/node_modules/@ecl/category-filter/category-filter-items.html.twig
++++ b/node_modules/@ecl/category-filter/category-filter-items.html.twig
+@@ -93,7 +93,7 @@
+               id: _item_id,
+             } only %}
+           </ul>
+-      {%- else -%}
++      {%- elseif item.path is not empty -%}
+         <a
+           href="{{ item.path }}"
+           class="{{ _item_class }}"
+@@ -101,6 +101,13 @@
+         >
+           {{- item.label -}}
+         </a>
++      {%- else -%}
++        <span
++          class="{{ _item_class }}"
++          {{ _extra_attributes|raw }}
++        >
++          {{- item.label -}}
++        </span>
+       {%- endif -%}
+     </li>
+   {% endfor %}
