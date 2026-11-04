@@ -9,7 +9,8 @@ drupal:
     password: ""
   sparql:
     host: "sparql"
-    port: "8890"
+    port: "3030"
+    database: "triplestore"
   site:
     profile: "minimal"
     name: "OpenEuropa"
@@ -34,7 +35,8 @@ drupal:
         $settings['extension_discovery_scan_tests'] = TRUE;
         $databases['sparql_default']['default'] = [
           'host' => 'sparql',
-          'port' => '8890',
+          'port' => '3030',
+          'database' => 'triplestore',
           'namespace' => 'Drupal\sparql_entity_storage\Driver\Database\sparql',
           'driver' => 'sparql',
         ];
@@ -62,7 +64,8 @@ commands:
               $settings['extension_discovery_scan_tests'] = TRUE;
               $databases['sparql_default']['default'] = [
                 'host' => 'sparql',
-                'port' => '8890',
+                'port' => '3030',
+                'database' => 'triplestore',
                 'namespace' => 'Drupal\sparql_entity_storage\Driver\Database\sparql',
                 'driver' => 'sparql',
               ];
