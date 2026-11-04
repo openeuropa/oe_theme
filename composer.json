@@ -37,7 +37,6 @@
         "drupal/inline_entity_form": "~3",
         "drupal/json_field": "^1.2",
         "drupal/media_avportal": "~2",
-        "drupal/rdf_skos": "^1.4",
         "drupal/renderviz": "^1.0@alpha",
         "drupal/styleguide": "^2.1.1",
         "drupal/typed_link": "^2.0",
@@ -53,7 +52,6 @@
         "openeuropa/oe_multilingual": "dev-master",
         "openeuropa/oe_paragraphs": "dev-master",
         "openeuropa/oe_search": "2.x-dev",
-        "openeuropa/rdf_skos": "^1.0.0",
         "openeuropa/oe_testing_utils": "dev-main"
     },
     "scripts": {
