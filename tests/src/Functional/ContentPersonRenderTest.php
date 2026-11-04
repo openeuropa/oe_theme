@@ -701,7 +701,13 @@ class ContentPersonRenderTest extends ContentRenderTestBase {
   protected function assertTimelineItem(NodeElement $element, string $label, string $title, string $body):void {
     $this->assertEquals($label, $element->find('css', '.ecl-timeline__label')->getText());
     $this->assertEquals($title, $element->find('css', '.ecl-timeline__title')->getText());
-    $this->assertEquals($body, $element->find('css', '.ecl-timeline__content')->getText());
+    // An item without a body renders no content element.
+    $content = $element->find('css', '.ecl-timeline__content');
+    if ($body === '') {
+      $this->assertNull($content);
+      return;
+    }
+    $this->assertEquals($body, $content->getText());
   }
 
 }
