@@ -46,11 +46,13 @@ class RegistrationButtonExtraField extends InfoDisclosureExtraFieldBase {
       '#registration_day' => FALSE,
     ];
 
+    $timezone = $event->getRegistrationTimezone();
+
     // Current request happens after the registration has ended.
     if ($event->isRegistrationPeriodOver($this->requestDateTime)) {
       $datetime_end = $event->getRegistrationEndDate();
       $build['#description'] = $this->t('Registration period ended on @date', [
-        '@date' => $this->dateFormatter->format($datetime_end->getTimestamp(), 'oe_event_long_date_hour_timezone', '', $event->getRegistrationTimezone()),
+        '@date' => $this->dateFormatter->format($datetime_end->getTimestamp(), 'oe_event_long_date_hour_timezone', '', $timezone),
       ]);
       $build['#show_button'] = FALSE;
 
@@ -73,9 +75,9 @@ class RegistrationButtonExtraField extends InfoDisclosureExtraFieldBase {
 
       // If the request time is on the same day as the start day we need to
       // show different message.
-      if ($this->isCurrentDay($datetime_start->getTimestamp(), $event->getRegistrationTimezone())) {
+      if ($this->isCurrentDay($datetime_start->getTimestamp(), $timezone)) {
         $build['#registration_day_description'] = $this->t('Registration will open today, @start_date.', [
-          '@start_date' => $this->dateFormatter->format($datetime_start->getTimestamp(), 'oe_event_date_hour_timezone', '', $event->getRegistrationTimezone()),
+          '@start_date' => $this->dateFormatter->format($datetime_start->getTimestamp(), 'oe_event_date_hour_timezone', '', $timezone),
         ]);
         $build['#registration_day'] = TRUE;
         $this->attachDisclosureScript($build, $datetime_start->getTimestamp());
@@ -84,8 +86,8 @@ class RegistrationButtonExtraField extends InfoDisclosureExtraFieldBase {
         $date_diff_formatted = $this->dateFormatter->formatDiff($this->requestTime, $datetime_start->getTimestamp(), ['granularity' => 1]);
         $build['#description'] = $this->t('Registration will open in @time_left. You can register from @start_date, until @end_date.', [
           '@time_left' => $date_diff_formatted,
-          '@start_date' => $this->dateFormatter->format($datetime_start->getTimestamp(), 'oe_event_date_hour_timezone', '', $event->getRegistrationTimezone()),
-          '@end_date' => $this->dateFormatter->format($datetime_end->getTimestamp(), 'oe_event_date_hour_timezone', '', $event->getRegistrationTimezone()),
+          '@start_date' => $this->dateFormatter->format($datetime_start->getTimestamp(), 'oe_event_date_hour_timezone', '', $timezone),
+          '@end_date' => $this->dateFormatter->format($datetime_end->getTimestamp(), 'oe_event_date_hour_timezone', '', $timezone),
         ]);
         return $build;
       }
@@ -103,16 +105,23 @@ class RegistrationButtonExtraField extends InfoDisclosureExtraFieldBase {
     if ($event->hasRegistrationDates()) {
       // If the request time is on the same day as the end day we need to
       // show different message.
-      if ($this->isCurrentDay($datetime_end->getTimestamp(), $event->getRegistrationTimezone())) {
+      if ($this->isCurrentDay($datetime_end->getTimestamp(), $timezone)) {
         $build['#description'] = $this->t('Book your seat, the registration will end today, @end_date', [
-          '@end_date' => $this->dateFormatter->format($datetime_end->getTimestamp(), 'oe_event_date_hour_timezone', '', $event->getRegistrationTimezone()),
+          '@end_date' => $this->dateFormatter->format($datetime_end->getTimestamp(), 'oe_event_date_hour_timezone', '', $timezone),
         ]);
       }
       else {
         $date_diff_formatted = $this->dateFormatter->formatDiff($this->requestTime, $datetime_end->getTimestamp(), ['granularity' => 1]);
+        // If there are less than 30 days left to register, show the exact
+        // number of remaining days, instead of weeks.
+        $days_left = (new \DateTime($this->dateFormatter->format($this->requestTime, 'custom', 'Ymd', $timezone)))
+          ->diff(new \DateTime($this->dateFormatter->format($datetime_end->getTimestamp(), 'custom', 'Ymd', $timezone)))->days;
+        if ($days_left < 30) {
+          $date_diff_formatted = $this->formatPlural($days_left, '1 day', '@count days');
+        }
         $build['#description'] = $this->t('Book your seat, @time_left left to register, registration will end on @end_date', [
           '@time_left' => $date_diff_formatted,
-          '@end_date' => $this->dateFormatter->format($datetime_end->getTimestamp(), 'oe_event_date_hour_timezone', '', $event->getRegistrationTimezone()),
+          '@end_date' => $this->dateFormatter->format($datetime_end->getTimestamp(), 'oe_event_date_hour_timezone', '', $timezone),
         ]);
       }
     }

@@ -529,7 +529,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
 
     // Assert "Registration date" field when registration will start in future.
     $registration_start_date = (clone $static_time)->modify('+ 1 day');
-    $registration_end_date = (clone $static_time)->modify('+ 4 days');
+    $registration_end_date = (clone $static_time)->modify('+ 15 days');
     $node->set('oe_event_registration_dates', [
       'value' => $registration_start_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
       'end_value' => $registration_end_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
@@ -539,7 +539,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
 
     $this->assertRegistrationButtonDisabled($registration_content, 'Register here');
     $registration_info_content = $this->assertSession()->elementExists('css', 'p.ecl-u-type-paragraph.ecl-u-type-color-neutral-dark-900');
-    $this->assertEquals('Registration will open in 1 day. You can register from 18 February 2020, 15:00 CET, until 21 February 2020, 15:00 CET.', $registration_info_content->getText());
+    $this->assertEquals('Registration will open in 1 day. You can register from 18 February 2020, 15:00 CET, until 3 March 2020, 15:00 CET.', $registration_info_content->getText());
 
     // Assert "Registration date" field when registration will start today in
     // one hour.
@@ -558,29 +558,38 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     $this->drupalGet($node->toUrl());
 
     $this->assertRegistrationButtonEnabled($registration_content, 'Register here', 'http://www.example.com/registation', TRUE);
-    $this->assertEquals('Book your seat, 1 day left to register, registration will end on 21 February 2020, 15:00 CET', $registration_info_content->getText());
+    $this->assertEquals('Book your seat, 12 days left to register, registration will end on 3 March 2020, 15:00 CET', $registration_info_content->getText());
+
+    // Assert "Registration date" field when registration ends tomorrow.
+    $static_time = new DrupalDateTime('2020-03-02 14:00:00', DateTimeItemInterface::STORAGE_TIMEZONE);
+    $this->freezeTime($static_time);
+    $this->cronRun();
+    $this->drupalGet($node->toUrl());
+
+    $this->assertRegistrationButtonEnabled($registration_content, 'Register here', 'http://www.example.com/registation', TRUE);
+    $this->assertEquals('Book your seat, 1 day left to register, registration will end on 3 March 2020, 15:00 CET', $registration_info_content->getText());
 
     // Assert "Registration date" field when registration will finish today in
     // one hour.
     // Set the Registration URL to an internal path.
     $node->set('oe_event_registration_url', 'https://www.europa.eu.com/registation');
     $node->save();
-    $static_time = new DrupalDateTime('2020-02-21 13:00:00', DateTimeItemInterface::STORAGE_TIMEZONE);
+    $static_time = new DrupalDateTime('2020-03-03 13:00:00', DateTimeItemInterface::STORAGE_TIMEZONE);
     $this->freezeTime($static_time);
     $this->cronRun();
     $this->drupalGet($node->toUrl());
 
     $this->assertRegistrationButtonEnabled($registration_content, 'Register here', 'https://www.europa.eu.com/registation', FALSE);
-    $this->assertEquals('Book your seat, the registration will end today, 21 February 2020, 15:00 CET', $registration_info_content->getText());
+    $this->assertEquals('Book your seat, the registration will end today, 3 March 2020, 15:00 CET', $registration_info_content->getText());
 
     // Assert "Registration date" field in the past.
-    $static_time = new DrupalDateTime('2020-02-24 13:00:00', DateTimeItemInterface::STORAGE_TIMEZONE);
+    $static_time = new DrupalDateTime('2020-03-05 13:00:00', DateTimeItemInterface::STORAGE_TIMEZONE);
     $this->freezeTime($static_time);
     $this->cronRun();
     $this->drupalGet($node->toUrl());
 
     $this->assertSession()->elementNotExists('css', 'a.ecl-u-mt-2xl.ecl-link.ecl-link--primary-highlight', $registration_content);
-    $this->assertEquals('Registration period ended on Friday 21 February 2020, 15:00 CET', $registration_info_content->getText());
+    $this->assertEquals('Registration period ended on Tuesday 3 March 2020, 15:00 CET', $registration_info_content->getText());
 
     // Assert "Report text" and "Summary for report" fields when event is
     // finished.
