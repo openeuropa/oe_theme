@@ -5,12 +5,12 @@
  */
 #}
 {% set _button_icon_position = button_icon_position|default('after') %}
-{% set _link_icon_name = get_link_icon(button_url).name %}
-{% set _button_icon_name = button_icon_name|default(_link_icon_name) %}
-{% set _button_icon_family = '' %}
-{% if _link_icon_name == 'arrow-square-out' %}
-  {% set _button_icon_name = 'arrow-square-out' %}
-  {% set _button_icon_family = 'phosphor' %}
+{% set _link_icon = get_link_icon(button_url) %}
+{% set _button_icon_name = button_icon_name|default(_link_icon.name) %}
+{% set _button_icon_family = button_icon_name is empty ? _link_icon.family : '' %}
+{% if _link_icon.name == 'arrow-square-out' %}
+  {% set _button_icon_name = _link_icon.name %}
+  {% set _button_icon_family = _link_icon.family %}
   {% set _button_icon_position = 'after' %}
 {% endif %}
 {% include '@oe_theme/compositions/ec-component-content-item-block/content-item-block.html.twig' with {
