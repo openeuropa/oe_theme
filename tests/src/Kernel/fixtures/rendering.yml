@@ -273,7 +273,7 @@
       'section.ecl-banner.ecl-banner--font-m.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--l.ecl-banner--h-center.ecl-banner--v-center': 1
       'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--primary-highlight.ecl-link--icon.ecl-banner__link-cta[href="/example"]': 1
       'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--primary-highlight.ecl-link--icon.ecl-banner__link-cta[data-name="data value"]': 0
-      'span.ecl-icon.ecl-icon--xs.ecl-icon--primary.ecl-link__icon.wt-icon--arrow-right': 1
+      'span.ecl-icon.ecl-icon--xs.ecl-icon--primary.ecl-link__icon.wt-icon-phosphor--caret-right': 1
       'picture.ecl-picture.ecl-banner__picture img.ecl-banner__image[src="http://via.placeholder.com/150x150"]': 1
       '.ecl-banner--full-width': 0
       'footer.ecl-banner__credit div.ecl-container': 1
@@ -308,7 +308,7 @@
       'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--primary-highlight.ecl-link--icon.ecl-banner__link-cta[data-name="data value"]': 0
       'div.ecl-container div.ecl-banner__container div.ecl-banner__content div.ecl-banner__title span.ecl-banner__title-text a.ecl-link.ecl-link--icon.ecl-banner__title-link[href="/example"]': 1
       'div.ecl-container div.ecl-banner__container div.ecl-banner__content div.ecl-banner__title span.ecl-banner__title-text a.ecl-link.ecl-link--icon.ecl-banner__title-link[data-name="data value"]': 1
-      'span.ecl-icon.ecl-icon--xs.ecl-icon--primary.ecl-link__icon.wt-icon--arrow-right': 1
+      'span.ecl-icon.ecl-icon--xs.ecl-icon--primary.ecl-link__icon.wt-icon-phosphor--caret-right': 1
       'picture.ecl-picture.ecl-banner__picture img.ecl-banner__image[src="http://via.placeholder.com/150x150"]': 1
       'footer.ecl-banner__credit div.ecl-container': 1
       'video': 0
@@ -338,7 +338,7 @@
       'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--primary-highlight.ecl-link--icon.ecl-banner__link-cta[href="/example"]': 0
       'div.ecl-container div.ecl-banner__container div.ecl-banner__content p.ecl-banner__description span.ecl-banner__description-text a.ecl-link.ecl-link--icon.ecl-banner__description-link[href="/example"]': 1
       'div.ecl-container div.ecl-banner__container div.ecl-banner__content p.ecl-banner__description span.ecl-banner__description-text a.ecl-link.ecl-link--icon.ecl-banner__description-link[data-name="data value"]': 1
-      'span.ecl-icon.ecl-icon--xs.ecl-icon--primary.ecl-link__icon.wt-icon--arrow-right': 1
+      'span.ecl-icon.ecl-icon--xs.ecl-icon--primary.ecl-link__icon.wt-icon-phosphor--caret-right': 1
       'picture.ecl-picture.ecl-banner__picture img.ecl-banner__image[src="http://via.placeholder.com/150x150"]': 1
       '.ecl-banner--full-width': 0
       'footer.ecl-banner__credit div.ecl-container': 0
@@ -364,7 +364,7 @@
       'section.ecl-banner.ecl-banner--font-m.ecl-banner--box-bg-dark.ecl-banner--color-light.ecl-banner--l.ecl-banner--h-center.ecl-banner--v-center': 0
       'section.ecl-banner.ecl-banner--font-m.ecl-banner--box-bg-dark.ecl-banner--color-light.ecl-banner--l.ecl-banner--h-left.ecl-banner--v-center': 1
       'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--primary-highlight-inverted.ecl-link--icon.ecl-banner__link-cta[href="/example"]': 1
-      'span.ecl-icon.ecl-icon--xs.ecl-icon--primary.ecl-link__icon.wt-icon--arrow-right': 1
+      'span.ecl-icon.ecl-icon--xs.ecl-icon--primary.ecl-link__icon.wt-icon-phosphor--caret-right': 1
       'picture.ecl-picture.ecl-banner__picture img.ecl-banner__image[src="http://via.placeholder.com/150x150"]': 1
       'picture source': 0
       '.ecl-banner--full-width': 0
@@ -403,7 +403,7 @@
     count:
       'section.ecl-banner.ecl-banner--font-m.ecl-banner--box-bg-dark.ecl-banner--color-light.ecl-banner--l.ecl-banner--h-center.ecl-banner--v-center.ecl-banner--full-width': 1
       'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--primary-highlight-inverted.ecl-link--icon.ecl-banner__link-cta[href="/example"]': 1
-      'span.ecl-icon.ecl-icon--xs.ecl-icon--primary.ecl-link__icon.wt-icon--arrow-right': 1
+      'span.ecl-icon.ecl-icon--xs.ecl-icon--primary.ecl-link__icon.wt-icon-phosphor--caret-right': 1
       'picture.ecl-picture.ecl-banner__picture img.ecl-banner__image[src="http://via.placeholder.com/150x150"][alt="alternative text"]': 1
       'picture.ecl-picture.ecl-banner__picture img.ecl-banner__image[src="http://via.placeholder.com/150x150"][alt="alternative text"][style="--ecl-image-anchor: 35% 50%"]': 1
       'picture source': 3
@@ -436,7 +436,7 @@
     count:
       'section.ecl-banner.ecl-banner--font-m.ecl-banner--box-bg-light.ecl-banner--m.ecl-banner--full-width.ecl-banner--h-left.ecl-banner--v-center.ecl-banner--font-weight-bold.ecl-banner--overlay': 1
       'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--primary-highlight.ecl-link--icon.ecl-banner__link-cta[href="/example"]': 1
-      'span.ecl-icon.ecl-icon--xs.ecl-icon--primary.ecl-link__icon.wt-icon--arrow-right': 1
+      'span.ecl-icon.ecl-icon--xs.ecl-icon--primary.ecl-link__icon.wt-icon-phosphor--caret-right': 1
       'picture.ecl-picture.ecl-banner__picture img.ecl-banner__image[src="http://via.placeholder.com/150x150"]': 1
       'footer.ecl-banner__credit div.ecl-container': 1
       'video': 0
@@ -469,7 +469,7 @@
       'section.ecl-banner.ecl-banner--font-l.ecl-banner--box-bg-none.ecl-banner--color-light.ecl-banner--m.ecl-banner--full-width.ecl-banner--h-right.ecl-banner--v-top.ecl-banner--font-weight-light': 1
       'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--primary-highlight.ecl-link--icon.ecl-banner__link-cta[href="/example"]': 1
       'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--primary-highlight.ecl-link--icon.ecl-banner__link-cta[data-name="data value"]': 1
-      'span.ecl-icon.ecl-icon--xs.ecl-icon--primary.ecl-link__icon.wt-icon--arrow-right': 1
+      'span.ecl-icon.ecl-icon--xs.ecl-icon--primary.ecl-link__icon.wt-icon-phosphor--caret-right': 1
       'picture.ecl-picture.ecl-banner__picture img.ecl-banner__image[src="http://via.placeholder.com/150x150"]': 1
       'footer.ecl-banner__credit div.ecl-container': 1
       'video': 0
@@ -504,7 +504,7 @@
       'section.ecl-banner.ecl-banner--font-l.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--l.ecl-banner--h-center.ecl-banner--v-bottom': 1
       'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--primary-highlight.ecl-link--icon.ecl-banner__link-cta[href="/example"]': 1
       'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--primary-highlight.ecl-link--icon.ecl-banner__link-cta[data-name="data value"]': 1
-      'span.ecl-icon.ecl-icon--xs.ecl-icon--primary.ecl-link__icon.wt-icon--arrow-right': 1
+      'span.ecl-icon.ecl-icon--xs.ecl-icon--primary.ecl-link__icon.wt-icon-phosphor--caret-right': 1
       'picture.ecl-picture.ecl-banner__picture img.ecl-banner__image[src="http://via.placeholder.com/150x150"]': 1
       'footer.ecl-banner__credit div.ecl-container': 1
       'video': 0
@@ -539,7 +539,7 @@
       '.ecl-banner--color-dark': 0
       'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--primary-highlight.ecl-link--icon.ecl-banner__link-cta[href="/example"]': 1
       'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--primary-highlight.ecl-link--icon.ecl-banner__link-cta[data-name="data value"]': 1
-      'span.ecl-icon.ecl-icon--xs.ecl-icon--primary.ecl-link__icon.wt-icon--arrow-right': 1
+      'span.ecl-icon.ecl-icon--xs.ecl-icon--primary.ecl-link__icon.wt-icon-phosphor--caret-right': 1
       'picture': 0
       'footer.ecl-banner__credit': 0
       'video': 0
@@ -584,7 +584,7 @@
       'section.ecl-banner.ecl-banner--font-l.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--l.ecl-banner--h-center.ecl-banner--v-bottom': 1
       'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--primary-highlight.ecl-link--icon.ecl-banner__link-cta[href="/example"]': 1
       'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--primary-highlight.ecl-link--icon.ecl-banner__link-cta[data-name="data value"]': 1
-      'span.ecl-icon.ecl-icon--xs.ecl-icon--primary.ecl-link__icon.wt-icon--arrow-right': 1
+      'span.ecl-icon.ecl-icon--xs.ecl-icon--primary.ecl-link__icon.wt-icon-phosphor--caret-right': 1
       'picture.ecl-picture.ecl-banner__picture img.ecl-banner__image[src="http://via.placeholder.com/150x150"]': 0
       'video[poster="https://inno-ecl.s3.amazonaws.com/media/examples/example-image.jpg"]': 1
       'video[autoplay]': 1
@@ -639,7 +639,7 @@
       'section.ecl-banner.ecl-banner--font-l.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--l.ecl-banner--h-center.ecl-banner--v-bottom': 1
       'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--primary-highlight.ecl-link--icon.ecl-banner__link-cta[href="/example"]': 1
       'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--primary-highlight.ecl-link--icon.ecl-banner__link-cta[data-name="data value"]': 1
-      'span.ecl-icon.ecl-icon--xs.ecl-icon--primary.ecl-link__icon.wt-icon--arrow-right': 1
+      'span.ecl-icon.ecl-icon--xs.ecl-icon--primary.ecl-link__icon.wt-icon-phosphor--caret-right': 1
       'picture.ecl-picture.ecl-banner__picture img.ecl-banner__image[src="http://via.placeholder.com/150x150"]': 0
       'video[poster="https://inno-ecl.s3.amazonaws.com/media/examples/example-image.jpg"]': 0
       'video[poster]': 0
@@ -691,7 +691,7 @@
       'section.ecl-banner.ecl-banner--font-l.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--l.ecl-banner--h-center.ecl-banner--v-bottom': 1
       'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--primary-highlight.ecl-link--icon.ecl-banner__link-cta[href="/example"]': 1
       'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--primary-highlight.ecl-link--icon.ecl-banner__link-cta[data-name="data value"]': 1
-      'span.ecl-icon.ecl-icon--xs.ecl-icon--primary.ecl-link__icon.wt-icon--arrow-right': 1
+      'span.ecl-icon.ecl-icon--xs.ecl-icon--primary.ecl-link__icon.wt-icon-phosphor--caret-right': 1
       'picture.ecl-picture.ecl-banner__picture img.ecl-banner__image[src="http://via.placeholder.com/150x150"]': 0
       'video[poster="https://inno-ecl.s3.amazonaws.com/media/examples/example-image.jpg"]': 1
       'video[poster]': 1
@@ -743,7 +743,7 @@
       'section.ecl-banner.ecl-banner--font-l.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--l.ecl-banner--h-center.ecl-banner--v-bottom': 1
       'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--primary-highlight.ecl-link--icon.ecl-banner__link-cta[href="/example"]': 1
       'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--primary-highlight.ecl-link--icon.ecl-banner__link-cta[data-name="data value"]': 1
-      'span.ecl-icon.ecl-icon--xs.ecl-icon--primary.ecl-link__icon.wt-icon--arrow-right': 1
+      'span.ecl-icon.ecl-icon--xs.ecl-icon--primary.ecl-link__icon.wt-icon-phosphor--caret-right': 1
       'picture.ecl-picture.ecl-banner__picture img.ecl-banner__image[src="http://via.placeholder.com/150x150"]': 0
       'video[poster="https://inno-ecl.s3.amazonaws.com/media/examples/example-image.jpg"]': 1
       'video[autoplay]': 1
@@ -805,7 +805,7 @@
       'section.ecl-banner.ecl-banner--font-l.ecl-banner--box-bg-light.ecl-banner--color-dark.ecl-banner--l.ecl-banner--h-center.ecl-banner--v-bottom': 1
       'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--primary-highlight.ecl-link--icon.ecl-banner__link-cta[href="/example"]': 1
       'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--primary-highlight.ecl-link--icon.ecl-banner__link-cta[data-name="data value"]': 1
-      'span.ecl-icon.ecl-icon--xs.ecl-icon--primary.ecl-link__icon.wt-icon--arrow-right': 1
+      'span.ecl-icon.ecl-icon--xs.ecl-icon--primary.ecl-link__icon.wt-icon-phosphor--caret-right': 1
       'picture.ecl-picture.ecl-banner__picture img.ecl-banner__image[src="http://via.placeholder.com/150x150"]': 0
       'video[poster="https://inno-ecl.s3.amazonaws.com/media/examples/example-image.jpg"]': 1
       'video[autoplay]': 1
@@ -2706,7 +2706,7 @@
       'div.ecl-content-item-block__button': 1
       'div.ecl-content-item-block__button a.ecl-link--standalone span.ecl-icon': 1
       'div.ecl-content-item-block__button a.ecl-link[href="/example"]': 1
-      'span.ecl-icon.ecl-icon--xs.ecl-link__icon.wt-icon--arrow-right': 1
+      'span.ecl-icon.ecl-icon--xs.ecl-link__icon.wt-icon-phosphor--caret-right': 1
     equals:
       'div.ecl-content-item-block__title h2.ecl-u-type-heading-2': "Block title"
       'div.ecl-content-item-block__item:nth-child(1) article.ecl-content-item div.ecl-content-item__content-block div.ecl-content-block__title': "Business, Economy, Euro"
@@ -2878,7 +2878,7 @@
       'div.ecl-content-item-block__button': 1
       'div.ecl-content-item-block__button a.ecl-link.ecl-link--standalone.ecl-link--icon[href="/example"]': 1
       'div.ecl-u-border-color-neutral-light-500.ecl-u-border-width-1.ecl-u-border-top': 1
-      'a.ecl-link span.ecl-icon.ecl-icon--xs.ecl-link__icon.wt-icon--arrow-right': 1
+      'a.ecl-link span.ecl-icon.ecl-icon--xs.ecl-link__icon.wt-icon-phosphor--caret-right': 1
     equals:
       'div.ecl-content-item-block__introduction': "<p>The Introduction to the list</p>"
       'div.ecl-content-item-block__item:nth-child(1) article.ecl-content-item div.ecl-content-item__content-block div.ecl-content-block__title': "List item 1"
@@ -2992,7 +2992,7 @@
       'div.ecl-content-item-block__button': 1
       'div.ecl-content-item-block__button a.ecl-link.ecl-link--standalone.ecl-link--icon[href="/example"]': 1
       'div.ecl-u-border-color-neutral-light-500.ecl-u-border-width-1.ecl-u-border-top': 1
-      'a.ecl-link span.ecl-icon.ecl-icon--xs.ecl-link__icon.wt-icon--arrow-right': 1
+      'a.ecl-link span.ecl-icon.ecl-icon--xs.ecl-link__icon.wt-icon-phosphor--caret-right': 1
     equals:
       'div.ecl-content-item-block__introduction': "<p>The Introduction to the list</p>"
       'div.ecl-content-item-block__item:nth-child(1) article.ecl-content-item div.ecl-content-item__content-block div.ecl-content-block__title': "List item 1"
@@ -4033,7 +4033,7 @@
       "div.ecl-card__image": 0
       'div.ecl-content-block__title a.ecl-link--standalone[href="/example"]': 1
       'a.ecl-button[href="/example"]': 1
-      'span.ecl-icon.ecl-icon--xs.ecl-button__icon.ecl-button__icon--after.wt-icon--arrow-right': 1
+      'span.ecl-icon.ecl-icon--xs.ecl-button__icon.ecl-button__icon--after.wt-icon-phosphor--caret-right': 1
     equals:
       'div.ecl-content-block__title a': "Example title"
       'div.ecl-content-block__description .ecl-paragraph': "Example description"
@@ -4497,7 +4497,7 @@
       'picture source': 0
       'figcaption.ecl-media-container__caption': 1
       'a.ecl-link.ecl-featured-item__link[href="https://european-union.europa.eu/index_en"]': 1
-      'span.ecl-icon.ecl-icon--m.ecl-icon--primary.ecl-link__icon.wt-icon--arrow-right': 1
+      'span.ecl-icon.ecl-icon--xs.ecl-icon--primary.ecl-link__icon.wt-icon-phosphor--caret-right': 1
       'div.ecl-expandable.ecl-media-container__expandable': 1
       'button[data-ecl-label-expanded="Expanded"][data-ecl-label-collapsed="Collapsed"]': 1
       'span.ecl-icon.ecl-icon--fluid.ecl-button__icon.wt-icon-phosphor--caret-down': 1
@@ -6084,7 +6084,7 @@
       'div.ecl-content-block__list-container': 0
       'div.ecl-col-l-8 div.ecl-content-block__secondary-meta-item span.ecl-content-block__secondary-meta-icon.wt-icon--clock': 1
       'div.ecl-col-l-4 article.ecl-u-mb-m:nth-child(1) div.ecl-content-block__secondary-meta-item span.ecl-content-block__secondary-meta-icon.wt-icon--clock': 1
-      'div#highlighted-news-block > div.ecl-u-mt-m a.ecl-link.ecl-link--standalone.ecl-link--icon[href="#"] span.ecl-icon--xs.ecl-icon--primary.wt-icon--arrow-right': 1
+      'div#highlighted-news-block > div.ecl-u-mt-m a.ecl-link.ecl-link--standalone.ecl-link--icon[href="#"] span.ecl-icon--xs.ecl-icon--primary.wt-icon-phosphor--caret-right': 1
     equals:
       'div.ecl-col-l-8 .ecl-content-block__title': 'Item 1'
       'div.ecl-col-l-8 div.ecl-content-block__secondary-meta-item span.ecl-content-block__secondary-meta-label': '3 minutes read'
@@ -7262,7 +7262,7 @@
       'header.ecl-highlight-box__header > div.ecl-highlight-box__title': 1
       'article.ecl-highlight-box > div.ecl-highlight-box__body > div.ecl-highlight-box__description': 1
       'div.ecl-highlight-box__body a.ecl-link.ecl-link--secondary-neutral.ecl-link--icon.ecl-highlight-box__link[href="<front>"]': 1
-      'a.ecl-highlight-box__link span.ecl-icon.ecl-link__icon.ecl-icon--arrow-right': 1
+      'a.ecl-highlight-box__link span.ecl-icon.ecl-link__icon.ecl-icon-phosphor--caret-right': 1
     equals:
       'div.ecl-highlight-box__title': "Highlight box title"
       'div.ecl-highlight-box__description': "Highlight box description"

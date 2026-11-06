@@ -8,21 +8,13 @@
 {% set description = description|render %}
 
 {% if link %}
-  {% set _icon = get_link_icon(link.path, 'm') %}
-  {% if _icon['name'] == 'corner-arrow' %}
-    {% set _icon = _icon|merge({
-      'name': 'arrow-left',
-      'transform': 'flip-horizontal',
-    }) %}
-  {% endif %}
-
   {% set _link = {
     link: {
       label: link.label,
       path: link.path,
       icon_position: 'after'
     },
-    icon: _icon,
+    icon: get_link_icon(link.path),
   }%}
 {% endif %}
 
