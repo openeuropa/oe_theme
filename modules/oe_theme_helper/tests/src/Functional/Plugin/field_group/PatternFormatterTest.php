@@ -138,7 +138,7 @@ class PatternFormatterTest extends BrowserTestBase {
     // Assert that fields are rendered using the field list default pattern.
     $this->drupalGet('node/1');
 
-    $element_selector = 'dl.ecl-description-list.ecl-description-list--default';
+    $element_selector = 'div.ecl-description-list.ecl-description-list--default dl.ecl-description-list__content';
     $this->assertSession()->elementExists('css', $element_selector);
     $this->assertSession()->elementTextContains('css', $element_selector . ' dt.ecl-description-list__term:nth-child(1)', 'Field 1');
     $this->assertSession()->elementTextContains('css', $element_selector . ' dd.ecl-description-list__definition:nth-child(2)', 'Content test 1');
@@ -152,7 +152,7 @@ class PatternFormatterTest extends BrowserTestBase {
     // Assert that fields are rendered using the field list horizontal pattern.
     $this->drupalGet('node/1');
 
-    $element_selector = 'dl.ecl-description-list.ecl-description-list--horizontal';
+    $element_selector = 'div.ecl-description-list.ecl-description-list--horizontal dl.ecl-description-list__content';
     $this->assertSession()->elementExists('css', $element_selector);
     $this->assertSession()->elementTextContains('css', $element_selector . ' dt.ecl-description-list__term:nth-child(1)', 'Field 1');
     $this->assertSession()->elementTextContains('css', $element_selector . ' dd.ecl-description-list__definition:nth-child(2)', 'Content test 1');

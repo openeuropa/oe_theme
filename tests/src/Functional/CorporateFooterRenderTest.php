@@ -445,7 +445,7 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     ];
     $this->assertListLink($actual, $expected, TRUE);
     // We should have the external icon present.
-    $this->assertSession()->elementExists('css', 'span.ecl-icon.ecl-icon--xs.ecl-link__icon.wt-icon--external', $actual);
+    $this->assertSession()->elementExists('css', 'span.ecl-icon.ecl-icon--xs.ecl-link__icon.wt-icon-phosphor--arrow-square-out', $actual);
 
     $assert->elementNotExists('css', 'footer.ecl-site-footer div.ecl-site-footer__row:nth-child(1) div.ecl-site-footer__column:nth-child(3) div.ecl-site-footer__section:nth-child(1)');
 
@@ -462,7 +462,7 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     $actual = $subsection->find('css', 'ul li:nth-child(1) > a');
     $this->assertListLink($actual, $expected, TRUE);
     // We should have the external icon present.
-    $this->assertSession()->elementExists('css', 'span.ecl-icon.ecl-icon--xs.ecl-link__icon.wt-icon--external', $actual);
+    $this->assertSession()->elementExists('css', 'span.ecl-icon.ecl-icon--xs.ecl-link__icon.wt-icon-phosphor--arrow-square-out', $actual);
 
     $column = $assert->elementExists('css', 'footer.ecl-site-footer div.ecl-site-footer__row:nth-child(1) div.ecl-site-footer__column:nth-child(3)');
     $subsection = $assert->elementExists('css', '.ecl-site-footer__section:nth-child(1)', $column);
@@ -477,7 +477,7 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     ];
     $this->assertListLink($actual, $expected, TRUE);
     // We should have the external icon present.
-    $this->assertSession()->elementExists('css', 'span.ecl-icon.ecl-icon--xs.ecl-link__icon.wt-icon--external', $actual);
+    $this->assertSession()->elementExists('css', 'span.ecl-icon.ecl-icon--xs.ecl-link__icon.wt-icon-phosphor--arrow-square-out', $actual);
 
     // Add one more, assert odd goes into column 2, even goes into column 3.
     $this->createGeneralLink('Custom related 1', 'related_sites');
@@ -496,7 +496,7 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     ];
     $this->assertListLink($actual, $expected, TRUE);
     // We should have the external icon present.
-    $this->assertSession()->elementExists('css', 'span.ecl-icon.ecl-icon--xs.ecl-link__icon.wt-icon--external', $actual);
+    $this->assertSession()->elementExists('css', 'span.ecl-icon.ecl-icon--xs.ecl-link__icon.wt-icon-phosphor--arrow-square-out', $actual);
 
     $column = $assert->elementExists('css', 'footer.ecl-site-footer div.ecl-site-footer__row:nth-child(1) div.ecl-site-footer__column:nth-child(3)');
     $subsection = $assert->elementExists('css', '.ecl-site-footer__section:nth-child(2)', $column);
@@ -510,7 +510,7 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     ];
     $this->assertListLink($actual, $expected, TRUE);
     // We should have the external icon present.
-    $this->assertSession()->elementExists('css', 'span.ecl-icon.ecl-icon--xs.ecl-link__icon.wt-icon--external', $actual);
+    $this->assertSession()->elementExists('css', 'span.ecl-icon.ecl-icon--xs.ecl-link__icon.wt-icon-phosphor--arrow-square-out', $actual);
 
     $column = $assert->elementExists('css', 'footer.ecl-site-footer div.ecl-site-footer__row:nth-child(1) div.ecl-site-footer__column:nth-child(3)');
     $subsection = $assert->elementExists('css', '.ecl-site-footer__section:nth-child(1)', $column);
@@ -525,7 +525,7 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     ];
     $this->assertListLink($actual, $expected, TRUE);
     // We should have the external icon present.
-    $this->assertSession()->elementExists('css', 'span.ecl-icon.ecl-icon--xs.ecl-link__icon.wt-icon--external', $actual);
+    $this->assertSession()->elementExists('css', 'span.ecl-icon.ecl-icon--xs.ecl-link__icon.wt-icon-phosphor--arrow-square-out', $actual);
 
     // Add the follow us, assert it goes last, into the centre column.
     // We have 3 sub-sections plus follow, distribution should be 2 and 2.
@@ -546,7 +546,7 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     ];
     $this->assertListLink($actual, $expected, TRUE);
     // We should have the external icon present.
-    $this->assertSession()->elementExists('css', 'span.ecl-icon.ecl-icon--xs.ecl-link__icon.wt-icon--external', $actual);
+    $this->assertSession()->elementExists('css', 'span.ecl-icon.ecl-icon--xs.ecl-link__icon.wt-icon-phosphor--arrow-square-out', $actual);
 
     $subsection = $assert->elementExists('css', '.ecl-site-footer__section:nth-child(2)', $column);
 
@@ -584,7 +584,7 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     ];
     $this->assertListLink($actual, $expected, TRUE);
     // We should have the external icon present.
-    $this->assertSession()->elementExists('css', 'span.ecl-icon.ecl-icon--xs.ecl-link__icon.wt-icon--external', $actual);
+    $this->assertSession()->elementExists('css', 'span.ecl-icon.ecl-icon--xs.ecl-link__icon.wt-icon-phosphor--arrow-square-out', $actual);
 
     // Assert previous last in section 2 moved to the right into section 3.
     $subsection = $assert->elementExists('css', '.ecl-site-footer__section:nth-child(2)', $column);
@@ -599,7 +599,7 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     ];
     $this->assertListLink($actual, $expected, TRUE);
     // We should have the external icon present.
-    $this->assertSession()->elementExists('css', 'span.ecl-icon.ecl-icon--xs.ecl-link__icon.wt-icon--external', $actual);
+    $this->assertSession()->elementExists('css', 'span.ecl-icon.ecl-icon--xs.ecl-link__icon.wt-icon-phosphor--arrow-square-out', $actual);
 
     // Assert adding a custom section in backend appears,
     // and is placed in the footer on the right column.
@@ -620,7 +620,7 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     ];
     $this->assertListLink($actual, $expected, TRUE);
     // We should have the external icon present.
-    $this->assertSession()->elementExists('css', 'span.ecl-icon.ecl-icon--xs.ecl-link__icon.wt-icon--external', $actual);
+    $this->assertSession()->elementExists('css', 'span.ecl-icon.ecl-icon--xs.ecl-link__icon.wt-icon-phosphor--arrow-square-out', $actual);
 
     // Since we have an even number there is no switch,
     // assert Related is back in section 2.
@@ -637,7 +637,7 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     ];
     $this->assertListLink($actual, $expected, TRUE);
     // We should have the external icon present.
-    $this->assertSession()->elementExists('css', 'span.ecl-icon.ecl-icon--xs.ecl-link__icon.wt-icon--external', $actual);
+    $this->assertSession()->elementExists('css', 'span.ecl-icon.ecl-icon--xs.ecl-link__icon.wt-icon-phosphor--arrow-square-out', $actual);
 
     // Here we assert Follow us is still on the left in section 2.
     $column = $assert->elementExists('css', 'footer.ecl-site-footer div.ecl-site-footer__row:nth-child(1) div.ecl-site-footer__column:nth-child(2)');
@@ -676,7 +676,7 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     ];
     $this->assertListLink($actual, $expected, TRUE);
     // We should have the external icon present.
-    $this->assertSession()->elementExists('css', 'span.ecl-icon.ecl-icon--xs.ecl-link__icon.wt-icon--external', $actual);
+    $this->assertSession()->elementExists('css', 'span.ecl-icon.ecl-icon--xs.ecl-link__icon.wt-icon-phosphor--arrow-square-out', $actual);
 
     $column = $assert->elementExists('css', 'footer.ecl-site-footer div.ecl-site-footer__row:nth-child(1) div.ecl-site-footer__column:nth-child(3)');
     $subsection = $assert->elementExists('css', '.ecl-site-footer__section:nth-child(1)', $column);
@@ -691,7 +691,7 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     ];
     $this->assertListLink($actual, $expected, TRUE);
     // We should have the external icon present.
-    $this->assertSession()->elementExists('css', 'span.ecl-icon.ecl-icon--xs.ecl-link__icon.wt-icon--external', $actual);
+    $this->assertSession()->elementExists('css', 'span.ecl-icon.ecl-icon--xs.ecl-link__icon.wt-icon-phosphor--arrow-square-out', $actual);
 
     // Assert updating a general link also changes the footer content.
     $this->updateGeneralLink('custom-link-1', [
@@ -713,7 +713,7 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     ];
     $this->assertListLink($actual, $expected, TRUE);
     // We should have the external icon present.
-    $this->assertSession()->elementExists('css', 'span.ecl-icon.ecl-icon--xs.ecl-link__icon.wt-icon--external', $actual);
+    $this->assertSession()->elementExists('css', 'span.ecl-icon.ecl-icon--xs.ecl-link__icon.wt-icon-phosphor--arrow-square-out', $actual);
 
     // Update the link with local path, so the external icon won't be present.
     $this->updateGeneralLink('custom-link-1', [
@@ -774,7 +774,7 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     ];
     $this->assertListLink($actual, $expected, TRUE);
     // We should have the external icon present.
-    $this->assertSession()->elementExists('css', 'span.ecl-icon.ecl-icon--xs.ecl-link__icon.wt-icon--external', $actual);
+    $this->assertSession()->elementExists('css', 'span.ecl-icon.ecl-icon--xs.ecl-link__icon.wt-icon-phosphor--arrow-square-out', $actual);
 
     $subsection = $assert->elementExists('css', '.ecl-site-footer__section:nth-child(2)', $column);
 
@@ -788,7 +788,7 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     ];
     $this->assertListLink($actual, $expected, TRUE);
     // We should have the external icon present.
-    $this->assertSession()->elementExists('css', 'span.ecl-icon.ecl-icon--xs.ecl-link__icon.wt-icon--external', $actual);
+    $this->assertSession()->elementExists('css', 'span.ecl-icon.ecl-icon--xs.ecl-link__icon.wt-icon-phosphor--arrow-square-out', $actual);
 
     $column = $assert->elementExists('css', 'footer.ecl-site-footer div.ecl-site-footer__row--specific');
     $subsection = $assert->elementExists('css', '.ecl-site-footer__social-media', $column);
@@ -842,7 +842,7 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     ];
     $this->assertListLink($actual, $expected, TRUE);
     // We should have the external icon present.
-    $this->assertSession()->elementExists('css', 'span.ecl-icon.ecl-icon--xs.ecl-link__icon.wt-icon--external', $actual);
+    $this->assertSession()->elementExists('css', 'span.ecl-icon.ecl-icon--xs.ecl-link__icon.wt-icon-phosphor--arrow-square-out', $actual);
 
     // Assert deleting links removes the section.
     $this->deleteEntity('footer_link_general', 'custom-about-1');
@@ -861,7 +861,7 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     ];
     $this->assertListLink($actual, $expected, TRUE);
     // We should have the external icon present.
-    $this->assertSession()->elementExists('css', 'span.ecl-icon.ecl-icon--xs.ecl-link__icon.wt-icon--external', $actual);
+    $this->assertSession()->elementExists('css', 'span.ecl-icon.ecl-icon--xs.ecl-link__icon.wt-icon-phosphor--arrow-square-out', $actual);
 
     $subsection = $assert->elementExists('css', '.ecl-site-footer__row:nth-child(2)', $column);
 

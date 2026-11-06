@@ -100,7 +100,7 @@ class ContactFormRenderTest extends ContactFormTestBase {
     $html = $this->render($messages);
     $crawler = new Crawler($html);
 
-    $actual = $crawler->filter('dl.ecl-description-list--horizontal');
+    $actual = $crawler->filter('div.ecl-description-list--horizontal dl.ecl-description-list__content');
     $this->assertCount(1, $actual);
     $actual = $crawler->filter('dt.ecl-description-list__term');
     $this->assertCount(6, $actual);

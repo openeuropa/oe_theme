@@ -188,7 +188,7 @@ class OrganisationRenderTest extends ContentRenderTestBase {
         ],
       ],
     ];
-    $second_contact_render = $crawler->filter('article .ecl-content-block.ecl-content-item__content-block .ecl-content-block__list-container dl:nth-child(2)');
+    $second_contact_render = $crawler->filter('article .ecl-content-block.ecl-content-item__content-block .ecl-content-block__list-container div.ecl-description-list:nth-child(2)');
     $field_assert->assertPattern($second_contact_expected_values, $second_contact_render->outerHtml());
     // Change organisation type to non eu.
     $node->set('oe_organisation_contact', NULL);

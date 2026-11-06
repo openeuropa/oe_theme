@@ -15,9 +15,9 @@
     }
   } %}
   {% set _icon = get_link_icon(link.url, 'xs') %}
-  {% if link.is_external or _icon.name == 'external' %}
+  {% if link.is_external or _icon.name == 'arrow-square-out' %}
     {% set _link = _link|merge({
-      'icon': _icon|merge({'name': 'external'})
+      'icon': _icon|merge({'name': 'arrow-square-out', 'family': 'phosphor'})
     }) %}
   {% endif %}
   {% set _links = _links|merge([_link]) %}
