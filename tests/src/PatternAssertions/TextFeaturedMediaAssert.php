@@ -99,7 +99,7 @@ class TextFeaturedMediaAssert extends BasePatternAssert {
    *
    * @param array $expected_link
    *   Array with keys: 'label', 'path', 'icon'.
-   *   'icon' can be 'arrow-square-out' (external) or 'corner-arrow'.
+   *   'icon' can be 'arrow-square-out' (external) or 'caret-right'.
    * @param \Symfony\Component\DomCrawler\Crawler $crawler
    *   The DomCrawler where to check the element.
    */
@@ -110,8 +110,8 @@ class TextFeaturedMediaAssert extends BasePatternAssert {
     $label_element = $link_element->filter('span.ecl-link__label');
     self::assertEquals($expected_link['label'], $label_element->text());
 
-    // External links use the ECL external icon, which is always "xs".
-    $icon_selector = $expected_link['icon'] === 'arrow-square-out' ? 'span.ecl-icon.ecl-icon--xs.ecl-link__icon.wt-icon-phosphor--arrow-square-out' : 'span.ecl-icon.ecl-icon--m.ecl-link__icon.wt-icon--' . $expected_link['icon'];
+    // Link icons are always "xs" size phosphor icons.
+    $icon_selector = 'span.ecl-icon.ecl-icon--xs.ecl-link__icon.wt-icon-phosphor--' . $expected_link['icon'];
     $this->assertElementExists($icon_selector, $link_element);
   }
 

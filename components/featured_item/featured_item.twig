@@ -31,7 +31,7 @@
         <span class="ecl-button__container">
           <span class="ecl-button__label">{{ link.label }}</span>
           {% include '@ecl-twig/icon' with {
-            icon: get_link_icon(link.href, 'xs')|merge({color: ''}),
+            icon: get_link_icon(link.href)|merge({color: ''}),
             extra_classes: "ecl-button__icon ecl-button__icon--after"
           } only %}
         </span>
