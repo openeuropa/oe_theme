@@ -10,7 +10,7 @@ use Symfony\Component\DomCrawler\Crawler;
 /**
  * Assertions for text_featured_media pattern.
  *
- *  @see ./templates/patterns/text_featured_media/text_featured_media.ui_patterns.yml
+ *  @see ./components/text_featured_media/text_featured_media.component.yml
  */
 class TextFeaturedMediaAssert extends BasePatternAssert {
 

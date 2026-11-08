@@ -9,7 +9,7 @@ use Symfony\Component\DomCrawler\Crawler;
 /**
  * Assertions for the Highlighted list pattern.
  *
- * @see ./templates/patterns/highlighted_list/highlighted_list.ui_patterns.yml
+ * @see ./components/highlighted_list/highlighted_list.component.yml
  */
 class HighlightedListAssert extends BasePatternAssert {
 

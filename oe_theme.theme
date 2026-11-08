@@ -1849,19 +1849,6 @@ function _oe_theme_preprocess_subscribe_link(array &$variables) {
 /**
  * Implements hook_preprocess_HOOK().
  */
-function oe_theme_preprocess_patterns_overview_page(&$variables) {
-  // Remove patterns from the list on the "/components" page if they are marked
-  // as hidden.
-  foreach ($variables['patterns'] as $key => $pattern) {
-    if (!empty($pattern['additional']['hidden'])) {
-      unset($variables['patterns'][$key]);
-    }
-  }
-}
-
-/**
- * Implements hook_preprocess_HOOK().
- */
 function oe_theme_preprocess_oe_theme_helper_site_navigation(&$variables) {
   if ($variables['ecl_branding'] === 'core') {
     // We shouldn't have site_name inside the navigation block

@@ -9,7 +9,7 @@ use Symfony\Component\DomCrawler\Crawler;
 /**
  * Assertions for the field list pattern.
  *
- * @see ./templates/patterns/field_list/field_list.ui_patterns.yml
+ * @see ./components/field_list/field_list.component.yml
  */
 class FieldListAssert extends BasePatternAssert {
 

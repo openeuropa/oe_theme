@@ -10,7 +10,7 @@ use Symfony\Component\DomCrawler\Crawler;
 /**
  * Assertions for the timeline pattern.
  *
- * @see ./templates/patterns/timeline/timeline.ui_patterns.yml
+ * @see ./components/timeline/timeline.component.yml
  */
 class TimelineAssert extends BasePatternAssert {
 
