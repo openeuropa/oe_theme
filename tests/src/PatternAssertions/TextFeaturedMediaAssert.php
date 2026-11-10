@@ -99,7 +99,7 @@ class TextFeaturedMediaAssert extends BasePatternAssert {
    *
    * @param array $expected_link
    *   Array with keys: 'label', 'path', 'icon'.
-   *   'icon' can be 'external' or 'corner-arrow'.
+   *   'icon' can be 'arrow-square-out' (external) or 'corner-arrow'.
    * @param \Symfony\Component\DomCrawler\Crawler $crawler
    *   The DomCrawler where to check the element.
    */
@@ -110,7 +110,9 @@ class TextFeaturedMediaAssert extends BasePatternAssert {
     $label_element = $link_element->filter('span.ecl-link__label');
     self::assertEquals($expected_link['label'], $label_element->text());
 
-    $this->assertElementExists('span.ecl-icon.ecl-icon--m.ecl-link__icon.wt-icon--' . $expected_link['icon'], $link_element);
+    // External links use the ECL external icon, which is always "xs".
+    $icon_selector = $expected_link['icon'] === 'arrow-square-out' ? 'span.ecl-icon.ecl-icon--xs.ecl-link__icon.wt-icon-phosphor--arrow-square-out' : 'span.ecl-icon.ecl-icon--m.ecl-link__icon.wt-icon--' . $expected_link['icon'];
+    $this->assertElementExists($icon_selector, $link_element);
   }
 
   /**
@@ -159,7 +161,7 @@ class TextFeaturedMediaAssert extends BasePatternAssert {
     $this->assertElementExists('div.ecl-expandable.ecl-media-container__expandable', $crawler);
     // Assert the button with its toggle labels and icon.
     $this->assertElementExists('button.ecl-button.ecl-button--secondary.ecl-expandable__toggle', $crawler);
-    $this->assertElementExists('span.ecl-button__container span.ecl-icon.ecl-icon--fluid.ecl-icon--rotate-180.ecl-button__icon.ecl-button__icon--after.wt-icon--corner-arrow', $crawler);
+    $this->assertElementExists('span.ecl-button__container span.ecl-icon.ecl-icon--fluid.ecl-button__icon.ecl-button__icon--after.wt-icon-phosphor--caret-down', $crawler);
     $this->assertElementExists('button[data-ecl-label-expanded="' . $expected_block['label_expanded'] . '"][data-ecl-label-collapsed="' . $expected_block['label_collapsed'] . '"]', $crawler);
     // Assert the content id and its text.
     if (isset($expected_block['id'])) {

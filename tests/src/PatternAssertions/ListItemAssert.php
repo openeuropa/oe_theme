@@ -297,13 +297,14 @@ class ListItemAssert extends BasePatternAssert {
    *   The DomCrawler where to check the element.
    */
   protected function assertLists($expected, Crawler $crawler): void {
-    $list_container_selector = 'div.ecl-content-block__list-container dl.ecl-description-list.ecl-content-block__list';
+    $list_container_selector = 'div.ecl-content-block__list-container div.ecl-description-list.ecl-content-block__list';
     if (!isset($expected['variant'])) {
       $list_container_selector = $list_container_selector . '.ecl-description-list--horizontal';
     }
     else {
       $list_container_selector = $list_container_selector . '.ecl-description-list--' . $expected['variant'];
     }
+    $list_container_selector .= ' dl.ecl-description-list__content';
     if (empty($expected)) {
       $this->assertElementNotExists($list_container_selector, $crawler);
       return;

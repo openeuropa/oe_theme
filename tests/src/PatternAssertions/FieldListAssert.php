@@ -29,7 +29,7 @@ class FieldListAssert extends BasePatternAssert {
    */
   protected function assertBaseElements(string $html, string $variant): void {
     $crawler = new Crawler($html);
-    $field_list_container = $crawler->filter('dl' . $this->getBaseItemClass($variant));
+    $field_list_container = $crawler->filter('div' . $this->getBaseItemClass($variant));
     self::assertCount(1, $field_list_container);
   }
 
@@ -40,7 +40,7 @@ class FieldListAssert extends BasePatternAssert {
    */
   protected function getPatternVariant(string $html): string {
     $crawler = new Crawler($html);
-    $field_list_container = $crawler->filter('dl.ecl-description-list');
+    $field_list_container = $crawler->filter('div.ecl-description-list');
     $existing_classes = $field_list_container->attr('class');
     $existing_classes = explode(' ', $existing_classes);
     if (in_array('ecl-description-list--featured', $existing_classes)) {

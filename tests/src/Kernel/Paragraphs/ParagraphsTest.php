@@ -418,10 +418,10 @@ class ParagraphsTest extends ParagraphsTestBase {
     $crawler = new Crawler($this->renderParagraph($paragraph));
     $this->assertEquals('List block title', trim($crawler->filter('h2.ecl-u-type-heading-2')->text()));
     // Assert that the external icon is rendered for each list item paragraph.
-    $this->assertCount(3, $crawler->filter('span.ecl-icon.ecl-icon--2xs.ecl-link__icon.wt-icon--external'));
+    $this->assertCount(3, $crawler->filter('.ecl-content-item-block__item span.ecl-icon.ecl-icon--xs.ecl-link__icon.wt-icon-phosphor--arrow-square-out'));
 
     // Assert the external icon is rendered for the list item block.
-    $this->assertCount(1, $crawler->filter('span.ecl-icon.ecl-icon--xs.ecl-link__icon.wt-icon--external'));
+    $this->assertCount(1, $crawler->filter('.ecl-content-item-block__button span.ecl-icon.ecl-icon--xs.ecl-link__icon.wt-icon-phosphor--arrow-square-out'));
 
     // Verify that the referenced paragraphs are being rendered.
     $this->assertCount(3, $crawler->filter('div.ecl-content-item-block__item'));
@@ -567,7 +567,7 @@ class ParagraphsTest extends ParagraphsTestBase {
     $html = $this->renderParagraph($paragraph);
 
     $crawler = new Crawler($html);
-    $description_list = $crawler->filter('dl.ecl-description-list.ecl-description-list--horizontal');
+    $description_list = $crawler->filter('div.ecl-description-list.ecl-description-list--horizontal');
     $this->assertCount(1, $description_list);
     $this->assertEquals('DescriptionList', $description_list->attr('data-ecl-auto-init'));
     $this->assertEquals('1', $description_list->attr('data-ecl-description-list-visible-items'));
@@ -588,14 +588,14 @@ class ParagraphsTest extends ParagraphsTestBase {
     $this->assertEquals('Link 1', trim($actual));
     $actual = $link1->attr('href');
     $this->assertEquals('http://example.com/page-one', trim($actual));
-    $this->assertCount(1, $link1->filter('span.ecl-icon.ecl-icon--2xs.ecl-link__icon.wt-icon--external'));
+    $this->assertCount(1, $link1->filter('span.ecl-icon.ecl-icon--xs.ecl-link__icon.wt-icon-phosphor--arrow-square-out'));
 
     $link2 = $links->eq(1);
     $actual = $link2->filter('span.ecl-link__label')->text();
     $this->assertEquals('Link 2', trim($actual));
     $actual = $link2->attr('href');
     $this->assertEquals('http://example.com/page-two', trim($actual));
-    $this->assertCount(1, $link2->filter('span.ecl-icon.ecl-icon--2xs.ecl-link__icon.wt-icon--external'));
+    $this->assertCount(1, $link2->filter('span.ecl-icon.ecl-icon--xs.ecl-link__icon.wt-icon-phosphor--arrow-square-out'));
 
     $link3 = $links->eq(2);
     $actual = $link3->text();
@@ -711,7 +711,7 @@ class ParagraphsTest extends ParagraphsTestBase {
     $this->assertEquals('View all metrics', trim($actual));
     $actual = $link->attr('href');
     $this->assertEquals('http://www.example.com/', trim($actual));
-    $this->assertCount(1, $link->filter("span.ecl-icon.ecl-icon--2xs.ecl-link__icon.wt-icon--external"));
+    $this->assertCount(1, $link->filter("span.ecl-icon.ecl-icon--xs.ecl-link__icon.wt-icon-phosphor--arrow-square-out"));
   }
 
   /**
@@ -772,7 +772,7 @@ class ParagraphsTest extends ParagraphsTestBase {
 
     $this->assertCount(1, ($crawler->filter('div.ecl h2.ecl-u-type-heading-2')));
     $this->assertEquals('Overview', trim($crawler->filter('div.ecl h2.ecl-u-type-heading-2')->text()));
-    $this->assertCount(1, $crawler->filter('dl.ecl-description-list.ecl-description-list--horizontal'));
+    $this->assertCount(1, $crawler->filter('div.ecl-description-list.ecl-description-list--horizontal dl.ecl-description-list__content'));
     $this->assertCount(5, $crawler->filter('dt.ecl-description-list__term'));
     $this->assertCount(5, $crawler->filter('dd.ecl-description-list__definition'));
     $this->assertEquals('Term 1', trim($crawler->filter('dt.ecl-description-list__term:nth-child(1)')->html()));

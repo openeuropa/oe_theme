@@ -383,7 +383,7 @@ abstract class ContentRenderTestBase extends BrowserTestBase {
         ],
       ],
     ];
-    $content = $this->assertSession()->elementExists('css', 'dl.ecl-description-list', $element);
+    $content = $this->assertSession()->elementExists('css', 'div.ecl-description-list', $element);
     $field_list_html = $content->getOuterHtml();
     $field_list_assert->assertPattern($field_list_expected_values, $field_list_html);
     $field_list_assert->assertVariant('horizontal', $field_list_html);
@@ -512,12 +512,16 @@ abstract class ContentRenderTestBase extends BrowserTestBase {
     $this->assertCount(1, $label);
     $this->assertEquals($title, $label[0]->getText());
 
-    $icon_base_selector = 'span.ecl-icon.ecl-icon--' . $icon_size . '.ecl-icon--primary.ecl-link__icon';
-    $icon_type = 'external';
-    if (!$is_external) {
-      $icon_type = 'arrow-right';
+    // External links use the ECL external icon, which is always "xs".
+    $icon_class = 'wt-icon-phosphor--arrow-square-out';
+    if ($is_external) {
+      $icon_size = 'xs';
     }
-    $icon_selector = $link[0]->findAll('css', $icon_base_selector . '.wt-icon--' . $icon_type);
+    else {
+      $icon_class = 'wt-icon--arrow-right';
+    }
+    $icon_base_selector = 'span.ecl-icon.ecl-icon--' . $icon_size . '.ecl-icon--primary.ecl-link__icon';
+    $icon_selector = $link[0]->findAll('css', $icon_base_selector . '.' . $icon_class);
     $this->assertCount(1, $icon_selector);
   }
 
