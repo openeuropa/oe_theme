@@ -11,6 +11,10 @@ props:
       type: ['string', 'null']
       title: 'Color mode'
       description: 'Name of the color mode.'
+    name:
+      type: ['string', 'null']
+      title: Name
+      description: 'Name shared by the first level items, so that only one of them can be expanded at a time.'
     items:
       type: ['array', 'null']
       title: Items
