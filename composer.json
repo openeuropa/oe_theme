@@ -43,6 +43,7 @@
         "drupal/typed_link": "^2.0",
         "drush/drush": "^12.4 || ^13",
         "ec-europa/toolkit": "^10.23",
+        "mglaman/phpstan-drupal": "1.3.* || 2.3.*",
         "openeuropa/code-review-drupal": "^1.0.0-alpha1",
         "openeuropa/oe_contact_forms": "^1.24.0",
         "openeuropa/oe_content": "4.x-dev",
@@ -103,7 +104,8 @@
         "_readme": [
             "autoload-dev: explicitly mapping EntityReferenceFieldCreationTrait to prevent failures.",
             "Locking extra_field to 3.0.0-beta1 due to issues, will be fixed in EWPP-6001.",
-            "Locking consolidation/robo to 5.1.1 due to 5.2.x calling Application::addCommand() which doesn't exists. Remove when support for Drupal core 10.6.x is dropped."
+            "Locking consolidation/robo to 5.1.1 due to 5.2.x calling Application::addCommand() which doesn't exists. Remove when support for Drupal core 10.6.x is dropped.",
+            "Locking mglaman/phpstan-drupal to 1.3.x (required for d10.6) and 2.3.x due to triggering new phpstan issues in the latest release, will be fixed EWPP-7531."
         ]
     },
     "config": {
