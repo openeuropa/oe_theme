@@ -86,9 +86,9 @@ class ContentNewsRenderTest extends ContentRenderTestBase {
     $this->drupalGet($node->toUrl());
     $this->assertEquals('Sources', $this->assertSession()->elementExists('css', 'h3.ecl-u-type-heading-3')->getText());
     $internal_source_link = $this->assertSession()->elementExists('css', 'div.ecl-u-border-bottom.ecl-u-border-color-neutral-50.ecl-u-pt-m.ecl-u-pb-m:nth-child(3)');
-    $this->assertLinkIcon($internal_source_link, 'Internal source link', '/build/en/node', FALSE, 'xs');
+    $this->assertLinkIcon($internal_source_link, 'Internal source link', '/build/en/node', FALSE);
     $external_source_link = $this->assertSession()->elementExists('css', 'div.ecl-u-border-bottom.ecl-u-border-color-neutral-50.ecl-u-pt-m.ecl-u-pb-m:nth-child(4)');
-    $this->assertLinkIcon($external_source_link, 'External source link', 'https://example.com', TRUE, 'xs');
+    $this->assertLinkIcon($external_source_link, 'External source link', 'https://example.com', TRUE);
 
     $node->set('oe_news_location', 'http://publications.europa.eu/resource/authority/place/ARE_AUH');
     $node->set('oe_news_types', 'http://publications.europa.eu/resource/authority/resource-type/PUB_GEN');
@@ -235,9 +235,9 @@ class ContentNewsRenderTest extends ContentRenderTestBase {
     $this->drupalGet($node->toUrl());
     $this->assertEquals('Related links', $this->assertSession()->elementExists('css', 'h2.ecl-u-type-heading-2:nth-child(8)')->getText());
     $first_related_link = $this->assertSession()->elementExists('css', 'div.ecl-u-border-bottom.ecl-u-border-color-neutral-50.ecl-u-pt-m.ecl-u-pb-m:nth-child(9) a');
-    $this->assertLinkIcon($first_related_link, 'Node listing', '/build/en/node', FALSE, 'xs');
+    $this->assertLinkIcon($first_related_link, 'Node listing', '/build/en/node', FALSE);
     $second_related_link = $this->assertSession()->elementExists('css', 'div.ecl-u-border-bottom.ecl-u-border-color-neutral-50.ecl-u-pt-m.ecl-u-pb-m:nth-child(10) a');
-    $this->assertLinkIcon($second_related_link, 'External link', 'https://example.com', TRUE, 'xs');
+    $this->assertLinkIcon($second_related_link, 'External link', 'https://example.com', TRUE);
   }
 
 }

@@ -19,7 +19,7 @@
         'label': label,
         'icon_position': 'after'
       },
-      'icon': get_link_icon(url, 'xs'),
+      'icon': get_link_icon(url),
       'extra_attributes': link_extra_attributes
     } -%}
   {% endif %}
@@ -35,7 +35,7 @@
           'label': title,
           'icon_position': 'after'
         },
-        'icon': get_link_icon(url, 'xs'),
+        'icon': get_link_icon(url),
         'extra_attributes': link_extra_attributes|default([])
       } %}
     {# If description is provided and title is not, build an ECL link object
@@ -48,7 +48,7 @@
           'label': description,
           'icon_position': 'after'
         },
-        'icon': get_link_icon(url, 'xs'),
+        'icon': get_link_icon(url),
         'extra_attributes': link_extra_attributes|default([])
       } %}
     {% endif %}
