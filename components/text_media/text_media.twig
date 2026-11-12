@@ -8,7 +8,8 @@
 {% set description = description|render %}
 
 {% if link %}
-  {% set _icon = get_link_icon(link.path, 'm') %}
+  {# Remove the color of the icon. #}
+  {% set _icon = get_link_icon(link.path, 'm')|merge({color: ''}) %}
   {% if _icon['name'] == 'corner-arrow' %}
     {% set _icon = _icon|merge({
       'name': 'arrow-left',
