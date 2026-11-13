@@ -1,0 +1,12 @@
+# Without this, node_modules/@ecl would contain only the dependencies from
+# package.json, so anything that would come indirectly from what we require
+# would be placed in a node_modules/.pnpm/node_modules/@ecl, where the sass
+# imports, the ECL patches and the twig templates copy can't find them.
+# @see https://pnpm.io/settings/node-modules#publichoistpattern
+publicHoistPattern:
+  - '@ecl/*'
+# @parcel/watcher is a dependency of sass. ECL allows it (probably dev dep),
+# but we don't need it. It still has to be listed, otherwise pnpm treats it as
+# unreviewed and the pnpm install fails.
+allowBuilds:
+  '@parcel/watcher': false
