@@ -11,6 +11,8 @@ runner.yml
 .idea
 .DS_Store
 package-lock.json
+pnpm-lock.yaml
+.pnpm-store
 patches.lock.json
 phpunit.xml
 .stylelintrc.json
