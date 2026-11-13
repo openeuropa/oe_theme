@@ -6866,6 +6866,8 @@
       'figure.ecl-media-container__figure picture.ecl-picture.ecl-media-container__picture source[srcset="https://loremflickr.com/480/160/arch"]': 1
       'figure.ecl-media-container__figure picture.ecl-picture.ecl-media-container__picture img.ecl-media-container__media[src="https://inno-ecl.s3.amazonaws.com/media/examples/example-image8.jpg"][alt="alternative text"]': 1
       'figure figcaption.ecl-media-container__caption': 1
+      'a.ecl-text-media__link .ecl-link__icon': 1
+      'a.ecl-text-media__link .ecl-icon--primary': 0
     equals:
       'div.ecl-text-media__content div.ecl-text-media__micro-title': "About"
       'div.ecl-text-media__content div.ecl-text-media__title': "Non per curiositatem opinionum"
