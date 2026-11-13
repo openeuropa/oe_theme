@@ -9,7 +9,7 @@ use Symfony\Component\DomCrawler\Crawler;
 /**
  * Assertions for the icons with text pattern.
  *
- * @see ./templates/patterns/icons_with_text/icons-with-text.ui_patterns.yml
+ * @see ./components/icons_with_text/icons_with_text.component.yml
  */
 class IconsTextAssert extends BasePatternAssert {
 

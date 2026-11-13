@@ -9,7 +9,7 @@ use Symfony\Component\DomCrawler\Crawler;
 /**
  * Assertions for the tabs pattern.
  *
- * @see ./templates/patterns/tabs/tabs.ui_patterns.yml
+ * @see ./components/tabs/tabs.component.yml
  */
 class TabsAssert extends BasePatternAssert {
 

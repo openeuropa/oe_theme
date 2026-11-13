@@ -9,7 +9,7 @@ use Symfony\Component\DomCrawler\Crawler;
 /**
  * Assertions for the icons with text pattern.
  *
- * @see ./templates/patterns/link_block/link_block.ui_patterns.yml
+ * @see ./components/link_block/link_block.component.yml
  */
 class LinkBlockAssert extends BasePatternAssert {
 

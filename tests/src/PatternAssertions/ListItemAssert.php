@@ -10,7 +10,7 @@ use Symfony\Component\DomCrawler\Crawler;
 /**
  * Assertions for the list item pattern.
  *
- * @see ./templates/patterns/list_item/list_item.ui_patterns.yml
+ * @see ./components/list_item/list_item.component.yml
  */
 class ListItemAssert extends BasePatternAssert {
 

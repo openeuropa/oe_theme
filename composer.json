@@ -20,6 +20,7 @@
     },
     "require-dev": {
         "composer/installers": "^2.3",
+        "consolidation/robo": "5.1.1",
         "drupal/address": "~2",
         "drupal/composite_reference": "^2.1",
         "drupal/config_devel": "^1.9",
@@ -101,7 +102,8 @@
         },
         "_readme": [
             "autoload-dev: explicitly mapping EntityReferenceFieldCreationTrait to prevent failures.",
-            "Locking extra_field to 3.0.0-beta1 due to issues, will be fixed in EWPP-6001."
+            "Locking extra_field to 3.0.0-beta1 due to issues, will be fixed in EWPP-6001.",
+            "Locking consolidation/robo to 5.1.1 due to 5.2.x calling Application::addCommand() which doesn't exists. Remove when support for Drupal core 10.6.x is dropped."
         ]
     },
     "config": {

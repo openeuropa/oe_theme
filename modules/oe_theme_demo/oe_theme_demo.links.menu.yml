@@ -77,6 +77,6 @@ oe_theme_demo.main.styleguide:
   weight: 4
 oe_theme_demo.main.components:
   title: "Components"
-  route_name: "ui_patterns.patterns.overview"
+  route_name: "sdc_component_library.component_list"
   menu_name: "main"
   weight: 5

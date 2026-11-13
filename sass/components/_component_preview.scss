@@ -6,42 +6,35 @@
   width: calc(100vw - 160px);
 }
 
-// Stack sidebar above main so the preview area gets the full page width.
-.components-preview__wrapper {
-  grid-template:
-    "sidebar"
-    "main"
-    "a11y";
-  grid-template-columns: minmax(0, 1fr);
+.components-preview__title button {
+  text-align: start;
 }
 
-// Reduce sidebar height.
-.components-preview__sidebar {
-  max-block-size: 200px;
-}
-
-// Remove inner preview padding, border-radius, and image cap so full-width
-// components like the banner can fill the entire available width.
-.components-preview__components.active .components-preview__preview {
-  border-radius: 0;
-  max-inline-size: none;
-  padding: 0;
-
+// Adapt the preview container to ECL components.
+.components-preview .components-preview__preview {
+  // Override the contrib's max-inline-size: 500px on images, so ECL components
+  // render as on the other pages.
   img {
     max-inline-size: none;
   }
 
-}
-
-// The adapt ECL slogan ticker css so it doesn't overlap the preview container.
-.components-preview .ecl-slogan-ticker {
-  margin-inline: 0;
-  width: 100%;
-}
-
-// Adapt the ECL full width quiz css so it doesn't overlap the preview
-// container.
-.components-preview .ecl-quiz--full-width {
-  margin-inline: 0;
-  width: 100%;
+  // Ensure ECL full width components do not overflow the preview container.
+  :is(
+      .ecl-add-to-calendar--full-width,
+      .ecl-animated-numbers--full-width,
+      .ecl-banner--full-width,
+      .ecl-carousel--full-width,
+      .ecl-gallery--full-width,
+      .ecl-list-illustration--zebra,
+      .ecl-media-container--full-width,
+      .ecl-media-container--full-width + .ecl-media-container__expandable,
+      .ecl-quiz--full-width,
+      .ecl-slogan-ticker,
+      .ecl-spotlight--full-width,
+      .ecl-text-media--full-width
+    ) {
+    inset-inline-start: auto;
+    margin-inline: 0;
+    width: auto;
+  }
 }

@@ -10,7 +10,7 @@ use Symfony\Component\DomCrawler\Crawler;
 /**
  * Assertions for carousel pattern.
  *
- *  @see ./templates/patterns/carousel/carousel.ui_patterns.yml
+ *  @see ./components/carousel/carousel.component.yml
  */
 class CarouselAssert extends BasePatternAssert {
 

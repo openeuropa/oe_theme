@@ -9,7 +9,7 @@ use Symfony\Component\DomCrawler\Crawler;
 /**
  * Assertions for the news ticker pattern.
  *
- * @see ./templates/patterns/news_ticker/news_ticker.ui_patterns.yml
+ * @see ./components/news_ticker/news_ticker.component.yml
  */
 class NewsTickerAssert extends BasePatternAssert {
 
