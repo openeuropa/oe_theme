@@ -14,7 +14,8 @@
     {% set _description = title %}
   {% else %}
     {% set _title = title %}
-    {% set _description = description %}
+    {# Wrap the description so ECL styles its links like for other text fields. #}
+    {% set _description %}<div class="ecl">{{ description }}</div>{% endset %}
   {% endif %}
 {% endif %}
 

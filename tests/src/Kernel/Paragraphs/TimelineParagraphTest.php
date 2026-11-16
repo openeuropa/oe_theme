@@ -121,27 +121,27 @@ class TimelineParagraphTest extends ParagraphsTestBase {
 
     $this->assertEquals('Label 1', trim($crawler->filter('ol.ecl-timeline li.ecl-timeline__item:nth-child(1) div.ecl-timeline__label')->html()));
     $this->assertEquals('Title 1', trim($crawler->filter('ol.ecl-timeline li.ecl-timeline__item:nth-child(1) div.ecl-timeline__title')->html()));
-    $this->assertEquals('Description 1', trim($crawler->filter('ol.ecl-timeline li.ecl-timeline__item:nth-child(1) div.ecl-timeline__content')->html()));
+    $this->assertEquals('Description 1', trim($crawler->filter('ol.ecl-timeline li.ecl-timeline__item:nth-child(1) div.ecl-timeline__content > div.ecl')->html()));
     $this->assertEquals('Label 2', trim($crawler->filter('ol.ecl-timeline li.ecl-timeline__item:nth-child(2) div.ecl-timeline__label')->html()));
     $this->assertEquals('Title 2', trim($crawler->filter('ol.ecl-timeline li.ecl-timeline__item:nth-child(2) div.ecl-timeline__title')->html()));
     // No format is specified, so the fallback format is used, which is the
     // plain_text.
-    $this->assertEquals('&lt;p&gt;Description 2&lt;/p&gt;', trim($crawler->filter('ol.ecl-timeline li.ecl-timeline__item:nth-child(2) div.ecl-timeline__content')->html()));
+    $this->assertEquals('&lt;p&gt;Description 2&lt;/p&gt;', trim($crawler->filter('ol.ecl-timeline li.ecl-timeline__item:nth-child(2) div.ecl-timeline__content > div.ecl')->html()));
     $this->assertEquals('Label 3', trim($crawler->filter('ol.ecl-timeline li.ecl-timeline__item:nth-child(3) div.ecl-timeline__label')->html()));
     $this->assertEquals('Title 3', trim($crawler->filter('ol.ecl-timeline li.ecl-timeline__item:nth-child(3) div.ecl-timeline__title')->html()));
     // Explicit format "plain_text" specified.
-    $this->assertEquals('&lt;p&gt;Description &lt;strong&gt;3&lt;/strong&gt;&lt;/p&gt;', trim($crawler->filter('ol.ecl-timeline li.ecl-timeline__item:nth-child(3) div.ecl-timeline__content')->html()));
+    $this->assertEquals('&lt;p&gt;Description &lt;strong&gt;3&lt;/strong&gt;&lt;/p&gt;', trim($crawler->filter('ol.ecl-timeline li.ecl-timeline__item:nth-child(3) div.ecl-timeline__content > div.ecl')->html()));
     $this->assertEquals('Label 4', trim($crawler->filter('ol.ecl-timeline li.ecl-timeline__item.ecl-timeline__item--collapsed:nth-child(4) div.ecl-timeline__label')->html()));
     $this->assertEquals('Title 4', trim($crawler->filter('ol.ecl-timeline li.ecl-timeline__item.ecl-timeline__item--collapsed:nth-child(4) div.ecl-timeline__title')->html()));
     // Explicit format "filtered_html" specified.
-    $this->assertEquals('Description <strong>4</strong>', trim($crawler->filter('ol.ecl-timeline li.ecl-timeline__item.ecl-timeline__item--collapsed:nth-child(4) div.ecl-timeline__content')->html()));
+    $this->assertEquals('Description <strong>4</strong>', trim($crawler->filter('ol.ecl-timeline li.ecl-timeline__item.ecl-timeline__item--collapsed:nth-child(4) div.ecl-timeline__content > div.ecl')->html()));
     $this->assertEquals('Label 5', trim($crawler->filter('ol.ecl-timeline li.ecl-timeline__item.ecl-timeline__item--collapsed:nth-child(5) div.ecl-timeline__label')->html()));
     $this->assertEquals('Title 5', trim($crawler->filter('ol.ecl-timeline li.ecl-timeline__item.ecl-timeline__item--collapsed:nth-child(5) div.ecl-timeline__title')->html()));
     // Explicit format "full_html" specified.
-    $this->assertEquals('<p>Description <strong>5</strong></p>', trim($crawler->filter('ol.ecl-timeline li.ecl-timeline__item.ecl-timeline__item--collapsed:nth-child(5) div.ecl-timeline__content')->html()));
+    $this->assertEquals('<p>Description <strong>5</strong></p>', trim($crawler->filter('ol.ecl-timeline li.ecl-timeline__item.ecl-timeline__item--collapsed:nth-child(5) div.ecl-timeline__content > div.ecl')->html()));
     $this->assertEquals('Label 6', trim($crawler->filter('ol.ecl-timeline li.ecl-timeline__item:nth-child(7) div.ecl-timeline__label')->html()));
     $this->assertEquals('Title 6', trim($crawler->filter('ol.ecl-timeline li.ecl-timeline__item:nth-child(7) div.ecl-timeline__title')->html()));
-    $this->assertEquals('Description 6', trim($crawler->filter('ol.ecl-timeline li.ecl-timeline__item:nth-child(7) div.ecl-timeline__content')->html()));
+    $this->assertEquals('Description 6', trim($crawler->filter('ol.ecl-timeline li.ecl-timeline__item:nth-child(7) div.ecl-timeline__content > div.ecl')->html()));
     $this->assertEquals('Show 2 more items', trim($crawler->filter('button.ecl-button.ecl-button--secondary.ecl-timeline__toggle span.ecl-button__container span.ecl-button__label')->html()));
 
     // Increase limit to print all the items and fill in optional fields.

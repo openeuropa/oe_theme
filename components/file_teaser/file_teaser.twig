@@ -105,9 +105,17 @@
 
 {{ contextual_links }}
 
+{# Wrap the teaser so ECL styles its links like for other text fields. #}
+{% set _teaser = teaser|smart_trim(_length) %}
+{% set _description -%}
+  {% if _teaser is not empty %}
+    <div class="ecl">{{ _teaser }}</div>
+  {% endif %}
+{%- endset %}
+
 {% include '@ecl-twig/file' with {
   'title': file.title,
-  'description': teaser|smart_trim(_length),
+  'description': _description,
   'picture': _picture|default({}),
   'icon': {
     'name': file.extension|to_file_icon,
