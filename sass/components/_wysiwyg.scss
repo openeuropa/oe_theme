@@ -1,4 +1,8 @@
+/* ECL makes every rich text wrapper an inline-size container, revert it.
+  Remove this when FRONT-5548 is fixed. */
 .ecl {
+  container-type: normal;
+
   article,
   .ecl-file {
     margin-top: var(--ecl-spacing-xs);

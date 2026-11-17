@@ -103,10 +103,12 @@
         "_readme": [
             "autoload-dev: explicitly mapping EntityReferenceFieldCreationTrait to prevent failures.",
             "Locking extra_field to 3.0.0-beta1 due to issues, will be fixed in EWPP-6001.",
-            "Locking consolidation/robo to 5.1.1 due to 5.2.x calling Application::addCommand() which doesn't exists. Remove when support for Drupal core 10.6.x is dropped."
+            "Locking consolidation/robo to 5.1.1 due to 5.2.x calling Application::addCommand() which doesn't exists. Remove when support for Drupal core 10.6.x is dropped.",
+            "Setting process-timeout to 900 because the build-ecl-pipeline.sh now installs npm before building ECL in drupal:site-setup, which makes the run take longer than the default 300 seconds. Remove when EWPP-7550 (replacing npm with pnpm) is merged."
         ]
     },
     "config": {
+        "process-timeout": 900,
         "sort-packages": true,
         "allow-plugins": {
             "composer/installers": true,
