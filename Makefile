@@ -13,7 +13,6 @@ ecl-dev: .env build-ecl copy-dist copy-twig compile-sass
 build-ecl:
 	[ ! -d ecl-build ] || rm -rf ecl-build pnpm-lock.yaml node_modules
 	git clone -b $(ECL_BUILD_REF) $(ECL_BUILD_REPO) --depth 1 ecl-build
-	corepack enable && corepack prepare pnpm@10.9.0 --activate
 	cd ./ecl-build && pnpm install --stream
 	# Add ECL dependencies that cannot be required by ECL.
 	# @see https://github.com/ec-europa/europa-component-library#warning-momentjs
