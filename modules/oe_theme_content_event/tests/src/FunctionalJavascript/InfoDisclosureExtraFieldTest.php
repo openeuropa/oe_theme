@@ -165,9 +165,11 @@ class InfoDisclosureExtraFieldTest extends WebDriverTestBase {
       'title' => 'Link to online event',
     ]);
     $node->set('oe_event_online_description', 'Online event description');
+    // Livestream information is disclosed 10 minutes before the start.
+    $online_start_date = (clone $start_date)->modify('+10 minutes');
     $node->set('oe_event_online_dates', [
-      'value' => $start_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
-      'end_value' => (clone $start_date)->modify('+3 hours')->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
+      'value' => $online_start_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
+      'end_value' => (clone $online_start_date)->modify('+3 hours')->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
       'timezone' => 'Europe/Brussels',
     ]);
     $node->set('oe_event_registration_dates', [
@@ -197,11 +199,12 @@ class InfoDisclosureExtraFieldTest extends WebDriverTestBase {
       $this->assertTrue($registration_element->isVisible());
     }
 
-    // Set livestream start date in 20 seconds later.
+    // Set livestream disclosure date in 20 seconds later.
     $start_date = (clone $static_time)->modify('+20 seconds');
+    $online_start_date = (clone $start_date)->modify('+10 minutes');
     $node->set('oe_event_online_dates', [
-      'value' => $start_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
-      'end_value' => (clone $start_date)->modify('+3 hours')->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
+      'value' => $online_start_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
+      'end_value' => (clone $online_start_date)->modify('+3 hours')->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
       'timezone' => 'Europe/Brussels',
     ]);
     $node->set('oe_event_registration_dates', [
