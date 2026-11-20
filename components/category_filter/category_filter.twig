@@ -1,0 +1,15 @@
+{#
+/**
+ * @file
+ * Category filter component.
+ */
+#}
+
+{% include '@ecl-twig/category-filter' with {
+  label: label|default('Category filter'|t),
+  color_mode: color_mode|default(''),
+  name: name|default(''),
+  items: items|default([]),
+  extra_classes: extra_classes|default(''),
+  extra_attributes: extra_attributes|default([]),
+} only %}
