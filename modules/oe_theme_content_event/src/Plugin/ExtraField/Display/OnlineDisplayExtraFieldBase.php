@@ -19,7 +19,8 @@ abstract class OnlineDisplayExtraFieldBase extends InfoDisclosureExtraFieldBase 
       'library' => 'oe_theme_content_event/livestream_link_disclosure',
       'drupalSettings' => [
         'oe_theme_content_event' => [
-          'livestream_start_timestamp' => $timestamp * 1000,
+          // Disclose the livestream information 10 minutes before it starts.
+          'livestream_start_timestamp' => ($timestamp - 600) * 1000,
         ],
       ],
     ];
