@@ -1,5 +1,25 @@
 # Changelog
 
+## [6.2.0](https://github.com/openeuropa/oe_theme/tree/6.2.0) (2026-11-23)
+
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/6.1.0...6.2.0)
+
+**Merged pull requests:**
+
+- EWPP-7550: Replace npm with pnpm. [\#1841](https://github.com/openeuropa/oe_theme/pull/1841) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-0001: Install npm for building the ECL dependencies. [\#1840](https://github.com/openeuropa/oe_theme/pull/1840) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-7377: Fix Text and media icon styling and revert container type for wysiwyg. [\#1839](https://github.com/openeuropa/oe_theme/pull/1839) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-7533: Update story\_card SDC screen reader default labels. [\#1837](https://github.com/openeuropa/oe_theme/pull/1837) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-7529: Update to ECL 5.4.1. [\#1836](https://github.com/openeuropa/oe_theme/pull/1836) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-6136: Improve the components preview page and clean up leftover code. [\#1835](https://github.com/openeuropa/oe_theme/pull/1835) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-7214: Use phosphor caret-right icon for internal links. [\#1834](https://github.com/openeuropa/oe_theme/pull/1834) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-7512: Show Event remaining registration days when less than 30 days are left. [\#1833](https://github.com/openeuropa/oe_theme/pull/1833) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-7384: Remove duplicated rdf\_skos package in composer.json. [\#1831](https://github.com/openeuropa/oe_theme/pull/1831) ([sergepavle](https://github.com/sergepavle))
+- EWPP-7481: Update to ECL 5.4.0. [\#1829](https://github.com/openeuropa/oe_theme/pull/1829) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-7446: Add new control to Gallery SDC. [\#1828](https://github.com/openeuropa/oe_theme/pull/1828) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-7434: Add ECL default styling to status messages. [\#1827](https://github.com/openeuropa/oe_theme/pull/1827) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-7365: Wrap SDCs parameters in "ecl" class. [\#1825](https://github.com/openeuropa/oe_theme/pull/1825) ([22Alexandra](https://github.com/22Alexandra))
+
 ## [6.1.0](https://github.com/openeuropa/oe_theme/tree/6.1.0) (2026-10-14)
 
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/6.0.0...6.1.0)
