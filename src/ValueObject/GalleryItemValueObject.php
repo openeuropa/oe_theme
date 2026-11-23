@@ -210,6 +210,7 @@ class GalleryItemValueObject extends ValueObjectBase {
       $values['embedded_video'] = [
         'src' => $this->getSource(),
       ];
+      $values['thumbnail']['img']['alt'] = $thumbnail['alt'] ?: $this->getTitle();
     }
 
     return $values;

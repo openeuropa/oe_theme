@@ -63,6 +63,13 @@ class GalleryItemValueObjectTest extends UnitTestCase {
     $this->assertEquals($values['caption'], $item->getCaption());
     $this->assertEquals($values['meta'], $item->getMeta());
 
+    // Assert that a video without alt text uses its title as the alt.
+    $item = GalleryItemValueObject::fromArray([
+      'thumbnail' => ['src' => 'http://placehold.it/380x185', 'alt' => ''],
+      'title' => 'Test video title',
+    ] + $values);
+    $this->assertEquals('Test video title', $item->getArray()['thumbnail']['img']['alt']);
+
     // Create an image-based Gallery item.
     $values = [
       'thumbnail' => $image_value_object,
@@ -83,6 +90,13 @@ class GalleryItemValueObjectTest extends UnitTestCase {
     $this->assertEquals($to_array['icon'], 'image');
     $this->assertEquals($to_array['description'], 'Test image caption.');
     $this->assertEquals($to_array['meta'], 'Test image meta.');
+
+    // Assert that a decorative image keeps its empty alt text.
+    $item = GalleryItemValueObject::fromArray([
+      'thumbnail' => ['src' => 'http://placehold.it/380x185', 'alt' => ''],
+      'title' => 'Test image title',
+    ] + $values);
+    $this->assertEquals('', $item->getArray()['thumbnail']['img']['alt']);
   }
 
   /**
