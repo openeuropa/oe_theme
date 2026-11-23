@@ -500,10 +500,8 @@ abstract class ContentRenderTestBase extends BrowserTestBase {
    *   Link URL.
    * @param bool $is_external
    *   Defines whether it is external link or internal.
-   * @param string $icon_size
-   *   Icon size.
    */
-  protected function assertLinkIcon(NodeElement $element, string $title, string $href, bool $is_external = TRUE, string $icon_size = 's'): void {
+  protected function assertLinkIcon(NodeElement $element, string $title, string $href, bool $is_external = TRUE): void {
     $link = $element->findAll('css', 'a.ecl-link.ecl-link--standalone.ecl-link--icon');
     $this->assertCount(1, $link);
     $this->assertEquals($href, $link[0]->getAttribute('href'));
@@ -512,15 +510,9 @@ abstract class ContentRenderTestBase extends BrowserTestBase {
     $this->assertCount(1, $label);
     $this->assertEquals($title, $label[0]->getText());
 
-    // External links use the ECL external icon, which is always "xs".
-    $icon_class = 'wt-icon-phosphor--arrow-square-out';
-    if ($is_external) {
-      $icon_size = 'xs';
-    }
-    else {
-      $icon_class = 'wt-icon--arrow-right';
-    }
-    $icon_base_selector = 'span.ecl-icon.ecl-icon--' . $icon_size . '.ecl-icon--primary.ecl-link__icon';
+    // Link icons are always "xs" size phosphor icons.
+    $icon_class = $is_external ? 'wt-icon-phosphor--arrow-square-out' : 'wt-icon-phosphor--caret-right';
+    $icon_base_selector = 'span.ecl-icon.ecl-icon--xs.ecl-icon--primary.ecl-link__icon';
     $icon_selector = $link[0]->findAll('css', $icon_base_selector . '.' . $icon_class);
     $this->assertCount(1, $icon_selector);
   }

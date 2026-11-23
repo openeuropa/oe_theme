@@ -488,27 +488,18 @@ class TwigExtension extends AbstractExtension {
    * @param \Drupal\Core\Url|\Stringable|string|null $path
    *   The internal path, external URL or URL object.
    * @param string $size
-   *   Size of the icon. Default is "s".
+   *   Deprecated and will be removed in 7.x.
    *
    * @return array
    *   Icon settings to be used in the ecl-twig/link component.
    */
-  public function getLinkIcon(array $context, Url|\Stringable|string|null $path, string $size = 's'): array {
-
-    $icon = [
-      'size' => $size,
+  public function getLinkIcon(array $context, Url|\Stringable|string|null $path, string $size = 'xs'): array {
+    return [
+      'name' => $this->isExternal($path) ? 'arrow-square-out' : 'caret-right',
+      'family' => 'phosphor',
+      'size' => 'xs',
       'color' => 'primary',
     ];
-    if ($this->isExternal($path)) {
-      $icon['name'] = 'arrow-square-out';
-      $icon['family'] = 'phosphor';
-      $icon['size'] = 'xs';
-    }
-    else {
-      $icon['name'] = 'arrow-right';
-    }
-
-    return $icon;
   }
 
   /**
