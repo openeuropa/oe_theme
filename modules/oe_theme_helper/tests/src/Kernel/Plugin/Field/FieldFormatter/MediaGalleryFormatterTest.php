@@ -226,7 +226,7 @@ class MediaGalleryFormatterTest extends AbstractKernelTestBase {
     $expected_thumbnail_name = 'FRPRzhRHyt8zGp5-d-luvJDnIb03oXDJUp5LtL4UeDI.jpg';
 
     $image_node = $items->eq(1)->filter('img');
-    $this->assertEquals('', $image_node->attr('alt'));
+    $this->assertEquals("Energy, let's save it!", $image_node->attr('alt'));
     $this->assertStringEndsWith('/oembed_thumbnails/' . $expected_thumbnail_name, $image_node->attr('src'));
     $title = $items->eq(1)->filter('.ecl-gallery__description span.ecl-gallery__title');
     $this->assertStringContainsString("Energy, let's save it!", $title->html());
@@ -333,7 +333,7 @@ class MediaGalleryFormatterTest extends AbstractKernelTestBase {
       $items->eq(1)->filter('.ecl-gallery__item-link')->attr('data-ecl-gallery-item-embed-src')
     );
     $image_node = $items->eq(1)->filter('img');
-    $this->assertEquals('', $image_node->attr('alt'));
+    $this->assertEquals("Energy, let's save it!", $image_node->attr('alt'));
 
     // Core shipped image styles are converted to webp or avif extension.
     $expected_thumbnail_name .= version_compare(\Drupal::VERSION, '11.2.0', '>=') ? '.avif' : '.webp';
