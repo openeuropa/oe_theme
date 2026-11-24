@@ -814,6 +814,23 @@ function oe_theme_preprocess_html(array &$variables): void {
 }
 
 /**
+ * Implements hook_preprocess_HOOK() for media-oembed-iframe.html.twig.
+ */
+function oe_theme_preprocess_media_oembed_iframe(array &$variables): void {
+  // Add title and language attributes to oEmbed iframes for accessibility.
+  $language = \Drupal::languageManager()->getCurrentLanguage();
+  $variables['html_attributes'] = new Attribute([
+    'lang' => $language->getId(),
+    'dir' => $language->getDirection(),
+  ]);
+  $variables['#cache']['contexts'][] = 'languages:language_interface';
+
+  /** @var \Drupal\media\OEmbed\Resource $resource */
+  $resource = $variables['resource'];
+  $variables['title'] = $resource->getTitle() ?? $resource->getProvider()->getName();
+}
+
+/**
  * Implements hook_preprocess_paragraph() for paragraph--oe-list-item.html.twig.
  */
 function oe_theme_preprocess_paragraph__oe_list_item(array &$variables): void {
