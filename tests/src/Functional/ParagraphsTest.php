@@ -152,6 +152,18 @@ class ParagraphsTest extends BrowserTestBase {
       ],
     ])->toString();
     $this->assertSession()->elementAttributeContains('css', 'figure.ecl-media-container__figure div.ecl-media-container__media iframe', 'src', $partial_iframe_url);
+
+    // Assert the iframe document has title and language attributes.
+    $iframe_src = $this->assertSession()->elementExists('css', 'figure.ecl-media-container__figure div.ecl-media-container__media iframe')->getAttribute('src');
+    $this->getSession()->visit($iframe_src);
+    $this->assertSession()->elementAttributeContains('css', 'html', 'lang', 'en');
+    $this->assertSession()->elementAttributeContains('css', 'html', 'dir', 'ltr');
+    $this->assertSession()->elementTextEquals('css', 'head title', 'Rammstein - Radio (Official Video)');
+    // Assert the iframe document language in the bulgarian translation.
+    $this->drupalGet('/bg/node/' . $node->id(), ['external' => FALSE]);
+    $iframe_src = $this->assertSession()->elementExists('css', 'figure.ecl-media-container__figure div.ecl-media-container__media iframe')->getAttribute('src');
+    $this->getSession()->visit($iframe_src);
+    $this->assertSession()->elementAttributeContains('css', 'html', 'lang', 'bg');
   }
 
 }

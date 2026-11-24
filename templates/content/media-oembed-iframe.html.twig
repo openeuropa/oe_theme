@@ -1,0 +1,18 @@
+{#
+/**
+ * @file
+ * Theme override to display an oEmbed resource in an iframe.
+ *
+ * @see ./core/themes/stable/templates/content/media-oembed-iframe.html.twig
+ */
+#}
+<!DOCTYPE html>
+<html{{ html_attributes }}>
+  <head>
+    <title>{{ title }}</title>
+    <css-placeholder token="{{ placeholder_token }}">
+  </head>
+  <body style="margin: 0">
+    {{ media|raw }}
+  </body>
+</html>
