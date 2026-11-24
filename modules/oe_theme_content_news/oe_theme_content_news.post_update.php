@@ -153,8 +153,11 @@ function oe_theme_content_news_post_update_00009(): void {
 }
 
 /**
- * Uninstall the ui_patterns_field_group module.
+ * Uninstall the ui_patterns_field_group module if it is not used.
  */
-function oe_theme_content_news_post_update_00010(): void {
-  \Drupal::service('module_installer')->uninstall(['ui_patterns_field_group']);
+function oe_theme_content_news_post_update_00010(): string {
+  // Sites can still use UI Patterns field groups in their own displays.
+  $kept = _oe_theme_helper_uninstall_unused_modules(['ui_patterns_field_group']);
+
+  return $kept ? 'The ui_patterns_field_group module is kept because it is still in use.' : 'The ui_patterns_field_group module is uninstalled.';
 }
