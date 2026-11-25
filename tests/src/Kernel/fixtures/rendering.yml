@@ -7115,6 +7115,47 @@
       "footer.ecl-animated-numbers__sources a.ecl-animated-numbers__source[href='/example']": "Eurostat"
 - structure:
     '#type': component
+    '#component': 'oe_theme:animated_numbers'
+    '#props':
+      no_header: true
+      items:
+        - category: "Revenue"
+          icon_name: "users"
+          icon_family: "phosphor"
+          value: "213"
+          suffix: "€"
+          description: "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris."
+        - category: "Revenue"
+          icon_name: "currency-eur"
+          icon_family: "phosphor"
+          prefix: "billion"
+          value: "888.2"
+          description: "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  assertions:
+    count:
+      'div.ecl-animated-numbers.ecl-animated-numbers--counter-color': 1
+      'div.ecl-animated-numbers.ecl-animated-numbers--border': 0
+      'div.ecl-animated-numbers.ecl-animated-numbers--with-background': 0
+      'article.ecl-animated-numbers__wrapper': 1
+      'ul.ecl-animated-numbers__items': 1
+      'li.ecl-animated-number': 2
+      '.ecl-animated-number__header': 0
+      '.ecl-animated-number__category': 0
+      '.ecl-animated-number__icon': 0
+      'li.ecl-animated-number .ecl-animated-number__content': 2
+      'li.ecl-animated-number:nth-child(1) .ecl-animated-number__prefix': 0
+      'li.ecl-animated-number:nth-child(2) .ecl-animated-number__suffix': 0
+      'div.ecl-animated-numbers__sources': 0
+      'footer.ecl-animated-numbers__sources': 0
+    equals:
+      'li.ecl-animated-number:nth-child(1) .ecl-animated-number__content .ecl-animated-number__number .ecl-animated-number__value': "213"
+      'li.ecl-animated-number:nth-child(1) .ecl-animated-number__content .ecl-animated-number__number .ecl-animated-number__suffix': "€"
+      'li.ecl-animated-number:nth-child(1) .ecl-animated-number__content .ecl-animated-number__description': "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris."
+      'li.ecl-animated-number:nth-child(2) .ecl-animated-number__content .ecl-animated-number__number .ecl-animated-number__prefix': "billion"
+      'li.ecl-animated-number:nth-child(2) .ecl-animated-number__content .ecl-animated-number__number .ecl-animated-number__value': "888.2"
+      'li.ecl-animated-number:nth-child(2) .ecl-animated-number__content .ecl-animated-number__description': "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+- structure:
+    '#type': component
     '#component': 'oe_theme:add_to_calendar'
     '#props':
       title: "Event coming soon!"
