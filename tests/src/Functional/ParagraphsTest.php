@@ -159,6 +159,8 @@ class ParagraphsTest extends BrowserTestBase {
     $this->assertSession()->elementAttributeContains('css', 'html', 'lang', 'en');
     $this->assertSession()->elementAttributeContains('css', 'html', 'dir', 'ltr');
     $this->assertSession()->elementTextEquals('css', 'head title', 'Rammstein - Radio (Official Video)');
+    // The embedded iframe title differs from the title of the outer iframe.
+    $this->assertSession()->elementAttributeContains('css', 'iframe', 'title', ' - YouTube');
     // Assert the iframe document language in the bulgarian translation.
     $this->drupalGet('/bg/node/' . $node->id(), ['external' => FALSE]);
     $iframe_src = $this->assertSession()->elementExists('css', 'figure.ecl-media-container__figure div.ecl-media-container__media iframe')->getAttribute('src');

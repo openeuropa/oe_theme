@@ -21,6 +21,7 @@ use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\Template\Attribute;
 use Drupal\Core\Url;
 use Drupal\block\BlockInterface;
+use Drupal\media\IFrameMarkup;
 use Drupal\media\MediaInterface;
 use Drupal\media\Plugin\media\Source\Image;
 use Drupal\media\Plugin\media\Source\OEmbed;
@@ -828,6 +829,14 @@ function oe_theme_preprocess_media_oembed_iframe(array &$variables): void {
   /** @var \Drupal\media\OEmbed\Resource $resource */
   $resource = $variables['resource'];
   $variables['title'] = $resource->getTitle() ?? $resource->getProvider()->getName();
+
+  // The embedded iframe needs a title, other than the one of this page iframe.
+  $dom = Html::load((string) $variables['media']);
+  $iframe = $dom->getElementsByTagName('iframe')->item(0);
+  if ($iframe && in_array($iframe->getAttribute('title'), ['', $resource->getTitle()], TRUE)) {
+    $iframe->setAttribute('title', $variables['title'] . ' - ' . $resource->getProvider()->getName());
+    $variables['media'] = IFrameMarkup::create(Html::serialize($dom));
+  }
 }
 
 /**
