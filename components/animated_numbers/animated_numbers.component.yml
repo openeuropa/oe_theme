@@ -15,6 +15,10 @@ props:
       type: ['boolean', 'null']
       title: 'Border left'
       description: 'Whether the items should have a left border or not (default false).'
+    no_header:
+      type: ['boolean', 'null']
+      title: 'No header'
+      description: "Whether to hide the items' header (category and icon) or not (default false)."
     sources_label:
       type: ['string', 'null']
       title: 'Sources label'
