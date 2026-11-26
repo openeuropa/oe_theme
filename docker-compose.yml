@@ -7,6 +7,9 @@ services:
     volumes:
       - .:/var/www/html # Non Mac users.
       # - nfsmount:/var/www/html # Mac Users with the nfsmount volume.
+    depends_on:
+      sparql:
+        condition: service_healthy
     environment:
       COMPOSERVER: "--2"
       XDEBUG_CONFIG: "client_host=172.17.0.1" # Non-Mac users.
@@ -43,12 +46,15 @@ services:
       - '5900:5900'
     shm_size: 2g
   sparql:
-    image: fpfis/triplestore:1
-    environment:
-      - SPARQL_UPDATE=true
-      - DBA_PASSWORD=dba
+    image: fpfis/triplestore:2
     ports:
-      - "8890:8890"
+      - "3030:3030"
+    healthcheck:
+      test: [ "CMD", "wget", "-q", "-O", "/dev/null", "http://localhost:3030/$$/ping" ]
+      interval: 5s
+      timeout: 3s
+      retries: 30
+      start_period: 10s
 
 #### Mac users: uncomment the "volumes" key to enable the NFS file sharing. You can find more information about Docker for Mac here: https://github.com/openeuropa/openeuropa/blob/master/docs/starting/tooling.md#using-docker-on-macos
 
