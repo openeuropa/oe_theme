@@ -117,7 +117,7 @@ class RegistrationButtonExtraField extends InfoDisclosureExtraFieldBase {
         $days_left = (new \DateTime($this->dateFormatter->format($this->requestTime, 'custom', 'Ymd', $timezone)))
           ->diff(new \DateTime($this->dateFormatter->format($datetime_end->getTimestamp(), 'custom', 'Ymd', $timezone)))->days;
         if ($days_left < 30) {
-          $date_diff_formatted = $this->formatPlural($days_left, '1 day', '@count days');
+          $date_diff_formatted = $this->formatPlural($days_left, '@count day', '@count days');
         }
         $build['#description'] = $this->t('Book your seat, @time_left left to register, registration will end on @end_date', [
           '@time_left' => $date_diff_formatted,
