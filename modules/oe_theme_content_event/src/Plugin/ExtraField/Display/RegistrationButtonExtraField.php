@@ -84,6 +84,13 @@ class RegistrationButtonExtraField extends InfoDisclosureExtraFieldBase {
       }
       else {
         $date_diff_formatted = $this->dateFormatter->formatDiff($this->requestTime, $datetime_start->getTimestamp(), ['granularity' => 1]);
+        // If there are less than 30 days left until the registration opens,
+        // show the exact number of remaining days, instead of weeks.
+        $days_left = (new \DateTime($this->dateFormatter->format($this->requestTime, 'custom', 'Ymd', $timezone)))
+          ->diff(new \DateTime($this->dateFormatter->format($datetime_start->getTimestamp(), 'custom', 'Ymd', $timezone)))->days;
+        if ($days_left < 30) {
+          $date_diff_formatted = $this->formatPlural($days_left, '@count day', '@count days');
+        }
         $build['#description'] = $this->t('Registration will open in @time_left. You can register from @start_date, until @end_date.', [
           '@time_left' => $date_diff_formatted,
           '@start_date' => $this->dateFormatter->format($datetime_start->getTimestamp(), 'oe_event_date_hour_timezone', '', $timezone),

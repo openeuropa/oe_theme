@@ -527,6 +527,21 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     $this->drupalGet($node->toUrl());
     $this->assertSession()->pageTextContains('Event description summary');
 
+    // Assert "Registration date" field when registration will start in less
+    // than 30 days, the exact number of days is shown instead of weeks.
+    $registration_start_date = (clone $static_time)->modify('+ 12 days');
+    $registration_end_date = (clone $static_time)->modify('+ 15 days');
+    $node->set('oe_event_registration_dates', [
+      'value' => $registration_start_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
+      'end_value' => $registration_end_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
+      'timezone' => 'Europe/Brussels',
+    ])->save();
+    $this->drupalGet($node->toUrl());
+
+    $this->assertRegistrationButtonDisabled($registration_content, 'Register here');
+    $registration_info_content = $this->assertSession()->elementExists('css', 'p.ecl-u-type-paragraph.ecl-u-type-color-neutral-dark-900');
+    $this->assertEquals('Registration will open in 12 days. You can register from 29 February 2020, 15:00 CET, until 3 March 2020, 15:00 CET.', $registration_info_content->getText());
+
     // Assert "Registration date" field when registration will start in future.
     $registration_start_date = (clone $static_time)->modify('+ 1 day');
     $registration_end_date = (clone $static_time)->modify('+ 15 days');
