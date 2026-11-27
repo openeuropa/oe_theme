@@ -5256,13 +5256,17 @@
       'a.ecl-u-mr-xs.ecl-u-mb-s.ecl-tag.ecl-tag--removable[href="http://dg-trad.com"]': 1
       'a.ecl-u-mr-xs.ecl-u-mb-s.ecl-tag.ecl-tag--removable[href="http://health.com"]': 1
       'span.ecl-tag__icon': 2
-      'span.ecl-icon.ecl-icon--xs.ecl-tag__icon-close-filled': 2
+      'a.ecl-tag.ecl-tag--removable span.ecl-tag__icon span.ecl-icon.ecl-icon--xs.ecl-icon-phosphor--x[role="img"][title="Dismiss"]': 2
+      'div.ecl-tag.ecl-tag--removable span.ecl-tag__label': 1
+    equals:
+      'div.active-search-filters__name span': 'Source'
+      'a.ecl-tag.ecl-tag--removable[href="http://dg-trad.com"] span.ecl-tag__label': 'DG Trad'
+      'a.ecl-tag.ecl-tag--removable[href="http://health.com"] span.ecl-tag__label': 'Health, well-being &amp; Consumer protection'
+      'div.ecl-tag.ecl-tag--removable span.ecl-tag__label': 'No link'
     contains:
       'a.ecl-u-mr-xs.ecl-u-mb-s.ecl-tag.ecl-tag--removable[href="http://dg-trad.com"]': 'DG Trad'
       'a.ecl-u-mr-xs.ecl-u-mb-s.ecl-tag.ecl-tag--removable[href="http://health.com"]': 'Health, well-being &amp; Consumer protection'
       'div.ecl-u-mr-xs.ecl-u-mt-s.ecl-tag.ecl-tag--removable': 'No link'
-    equals:
-      'div.active-search-filters__name span': 'Source'
 - structure:
     '#type': 'component'
     '#component': 'oe_theme:list_with_illustration'
